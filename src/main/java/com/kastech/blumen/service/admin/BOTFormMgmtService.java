@@ -19,7 +19,6 @@ import com.kastech.blumen.repository.admin.BOTFormMgmtRepository;
 @Component
 public class BOTFormMgmtService {
 
-	@Autowired
 	BOTFormMgmtRepository botFormMgmtRepository;
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(BOTFormMgmtService.class);

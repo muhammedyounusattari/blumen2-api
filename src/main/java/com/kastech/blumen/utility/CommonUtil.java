@@ -332,6 +332,45 @@ public class CommonUtil {
         return studentBotFormSubmissLog;
     }
 
+    public static StudentTutorContacts convertJsonStringToPojoForStudentTutorContacts(String object)  {
+        StudentTutorContacts studentTutorContacts = null;
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(NON_NULL);
+        try {
+            studentTutorContacts = mapper.readValue(object, StudentTutorContacts.class);
+        } catch (Exception e) {
+            LOGGER.error("Error parsing {} json string to object ", object.getClass(), e);
+            throw new ServiceLayerException("Unable to parse json string to object");
+        }
+        return studentTutorContacts;
+    }
+
+    public static StudentTeacherContacts convertJsonStringToPojoForStudentTeacherContacts(String object)  {
+        StudentTeacherContacts studentTeacherContacts = null;
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(NON_NULL);
+        try {
+            studentTeacherContacts = mapper.readValue(object, StudentTeacherContacts.class);
+        } catch (Exception e) {
+            LOGGER.error("Error parsing {} json string to object ", object.getClass(), e);
+            throw new ServiceLayerException("Unable to parse json string to object");
+        }
+        return studentTeacherContacts;
+    }
+
+    public static StudentStaffContacts convertJsonStringToPojoForStudentStaffContacts(String object)  {
+        StudentStaffContacts studentStaffContacts = null;
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(NON_NULL);
+        try {
+            studentStaffContacts = mapper.readValue(object, StudentStaffContacts.class);
+        } catch (Exception e) {
+            LOGGER.error("Error parsing {} json string to object ", object.getClass(), e);
+            throw new ServiceLayerException("Unable to parse json string to object");
+        }
+        return studentStaffContacts;
+    }
+
 
 
 
