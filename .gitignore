@@ -21,3 +21,5 @@ out
 *.gz
 **/.DS_Store
 *.patch
+*.class
+*.groovy
