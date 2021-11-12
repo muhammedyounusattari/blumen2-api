@@ -377,6 +377,19 @@ public class CommonUtil {
         return studentStaffContacts;
     }
 
+    public static CustomFieldsNameType convertJsonStringToPojoForCustomFieldsNameType(String object)  {
+        CustomFieldsNameType customFieldsNameType = null;
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(NON_NULL);
+        try {
+            customFieldsNameType = mapper.readValue(object, CustomFieldsNameType.class);
+        } catch (Exception e) {
+            LOGGER.error("Error parsing {} json string to object ", object.getClass(), e);
+            throw new ServiceLayerException("Unable to parse json string to object");
+        }
+        return customFieldsNameType;
+    }
+
 
 
 
