@@ -2,7 +2,13 @@ package com.kastech.blumen.utility;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kastech.blumen.exception.ServiceLayerException;
-import com.kastech.blumen.model.*;
+import com.kastech.blumen.model.counselor.Counselor;
+import com.kastech.blumen.model.customize.*;
+import com.kastech.blumen.model.staff.Staff;
+import com.kastech.blumen.model.student.contacts.*;
+import com.kastech.blumen.model.student.logs.*;
+import com.kastech.blumen.model.teacher.Teacher;
+import com.kastech.blumen.model.tutor.Tutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,12 +49,12 @@ public class CommonUtil {
         return schoolCollege;
     }
 
-    public static Councilor convertJsonStringToPojoForCouncilor(String object)  {
-        Councilor councilor = null;
+    public static Counselor convertJsonStringToPojoForCouncilor(String object)  {
+        Counselor councilor = null;
         ObjectMapper mapper = new ObjectMapper();
         mapper.setSerializationInclusion(NON_NULL);
         try {
-            councilor = mapper.readValue(object, Councilor.class);
+            councilor = mapper.readValue(object, Counselor.class);
         } catch (Exception e) {
             LOGGER.error("Error parsing {} json string to object ", object.getClass(), e);
             throw new ServiceLayerException("Unable to parse json string to object");

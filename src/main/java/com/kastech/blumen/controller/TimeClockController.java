@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kastech.blumen.model.Staff;
+import com.kastech.blumen.model.staff.Staff;
 
 @RestController
 @RequestMapping("/api/blumen-api")

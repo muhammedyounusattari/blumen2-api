@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.kastech.blumen.model.Staff;
+import com.kastech.blumen.model.staff.Staff;
 
 @Service
 public class TimeClockService {
