@@ -1,4 +1,4 @@
-package com.kastech.blumen.controller;
+package com.kastech.blumen.controller.home;
 
 import java.util.Collection;
 
@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kastech.blumen.model.staff.Staff;
+import com.kastech.blumen.service.home.TimeClockService;
+
 
 @RestController
 @RequestMapping("/api/blumen-api")

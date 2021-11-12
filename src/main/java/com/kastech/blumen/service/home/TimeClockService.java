@@ -1,4 +1,5 @@
-package com.kastech.blumen.controller;
+package com.kastech.blumen.service.home
+;
 
 import java.util.ArrayList;
 import java.util.List;
