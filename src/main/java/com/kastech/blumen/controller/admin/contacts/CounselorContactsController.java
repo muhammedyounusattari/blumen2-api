@@ -18,7 +18,7 @@ import com.kastech.blumen.model.admin.CounselorContact;
 import com.kastech.blumen.service.admin.CounselorContactsService;
 
 @RestController
-@RequestMapping("/api/blumen-api/admin")
+@RequestMapping("/api/blumen-api/admin/contact")
 public class CounselorContactsController {
 
 	@Autowired
