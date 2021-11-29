@@ -18,7 +18,7 @@ import com.kastech.blumen.model.admin.StaffClasses;
 import com.kastech.blumen.service.admin.classes.StaffClassesService;
 
 @RestController
-@RequestMapping("/api/blumen-api/admin")
+@RequestMapping("/api/blumen-api/admin/classes")
 public class StaffClassesController {
 
 	@Autowired

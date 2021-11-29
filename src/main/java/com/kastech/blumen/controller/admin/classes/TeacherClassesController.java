@@ -20,7 +20,7 @@ import com.kastech.blumen.service.admin.classes.CounselorClassesService;
 import com.kastech.blumen.service.admin.classes.TeacherClassesService;
 
 @RestController
-@RequestMapping("/api/blumen-api/admin")
+@RequestMapping("/api/blumen-api/admin/classes")
 public class TeacherClassesController {
 
 	@Autowired
