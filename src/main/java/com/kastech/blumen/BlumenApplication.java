@@ -18,9 +18,9 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
 @ComponentScan(value = {"com.kastech.blumen"})
-public class Application {
+public class BlumenApplication {
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(BlumenApplication.class, args);
 
 
     }
