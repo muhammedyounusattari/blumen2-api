@@ -1,7 +1,16 @@
 package com.kastech.blumen.model.student;
 
-public class Student {
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
+import java.util.List;
+//@Entity
+//@Table(name = "student")
+public class Student implements Serializable {
 
+//    @Id
+    private Integer id;
     private String ssno;
     private String firstName;
     private String lastName;
@@ -16,6 +25,9 @@ public class Student {
     private String school;
     private String standing;
     private String fiscalYear;
+
+    private EndOfYearStatus endOfYearStatus;
+  //  private Activities activities;
 
     public Student() {
     }
@@ -167,5 +179,23 @@ public class Student {
                 ", standing='" + standing + '\'' +
                 ", fiscalYear='" + fiscalYear + '\'' +
                 '}';
+    }
+
+    class EndOfYearStatus {
+        private List<EndStatus> endStatusList;
+
+        public List<EndStatus> getEndStatusList() {
+            return endStatusList;
+        }
+
+        public void setEndStatusList(List<EndStatus> endStatusList) {
+            this.endStatusList = endStatusList;
+        }
+    }
+
+    class StudentActivities implements Serializable{
+        private Integer id;
+        private String name;
+
     }
 }

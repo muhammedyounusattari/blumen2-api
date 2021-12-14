@@ -1,8 +1,15 @@
 package com.kastech.blumen.model.customize;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "grading_group_list" ,schema = "blumen2")
 public class GradingGroupList {
 
-    private String gradeGroupId;
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="grading_grp_list_seq_gen")
+    @SequenceGenerator(name="grading_grp_list_seq_gen", sequenceName="GRADING_GROUP_LIST_SEQ")
+    private Long gradeGroupId;
     private String gradeGroupName;
     private String gradeGroupGradeType;
     private String gradeGroupAprColumn;
@@ -10,18 +17,18 @@ public class GradingGroupList {
     public GradingGroupList() {
     }
 
-    public GradingGroupList(String gradeGroupId, String gradeGroupName, String gradeGroupGradeType, String gradeGroupAprColumn) {
+    public GradingGroupList(Long gradeGroupId, String gradeGroupName, String gradeGroupGradeType, String gradeGroupAprColumn) {
         this.gradeGroupId = gradeGroupId;
         this.gradeGroupName = gradeGroupName;
         this.gradeGroupGradeType = gradeGroupGradeType;
         this.gradeGroupAprColumn = gradeGroupAprColumn;
     }
 
-    public String getGradeGroupId() {
+    public Long getGradeGroupId() {
         return gradeGroupId;
     }
 
-    public void setGradeGroupId(String gradeGroupId) {
+    public void setGradeGroupId(Long gradeGroupId) {
         this.gradeGroupId = gradeGroupId;
     }
 
@@ -57,5 +64,14 @@ public class GradingGroupList {
                 ", gradeGroupGradeType='" + gradeGroupGradeType + '\'' +
                 ", gradeGroupAprColumn='" + gradeGroupAprColumn + '\'' +
                 '}';
+    }
+
+    public GradingGroupList updateWith(GradingGroupList item) {
+        return new GradingGroupList(
+                this.gradeGroupId,
+                item.gradeGroupName,
+                item.gradeGroupGradeType,
+                item.gradeGroupAprColumn
+        );
     }
 }

@@ -72,16 +72,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>2.9.2</version>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.9.2</version>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -224,6 +214,19 @@
             <version>${spring.version}</version>
         </dependency>
 
+        <!--Swagger -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+
     </dependencies>
 
     <profiles>
@@ -253,7 +256,7 @@
         <artifactId>spring-boot-maven-plugin</artifactId>
         <version>${spring.version}</version>
         <configuration>
-            <mainClass>com.kastech.blumen.BlumenApplication</mainClass>
+            <mainClass>com.kastech.blumen.Application</mainClass>
         </configuration>
         <executions>
             <execution>
@@ -291,6 +294,16 @@
                 <artifactId>groovy-eclipse-batch</artifactId>
                 <version>2.5.8-02</version>
             </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.hibernate</groupId>-->
+<!--                <artifactId>hibernate-core</artifactId>-->
+<!--                <version>4.1.4.Final</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>org.hibernate</groupId>-->
+<!--                <artifactId>hibernate-entitymanager</artifactId>-->
+<!--                <version>5.2.3.Final</version>-->
+<!--            </dependency>-->
         </dependencies>
     </plugin>
 

@@ -1,8 +1,8 @@
 package com.kastech.blumen.controller.customize;
 
-import com.kastech.blumen.model.customize.PullDown;
 import com.kastech.blumen.model.RequestDataVO;
 import com.kastech.blumen.model.Response;
+import com.kastech.blumen.model.customize.PullDown;
 import com.kastech.blumen.repository.customize.PullDownListRepository;
 import com.kastech.blumen.service.customize.PullDownListServiceV1;
 import com.kastech.blumen.utility.RequestAPIType;
@@ -23,6 +23,7 @@ public class PullDownListController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PullDownListController.class);
 
+    @Autowired
     PullDownListRepository pullDownListRepository;
 
     @Autowired
@@ -32,36 +33,40 @@ public class PullDownListController {
     @Autowired
     PullDownListValidator pullDownListValidator;
 
-    Map<Integer, PullDown> pullMap = new HashMap<Integer, PullDown>();
+    Map<Long, PullDown> pullMap = new HashMap<Long, PullDown>();
 
     @ResponseBody
     @GetMapping(path = "/getPullDownList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<PullDown>> getPullDownList() {
+    public List<PullDown> getPullDownList() {
 
-        return ResponseEntity.ok(pullMap.values());
+        List<PullDown> list = new ArrayList<>();
+        Iterable<PullDown> items = pullDownListRepository.findAll();
+        items.forEach(list::add);
+        return list;
     }
 
     @ResponseBody
     @PostMapping(path = "/pullDownList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> addToPullDownList(@RequestBody String reqBody) {
-        RequestDataVO requestDataVO = pullDownListValidator.validate(RequestAPIType.PULL_DOWN_LIST_V1, reqBody);
-        PullDown pullDown = pullDownListServiceV1.doService(requestDataVO.getInputReqBodyString());
-        pullMap.put(pullDown.getId(), pullDown);
-        return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+    public PullDown addToPullDownList(@RequestBody String reqBody) {
+        PullDown pullDown = pullDownListServiceV1.doService(reqBody);
+        return pullDownListRepository.save(pullDown);
     }
 
     @ResponseBody
     @PutMapping(path = "/updatePullDownList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> editPullDownList(@RequestBody String reqBody) {
-        RequestDataVO requestDataVO = pullDownListValidator.validate(RequestAPIType.PULL_DOWN_LIST_V1, reqBody);
-        PullDown pullDown = pullDownListServiceV1.doService(requestDataVO.getInputReqBodyString());
-        pullMap.put(pullDown.getId(), pullDown);
-        return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+    public Optional<PullDown> editPullDownList(@RequestBody String reqBody) {
+        PullDown pullDown = pullDownListServiceV1.doService(reqBody);
+
+        return pullDownListRepository.findById(pullDown.getId())
+                .map(oldItem -> {
+                    PullDown updated = oldItem.updateWith(pullDown);
+                    return pullDownListRepository.save(updated);
+                });
     }
 
 
@@ -81,11 +86,9 @@ public class PullDownListController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<PullDown>> deletePullDownList(@RequestBody String reqBody) {
-        RequestDataVO requestDataVO = pullDownListValidator.validate(RequestAPIType.PULL_DOWN_LIST_V1, reqBody);
-        PullDown pullDown = pullDownListServiceV1.doService(requestDataVO.getInputReqBodyString());
-        pullMap.remove(pullDown.getId());
-
-        return ResponseEntity.status(HttpStatus.OK).body(pullMap.values());
+        PullDown collegeSchool = pullDownListServiceV1.doService(reqBody);
+        pullDownListRepository.delete(collegeSchool);
+        return ResponseEntity.noContent().build();
     }
 
 

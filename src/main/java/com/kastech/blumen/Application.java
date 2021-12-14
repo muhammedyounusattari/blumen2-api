@@ -9,22 +9,23 @@
 package com.kastech.blumen;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
-
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
 @SpringBootApplication
-@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
-@ComponentScan(value = {"com.kastech.blumen"})
+@EnableJpaRepositories(basePackages = "com.kastech.blumen.repository.*")
+@ComponentScan(value = {"com.kastech.blumen.*"})
+@EnableTransactionManagement
 @EnableSwagger2
-public class BlumenApplication {
+@PropertySource(value = "classpath:application.properties")
+
+public class Application {
     public static void main(String[] args) {
-        SpringApplication.run(BlumenApplication.class, args);
-
-
+        SpringApplication.run(Application.class, args);
     }
 }

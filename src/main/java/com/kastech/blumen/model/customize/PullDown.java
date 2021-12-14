@@ -1,14 +1,23 @@
 package com.kastech.blumen.model.customize;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "pulldown" ,schema = "blumen2")
 public class PullDown {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO, generator="pulldown_seq_gen")
+    @SequenceGenerator(name="pulldown_seq_gen", sequenceName="PULLDOWN_SEQ")
+    private Long id;
     private String name;
     private String selectionType;
     private String active;
     private String apr;
+
+    @Column
+    @ElementCollection(targetClass=String.class)
     private List<String> orgType;
     private String orgId;
 
@@ -16,7 +25,7 @@ public class PullDown {
     public PullDown() {
     }
 
-    public PullDown(int id, String name, String selectionType, String active, String apr, List<String> orgType, String orgId) {
+    public PullDown(Long id, String name, String selectionType, String active, String apr, List<String> orgType, String orgId) {
         this.id = id;
         this.name = name;
         this.selectionType = selectionType;
@@ -26,11 +35,11 @@ public class PullDown {
         this.orgId = orgId;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -93,5 +102,17 @@ public class PullDown {
                 ", orgType=" + orgType +
                 ", orgId='" + orgId + '\'' +
                 '}';
+    }
+
+    public PullDown updateWith(PullDown item) {
+        return new PullDown(
+                this.id,
+                item.name,
+                item.selectionType,
+                item.active,
+                item.apr,
+                item.orgType,
+                item.orgId
+        );
     }
 }

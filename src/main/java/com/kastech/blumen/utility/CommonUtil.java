@@ -10,6 +10,7 @@ import com.kastech.blumen.model.staff.Staff;
 import com.kastech.blumen.model.student.contacts.*;
 import com.kastech.blumen.model.student.dataentry.AddressNotes;
 import com.kastech.blumen.model.student.dataentry.GraduatedInformation;
+import com.kastech.blumen.model.student.home.StudentData;
 import com.kastech.blumen.model.student.logs.*;
 import com.kastech.blumen.model.teacher.Teacher;
 import com.kastech.blumen.model.tutor.Tutor;
@@ -489,5 +490,17 @@ public class CommonUtil {
         return semester;
     }
 
+    public static StudentData convertJsonStringToPojoForStudent(String object)  {
+        StudentData student = null;
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(NON_NULL);
+        try {
+            student = mapper.readValue(object, StudentData.class);
+        } catch (Exception e) {
+            LOGGER.error("Error parsing {} json string to object ", object.getClass(), e);
+            throw new ServiceLayerException("Unable to parse json string to object");
+        }
+        return student;
+    }
 
 }

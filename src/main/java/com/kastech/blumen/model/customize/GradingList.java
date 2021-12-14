@@ -1,8 +1,15 @@
 package com.kastech.blumen.model.customize;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "grading_list" ,schema = "blumen2")
 public class GradingList {
 
-    private String gradingId;
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO, generator="grading_list_seq_gen")
+    @SequenceGenerator(name="grading_list_seq_gen", sequenceName="GRADING_LIST_SEQ")
+    private Long gradingId;
     private boolean graduateList;
     private String gradingName;
     private String gradingGroupName;
@@ -13,7 +20,7 @@ public class GradingList {
     public GradingList() {
     }
 
-    public GradingList(String gradingId, boolean graduateList, String gradingName, String gradingGroupName, String gradingNewGrade, String gradingParticipantStatus, String gradingYearEnbStatus) {
+    public GradingList(Long gradingId, boolean graduateList, String gradingName, String gradingGroupName, String gradingNewGrade, String gradingParticipantStatus, String gradingYearEnbStatus) {
         this.gradingId = gradingId;
         this.graduateList = graduateList;
         this.gradingName = gradingName;
@@ -23,11 +30,11 @@ public class GradingList {
         this.gradingYearEnbStatus = gradingYearEnbStatus;
     }
 
-    public String getGradingId() {
+    public Long getGradingId() {
         return gradingId;
     }
 
-    public void setGradingId(String gradingId) {
+    public void setGradingId(Long gradingId) {
         this.gradingId = gradingId;
     }
 
@@ -90,5 +97,17 @@ public class GradingList {
                 ", gradingParticipantStatus='" + gradingParticipantStatus + '\'' +
                 ", gradingYearEnbStatus='" + gradingYearEnbStatus + '\'' +
                 '}';
+    }
+
+    public GradingList updateWith(GradingList item) {
+        return new GradingList(
+                this.gradingId,
+                item.graduateList,
+                item.gradingGroupName,
+                item.gradingNewGrade,
+                item.gradingName,
+                item.gradingParticipantStatus,
+                item.gradingYearEnbStatus
+        );
     }
 }

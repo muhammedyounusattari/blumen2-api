@@ -1,7 +1,6 @@
 package com.kastech.blumen.controller.customize;
 
 import com.kastech.blumen.model.customize.GradingGroupList;
-import com.kastech.blumen.model.Response;
 import com.kastech.blumen.repository.customize.GradingGroupListRepository;
 import com.kastech.blumen.service.customize.GradingGroupListServiceV1;
 import com.kastech.blumen.validator.customize.GradingGroupListValidator;
@@ -13,9 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/blumen-api/customize")
@@ -23,6 +20,7 @@ public class GradingGroupListController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GradingGroupListController.class);
 
+    @Autowired
     GradingGroupListRepository gradingGroupListRepository;
 
     @Autowired
@@ -32,34 +30,40 @@ public class GradingGroupListController {
     @Autowired
     GradingGroupListValidator gradingGroupListValidator;
 
-    Map<String, GradingGroupList> gradingGroupListMap = new HashMap<String, GradingGroupList>();
+    Map<Long, GradingGroupList> gradingGroupListMap = new HashMap<Long, GradingGroupList>();
 
     @ResponseBody
     @GetMapping(path = "/getGradingGroupList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<GradingGroupList>> getGradingGroupList() {
+    public List<GradingGroupList> getGradingGroupList() {
 
-        return ResponseEntity.ok(gradingGroupListMap.values());
+        List<GradingGroupList> list = new ArrayList<>();
+        Iterable<GradingGroupList> items = gradingGroupListRepository.findAll();
+        items.forEach(list::add);
+        return list;
     }
 
     @ResponseBody
     @PostMapping(path = "/gradingGroupList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> addToGradingGroupList(@RequestBody String reqBody) {
+    public GradingGroupList addToGradingGroupList(@RequestBody String reqBody) {
         GradingGroupList gradingGroupList = gradingGroupListServiceV1.doService(reqBody);
-        gradingGroupListMap.put(gradingGroupList.getGradeGroupId(), gradingGroupList);
-        return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+        return gradingGroupListRepository.save(gradingGroupList);
     }
 
     @ResponseBody
     @PutMapping(path = "/updateGradingGroupList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> editGradingGroupList(@RequestBody String reqBody) {
+    public Optional<GradingGroupList> editGradingGroupList(@RequestBody String reqBody) {
         GradingGroupList gradingGroupList = gradingGroupListServiceV1.doService(reqBody);
-        gradingGroupListMap.put(gradingGroupList.getGradeGroupId(), gradingGroupList);
-        return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+
+        return gradingGroupListRepository.findById(gradingGroupList.getGradeGroupId())
+                .map(oldItem -> {
+                    GradingGroupList updated = oldItem.updateWith(gradingGroupList);
+                    return gradingGroupListRepository.save(updated);
+                });
     }
 
 
@@ -79,9 +83,8 @@ public class GradingGroupListController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<GradingGroupList>> deleteGradingGroupList(@RequestBody String reqBody) {
 
-        GradingGroupList gradingGroupList = gradingGroupListServiceV1.doService(reqBody);
-        gradingGroupListMap.remove(gradingGroupList.getGradeGroupId());
-
-        return ResponseEntity.status(HttpStatus.OK).body(gradingGroupListMap.values());
+        GradingGroupList collegeSchool = gradingGroupListServiceV1.doService(reqBody);
+        gradingGroupListRepository.delete(collegeSchool);
+        return ResponseEntity.noContent().build();
     }
 }

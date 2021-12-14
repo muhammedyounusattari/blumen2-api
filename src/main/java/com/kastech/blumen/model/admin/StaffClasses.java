@@ -1,7 +1,14 @@
 package com.kastech.blumen.model.admin;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "staff_classes" ,schema = "blumen2")
 public class StaffClasses {
 
+	@Id
 	private Integer id;
 	private String currentYear;
 	private String semester;
@@ -19,6 +26,9 @@ public class StaffClasses {
 	//this will be enabled with @OneToMany mapping
 	//List<Student> studentList;
 
+	public StaffClasses(){
+		super();
+	}
 	public StaffClasses(Integer id, String currentYear, String semester, String tutorName, String subject,
 			String classPeriod, String meetingTime, String days, String room, String studentAssigned, String duration,
 			String maxLimit, String notes) {

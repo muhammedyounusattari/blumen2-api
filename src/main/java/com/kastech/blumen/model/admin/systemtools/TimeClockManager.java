@@ -1,8 +1,16 @@
 package com.kastech.blumen.model.admin.systemtools;
 
-public class TimeClockManager {
+import javax.persistence.*;
+import java.io.Serializable;
 
-    private String id;
+@Entity
+@Table(name = "time_clock_manager" ,schema = "blumen2")
+public class TimeClockManager implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="time_clock_manager_seq_gen")
+    @SequenceGenerator(name="time_clock_manager_seq_gen", sequenceName="TIME_CLOCK_MANAGER_SEQ")
+    private Long id;
     private String staffName;
     private String checkInTime;
     private String checkOutTime;
@@ -11,7 +19,7 @@ public class TimeClockManager {
     public TimeClockManager() {
     }
 
-    public TimeClockManager(String id, String staffName, String checkInTime, String checkOutTime, String duration) {
+    public TimeClockManager(Long id, String staffName, String checkInTime, String checkOutTime, String duration) {
         this.staffName = staffName;
         this.checkInTime = checkInTime;
         this.checkOutTime = checkOutTime;
@@ -19,11 +27,11 @@ public class TimeClockManager {
         this.id = id;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -68,5 +76,15 @@ public class TimeClockManager {
                 ", checkOutTime='" + checkOutTime + '\'' +
                 ", duration='" + duration + '\'' +
                 '}';
+    }
+
+    public TimeClockManager updateWith(TimeClockManager item) {
+        return new TimeClockManager(
+                this.id,
+                item.staffName,
+                item.checkInTime,
+                item.checkOutTime,
+                item.duration
+        );
     }
 }

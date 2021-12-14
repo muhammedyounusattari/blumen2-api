@@ -1,8 +1,15 @@
 package com.kastech.blumen.model.customize;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "activity_group_list", schema = "blumen2")
 public class ActivityGroupList {
 
-    private String activityGroupId;
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="activity_grp_list_seq_gen")
+    @SequenceGenerator(name="activity_grp_list_seq_gen", sequenceName="ACTIVITY_GROUP_LIST_SEQ")
+    private Long activityGroupId;
     private String activityGroupName;
     private boolean activityCalculateHoursforActivityGroup;
     private boolean activityReportActivityGroup;
@@ -14,7 +21,7 @@ public class ActivityGroupList {
     public ActivityGroupList() {
     }
 
-    public ActivityGroupList(String activityGroupId, String activityGroupName, boolean activityCalculateHoursforActivityGroup, boolean activityReportActivityGroup, String activityGroupType, String activityGroupTypeName, String activityAdd, String activityBoltService) {
+    public ActivityGroupList(Long activityGroupId, String activityGroupName, boolean activityCalculateHoursforActivityGroup, boolean activityReportActivityGroup, String activityGroupType, String activityGroupTypeName, String activityAdd, String activityBoltService) {
         this.activityGroupId = activityGroupId;
         this.activityGroupName = activityGroupName;
         this.activityCalculateHoursforActivityGroup = activityCalculateHoursforActivityGroup;
@@ -25,11 +32,11 @@ public class ActivityGroupList {
         this.activityBoltService = activityBoltService;
     }
 
-    public String getActivityGroupId() {
+    public Long getActivityGroupId() {
         return activityGroupId;
     }
 
-    public void setActivityGroupId(String activityGroupId) {
+    public void setActivityGroupId(Long activityGroupId) {
         this.activityGroupId = activityGroupId;
     }
 
@@ -101,5 +108,18 @@ public class ActivityGroupList {
                 ", activityAdd='" + activityAdd + '\'' +
                 ", activityBoltService='" + activityBoltService + '\'' +
                 '}';
+    }
+
+    public ActivityGroupList updateWith(ActivityGroupList item) {
+        return new ActivityGroupList(
+                this.activityGroupId,
+                item.activityGroupName,
+                item.activityCalculateHoursforActivityGroup,
+                item.activityReportActivityGroup,
+                item.activityGroupType,
+                item.activityGroupTypeName,
+                item.activityAdd,
+                item.activityBoltService
+        );
     }
 }

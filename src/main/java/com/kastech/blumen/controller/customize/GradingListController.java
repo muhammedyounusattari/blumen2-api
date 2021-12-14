@@ -1,7 +1,6 @@
 package com.kastech.blumen.controller.customize;
 
 import com.kastech.blumen.model.customize.GradingList;
-import com.kastech.blumen.model.Response;
 import com.kastech.blumen.repository.customize.GradingListRepository;
 import com.kastech.blumen.service.customize.GradingListServiceV1;
 import com.kastech.blumen.validator.customize.GradingListValidator;
@@ -13,9 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/blumen-api/customize")
@@ -23,6 +20,7 @@ public class GradingListController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GradingListController.class);
 
+    @Autowired
     GradingListRepository gradingListRepository;
 
     @Autowired
@@ -32,34 +30,44 @@ public class GradingListController {
     @Autowired
     GradingListValidator gradingListValidator;
 
-    Map<String, GradingList> gradingListMap = new HashMap<String, GradingList>();
+    Map<Long, GradingList> gradingListMap = new HashMap<Long, GradingList>();
 
     @ResponseBody
     @GetMapping(path = "/getGradingList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<GradingList>> getGradingList() {
+    public List<GradingList> getGradingList() {
 
-        return ResponseEntity.ok(gradingListMap.values());
+        List<GradingList> list = new ArrayList<>();
+        Iterable<GradingList> items = gradingListRepository.findAll();
+        items.forEach(list::add);
+        return list;
     }
 
     @ResponseBody
     @PostMapping(path = "/gradingList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> addToGradingList(@RequestBody String reqBody) {
+    public GradingList addToGradingList(@RequestBody String reqBody) {
+
         GradingList activityList = gradingListServiceV1.doService(reqBody);
-        gradingListMap.put(activityList.getGradingId(),activityList);
-        return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
+        return gradingListRepository.save(activityList);
+
     }
 
     @ResponseBody
     @PutMapping(path = "/updateGradingList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> editGradingList(@RequestBody String reqBody) {
-        GradingList activityList = gradingListServiceV1.doService(reqBody);
-        gradingListMap.put(activityList.getGradingId(),activityList);
-        return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
+    public Optional<GradingList> editGradingList(@RequestBody String reqBody) {
+
+
+        GradingList gradingList = gradingListServiceV1.doService(reqBody);
+
+        return gradingListRepository.findById(gradingList.getGradingId())
+                .map(oldItem -> {
+                    GradingList updated = oldItem.updateWith(gradingList);
+                    return gradingListRepository.save(updated);
+                });
     }
 
 
@@ -80,8 +88,7 @@ public class GradingListController {
     public ResponseEntity<Collection<GradingList>> deleteGradingList(@RequestBody String reqBody) {
 
         GradingList gradingList = gradingListServiceV1.doService(reqBody);
-        gradingListMap.remove(gradingList.getGradingId());
-
-        return ResponseEntity.status(HttpStatus.OK).body(gradingListMap.values());
+        gradingListRepository.delete(gradingList);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -1,6 +1,5 @@
 package com.kastech.blumen.controller.admin.systemtools;
 
-import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.admin.systemtools.TimeClockManager;
 import com.kastech.blumen.repository.admin.systemtools.TimeClockManagerRepository;
 import com.kastech.blumen.service.admin.systemtools.TimeClockManagerServiceV1;
@@ -21,6 +20,7 @@ public class TimeClockManagerController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TimeClockManagerController.class);
 
+    @Autowired
     TimeClockManagerRepository timeClockManagerRepository;
 
     @Autowired
@@ -32,35 +32,41 @@ public class TimeClockManagerController {
 
     List<TimeClockManager> studentList = new ArrayList<TimeClockManager>();
 
-    Map<String, TimeClockManager> timeClockManagerMap = new HashMap<String, TimeClockManager>();
+    Map<Long, TimeClockManager> timeClockManagerMap = new HashMap<Long, TimeClockManager>();
 
 
     @ResponseBody
     @GetMapping(path = "/getTimeClockManagerList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<TimeClockManager>> getTimeClockManagerList() {
-
-        return ResponseEntity.ok(timeClockManagerMap.values());
+    public List<TimeClockManager> getTimeClockManagerList() {
+        List<TimeClockManager> list = new ArrayList<>();
+        Iterable<TimeClockManager> items = timeClockManagerRepository.findAll();
+        items.forEach(list::add);
+        return list;
     }
+
 
     @ResponseBody
     @PostMapping(path = "/timeClockManagerList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> addTimeClockManagerList(@RequestBody String reqBody) {
+    public TimeClockManager addTimeClockManagerList(@RequestBody String reqBody) {
         TimeClockManager timeClockManager = timeClockManagerServiceV1.doService(reqBody);
-        timeClockManagerMap.put(timeClockManager.getId(),timeClockManager);
-        return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
+        return timeClockManagerRepository.save(timeClockManager);
     }
 
     @ResponseBody
     @PutMapping(path = "/updateTimeClockManagerList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> editTimeClockManagerList(@RequestBody String reqBody) {
+    public Optional<TimeClockManager> editTimeClockManagerList(@RequestBody String reqBody) {
         TimeClockManager timeClockManager = timeClockManagerServiceV1.doService(reqBody);
-        timeClockManagerMap.put(timeClockManager.getId(),timeClockManager);
-        return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
+
+        return timeClockManagerRepository.findById(timeClockManager.getId())
+                .map(oldItem -> {
+                    TimeClockManager updated = oldItem.updateWith(timeClockManager);
+                    return timeClockManagerRepository.save(updated);
+                });
     }
 
 
@@ -80,9 +86,9 @@ public class TimeClockManagerController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<TimeClockManager>> deleteTimeClockManagerList(@RequestBody String reqBody) {
 
-        TimeClockManager timeClockManager = timeClockManagerServiceV1.doService(reqBody);
-        timeClockManagerMap.remove(timeClockManager.getId());
 
-        return ResponseEntity.status(HttpStatus.OK).body(timeClockManagerMap.values());
+        TimeClockManager timeClockManager = timeClockManagerServiceV1.doService(reqBody);
+        timeClockManagerRepository.delete(timeClockManager);
+        return ResponseEntity.noContent().build();
     }
 }

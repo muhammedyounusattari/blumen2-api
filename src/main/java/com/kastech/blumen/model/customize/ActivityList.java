@@ -1,8 +1,15 @@
 package com.kastech.blumen.model.customize;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "activity_list", schema = "blumen2")
 public class ActivityList {
 
-    private String activityId;
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO, generator="activity_list_seq_gen")
+    @SequenceGenerator(name="activity_list_seq_gen", sequenceName="ACTIVITY_LIST_SEQ")
+    private Long activityId;
     private String activityName;
     private String activityGroupName;
     private String activityAdd;
@@ -12,7 +19,7 @@ public class ActivityList {
     public ActivityList() {
     }
 
-    public ActivityList(String activityId, String activityName, String activityGroupName, String activityAdd, String activityBoltService, boolean lapService) {
+    public ActivityList(Long activityId, String activityName, String activityGroupName, String activityAdd, String activityBoltService, boolean lapService) {
         this.activityId = activityId;
         this.activityName = activityName;
         this.activityGroupName = activityGroupName;
@@ -21,11 +28,11 @@ public class ActivityList {
         this.lapService = lapService;
     }
 
-    public String getActivityId() {
+    public Long getActivityId() {
         return activityId;
     }
 
-    public void setActivityId(String activityId) {
+    public void setActivityId(Long activityId) {
         this.activityId = activityId;
     }
 
@@ -79,5 +86,16 @@ public class ActivityList {
                 ", activityBoltService='" + activityBoltService + '\'' +
                 ", lapService=" + lapService +
                 '}';
+    }
+
+    public ActivityList updateWith(ActivityList item) {
+        return new ActivityList(
+                this.activityId,
+                item.activityName,
+                item.activityGroupName,
+                item.activityAdd,
+                item.activityBoltService,
+                item.lapService
+        );
     }
 }

@@ -1,7 +1,6 @@
 package com.kastech.blumen.controller.customize;
 
 import com.kastech.blumen.model.customize.ActivityList;
-import com.kastech.blumen.model.Response;
 import com.kastech.blumen.repository.customize.ActivityListRepository;
 import com.kastech.blumen.service.customize.ActivityListServiceV1;
 import com.kastech.blumen.validator.customize.ActivityListValidator;
@@ -22,6 +21,7 @@ public class ActivityListController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ActivityListController.class);
 
+    @Autowired
     ActivityListRepository activityListRepository;
 
     @Autowired
@@ -31,34 +31,42 @@ public class ActivityListController {
     @Autowired
     ActivityListValidator activityListValidator;
 
-    Map<String, ActivityList> activityListMap = new HashMap<String, ActivityList>();
+    Map<Long, ActivityList> activityListMap = new HashMap<Long, ActivityList>();
 
     @ResponseBody
     @GetMapping(path = "/getActivityList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<ActivityList>> getActivityList() {
+    public List<ActivityList> getActivityList() {
 
-        return ResponseEntity.ok(activityListMap.values());
+        List<ActivityList> list = new ArrayList<>();
+        Iterable<ActivityList> items = activityListRepository.findAll();
+        items.forEach(list::add);
+        return list;
     }
 
     @ResponseBody
     @PostMapping(path = "/activityList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> addToActivityList(@RequestBody String reqBody) {
+    public ActivityList addToActivityList(@RequestBody String reqBody) {
         ActivityList activityList = activityListServiceV1.doService(reqBody);
-        activityListMap.put(activityList.getActivityId(),activityList);
-        return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
+        return activityListRepository.save(activityList);
     }
 
     @ResponseBody
     @PutMapping(path = "/updateActivityList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> editActivityList(@RequestBody String reqBody) {
-        ActivityList activityList = activityListServiceV1.doService(reqBody);
-        activityListMap.put(activityList.getActivityId(),activityList);
-        return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
+    public Optional<ActivityList> editActivityList(@RequestBody String reqBody) {
+
+
+        ActivityList activityGroupList = activityListServiceV1.doService(reqBody);
+
+        return activityListRepository.findById(activityGroupList.getActivityId())
+                .map(oldItem -> {
+                    ActivityList updated = oldItem.updateWith(activityGroupList);
+                    return activityListRepository.save(updated);
+                });
     }
 
 
@@ -78,10 +86,9 @@ public class ActivityListController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<ActivityList>> deleteActivityList(@RequestBody String reqBody) {
 
-        ActivityList activityList = activityListServiceV1.doService(reqBody);
-        activityListMap.remove(activityList.getActivityId());
-
-        return ResponseEntity.status(HttpStatus.OK).body(activityListMap.values());
+        ActivityList activityGroupList = activityListServiceV1.doService(reqBody);
+        activityListRepository.delete(activityGroupList);
+        return ResponseEntity.noContent().build();
     }
 
 }

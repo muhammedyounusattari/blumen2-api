@@ -1,7 +1,14 @@
 package com.kastech.blumen.model.customize;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "college_school", schema = "blumen2")
 public class CollegeSchool {
 
+    @Id
     private String orgName;
     private String orgType;
     private String name;
@@ -212,5 +219,28 @@ public class CollegeSchool {
                 ", email='" + email + '\'' +
                 ", notes='" + notes + '\'' +
                 '}';
+    }
+
+    public CollegeSchool updateWith(CollegeSchool item) {
+        return new CollegeSchool(
+                this.orgName,
+                item.orgType,
+                item.name,
+                item.codes,
+                item.title,
+                item.country,
+                item.ncesId,
+                item.address,
+                item.city,
+                item.states,
+                item.zipcode,
+                item.phone1,
+                item.phone2,
+                item.phone3,
+                item.website,
+                item.fax,
+                item.email,
+                item.notes
+        );
     }
 }

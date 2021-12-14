@@ -1,8 +1,7 @@
 package com.kastech.blumen.controller.customize;
 
-import com.kastech.blumen.model.customize.CollegeSchool;
 import com.kastech.blumen.model.RequestDataVO;
-import com.kastech.blumen.model.Response;
+import com.kastech.blumen.model.customize.CollegeSchool;
 import com.kastech.blumen.repository.customize.CollegeSchoolRepository;
 import com.kastech.blumen.service.customize.CollegeSchoolServiceV1;
 import com.kastech.blumen.utility.RequestAPIType;
@@ -23,6 +22,7 @@ public class CollegeSchoolNameController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CollegeSchoolNameController.class);
 
+    @Autowired
     CollegeSchoolRepository collegeSchoolRepository;
 
     @Autowired
@@ -37,29 +37,35 @@ public class CollegeSchoolNameController {
     @ResponseBody
     @GetMapping(path = "/getCollegeSchoolNameList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<CollegeSchool>> getCollegeSchoolNameList() {
+    public List<CollegeSchool> getCollegeSchoolNameList() {
 
-        return ResponseEntity.ok(schoolCollegeMap.values());
+        List<CollegeSchool> list = new ArrayList<>();
+        Iterable<CollegeSchool> items = collegeSchoolRepository.findAll();
+        items.forEach(list::add);
+        return list;
     }
 
     @ResponseBody
     @PostMapping(path = "/collegeSchoolNameList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> addToCollegeSchoolNameList(@RequestBody String reqBody) {
-        CollegeSchool pullDown = collegeSchoolServiceV1.doService(reqBody);
-        schoolCollegeMap.put(pullDown.getOrgName(),pullDown);
-        return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
+    public CollegeSchool addToCollegeSchoolNameList(@RequestBody String reqBody) {
+        CollegeSchool collegeSchool = collegeSchoolServiceV1.doService(reqBody);
+        return collegeSchoolRepository.save(collegeSchool);
     }
 
     @ResponseBody
     @PutMapping(path = "/updateCollegeSchoolNameList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> editCollegeSchoolNameList(@RequestBody String reqBody) {
-        CollegeSchool pullDown = collegeSchoolServiceV1.doService(reqBody);
-        schoolCollegeMap.put(pullDown.getOrgName(),pullDown);
-        return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
+    public Optional<CollegeSchool> editCollegeSchoolNameList(@RequestBody String reqBody) {
+        CollegeSchool collegeSchool = collegeSchoolServiceV1.doService(reqBody);
+
+        return collegeSchoolRepository.findById(collegeSchool.getOrgName())
+                .map(oldItem -> {
+                    CollegeSchool updated = oldItem.updateWith(collegeSchool);
+                    return collegeSchoolRepository.save(updated);
+                });
     }
 
 
@@ -79,10 +85,9 @@ public class CollegeSchoolNameController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<CollegeSchool>> deleteCollegeSchoolNameList(@RequestBody String reqBody) {
 
-        CollegeSchool pullDown = collegeSchoolServiceV1.doService(reqBody);
-        schoolCollegeMap.remove(pullDown.getOrgName());
-
-        return ResponseEntity.status(HttpStatus.OK).body(schoolCollegeMap.values());
+        CollegeSchool collegeSchool = collegeSchoolServiceV1.doService(reqBody);
+        collegeSchoolRepository.delete(collegeSchool);
+        return ResponseEntity.noContent().build();
     }
 
 

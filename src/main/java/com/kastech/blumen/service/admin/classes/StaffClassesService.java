@@ -3,6 +3,7 @@ package com.kastech.blumen.service.admin.classes;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.kastech.blumen.repository.admin.StaffClassRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,11 +11,11 @@ import com.kastech.blumen.model.admin.CounselorClasses;
 import com.kastech.blumen.model.admin.StaffClasses;
 
 
-
 @Service
 public class StaffClassesService {
 
 	@Autowired
+	private StaffClassRepository staffClassRepository;
 
 	public List<StaffClasses> getStaffClassesList() {
 		List<StaffClasses> studentStaffClasses = new ArrayList<>();
@@ -24,10 +25,11 @@ public class StaffClassesService {
 	}
 
 	public List<StaffClasses> getStaffClassesByNormalFilter(String fiscalYear, String active,
-																			String served, String reported, String counselor, String status, String ethnicity, String standing,
+															String served, String reported, String counselor, String status, String ethnicity, String standing,
 																			String school, String eligibility, String gender) {
 		// TODO Place repository code
-		List<StaffClasses> studentStaffClasses = new ArrayList<>();
+		staffClassRepository.findAll();
+				List<StaffClasses> studentStaffClasses = new ArrayList<>();
 		studentStaffClasses.add(getStaffClasses());
 
 		return studentStaffClasses;

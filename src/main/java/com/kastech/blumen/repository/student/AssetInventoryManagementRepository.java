@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.kastech.blumen.model.student.Asset;
 
 //@Repository
-public interface AssetInventoryManagementRepository extends JpaRepository<Asset, Integer>{
+public interface AssetInventoryManagementRepository { //extends JpaRepository<Asset, Integer>{
 
 }

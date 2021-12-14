@@ -1,6 +1,5 @@
 package com.kastech.blumen.controller.customize;
 
-import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.customize.CustomFieldsNameType;
 import com.kastech.blumen.repository.customize.CustomFieldsNameTypeRepository;
 import com.kastech.blumen.service.customize.CustomFieldsNameTypeServiceV1;
@@ -13,9 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/blumen-api/customize")
@@ -32,34 +29,40 @@ public class CustomFieldsNameTypeController {
     @Autowired
     CustomFieldsNameTypeValidator customFieldsNameTypeValidator;
 
-    Map<String, CustomFieldsNameType> customFieldsNameTypeMap = new HashMap<String, CustomFieldsNameType>();
+    Map<Long, CustomFieldsNameType> customFieldsNameTypeMap = new HashMap<Long, CustomFieldsNameType>();
 
     @ResponseBody
     @GetMapping(path = "/getCustomFieldsNameType/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<CustomFieldsNameType>> getCustomFieldsNameType() {
+    public List<CustomFieldsNameType> getCustomFieldsNameType() {
 
-        return ResponseEntity.ok(customFieldsNameTypeMap.values());
+        List<CustomFieldsNameType> list = new ArrayList<>();
+        Iterable<CustomFieldsNameType> items = customFieldsNameTypeRepository.findAll();
+        items.forEach(list::add);
+        return list;
     }
 
     @ResponseBody
     @PostMapping(path = "/customFieldsNameType/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> addToCustomFieldsNameType(@RequestBody String reqBody) {
+    public CustomFieldsNameType addToCustomFieldsNameType(@RequestBody String reqBody) {
         CustomFieldsNameType customFieldsNameType = customFieldsNameTypeServiceV1.doService(reqBody);
-        customFieldsNameTypeMap.put(customFieldsNameType.getCustomId(),customFieldsNameType);
-        return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
+        return customFieldsNameTypeRepository.save(customFieldsNameType);
     }
 
     @ResponseBody
     @PutMapping(path = "/updateCustomFieldsNameType/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> editCustomFieldsNameType(@RequestBody String reqBody) {
+    public Optional<CustomFieldsNameType> editCustomFieldsNameType(@RequestBody String reqBody) {
         CustomFieldsNameType customFieldsNameType = customFieldsNameTypeServiceV1.doService(reqBody);
-        customFieldsNameTypeMap.put(customFieldsNameType.getCustomId(),customFieldsNameType);
-        return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
+
+        return customFieldsNameTypeRepository.findById(customFieldsNameType.getCustomId())
+                .map(oldItem -> {
+                    CustomFieldsNameType updated = oldItem.updateWith(customFieldsNameType);
+                    return customFieldsNameTypeRepository.save(updated);
+                });
     }
 
 
@@ -80,8 +83,7 @@ public class CustomFieldsNameTypeController {
     public ResponseEntity<Collection<CustomFieldsNameType>> deleteCustomFieldsNameType(@RequestBody String reqBody) {
 
         CustomFieldsNameType customFieldsNameType = customFieldsNameTypeServiceV1.doService(reqBody);
-        customFieldsNameTypeMap.remove(customFieldsNameType.getCustomId());
-
-        return ResponseEntity.status(HttpStatus.OK).body(customFieldsNameTypeMap.values());
+        customFieldsNameTypeRepository.delete(customFieldsNameType);
+        return ResponseEntity.noContent().build();
     }
 }
