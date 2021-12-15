@@ -15,11 +15,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kastech.blumen.model.admin.StaffClasses;
+import com.kastech.blumen.repository.admin.StaffClassRepository;
 import com.kastech.blumen.service.admin.classes.StaffClassesService;
 
 @RestController
 @RequestMapping("/api/blumen-api/admin/classes")
 public class StaffClassesController {
+	
+	@Autowired
+	StaffClassRepository staffClassRepository;
 
 	@Autowired
 	private StaffClassesService StaffClassesService;

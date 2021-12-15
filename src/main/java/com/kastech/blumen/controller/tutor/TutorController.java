@@ -1,21 +1,30 @@
 package com.kastech.blumen.controller.tutor;
 
-import com.kastech.blumen.model.Response;
-import com.kastech.blumen.model.tutor.Tutor;
-import com.kastech.blumen.repository.tutor.TutorRepository;
-import com.kastech.blumen.service.tutor.TutorServiceV1;
-import com.kastech.blumen.validator.tutor.TutorValidator;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import com.kastech.blumen.model.Response;
+import com.kastech.blumen.model.tutor.Tutor;
+import com.kastech.blumen.repository.tutor.TutorRepository;
+import com.kastech.blumen.service.tutor.TutorServiceV1;
+import com.kastech.blumen.validator.tutor.TutorValidator;
 
 @RestController
 @RequestMapping("/api/blumen-api/tutor")
@@ -24,11 +33,11 @@ public class TutorController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TutorController.class);
 
+    @Autowired
     TutorRepository tutorRepository;
 
     @Autowired
     TutorServiceV1 tutorServiceV1;
-
 
     @Autowired
     TutorValidator tutorValidator;
@@ -40,18 +49,22 @@ public class TutorController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<Tutor>> getTutorList() {
 
-        return ResponseEntity.ok(tutorMap.values());
+    	List<Tutor> tutorList=  tutorRepository.findAll();
+    	
+        return ResponseEntity.ok(tutorList);
     }
 
-    @ResponseBody
-    @PostMapping(path = "/tutorList/v1",
-            consumes = {MediaType.APPLICATION_JSON_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> addToTutorList(@RequestBody String reqBody) {
-        Tutor tutor = tutorServiceV1.doService(reqBody);
-        tutorMap.put(tutor.getStaffId(),tutor);
-        return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
-    }
+	@ResponseBody
+	@PostMapping(path = "/tutorList/v1", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<String> addToTutorList(@RequestBody String reqBody) {
+		Tutor tutor = tutorServiceV1.doService(reqBody);
+		tutor = tutorRepository.save(tutor);
+		if (tutor != null)
+			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+		else
+			return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
+	}
 
     @ResponseBody
     @PutMapping(path = "/updateTutorList/v1",
@@ -59,8 +72,11 @@ public class TutorController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> editTutorList(@RequestBody String reqBody) {
         Tutor tutor = tutorServiceV1.doService(reqBody);
-        tutorMap.put(tutor.getStaffId(),tutor);
-        return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
+        tutor = tutorRepository.save(tutor);
+        if (tutor != null)
+			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+		else
+			return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
     }
 
 
@@ -70,7 +86,7 @@ public class TutorController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> filterTutorList(@RequestBody String reqBody) {
         Tutor tutor = tutorServiceV1.doService(reqBody);
-        return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
+        return ResponseEntity.status(HttpStatus.OK).body(tutorRepository.findAll().toString());
     }
 
 
@@ -81,8 +97,13 @@ public class TutorController {
     public ResponseEntity<Collection<Tutor>> deleteTutorList(@RequestBody String reqBody) {
 
         Tutor tutor = tutorServiceV1.doService(reqBody);
-        tutorMap.remove(tutor.getStaffId());
+        Optional<Tutor> tutorDb = tutorRepository.findById(tutor.getId());
+    	
+		if(tutorDb!=null && tutorDb.isPresent()) {
+			tutorRepository.delete(tutorDb.get()); 
+			return new ResponseEntity(new Response(200, "deleted tutor with id : " + reqBody ), null, HttpStatus.OK);
+		}
 
-        return ResponseEntity.status(HttpStatus.OK).body(tutorMap.values());
+		return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
     }
 }

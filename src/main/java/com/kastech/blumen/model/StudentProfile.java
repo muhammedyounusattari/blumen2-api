@@ -1,7 +1,15 @@
 package com.kastech.blumen.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "student_profile",schema = "blumen2")
 public class StudentProfile {
 
+	@Id
+	private Long profileId;
     private String reportHeader;
     private String fiscalYear;
     private String active;
@@ -378,8 +386,16 @@ public class StudentProfile {
     public void setGpaEntryEnd(String gpaEntryEnd) {
         this.gpaEntryEnd = gpaEntryEnd;
     }
+    
+    public long getProfileId() {
+		return profileId;
+	}
 
-    @Override
+	public void setProfileId(long profileId) {
+		this.profileId = profileId;
+	}
+
+	@Override
     public String toString() {
         return "StudentProfile{" +
                 "reportHeader='" + reportHeader + '\'' +

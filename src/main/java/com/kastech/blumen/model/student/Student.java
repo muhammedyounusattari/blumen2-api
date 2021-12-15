@@ -5,12 +5,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.List;
-//@Entity
-//@Table(name = "student")
+@Entity
+@Table(name = "student" ,schema = "blumen2")
 public class Student implements Serializable {
 
-//    @Id
-    private Integer id;
+	@Id
+    private Long id;
     private String ssno;
     private String firstName;
     private String lastName;
@@ -26,7 +26,7 @@ public class Student implements Serializable {
     private String standing;
     private String fiscalYear;
 
-    private EndOfYearStatus endOfYearStatus;
+    //private EndOfYearStatus endOfYearStatus;
   //  private Activities activities;
 
     public Student() {
@@ -181,21 +181,21 @@ public class Student implements Serializable {
                 '}';
     }
 
-    class EndOfYearStatus {
-        private List<EndStatus> endStatusList;
-
-        public List<EndStatus> getEndStatusList() {
-            return endStatusList;
-        }
-
-        public void setEndStatusList(List<EndStatus> endStatusList) {
-            this.endStatusList = endStatusList;
-        }
-    }
-
-    class StudentActivities implements Serializable{
-        private Integer id;
-        private String name;
-
-    }
+//    class EndOfYearStatus {
+//        private List<EndStatus> endStatusList;
+//
+//        public List<EndStatus> getEndStatusList() {
+//            return endStatusList;
+//        }
+//
+//        public void setEndStatusList(List<EndStatus> endStatusList) {
+//            this.endStatusList = endStatusList;
+//        }
+//    }
+//
+//    class StudentActivities implements Serializable{
+//        private Integer id;
+//        private String name;
+//
+//    }
 }

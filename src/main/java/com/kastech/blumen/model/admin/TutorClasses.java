@@ -1,8 +1,15 @@
 package com.kastech.blumen.model.admin;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tutor_classes" ,schema = "blumen2")
 public class TutorClasses {
 
-	private Integer id;
+	@Id
+	private Long id;
 	private String currentYear;
 	private String semester;
 	private String tutorName;
@@ -19,7 +26,7 @@ public class TutorClasses {
 	//this will be enabled with @OneToMany mapping
 	//List<Student> studentList;
 
-	public TutorClasses(Integer id, String currentYear, String semester, String tutorName, String subject,
+	public TutorClasses(Long id, String currentYear, String semester, String tutorName, String subject,
 			String classPeriod, String meetingTime, String days, String room, String studentAssigned, String duration,
 			String maxLimit, String notes) {
 		super();
@@ -38,11 +45,11 @@ public class TutorClasses {
 		this.notes = notes;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

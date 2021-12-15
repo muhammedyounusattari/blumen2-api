@@ -9,7 +9,7 @@ import javax.persistence.Table;
 public class StaffClasses {
 
 	@Id
-	private Integer id;
+	private Long id;
 	private String currentYear;
 	private String semester;
 	private String tutorName;
@@ -24,12 +24,13 @@ public class StaffClasses {
 	private String notes;
 	
 	//this will be enabled with @OneToMany mapping
+	//@OneToMany
 	//List<Student> studentList;
 
 	public StaffClasses(){
 		super();
 	}
-	public StaffClasses(Integer id, String currentYear, String semester, String tutorName, String subject,
+	public StaffClasses(Long id, String currentYear, String semester, String tutorName, String subject,
 			String classPeriod, String meetingTime, String days, String room, String studentAssigned, String duration,
 			String maxLimit, String notes) {
 		super();
@@ -48,11 +49,11 @@ public class StaffClasses {
 		this.notes = notes;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

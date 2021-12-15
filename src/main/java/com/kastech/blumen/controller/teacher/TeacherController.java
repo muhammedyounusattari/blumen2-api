@@ -1,5 +1,6 @@
 package com.kastech.blumen.controller.teacher;
 
+import com.google.gson.Gson;
 import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.teacher.Teacher;
 import com.kastech.blumen.repository.teacher.TeacherRepository;
@@ -23,7 +24,8 @@ public class TeacherController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TeacherController.class);
 
-    TeacherRepository collegeSchoolRepository;
+    @Autowired
+    TeacherRepository teacherRepository;
 
     @Autowired
     TeacherServiceV1 teacherServiceV1;
@@ -38,19 +40,23 @@ public class TeacherController {
     @GetMapping(path = "/getTeacherList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<Teacher>> getTeacherList() {
-
-        return ResponseEntity.ok(teacherMap.values());
+    	
+        return ResponseEntity.ok(teacherRepository.findAll());
     }
 
-    @ResponseBody
-    @PostMapping(path = "/teacherList/v1",
-            consumes = {MediaType.APPLICATION_JSON_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> addToTeacherList(@RequestBody String reqBody) {
-        Teacher teacher = teacherServiceV1.doService(reqBody);
-        teacherMap.put(teacher.getStaffId(),teacher);
-        return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
-    }
+	@ResponseBody
+	@PostMapping(path = "/teacherList/v1", 
+			consumes = { MediaType.APPLICATION_JSON_VALUE }, 
+			produces = { MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<String> addToTeacherList(@RequestBody String reqBody) {
+		Teacher teacher = teacherServiceV1.doService(reqBody);
+
+		teacher = teacherRepository.save(teacher);
+		if (teacher != null)
+			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+
+		return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
+	}
 
     @ResponseBody
     @PutMapping(path = "/updateTeacherList/v1",
@@ -58,8 +64,11 @@ public class TeacherController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> editTeacherList(@RequestBody String reqBody) {
         Teacher teacher = teacherServiceV1.doService(reqBody);
-        teacherMap.put(teacher.getStaffId(),teacher);
-        return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
+        teacher = teacherRepository.save(teacher);
+		if (teacher != null)
+			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+
+		return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
     }
 
 
@@ -69,7 +78,7 @@ public class TeacherController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> filterTeacherList(@RequestBody String reqBody) {
         Teacher teacher = teacherServiceV1.doService(reqBody);
-        return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
+        return ResponseEntity.status(HttpStatus.OK).body(new Gson().toJson(teacherRepository.findById(teacher.getId())));
     }
 
 
@@ -80,8 +89,8 @@ public class TeacherController {
     public ResponseEntity<Collection<Teacher>> deleteTeacherList(@RequestBody String reqBody) {
 
         Teacher teacher = teacherServiceV1.doService(reqBody);
-        teacherMap.remove(teacher.getStaffId());
+        teacherRepository.delete(teacher);
 
-        return ResponseEntity.status(HttpStatus.OK).body(teacherMap.values());
+        return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
     }
 }

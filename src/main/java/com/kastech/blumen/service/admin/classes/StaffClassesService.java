@@ -1,15 +1,12 @@
 package com.kastech.blumen.service.admin.classes;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.kastech.blumen.repository.admin.StaffClassRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kastech.blumen.model.admin.CounselorClasses;
 import com.kastech.blumen.model.admin.StaffClasses;
-
+import com.kastech.blumen.repository.admin.StaffClassRepository;
 
 @Service
 public class StaffClassesService {
@@ -18,57 +15,33 @@ public class StaffClassesService {
 	private StaffClassRepository staffClassRepository;
 
 	public List<StaffClasses> getStaffClassesList() {
-		List<StaffClasses> studentStaffClasses = new ArrayList<>();
-		studentStaffClasses.add(getStaffClasses());
-
-		return studentStaffClasses;
+		return staffClassRepository.findAll();
 	}
 
-	public List<StaffClasses> getStaffClassesByNormalFilter(String fiscalYear, String active,
-															String served, String reported, String counselor, String status, String ethnicity, String standing,
-																			String school, String eligibility, String gender) {
-		// TODO Place repository code
-		staffClassRepository.findAll();
-				List<StaffClasses> studentStaffClasses = new ArrayList<>();
-		studentStaffClasses.add(getStaffClasses());
+	public List<StaffClasses> getStaffClassesByNormalFilter(String fiscalYear, String active, String served,
+			String reported, String counselor, String status, String ethnicity, String standing, String school,
+			String eligibility, String gender) {
 
-		return studentStaffClasses;
+		return staffClassRepository.findAll();
+
 	}
 
-	public List<StaffClasses> getStaffClassesByAdvanceFilter(String contactDateFrom,
-																			 String contactDateTo, String reContactedDateFrom, String reContactedDateTo, String councellorContact,
-																			 String contactType, String reContacted) {
-		// TODO Place repository code
-		List<StaffClasses> studentStaffClasses = new ArrayList<>();
-		studentStaffClasses.add(getStaffClasses());
+	public List<StaffClasses> getStaffClassesByAdvanceFilter(String contactDateFrom, String contactDateTo,
+			String reContactedDateFrom, String reContactedDateTo, String councellorContact, String contactType,
+			String reContacted) {
 
-		return studentStaffClasses;
+		return staffClassRepository.findAll();
 	}
 
-	public List<StaffClasses> getStaffClassesByMoreFilter(String collegeReady, String advisor,
-																		  String codes, String tutor, String entryDateFrom, String entrySchool, String collegeType,
-																		  String collegeName, String entryDateTo, String gpaEntry, String gpaStart, String gpaEnd) {
-		// TODO Place repository code
-		
-		List<StaffClasses> studentStaffClasses = new ArrayList<>();
-		studentStaffClasses.add(getStaffClasses());
-
-		return studentStaffClasses;
+	public List<StaffClasses> getStaffClassesByMoreFilter(String collegeReady, String advisor, String codes,
+			String tutor, String entryDateFrom, String entrySchool, String collegeType, String collegeName,
+			String entryDateTo, String gpaEntry, String gpaStart, String gpaEnd) {
+		return staffClassRepository.findAll();
 	}
 
-	public List<StaffClasses> getStaffClassesByMoreAdvanceFilter(String zipCode, String major,
-																				 String siteLocation, String incomeSource, String entryCollege, String cohortYear) {
-		// TODO Place repository code
-	
-		List<StaffClasses> studentStaffClasses = new ArrayList<>();
-		studentStaffClasses.add(getStaffClasses());
-
-		return studentStaffClasses;
-	}
-
-	private StaffClasses getStaffClasses() {
-		return new StaffClasses(1, "2020", "Fall", "ANDERSON", "Algebra", "1", "5:20", "3", "ROOM1", "2", "30min",
-				"22", "Test notes");
+	public List<StaffClasses> getStaffClassesByMoreAdvanceFilter(String zipCode, String major, String siteLocation,
+			String incomeSource, String entryCollege, String cohortYear) {
+		return staffClassRepository.findAll();
 	}
 
 }

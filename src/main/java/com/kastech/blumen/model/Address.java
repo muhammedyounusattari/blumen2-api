@@ -1,8 +1,16 @@
 package com.kastech.blumen.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "address" ,schema = "blumen2")
 public class Address {
 
 
+	@Id
+	private Long id;
     private String staffName;
     private String staffAddress;
     private String staffCity;
@@ -39,8 +47,16 @@ public class Address {
         this.staffFax = staffFax;
         this.staffAdditionalNotes = staffAdditionalNotes;
     }
+    
+	public Long getId() {
+		return id;
+	}
 
-    public String getStaffName() {
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getStaffName() {
         return staffName;
     }
 

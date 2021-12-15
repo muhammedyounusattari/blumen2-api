@@ -1,5 +1,6 @@
 package com.kastech.blumen.controller.staff;
 
+import com.google.gson.Gson;
 import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.staff.Staff;
 import com.kastech.blumen.repository.staff.StaffRepository;
@@ -23,11 +24,11 @@ public class StaffController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(StaffController.class);
 
+    @Autowired
     StaffRepository staffRepository;
 
     @Autowired
     StaffServiceV1 staffServiceV1;
-
 
     @Autowired
     StaffValidator staffValidator;
@@ -39,7 +40,7 @@ public class StaffController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<Staff>> getStaffList() {
 
-        return ResponseEntity.ok(staffMap.values());
+        return ResponseEntity.ok(staffRepository.findAll());
     }
 
     @ResponseBody
@@ -48,8 +49,11 @@ public class StaffController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> addToStaffList(@RequestBody String reqBody) {
         Staff staff = staffServiceV1.doService(reqBody);
-        staffMap.put(staff.getStaffId(),staff);
-        return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
+        staff = staffRepository.save(staff);
+		if (staff != null)
+			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+
+		return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
     }
 
     @ResponseBody
@@ -58,19 +62,21 @@ public class StaffController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> editStaffList(@RequestBody String reqBody) {
         Staff staff = staffServiceV1.doService(reqBody);
-        staffMap.put(staff.getStaffId(),staff);
-        return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
+        staff = staffRepository.save(staff);
+		if (staff != null)
+			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+
+		return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
     }
 
 
-    @ResponseBody
-    @PutMapping(path = "/filter/stafflist/v1",
-            consumes = {MediaType.APPLICATION_JSON_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> filterStaffList(@RequestBody String reqBody) {
-        Staff staff = staffServiceV1.doService(reqBody);
-        return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
-    }
+	@ResponseBody
+	@PutMapping(path = "/filter/stafflist/v1", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<String> filterStaffList(@RequestBody String reqBody) {
+		Staff staff = staffServiceV1.doService(reqBody);
+		return ResponseEntity.status(HttpStatus.OK).body(new Gson().toJson(staffRepository.findById(staff.getId())));
+	}
 
 
     @ResponseBody
@@ -80,7 +86,7 @@ public class StaffController {
     public ResponseEntity<Collection<Staff>> deleteStaffList(@RequestBody String reqBody) {
 
         Staff staff = staffServiceV1.doService(reqBody);
-        staffMap.remove(staff.getStaffId());
+        staffRepository.delete(staff);
 
         return ResponseEntity.status(HttpStatus.OK).body(staffMap.values());
     }

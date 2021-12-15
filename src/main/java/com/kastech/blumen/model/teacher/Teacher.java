@@ -1,9 +1,18 @@
 package com.kastech.blumen.model.teacher;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import com.kastech.blumen.model.Address;
 
+@Entity
+@Table(name = "teacher" ,schema = "blumen2")
 public class Teacher {
 
+	@Id
+	private Long id;
     private String staffName;
     private String staffId;
     private String staffTitle;
@@ -31,6 +40,7 @@ public class Teacher {
     private String staffNotes;
     private String staffPicture;
 
+    @OneToOne
     private Address address;
 
     public Teacher() {
@@ -61,7 +71,15 @@ public class Teacher {
         this.address = address;
     }
 
-    public String getStaffName() {
+    public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getStaffName() {
         return staffName;
     }
 

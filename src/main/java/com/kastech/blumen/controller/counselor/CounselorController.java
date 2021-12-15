@@ -1,6 +1,7 @@
 package com.kastech.blumen.controller.counselor;
 
 import com.kastech.blumen.model.counselor.Counselor;
+import com.google.gson.Gson;
 import com.kastech.blumen.model.Response;
 import com.kastech.blumen.repository.counselor.CounselorRepository;
 import com.kastech.blumen.service.counselor.CounselorServiceV1;
@@ -23,6 +24,7 @@ public class CounselorController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CounselorController.class);
 
+    @Autowired
     CounselorRepository counselorRepository;
 
     @Autowired
@@ -39,7 +41,7 @@ public class CounselorController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<Counselor>> getCounselorList() {
 
-        return ResponseEntity.ok(counselorMap.values());
+        return ResponseEntity.ok(counselorRepository.findAll());
     }
 
     @ResponseBody
@@ -48,8 +50,11 @@ public class CounselorController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> addToCounselorList(@RequestBody String reqBody) {
         Counselor counselor = counselorServiceV1.doService(reqBody);
-        counselorMap.put(counselor.getStaffId(),counselor);
-        return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
+        counselor = counselorRepository.save(counselor);
+		if (counselor != null)
+			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+
+		return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
     }
 
     @ResponseBody
@@ -58,8 +63,11 @@ public class CounselorController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> editCounselorList(@RequestBody String reqBody) {
         Counselor counselor = counselorServiceV1.doService(reqBody);
-        counselorMap.put(counselor.getStaffId(),counselor);
-        return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
+        counselor = counselorRepository.save(counselor);
+		if (counselor != null)
+			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+
+		return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
     }
 
 
@@ -69,7 +77,7 @@ public class CounselorController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> filterCounselorList(@RequestBody String reqBody) {
         Counselor counselor = counselorServiceV1.doService(reqBody);
-        return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
+        return ResponseEntity.status(HttpStatus.OK).body(new Gson().toJson(counselorRepository.findById(counselor.getId())));
     }
 
 
@@ -80,7 +88,7 @@ public class CounselorController {
     public ResponseEntity<Collection<Counselor>> deleteCounselorList(@RequestBody String reqBody) {
 
         Counselor counselor = counselorServiceV1.doService(reqBody);
-        counselorMap.remove(counselor.getStaffId());
+        counselorRepository.delete(counselor);
 
         return ResponseEntity.status(HttpStatus.OK).body(counselorMap.values());
     }
