@@ -87,4 +87,13 @@ public class GradingGroupListController {
         gradingGroupListRepository.delete(collegeSchool);
         return ResponseEntity.noContent().build();
     }
+    
+    @ResponseBody
+    @GetMapping(path = "/getGradingGroupListId/v1",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public Long getMaxActivityListId() {
+
+    	return gradingGroupListRepository.getMaxId();
+       
+    }
 }

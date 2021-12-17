@@ -91,4 +91,13 @@ public class GradingListController {
         gradingListRepository.delete(gradingList);
         return ResponseEntity.noContent().build();
     }
+    
+    @ResponseBody
+    @GetMapping(path = "/getMaxGradingListId/v1",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public Long getMaxActivityListId() {
+
+    	return gradingListRepository.getMaxId();
+       
+    }
 }

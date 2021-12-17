@@ -91,4 +91,12 @@ public class ActivityListController {
         return ResponseEntity.noContent().build();
     }
 
+    @ResponseBody
+    @GetMapping(path = "/getMaxActivityId/v1",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public Long getMaxActivityListId() {
+
+    	return activityListRepository.getMaxId();
+       
+    }
 }

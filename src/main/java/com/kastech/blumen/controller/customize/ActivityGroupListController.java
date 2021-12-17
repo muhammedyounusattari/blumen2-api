@@ -88,4 +88,13 @@ public class ActivityGroupListController {
         activityGroupListRepository.delete(activityGroupList);
         return ResponseEntity.noContent().build();
     }
+    
+    @ResponseBody
+    @GetMapping(path = "/getMaxActivityGroupId/v1",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public Long getMaxActivityListId() {
+
+    	return activityGroupListRepository.getMaxId();
+       
+    }
 }

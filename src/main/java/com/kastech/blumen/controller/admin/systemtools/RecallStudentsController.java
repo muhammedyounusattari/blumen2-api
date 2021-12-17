@@ -19,37 +19,20 @@ import java.util.List;
 @RequestMapping("/api/blumen-api/admin/systemtools")
 public class RecallStudentsController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RecallStudentsController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(RecallStudentsController.class);
 
-    RecallStudentsRepository recallStudentsRepository;
+	@Autowired
+	RecallStudentsRepository recallStudentsRepository;
 
-    @Autowired
-    RecallStudentsServiceV1 recallStudentsServiceV1;
+	@Autowired
+	RecallStudentsServiceV1 recallStudentsServiceV1;
 
+	@Autowired
+	RecallStudentsValidator recallStudentsValidator;
 
-    @Autowired
-    RecallStudentsValidator recallStudentsValidator;
-
-    List<Student> studentList = new ArrayList<>();
-
-    public void addStudentProfile() {
-
-        Student studentOne = new Student("111-234-333", "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017");
-        studentList.add(studentOne);
-
-        Student studentTwo = new Student("111-234-333", "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017");
-        studentList.add(studentTwo);
-        Student studentThree = new Student("111-234-333", "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017");
-        studentList.add(studentThree);
-    }
-
-
-    @ResponseBody
-    @GetMapping(path = "/recallStudentList/v1",
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> recallStudentList(@RequestBody String reqBody) {
-        addStudentProfile();
-        studentList.clear();
-        return ResponseEntity.status(HttpStatus.OK).body(studentList.size() + " no of stuents recalled");
-    }
+	@ResponseBody
+	@GetMapping(path = "/recallStudentList/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<List<Student>> recallStudentList(@RequestBody String reqBody) {
+		return ResponseEntity.status(HttpStatus.OK).body(recallStudentsRepository.findAll());
+	}
 }
