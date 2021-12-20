@@ -1,10 +1,9 @@
 package com.kastech.blumen.repository.student.contacts;
 
+import com.kastech.blumen.model.student.contacts.StudentCounselorContact;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.kastech.blumen.model.student.contacts.StudentDispCouContRemin;
-
 @Repository
-public interface StudentDispCouContReminRepository extends JpaRepository<StudentDispCouContRemin, Long> {
+public interface StudentCounselorContactRepository extends JpaRepository<StudentCounselorContact,Long> {
 }

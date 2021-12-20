@@ -1,6 +1,5 @@
 package com.kastech.blumen.controller.student.contacts;
 
-import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.student.contacts.StudentStaffContacts;
 import com.kastech.blumen.repository.student.contacts.StudentStaffContactsRepository;
 import com.kastech.blumen.service.student.contacts.StudentStaffContactsServiceV1;
@@ -13,9 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/blumen-api/student-contacts")
@@ -23,6 +20,7 @@ public class StudentStaffContactsController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(StudentStaffContactsController.class);
 
+    @Autowired
     StudentStaffContactsRepository studentStaffContactsRepository;
 
     @Autowired
@@ -32,34 +30,41 @@ public class StudentStaffContactsController {
     @Autowired
     StudentStaffContactsValidator studentStaffContactsValidator;
 
-    Map<String, StudentStaffContacts> studentStaffContactsMap = new HashMap<String, StudentStaffContacts>();
+    Map<Long, StudentStaffContacts> studentStaffContactsMap = new HashMap<Long, StudentStaffContacts>();
+
 
     @ResponseBody
     @GetMapping(path = "/getStudentStaffContacts/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentStaffContacts>> getStudentStaffContactsList() {
+    public List<StudentStaffContacts> getStudentStaffContactsList() {
 
-        return ResponseEntity.ok(studentStaffContactsMap.values());
+        List<StudentStaffContacts> list = new ArrayList<>();
+        Iterable<StudentStaffContacts> items = studentStaffContactsRepository.findAll();
+        items.forEach(list::add);
+        return list;
     }
 
     @ResponseBody
     @PostMapping(path = "/studentStaffContactsList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> addToStudentStaffContactsList(@RequestBody String reqBody) {
+    public StudentStaffContacts addToStudentStaffContactsList(@RequestBody String reqBody) {
         StudentStaffContacts studentStaffContacts = studentStaffContactsServiceV1.doService(reqBody);
-        studentStaffContactsMap.put(studentStaffContacts.getSsno(),studentStaffContacts);
-        return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
+        return studentStaffContactsRepository.save(studentStaffContacts);
     }
 
     @ResponseBody
     @PutMapping(path = "/updateStudentStaffContactsList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> editStudentStaffContactsList(@RequestBody String reqBody) {
+    public Optional<StudentStaffContacts> editStudentStaffContactsList(@RequestBody String reqBody) {
         StudentStaffContacts studentStaffContacts = studentStaffContactsServiceV1.doService(reqBody);
-        studentStaffContactsMap.put(studentStaffContacts.getSsno(),studentStaffContacts);
-        return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
+
+        return studentStaffContactsRepository.findById(studentStaffContacts.getSsno())
+                .map(oldItem -> {
+                    StudentStaffContacts updated = oldItem.updateWith(studentStaffContacts);
+                    return studentStaffContactsRepository.save(updated);
+                });
     }
 
 
@@ -80,9 +85,8 @@ public class StudentStaffContactsController {
     public ResponseEntity<Collection<StudentStaffContacts>> deleteStudentAttendanceLogList(@RequestBody String reqBody) {
 
         StudentStaffContacts studentStaffContacts = studentStaffContactsServiceV1.doService(reqBody);
-        studentStaffContactsMap.remove(studentStaffContacts.getSsno());
-
-        return ResponseEntity.status(HttpStatus.OK).body(studentStaffContactsMap.values());
+        studentStaffContactsRepository.delete(studentStaffContacts);
+        return ResponseEntity.noContent().build();
     }
 
 
@@ -102,12 +106,10 @@ public class StudentStaffContactsController {
     @GetMapping(path = "/getStudentStaffContactsByActive/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentStaffContacts>> getStudentStaffContactsByActive(@RequestBody String reqBody) {
+    public Optional<StudentStaffContacts> getStudentStaffContactsByActive(@RequestBody String reqBody) {
 
         StudentStaffContacts studentStaffContacts = studentStaffContactsServiceV1.doService(reqBody);
-        studentStaffContactsMap.remove(studentStaffContacts.getSsno());
-
-        return ResponseEntity.status(HttpStatus.OK).body(studentStaffContactsMap.values());
+        return studentStaffContactsRepository.findById(studentStaffContacts.getSsno());
     }
 
 

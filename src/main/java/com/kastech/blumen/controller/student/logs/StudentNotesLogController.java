@@ -1,6 +1,7 @@
 package com.kastech.blumen.controller.student.logs;
 
 import com.kastech.blumen.model.Response;
+import com.kastech.blumen.model.student.logs.StudentAttendanceLog;
 import com.kastech.blumen.model.student.logs.StudentNotesLog;
 import com.kastech.blumen.repository.student.logs.StudentNotesLogRepository;
 import com.kastech.blumen.service.student.logs.StudentNotesLogServiceV1;
@@ -14,8 +15,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
+import java.util.HashMap;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/blumen-api/student-logs")
@@ -23,6 +27,7 @@ public class StudentNotesLogController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(StudentNotesLogController.class);
 
+    @Autowired
     StudentNotesLogRepository studentNotesLogRepository;
 
     @Autowired
@@ -37,29 +42,30 @@ public class StudentNotesLogController {
     @ResponseBody
     @GetMapping(path = "/getStudentNotesLogList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentNotesLog>> getStudentNotesLogList() {
-
-        return ResponseEntity.ok(studentNotesLogMap.values());
+    public List<StudentNotesLog> getStudentNotesLogList() {
+        List<StudentNotesLog> list = new ArrayList<>();
+        Iterable<StudentNotesLog> items = studentNotesLogRepository.findAll();
+        items.forEach(list::add);
+        return list;
     }
 
     @ResponseBody
     @PostMapping(path = "/studentNotesLogList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> addToStudentNotesLogList(@RequestBody String reqBody) {
+    public StudentNotesLog addToStudentNotesLogList(@RequestBody String reqBody) {
         StudentNotesLog studentNotesLog = studentNotesLogServiceV1.doService(reqBody);
-        studentNotesLogMap.put(studentNotesLog.getSsno(),studentNotesLog);
-        return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
+        return studentNotesLogServiceV1.addStudentNotesLog(studentNotesLog);
+
     }
 
     @ResponseBody
     @PutMapping(path = "/updateStudentNotesLogList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> editStudentNotesLogList(@RequestBody String reqBody) {
+    public Optional<StudentNotesLog> editStudentNotesLogList(@RequestBody String reqBody) {
         StudentNotesLog studentNotesLog = studentNotesLogServiceV1.doService(reqBody);
-        studentNotesLogMap.put(studentNotesLog.getSsno(),studentNotesLog);
-        return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
+        return studentNotesLogServiceV1.editStudentNotesLogList(studentNotesLog);
     }
 
 

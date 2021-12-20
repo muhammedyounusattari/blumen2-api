@@ -31,7 +31,7 @@ public class NationalStuClearinghouseDataInterfaceController {
 
     List<Student> studentList = new ArrayList<>();
 
-    Map<String, Student> studentMap = new HashMap<String, Student>();
+    Map<Long, Student> studentMap = new HashMap<Long, Student>();
 
     Map<String, String> accountTypeList = new HashMap<>();
 
@@ -43,12 +43,12 @@ public class NationalStuClearinghouseDataInterfaceController {
 
     public void addStudentProfile() {
 
-        Student studentOne = new Student("111-234-333", "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017");
+        Student studentOne = new Student(111-234-333l, "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017");
         studentList.add(studentOne);
 
-        Student studentTwo = new Student("111-234-333", "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017");
+        Student studentTwo = new Student(111-234-333l, "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017");
         studentList.add(studentTwo);
-        Student studentThree = new Student("111-234-333", "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017");
+        Student studentThree = new Student(111-234-333l, "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017");
         studentList.add(studentThree);
     }
 

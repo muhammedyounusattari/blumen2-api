@@ -1,7 +1,15 @@
 package com.kastech.blumen.model.student.contacts;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "teacher_contact_reminder" ,schema = "blumen2")
 public class StudentDispTeacherContRemi {
 
+	@Id
+	private Long id;
     private String ssno;
     private String firstName;
     private String lastName;
@@ -39,8 +47,16 @@ public class StudentDispTeacherContRemi {
         this.school = school;
         this.standing = standing;
     }
+    
+    public Long getId() {
+		return id;
+	}
 
-    public String getSsno() {
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getSsno() {
         return ssno;
     }
 

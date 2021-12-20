@@ -1,7 +1,6 @@
 package com.kastech.blumen.controller.student.logs;
 
 
-import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.student.logs.StudentBotFormSubmissLog;
 import com.kastech.blumen.repository.student.logs.StudentBotFormSubmissLogRepository;
 import com.kastech.blumen.service.student.logs.StudentBotFormSubmissLogServiceV1;
@@ -14,9 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/blumen-api/student-logs")
@@ -24,6 +21,7 @@ public class StudentBotFormSubmissLogController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(StudentBotFormSubmissLogController.class);
 
+    @Autowired
     StudentBotFormSubmissLogRepository studentBotFormSubmissLogRepository;
 
     @Autowired
@@ -33,34 +31,39 @@ public class StudentBotFormSubmissLogController {
     @Autowired
     StudentBotFormSubmissLogValidator studentBotFormSubmissLogValidator;
 
-    Map<String, StudentBotFormSubmissLog> studentBotFormSubmissLogMap = new HashMap<String, StudentBotFormSubmissLog>();
+    Map<Long, StudentBotFormSubmissLog> studentBotFormSubmissLogMap = new HashMap<Long, StudentBotFormSubmissLog>();
 
     @ResponseBody
     @GetMapping(path = "/getStudentBotFormSubmissLog/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentBotFormSubmissLog>> getStudentBotFormSubmissLogList() {
+    public List<StudentBotFormSubmissLog> getStudentBotFormSubmissLogList() {
 
-        return ResponseEntity.ok(studentBotFormSubmissLogMap.values());
+        List<StudentBotFormSubmissLog> list = new ArrayList<>();
+        Iterable<StudentBotFormSubmissLog> items = studentBotFormSubmissLogRepository.findAll();
+        items.forEach(list::add);
+        return list;
     }
 
     @ResponseBody
     @PostMapping(path = "/studentBotFormSubmissLogList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> addToStudentBotFormSubmissLogList(@RequestBody String reqBody) {
+    public StudentBotFormSubmissLog addToStudentBotFormSubmissLogList(@RequestBody String reqBody) {
         StudentBotFormSubmissLog studentBotFormSubmissLog = studentBotFormSubmissLogServiceV1.doService(reqBody);
-        studentBotFormSubmissLogMap.put(studentBotFormSubmissLog.getSubmissionId(),studentBotFormSubmissLog);
-        return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
+        return studentBotFormSubmissLogRepository.save(studentBotFormSubmissLog);
     }
 
     @ResponseBody
     @PutMapping(path = "/updateStudentBotFormSubmissLogList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> editStudentBotFormSubmissLogList(@RequestBody String reqBody) {
+    public Optional<StudentBotFormSubmissLog> editStudentBotFormSubmissLogList(@RequestBody String reqBody) {
         StudentBotFormSubmissLog studentBotFormSubmissLog = studentBotFormSubmissLogServiceV1.doService(reqBody);
-        studentBotFormSubmissLogMap.put(studentBotFormSubmissLog.getSubmissionId(),studentBotFormSubmissLog);
-        return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
+        return studentBotFormSubmissLogRepository.findById(studentBotFormSubmissLog.getSubmissionId())
+                .map(oldItem -> {
+                    StudentBotFormSubmissLog updated = oldItem.updateWith(studentBotFormSubmissLog);
+                    return studentBotFormSubmissLogRepository.save(updated);
+                });
     }
 
 
@@ -81,9 +84,8 @@ public class StudentBotFormSubmissLogController {
     public ResponseEntity<Collection<StudentBotFormSubmissLog>> deleteStudentBotFormSubmissLogList(@RequestBody String reqBody) {
 
         StudentBotFormSubmissLog studentBotFormSubmissLog = studentBotFormSubmissLogServiceV1.doService(reqBody);
-        studentBotFormSubmissLogMap.remove(studentBotFormSubmissLog.getSubmissionId());
-
-        return ResponseEntity.status(HttpStatus.OK).body(studentBotFormSubmissLogMap.values());
+        studentBotFormSubmissLogRepository.delete(studentBotFormSubmissLog);
+        return ResponseEntity.noContent().build();
     }
 
 }

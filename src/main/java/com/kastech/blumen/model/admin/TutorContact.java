@@ -1,8 +1,15 @@
 package com.kastech.blumen.model.admin;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tutor_contact" ,schema = "blumen2")
 public class TutorContact {
 
-	private Integer id;
+	@Id
+	private Long id;
 	private String firstName;
 	private String lastName;
 	private String phone;
@@ -11,7 +18,7 @@ public class TutorContact {
 	private String contactTime;
 	private String reContactDate;
 
-	public TutorContact(Integer id, String firstName, String lastName, String phone, String contactDate,
+	public TutorContact(Long id, String firstName, String lastName, String phone, String contactDate,
                                    String counselor, String contactTime, String reContactDate) {
 		super();
 		this.id = id;
@@ -24,11 +31,11 @@ public class TutorContact {
 		this.reContactDate = reContactDate;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

@@ -1,9 +1,18 @@
 package com.kastech.blumen.model.student.logs;
 
+import com.kastech.blumen.model.customize.PullDown;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "student_attendance_log" ,schema = "blumen2")
 public class StudentAttendanceLog {
 
 
-    private String ssno;
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO, generator="student_attendance_log_seq_gen")
+    @SequenceGenerator(name="student_attendance_log_seq_gen", sequenceName="STUDENT_ATTENDANCE_LOG_SEQ")
+    private Long ssno;
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -24,7 +33,7 @@ public class StudentAttendanceLog {
     public StudentAttendanceLog() {
     }
 
-    public StudentAttendanceLog(String ssno, String firstName, String lastName, String phoneNumber, String attendanceDate, String attendanceAmount, String attendanceLogged, String maxMarks, String letterGrade, String fiscalYear, boolean active, boolean served, boolean reported, String councelor, String school, String standing) {
+    public StudentAttendanceLog(Long ssno, String firstName, String lastName, String phoneNumber, String attendanceDate, String attendanceAmount, String attendanceLogged, String maxMarks, String letterGrade, String fiscalYear, boolean active, boolean served, boolean reported, String councelor, String school, String standing) {
         this.ssno = ssno;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -43,11 +52,11 @@ public class StudentAttendanceLog {
         this.standing = standing;
     }
 
-    public String getSsno() {
+    public Long getSsno() {
         return ssno;
     }
 
-    public void setSsno(String ssno) {
+    public void setSsno(Long ssno) {
         this.ssno = ssno;
     }
 
@@ -191,5 +200,26 @@ public class StudentAttendanceLog {
                 ", school='" + school + '\'' +
                 ", standing='" + standing + '\'' +
                 '}';
+    }
+
+    public StudentAttendanceLog updateWith(StudentAttendanceLog item) {
+        return new StudentAttendanceLog(
+                item.ssno,
+                item.firstName,
+                item.lastName,
+                item.phoneNumber,
+                item.attendanceDate,
+                item.attendanceAmount,
+                item.attendanceLogged,
+                item.maxMarks,
+                item.letterGrade,
+                item.fiscalYear,
+                item.active,
+                item.served,
+                item.reported,
+                item.councelor,
+                item.school,
+                item.standing
+        );
     }
 }

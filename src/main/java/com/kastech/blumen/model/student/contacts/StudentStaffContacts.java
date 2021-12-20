@@ -1,8 +1,15 @@
 package com.kastech.blumen.model.student.contacts;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "student_staff_contacts", schema = "blumen2")
 public class StudentStaffContacts {
 
-    private String ssno;
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO, generator="stu_staff_contact_list_seq_gen")
+    @SequenceGenerator(name="stu_staff_contact_list_seq_gen", sequenceName="STUDENT_STAFF_CONTACT_LIST_SEQ")
+    private Long ssno;
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -20,7 +27,7 @@ public class StudentStaffContacts {
     public StudentStaffContacts() {
     }
 
-    public StudentStaffContacts(String ssno, String firstName, String lastName, String phoneNumber, String contactDate, String staff, String contactTime, String recontactDate, boolean active, boolean served, boolean reported, String school, String standing, String fiscalYear) {
+    public StudentStaffContacts(Long ssno, String firstName, String lastName, String phoneNumber, String contactDate, String staff, String contactTime, String recontactDate, boolean active, boolean served, boolean reported, String school, String standing, String fiscalYear) {
         this.ssno = ssno;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -37,11 +44,11 @@ public class StudentStaffContacts {
         this.fiscalYear = fiscalYear;
     }
 
-    public String getSsno() {
+    public Long getSsno() {
         return ssno;
     }
 
-    public void setSsno(String ssno) {
+    public void setSsno(Long ssno) {
         this.ssno = ssno;
     }
 
@@ -167,5 +174,24 @@ public class StudentStaffContacts {
                 ", standing='" + standing + '\'' +
                 ", fiscalYear='" + fiscalYear + '\'' +
                 '}';
+    }
+
+    public StudentStaffContacts updateWith(StudentStaffContacts item) {
+        return new StudentStaffContacts(
+                this.ssno,
+                item.firstName,
+                item.lastName,
+                item.phoneNumber,
+                item.contactDate,
+                item.staff,
+                item.contactTime,
+                item.recontactDate,
+                item.active,
+                item.served,
+                item.reported,
+                item.school,
+                item.standing,
+                item.fiscalYear
+        );
     }
 }

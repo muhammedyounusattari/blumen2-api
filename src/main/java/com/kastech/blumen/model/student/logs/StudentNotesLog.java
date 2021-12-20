@@ -1,8 +1,15 @@
 package com.kastech.blumen.model.student.logs;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "student_notes_log" ,schema = "blumen2")
 public class StudentNotesLog {
 
-    private String ssno;
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO, generator="student_notes_log_seq_gen")
+    @SequenceGenerator(name="student_notes_log_seq_gen", sequenceName="STUDENT_NOTES_LOG_SEQ")
+    private Long ssno;
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -19,7 +26,7 @@ public class StudentNotesLog {
     public StudentNotesLog() {
     }
 
-    public StudentNotesLog(String ssno, String firstName, String lastName, String phoneNumber, String notesDate, String notes, String fiscalYear, boolean active, boolean served, boolean reported, String councelor, String school, String standing) {
+    public StudentNotesLog(Long ssno, String firstName, String lastName, String phoneNumber, String notesDate, String notes, String fiscalYear, boolean active, boolean served, boolean reported, String councelor, String school, String standing) {
         this.ssno = ssno;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -35,11 +42,11 @@ public class StudentNotesLog {
         this.standing = standing;
     }
 
-    public String getSsno() {
+    public Long getSsno() {
         return ssno;
     }
 
-    public void setSsno(String ssno) {
+    public void setSsno(Long ssno) {
         this.ssno = ssno;
     }
 
@@ -156,5 +163,23 @@ public class StudentNotesLog {
                 ", school='" + school + '\'' +
                 ", standing='" + standing + '\'' +
                 '}';
+    }
+
+    public StudentNotesLog updateWith(StudentNotesLog item) {
+        return new StudentNotesLog(
+                item.ssno,
+                item.firstName,
+                item.lastName,
+                item.phoneNumber,
+                item.notesDate,
+                item.notes,
+                item.fiscalYear,
+                item.active,
+                item.served,
+                item.reported,
+                item.councelor,
+                item.school,
+                item.standing
+        );
     }
 }

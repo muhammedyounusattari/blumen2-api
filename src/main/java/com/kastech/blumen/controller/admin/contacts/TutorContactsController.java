@@ -88,9 +88,10 @@ public class TutorContactsController {
 
 	@ResponseBody
 	@PostMapping(path = "/deleteTutorContact/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<String> postSystemPreferenceData(@RequestParam("CouncellorContactId") String CouncellorContactId) {
+	public ResponseEntity<String> postSystemPreferenceData(@RequestParam("CouncellorContactId") Long councellorContactId) {
 		LOGGER.info("Inside postSystemPreferenceData");
-		return ResponseEntity.ok(tutorContactService.deleteTutorContact(CouncellorContactId));
+		tutorContactService.deleteTutorContact(councellorContactId);
+		return ResponseEntity.ok("Success");
 	}
 
 }

@@ -1,7 +1,15 @@
 package com.kastech.blumen.model.customize;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "labsetting_preferences", schema = "blumen2")
 public class LabSettingPreferences {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO, generator="labsetting_pref_list_seq_gen")
+    @SequenceGenerator(name="labsetting_pref_list_seq_gen", sequenceName="LAB_SETTING_PREF_LIST_SEQ")
+    private Long id;
     private String lapSearchPriority;
     private String labFiscalYear;
     private String labComponents;
@@ -25,7 +33,8 @@ public class LabSettingPreferences {
     public LabSettingPreferences() {
     }
 
-    public LabSettingPreferences(String lapSearchPriority, String labFiscalYear, String labComponents, boolean labHideStudentList, boolean labHideCheckOutList, String labWaitWindowTime, boolean labAutomaticallyCheckInCheckOut, boolean labServicesVisibile, boolean labServicerRequired, String labDefaultService, boolean labStudentsCanChooseMultipleService, boolean labReasonForVisitOptionVisible, boolean labStaffMemberOptionVisible, String labMaxCheckoutTime, String labForcedTimeSpent, boolean labAcknowledgement) {
+    public LabSettingPreferences(Long id, String lapSearchPriority, String labFiscalYear, String labComponents, boolean labHideStudentList, boolean labHideCheckOutList, String labWaitWindowTime, boolean labAutomaticallyCheckInCheckOut, boolean labServicesVisibile, boolean labServicerRequired, String labDefaultService, boolean labStudentsCanChooseMultipleService, boolean labReasonForVisitOptionVisible, boolean labStaffMemberOptionVisible, String labMaxCheckoutTime, String labForcedTimeSpent, boolean labAcknowledgement) {
+        this.id = id;
         this.lapSearchPriority = lapSearchPriority;
         this.labFiscalYear = labFiscalYear;
         this.labComponents = labComponents;
@@ -42,6 +51,14 @@ public class LabSettingPreferences {
         this.labMaxCheckoutTime = labMaxCheckoutTime;
         this.labForcedTimeSpent = labForcedTimeSpent;
         this.labAcknowledgement = labAcknowledgement;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getLapSearchPriority() {
@@ -164,7 +181,7 @@ public class LabSettingPreferences {
         this.labForcedTimeSpent = labForcedTimeSpent;
     }
 
-    public boolean getLabAcknowledgement() {
+    public boolean isLabAcknowledgement() {
         return labAcknowledgement;
     }
 
@@ -175,7 +192,8 @@ public class LabSettingPreferences {
     @Override
     public String toString() {
         return "LabSettingPreferences{" +
-                "lapSearchPriority='" + lapSearchPriority + '\'' +
+                "id=" + id +
+                ", lapSearchPriority='" + lapSearchPriority + '\'' +
                 ", labFiscalYear='" + labFiscalYear + '\'' +
                 ", labComponents='" + labComponents + '\'' +
                 ", labHideStudentList=" + labHideStudentList +
@@ -190,7 +208,7 @@ public class LabSettingPreferences {
                 ", labStaffMemberOptionVisible=" + labStaffMemberOptionVisible +
                 ", labMaxCheckoutTime='" + labMaxCheckoutTime + '\'' +
                 ", labForcedTimeSpent='" + labForcedTimeSpent + '\'' +
-                ", labAcknowledgement='" + labAcknowledgement + '\'' +
+                ", labAcknowledgement=" + labAcknowledgement +
                 '}';
     }
 }

@@ -1,7 +1,14 @@
 package com.kastech.blumen.model.student.contacts;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "student_lab_contact", schema = "blumen2")
 public class StudentLabContact {
 
+	@Id
+	@GeneratedValue(strategy= GenerationType.AUTO, generator="student_lab_contact_list_seq_gen")
+	@SequenceGenerator(name="student_lab_contact_list_seq_gen", sequenceName="STUDENT_LAB_CONTACT_LIST_SEQ")
 	private Integer id;
 	private String firstName;
 	private String lastName;
@@ -10,10 +17,11 @@ public class StudentLabContact {
 	private String checkOut;
 	private String reasonForVisit;
 
-	
+	public StudentLabContact() {
+	}
 
 	public StudentLabContact(Integer id, String firstName, String lastName, String labDate, String checkIn,
-			String checkOut, String reasonForVisit) {
+							 String checkOut, String reasonForVisit) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -22,6 +30,14 @@ public class StudentLabContact {
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
 		this.reasonForVisit = reasonForVisit;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getFirstName() {
@@ -74,8 +90,14 @@ public class StudentLabContact {
 
 	@Override
 	public String toString() {
-		return "StudentLabContact [firstName=" + firstName + ", lastName=" + lastName + ", labDate=" + labDate
-				+ ", checkIn=" + checkIn + ", checkOut=" + checkOut + ", reasonForVisit=" + reasonForVisit + "]";
+		return "StudentLabContact{" +
+				"id=" + id +
+				", firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				", labDate='" + labDate + '\'' +
+				", checkIn='" + checkIn + '\'' +
+				", checkOut='" + checkOut + '\'' +
+				", reasonForVisit='" + reasonForVisit + '\'' +
+				'}';
 	}
-
 }

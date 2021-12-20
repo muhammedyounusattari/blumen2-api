@@ -1,8 +1,15 @@
 package com.kastech.blumen.model.student.contacts;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "student_disp_staff_rem_contacts", schema = "blumen2")
 public class StudentDispStaffContReminder {
 
-    private String ssno;
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO, generator="student_disp_staff_rem_contacts_list_seq_gen")
+    @SequenceGenerator(name="student_disp_staff_rem_contacts_list_seq_gen", sequenceName="STUDENT_DISP_STAFF_REM_CONTACT_LIST_SEQ")
+    private Long ssno;
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -22,7 +29,7 @@ public class StudentDispStaffContReminder {
     public StudentDispStaffContReminder() {
     }
 
-    public StudentDispStaffContReminder(String ssno, String firstName, String lastName, String phoneNumber, String contactDate, String staff, String contactTime, String recontactDate, String fiscalYear, boolean active, boolean served, boolean reported, String councelor, String school, String standing) {
+    public StudentDispStaffContReminder(Long ssno, String firstName, String lastName, String phoneNumber, String contactDate, String staff, String contactTime, String recontactDate, String fiscalYear, boolean active, boolean served, boolean reported, String councelor, String school, String standing) {
         this.ssno = ssno;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -40,11 +47,11 @@ public class StudentDispStaffContReminder {
         this.standing = standing;
     }
 
-    public String getSsno() {
+    public Long getSsno() {
         return ssno;
     }
 
-    public void setSsno(String ssno) {
+    public void setSsno(Long ssno) {
         this.ssno = ssno;
     }
 
@@ -179,5 +186,26 @@ public class StudentDispStaffContReminder {
                 ", school='" + school + '\'' +
                 ", standing='" + standing + '\'' +
                 '}';
+    }
+
+    public StudentDispStaffContReminder updateWith(StudentDispStaffContReminder item) {
+        return new StudentDispStaffContReminder(
+                this.ssno,
+                item.firstName,
+                item.lastName,
+                item.phoneNumber,
+                item.contactDate,
+                item.staff,
+                item.contactTime,
+                item.recontactDate,
+                item.fiscalYear,
+                item.active,
+                item.served,
+                item.reported,
+                item.councelor,
+                item.school,
+                item.standing
+
+        );
     }
 }

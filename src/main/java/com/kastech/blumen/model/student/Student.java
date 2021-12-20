@@ -10,8 +10,7 @@ import java.util.List;
 public class Student implements Serializable {
 
 	@Id
-    private Long id;
-    private String ssno;
+    private Long ssno;
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -32,7 +31,7 @@ public class Student implements Serializable {
     public Student() {
     }
 
-    public Student(String ssno, String firstName, String lastName, String phoneNumber, String contactDate, String staff, String contactTime, String recontactDate, String active, String served, String reported, String school, String standing, String fiscalYear) {
+    public Student(Long ssno, String firstName, String lastName, String phoneNumber, String contactDate, String staff, String contactTime, String recontactDate, String active, String served, String reported, String school, String standing, String fiscalYear) {
         this.ssno = ssno;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -49,11 +48,11 @@ public class Student implements Serializable {
         this.fiscalYear = fiscalYear;
     }
 
-    public String getSsno() {
+    public Long getSsno() {
         return ssno;
     }
 
-    public void setSsno(String ssno) {
+    public void setSsno(Long ssno) {
         this.ssno = ssno;
     }
 
