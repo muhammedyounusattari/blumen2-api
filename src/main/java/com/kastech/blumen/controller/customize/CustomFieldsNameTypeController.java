@@ -20,6 +20,7 @@ public class CustomFieldsNameTypeController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ActivityGroupListController.class);
 
+    @Autowired
     CustomFieldsNameTypeRepository customFieldsNameTypeRepository;
 
     @Autowired
