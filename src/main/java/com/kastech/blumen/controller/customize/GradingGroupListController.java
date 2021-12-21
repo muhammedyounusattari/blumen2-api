@@ -47,8 +47,8 @@ public class GradingGroupListController {
     @PostMapping(path = "/gradingGroupList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public GradingGroupList addToGradingGroupList(@RequestBody String reqBody) {
-        GradingGroupList gradingGroupList = gradingGroupListServiceV1.doService(reqBody);
+    public GradingGroupList addToGradingGroupList(@RequestBody GradingGroupList gradingGroupList) {
+      //  GradingGroupList gradingGroupList = gradingGroupListServiceV1.doService(reqBody);
         return gradingGroupListRepository.save(gradingGroupList);
     }
 
@@ -56,8 +56,8 @@ public class GradingGroupListController {
     @PutMapping(path = "/updateGradingGroupList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Optional<GradingGroupList> editGradingGroupList(@RequestBody String reqBody) {
-        GradingGroupList gradingGroupList = gradingGroupListServiceV1.doService(reqBody);
+    public Optional<GradingGroupList> editGradingGroupList(@RequestBody GradingGroupList gradingGroupList) {
+     //   GradingGroupList gradingGroupList = gradingGroupListServiceV1.doService(reqBody);
 
         return gradingGroupListRepository.findById(gradingGroupList.getGradeGroupId())
                 .map(oldItem -> {
@@ -71,8 +71,8 @@ public class GradingGroupListController {
     @PutMapping(path = "/filter/gradingGroupList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> filterGradingGroupList(@RequestBody String reqBody) {
-        GradingGroupList gradingGroupList = gradingGroupListServiceV1.doService(reqBody);
+    public ResponseEntity<String> filterGradingGroupList(@RequestBody GradingGroupList gradingGroupList) {
+     //   GradingGroupList gradingGroupList = gradingGroupListServiceV1.doService(reqBody);
         return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
     }
 
@@ -81,10 +81,10 @@ public class GradingGroupListController {
     @PutMapping(path = "/deleteGradingGroupList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<GradingGroupList>> deleteGradingGroupList(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<GradingGroupList>> deleteGradingGroupList(@RequestBody GradingGroupList gradingGroupList) {
 
-        GradingGroupList collegeSchool = gradingGroupListServiceV1.doService(reqBody);
-        gradingGroupListRepository.delete(collegeSchool);
+      //  GradingGroupList collegeSchool = gradingGroupListServiceV1.doService(reqBody);
+        gradingGroupListRepository.delete(gradingGroupList);
         return ResponseEntity.noContent().build();
     }
     

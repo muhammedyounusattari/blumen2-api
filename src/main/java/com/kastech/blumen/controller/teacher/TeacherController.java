@@ -48,8 +48,7 @@ public class TeacherController {
 	@PostMapping(path = "/teacherList/v1", 
 			consumes = { MediaType.APPLICATION_JSON_VALUE }, 
 			produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<String> addToTeacherList(@RequestBody String reqBody) {
-		Teacher teacher = teacherServiceV1.doService(reqBody);
+	public ResponseEntity<String> addToTeacherList(@RequestBody Teacher teacher) {
 
 		teacher = teacherRepository.save(teacher);
 		if (teacher != null)
@@ -62,8 +61,7 @@ public class TeacherController {
     @PutMapping(path = "/updateTeacherList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> editTeacherList(@RequestBody String reqBody) {
-        Teacher teacher = teacherServiceV1.doService(reqBody);
+    public ResponseEntity<String> editTeacherList(@RequestBody Teacher teacher) {
         teacher = teacherRepository.save(teacher);
 		if (teacher != null)
 			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
@@ -76,8 +74,7 @@ public class TeacherController {
     @PutMapping(path = "/filter/teacherlist/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> filterTeacherList(@RequestBody String reqBody) {
-        Teacher teacher = teacherServiceV1.doService(reqBody);
+    public ResponseEntity<String> filterTeacherList(@RequestBody Teacher teacher) {
         return ResponseEntity.status(HttpStatus.OK).body(new Gson().toJson(teacherRepository.findById(teacher.getId())));
     }
 
@@ -86,9 +83,8 @@ public class TeacherController {
     @PutMapping(path = "/deleteTeacherList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<Teacher>> deleteTeacherList(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<Teacher>> deleteTeacherList(@RequestBody Teacher teacher) {
 
-        Teacher teacher = teacherServiceV1.doService(reqBody);
         teacherRepository.delete(teacher);
 
         return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);

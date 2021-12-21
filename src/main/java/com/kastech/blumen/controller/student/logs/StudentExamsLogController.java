@@ -47,8 +47,8 @@ public class StudentExamsLogController {
     @PostMapping(path = "/studentExamsLogList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> addToStudentExamsLogList(@RequestBody String reqBody) {
-        StudentExamsLog studentExamsLog = studentExamsLogServiceV1.doService(reqBody);
+    public ResponseEntity<String> addToStudentExamsLogList(@RequestBody StudentExamsLog studentExamsLog) {
+      //  StudentExamsLog studentExamsLog = studentExamsLogServiceV1.doService(reqBody);
         studentExamsLogMap.put(studentExamsLog.getSsno(),studentExamsLog);
         return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
     }
@@ -57,8 +57,8 @@ public class StudentExamsLogController {
     @PutMapping(path = "/updateStudentExamsLogList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> editStudentExamsLogList(@RequestBody String reqBody) {
-        StudentExamsLog studentExamsLog = studentExamsLogServiceV1.doService(reqBody);
+    public ResponseEntity<String> editStudentExamsLogList(@RequestBody StudentExamsLog studentExamsLog) {
+     //   StudentExamsLog studentExamsLog = studentExamsLogServiceV1.doService(reqBody);
         studentExamsLogMap.put(studentExamsLog.getSsno(),studentExamsLog);
         return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
     }
@@ -68,8 +68,8 @@ public class StudentExamsLogController {
     @PutMapping(path = "/filter/studentExamsLoglist/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> filterStudentExamsLogList(@RequestBody String reqBody) {
-        StudentExamsLog studentExamsLog = studentExamsLogServiceV1.doService(reqBody);
+    public ResponseEntity<String> filterStudentExamsLogList(@RequestBody StudentExamsLog studentExamsLog) {
+      //  StudentExamsLog studentExamsLog = studentExamsLogServiceV1.doService(reqBody);
         return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
     }
 
@@ -78,9 +78,9 @@ public class StudentExamsLogController {
     @PutMapping(path = "/deleteStudentExamsLogList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentExamsLog>> deleteStudentExamsLogList(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentExamsLog>> deleteStudentExamsLogList(@RequestBody StudentExamsLog studentExamsLog) {
 
-        StudentExamsLog studentExamsLog = studentExamsLogServiceV1.doService(reqBody);
+      //  StudentExamsLog studentExamsLog = studentExamsLogServiceV1.doService(reqBody);
         studentExamsLogMap.remove(studentExamsLog.getSsno());
 
         return ResponseEntity.status(HttpStatus.OK).body(studentExamsLogMap.values());
@@ -116,9 +116,9 @@ public class StudentExamsLogController {
     @GetMapping(path = "/getStudentExamsLogByServed/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentExamsLog>> getStudentExamsLogByServed(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentExamsLog>> getStudentExamsLogByServed(@RequestBody StudentExamsLog studentExamsLog) {
 
-        StudentExamsLog studentExamsLog = studentExamsLogServiceV1.doService(reqBody);
+      //  StudentExamsLog studentExamsLog = studentExamsLogServiceV1.doService(reqBody);
         studentExamsLogMap.remove(studentExamsLog.getSsno());
 
         return ResponseEntity.status(HttpStatus.OK).body(studentExamsLogMap.values());
@@ -128,9 +128,9 @@ public class StudentExamsLogController {
     @GetMapping(path = "/getStudentExamsLogByReported/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentExamsLog>> getStudentExamsLogByReported(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentExamsLog>> getStudentExamsLogByReported(@RequestBody StudentExamsLog studentExamsLog) {
 
-        StudentExamsLog studentExamsLog = studentExamsLogServiceV1.doService(reqBody);
+     //   StudentExamsLog studentExamsLog = studentExamsLogServiceV1.doService(reqBody);
         studentExamsLogMap.remove(studentExamsLog.getSsno());
 
         return ResponseEntity.status(HttpStatus.OK).body(studentExamsLogMap.values());

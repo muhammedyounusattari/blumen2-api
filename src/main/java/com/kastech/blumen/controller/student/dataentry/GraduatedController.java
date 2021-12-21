@@ -64,9 +64,9 @@ public class GraduatedController {
     @ResponseBody
     @GetMapping(path = "/saveGraduatedInfoForStudent/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<GraduatedInformation>> saveGraduatedInfoForStudent(@RequestBody String reqBody, @RequestParam("student-ssno") String studentSsno) {
+    public ResponseEntity<Collection<GraduatedInformation>> saveGraduatedInfoForStudent(@RequestBody GraduatedInformation graduatedInformation, @RequestParam("student-ssno") String studentSsno) {
         addStudentProfile();
-        GraduatedInformation graduatedInformation = graduatedServiceV1.doService(reqBody);
+     //   GraduatedInformation graduatedInformation = graduatedServiceV1.doService(reqBody);
         graduatedInformationMap.put(graduatedInformation.getSsno(), graduatedInformation);
         return ResponseEntity.ok(graduatedInformationMap.values());
     }
@@ -75,10 +75,10 @@ public class GraduatedController {
     @ResponseBody
     @GetMapping(path = "/saveAddressNotesForStudent/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<GraduatedInformation>> saveAddressNotesForStudent(@RequestBody String reqBody, @RequestParam("student-ssno") String studentSsno) {
+    public ResponseEntity<Collection<GraduatedInformation>> saveAddressNotesForStudent(@RequestBody AddressNotes addressNotes, @RequestParam("student-ssno") String studentSsno) {
 
         GraduatedInformation graduatedInformation = graduatedInformationMap.get(studentSsno);
-        AddressNotes addressNotes = graduatedServiceV1.doServiceForAddressNotes(reqBody);
+       // AddressNotes addressNotes = graduatedServiceV1.doServiceForAddressNotes(reqBody);
         graduatedInformation.setAddressNotes(addressNotes);
 
         graduatedInformationMap.put(studentSsno, graduatedInformation);
@@ -89,9 +89,9 @@ public class GraduatedController {
     @ResponseBody
     @GetMapping(path = "/editGraduated/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<GraduatedInformation>> editGraduated(@RequestBody String reqBody, @RequestParam("student-ssno") String studentSsno) {
+    public ResponseEntity<Collection<GraduatedInformation>> editGraduated(@RequestBody AddressNotes addressNotes, @RequestParam("student-ssno") String studentSsno) {
         GraduatedInformation graduatedInformation = graduatedInformationMap.get(studentSsno);
-        AddressNotes addressNotes = graduatedServiceV1.doServiceForAddressNotes(reqBody);
+     //   AddressNotes addressNotes = graduatedServiceV1.doServiceForAddressNotes(reqBody);
         graduatedInformation.setAddressNotes(addressNotes);
         graduatedInformationMap.put(studentSsno, graduatedInformation);
         return ResponseEntity.ok(graduatedInformationMap.values());

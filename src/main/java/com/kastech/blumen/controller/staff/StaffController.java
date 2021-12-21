@@ -33,8 +33,6 @@ public class StaffController {
     @Autowired
     StaffValidator staffValidator;
 
-    Map<String, Staff> staffMap = new HashMap<String, Staff>();
-
     @ResponseBody
     @GetMapping(path = "/getStaffList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -47,8 +45,7 @@ public class StaffController {
     @PostMapping(path = "/staffList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> addToStaffList(@RequestBody String reqBody) {
-        Staff staff = staffServiceV1.doService(reqBody);
+    public ResponseEntity<String> addToStaffList(@RequestBody Staff staff) {
         staff = staffRepository.save(staff);
 		if (staff != null)
 			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
@@ -60,8 +57,7 @@ public class StaffController {
     @PutMapping(path = "/updateStaffList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> editStaffList(@RequestBody String reqBody) {
-        Staff staff = staffServiceV1.doService(reqBody);
+    public ResponseEntity<String> editStaffList(@RequestBody Staff staff) {
         staff = staffRepository.save(staff);
 		if (staff != null)
 			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
@@ -73,8 +69,7 @@ public class StaffController {
 	@ResponseBody
 	@PutMapping(path = "/filter/stafflist/v1", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<String> filterStaffList(@RequestBody String reqBody) {
-		Staff staff = staffServiceV1.doService(reqBody);
+	public ResponseEntity<String> filterStaffList(@RequestBody Staff staff) {
 		return ResponseEntity.status(HttpStatus.OK).body(new Gson().toJson(staffRepository.findById(staff.getId())));
 	}
 
@@ -83,11 +78,10 @@ public class StaffController {
     @PutMapping(path = "/deleteStaffList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<Staff>> deleteStaffList(@RequestBody String reqBody) {
+    public ResponseEntity<String> deleteStaffList(@RequestBody Staff staff) {
 
-        Staff staff = staffServiceV1.doService(reqBody);
         staffRepository.delete(staff);
 
-        return ResponseEntity.status(HttpStatus.OK).body(staffMap.values());
+        return ResponseEntity.status(HttpStatus.OK).body("Success");
     }
 }

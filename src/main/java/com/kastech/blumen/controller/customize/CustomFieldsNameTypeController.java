@@ -46,8 +46,8 @@ public class CustomFieldsNameTypeController {
     @PostMapping(path = "/customFieldsNameType/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public CustomFieldsNameType addToCustomFieldsNameType(@RequestBody String reqBody) {
-        CustomFieldsNameType customFieldsNameType = customFieldsNameTypeServiceV1.doService(reqBody);
+    public CustomFieldsNameType addToCustomFieldsNameType(@RequestBody CustomFieldsNameType customFieldsNameType) {
+     //   CustomFieldsNameType customFieldsNameType = customFieldsNameTypeServiceV1.doService(reqBody);
         return customFieldsNameTypeRepository.save(customFieldsNameType);
     }
 
@@ -55,8 +55,8 @@ public class CustomFieldsNameTypeController {
     @PutMapping(path = "/updateCustomFieldsNameType/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Optional<CustomFieldsNameType> editCustomFieldsNameType(@RequestBody String reqBody) {
-        CustomFieldsNameType customFieldsNameType = customFieldsNameTypeServiceV1.doService(reqBody);
+    public Optional<CustomFieldsNameType> editCustomFieldsNameType(@RequestBody CustomFieldsNameType customFieldsNameType) {
+      //  CustomFieldsNameType customFieldsNameType = customFieldsNameTypeServiceV1.doService(reqBody);
 
         return customFieldsNameTypeRepository.findById(customFieldsNameType.getCustomId())
                 .map(oldItem -> {
@@ -70,8 +70,8 @@ public class CustomFieldsNameTypeController {
     @PutMapping(path = "/filter/customFieldsNameType/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> filterCustomFieldsNameType(@RequestBody String reqBody) {
-        CustomFieldsNameType customFieldsNameType = customFieldsNameTypeServiceV1.doService(reqBody);
+    public ResponseEntity<String> filterCustomFieldsNameType(@RequestBody CustomFieldsNameType customFieldsNameType) {
+     //   CustomFieldsNameType customFieldsNameType = customFieldsNameTypeServiceV1.doService(reqBody);
         return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
     }
 
@@ -80,9 +80,9 @@ public class CustomFieldsNameTypeController {
     @PutMapping(path = "/deleteCustomFieldsNameTypeList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<CustomFieldsNameType>> deleteCustomFieldsNameType(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<CustomFieldsNameType>> deleteCustomFieldsNameType(@RequestBody CustomFieldsNameType customFieldsNameType) {
 
-        CustomFieldsNameType customFieldsNameType = customFieldsNameTypeServiceV1.doService(reqBody);
+       // CustomFieldsNameType customFieldsNameType = customFieldsNameTypeServiceV1.doService(reqBody);
         customFieldsNameTypeRepository.delete(customFieldsNameType);
         return ResponseEntity.noContent().build();
     }

@@ -43,8 +43,8 @@ public class StudentDataController {
     @PostMapping(path = "/studentList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> addToStudentList(@RequestBody String reqBody) {
-        StudentData student = studentDataServiceV1.doService(reqBody);
+    public ResponseEntity<String> addToStudentList(@RequestBody StudentData student) {
+     //   StudentData student = studentDataServiceV1.doService(reqBody);
         studentMap.put(student.getId(),student);
         return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
     }
@@ -53,8 +53,8 @@ public class StudentDataController {
     @PutMapping(path = "/updateStudentList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> editStudentList(@RequestBody String reqBody) {
-        StudentData student = studentDataServiceV1.doService(reqBody);
+    public ResponseEntity<String> editStudentList(@RequestBody StudentData student) {
+     //   StudentData student = studentDataServiceV1.doService(reqBody);
         studentMap.put(student.getId(),student);
         return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
     }
@@ -64,8 +64,8 @@ public class StudentDataController {
     @PutMapping(path = "/filter/studentlist/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> filterStudentList(@RequestBody String reqBody) {
-        StudentData student = studentDataServiceV1.doService(reqBody);
+    public ResponseEntity<String> filterStudentList(@RequestBody StudentData student) {
+    //    StudentData student = studentDataServiceV1.doService(reqBody);
         return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
     }
 
@@ -74,9 +74,9 @@ public class StudentDataController {
     @PutMapping(path = "/deleteStudentList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentData>> deleteStudentList(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentData>> deleteStudentList(@RequestBody StudentData student) {
 
-        StudentData student = studentDataServiceV1.doService(reqBody);
+      //  StudentData student = studentDataServiceV1.doService(reqBody);
         studentMap.remove(student.getId());
 
         return ResponseEntity.status(HttpStatus.OK).body(studentMap.values());

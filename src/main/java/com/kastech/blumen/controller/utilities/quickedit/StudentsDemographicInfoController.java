@@ -68,8 +68,8 @@ public class StudentsDemographicInfoController {
     @ResponseBody
     @GetMapping(path = "/saveStudentsDemographicInfo/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<Student>> saveStudentsDemographicInfo(@RequestBody String reqBody) {
-        StudentProfile studentProfile = studentsDemographicInfoServiceV1.doService(reqBody);
+    public ResponseEntity<Collection<Student>> saveStudentsDemographicInfo(@RequestBody StudentProfile studentProfile) {
+      //  StudentProfile studentProfile = studentsDemographicInfoServiceV1.doService(reqBody);
 
         return ResponseEntity.ok(studentList);
     }

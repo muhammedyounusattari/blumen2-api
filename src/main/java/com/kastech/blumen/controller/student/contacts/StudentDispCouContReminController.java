@@ -44,8 +44,7 @@ public class StudentDispCouContReminController {
     @PostMapping(path = "/studentDispCouContReminList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> addToStudentDispCouContReminList(@RequestBody String reqBody) {
-        StudentDispCouContRemin studentDispCouContRemin = studentDispCouContReminServiceV1.doService(reqBody);
+    public ResponseEntity<String> addToStudentDispCouContReminList(@RequestBody StudentDispCouContRemin studentDispCouContRemin) {
         studentDispCouContRemin = studentDispCouContReminRepository.save(studentDispCouContRemin);
 		if (studentDispCouContRemin != null)
 			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
@@ -57,8 +56,7 @@ public class StudentDispCouContReminController {
     @PutMapping(path = "/updateStudentDispCouContReminList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> editStudentDispCouContReminList(@RequestBody String reqBody) {
-    	StudentDispCouContRemin studentDispCouContRemin = studentDispCouContReminServiceV1.doService(reqBody);
+    public ResponseEntity<String> editStudentDispCouContReminList(@RequestBody StudentDispCouContRemin studentDispCouContRemin) {
         studentDispCouContRemin = studentDispCouContReminRepository.save(studentDispCouContRemin);
 		if (studentDispCouContRemin != null)
 			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
@@ -81,11 +79,8 @@ public class StudentDispCouContReminController {
     @PutMapping(path = "/deleteStudentDispCouContReminList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> deleteStudentDispCouContReminList(@RequestBody String reqBody) {
-
-        StudentDispCouContRemin studentDispCouContRemin = studentDispCouContReminServiceV1.doService(reqBody);
+    public ResponseEntity<String> deleteStudentDispCouContReminList(@RequestBody StudentDispCouContRemin studentDispCouContRemin) {
         studentDispCouContReminRepository.delete(studentDispCouContRemin);
-
         return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
     }
 
@@ -96,7 +91,6 @@ public class StudentDispCouContReminController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentDispCouContRemin>> getStudentDispCouContReminByFiscalyear(@RequestBody String reqBody) {
 
-        StudentDispCouContRemin studentDispCouContRemin = studentDispCouContReminServiceV1.doService(reqBody);
         return ResponseEntity.ok(studentDispCouContReminRepository.findAll());
     }
 

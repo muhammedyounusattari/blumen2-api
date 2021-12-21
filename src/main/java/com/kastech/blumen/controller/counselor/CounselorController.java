@@ -48,9 +48,7 @@ public class CounselorController {
     @PostMapping(path = "/counselorList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> addToCounselorList(@RequestBody String reqBody) {
-        Counselor counselor = counselorServiceV1.doService(reqBody);
-        counselor = counselorRepository.save(counselor);
+    public ResponseEntity<String> addToCounselorList(@RequestBody Counselor counselor) {
 		if (counselor != null)
 			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
 
@@ -61,9 +59,7 @@ public class CounselorController {
     @PutMapping(path = "/updateCounselorList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> editCounselorList(@RequestBody String reqBody) {
-        Counselor counselor = counselorServiceV1.doService(reqBody);
-        counselor = counselorRepository.save(counselor);
+    public ResponseEntity<String> editCounselorList(@RequestBody Counselor counselor) {
 		if (counselor != null)
 			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
 
@@ -75,8 +71,7 @@ public class CounselorController {
     @PutMapping(path = "/filter/counselorlist/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> filterCounselorList(@RequestBody String reqBody) {
-        Counselor counselor = counselorServiceV1.doService(reqBody);
+    public ResponseEntity<String> filterCounselorList(@RequestBody Counselor counselor) {
         return ResponseEntity.status(HttpStatus.OK).body(new Gson().toJson(counselorRepository.findById(counselor.getId())));
     }
 
@@ -85,12 +80,9 @@ public class CounselorController {
     @PutMapping(path = "/deleteCounselorList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<Counselor>> deleteCounselorList(@RequestBody String reqBody) {
-
-        Counselor counselor = counselorServiceV1.doService(reqBody);
+    public ResponseEntity<String> deleteCounselorList(@RequestBody Counselor counselor) {
         counselorRepository.delete(counselor);
-
-        return ResponseEntity.status(HttpStatus.OK).body(counselorMap.values());
+        return ResponseEntity.status(HttpStatus.OK).body("Success");
     }
 
 

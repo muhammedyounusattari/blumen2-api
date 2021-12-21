@@ -6,18 +6,22 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.kastech.blumen.model.AnnualPerformance;
-import com.kastech.blumen.model.admin.BOTMgmtForm;
 import com.kastech.blumen.model.ConfigSettings;
-import com.kastech.blumen.repository.admin.BOTFormMgmtRepository;
+import com.kastech.blumen.model.admin.BOTMgmtForm;
+import com.kastech.blumen.repository.admin.ConfigSettingRepository;
 
 
 @Component
 public class BOTFormMgmtService {
 
-	BOTFormMgmtRepository botFormMgmtRepository;
+	@Autowired
+	ConfigSettingRepository configSettingRepository;
+	
+	//BOTFormMgmtRepository botFormMgmtRepository;
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(BOTFormMgmtService.class);
 
@@ -37,12 +41,7 @@ public class BOTFormMgmtService {
 	}
 
 	public List<ConfigSettings>  getConfigSettingList() {
-		ConfigSettings configSetting1 = new ConfigSettings(1, "configValue1", "configType1", "description text1");
-		ConfigSettings configSetting2 = new ConfigSettings(2, "configValue2", "configType3", "description text2");
-		List<ConfigSettings> configSettings = new ArrayList<>();
-		configSettings.add(configSetting1);
-		configSettings.add(configSetting2);
-		return configSettings;
+		return configSettingRepository.findAll();
 	}
 	
 	

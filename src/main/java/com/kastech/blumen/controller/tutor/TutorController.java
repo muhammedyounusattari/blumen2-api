@@ -57,8 +57,7 @@ public class TutorController {
 	@ResponseBody
 	@PostMapping(path = "/tutorList/v1", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<String> addToTutorList(@RequestBody String reqBody) {
-		Tutor tutor = tutorServiceV1.doService(reqBody);
+	public ResponseEntity<String> addToTutorList(@RequestBody Tutor tutor) {
 		tutor = tutorRepository.save(tutor);
 		if (tutor != null)
 			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
@@ -70,8 +69,7 @@ public class TutorController {
     @PutMapping(path = "/updateTutorList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> editTutorList(@RequestBody String reqBody) {
-        Tutor tutor = tutorServiceV1.doService(reqBody);
+    public ResponseEntity<String> editTutorList(@RequestBody Tutor tutor) {
         tutor = tutorRepository.save(tutor);
         if (tutor != null)
 			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
@@ -94,14 +92,13 @@ public class TutorController {
     @PutMapping(path = "/deleteTutorList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<Tutor>> deleteTutorList(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<Tutor>> deleteTutorList(@RequestBody Tutor tutor) {
 
-        Tutor tutor = tutorServiceV1.doService(reqBody);
         Optional<Tutor> tutorDb = tutorRepository.findById(tutor.getId());
     	
 		if(tutorDb!=null && tutorDb.isPresent()) {
 			tutorRepository.delete(tutorDb.get()); 
-			return new ResponseEntity(new Response(200, "deleted tutor with id : " + reqBody ), null, HttpStatus.OK);
+			return new ResponseEntity(new Response(200, "Successfully deleted tutor with id : " + tutor.getId() ), null, HttpStatus.OK);
 		}
 
 		return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);

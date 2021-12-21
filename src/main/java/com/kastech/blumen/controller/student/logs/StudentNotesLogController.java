@@ -53,8 +53,8 @@ public class StudentNotesLogController {
     @PostMapping(path = "/studentNotesLogList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public StudentNotesLog addToStudentNotesLogList(@RequestBody String reqBody) {
-        StudentNotesLog studentNotesLog = studentNotesLogServiceV1.doService(reqBody);
+    public StudentNotesLog addToStudentNotesLogList(@RequestBody StudentNotesLog studentNotesLog) {
+     //   StudentNotesLog studentNotesLog = studentNotesLogServiceV1.doService(reqBody);
         return studentNotesLogServiceV1.addStudentNotesLog(studentNotesLog);
 
     }
@@ -63,8 +63,8 @@ public class StudentNotesLogController {
     @PutMapping(path = "/updateStudentNotesLogList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Optional<StudentNotesLog> editStudentNotesLogList(@RequestBody String reqBody) {
-        StudentNotesLog studentNotesLog = studentNotesLogServiceV1.doService(reqBody);
+    public Optional<StudentNotesLog> editStudentNotesLogList(@RequestBody StudentNotesLog studentNotesLog) {
+    //    StudentNotesLog studentNotesLog = studentNotesLogServiceV1.doService(reqBody);
         return studentNotesLogServiceV1.editStudentNotesLogList(studentNotesLog);
     }
 
@@ -73,8 +73,8 @@ public class StudentNotesLogController {
     @PutMapping(path = "/filter/studentNotesLoglist/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> filterStudentNotesLogList(@RequestBody String reqBody) {
-        StudentNotesLog studentNotesLog = studentNotesLogServiceV1.doService(reqBody);
+    public ResponseEntity<String> filterStudentNotesLogList(@RequestBody StudentNotesLog studentNotesLog) {
+     //   StudentNotesLog studentNotesLog = studentNotesLogServiceV1.doService(reqBody);
         return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
     }
 
@@ -83,9 +83,9 @@ public class StudentNotesLogController {
     @PutMapping(path = "/deleteStudentNotesLogList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentNotesLog>> deleteStudentNotesLogList(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentNotesLog>> deleteStudentNotesLogList(@RequestBody StudentNotesLog studentNotesLog) {
 
-        StudentNotesLog studentNotesLog = studentNotesLogServiceV1.doService(reqBody);
+      //  StudentNotesLog studentNotesLog = studentNotesLogServiceV1.doService(reqBody);
         studentNotesLogMap.remove(studentNotesLog.getSsno());
 
         return ResponseEntity.status(HttpStatus.OK).body(studentNotesLogMap.values());
@@ -96,9 +96,9 @@ public class StudentNotesLogController {
     @GetMapping(path = "/getStudentNotesLogByFiscalyear/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentNotesLog>> getStudentNotesLogByFiscalyear(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentNotesLog>> getStudentNotesLogByFiscalyear(@RequestBody StudentNotesLog studentNotesLog) {
 
-        StudentNotesLog studentNotesLog = studentNotesLogServiceV1.doService(reqBody);
+     //   StudentNotesLog studentNotesLog = studentNotesLogServiceV1.doService(reqBody);
         studentNotesLogMap.remove(studentNotesLog.getSsno());
 
         return ResponseEntity.status(HttpStatus.OK).body(studentNotesLogMap.values());
@@ -108,9 +108,9 @@ public class StudentNotesLogController {
     @GetMapping(path = "/getStudentNotesLogByActive/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentNotesLog>> getStudentNotesLogByActive(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentNotesLog>> getStudentNotesLogByActive(@RequestBody StudentNotesLog studentNotesLog) {
 
-        StudentNotesLog studentNotesLog = studentNotesLogServiceV1.doService(reqBody);
+     //   StudentNotesLog studentNotesLog = studentNotesLogServiceV1.doService(reqBody);
         studentNotesLogMap.remove(studentNotesLog.getSsno());
 
         return ResponseEntity.status(HttpStatus.OK).body(studentNotesLogMap.values());
@@ -121,9 +121,9 @@ public class StudentNotesLogController {
     @GetMapping(path = "/getStudentNotesLogByServed/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentNotesLog>> getStudentNotesLogByServed(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentNotesLog>> getStudentNotesLogByServed(@RequestBody StudentNotesLog studentNotesLog) {
 
-        StudentNotesLog studentNotesLog = studentNotesLogServiceV1.doService(reqBody);
+       // StudentNotesLog studentNotesLog = studentNotesLogServiceV1.doService(reqBody);
         studentNotesLogMap.remove(studentNotesLog.getSsno());
 
         return ResponseEntity.status(HttpStatus.OK).body(studentNotesLogMap.values());
@@ -133,9 +133,9 @@ public class StudentNotesLogController {
     @GetMapping(path = "/getStudentNotesLogByReported/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentNotesLog>> getStudentNotesLogByReported(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentNotesLog>> getStudentNotesLogByReported(@RequestBody StudentNotesLog studentNotesLog) {
 
-        StudentNotesLog studentNotesLog = studentNotesLogServiceV1.doService(reqBody);
+    //    StudentNotesLog studentNotesLog = studentNotesLogServiceV1.doService(reqBody);
         studentNotesLogMap.remove(studentNotesLog.getSsno());
 
         return ResponseEntity.status(HttpStatus.OK).body(studentNotesLogMap.values());

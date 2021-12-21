@@ -32,107 +32,6 @@ public class StudentDispStaffContRemiController {
 
     Map<String, StudentDispStaffContReminder> stringStudentDispStaffContReminderMap = new HashMap<String, StudentDispStaffContReminder>();
 
-   /* @ResponseBody
-    @GetMapping(path = "/getStudentDispStaffContReminderList/v1",
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentDispStaffContReminder>> getStudentDispStaffContReminderList() {
-
-        return ResponseEntity.ok(stringStudentDispStaffContReminderMap.values());
-    }
-
-    @ResponseBody
-    @PostMapping(path = "/studentDispStaffContReminderList/v1",
-            consumes = {MediaType.APPLICATION_JSON_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> addToStudentDispStaffContReminderList(@RequestBody String reqBody) {
-        StudentDispStaffContReminder studentDispStaffContReminder = studentDispStaffContRemiServiceV1.doService(reqBody);
-        stringStudentDispStaffContReminderMap.put(studentDispStaffContReminder.getSsno(),studentDispStaffContReminder);
-        return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
-    }
-
-    @ResponseBody
-    @PutMapping(path = "/updateStudentDispStaffContReminderList/v1",
-            consumes = {MediaType.APPLICATION_JSON_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> editStudentDispStaffContReminderList(@RequestBody String reqBody) {
-        StudentDispStaffContReminder studentDispStaffContReminder = studentDispStaffContRemiServiceV1.doService(reqBody);
-        stringStudentDispStaffContReminderMap.put(studentDispStaffContReminder.getSsno(),studentDispStaffContReminder);
-        return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
-    }
-
-
-    @ResponseBody
-    @PutMapping(path = "/filter/studentDispStaffContReminderlist/v1",
-            consumes = {MediaType.APPLICATION_JSON_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> filterStudentDispStaffContReminderList(@RequestBody String reqBody) {
-        StudentDispStaffContReminder studentDispStaffContReminder = studentDispStaffContRemiServiceV1.doService(reqBody);
-        return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
-    }
-
-
-    @ResponseBody
-    @PutMapping(path = "/deleteStudentDispStaffContReminderList/v1",
-            consumes = {MediaType.APPLICATION_JSON_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentDispStaffContReminder>> deleteStudentDispStaffContReminderList(@RequestBody String reqBody) {
-
-        StudentDispStaffContReminder studentDispStaffContReminder = studentDispStaffContRemiServiceV1.doService(reqBody);
-        stringStudentDispStaffContReminderMap.remove(studentDispStaffContReminder.getSsno());
-
-        return ResponseEntity.status(HttpStatus.OK).body(stringStudentDispStaffContReminderMap.values());
-    }
-
-
-    @ResponseBody
-    @GetMapping(path = "/getStudentDispStaffContReminderByFiscalyear/v1",
-            consumes = {MediaType.APPLICATION_JSON_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentDispStaffContReminder>> getStudentDispStaffContReminderyFiscalyear(@RequestBody String reqBody) {
-
-        StudentDispStaffContReminder studentDispStaffContReminder = studentDispStaffContRemiServiceV1.doService(reqBody);
-        stringStudentDispStaffContReminderMap.remove(studentDispStaffContReminder.getSsno());
-
-        return ResponseEntity.status(HttpStatus.OK).body(stringStudentDispStaffContReminderMap.values());
-    }
-
-    @ResponseBody
-    @GetMapping(path = "/getStudentDispStaffContReminderByActive/v1",
-            consumes = {MediaType.APPLICATION_JSON_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentDispStaffContReminder>> getStudentDispStaffContReminderByActive(@RequestBody String reqBody) {
-
-        StudentDispStaffContReminder studentDispStaffContReminder = studentDispStaffContRemiServiceV1.doService(reqBody);
-        stringStudentDispStaffContReminderMap.remove(studentDispStaffContReminder.getSsno());
-
-        return ResponseEntity.status(HttpStatus.OK).body(stringStudentDispStaffContReminderMap.values());
-    }
-
-
-    @ResponseBody
-    @GetMapping(path = "/getStudentDispStaffContReminderByServed/v1",
-            consumes = {MediaType.APPLICATION_JSON_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentDispStaffContReminder>> getStudentDispStaffContReminderByServed(@RequestBody String reqBody) {
-
-        StudentDispStaffContReminder studentDispStaffContReminder = studentDispStaffContRemiServiceV1.doService(reqBody);
-        stringStudentDispStaffContReminderMap.remove(studentDispStaffContReminder.getSsno());
-
-        return ResponseEntity.status(HttpStatus.OK).body(stringStudentDispStaffContReminderMap.values());
-    }
-
-    @ResponseBody
-    @GetMapping(path = "/getStudentDispStaffContReminderByReported/v1",
-            consumes = {MediaType.APPLICATION_JSON_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentDispStaffContReminder>> getStudentDispStaffContReminderByReported(@RequestBody String reqBody) {
-
-        StudentDispStaffContReminder studentDispStaffContReminder = studentDispStaffContRemiServiceV1.doService(reqBody);
-        stringStudentDispStaffContReminderMap.remove(studentDispStaffContReminder.getSsno());
-
-        return ResponseEntity.status(HttpStatus.OK).body(stringStudentDispStaffContReminderMap.values());
-    }*/
-
     @ResponseBody
     @GetMapping(path = "/getStudentDispStaffContReminderList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -148,8 +47,8 @@ public class StudentDispStaffContRemiController {
     @PostMapping(path = "/studentDispStaffContReminderList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public StudentDispStaffContReminder addToStudentDispStaffContReminderList(@RequestBody String reqBody) {
-        StudentDispStaffContReminder studentDispStaffContReminder = studentDispStaffContRemiServiceV1.doService(reqBody);
+    public StudentDispStaffContReminder addToStudentDispStaffContReminderList(@RequestBody StudentDispStaffContReminder studentDispStaffContReminder) {
+     //   StudentDispStaffContReminder studentDispStaffContReminder = studentDispStaffContRemiServiceV1.doService(reqBody);
         return studentDispStaffContRemiRepository.save(studentDispStaffContReminder);
     }
 
@@ -157,8 +56,8 @@ public class StudentDispStaffContRemiController {
     @PutMapping(path = "/updateStudentDispStaffContReminderList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Optional<StudentDispStaffContReminder> editStudentDispStaffContReminderList(@RequestBody String reqBody) {
-        StudentDispStaffContReminder studentDispStaffContReminder = studentDispStaffContRemiServiceV1.doService(reqBody);
+    public Optional<StudentDispStaffContReminder> editStudentDispStaffContReminderList(@RequestBody StudentDispStaffContReminder studentDispStaffContReminder) {
+     //   StudentDispStaffContReminder studentDispStaffContReminder = studentDispStaffContRemiServiceV1.doService(reqBody);
 
         return studentDispStaffContRemiRepository.findById(studentDispStaffContReminder.getSsno())
                 .map(oldItem -> {
@@ -182,9 +81,9 @@ public class StudentDispStaffContRemiController {
     @PutMapping(path = "/deleteStudentDispStaffContReminderList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentDispStaffContReminder>> deleteStudentDispStaffContReminderList(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentDispStaffContReminder>> deleteStudentDispStaffContReminderList(@RequestBody StudentDispStaffContReminder studentDispStaffContReminder) {
 
-        StudentDispStaffContReminder studentDispStaffContReminder = studentDispStaffContRemiServiceV1.doService(reqBody);
+    //    StudentDispStaffContReminder studentDispStaffContReminder = studentDispStaffContRemiServiceV1.doService(reqBody);
         studentDispStaffContRemiRepository.delete(studentDispStaffContReminder);
         return ResponseEntity.noContent().build();
     }
@@ -194,9 +93,9 @@ public class StudentDispStaffContRemiController {
     @GetMapping(path = "/getStudentDispStaffContReminderByFiscalyear/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentDispStaffContReminder>> getStudentDispStaffContReminderyFiscalyear(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentDispStaffContReminder>> getStudentDispStaffContReminderyFiscalyear(@RequestBody StudentDispStaffContReminder studentDispStaffContReminder) {
 
-        StudentDispStaffContReminder studentDispStaffContReminder = studentDispStaffContRemiServiceV1.doService(reqBody);
+    //    StudentDispStaffContReminder studentDispStaffContReminder = studentDispStaffContRemiServiceV1.doService(reqBody);
         stringStudentDispStaffContReminderMap.remove(studentDispStaffContReminder.getSsno());
 
         return ResponseEntity.status(HttpStatus.OK).body(stringStudentDispStaffContReminderMap.values());
@@ -206,9 +105,9 @@ public class StudentDispStaffContRemiController {
     @GetMapping(path = "/getStudentDispStaffContReminderByActive/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentDispStaffContReminder>> getStudentDispStaffContReminderByActive(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentDispStaffContReminder>> getStudentDispStaffContReminderByActive(@RequestBody StudentDispStaffContReminder studentDispStaffContReminder) {
 
-        StudentDispStaffContReminder studentDispStaffContReminder = studentDispStaffContRemiServiceV1.doService(reqBody);
+    //    StudentDispStaffContReminder studentDispStaffContReminder = studentDispStaffContRemiServiceV1.doService(reqBody);
         stringStudentDispStaffContReminderMap.remove(studentDispStaffContReminder.getSsno());
 
         return ResponseEntity.status(HttpStatus.OK).body(stringStudentDispStaffContReminderMap.values());
@@ -219,9 +118,9 @@ public class StudentDispStaffContRemiController {
     @GetMapping(path = "/getStudentDispStaffContReminderByServed/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentDispStaffContReminder>> getStudentDispStaffContReminderByServed(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentDispStaffContReminder>> getStudentDispStaffContReminderByServed(@RequestBody StudentDispStaffContReminder studentDispStaffContReminder) {
 
-        StudentDispStaffContReminder studentDispStaffContReminder = studentDispStaffContRemiServiceV1.doService(reqBody);
+     //   StudentDispStaffContReminder studentDispStaffContReminder = studentDispStaffContRemiServiceV1.doService(reqBody);
         stringStudentDispStaffContReminderMap.remove(studentDispStaffContReminder.getSsno());
 
         return ResponseEntity.status(HttpStatus.OK).body(stringStudentDispStaffContReminderMap.values());
@@ -231,9 +130,9 @@ public class StudentDispStaffContRemiController {
     @GetMapping(path = "/getStudentDispStaffContReminderByReported/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentDispStaffContReminder>> getStudentDispStaffContReminderByReported(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentDispStaffContReminder>> getStudentDispStaffContReminderByReported(@RequestBody StudentDispStaffContReminder studentDispStaffContReminder) {
 
-        StudentDispStaffContReminder studentDispStaffContReminder = studentDispStaffContRemiServiceV1.doService(reqBody);
+     //   StudentDispStaffContReminder studentDispStaffContReminder = studentDispStaffContRemiServiceV1.doService(reqBody);
         stringStudentDispStaffContReminderMap.remove(studentDispStaffContReminder.getSsno());
 
         return ResponseEntity.status(HttpStatus.OK).body(stringStudentDispStaffContReminderMap.values());

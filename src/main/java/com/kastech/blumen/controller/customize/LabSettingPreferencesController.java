@@ -46,9 +46,9 @@ public class LabSettingPreferencesController {
     @PostMapping(path = "/labSettingPreferences/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public LabSettingPreferences addToLabSettingPreferences(@RequestBody String reqBody) {
-        LabSettingPreferences labSettingPreferences = labSettingPreferencesServiceV1.doService(reqBody);
-        return labSettingPreferencesRepository.save(labSettingPreferences);
+    public LabSettingPreferences addToLabSettingPreferences(@RequestBody LabSettingPreferences reqBody) {
+       // LabSettingPreferences labSettingPreferences = labSettingPreferencesServiceV1.doService(reqBody);
+        return labSettingPreferencesRepository.save(reqBody);
     }
 
 

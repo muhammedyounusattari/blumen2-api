@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kastech.blumen.model.AnnualPerformance;
+import com.kastech.blumen.model.ConfigSettings;
 import com.kastech.blumen.repository.admin.BOTFormMgmtRepository;
 import com.kastech.blumen.service.admin.BOTFormMgmtService;
 
@@ -43,9 +44,9 @@ public class BOTFormMgmtController {
 	
 	@ResponseBody
 	@GetMapping(path = "/getConfigSettingList/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<String> getConfigSettingList() {
-		LOGGER.info("Inside getConfigSettingList");		
-		return ResponseEntity.ok("Successfully Saved");
+	public ResponseEntity<Collection<ConfigSettings>> getConfigSettingList() {
+		LOGGER.info("Inside getConfigSettingList");	
+		return ResponseEntity.ok(bOTFormMgmtService.getConfigSettingList());
 	}
 	
 	@ResponseBody

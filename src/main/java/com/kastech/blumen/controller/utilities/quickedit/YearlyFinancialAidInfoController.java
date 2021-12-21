@@ -68,8 +68,8 @@ public class YearlyFinancialAidInfoController {
     @ResponseBody
     @GetMapping(path = "/editYearlyFinancialAidInfo/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<Student>> editYearlyFinancialAidInfo(@RequestBody String reqBody) {
-        StudentProfile studentProfile = yearlyFinancialAidInfoServiceV1.doService(reqBody);
+    public ResponseEntity<Collection<Student>> editYearlyFinancialAidInfo(@RequestBody StudentProfile studentProfile) {
+     //   StudentProfile studentProfile = yearlyFinancialAidInfoServiceV1.doService(reqBody);
 
         return ResponseEntity.ok(studentMap.values());
     }
@@ -77,7 +77,7 @@ public class YearlyFinancialAidInfoController {
     @ResponseBody
     @GetMapping(path = "/deleteYearlyFinancialAidInfo/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<Student>> deleteYearlyFinancialAidInfo(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<Student>> deleteYearlyFinancialAidInfo(@RequestBody StudentProfile studentProfile) {
 
         return ResponseEntity.ok(studentMap.values());
     }

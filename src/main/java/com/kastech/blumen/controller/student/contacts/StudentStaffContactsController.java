@@ -48,8 +48,8 @@ public class StudentStaffContactsController {
     @PostMapping(path = "/studentStaffContactsList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public StudentStaffContacts addToStudentStaffContactsList(@RequestBody String reqBody) {
-        StudentStaffContacts studentStaffContacts = studentStaffContactsServiceV1.doService(reqBody);
+    public StudentStaffContacts addToStudentStaffContactsList(@RequestBody StudentStaffContacts studentStaffContacts) {
+      //  StudentStaffContacts studentStaffContacts = studentStaffContactsServiceV1.doService(reqBody);
         return studentStaffContactsRepository.save(studentStaffContacts);
     }
 
@@ -57,8 +57,8 @@ public class StudentStaffContactsController {
     @PutMapping(path = "/updateStudentStaffContactsList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Optional<StudentStaffContacts> editStudentStaffContactsList(@RequestBody String reqBody) {
-        StudentStaffContacts studentStaffContacts = studentStaffContactsServiceV1.doService(reqBody);
+    public Optional<StudentStaffContacts> editStudentStaffContactsList(@RequestBody StudentStaffContacts studentStaffContacts) {
+     //   StudentStaffContacts studentStaffContacts = studentStaffContactsServiceV1.doService(reqBody);
 
         return studentStaffContactsRepository.findById(studentStaffContacts.getSsno())
                 .map(oldItem -> {
@@ -72,8 +72,8 @@ public class StudentStaffContactsController {
     @PutMapping(path = "/filter/studentStaffContactslist/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> filterStudentStaffContactsList(@RequestBody String reqBody) {
-        StudentStaffContacts studentStaffContacts = studentStaffContactsServiceV1.doService(reqBody);
+    public ResponseEntity<String> filterStudentStaffContactsList(@RequestBody StudentStaffContacts studentStaffContacts) {
+      //  StudentStaffContacts studentStaffContacts = studentStaffContactsServiceV1.doService(reqBody);
         return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
     }
 
@@ -82,9 +82,9 @@ public class StudentStaffContactsController {
     @PutMapping(path = "/deleteStudentStaffContactsList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentStaffContacts>> deleteStudentAttendanceLogList(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentStaffContacts>> deleteStudentAttendanceLogList(@RequestBody StudentStaffContacts studentStaffContacts) {
 
-        StudentStaffContacts studentStaffContacts = studentStaffContactsServiceV1.doService(reqBody);
+    //    StudentStaffContacts studentStaffContacts = studentStaffContactsServiceV1.doService(reqBody);
         studentStaffContactsRepository.delete(studentStaffContacts);
         return ResponseEntity.noContent().build();
     }
@@ -94,9 +94,9 @@ public class StudentStaffContactsController {
     @GetMapping(path = "/getStudentStaffContactsByFiscalyear/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentStaffContacts>> getStudentStaffContactsByFiscalyear(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentStaffContacts>> getStudentStaffContactsByFiscalyear(@RequestBody StudentStaffContacts studentStaffContacts) {
 
-        StudentStaffContacts studentStaffContacts = studentStaffContactsServiceV1.doService(reqBody);
+      //  StudentStaffContacts studentStaffContacts = studentStaffContactsServiceV1.doService(reqBody);
         studentStaffContactsMap.remove(studentStaffContacts.getSsno());
 
         return ResponseEntity.status(HttpStatus.OK).body(studentStaffContactsMap.values());
@@ -106,9 +106,9 @@ public class StudentStaffContactsController {
     @GetMapping(path = "/getStudentStaffContactsByActive/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Optional<StudentStaffContacts> getStudentStaffContactsByActive(@RequestBody String reqBody) {
+    public Optional<StudentStaffContacts> getStudentStaffContactsByActive(@RequestBody StudentStaffContacts studentStaffContacts) {
 
-        StudentStaffContacts studentStaffContacts = studentStaffContactsServiceV1.doService(reqBody);
+     //   StudentStaffContacts studentStaffContacts = studentStaffContactsServiceV1.doService(reqBody);
         return studentStaffContactsRepository.findById(studentStaffContacts.getSsno());
     }
 
@@ -117,9 +117,9 @@ public class StudentStaffContactsController {
     @GetMapping(path = "/getStudentStaffContactsByServed/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentStaffContacts>> getStudentStaffContactsByServed(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentStaffContacts>> getStudentStaffContactsByServed(@RequestBody StudentStaffContacts studentStaffContacts) {
 
-        StudentStaffContacts studentStaffContacts = studentStaffContactsServiceV1.doService(reqBody);
+     //   StudentStaffContacts studentStaffContacts = studentStaffContactsServiceV1.doService(reqBody);
         studentStaffContactsMap.remove(studentStaffContacts.getSsno());
 
         return ResponseEntity.status(HttpStatus.OK).body(studentStaffContactsMap.values());
@@ -129,9 +129,9 @@ public class StudentStaffContactsController {
     @GetMapping(path = "/getStudentStaffContactsByReported/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentStaffContacts>> getStudentStaffContactsByReported(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentStaffContacts>> getStudentStaffContactsByReported(@RequestBody StudentStaffContacts studentStaffContacts) {
 
-        StudentStaffContacts studentStaffContacts = studentStaffContactsServiceV1.doService(reqBody);
+     //   StudentStaffContacts studentStaffContacts = studentStaffContactsServiceV1.doService(reqBody);
         studentStaffContactsMap.remove(studentStaffContacts.getSsno());
 
         return ResponseEntity.status(HttpStatus.OK).body(studentStaffContactsMap.values());

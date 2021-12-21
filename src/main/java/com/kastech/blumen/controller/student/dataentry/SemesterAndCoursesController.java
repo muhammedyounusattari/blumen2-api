@@ -62,9 +62,9 @@ public class SemesterAndCoursesController {
     @ResponseBody
     @GetMapping(path = "/newSemesterAndCoursesStudents/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<GraduatedInformation>> newSemesterAndCoursesStudents(@RequestBody String reqBody, @RequestParam("student-ssno") String studentSsno) {
+    public ResponseEntity<Collection<GraduatedInformation>> newSemesterAndCoursesStudents(@RequestBody GraduatedInformation graduatedInformation, @RequestParam("student-ssno") String studentSsno) {
         addStudentProfile();
-        GraduatedInformation graduatedInformation = semesterAndCoursesServiceV1.doService(reqBody);
+    //    GraduatedInformation graduatedInformation = semesterAndCoursesServiceV1.doService(reqBody);
         graduatedInformationMap.put(graduatedInformation.getSsno(), graduatedInformation);
         return ResponseEntity.ok(graduatedInformationMap.values());
     }
@@ -73,9 +73,9 @@ public class SemesterAndCoursesController {
     @ResponseBody
     @GetMapping(path = "/editSemesterAndCoursesStudents/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<GraduatedInformation>> editSemesterAndCoursesStudents(@RequestBody String reqBody, @RequestParam("student-ssno") String studentSsno) {
+    public ResponseEntity<Collection<GraduatedInformation>> editSemesterAndCoursesStudents(@RequestBody GraduatedInformation graduatedInformation, @RequestParam("student-ssno") String studentSsno) {
         addStudentProfile();
-        GraduatedInformation graduatedInformation = semesterAndCoursesServiceV1.doService(reqBody);
+      //  GraduatedInformation graduatedInformation = semesterAndCoursesServiceV1.doService(reqBody);
         graduatedInformationMap.put(graduatedInformation.getSsno(), graduatedInformation);
         return ResponseEntity.ok(graduatedInformationMap.values());
     }
@@ -84,9 +84,9 @@ public class SemesterAndCoursesController {
     @ResponseBody
     @GetMapping(path = "/deleteSemesterAndCoursesStudents/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<GraduatedInformation>> deleteSemesterAndCoursesStudents(@RequestBody String reqBody, @RequestParam("student-ssno") String studentSsno) {
+    public ResponseEntity<Collection<GraduatedInformation>> deleteSemesterAndCoursesStudents(@RequestBody GraduatedInformation graduatedInformation, @RequestParam("student-ssno") String studentSsno) {
         addStudentProfile();
-        GraduatedInformation graduatedInformation = semesterAndCoursesServiceV1.doService(reqBody);
+     //   GraduatedInformation graduatedInformation = semesterAndCoursesServiceV1.doService(reqBody);
         graduatedInformationMap.put(graduatedInformation.getSsno(), graduatedInformation);
         return ResponseEntity.ok(graduatedInformationMap.values());
     }

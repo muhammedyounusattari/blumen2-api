@@ -62,9 +62,9 @@ public class FiscalYearFinancialAidController {
     @ResponseBody
     @GetMapping(path = "/newFiscalYearFinancialAid/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<GraduatedInformation>> newFiscalYearFinancialAid(@RequestBody String reqBody, @RequestParam("student-ssno") String studentSsno) {
+    public ResponseEntity<Collection<GraduatedInformation>> newFiscalYearFinancialAid(@RequestBody GraduatedInformation graduatedInformation, @RequestParam("student-ssno") String studentSsno) {
         addStudentProfile();
-        GraduatedInformation graduatedInformation = fiscalYearFinancialAidServiceV1.doService(reqBody);
+     //   GraduatedInformation graduatedInformation = fiscalYearFinancialAidServiceV1.doService(reqBody);
         graduatedInformationMap.put(graduatedInformation.getSsno(), graduatedInformation);
         return ResponseEntity.ok(graduatedInformationMap.values());
     }
@@ -73,9 +73,9 @@ public class FiscalYearFinancialAidController {
     @ResponseBody
     @GetMapping(path = "/editFiscalYearFinancialAid/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<GraduatedInformation>> editFiscalYearFinancialAid(@RequestBody String reqBody, @RequestParam("student-ssno") String studentSsno) {
+    public ResponseEntity<Collection<GraduatedInformation>> editFiscalYearFinancialAid(@RequestBody GraduatedInformation graduatedInformation, @RequestParam("student-ssno") String studentSsno) {
         addStudentProfile();
-        GraduatedInformation graduatedInformation = fiscalYearFinancialAidServiceV1.doService(reqBody);
+      //  GraduatedInformation graduatedInformation = fiscalYearFinancialAidServiceV1.doService(reqBody);
         graduatedInformationMap.put(graduatedInformation.getSsno(), graduatedInformation);
         return ResponseEntity.ok(graduatedInformationMap.values());
     }
@@ -84,9 +84,9 @@ public class FiscalYearFinancialAidController {
     @ResponseBody
     @GetMapping(path = "/deleteFiscalYearFinancialAid/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<GraduatedInformation>> deleteFiscalYearFinancialAid(@RequestBody String reqBody, @RequestParam("student-ssno") String studentSsno) {
+    public ResponseEntity<Collection<GraduatedInformation>> deleteFiscalYearFinancialAid(@RequestBody GraduatedInformation graduatedInformation, @RequestParam("student-ssno") String studentSsno) {
         addStudentProfile();
-        GraduatedInformation graduatedInformation = fiscalYearFinancialAidServiceV1.doService(reqBody);
+     //   GraduatedInformation graduatedInformation = fiscalYearFinancialAidServiceV1.doService(reqBody);
         graduatedInformationMap.put(graduatedInformation.getSsno(), graduatedInformation);
         return ResponseEntity.ok(graduatedInformationMap.values());
     }

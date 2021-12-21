@@ -46,8 +46,8 @@ public class StudentStipendLogController {
     @PostMapping(path = "/studentStipendLogList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> addToStudentStipendLogList(@RequestBody String reqBody) {
-        StudentStipendLog studentStipendLog = studentStipendLogServiceV1.doService(reqBody);
+    public ResponseEntity<String> addToStudentStipendLogList(@RequestBody StudentStipendLog studentStipendLog) {
+     //   StudentStipendLog studentStipendLog = studentStipendLogServiceV1.doService(reqBody);
         stringStudentStipendLogMap.put(studentStipendLog.getSsno(),studentStipendLog);
         return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
     }
@@ -56,8 +56,8 @@ public class StudentStipendLogController {
     @PutMapping(path = "/updateStudentStipendLogList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> editStudentStipendLogList(@RequestBody String reqBody) {
-        StudentStipendLog studentStipendLog = studentStipendLogServiceV1.doService(reqBody);
+    public ResponseEntity<String> editStudentStipendLogList(@RequestBody StudentStipendLog studentStipendLog) {
+     //   StudentStipendLog studentStipendLog = studentStipendLogServiceV1.doService(reqBody);
         stringStudentStipendLogMap.put(studentStipendLog.getSsno(),studentStipendLog);
         return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
     }
@@ -67,8 +67,8 @@ public class StudentStipendLogController {
     @PutMapping(path = "/filter/studentStipendLoglist/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> filterStudentStipendLogList(@RequestBody String reqBody) {
-        StudentStipendLog studentStipendLog = studentStipendLogServiceV1.doService(reqBody);
+    public ResponseEntity<String> filterStudentStipendLogList(@RequestBody StudentStipendLog studentStipendLog) {
+      //  StudentStipendLog studentStipendLog = studentStipendLogServiceV1.doService(reqBody);
         return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
     }
 
@@ -77,9 +77,9 @@ public class StudentStipendLogController {
     @PutMapping(path = "/deleteStudentStipendLogList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentStipendLog>> deleteStudentStipendLogList(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentStipendLog>> deleteStudentStipendLogList(@RequestBody StudentStipendLog studentStipendLog) {
 
-        StudentStipendLog studentStipendLog = studentStipendLogServiceV1.doService(reqBody);
+    //    StudentStipendLog studentStipendLog = studentStipendLogServiceV1.doService(reqBody);
         stringStudentStipendLogMap.remove(studentStipendLog.getSsno());
 
         return ResponseEntity.status(HttpStatus.OK).body(stringStudentStipendLogMap.values());
@@ -90,9 +90,9 @@ public class StudentStipendLogController {
     @GetMapping(path = "/getStudentStipendLogByFiscalyear/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentStipendLog>> getStudentStipendLogByFiscalyear(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentStipendLog>> getStudentStipendLogByFiscalyear(@RequestBody StudentStipendLog studentStipendLog) {
 
-        StudentStipendLog studentStipendLog = studentStipendLogServiceV1.doService(reqBody);
+    //    StudentStipendLog studentStipendLog = studentStipendLogServiceV1.doService(reqBody);
         stringStudentStipendLogMap.remove(studentStipendLog.getSsno());
 
         return ResponseEntity.status(HttpStatus.OK).body(stringStudentStipendLogMap.values());
@@ -102,9 +102,9 @@ public class StudentStipendLogController {
     @GetMapping(path = "/getStudentStipendLogByActive/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentStipendLog>> getStudentStipendLogByActive(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentStipendLog>> getStudentStipendLogByActive(@RequestBody StudentStipendLog studentStipendLog) {
 
-        StudentStipendLog studentStipendLog = studentStipendLogServiceV1.doService(reqBody);
+    //    StudentStipendLog studentStipendLog = studentStipendLogServiceV1.doService(reqBody);
         stringStudentStipendLogMap.remove(studentStipendLog.getSsno());
 
         return ResponseEntity.status(HttpStatus.OK).body(stringStudentStipendLogMap.values());
@@ -115,9 +115,9 @@ public class StudentStipendLogController {
     @GetMapping(path = "/getStudentStipendLogByServed/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentStipendLog>> getStudentStipendLogByServed(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentStipendLog>> getStudentStipendLogByServed(@RequestBody StudentStipendLog studentStipendLog) {
 
-        StudentStipendLog studentStipendLog = studentStipendLogServiceV1.doService(reqBody);
+   //     StudentStipendLog studentStipendLog = studentStipendLogServiceV1.doService(reqBody);
         stringStudentStipendLogMap.remove(studentStipendLog.getSsno());
 
         return ResponseEntity.status(HttpStatus.OK).body(stringStudentStipendLogMap.values());
@@ -127,9 +127,9 @@ public class StudentStipendLogController {
     @GetMapping(path = "/getStudentStipendLogByReported/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentStipendLog>> getStudentStipendLogByReported(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentStipendLog>> getStudentStipendLogByReported(@RequestBody StudentStipendLog studentStipendLog) {
 
-        StudentStipendLog studentStipendLog = studentStipendLogServiceV1.doService(reqBody);
+    //    StudentStipendLog studentStipendLog = studentStipendLogServiceV1.doService(reqBody);
         stringStudentStipendLogMap.remove(studentStipendLog.getSsno());
 
         return ResponseEntity.status(HttpStatus.OK).body(stringStudentStipendLogMap.values());

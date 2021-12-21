@@ -69,8 +69,8 @@ public class SemesterGPAInfoController {
     @ResponseBody
     @GetMapping(path = "/clickOkToContinueSemesterGPAInfo/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<Student>> clickOkToContinueSemesterGPAInfo(@RequestBody String reqBody) {
-        Semester semester = semesterGPAInfoServiceV1.doService(reqBody);
+    public ResponseEntity<Collection<Student>> clickOkToContinueSemesterGPAInfo(@RequestBody Semester semester) {
+      //  Semester semester = semesterGPAInfoServiceV1.doService(reqBody);
         semesterList();
         return ResponseEntity.ok(studentList);
     }
@@ -78,7 +78,7 @@ public class SemesterGPAInfoController {
     @ResponseBody
     @GetMapping(path = "/saveSemesterGPAInfo/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<Student>> saveSemesterGPAInfo(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<Student>> saveSemesterGPAInfo(@RequestBody Semester semester) {
 
         return ResponseEntity.ok(studentList);
     }

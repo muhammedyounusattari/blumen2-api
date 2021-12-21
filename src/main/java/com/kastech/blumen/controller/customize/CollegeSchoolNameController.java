@@ -49,8 +49,8 @@ public class CollegeSchoolNameController {
     @PostMapping(path = "/collegeSchoolNameList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public CollegeSchool addToCollegeSchoolNameList(@RequestBody String reqBody) {
-        CollegeSchool collegeSchool = collegeSchoolServiceV1.doService(reqBody);
+    public CollegeSchool addToCollegeSchoolNameList(@RequestBody CollegeSchool collegeSchool) {
+      //  CollegeSchool collegeSchool = collegeSchoolServiceV1.doService(reqBody);
         return collegeSchoolRepository.save(collegeSchool);
     }
 
@@ -58,8 +58,8 @@ public class CollegeSchoolNameController {
     @PutMapping(path = "/updateCollegeSchoolNameList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Optional<CollegeSchool> editCollegeSchoolNameList(@RequestBody String reqBody) {
-        CollegeSchool collegeSchool = collegeSchoolServiceV1.doService(reqBody);
+    public Optional<CollegeSchool> editCollegeSchoolNameList(@RequestBody CollegeSchool collegeSchool) {
+     //   CollegeSchool collegeSchool = collegeSchoolServiceV1.doService(reqBody);
 
         return collegeSchoolRepository.findById(collegeSchool.getOrgName())
                 .map(oldItem -> {
@@ -73,8 +73,8 @@ public class CollegeSchoolNameController {
     @PutMapping(path = "/filter/collegeSchoolNamelist/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> filterPullDownList(@RequestBody String reqBody) {
-        CollegeSchool pullDown = collegeSchoolServiceV1.doService(reqBody);
+    public ResponseEntity<String> filterPullDownList(@RequestBody CollegeSchool collegeSchool) {
+      //  CollegeSchool pullDown = collegeSchoolServiceV1.doService(reqBody);
         return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
     }
 
@@ -83,9 +83,9 @@ public class CollegeSchoolNameController {
     @PutMapping(path = "/deleteCollegeSchoolNameList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<CollegeSchool>> deleteCollegeSchoolNameList(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<CollegeSchool>> deleteCollegeSchoolNameList(@RequestBody CollegeSchool collegeSchool) {
 
-        CollegeSchool collegeSchool = collegeSchoolServiceV1.doService(reqBody);
+      //  CollegeSchool collegeSchool = collegeSchoolServiceV1.doService(reqBody);
         collegeSchoolRepository.delete(collegeSchool);
         return ResponseEntity.noContent().build();
     }

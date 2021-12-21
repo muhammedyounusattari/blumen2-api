@@ -67,8 +67,8 @@ public class AttendanceLogController {
     @ResponseBody
     @PostMapping(path = "/clickFinishAttendanceLogList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public AttendanceLog clickFinishAttendanceLogList(@RequestBody String reqBody) {
-        AttendanceLog attendanceLog = attendanceLogServiceV1.doService(reqBody);
+    public AttendanceLog clickFinishAttendanceLogList(@RequestBody AttendanceLog attendanceLog) {
+     //   AttendanceLog attendanceLog = attendanceLogServiceV1.doService(reqBody);
         return attendanceLogRepository.save(attendanceLog);
     }
 }

@@ -50,8 +50,8 @@ public class TimeClockManagerController {
     @PostMapping(path = "/timeClockManagerList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public TimeClockManager addTimeClockManagerList(@RequestBody String reqBody) {
-        TimeClockManager timeClockManager = timeClockManagerServiceV1.doService(reqBody);
+    public TimeClockManager addTimeClockManagerList(@RequestBody TimeClockManager timeClockManager) {
+     //   TimeClockManager timeClockManager = timeClockManagerServiceV1.doService(reqBody);
         return timeClockManagerRepository.save(timeClockManager);
     }
 
@@ -59,8 +59,8 @@ public class TimeClockManagerController {
     @PutMapping(path = "/updateTimeClockManagerList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Optional<TimeClockManager> editTimeClockManagerList(@RequestBody String reqBody) {
-        TimeClockManager timeClockManager = timeClockManagerServiceV1.doService(reqBody);
+    public Optional<TimeClockManager> editTimeClockManagerList(@RequestBody TimeClockManager timeClockManager) {
+     //   TimeClockManager timeClockManager = timeClockManagerServiceV1.doService(reqBody);
 
         return timeClockManagerRepository.findById(timeClockManager.getId())
                 .map(oldItem -> {
@@ -74,8 +74,8 @@ public class TimeClockManagerController {
     @PutMapping(path = "/filter/timeClockManagerlist/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> filterTimeClockManagerList(@RequestBody String reqBody) {
-        TimeClockManager timeClockManager = timeClockManagerServiceV1.doService(reqBody);
+    public ResponseEntity<String> filterTimeClockManagerList(@RequestBody TimeClockManager timeClockManager) {
+     //   TimeClockManager timeClockManager = timeClockManagerServiceV1.doService(reqBody);
         return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
     }
 
@@ -84,10 +84,10 @@ public class TimeClockManagerController {
     @PutMapping(path = "/deleteTimeClockManagerList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<TimeClockManager>> deleteTimeClockManagerList(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<TimeClockManager>> deleteTimeClockManagerList(@RequestBody TimeClockManager timeClockManager) {
 
 
-        TimeClockManager timeClockManager = timeClockManagerServiceV1.doService(reqBody);
+      //  TimeClockManager timeClockManager = timeClockManagerServiceV1.doService(reqBody);
         timeClockManagerRepository.delete(timeClockManager);
         return ResponseEntity.noContent().build();
     }

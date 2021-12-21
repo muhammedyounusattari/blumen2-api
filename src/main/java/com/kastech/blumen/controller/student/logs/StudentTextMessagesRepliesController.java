@@ -46,8 +46,8 @@ public class StudentTextMessagesRepliesController {
     @PostMapping(path = "/studentTextMessagesRepliesList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> addToStudentTextMessagesRepliesList(@RequestBody String reqBody) {
-        StudentTextMessagesReplies studentTextMessagesReplies = studentTextMessagesRepliesServiceV1.doService(reqBody);
+    public ResponseEntity<String> addToStudentTextMessagesRepliesList(@RequestBody StudentTextMessagesReplies studentTextMessagesReplies) {
+     //   StudentTextMessagesReplies studentTextMessagesReplies = studentTextMessagesRepliesServiceV1.doService(reqBody);
         studentTextMessagesRepliesMap.put(studentTextMessagesReplies.getSsNo(),studentTextMessagesReplies);
         return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
     }
@@ -56,8 +56,8 @@ public class StudentTextMessagesRepliesController {
     @PutMapping(path = "/updateStudentTextMessagesRepliesList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> editStudentTextMessagesRepliesList(@RequestBody String reqBody) {
-        StudentTextMessagesReplies studentTextMessagesReplies = studentTextMessagesRepliesServiceV1.doService(reqBody);
+    public ResponseEntity<String> editStudentTextMessagesRepliesList(@RequestBody StudentTextMessagesReplies studentTextMessagesReplies) {
+   //     StudentTextMessagesReplies studentTextMessagesReplies = studentTextMessagesRepliesServiceV1.doService(reqBody);
         studentTextMessagesRepliesMap.put(studentTextMessagesReplies.getSsNo(),studentTextMessagesReplies);
         return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
     }
@@ -67,8 +67,8 @@ public class StudentTextMessagesRepliesController {
     @PutMapping(path = "/filter/studentTextMessagesReplieslist/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> filterStudentTextMessagesRepliesList(@RequestBody String reqBody) {
-        StudentTextMessagesReplies studentTextMessagesReplies = studentTextMessagesRepliesServiceV1.doService(reqBody);
+    public ResponseEntity<String> filterStudentTextMessagesRepliesList(@RequestBody StudentTextMessagesReplies studentTextMessagesReplies) {
+     //   StudentTextMessagesReplies studentTextMessagesReplies = studentTextMessagesRepliesServiceV1.doService(reqBody);
         return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
     }
 
@@ -77,9 +77,9 @@ public class StudentTextMessagesRepliesController {
     @PutMapping(path = "/deleteStudentTextMessagesRepliesList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentTextMessagesReplies>> deleteStudentTextMessagesRepliesList(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentTextMessagesReplies>> deleteStudentTextMessagesRepliesList(@RequestBody StudentTextMessagesReplies studentTextMessagesReplies) {
 
-        StudentTextMessagesReplies studentTextMessagesReplies = studentTextMessagesRepliesServiceV1.doService(reqBody);
+    //    StudentTextMessagesReplies studentTextMessagesReplies = studentTextMessagesRepliesServiceV1.doService(reqBody);
         studentTextMessagesRepliesMap.remove(studentTextMessagesReplies.getSsNo());
 
         return ResponseEntity.status(HttpStatus.OK).body(studentTextMessagesRepliesMap.values());
@@ -90,9 +90,9 @@ public class StudentTextMessagesRepliesController {
     @GetMapping(path = "/getStudentTextMessagesRepliesByFiscalyear/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentTextMessagesReplies>> getStudentTextMessagesRepliesByFiscalyear(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentTextMessagesReplies>> getStudentTextMessagesRepliesByFiscalyear(@RequestBody StudentTextMessagesReplies studentTextMessagesReplies) {
 
-        StudentTextMessagesReplies studentTextMessagesReplies = studentTextMessagesRepliesServiceV1.doService(reqBody);
+  //      StudentTextMessagesReplies studentTextMessagesReplies = studentTextMessagesRepliesServiceV1.doService(reqBody);
         studentTextMessagesRepliesMap.remove(studentTextMessagesReplies.getSsNo());
 
         return ResponseEntity.status(HttpStatus.OK).body(studentTextMessagesRepliesMap.values());
@@ -102,9 +102,9 @@ public class StudentTextMessagesRepliesController {
     @GetMapping(path = "/getStudentTextMessagesRepliesByActive/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentTextMessagesReplies>> getStudentTextMessagesRepliesByActive(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentTextMessagesReplies>> getStudentTextMessagesRepliesByActive(@RequestBody StudentTextMessagesReplies studentTextMessagesReplies) {
 
-        StudentTextMessagesReplies studentTextMessagesReplies = studentTextMessagesRepliesServiceV1.doService(reqBody);
+   //     StudentTextMessagesReplies studentTextMessagesReplies = studentTextMessagesRepliesServiceV1.doService(reqBody);
         studentTextMessagesRepliesMap.remove(studentTextMessagesReplies.getSsNo());
 
         return ResponseEntity.status(HttpStatus.OK).body(studentTextMessagesRepliesMap.values());
@@ -115,9 +115,9 @@ public class StudentTextMessagesRepliesController {
     @GetMapping(path = "/getStudentTextMessagesRepliesByServed/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentTextMessagesReplies>> getStudentTextMessagesRepliesByServed(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentTextMessagesReplies>> getStudentTextMessagesRepliesByServed(@RequestBody StudentTextMessagesReplies studentTextMessagesReplies) {
 
-        StudentTextMessagesReplies studentTextMessagesReplies = studentTextMessagesRepliesServiceV1.doService(reqBody);
+  //      StudentTextMessagesReplies studentTextMessagesReplies = studentTextMessagesRepliesServiceV1.doService(reqBody);
         studentTextMessagesRepliesMap.remove(studentTextMessagesReplies.getSsNo());
 
         return ResponseEntity.status(HttpStatus.OK).body(studentTextMessagesRepliesMap.values());
@@ -127,9 +127,9 @@ public class StudentTextMessagesRepliesController {
     @GetMapping(path = "/getStudentTextMessagesRepliesByReported/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentTextMessagesReplies>> getStudentTextMessagesRepliesByReported(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentTextMessagesReplies>> getStudentTextMessagesRepliesByReported(@RequestBody StudentTextMessagesReplies studentTextMessagesReplies) {
 
-        StudentTextMessagesReplies studentTextMessagesReplies = studentTextMessagesRepliesServiceV1.doService(reqBody);
+   //     StudentTextMessagesReplies studentTextMessagesReplies = studentTextMessagesRepliesServiceV1.doService(reqBody);
         studentTextMessagesRepliesMap.remove(studentTextMessagesReplies.getSsNo());
 
         return ResponseEntity.status(HttpStatus.OK).body(studentTextMessagesRepliesMap.values());

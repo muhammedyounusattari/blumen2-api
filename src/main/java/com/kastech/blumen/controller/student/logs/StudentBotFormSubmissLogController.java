@@ -48,8 +48,8 @@ public class StudentBotFormSubmissLogController {
     @PostMapping(path = "/studentBotFormSubmissLogList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public StudentBotFormSubmissLog addToStudentBotFormSubmissLogList(@RequestBody String reqBody) {
-        StudentBotFormSubmissLog studentBotFormSubmissLog = studentBotFormSubmissLogServiceV1.doService(reqBody);
+    public StudentBotFormSubmissLog addToStudentBotFormSubmissLogList(@RequestBody StudentBotFormSubmissLog studentBotFormSubmissLog) {
+      //  StudentBotFormSubmissLog studentBotFormSubmissLog = studentBotFormSubmissLogServiceV1.doService(reqBody);
         return studentBotFormSubmissLogRepository.save(studentBotFormSubmissLog);
     }
 
@@ -57,8 +57,8 @@ public class StudentBotFormSubmissLogController {
     @PutMapping(path = "/updateStudentBotFormSubmissLogList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Optional<StudentBotFormSubmissLog> editStudentBotFormSubmissLogList(@RequestBody String reqBody) {
-        StudentBotFormSubmissLog studentBotFormSubmissLog = studentBotFormSubmissLogServiceV1.doService(reqBody);
+    public Optional<StudentBotFormSubmissLog> editStudentBotFormSubmissLogList(@RequestBody StudentBotFormSubmissLog studentBotFormSubmissLog) {
+     //   StudentBotFormSubmissLog studentBotFormSubmissLog = studentBotFormSubmissLogServiceV1.doService(reqBody);
         return studentBotFormSubmissLogRepository.findById(studentBotFormSubmissLog.getSubmissionId())
                 .map(oldItem -> {
                     StudentBotFormSubmissLog updated = oldItem.updateWith(studentBotFormSubmissLog);
@@ -71,8 +71,8 @@ public class StudentBotFormSubmissLogController {
     @PutMapping(path = "/filter/studentBotFormSubmissLoglist/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> filterStudentBotFormSubmissLogList(@RequestBody String reqBody) {
-        StudentBotFormSubmissLog studentBotFormSubmissLog = studentBotFormSubmissLogServiceV1.doService(reqBody);
+    public ResponseEntity<String> filterStudentBotFormSubmissLogList(@RequestBody StudentBotFormSubmissLog studentBotFormSubmissLog) {
+     //   StudentBotFormSubmissLog studentBotFormSubmissLog = studentBotFormSubmissLogServiceV1.doService(reqBody);
         return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
     }
 
@@ -81,9 +81,9 @@ public class StudentBotFormSubmissLogController {
     @PutMapping(path = "/deleteStudentBotFormSubmissLogList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentBotFormSubmissLog>> deleteStudentBotFormSubmissLogList(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentBotFormSubmissLog>> deleteStudentBotFormSubmissLogList(@RequestBody StudentBotFormSubmissLog studentBotFormSubmissLog) {
 
-        StudentBotFormSubmissLog studentBotFormSubmissLog = studentBotFormSubmissLogServiceV1.doService(reqBody);
+    //    StudentBotFormSubmissLog studentBotFormSubmissLog = studentBotFormSubmissLogServiceV1.doService(reqBody);
         studentBotFormSubmissLogRepository.delete(studentBotFormSubmissLog);
         return ResponseEntity.noContent().build();
     }

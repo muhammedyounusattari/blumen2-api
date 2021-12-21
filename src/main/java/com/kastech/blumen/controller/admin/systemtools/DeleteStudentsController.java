@@ -36,20 +36,6 @@ public class DeleteStudentsController {
     @Autowired
     DeleteStudentsValidator deleteStudentsValidator;
 
-    List<Student> studentList = new ArrayList<>();
-
-
-    public void addStudentProfile() {
-
-        Student studentOne = new Student(111-234-333l, "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017");
-        studentList.add(studentOne);
-
-        Student studentTwo = new Student(111-234-333l, "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017");
-        studentList.add(studentTwo);
-        Student studentThree = new Student(111-234-333l, "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017");
-        studentList.add(studentThree);
-    }
-
     @ResponseBody
     @GetMapping(path = "/getDeleteStudentList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -62,13 +48,13 @@ public class DeleteStudentsController {
     @PostMapping(path = "/deleteStudentContinue/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> submitDeleteStudentContinue(@RequestBody long reqBody) {
+    public ResponseEntity<String> submitDeleteStudentContinue(@RequestBody Long studentId) {
 
-    	Optional<Student> student = deleteStudentsRepository.findById(reqBody);
+    	Optional<Student> student = deleteStudentsRepository.findById(studentId);
     	
 		if(student!=null && student.isPresent()) {
 			deleteStudentsRepository.delete(student.get()); 
-			return new ResponseEntity(new Response(200, "deleted student with id : " + reqBody ), null, HttpStatus.OK);
+			return new ResponseEntity(new Response(200, "deleted student with id : " + studentId ), null, HttpStatus.OK);
 		}
 			
 		
@@ -78,7 +64,7 @@ public class DeleteStudentsController {
 //        for (Student student : studentList) {
 //            //put logic here and filter with all the fields from student list
 //        }
-        return new ResponseEntity(new Response(200, "Cannot delete student with id : " + reqBody ), null, HttpStatus.OK);
+        return new ResponseEntity(new Response(200, "Cannot delete student with id : " + studentId ), null, HttpStatus.OK);
     }
 
 

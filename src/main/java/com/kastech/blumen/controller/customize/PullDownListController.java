@@ -59,8 +59,8 @@ public class PullDownListController {
     @PutMapping(path = "/updatePullDownList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Optional<PullDown> editPullDownList(@RequestBody String reqBody) {
-        PullDown pullDown = pullDownListServiceV1.doService(reqBody);
+    public Optional<PullDown> editPullDownList(@RequestBody PullDown pullDown) {
+      //  PullDown pullDown = pullDownListServiceV1.doService(reqBody);
 
         return pullDownListRepository.findById(pullDown.getId())
                 .map(oldItem -> {
@@ -85,9 +85,9 @@ public class PullDownListController {
     @PutMapping(path = "/deletePullDownList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<PullDown>> deletePullDownList(@RequestBody String reqBody) {
-        PullDown collegeSchool = pullDownListServiceV1.doService(reqBody);
-        pullDownListRepository.delete(collegeSchool);
+    public ResponseEntity<Collection<PullDown>> deletePullDownList(@RequestBody PullDown pullDown) {
+      //  PullDown collegeSchool = pullDownListServiceV1.doService(reqBody);
+        pullDownListRepository.delete(pullDown);
         return ResponseEntity.noContent().build();
     }
 

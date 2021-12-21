@@ -48,8 +48,8 @@ public class ActivityListController {
     @PostMapping(path = "/activityList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ActivityList addToActivityList(@RequestBody String reqBody) {
-        ActivityList activityList = activityListServiceV1.doService(reqBody);
+    public ActivityList addToActivityList(@RequestBody ActivityList activityList) {
+     //   ActivityList activityList = activityListServiceV1.doService(reqBody);
         return activityListRepository.save(activityList);
     }
 
@@ -57,10 +57,10 @@ public class ActivityListController {
     @PutMapping(path = "/updateActivityList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Optional<ActivityList> editActivityList(@RequestBody String reqBody) {
+    public Optional<ActivityList> editActivityList(@RequestBody ActivityList activityGroupList) {
 
 
-        ActivityList activityGroupList = activityListServiceV1.doService(reqBody);
+      //  ActivityList activityGroupList = activityListServiceV1.doService(reqBody);
 
         return activityListRepository.findById(activityGroupList.getActivityId())
                 .map(oldItem -> {
@@ -74,8 +74,8 @@ public class ActivityListController {
     @PutMapping(path = "/filter/activityList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> filterActivityList(@RequestBody String reqBody) {
-        ActivityList activityList = activityListServiceV1.doService(reqBody);
+    public ResponseEntity<String> filterActivityList(@RequestBody ActivityList activityList) {
+     //   ActivityList activityList = activityListServiceV1.doService(reqBody);
         return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
     }
 
@@ -84,9 +84,9 @@ public class ActivityListController {
     @PutMapping(path = "/deleteActivityList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<ActivityList>> deleteActivityList(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<ActivityList>> deleteActivityList(@RequestBody ActivityList activityGroupList) {
 
-        ActivityList activityGroupList = activityListServiceV1.doService(reqBody);
+    //    ActivityList activityGroupList = activityListServiceV1.doService(reqBody);
         activityListRepository.delete(activityGroupList);
         return ResponseEntity.noContent().build();
     }

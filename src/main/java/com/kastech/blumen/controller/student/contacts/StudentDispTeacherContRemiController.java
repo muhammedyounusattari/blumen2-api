@@ -59,8 +59,8 @@ public class StudentDispTeacherContRemiController {
 	@ResponseBody
 	@PutMapping(path = "/updateStudentDispTeacherContRemiList/v1", consumes = {
 			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<String> editStudentDispTeacherContRemiList(@RequestBody String reqBody) {
-		StudentDispTeacherContRemi studentDispTeacherContRemi = studentDispTeacherContRemiServiceV1.doService(reqBody);
+	public ResponseEntity<String> editStudentDispTeacherContRemiList(@RequestBody StudentDispTeacherContRemi studentDispTeacherContRemi) {
+		//StudentDispTeacherContRemi studentDispTeacherContRemi = studentDispTeacherContRemiServiceV1.doService(reqBody);
 		studentDispTeacherContRemi = studentDispTeacherContRemiRepository.save(studentDispTeacherContRemi);
 		if (studentDispTeacherContRemi != null)
 			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
@@ -80,9 +80,9 @@ public class StudentDispTeacherContRemiController {
 	@ResponseBody
 	@PutMapping(path = "/deleteStudentDispTeacherContRemiList/v1", consumes = {
 			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<String> deleteStudentDispTeacherContRemiList(@RequestBody String reqBody) {
+	public ResponseEntity<String> deleteStudentDispTeacherContRemiList(@RequestBody StudentDispTeacherContRemi studentDispTeacherContRemi) {
 
-		StudentDispTeacherContRemi studentDispTeacherContRemi = studentDispTeacherContRemiServiceV1.doService(reqBody);
+	//	StudentDispTeacherContRemi studentDispTeacherContRemi = studentDispTeacherContRemiServiceV1.doService(reqBody);
 		studentDispTeacherContRemiRepository.delete(studentDispTeacherContRemi);
 
 		return ResponseEntity.status(HttpStatus.OK).body("SUCCESS");
@@ -92,9 +92,9 @@ public class StudentDispTeacherContRemiController {
 	@GetMapping(path = "/getStudentDispTeacherContRemiByFiscalyear/v1", consumes = {
 			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<Collection<StudentDispTeacherContRemi>> getStudentDispTeacherContRemiByFiscalyear(
-			@RequestBody String reqBody) {
+			@RequestBody StudentDispTeacherContRemi studentDispTeacherContRemi) {
 
-		StudentDispTeacherContRemi studentDispTeacherContRemi = studentDispTeacherContRemiServiceV1.doService(reqBody);
+	//	StudentDispTeacherContRemi studentDispTeacherContRemi = studentDispTeacherContRemiServiceV1.doService(reqBody);
 		return ResponseEntity.status(HttpStatus.OK).body(studentDispTeacherContRemiRepository.findAll());
 	}
 
@@ -102,9 +102,9 @@ public class StudentDispTeacherContRemiController {
 	@GetMapping(path = "/getStudentDispTeacherContRemiByActive/v1", consumes = {
 			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<Collection<StudentDispTeacherContRemi>> getStudentDispTeacherContRemiByActive(
-			@RequestBody String reqBody) {
+			@RequestBody StudentDispTeacherContRemi studentDispTeacherContRemi) {
 
-		StudentDispTeacherContRemi studentDispTeacherContRemi = studentDispTeacherContRemiServiceV1.doService(reqBody);
+	//	StudentDispTeacherContRemi studentDispTeacherContRemi = studentDispTeacherContRemiServiceV1.doService(reqBody);
 
 		return ResponseEntity.status(HttpStatus.OK).body(studentDispTeacherContRemiRepository.findAll());
 	}
@@ -113,9 +113,9 @@ public class StudentDispTeacherContRemiController {
 	@GetMapping(path = "/getStudentDispTeacherContRemiByServed/v1", consumes = {
 			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<Collection<StudentDispTeacherContRemi>> getStudentDispTeacherContRemiByServed(
-			@RequestBody String reqBody) {
+			@RequestBody StudentDispTeacherContRemi studentDispTeacherContRemi) {
 
-		StudentDispTeacherContRemi studentDispTeacherContRemi = studentDispTeacherContRemiServiceV1.doService(reqBody);
+	//	StudentDispTeacherContRemi studentDispTeacherContRemi = studentDispTeacherContRemiServiceV1.doService(reqBody);
 
 		return ResponseEntity.status(HttpStatus.OK).body(studentDispTeacherContRemiRepository.findAll());
 	}
@@ -124,9 +124,9 @@ public class StudentDispTeacherContRemiController {
 	@GetMapping(path = "/getStudentDispTeacherContRemiByReported/v1", consumes = {
 			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<Collection<StudentDispTeacherContRemi>> getStudentDispTeacherContRemiByReported(
-			@RequestBody String reqBody) {
+			@RequestBody StudentDispTeacherContRemi studentDispTeacherContRemi) {
 
-		StudentDispTeacherContRemi studentDispTeacherContRemi = studentDispTeacherContRemiServiceV1.doService(reqBody);
+	//	StudentDispTeacherContRemi studentDispTeacherContRemi = studentDispTeacherContRemiServiceV1.doService(reqBody);
 
 		return ResponseEntity.status(HttpStatus.OK).body(studentDispTeacherContRemiRepository.findAll());
 	}

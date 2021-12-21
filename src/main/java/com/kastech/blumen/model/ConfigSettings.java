@@ -1,26 +1,33 @@
 package com.kastech.blumen.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "config_setting" ,schema = "blumen2")
 public class ConfigSettings {
 
-	private Integer configID;
+	@Id
+	private Long id;
 	private String configType;
 	private String configValue; 
 	private String description;
 	
-	public ConfigSettings(Integer configID, String configType, String configValue, String description) {
+	public ConfigSettings(Long id, String configType, String configValue, String description) {
 		super();
-		this.configID = configID;
+		this.id = id;
 		this.configType = configType;
 		this.configValue = configValue;
 		this.description = description;
 	}
 
-	public Integer getConfigID() {
-		return configID;
+	public Long getid() {
+		return id;
 	}
 
-	public void setConfigID(Integer configID) {
-		this.configID = configID;
+	public void setid(Long id) {
+		this.id = id;
 	}
 
 	public String getConfigType() {
@@ -49,7 +56,7 @@ public class ConfigSettings {
 
 	@Override
 	public String toString() {
-		return "ConfigSettings [configID=" + configID + ", configType=" + configType + ", configValue=" + configValue
+		return "ConfigSettings [id=" + id + ", configType=" + configType + ", configValue=" + configValue
 				+ ", description=" + description + "]";
 	}
 	
