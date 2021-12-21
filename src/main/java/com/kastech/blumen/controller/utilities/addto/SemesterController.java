@@ -104,8 +104,8 @@ public class SemesterController {
     @ResponseBody
     @GetMapping(path = "/addSemesterCourses/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<CoursesInformation>> addSemesterCourses(@RequestBody String reqBody) {
-        CoursesInformation coursesInformation = semesterServiceV1.doService(reqBody);
+    public ResponseEntity<Collection<CoursesInformation>> addSemesterCourses(@RequestBody CoursesInformation coursesInformation) {
+      //  CoursesInformation coursesInformation = semesterServiceV1.doService(reqBody);
         coursesInformationHashMap.put(coursesInformation.getSsnoCourse(),coursesInformation);
         return ResponseEntity.ok(coursesInformationHashMap.values());
     }
@@ -113,8 +113,8 @@ public class SemesterController {
     @ResponseBody
     @GetMapping(path = "/editSemesterCourses/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<CoursesInformation>> editSemesterCourses(@RequestBody String reqBody) {
-        CoursesInformation coursesInformation = semesterServiceV1.doService(reqBody);
+    public ResponseEntity<Collection<CoursesInformation>> editSemesterCourses(@RequestBody CoursesInformation coursesInformation) {
+      //  CoursesInformation coursesInformation = semesterServiceV1.doService(reqBody);
         coursesInformationHashMap.put(coursesInformation.getSsnoCourse(),coursesInformation);
         return ResponseEntity.ok(coursesInformationHashMap.values());
     }
@@ -137,7 +137,7 @@ public class SemesterController {
     @ResponseBody
     @GetMapping(path = "/getSemesterCoursesNotes/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> getSemesterCoursesNotes(@RequestBody String reqBody) {
+    public ResponseEntity<String> getSemesterCoursesNotes(@RequestBody CoursesInformation coursesInformation) {
         courseInformationData();
         return ResponseEntity.status(HttpStatus.OK).body("Data updated successfully " );
     }

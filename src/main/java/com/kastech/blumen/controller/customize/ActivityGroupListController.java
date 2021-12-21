@@ -47,9 +47,9 @@ public class ActivityGroupListController {
     @PostMapping(path = "/activityGroupList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ActivityGroupList addToActivityGroupList(@RequestBody String reqBody) {
+    public ActivityGroupList addToActivityGroupList(@RequestBody ActivityGroupList activityList) {
 
-        ActivityGroupList activityList = activityGroupListServiceV1.doService(reqBody);
+    //    ActivityGroupList activityList = activityGroupListServiceV1.doService(reqBody);
         return activityGroupListRepository.save(activityList);
     }
 
@@ -57,9 +57,9 @@ public class ActivityGroupListController {
     @PutMapping(path = "/updateActivityGroupList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Optional<ActivityGroupList> editActivityGroupList(@RequestBody String reqBody) {
+    public Optional<ActivityGroupList> editActivityGroupList(@RequestBody ActivityGroupList activityGroupList) {
 
-        ActivityGroupList activityGroupList = activityGroupListServiceV1.doService(reqBody);
+    //    ActivityGroupList activityGroupList = activityGroupListServiceV1.doService(reqBody);
 
         return activityGroupListRepository.findById(activityGroupList.getActivityGroupId())
                 .map(oldItem -> {
@@ -73,8 +73,8 @@ public class ActivityGroupListController {
     @PutMapping(path = "/filter/activityGroupList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> filterActivityGroupList(@RequestBody String reqBody) {
-        ActivityGroupList activityGroupList = activityGroupListServiceV1.doService(reqBody);
+    public ResponseEntity<String> filterActivityGroupList(@RequestBody ActivityGroupList reqBody) {
+     //   ActivityGroupList activityGroupList = activityGroupListServiceV1.doService(reqBody);
         return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
     }
 
@@ -83,8 +83,8 @@ public class ActivityGroupListController {
     @PutMapping(path = "/deleteActivityGroupList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<ActivityGroupList> deleteActivityGroupList(@RequestBody String reqBody) {
-        ActivityGroupList activityGroupList = activityGroupListServiceV1.doService(reqBody);
+    public ResponseEntity<ActivityGroupList> deleteActivityGroupList(@RequestBody ActivityGroupList activityGroupList) {
+      //  ActivityGroupList activityGroupList = activityGroupListServiceV1.doService(reqBody);
         activityGroupListRepository.delete(activityGroupList);
         return ResponseEntity.noContent().build();
     }

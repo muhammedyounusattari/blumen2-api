@@ -52,8 +52,8 @@ public class StudentAttendanceLogController {
     @PostMapping(path = "/studentAttendanceLogList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public StudentAttendanceLog addToStudentAttendanceLogList(@RequestBody String reqBody) {
-        StudentAttendanceLog studentAttendanceLog = studentAttendanceLogServiceV1.doService(reqBody);
+    public StudentAttendanceLog addToStudentAttendanceLogList(@RequestBody StudentAttendanceLog studentAttendanceLog) {
+     //   StudentAttendanceLog studentAttendanceLog = studentAttendanceLogServiceV1.doService(reqBody);
         return studentAttendanceLogServiceV1.addStudentAttendanceLogList(studentAttendanceLog);
     }
 
@@ -61,8 +61,8 @@ public class StudentAttendanceLogController {
     @PutMapping(path = "/updateStudentAttendanceLogList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Optional<StudentAttendanceLog> editStudentAttendanceLogList(@RequestBody String reqBody) {
-        StudentAttendanceLog studentAttendanceLog = studentAttendanceLogServiceV1.doService(reqBody);
+    public Optional<StudentAttendanceLog> editStudentAttendanceLogList(@RequestBody StudentAttendanceLog studentAttendanceLog) {
+     //   StudentAttendanceLog studentAttendanceLog = studentAttendanceLogServiceV1.doService(reqBody);
         return studentAttendanceLogServiceV1.editStudentAttendanceLogList(studentAttendanceLog);
     }
 
@@ -71,8 +71,8 @@ public class StudentAttendanceLogController {
     @PutMapping(path = "/filter/studentAttendanceLoglist/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> filterStudentAttendanceLogList(@RequestBody String reqBody) {
-        StudentAttendanceLog studentAttendanceLog = studentAttendanceLogServiceV1.doService(reqBody);
+    public ResponseEntity<String> filterStudentAttendanceLogList(@RequestBody StudentAttendanceLog studentAttendanceLog) {
+     //   StudentAttendanceLog studentAttendanceLog = studentAttendanceLogServiceV1.doService(reqBody);
         return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
     }
 
@@ -81,9 +81,9 @@ public class StudentAttendanceLogController {
     @PutMapping(path = "/deleteStudentAttendanceLogList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentAttendanceLog>> deleteStudentAttendanceLogList(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentAttendanceLog>> deleteStudentAttendanceLogList(@RequestBody StudentAttendanceLog studentAttendanceLog) {
 
-        StudentAttendanceLog studentAttendanceLog = studentAttendanceLogServiceV1.doService(reqBody);
+      //  StudentAttendanceLog studentAttendanceLog = studentAttendanceLogServiceV1.doService(reqBody);
         stringStudentAttendanceLogMap.remove(studentAttendanceLog.getSsno());
 
         return ResponseEntity.status(HttpStatus.OK).body(stringStudentAttendanceLogMap.values());
@@ -94,9 +94,9 @@ public class StudentAttendanceLogController {
     @GetMapping(path = "/getStudentAttendanceLogByFiscalyear/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentAttendanceLog>> getStudentAttendanceLogByFiscalyear(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentAttendanceLog>> getStudentAttendanceLogByFiscalyear(@RequestBody StudentAttendanceLog studentAttendanceLog) {
 
-        StudentAttendanceLog studentAttendanceLog = studentAttendanceLogServiceV1.doService(reqBody);
+     //   StudentAttendanceLog studentAttendanceLog = studentAttendanceLogServiceV1.doService(reqBody);
         stringStudentAttendanceLogMap.remove(studentAttendanceLog.getSsno());
 
         return ResponseEntity.status(HttpStatus.OK).body(stringStudentAttendanceLogMap.values());
@@ -106,9 +106,9 @@ public class StudentAttendanceLogController {
     @GetMapping(path = "/getStudentAttendanceLogByActive/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentAttendanceLog>> getStudentAttendanceLogByActive(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentAttendanceLog>> getStudentAttendanceLogByActive(@RequestBody StudentAttendanceLog studentAttendanceLog) {
 
-        StudentAttendanceLog studentAttendanceLog = studentAttendanceLogServiceV1.doService(reqBody);
+    //    StudentAttendanceLog studentAttendanceLog = studentAttendanceLogServiceV1.doService(reqBody);
         stringStudentAttendanceLogMap.remove(studentAttendanceLog.getSsno());
 
         return ResponseEntity.status(HttpStatus.OK).body(stringStudentAttendanceLogMap.values());
@@ -119,9 +119,9 @@ public class StudentAttendanceLogController {
     @GetMapping(path = "/getStudentAttendanceLogByServed/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentAttendanceLog>> getStudentAttendanceLogByServed(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentAttendanceLog>> getStudentAttendanceLogByServed(@RequestBody StudentAttendanceLog studentAttendanceLog) {
 
-        StudentAttendanceLog studentAttendanceLog = studentAttendanceLogServiceV1.doService(reqBody);
+     //   StudentAttendanceLog studentAttendanceLog = studentAttendanceLogServiceV1.doService(reqBody);
         stringStudentAttendanceLogMap.remove(studentAttendanceLog.getSsno());
 
         return ResponseEntity.status(HttpStatus.OK).body(stringStudentAttendanceLogMap.values());
@@ -131,9 +131,9 @@ public class StudentAttendanceLogController {
     @GetMapping(path = "/getStudentAttendanceLogByReported/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentAttendanceLog>> getStudentAttendanceLogByReported(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentAttendanceLog>> getStudentAttendanceLogByReported(@RequestBody StudentAttendanceLog studentAttendanceLog) {
 
-        StudentAttendanceLog studentAttendanceLog = studentAttendanceLogServiceV1.doService(reqBody);
+    //    StudentAttendanceLog studentAttendanceLog = studentAttendanceLogServiceV1.doService(reqBody);
         stringStudentAttendanceLogMap.remove(studentAttendanceLog.getSsno());
 
         return ResponseEntity.status(HttpStatus.OK).body(stringStudentAttendanceLogMap.values());

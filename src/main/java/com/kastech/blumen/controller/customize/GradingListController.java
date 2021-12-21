@@ -47,10 +47,10 @@ public class GradingListController {
     @PostMapping(path = "/gradingList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public GradingList addToGradingList(@RequestBody String reqBody) {
+    public GradingList addToGradingList(@RequestBody GradingList gradingList) {
 
-        GradingList activityList = gradingListServiceV1.doService(reqBody);
-        return gradingListRepository.save(activityList);
+      //  GradingList activityList = gradingListServiceV1.doService(reqBody);
+        return gradingListRepository.save(gradingList);
 
     }
 
@@ -58,10 +58,10 @@ public class GradingListController {
     @PutMapping(path = "/updateGradingList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Optional<GradingList> editGradingList(@RequestBody String reqBody) {
+    public Optional<GradingList> editGradingList(@RequestBody GradingList gradingList) {
 
 
-        GradingList gradingList = gradingListServiceV1.doService(reqBody);
+      //  GradingList gradingList = gradingListServiceV1.doService(reqBody);
 
         return gradingListRepository.findById(gradingList.getGradingId())
                 .map(oldItem -> {
@@ -75,8 +75,8 @@ public class GradingListController {
     @PutMapping(path = "/filter/gradingList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> filterGradingList(@RequestBody String reqBody) {
-        GradingList activityList = gradingListServiceV1.doService(reqBody);
+    public ResponseEntity<String> filterGradingList(@RequestBody GradingList gradingList) {
+      //  GradingList activityList = gradingListServiceV1.doService(reqBody);
         return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
     }
 
@@ -85,9 +85,9 @@ public class GradingListController {
     @PutMapping(path = "/deleteGradingList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<GradingList>> deleteGradingList(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<GradingList>> deleteGradingList(@RequestBody GradingList gradingList) {
 
-        GradingList gradingList = gradingListServiceV1.doService(reqBody);
+     //   GradingList gradingList = gradingListServiceV1.doService(reqBody);
         gradingListRepository.delete(gradingList);
         return ResponseEntity.noContent().build();
     }
