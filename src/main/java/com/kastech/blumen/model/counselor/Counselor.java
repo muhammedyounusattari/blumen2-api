@@ -1,8 +1,11 @@
 package com.kastech.blumen.model.counselor;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.kastech.blumen.model.Address;
@@ -12,6 +15,8 @@ import com.kastech.blumen.model.Address;
 public class Counselor {
 
 	@Id
+	@GeneratedValue(strategy= GenerationType.AUTO, generator="counselor_seq_gen")
+    @SequenceGenerator(name="counselor_seq_gen", sequenceName="COUNSELOR_SEQ")
 	private Long id;
     private String staffName;
     private String staffId;

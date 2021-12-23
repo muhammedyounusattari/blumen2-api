@@ -1,8 +1,11 @@
 package com.kastech.blumen.model.staff;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.kastech.blumen.model.Address;
@@ -12,6 +15,8 @@ import com.kastech.blumen.model.Address;
 public class Staff {
 
 	@Id
+	@GeneratedValue(strategy= GenerationType.AUTO, generator="staff_seq_gen")
+    @SequenceGenerator(name="staff_seq_gen", sequenceName="STAFF_SEQ")
 	private Long id;
     private String staffName;
     private String staffId;

@@ -1,8 +1,11 @@
 package com.kastech.blumen.model.tutor;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.kastech.blumen.model.Address;
@@ -12,6 +15,8 @@ import com.kastech.blumen.model.Address;
 public class Tutor {
 
 	@Id
+	@GeneratedValue(strategy= GenerationType.AUTO, generator="tutor_seq_gen")
+    @SequenceGenerator(name="tutor_seq_gen", sequenceName="TUTOR_SEQ")
 	private Long id;
     private String staffName;
     private String staffId;
