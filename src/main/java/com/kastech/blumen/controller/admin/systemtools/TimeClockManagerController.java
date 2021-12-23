@@ -81,14 +81,15 @@ public class TimeClockManagerController {
 
 
     @ResponseBody
-    @PutMapping(path = "/deleteTimeClockManagerList/v1",
+    @DeleteMapping(path = "/deleteTimeClockManagerList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<TimeClockManager>> deleteTimeClockManagerList(@RequestBody TimeClockManager timeClockManager) {
+    public ResponseEntity<?> deleteTimeClockManagerList(@RequestBody TimeClockManager timeClockManager) {
 
 
       //  TimeClockManager timeClockManager = timeClockManagerServiceV1.doService(reqBody);
         timeClockManagerRepository.delete(timeClockManager);
-        return ResponseEntity.noContent().build();
+       // return ResponseEntity.noContent().build();
+        return ResponseEntity.status(HttpStatus.OK).body("Success");
     }
 }

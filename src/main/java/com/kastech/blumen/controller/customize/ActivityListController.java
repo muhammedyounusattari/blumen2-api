@@ -81,14 +81,14 @@ public class ActivityListController {
 
 
     @ResponseBody
-    @PutMapping(path = "/deleteActivityList/v1",
+    @DeleteMapping(path = "/deleteActivityList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<ActivityList>> deleteActivityList(@RequestBody ActivityList activityGroupList) {
+    public ResponseEntity<?> deleteActivityList(@RequestBody ActivityList activityGroupList) {
 
     //    ActivityList activityGroupList = activityListServiceV1.doService(reqBody);
         activityListRepository.delete(activityGroupList);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(HttpStatus.OK).body("Success");
     }
 
     @ResponseBody

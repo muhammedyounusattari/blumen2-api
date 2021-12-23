@@ -1,7 +1,9 @@
 package com.kastech.blumen.controller.student.logs;
 
 import com.kastech.blumen.model.Response;
+import com.kastech.blumen.model.student.Student;
 import com.kastech.blumen.model.student.logs.StudentWalletLog;
+import com.kastech.blumen.repository.student.StudentRepository;
 import com.kastech.blumen.repository.student.logs.StudentWalletLogRepository;
 import com.kastech.blumen.service.student.logs.StudentWalletLogServiceV1;
 import com.kastech.blumen.validator.student.logs.StudentWalletLogValidator;
@@ -11,19 +13,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/blumen-api/student-logs")
 public class StudentWalletLogController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(StudentWalletLogController.class);
-
-    StudentWalletLogRepository collegeSchoolRepository;
 
     @Autowired
     StudentWalletLogServiceV1 studentWalletLogServiceV1;
@@ -34,12 +38,24 @@ public class StudentWalletLogController {
 
     Map<String, StudentWalletLog> studentWalletLogMap = new HashMap<String, StudentWalletLog>();
 
+    @Autowired
+    private StudentRepository studentRepository;
+
+    @ResponseBody
+    @GetMapping(path = "/getStudentDataWalletLog/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public List<Student> getStudentDataWalletLog() {
+        List<Student> list = new ArrayList<>();
+        Iterable<Student> items = studentRepository.findAll();
+        items.forEach(list::add);
+        return list;
+    }
+
     @ResponseBody
     @GetMapping(path = "/getStudentWalletLogList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentWalletLog>> getTeacherList() {
-
-        return ResponseEntity.ok(studentWalletLogMap.values());
+    	
+        return ResponseEntity.ok(studentWalletLogServiceV1.getAllStudentWalletLog());
     }
 
     @ResponseBody
@@ -47,8 +63,7 @@ public class StudentWalletLogController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> addToTeacherList(@RequestBody StudentWalletLog studentWalletLog) {
-     //   StudentWalletLog studentWalletLog = studentWalletLogServiceV1.doService(reqBody);
-        studentWalletLogMap.put(studentWalletLog.getSsNo(),studentWalletLog);
+    	studentWalletLogServiceV1.save(studentWalletLog);
         return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
     }
 
@@ -57,8 +72,7 @@ public class StudentWalletLogController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> editStudentWalletLogList(@RequestBody StudentWalletLog studentWalletLog) {
-    //    StudentWalletLog studentWalletLog = studentWalletLogServiceV1.doService(reqBody);
-        studentWalletLogMap.put(studentWalletLog.getSsNo(),studentWalletLog);
+    	studentWalletLogServiceV1.save(studentWalletLog);
         return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
     }
 
@@ -67,9 +81,8 @@ public class StudentWalletLogController {
     @PutMapping(path = "/filter/studentWalletLoglist/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> filterStudentWalletLogList(@RequestBody StudentWalletLog studentWalletLog) {
-    //    StudentWalletLog studentWalletLog = studentWalletLogServiceV1.doService(reqBody);
-        return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
+    public ResponseEntity<Collection<StudentWalletLog>> filterStudentWalletLogList(@RequestBody StudentWalletLog studentWalletLog) {
+        return ResponseEntity.status(HttpStatus.OK).body(studentWalletLogServiceV1.getAllStudentWalletLog());
     }
 
 
@@ -79,10 +92,7 @@ public class StudentWalletLogController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentWalletLog>> deleteStudentWalletLogList(@RequestBody StudentWalletLog studentWalletLog) {
 
-     //   StudentWalletLog studentWalletLog = studentWalletLogServiceV1.doService(reqBody);
-        studentWalletLogMap.remove(studentWalletLog.getSsNo());
-
-        return ResponseEntity.status(HttpStatus.OK).body(studentWalletLogMap.values());
+        return ResponseEntity.status(HttpStatus.OK).body(studentWalletLogServiceV1.getAllStudentWalletLog());
     }
 
 
@@ -92,10 +102,7 @@ public class StudentWalletLogController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentWalletLog>> getStudentWalletByFiscalyear(@RequestBody StudentWalletLog studentWalletLog) {
 
-    //    StudentWalletLog studentWalletLog = studentWalletLogServiceV1.doService(reqBody);
-        studentWalletLogMap.remove(studentWalletLog.getSsNo());
-
-        return ResponseEntity.status(HttpStatus.OK).body(studentWalletLogMap.values());
+        return ResponseEntity.status(HttpStatus.OK).body(studentWalletLogServiceV1.getAllStudentWalletLog());
     }
 
     @ResponseBody
@@ -104,10 +111,7 @@ public class StudentWalletLogController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentWalletLog>> getStudentWalletByActive(@RequestBody StudentWalletLog studentWalletLog) {
 
-     //   StudentWalletLog studentWalletLog = studentWalletLogServiceV1.doService(reqBody);
-        studentWalletLogMap.remove(studentWalletLog.getSsNo());
-
-        return ResponseEntity.status(HttpStatus.OK).body(studentWalletLogMap.values());
+        return ResponseEntity.status(HttpStatus.OK).body(studentWalletLogServiceV1.getAllStudentWalletLog());
     }
 
 
@@ -117,10 +121,7 @@ public class StudentWalletLogController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentWalletLog>> getStudentWalletByServed(@RequestBody StudentWalletLog studentWalletLog) {
 
-   //     StudentWalletLog studentWalletLog = studentWalletLogServiceV1.doService(reqBody);
-        studentWalletLogMap.remove(studentWalletLog.getSsNo());
-
-        return ResponseEntity.status(HttpStatus.OK).body(studentWalletLogMap.values());
+        return ResponseEntity.status(HttpStatus.OK).body(studentWalletLogServiceV1.getAllStudentWalletLog());
     }
 
     @ResponseBody
@@ -129,10 +130,7 @@ public class StudentWalletLogController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentWalletLog>> getStudentWalletByReported(@RequestBody StudentWalletLog studentWalletLog) {
 
-    //    StudentWalletLog studentWalletLog = studentWalletLogServiceV1.doService(reqBody);
-        studentWalletLogMap.remove(studentWalletLog.getSsNo());
-
-        return ResponseEntity.status(HttpStatus.OK).body(studentWalletLogMap.values());
+        return ResponseEntity.status(HttpStatus.OK).body(studentWalletLogServiceV1.getAllStudentWalletLog());
     }
 
 

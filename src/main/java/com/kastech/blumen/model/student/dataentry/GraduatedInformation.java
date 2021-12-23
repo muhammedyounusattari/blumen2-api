@@ -1,9 +1,22 @@
 package com.kastech.blumen.model.student.dataentry;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "graduated_information", schema = "blumen2")
 public class GraduatedInformation {
 
 
-    private String ssno;
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO, generator="graduated_information_list_seq_gen")
+    @SequenceGenerator(name="graduated_information_list_seq_gen", sequenceName="GRADUATED_INFORMATION_LIST_SEQ")
+    private Long ssno;
     private String firstName;
     private String lastName;
     private String track;
@@ -20,12 +33,13 @@ public class GraduatedInformation {
     private String employmentType;
     private String graduatedYear;
 
+    @OneToOne
     private AddressNotes addressNotes;
 
     public GraduatedInformation() {
     }
 
-    public GraduatedInformation(String ssno,String firstName, String lastName, String track, String graduated, String counselor, String phone1, String major, String employer, String degreeIn, String titleOrPosition, String militaryType, String graduatedEducationStatus, String employmentType, String graduatedYear, AddressNotes addressNotes) {
+    public GraduatedInformation(Long ssno,String firstName, String lastName, String track, String graduated, String counselor, String phone1, String major, String employer, String degreeIn, String titleOrPosition, String militaryType, String graduatedEducationStatus, String employmentType, String graduatedYear, AddressNotes addressNotes) {
         this.ssno = ssno;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -164,11 +178,11 @@ public class GraduatedInformation {
         this.addressNotes = addressNotes;
     }
 
-    public String getSsno() {
+    public Long getSsno() {
         return ssno;
     }
 
-    public void setSsno(String ssno) {
+    public void setSsno(Long ssno) {
         this.ssno = ssno;
     }
 
@@ -192,5 +206,27 @@ public class GraduatedInformation {
                 ", graduatedYear='" + graduatedYear + '\'' +
                 ", addressNotes=" + addressNotes +
                 '}';
+    }
+
+
+    public GraduatedInformation updateWith(GraduatedInformation item) {
+        return new GraduatedInformation(
+                this.ssno,
+                item.firstName,
+                item.lastName,
+                item.track,
+                item.graduated,
+                item.counselor,
+                item.phone1,
+                item.major,
+                item.employer,
+                item.degreeIn,
+                item.titleOrPosition,
+                item.militaryType,
+                item.graduatedEducationStatus,
+                item.employmentType,
+                item.graduatedYear,
+                item.addressNotes
+        );
     }
 }

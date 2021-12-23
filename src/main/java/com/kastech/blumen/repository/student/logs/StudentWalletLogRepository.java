@@ -3,6 +3,8 @@ package com.kastech.blumen.repository.student.logs;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-////@Repository
-public interface StudentWalletLogRepository { //extends JpaRepository {
+import com.kastech.blumen.model.student.logs.StudentWalletLog;
+
+@Repository
+public interface StudentWalletLogRepository extends JpaRepository<StudentWalletLog, Long> {
 }

@@ -1,7 +1,9 @@
 package com.kastech.blumen.controller.student.logs;
 
 
+import com.kastech.blumen.model.student.Student;
 import com.kastech.blumen.model.student.logs.StudentBotFormSubmissLog;
+import com.kastech.blumen.repository.student.StudentRepository;
 import com.kastech.blumen.repository.student.logs.StudentBotFormSubmissLogRepository;
 import com.kastech.blumen.service.student.logs.StudentBotFormSubmissLogServiceV1;
 import com.kastech.blumen.validator.student.logs.StudentBotFormSubmissLogValidator;
@@ -32,6 +34,18 @@ public class StudentBotFormSubmissLogController {
     StudentBotFormSubmissLogValidator studentBotFormSubmissLogValidator;
 
     Map<Long, StudentBotFormSubmissLog> studentBotFormSubmissLogMap = new HashMap<Long, StudentBotFormSubmissLog>();
+
+    @Autowired
+    private StudentRepository studentRepository;
+
+    @ResponseBody
+    @GetMapping(path = "/getStudentDataBotFormSubmissLog/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public List<Student> getStudentDataBotFormSubmissLog() {
+        List<Student> list = new ArrayList<>();
+        Iterable<Student> items = studentRepository.findAll();
+        items.forEach(list::add);
+        return list;
+    }
 
     @ResponseBody
     @GetMapping(path = "/getStudentBotFormSubmissLog/v1",
@@ -78,14 +92,14 @@ public class StudentBotFormSubmissLogController {
 
 
     @ResponseBody
-    @PutMapping(path = "/deleteStudentBotFormSubmissLogList/v1",
+    @DeleteMapping(path = "/deleteStudentBotFormSubmissLogList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentBotFormSubmissLog>> deleteStudentBotFormSubmissLogList(@RequestBody StudentBotFormSubmissLog studentBotFormSubmissLog) {
+    public ResponseEntity<String> deleteStudentBotFormSubmissLogList(@RequestBody StudentBotFormSubmissLog studentBotFormSubmissLog) {
 
     //    StudentBotFormSubmissLog studentBotFormSubmissLog = studentBotFormSubmissLogServiceV1.doService(reqBody);
         studentBotFormSubmissLogRepository.delete(studentBotFormSubmissLog);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(HttpStatus.OK).body("Success");
     }
 
 }

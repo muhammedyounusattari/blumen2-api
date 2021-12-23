@@ -1,7 +1,14 @@
 package com.kastech.blumen.model.student.home;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "student_data" ,schema = "blumen2")
 public class StudentData {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO, generator="student-data_list_seq_gen")
+    @SequenceGenerator(name="student-data_list_seq_gen", sequenceName="STUDENT_DATA_LIST_SEQ")
     private Integer id;
     private String firstName;
     private String lastName;
@@ -103,5 +110,22 @@ public class StudentData {
 
     public void setStanding(String standing) {
         this.standing = standing;
+    }
+
+    @Override
+    public String toString() {
+        return "StudentData{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", fiscalYear='" + fiscalYear + '\'' +
+                ", active=" + active +
+                ", served=" + served +
+                ", reported=" + reported +
+                ", counselor='" + counselor + '\'' +
+                ", school='" + school + '\'' +
+                ", standing='" + standing + '\'' +
+                '}';
     }
 }

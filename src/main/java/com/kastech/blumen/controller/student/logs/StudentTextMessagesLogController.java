@@ -1,7 +1,10 @@
 package com.kastech.blumen.controller.student.logs;
 
+
 import com.kastech.blumen.model.Response;
+import com.kastech.blumen.model.student.Student;
 import com.kastech.blumen.model.student.logs.StudentTextMessagesLog;
+import com.kastech.blumen.repository.student.StudentRepository;
 import com.kastech.blumen.repository.student.logs.StudentTextMessagesLogRepository;
 import com.kastech.blumen.service.student.logs.StudentTextMessagesLogServiceV1;
 import com.kastech.blumen.validator.student.logs.StudentTextMessagesRepliesValidator;
@@ -11,11 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/blumen-api/student-logs")
@@ -23,23 +29,31 @@ public class StudentTextMessagesLogController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(StudentTextMessagesLogController.class);
 
-    StudentTextMessagesLogRepository studentTextMessagesLogRepository;
-
     @Autowired
     StudentTextMessagesLogServiceV1 studentTextMessagesLogServiceV1;
-
 
     @Autowired
     StudentTextMessagesRepliesValidator studentTextMessagesRepliesValidator;
 
-    Map<String, StudentTextMessagesLog> studentTextMessagesLogMap = new HashMap<String, StudentTextMessagesLog>();
+
+    @Autowired
+    private StudentRepository studentRepository;
+
+    @ResponseBody
+    @GetMapping(path = "/getStudentDataTextMessagesLog/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public List<Student> getStudentDataTextMessagesLog() {
+        List<Student> list = new ArrayList<>();
+        Iterable<Student> items = studentRepository.findAll();
+        items.forEach(list::add);
+        return list;
+    }
 
     @ResponseBody
     @GetMapping(path = "/getStudentTextMessagesLogList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentTextMessagesLog>> getStudentTextMessagesLogList() {
 
-        return ResponseEntity.ok(studentTextMessagesLogMap.values());
+        return ResponseEntity.ok(studentTextMessagesLogServiceV1.getAllStudentTextMessagesLog());
     }
 
     @ResponseBody
@@ -47,8 +61,7 @@ public class StudentTextMessagesLogController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> addToStudentTextMessagesLogList(@RequestBody StudentTextMessagesLog studentTextMessagesLog) {
-      //  StudentTextMessagesLog studentTextMessagesLog = studentTextMessagesLogServiceV1.doService(reqBody);
-        studentTextMessagesLogMap.put(studentTextMessagesLog.getSsno(),studentTextMessagesLog);
+    	studentTextMessagesLogServiceV1.save(studentTextMessagesLog);
         return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
     }
 
@@ -57,8 +70,7 @@ public class StudentTextMessagesLogController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> editStudentTextMessagesLogList(@RequestBody StudentTextMessagesLog studentTextMessagesLog) {
-      //  StudentTextMessagesLog studentTextMessagesLog = studentTextMessagesLogServiceV1.doService(reqBody);
-        studentTextMessagesLogMap.put(studentTextMessagesLog.getSsno(),studentTextMessagesLog);
+    	studentTextMessagesLogServiceV1.save(studentTextMessagesLog);
         return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
     }
 
@@ -67,9 +79,8 @@ public class StudentTextMessagesLogController {
     @PutMapping(path = "/filter/studentTextMessagesLoglist/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> filterStudentTextMessagesLogList(@RequestBody StudentTextMessagesLog studentTextMessagesLog) {
-     //   StudentTextMessagesLog studentTextMessagesLog = studentTextMessagesLogServiceV1.doService(reqBody);
-        return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
+    public ResponseEntity<Collection<StudentTextMessagesLog>> filterStudentTextMessagesLogList(@RequestBody StudentTextMessagesLog studentTextMessagesLog) {
+        return ResponseEntity.status(HttpStatus.OK).body(studentTextMessagesLogServiceV1.getAllStudentTextMessagesLog());
     }
 
 
@@ -79,10 +90,7 @@ public class StudentTextMessagesLogController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentTextMessagesLog>> deleteStudentTextMessagesLogList(@RequestBody StudentTextMessagesLog studentTextMessagesLog) {
 
-     //   StudentTextMessagesLog studentTextMessagesLog = studentTextMessagesLogServiceV1.doService(reqBody);
-        studentTextMessagesLogMap.remove(studentTextMessagesLog.getSsno());
-
-        return ResponseEntity.status(HttpStatus.OK).body(studentTextMessagesLogMap.values());
+        return ResponseEntity.status(HttpStatus.OK).body(studentTextMessagesLogServiceV1.getAllStudentTextMessagesLog());
     }
 
 
@@ -92,10 +100,7 @@ public class StudentTextMessagesLogController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentTextMessagesLog>> getStudentTextMessagesLogByFiscalyear(@RequestBody StudentTextMessagesLog studentTextMessagesLog) {
 
-     //   StudentTextMessagesLog studentTextMessagesLog = studentTextMessagesLogServiceV1.doService(reqBody);
-        studentTextMessagesLogMap.remove(studentTextMessagesLog.getSsno());
-
-        return ResponseEntity.status(HttpStatus.OK).body(studentTextMessagesLogMap.values());
+        return ResponseEntity.status(HttpStatus.OK).body(studentTextMessagesLogServiceV1.getAllStudentTextMessagesLog());
     }
 
     @ResponseBody
@@ -104,10 +109,7 @@ public class StudentTextMessagesLogController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentTextMessagesLog>> getStudentTextMessagesLogByActive(@RequestBody StudentTextMessagesLog studentTextMessagesLog) {
 
-   //     StudentTextMessagesLog studentTextMessagesLog = studentTextMessagesLogServiceV1.doService(reqBody);
-        studentTextMessagesLogMap.remove(studentTextMessagesLog.getSsno());
-
-        return ResponseEntity.status(HttpStatus.OK).body(studentTextMessagesLogMap.values());
+        return ResponseEntity.status(HttpStatus.OK).body(studentTextMessagesLogServiceV1.getAllStudentTextMessagesLog());
     }
 
 
@@ -117,10 +119,7 @@ public class StudentTextMessagesLogController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentTextMessagesLog>> getStudentTextMessagesLogByServed(@RequestBody StudentTextMessagesLog studentTextMessagesLog) {
 
-      //  StudentTextMessagesLog studentTextMessagesLog = studentTextMessagesLogServiceV1.doService(reqBody);
-        studentTextMessagesLogMap.remove(studentTextMessagesLog.getSsno());
-
-        return ResponseEntity.status(HttpStatus.OK).body(studentTextMessagesLogMap.values());
+        return ResponseEntity.status(HttpStatus.OK).body(studentTextMessagesLogServiceV1.getAllStudentTextMessagesLog());
     }
 
     @ResponseBody
@@ -129,9 +128,6 @@ public class StudentTextMessagesLogController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentTextMessagesLog>> getStudentTextMessagesLogByReported(@RequestBody StudentTextMessagesLog studentTextMessagesLog) {
 
-   //     StudentTextMessagesLog studentTextMessagesLog = studentTextMessagesLogServiceV1.doService(reqBody);
-        studentTextMessagesLogMap.remove(studentTextMessagesLog.getSsno());
-
-        return ResponseEntity.status(HttpStatus.OK).body(studentTextMessagesLogMap.values());
+        return ResponseEntity.status(HttpStatus.OK).body(studentTextMessagesLogServiceV1.getAllStudentTextMessagesLog());
     }
 }

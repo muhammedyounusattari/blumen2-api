@@ -78,14 +78,14 @@ public class GradingGroupListController {
 
 
     @ResponseBody
-    @PutMapping(path = "/deleteGradingGroupList/v1",
+    @DeleteMapping(path = "/deleteGradingGroupList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<GradingGroupList>> deleteGradingGroupList(@RequestBody GradingGroupList gradingGroupList) {
+    public ResponseEntity<?> deleteGradingGroupList(@RequestBody GradingGroupList gradingGroupList) {
 
       //  GradingGroupList collegeSchool = gradingGroupListServiceV1.doService(reqBody);
         gradingGroupListRepository.delete(gradingGroupList);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(HttpStatus.OK).body("Success");
     }
     
     @ResponseBody

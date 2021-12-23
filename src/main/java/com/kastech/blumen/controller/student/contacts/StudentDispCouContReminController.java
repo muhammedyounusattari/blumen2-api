@@ -1,7 +1,9 @@
 package com.kastech.blumen.controller.student.contacts;
 
 import com.kastech.blumen.model.Response;
+import com.kastech.blumen.model.student.Student;
 import com.kastech.blumen.model.student.contacts.StudentDispCouContRemin;
+import com.kastech.blumen.repository.student.StudentRepository;
 import com.kastech.blumen.repository.student.contacts.StudentDispCouContReminRepository;
 import com.kastech.blumen.service.student.contacts.StudentDispCouContReminServiceV1;
 import com.kastech.blumen.validator.student.contacts.StudentDispCouContReminValidator;
@@ -13,9 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/blumen-api/student-contacts")
@@ -32,6 +32,18 @@ public class StudentDispCouContReminController {
 
     @Autowired
     StudentDispCouContReminValidator studentDispCouContReminValidator;
+
+    @Autowired
+    private StudentRepository studentRepository;
+
+    @ResponseBody
+    @GetMapping(path = "/getStudentDispCouContRemin/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public List<Student> getStudentDispCouContRemin() {
+        List<Student> list = new ArrayList<>();
+        Iterable<Student> items = studentRepository.findAll();
+        items.forEach(list::add);
+        return list;
+    }
 
     @ResponseBody
     @GetMapping(path = "/getStudentDispCouContReminList/v1",
@@ -76,7 +88,7 @@ public class StudentDispCouContReminController {
 
 
     @ResponseBody
-    @PutMapping(path = "/deleteStudentDispCouContReminList/v1",
+    @DeleteMapping(path = "/deleteStudentDispCouContReminList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> deleteStudentDispCouContReminList(@RequestBody StudentDispCouContRemin studentDispCouContRemin) {

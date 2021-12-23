@@ -1,6 +1,8 @@
 package com.kastech.blumen.controller.utilities.addto;
 
 import com.kastech.blumen.model.student.Student;
+import com.kastech.blumen.model.student.dataentry.AddressNotes;
+import com.kastech.blumen.model.student.dataentry.GraduatedInformation;
 import com.kastech.blumen.repository.utilities.addto.GraduatedListRepository;
 import com.kastech.blumen.service.utilities.addto.GraduatedListServiceV1;
 import com.kastech.blumen.validator.utilities.addto.GraduatedListValidator;
@@ -21,8 +23,6 @@ public class GraduatedListController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GraduatedListController.class);
 
-    GraduatedListRepository graduatedListRepository;
-
     @Autowired
     GraduatedListServiceV1 graduatedListServiceV1;
 
@@ -30,43 +30,23 @@ public class GraduatedListController {
     @Autowired
     GraduatedListValidator graduatedListValidator;
 
-    List<Student> studentList = new ArrayList<>();
-
-
-    public void addStudentProfile() {
-
-        Student studentOne = new Student(111-234-333l, "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017");
-        studentList.add(studentOne);
-
-        Student studentTwo = new Student(111-234-333l, "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017");
-        studentList.add(studentTwo);
-        Student studentThree = new Student(111-234-333l, "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017");
-        studentList.add(studentThree);
-
-        Student studentFour = new Student(111-234-333l, "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2018");
-        studentList.add(studentFour);
-
-        Student studentFive = new Student(111-234-333l, "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2018");
-        studentList.add(studentFive);
-    }
-
     @ResponseBody
     @GetMapping(path = "/getGraduatedList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<Student>> getGraduatedList() {
-        addStudentProfile();
-        return ResponseEntity.ok(studentList);
+    public ResponseEntity<Collection<GraduatedInformation>> getGraduatedList() {
+        return ResponseEntity.ok(graduatedListServiceV1.getGraduatedList());
     }
 
     @ResponseBody
     @GetMapping(path = "/moveAllStudentsByGraduatedYear/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<Student>> moveAllStudentsByGraduatedYear(@RequestParam("fiscalYear") String fiscalYear) {
+    public ResponseEntity<Collection<GraduatedInformation>> moveAllStudentsByGraduatedYear(@RequestParam("fiscalYear") String fiscalYear) {
 
-        for(int i=0;i<studentList.size();i++){
-            studentList.get(i).setFiscalYear(fiscalYear);
-        }
-
-        return ResponseEntity.ok(studentList);
+		
+//		for (int i = 0; i < studentList.size(); i++) {
+//			studentList.get(i).setFiscalYear(fiscalYear);
+//		}
+		 
+        return ResponseEntity.ok(graduatedListServiceV1.getGraduatedList());
     }
 }

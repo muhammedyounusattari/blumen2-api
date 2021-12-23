@@ -78,13 +78,13 @@ public class CustomFieldsNameTypeController {
 
 
     @ResponseBody
-    @PutMapping(path = "/deleteCustomFieldsNameTypeList/v1",
+    @DeleteMapping(path = "/deleteCustomFieldsNameTypeList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<CustomFieldsNameType>> deleteCustomFieldsNameType(@RequestBody CustomFieldsNameType customFieldsNameType) {
+    public ResponseEntity<?> deleteCustomFieldsNameType(@RequestBody CustomFieldsNameType customFieldsNameType) {
 
        // CustomFieldsNameType customFieldsNameType = customFieldsNameTypeServiceV1.doService(reqBody);
         customFieldsNameTypeRepository.delete(customFieldsNameType);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(HttpStatus.OK).body("Success");
     }
 }

@@ -1,7 +1,9 @@
 package com.kastech.blumen.controller.student.contacts;
 
 import com.kastech.blumen.model.Response;
+import com.kastech.blumen.model.student.Student;
 import com.kastech.blumen.model.student.contacts.StudentTutorContacts;
+import com.kastech.blumen.repository.student.StudentRepository;
 import com.kastech.blumen.repository.student.contacts.StudentTutorContactsRepository;
 import com.kastech.blumen.service.student.contacts.StudentTutorContactsServiceV1;
 import com.kastech.blumen.validator.student.contacts.StudentTutorContactsValidator;
@@ -13,9 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/blumen-api/student-contacts")
@@ -34,8 +34,20 @@ public class StudentTutorContactsController {
 
     Map<String, StudentTutorContacts> studentTutorContactsMap = new HashMap<String, StudentTutorContacts>();
 
+    @Autowired
+    private StudentRepository studentRepository;
+
     @ResponseBody
-    @GetMapping(path = "/getStudentTutorContacts/v1",
+    @GetMapping(path = "/getStudentTutorContacts/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public List<Student> getStudentTutorContacts() {
+        List<Student> list = new ArrayList<>();
+        Iterable<Student> items = studentRepository.findAll();
+        items.forEach(list::add);
+        return list;
+    }
+
+    @ResponseBody
+    @GetMapping(path = "/getStudentTutorContactsList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentTutorContacts>> getStudentAttendanceLogList() {
 

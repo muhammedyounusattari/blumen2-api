@@ -3,6 +3,8 @@ package com.kastech.blumen.repository.student.logs;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-////@Repository
-public interface StudentTextMessagesRepliesRepository { //extends JpaRepository {
+import com.kastech.blumen.model.student.logs.StudentTextMessagesReplies;
+
+@Repository
+public interface StudentTextMessagesRepliesRepository extends JpaRepository<StudentTextMessagesReplies, Long> {
 }

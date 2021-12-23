@@ -1,6 +1,8 @@
 package com.kastech.blumen.controller.utilities.home;
 
 import com.kastech.blumen.model.student.Student;
+import com.kastech.blumen.model.student.dataentry.AddressNotes;
+import com.kastech.blumen.model.student.dataentry.GraduatedInformation;
 import com.kastech.blumen.repository.utilities.home.NationalStuClearinghouseDataInterfaceRepository;
 import com.kastech.blumen.service.utilities.home.NationalStuClearinghouseDataInterfaceServiceV1;
 import com.kastech.blumen.validator.utilities.home.NationalStuClearinghouseDataInterfaceValidator;
@@ -20,11 +22,9 @@ public class NationalStuClearinghouseDataInterfaceController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(NationalStuClearinghouseDataInterfaceController.class);
 
-    NationalStuClearinghouseDataInterfaceRepository nationalStuClearinghouseDataInterfaceRepository;
-
+    
     @Autowired
     NationalStuClearinghouseDataInterfaceServiceV1 nationalStuClearinghouseDataInterfaceServiceV1;
-
 
     @Autowired
     NationalStuClearinghouseDataInterfaceValidator nationalStuClearinghouseDataInterfaceValidator;
@@ -43,12 +43,15 @@ public class NationalStuClearinghouseDataInterfaceController {
 
     public void addStudentProfile() {
 
-        Student studentOne = new Student(111-234-333l, "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017");
+        AddressNotes addressNotes = new AddressNotes(111L, "BANGALORE", "BANGALORER", "karnataka", "560044", "dee@gmail.com", "phone1", "phone2", "www.deepak.com", "notes ");
+        GraduatedInformation graduatedInformation = new GraduatedInformation(111l, "firstname", "secondname", "trrarck", "graduated", "counselor", "phole1", "major", "employer", "ma", "engineer", "militiry", "completed", "fulltime", "2021", addressNotes);
+
+        Student studentOne = new Student(111 - 234 - 333l, "11", "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017", graduatedInformation);
         studentList.add(studentOne);
 
-        Student studentTwo = new Student(111-234-333l, "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017");
+        Student studentTwo = new Student(222 - 234 - 333l, "22", "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017", graduatedInformation);
         studentList.add(studentTwo);
-        Student studentThree = new Student(111-234-333l, "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017");
+        Student studentThree = new Student(333 - 234 - 333l, "33", "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017", graduatedInformation);
         studentList.add(studentThree);
     }
 
@@ -56,9 +59,8 @@ public class NationalStuClearinghouseDataInterfaceController {
     @GetMapping(path = "/getOkToContinueNationalStuClearinghouseList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<Student>> getOkToContinueNationalStuClearinghouseList() {
-        addStudentProfile();
-        accountType();
-        return ResponseEntity.ok(studentList);
+       
+        return ResponseEntity.ok(nationalStuClearinghouseDataInterfaceServiceV1.getAllStudent());
     }
 
 
@@ -67,7 +69,7 @@ public class NationalStuClearinghouseDataInterfaceController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<Student>> clickNextNationalStuClearinghouseList(@RequestParam("account-type") String accountType, @RequestParam("institution-name") String institutionName, @RequestParam("account-number") String accountNumber, @RequestParam("creation-date") String creationDate, @RequestParam("search-begin-date") String searchBeginDate) {
 
-        return ResponseEntity.ok(studentList);
+        return ResponseEntity.ok(nationalStuClearinghouseDataInterfaceServiceV1.getAllStudent());
     }
 
 

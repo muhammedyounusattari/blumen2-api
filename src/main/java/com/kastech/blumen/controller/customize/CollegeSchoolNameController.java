@@ -80,14 +80,14 @@ public class CollegeSchoolNameController {
 
 
     @ResponseBody
-    @PutMapping(path = "/deleteCollegeSchoolNameList/v1",
+    @DeleteMapping(path = "/deleteCollegeSchoolNameList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<CollegeSchool>> deleteCollegeSchoolNameList(@RequestBody CollegeSchool collegeSchool) {
+    public ResponseEntity<?> deleteCollegeSchoolNameList(@RequestBody CollegeSchool collegeSchool) {
 
       //  CollegeSchool collegeSchool = collegeSchoolServiceV1.doService(reqBody);
         collegeSchoolRepository.delete(collegeSchool);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(HttpStatus.OK).body("Success");
     }
 
 

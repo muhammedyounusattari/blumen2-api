@@ -82,14 +82,14 @@ public class GradingListController {
 
 
     @ResponseBody
-    @PutMapping(path = "/deleteGradingList/v1",
+    @DeleteMapping(path = "/deleteGradingList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<GradingList>> deleteGradingList(@RequestBody GradingList gradingList) {
+    public ResponseEntity<?> deleteGradingList(@RequestBody GradingList gradingList) {
 
      //   GradingList gradingList = gradingListServiceV1.doService(reqBody);
         gradingListRepository.delete(gradingList);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(HttpStatus.OK).body("Success");
     }
     
     @ResponseBody

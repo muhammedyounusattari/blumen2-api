@@ -1,7 +1,9 @@
 package com.kastech.blumen.controller.student.logs;
 
 import com.kastech.blumen.model.Response;
+import com.kastech.blumen.model.student.Student;
 import com.kastech.blumen.model.student.logs.StudentExamsLog;
+import com.kastech.blumen.repository.student.StudentRepository;
 import com.kastech.blumen.repository.student.logs.StudentExamsLogRepository;
 import com.kastech.blumen.service.student.logs.StudentExamsLogServiceV1;
 import com.kastech.blumen.validator.student.logs.StudentExamsLogValidator;
@@ -13,9 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/blumen-api/student-logs")
@@ -35,12 +35,25 @@ public class StudentExamsLogController {
 
     Map<String, StudentExamsLog> studentExamsLogMap = new HashMap<String, StudentExamsLog>();
 
+    @Autowired
+    private StudentRepository studentRepository;
+
+    @ResponseBody
+    @GetMapping(path = "/getStudentDataExamsLog/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public List<Student> getStudentDataExamsLog() {
+        List<Student> list = new ArrayList<>();
+        Iterable<Student> items = studentRepository.findAll();
+        items.forEach(list::add);
+        return list;
+    }
+
+
     @ResponseBody
     @GetMapping(path = "/getStudentExamsLogList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentExamsLog>> getStudentExamsLogList() {
 
-        return ResponseEntity.ok(studentExamsLogMap.values());
+        return ResponseEntity.ok(studentExamsLogRepository.findAll());
     }
 
     @ResponseBody
@@ -48,8 +61,7 @@ public class StudentExamsLogController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> addToStudentExamsLogList(@RequestBody StudentExamsLog studentExamsLog) {
-      //  StudentExamsLog studentExamsLog = studentExamsLogServiceV1.doService(reqBody);
-        studentExamsLogMap.put(studentExamsLog.getSsno(),studentExamsLog);
+    	studentExamsLogRepository.save(studentExamsLog);
         return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
     }
 
@@ -57,20 +69,18 @@ public class StudentExamsLogController {
     @PutMapping(path = "/updateStudentExamsLogList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> editStudentExamsLogList(@RequestBody StudentExamsLog studentExamsLog) {
-     //   StudentExamsLog studentExamsLog = studentExamsLogServiceV1.doService(reqBody);
-        studentExamsLogMap.put(studentExamsLog.getSsno(),studentExamsLog);
-        return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
-    }
+	public ResponseEntity<String> editStudentExamsLogList(@RequestBody StudentExamsLog studentExamsLog) {
+		studentExamsLogRepository.save(studentExamsLog);
+		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+	}
 
 
     @ResponseBody
     @PutMapping(path = "/filter/studentExamsLoglist/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> filterStudentExamsLogList(@RequestBody StudentExamsLog studentExamsLog) {
-      //  StudentExamsLog studentExamsLog = studentExamsLogServiceV1.doService(reqBody);
-        return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
+    public ResponseEntity<Collection<StudentExamsLog>> filterStudentExamsLogList(@RequestBody StudentExamsLog studentExamsLog) {
+        return ResponseEntity.status(HttpStatus.OK).body(studentExamsLogRepository.findAll());
     }
 
 
@@ -78,12 +88,10 @@ public class StudentExamsLogController {
     @PutMapping(path = "/deleteStudentExamsLogList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentExamsLog>> deleteStudentExamsLogList(@RequestBody StudentExamsLog studentExamsLog) {
+    public ResponseEntity<String> deleteStudentExamsLogList(@RequestBody StudentExamsLog studentExamsLog) {
 
-      //  StudentExamsLog studentExamsLog = studentExamsLogServiceV1.doService(reqBody);
-        studentExamsLogMap.remove(studentExamsLog.getSsno());
-
-        return ResponseEntity.status(HttpStatus.OK).body(studentExamsLogMap.values());
+    	studentExamsLogRepository.delete(studentExamsLog);
+    	return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
     }
 
 
@@ -91,24 +99,18 @@ public class StudentExamsLogController {
     @GetMapping(path = "/getStudentExamsLogByFiscalyear/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentExamsLog>> getStudentExamsLogByFiscalyear(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentExamsLog>> getStudentExamsLogByFiscalyear(@RequestBody StudentExamsLog studentExamsLog) {
 
-        StudentExamsLog studentExamsLog = studentExamsLogServiceV1.doService(reqBody);
-        studentExamsLogMap.remove(studentExamsLog.getSsno());
-
-        return ResponseEntity.status(HttpStatus.OK).body(studentExamsLogMap.values());
+        return ResponseEntity.status(HttpStatus.OK).body(studentExamsLogRepository.findAll());
     }
 
     @ResponseBody
     @GetMapping(path = "/getStudentExamsLogByActive/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentExamsLog>> getStudentExamsLogByActive(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentExamsLog>> getStudentExamsLogByActive(@RequestBody StudentExamsLog studentExamsLog) {
 
-        StudentExamsLog studentExamsLog = studentExamsLogServiceV1.doService(reqBody);
-        studentExamsLogMap.remove(studentExamsLog.getSsno());
-
-        return ResponseEntity.status(HttpStatus.OK).body(studentExamsLogMap.values());
+        return ResponseEntity.status(HttpStatus.OK).body(studentExamsLogRepository.findAll());
     }
 
 
@@ -118,10 +120,8 @@ public class StudentExamsLogController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentExamsLog>> getStudentExamsLogByServed(@RequestBody StudentExamsLog studentExamsLog) {
 
-      //  StudentExamsLog studentExamsLog = studentExamsLogServiceV1.doService(reqBody);
-        studentExamsLogMap.remove(studentExamsLog.getSsno());
 
-        return ResponseEntity.status(HttpStatus.OK).body(studentExamsLogMap.values());
+        return ResponseEntity.status(HttpStatus.OK).body(studentExamsLogRepository.findAll());
     }
 
     @ResponseBody
@@ -130,9 +130,6 @@ public class StudentExamsLogController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentExamsLog>> getStudentExamsLogByReported(@RequestBody StudentExamsLog studentExamsLog) {
 
-     //   StudentExamsLog studentExamsLog = studentExamsLogServiceV1.doService(reqBody);
-        studentExamsLogMap.remove(studentExamsLog.getSsno());
-
-        return ResponseEntity.status(HttpStatus.OK).body(studentExamsLogMap.values());
+        return ResponseEntity.status(HttpStatus.OK).body(studentExamsLogRepository.findAll());
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import com.kastech.blumen.model.AnnualPerformance;
 import com.kastech.blumen.model.ConfigSettings;
 import com.kastech.blumen.model.admin.BOTMgmtForm;
+import com.kastech.blumen.repository.admin.AnnualPerformanceRepository;
 import com.kastech.blumen.repository.admin.ConfigSettingRepository;
 
 
@@ -21,14 +22,14 @@ public class BOTFormMgmtService {
 	@Autowired
 	ConfigSettingRepository configSettingRepository;
 	
-	//BOTFormMgmtRepository botFormMgmtRepository;
+	@Autowired
+	AnnualPerformanceRepository annualPerformanceRepository;
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(BOTFormMgmtService.class);
 
-	public void saveSystemPreferenceData(AnnualPerformance annualPerformance) {
+	public AnnualPerformance saveSystemPreferenceData(AnnualPerformance annualPerformance) {
 		LOGGER.info("Inside BotFormMgmtService ");		
-		//here repository code willcome
-		//repository.		
+		return annualPerformanceRepository.save(annualPerformance)	;	
 	}
 
 	public List<BOTMgmtForm> getBOTMgmtFormList() {

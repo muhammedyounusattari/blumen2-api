@@ -32,7 +32,7 @@ public class RecallStudentsController {
 
 	@ResponseBody
 	@GetMapping(path = "/recallStudentList/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<List<Student>> recallStudentList(@RequestBody String reqBody) {
+	public ResponseEntity<List<Student>> recallStudentList() {
 		return ResponseEntity.status(HttpStatus.OK).body(recallStudentsRepository.findAll());
 	}
 }

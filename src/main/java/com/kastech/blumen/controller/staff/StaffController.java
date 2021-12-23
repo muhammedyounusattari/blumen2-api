@@ -75,7 +75,7 @@ public class StaffController {
 
 
     @ResponseBody
-    @PutMapping(path = "/deleteStaffList/v1",
+    @DeleteMapping(path = "/deleteStaffList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> deleteStaffList(@RequestBody Staff staff) {

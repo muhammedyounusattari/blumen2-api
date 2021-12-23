@@ -1,20 +1,18 @@
 package com.kastech.blumen.controller.student.contacts;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
+import com.kastech.blumen.model.student.Student;
+import com.kastech.blumen.repository.student.StudentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.student.contacts.StudentDispTutorContReminder;
@@ -36,6 +34,18 @@ public class StudentDispTutorContReminderController {
 
 	@Autowired
 	StudentDispTutorContReminderValidator studentDispTutorContReminderValidator;
+
+	@Autowired
+	private StudentRepository studentRepository;
+
+	@ResponseBody
+	@GetMapping(path = "/getStudentDispTutorContReminder/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public List<Student> getStudentDispTutorContReminder() {
+		List<Student> list = new ArrayList<>();
+		Iterable<Student> items = studentRepository.findAll();
+		items.forEach(list::add);
+		return list;
+	}
 
 	@ResponseBody
 	@GetMapping(path = "/getStudentDispTutorContReminderList/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
@@ -81,7 +91,7 @@ public class StudentDispTutorContReminderController {
 	}
 
 	@ResponseBody
-	@PutMapping(path = "/deleteStudentDispTutorContReminderList/v1", consumes = {
+	@DeleteMapping(path = "/deleteStudentDispTutorContReminderList/v1", consumes = {
 			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<String> deleteStudentDispTutorContReminderList(@RequestBody StudentDispTutorContReminder studentDispTutorContReminder) {
 

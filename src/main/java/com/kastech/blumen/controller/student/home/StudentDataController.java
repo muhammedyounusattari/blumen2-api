@@ -1,7 +1,9 @@
 package com.kastech.blumen.controller.student.home;
 
 import com.kastech.blumen.model.Response;
+import com.kastech.blumen.model.student.Student;
 import com.kastech.blumen.model.student.home.StudentData;
+import com.kastech.blumen.repository.student.StudentRepository;
 import com.kastech.blumen.service.student.home.StudentDataServiceV1;
 import com.kastech.blumen.validator.student.home.StudentDataValidator;
 import org.slf4j.Logger;
@@ -12,9 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/blumen-api/student-data")
@@ -30,6 +30,18 @@ public class StudentDataController {
     StudentDataValidator studentDataValidator;
 
     Map<Integer, StudentData> studentMap = new HashMap<>();
+
+    @Autowired
+    private StudentRepository studentRepository;
+
+    @ResponseBody
+    @GetMapping(path = "/getStudentData/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public List<Student> getStudentData() {
+        List<Student> list = new ArrayList<>();
+        Iterable<Student> items = studentRepository.findAll();
+        items.forEach(list::add);
+        return list;
+    }
 
     @ResponseBody
     @GetMapping(path = "/getStudentList/v1",
@@ -71,7 +83,7 @@ public class StudentDataController {
 
 
     @ResponseBody
-    @PutMapping(path = "/deleteStudentList/v1",
+    @DeleteMapping(path = "/deleteStudentList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentData>> deleteStudentList(@RequestBody StudentData student) {

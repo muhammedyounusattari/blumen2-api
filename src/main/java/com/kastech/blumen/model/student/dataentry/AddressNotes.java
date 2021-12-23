@@ -1,7 +1,15 @@
 package com.kastech.blumen.model.student.dataentry;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "address_notes", schema = "blumen2")
 public class AddressNotes {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO, generator="address_notes_list_seq_gen")
+    @SequenceGenerator(name="address_notes_list_seq_gen", sequenceName="ADDRESS_NOTES_LIST_SEQ")
+    private Long id;
     private String address;
     private String city;
     private String state;
@@ -15,7 +23,8 @@ public class AddressNotes {
     public AddressNotes() {
     }
 
-    public AddressNotes(String address, String city, String state, String zipcode, String email, String phone1, String phone2, String website, String notes) {
+    public AddressNotes(Long id, String address, String city, String state, String zipcode, String email, String phone1, String phone2, String website, String notes) {
+        this.id = id;
         this.address = address;
         this.city = city;
         this.state = state;
@@ -25,6 +34,14 @@ public class AddressNotes {
         this.phone2 = phone2;
         this.website = website;
         this.notes = notes;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getAddress() {
@@ -102,7 +119,8 @@ public class AddressNotes {
     @Override
     public String toString() {
         return "AddressNotes{" +
-                "address='" + address + '\'' +
+                "id=" + id +
+                ", address='" + address + '\'' +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
                 ", zipcode='" + zipcode + '\'' +

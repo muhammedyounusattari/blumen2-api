@@ -3,6 +3,8 @@ package com.kastech.blumen.repository.utilities.addto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-//@Repository
-public interface GraduatedListRepository { //extends JpaRepository {
+import com.kastech.blumen.model.student.dataentry.GraduatedInformation;
+
+@Repository
+public interface GraduatedListRepository extends JpaRepository<GraduatedInformation, Long> {
 }

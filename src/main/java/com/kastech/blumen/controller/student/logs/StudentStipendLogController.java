@@ -1,7 +1,9 @@
 package com.kastech.blumen.controller.student.logs;
 
 import com.kastech.blumen.model.Response;
+import com.kastech.blumen.model.student.Student;
 import com.kastech.blumen.model.student.logs.StudentStipendLog;
+import com.kastech.blumen.repository.student.StudentRepository;
 import com.kastech.blumen.repository.student.logs.StudentStipendLogRepository;
 import com.kastech.blumen.service.student.logs.StudentStipendLogServiceV1;
 import com.kastech.blumen.validator.student.logs.StudentStipendLogValidator;
@@ -13,9 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/blumen-api/student-logs")
@@ -33,6 +33,18 @@ public class StudentStipendLogController {
     StudentStipendLogValidator studentStipendLogValidator;
 
     Map<String, StudentStipendLog> stringStudentStipendLogMap = new HashMap<String, StudentStipendLog>();
+
+    @Autowired
+    private StudentRepository studentRepository;
+
+    @ResponseBody
+    @GetMapping(path = "/getStudentDataStipendLog/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public List<Student> getStudentDataStipendLog() {
+        List<Student> list = new ArrayList<>();
+        Iterable<Student> items = studentRepository.findAll();
+        items.forEach(list::add);
+        return list;
+    }
 
     @ResponseBody
     @GetMapping(path = "/getStudentStipendLogList/v1",

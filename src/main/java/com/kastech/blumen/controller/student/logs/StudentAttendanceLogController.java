@@ -1,6 +1,8 @@
 package com.kastech.blumen.controller.student.logs;
 
+import com.kastech.blumen.model.student.Student;
 import com.kastech.blumen.model.student.logs.StudentAttendanceLog;
+import com.kastech.blumen.repository.student.StudentRepository;
 import com.kastech.blumen.repository.student.logs.StudentAttendanceLogRepository;
 import com.kastech.blumen.service.student.logs.StudentAttendanceLogServiceV1;
 import com.kastech.blumen.validator.student.logs.StudentAttendanceLogValidator;
@@ -36,6 +38,18 @@ public class StudentAttendanceLogController {
     StudentAttendanceLogValidator studentAttendanceLogValidator;
 
     Map<String, StudentAttendanceLog> stringStudentAttendanceLogMap = new HashMap<String, StudentAttendanceLog>();
+
+    @Autowired
+    private StudentRepository studentRepository;
+
+    @ResponseBody
+    @GetMapping(path = "/getStudentDataAttendanceLog/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public List<Student> getStudentDataAttendanceLog() {
+        List<Student> list = new ArrayList<>();
+        Iterable<Student> items = studentRepository.findAll();
+        items.forEach(list::add);
+        return list;
+    }
 
     @ResponseBody
     @GetMapping(path = "/getStudentAttendanceLog/v1",

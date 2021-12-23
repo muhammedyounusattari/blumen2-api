@@ -1,7 +1,11 @@
 package com.kastech.blumen.model.student;
 
+import com.kastech.blumen.controller.student.Activities;
+import com.kastech.blumen.model.student.dataentry.GraduatedInformation;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.List;
@@ -11,6 +15,7 @@ public class Student implements Serializable {
 
 	@Id
     private Long ssno;
+	private String orgId;
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -26,13 +31,16 @@ public class Student implements Serializable {
     private String fiscalYear;
 
     //private EndOfYearStatus endOfYearStatus;
+    @OneToOne
+    private GraduatedInformation graduatedInformation;
   //  private Activities activities;
 
     public Student() {
     }
 
-    public Student(Long ssno, String firstName, String lastName, String phoneNumber, String contactDate, String staff, String contactTime, String recontactDate, String active, String served, String reported, String school, String standing, String fiscalYear) {
+    public Student(Long ssno, String orgId, String firstName, String lastName, String phoneNumber, String contactDate, String staff, String contactTime, String recontactDate, String active, String served, String reported, String school, String standing, String fiscalYear, GraduatedInformation graduatedInformation) {
         this.ssno = ssno;
+        this.orgId = orgId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
@@ -46,6 +54,7 @@ public class Student implements Serializable {
         this.school = school;
         this.standing = standing;
         this.fiscalYear = fiscalYear;
+        this.graduatedInformation = graduatedInformation;
     }
 
     public Long getSsno() {
@@ -54,6 +63,14 @@ public class Student implements Serializable {
 
     public void setSsno(Long ssno) {
         this.ssno = ssno;
+    }
+
+    public String getOrgId() {
+        return orgId;
+    }
+
+    public void setOrgId(String orgId) {
+        this.orgId = orgId;
     }
 
     public String getFirstName() {
@@ -112,7 +129,7 @@ public class Student implements Serializable {
         this.recontactDate = recontactDate;
     }
 
-    public String isActive() {
+    public String getActive() {
         return active;
     }
 
@@ -120,7 +137,7 @@ public class Student implements Serializable {
         this.active = active;
     }
 
-    public String isServed() {
+    public String getServed() {
         return served;
     }
 
@@ -128,7 +145,7 @@ public class Student implements Serializable {
         this.served = served;
     }
 
-    public String isReported() {
+    public String getReported() {
         return reported;
     }
 
@@ -160,27 +177,15 @@ public class Student implements Serializable {
         this.fiscalYear = fiscalYear;
     }
 
-    @Override
-    public String toString() {
-        return "StudentStaffContacts{" +
-                "ssno='" + ssno + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", contactDate='" + contactDate + '\'' +
-                ", staff='" + staff + '\'' +
-                ", contactTime='" + contactTime + '\'' +
-                ", recontactDate='" + recontactDate + '\'' +
-                ", active=" + active +
-                ", served=" + served +
-                ", reported=" + reported +
-                ", school='" + school + '\'' +
-                ", standing='" + standing + '\'' +
-                ", fiscalYear='" + fiscalYear + '\'' +
-                '}';
+    public GraduatedInformation getGraduatedInformation() {
+        return graduatedInformation;
     }
 
-//    class EndOfYearStatus {
+    public void setGraduatedInformation(GraduatedInformation graduatedInformation) {
+        this.graduatedInformation = graduatedInformation;
+    }
+
+    //    class EndOfYearStatus {
 //        private List<EndStatus> endStatusList;
 //
 //        public List<EndStatus> getEndStatusList() {

@@ -1,6 +1,8 @@
 package com.kastech.blumen.controller.student.contacts;
 
+import com.kastech.blumen.model.student.Student;
 import com.kastech.blumen.model.student.contacts.StudentTeacherContacts;
+import com.kastech.blumen.repository.student.StudentRepository;
 import com.kastech.blumen.repository.student.contacts.StudentTeacherContactsRepository;
 import com.kastech.blumen.service.student.contacts.StudentTeacherContactsServiceV1;
 import com.kastech.blumen.validator.student.contacts.StudentTeacherContactsValidator;
@@ -32,8 +34,20 @@ public class StudentTeacherContactsController {
 
     Map<String, StudentTeacherContacts> studentTeacherContactsMap = new HashMap<String, StudentTeacherContacts>();
 
+    @Autowired
+    private StudentRepository studentRepository;
+
     @ResponseBody
-    @GetMapping(path = "/getStudentTeacherContacts/v1",
+    @GetMapping(path = "/getStudentTeacherContacts/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public List<Student> getStudentTeacherContacts() {
+        List<Student> list = new ArrayList<>();
+        Iterable<Student> items = studentRepository.findAll();
+        items.forEach(list::add);
+        return list;
+    }
+
+    @ResponseBody
+    @GetMapping(path = "/getStudentTeacherContactsList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<StudentTeacherContacts> getStudentTeacherContactsList() {
 
@@ -78,14 +92,14 @@ public class StudentTeacherContactsController {
 
 
     @ResponseBody
-    @PutMapping(path = "/deleteStudentTeacherContactsList/v1",
+    @DeleteMapping(path = "/deleteStudentTeacherContactsList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentTeacherContacts>> deleteStudentTeacherContactsList(@RequestBody StudentTeacherContacts studentTeacherContacts) {
+    public ResponseEntity<String> deleteStudentTeacherContactsList(@RequestBody StudentTeacherContacts studentTeacherContacts) {
 
      //   StudentTeacherContacts studentTeacherContacts = studentTeacherContactsServiceV1.doService(reqBody);
         studentTeacherContactsRepository.delete(studentTeacherContacts);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(HttpStatus.OK).body("Success");
     }
 
 

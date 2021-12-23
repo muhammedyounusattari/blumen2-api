@@ -1,11 +1,14 @@
 package com.kastech.blumen.controller.student.contacts;
 
+import com.kastech.blumen.model.student.Student;
 import com.kastech.blumen.model.student.contacts.StudentCounselorContact;
+import com.kastech.blumen.repository.student.StudentRepository;
 import com.kastech.blumen.repository.student.contacts.StudentCounselorContactRepository;
 import com.kastech.blumen.service.student.contacts.StudentCounselorContactService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,9 +26,22 @@ public class StudentCounselorContactController {
 	private StudentCounselorContactRepository studentCounselorContactRepository;
 
 	@Autowired
+	private StudentRepository studentRepository;
+
+	@Autowired
 	private StudentCounselorContactService counselorContactService;
 
 	private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+
+	@ResponseBody
+	@GetMapping(path = "/getStudentCounselorContact/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public List<Student> getStudentCounselorContact() {
+		List<Student> list = new ArrayList<>();
+		Iterable<Student> items = studentRepository.findAll();
+		items.forEach(list::add);
+		return list;
+	}
+
 
 	@ResponseBody
 	@GetMapping(path = "/getCounselorContacts/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
@@ -91,11 +107,11 @@ public class StudentCounselorContactController {
 	}
 
 	@ResponseBody
-	@PostMapping(path = "/deleteCounselorContact/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+	@DeleteMapping(path = "/deleteCounselorContact/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<String> postSystemPreferenceData(@RequestParam("CouncellorContactId") String CouncellorContactId) {
 		LOGGER.info("Inside postSystemPreferenceData");
 		studentCounselorContactRepository.deleteById(Long.parseLong(CouncellorContactId));
-		return ResponseEntity.noContent().build();
+		return ResponseEntity.status(HttpStatus.OK).body("Success");
 	}
 
 }

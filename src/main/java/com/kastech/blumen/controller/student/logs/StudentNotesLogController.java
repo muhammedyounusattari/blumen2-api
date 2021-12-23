@@ -1,8 +1,10 @@
 package com.kastech.blumen.controller.student.logs;
 
 import com.kastech.blumen.model.Response;
+import com.kastech.blumen.model.student.Student;
 import com.kastech.blumen.model.student.logs.StudentAttendanceLog;
 import com.kastech.blumen.model.student.logs.StudentNotesLog;
+import com.kastech.blumen.repository.student.StudentRepository;
 import com.kastech.blumen.repository.student.logs.StudentNotesLogRepository;
 import com.kastech.blumen.service.student.logs.StudentNotesLogServiceV1;
 import com.kastech.blumen.validator.student.logs.StudentNotesLogValidator;
@@ -38,6 +40,18 @@ public class StudentNotesLogController {
     StudentNotesLogValidator studentNotesLogValidator;
 
     Map<String, StudentNotesLog> studentNotesLogMap = new HashMap<String, StudentNotesLog>();
+
+    @Autowired
+    private StudentRepository studentRepository;
+
+    @ResponseBody
+    @GetMapping(path = "/getStudentDataNotesLog/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public List<Student> getStudentDataNotesLog() {
+        List<Student> list = new ArrayList<>();
+        Iterable<Student> items = studentRepository.findAll();
+        items.forEach(list::add);
+        return list;
+    }
 
     @ResponseBody
     @GetMapping(path = "/getStudentNotesLogList/v1",
@@ -80,15 +94,16 @@ public class StudentNotesLogController {
 
 
     @ResponseBody
-    @PutMapping(path = "/deleteStudentNotesLogList/v1",
+    @DeleteMapping(path = "/deleteStudentNotesLogList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentNotesLog>> deleteStudentNotesLogList(@RequestBody StudentNotesLog studentNotesLog) {
+    public ResponseEntity<String> deleteStudentNotesLogList(@RequestBody StudentNotesLog studentNotesLog) {
 
       //  StudentNotesLog studentNotesLog = studentNotesLogServiceV1.doService(reqBody);
-        studentNotesLogMap.remove(studentNotesLog.getSsno());
+      //  studentNotesLogMap.remove(studentNotesLog.getSsno());
+        studentNotesLogRepository.delete(studentNotesLog);
 
-        return ResponseEntity.status(HttpStatus.OK).body(studentNotesLogMap.values());
+        return ResponseEntity.status(HttpStatus.OK).body("Success");
     }
 
 

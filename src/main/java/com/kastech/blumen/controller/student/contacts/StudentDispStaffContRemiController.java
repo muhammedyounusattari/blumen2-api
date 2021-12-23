@@ -1,6 +1,8 @@
 package com.kastech.blumen.controller.student.contacts;
 
+import com.kastech.blumen.model.student.Student;
 import com.kastech.blumen.model.student.contacts.StudentDispStaffContReminder;
+import com.kastech.blumen.repository.student.StudentRepository;
 import com.kastech.blumen.repository.student.contacts.StudentDispStaffContRemiRepository;
 import com.kastech.blumen.service.student.contacts.StudentDispStaffContRemiServiceV1;
 import com.kastech.blumen.validator.student.contacts.StudentDispStaffContRemiValidator;
@@ -30,7 +32,19 @@ public class StudentDispStaffContRemiController {
     @Autowired
     StudentDispStaffContRemiValidator studentDispStaffContRemiValidator;
 
+    @Autowired
+    private StudentRepository studentRepository;
+
     Map<String, StudentDispStaffContReminder> stringStudentDispStaffContReminderMap = new HashMap<String, StudentDispStaffContReminder>();
+
+    @ResponseBody
+    @GetMapping(path = "/getStudentDispStaffContRemi/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public List<Student> getStudentDispStaffContRemi() {
+        List<Student> list = new ArrayList<>();
+        Iterable<Student> items = studentRepository.findAll();
+        items.forEach(list::add);
+        return list;
+    }
 
     @ResponseBody
     @GetMapping(path = "/getStudentDispStaffContReminderList/v1",
@@ -78,14 +92,14 @@ public class StudentDispStaffContRemiController {
 
 
     @ResponseBody
-    @PutMapping(path = "/deleteStudentDispStaffContReminderList/v1",
+    @DeleteMapping(path = "/deleteStudentDispStaffContReminderList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentDispStaffContReminder>> deleteStudentDispStaffContReminderList(@RequestBody StudentDispStaffContReminder studentDispStaffContReminder) {
+    public ResponseEntity<?> deleteStudentDispStaffContReminderList(@RequestBody StudentDispStaffContReminder studentDispStaffContReminder) {
 
     //    StudentDispStaffContReminder studentDispStaffContReminder = studentDispStaffContRemiServiceV1.doService(reqBody);
         studentDispStaffContRemiRepository.delete(studentDispStaffContReminder);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(HttpStatus.OK).body("Success");
     }
 
 

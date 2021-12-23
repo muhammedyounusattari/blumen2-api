@@ -1,6 +1,8 @@
 package com.kastech.blumen.controller.student.contacts;
 
+import com.kastech.blumen.model.student.Student;
 import com.kastech.blumen.model.student.contacts.StudentStaffContacts;
+import com.kastech.blumen.repository.student.StudentRepository;
 import com.kastech.blumen.repository.student.contacts.StudentStaffContactsRepository;
 import com.kastech.blumen.service.student.contacts.StudentStaffContactsServiceV1;
 import com.kastech.blumen.validator.student.contacts.StudentStaffContactsValidator;
@@ -32,9 +34,20 @@ public class StudentStaffContactsController {
 
     Map<Long, StudentStaffContacts> studentStaffContactsMap = new HashMap<Long, StudentStaffContacts>();
 
+    @Autowired
+    private StudentRepository studentRepository;
 
     @ResponseBody
-    @GetMapping(path = "/getStudentStaffContacts/v1",
+    @GetMapping(path = "/getStudentStaffContacts/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public List<Student> getStudentStaffContacts() {
+        List<Student> list = new ArrayList<>();
+        Iterable<Student> items = studentRepository.findAll();
+        items.forEach(list::add);
+        return list;
+    }
+
+    @ResponseBody
+    @GetMapping(path = "/getStudentStaffContactsList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<StudentStaffContacts> getStudentStaffContactsList() {
 
@@ -79,14 +92,14 @@ public class StudentStaffContactsController {
 
 
     @ResponseBody
-    @PutMapping(path = "/deleteStudentStaffContactsList/v1",
+    @DeleteMapping(path = "/deleteStudentStaffContactsList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentStaffContacts>> deleteStudentAttendanceLogList(@RequestBody StudentStaffContacts studentStaffContacts) {
+    public ResponseEntity<String> deleteStudentAttendanceLogList(@RequestBody StudentStaffContacts studentStaffContacts) {
 
     //    StudentStaffContacts studentStaffContacts = studentStaffContactsServiceV1.doService(reqBody);
         studentStaffContactsRepository.delete(studentStaffContacts);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(HttpStatus.OK).body("Success");
     }
 
 

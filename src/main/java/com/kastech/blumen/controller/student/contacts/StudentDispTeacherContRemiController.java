@@ -1,20 +1,18 @@
 package com.kastech.blumen.controller.student.contacts;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
+import com.kastech.blumen.model.student.Student;
+import com.kastech.blumen.repository.student.StudentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.student.contacts.StudentDispTeacherContRemi;
@@ -36,6 +34,18 @@ public class StudentDispTeacherContRemiController {
 
 	@Autowired
 	StudentDispTeacherContRemiValidator studentDispTeacherContRemiValidator;
+
+	@Autowired
+	private StudentRepository studentRepository;
+
+	@ResponseBody
+	@GetMapping(path = "/getStudentDispTeacherContRemi/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public List<Student> getStudentDispTeacherContRemi() {
+		List<Student> list = new ArrayList<>();
+		Iterable<Student> items = studentRepository.findAll();
+		items.forEach(list::add);
+		return list;
+	}
 
 	@ResponseBody
 	@GetMapping(path = "/getStudentDispTeacherContRemiList/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
@@ -78,7 +88,7 @@ public class StudentDispTeacherContRemiController {
 	}
 
 	@ResponseBody
-	@PutMapping(path = "/deleteStudentDispTeacherContRemiList/v1", consumes = {
+	@DeleteMapping(path = "/deleteStudentDispTeacherContRemiList/v1", consumes = {
 			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<String> deleteStudentDispTeacherContRemiList(@RequestBody StudentDispTeacherContRemi studentDispTeacherContRemi) {
 

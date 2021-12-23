@@ -1,7 +1,15 @@
 package com.kastech.blumen.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "annual_performance" ,schema = "blumen2")
 public class AnnualPerformance {
 
+	@Id
+	private Long id;
 	private String projectDirector;
 	private String institutionName;
 	private String reportingPeriodFrom;
@@ -45,6 +53,18 @@ public class AnnualPerformance {
 		this.fundToServeRatioThreshould = fundToServeRatioThreshould;
 		this.fundToServeRatioThreshouldTo = fundToServeRatioThreshouldTo;
 	}
+	
+	public Long getId() {
+		return id;
+	}
+
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
 
 	public String getProjectDirector() {
 		return projectDirector;

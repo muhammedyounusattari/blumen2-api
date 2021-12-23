@@ -51,9 +51,9 @@ public class BOTFormMgmtController {
 	
 	@ResponseBody
 	@PostMapping(path = "/postSystemPreferenceData/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<Collection<?>> postSystemPreferenceData(@RequestBody AnnualPerformance annualPerformance) {
+	public ResponseEntity<AnnualPerformance> postSystemPreferenceData(@RequestBody AnnualPerformance annualPerformance) {
 		LOGGER.info("Inside postSystemPreferenceData");
-		bOTFormMgmtService.saveSystemPreferenceData(annualPerformance);
-		return ResponseEntity.ok(botFormMap.values());
+		annualPerformance = bOTFormMgmtService.saveSystemPreferenceData(annualPerformance);
+		return ResponseEntity.ok(annualPerformance);
 	}
 }

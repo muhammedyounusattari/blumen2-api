@@ -50,8 +50,8 @@ public class PullDownListController {
     @PostMapping(path = "/pullDownList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public PullDown addToPullDownList(@RequestBody String reqBody) {
-        PullDown pullDown = pullDownListServiceV1.doService(reqBody);
+    public PullDown addToPullDownList(@RequestBody PullDown pullDown) {
+      //  PullDown pullDown = pullDownListServiceV1.doService(reqBody);
         return pullDownListRepository.save(pullDown);
     }
 
@@ -82,17 +82,17 @@ public class PullDownListController {
 
 
     @ResponseBody
-    @PutMapping(path = "/deletePullDownList/v1",
+    @DeleteMapping(path = "/deletePullDownList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<PullDown>> deletePullDownList(@RequestBody PullDown pullDown) {
+    public ResponseEntity<?> deletePullDownList(@RequestBody PullDown pullDown) {
       //  PullDown collegeSchool = pullDownListServiceV1.doService(reqBody);
         pullDownListRepository.delete(pullDown);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(HttpStatus.OK).body("Success");
     }
 
 
-    @ResponseBody
+  /*  @ResponseBody
     @PostMapping(path = "/add/pullDownList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -102,6 +102,6 @@ public class PullDownListController {
         PullDown pullDown = pullDownListServiceV1.doService(requestDataVO.getInputReqBodyString());
         pullMap.put(pullDown.getId(), pullDown);
         return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
-    }
+    }*/
 
 }

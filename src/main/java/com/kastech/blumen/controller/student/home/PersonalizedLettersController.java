@@ -3,6 +3,8 @@ package com.kastech.blumen.controller.student.home;
 import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.StudentProfile;
 import com.kastech.blumen.model.student.Student;
+import com.kastech.blumen.model.student.dataentry.AddressNotes;
+import com.kastech.blumen.model.student.dataentry.GraduatedInformation;
 import com.kastech.blumen.repository.student.home.PersonalizedLettersRepository;
 import com.kastech.blumen.service.student.home.PersonalizedLettersServiceV1;
 import com.kastech.blumen.validator.student.home.PersonalizedLettersValidator;
@@ -25,6 +27,7 @@ public class PersonalizedLettersController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PersonalizedLettersController.class);
 
+    @Autowired
     PersonalizedLettersRepository personalizedLettersRepository;
 
     @Autowired
@@ -52,22 +55,27 @@ public class PersonalizedLettersController {
                 , "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "1", "3");
         studentProfileList.add(studentProfileThree);*/
 
+        AddressNotes addressNotes = new AddressNotes(111L,"BANGALORE","BANGALORER","karnataka","560044","dee@gmail.com","phone1","phone2","www.deepak.com","notes ");
+        GraduatedInformation graduatedInformation = new GraduatedInformation(111l,"firstname","secondname","trrarck","graduated","counselor","phole1","major","employer","ma","engineer","militiry","completed","fulltime","2021",addressNotes);
 
-        Student studentOne = new Student(111-234-333l, "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017");
+        Student studentOne = new Student(111-234-333l,"11", "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017",graduatedInformation);
         studentList.add(studentOne);
 
-        Student studentTwo = new Student(111-234-333l, "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017");
+        Student studentTwo = new Student(222-234-333l,"22", "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017",graduatedInformation);
         studentList.add(studentTwo);
-        Student studentThree = new Student(111-234-333l, "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017");
+        Student studentThree = new Student(222-234-333l,"22", "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017",graduatedInformation);
         studentList.add(studentThree);
     }
 
     @ResponseBody
     @GetMapping(path = "/getPersonalizedLettersStudentList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<Student>> getPersonalizedLettersStudentList() {
+    public List<Student> getPersonalizedLettersStudentList() {
         addStudentProfile();
-        return ResponseEntity.ok(studentList);
+        List<Student> list = new ArrayList<>();
+        Iterable<Student> items = personalizedLettersRepository.findAll();
+        items.forEach(list::add);
+        return list;
     }
 
     @ResponseBody
