@@ -1,5 +1,6 @@
 package com.kastech.blumen.model.tutor;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -45,7 +46,7 @@ public class Tutor {
     private String staffNotes;
     private String staffPicture;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     private Address address;
 
     public Tutor() {

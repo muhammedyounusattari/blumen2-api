@@ -1,7 +1,10 @@
 package com.kastech.blumen.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -10,6 +13,8 @@ public class Address {
 
 
 	@Id
+	@GeneratedValue(strategy= GenerationType.AUTO, generator="address_seq_gen")
+    @SequenceGenerator(name="address_seq_gen", sequenceName="ADDRESS_SEQ")
 	private Long id;
     private String staffName;
     private String staffAddress;

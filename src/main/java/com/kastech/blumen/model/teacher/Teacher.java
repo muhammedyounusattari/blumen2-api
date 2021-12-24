@@ -1,5 +1,6 @@
 package com.kastech.blumen.model.teacher;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -45,7 +46,7 @@ public class Teacher {
     private String staffNotes;
     private String staffPicture;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     private Address address;
 
     public Teacher() {

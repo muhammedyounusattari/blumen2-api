@@ -1,21 +1,38 @@
 package com.kastech.blumen.service.counselor;
 
-import com.kastech.blumen.model.counselor.Counselor;
-import com.kastech.blumen.utility.CommonUtil;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.kastech.blumen.model.counselor.Counselor;
+import com.kastech.blumen.repository.counselor.CounselorRepository;
 
 @Component
 public class CounselorServiceV1 {
+	
+	@Autowired
+    CounselorRepository counselorRepository;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CounselorServiceV1.class);
 
-    public Counselor doService(String reqBody){
+    public Counselor findById(Long id) {
+    	return counselorRepository.findById(id).get();
+	}
 
-        Counselor pullDown = CommonUtil.convertJsonStringToPojoForCouncilor(reqBody);
+	public List<Counselor> findAll() {
+		return counselorRepository.findAll();
+	}
 
-
-        return pullDown;
-    }
+	public Counselor save(Counselor counselor) {
+		return counselorRepository.save(counselor);
+	}
+	
+	public void deleteById(Long counselorId) {
+		counselorRepository.deleteById(counselorId);
+	}
+    
+    
 }

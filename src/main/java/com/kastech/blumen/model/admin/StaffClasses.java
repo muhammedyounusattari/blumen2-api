@@ -1,7 +1,10 @@
 package com.kastech.blumen.model.admin;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -9,6 +12,8 @@ import javax.persistence.Table;
 public class StaffClasses {
 
 	@Id
+	@GeneratedValue(strategy= GenerationType.AUTO, generator="staff_classes_seq_gen")
+    @SequenceGenerator(name="staff_classes_seq_gen", sequenceName="STAFF_CLASSES_SEQ")
 	private Long id;
 	private String currentYear;
 	private String semester;
