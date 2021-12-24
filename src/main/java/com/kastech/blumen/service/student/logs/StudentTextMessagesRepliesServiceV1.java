@@ -34,4 +34,9 @@ public class StudentTextMessagesRepliesServiceV1 {
 		studentTextMessagesRepliesRepository.save(studentWalletLog);
 	}
 
+	public void delete(StudentTextMessagesReplies studentTextMessagesReplies) {
+		studentTextMessagesRepliesRepository.delete(studentTextMessagesReplies);
+		
+	}
+
 }

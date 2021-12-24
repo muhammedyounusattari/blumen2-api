@@ -1,5 +1,6 @@
 package com.kastech.blumen.model.student.dataentry;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,7 +34,7 @@ public class GraduatedInformation {
     private String employmentType;
     private String graduatedYear;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private AddressNotes addressNotes;
 
     public GraduatedInformation() {

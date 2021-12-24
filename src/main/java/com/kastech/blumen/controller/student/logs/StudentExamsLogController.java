@@ -85,7 +85,7 @@ public class StudentExamsLogController {
 
 
     @ResponseBody
-    @PutMapping(path = "/deleteStudentExamsLogList/v1",
+    @DeleteMapping(path = "/deleteStudentExamsLogList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> deleteStudentExamsLogList(@RequestBody StudentExamsLog studentExamsLog) {

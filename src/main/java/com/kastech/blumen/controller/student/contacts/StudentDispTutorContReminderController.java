@@ -98,7 +98,7 @@ public class StudentDispTutorContReminderController {
 		/*StudentDispTutorContReminder studentDispTutorContReminder = studentDispTutorContReminderServiceV1
 				.doService(reqBody);*/
 		studentDispTutorContReminderRepository.delete(studentDispTutorContReminder);
-		return ResponseEntity.status(HttpStatus.OK).body("SUCCESS");
+		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
 	}
 
 	@ResponseBody

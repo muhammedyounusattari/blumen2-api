@@ -103,7 +103,7 @@ public class StudentNotesLogController {
       //  studentNotesLogMap.remove(studentNotesLog.getSsno());
         studentNotesLogRepository.delete(studentNotesLog);
 
-        return ResponseEntity.status(HttpStatus.OK).body("Success");
+        return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
     }
 
 

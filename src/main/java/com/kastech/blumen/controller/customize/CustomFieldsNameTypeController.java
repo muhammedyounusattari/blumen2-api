@@ -1,5 +1,6 @@
 package com.kastech.blumen.controller.customize;
 
+import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.customize.CustomFieldsNameType;
 import com.kastech.blumen.repository.customize.CustomFieldsNameTypeRepository;
 import com.kastech.blumen.service.customize.CustomFieldsNameTypeServiceV1;
@@ -85,6 +86,6 @@ public class CustomFieldsNameTypeController {
 
        // CustomFieldsNameType customFieldsNameType = customFieldsNameTypeServiceV1.doService(reqBody);
         customFieldsNameTypeRepository.delete(customFieldsNameType);
-        return ResponseEntity.status(HttpStatus.OK).body("Success");
+        return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
     }
 }

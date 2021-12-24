@@ -1,5 +1,6 @@
 package com.kastech.blumen.controller.student.contacts;
 
+import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.student.Student;
 import com.kastech.blumen.model.student.contacts.StudentStaffContacts;
 import com.kastech.blumen.repository.student.StudentRepository;
@@ -99,7 +100,7 @@ public class StudentStaffContactsController {
 
     //    StudentStaffContacts studentStaffContacts = studentStaffContactsServiceV1.doService(reqBody);
         studentStaffContactsRepository.delete(studentStaffContacts);
-        return ResponseEntity.status(HttpStatus.OK).body("Success");
+        return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
     }
 
 

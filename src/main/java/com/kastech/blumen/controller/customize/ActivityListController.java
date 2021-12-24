@@ -1,5 +1,6 @@
 package com.kastech.blumen.controller.customize;
 
+import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.customize.ActivityList;
 import com.kastech.blumen.repository.customize.ActivityListRepository;
 import com.kastech.blumen.service.customize.ActivityListServiceV1;
@@ -88,7 +89,7 @@ public class ActivityListController {
 
     //    ActivityList activityGroupList = activityListServiceV1.doService(reqBody);
         activityListRepository.delete(activityGroupList);
-        return ResponseEntity.status(HttpStatus.OK).body("Success");
+        return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
     }
 
     @ResponseBody

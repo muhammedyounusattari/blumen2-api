@@ -34,4 +34,8 @@ public class StudentWalletLogServiceV1 {
 		studentWalletLogRepository.save(studentWalletLog);
 	}
 
+	public void delete(StudentWalletLog studentWalletLog) {
+		studentWalletLogRepository.delete(studentWalletLog);		
+	}
+
 }

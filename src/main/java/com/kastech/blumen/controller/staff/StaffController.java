@@ -82,6 +82,6 @@ public class StaffController {
 
         staffRepository.delete(staff);
 
-        return ResponseEntity.status(HttpStatus.OK).body("Success");
+        return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
     }
 }

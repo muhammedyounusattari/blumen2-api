@@ -80,7 +80,7 @@ public class TeacherController {
 
 
     @ResponseBody
-    @PutMapping(path = "/deleteTeacherList/v1",
+    @DeleteMapping(path = "/deleteTeacherList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<Teacher>> deleteTeacherList(@RequestBody Teacher teacher) {

@@ -3,6 +3,7 @@ package com.kastech.blumen.model.student;
 import com.kastech.blumen.controller.student.Activities;
 import com.kastech.blumen.model.student.dataentry.GraduatedInformation;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -31,7 +32,7 @@ public class Student implements Serializable {
     private String fiscalYear;
 
     //private EndOfYearStatus endOfYearStatus;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private GraduatedInformation graduatedInformation;
   //  private Activities activities;
 

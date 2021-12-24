@@ -88,7 +88,7 @@ public class PullDownListController {
     public ResponseEntity<?> deletePullDownList(@RequestBody PullDown pullDown) {
       //  PullDown collegeSchool = pullDownListServiceV1.doService(reqBody);
         pullDownListRepository.delete(pullDown);
-        return ResponseEntity.status(HttpStatus.OK).body("Success");
+        return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
     }
 
 

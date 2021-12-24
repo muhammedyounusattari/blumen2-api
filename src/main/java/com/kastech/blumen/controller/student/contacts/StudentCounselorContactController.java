@@ -1,5 +1,6 @@
 package com.kastech.blumen.controller.student.contacts;
 
+import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.student.Student;
 import com.kastech.blumen.model.student.contacts.StudentCounselorContact;
 import com.kastech.blumen.repository.student.StudentRepository;
@@ -111,7 +112,7 @@ public class StudentCounselorContactController {
 	public ResponseEntity<String> postSystemPreferenceData(@RequestParam("CouncellorContactId") String CouncellorContactId) {
 		LOGGER.info("Inside postSystemPreferenceData");
 		studentCounselorContactRepository.deleteById(Long.parseLong(CouncellorContactId));
-		return ResponseEntity.status(HttpStatus.OK).body("Success");
+		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
 	}
 
 }

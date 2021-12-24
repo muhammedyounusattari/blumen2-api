@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -85,12 +86,13 @@ public class StudentTextMessagesLogController {
 
 
     @ResponseBody
-    @PutMapping(path = "/deleteStudentTextMessagesLogList/v1",
+    @DeleteMapping(path = "/deleteStudentTextMessagesLogList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentTextMessagesLog>> deleteStudentTextMessagesLogList(@RequestBody StudentTextMessagesLog studentTextMessagesLog) {
 
-        return ResponseEntity.status(HttpStatus.OK).body(studentTextMessagesLogServiceV1.getAllStudentTextMessagesLog());
+    	studentTextMessagesLogServiceV1.delete(studentTextMessagesLog);
+    	return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
     }
 
 

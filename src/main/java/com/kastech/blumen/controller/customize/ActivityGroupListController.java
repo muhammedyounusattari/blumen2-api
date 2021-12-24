@@ -1,5 +1,6 @@
 package com.kastech.blumen.controller.customize;
 
+import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.customize.ActivityGroupList;
 import com.kastech.blumen.repository.customize.ActivityGroupListRepository;
 import com.kastech.blumen.service.customize.ActivityGroupListServiceV1;
@@ -75,7 +76,8 @@ public class ActivityGroupListController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> filterActivityGroupList(@RequestBody ActivityGroupList reqBody) {
      //   ActivityGroupList activityGroupList = activityGroupListServiceV1.doService(reqBody);
-        return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
+       // return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
+        return new ResponseEntity(new Response(200, "filter pull down list"), null, HttpStatus.OK);
     }
 
 
@@ -86,7 +88,7 @@ public class ActivityGroupListController {
     public ResponseEntity<?> deleteActivityGroupList(@RequestBody ActivityGroupList activityGroupList) {
       //  ActivityGroupList activityGroupList = activityGroupListServiceV1.doService(reqBody);
         activityGroupListRepository.delete(activityGroupList);
-        return ResponseEntity.status(HttpStatus.OK).body("Success");
+        return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
     }
     
     @ResponseBody

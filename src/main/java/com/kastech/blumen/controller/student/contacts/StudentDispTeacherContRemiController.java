@@ -95,7 +95,7 @@ public class StudentDispTeacherContRemiController {
 	//	StudentDispTeacherContRemi studentDispTeacherContRemi = studentDispTeacherContRemiServiceV1.doService(reqBody);
 		studentDispTeacherContRemiRepository.delete(studentDispTeacherContRemi);
 
-		return ResponseEntity.status(HttpStatus.OK).body("SUCCESS");
+		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
 	}
 
 	@ResponseBody

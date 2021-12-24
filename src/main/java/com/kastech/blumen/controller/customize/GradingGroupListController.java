@@ -1,5 +1,6 @@
 package com.kastech.blumen.controller.customize;
 
+import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.customize.GradingGroupList;
 import com.kastech.blumen.repository.customize.GradingGroupListRepository;
 import com.kastech.blumen.service.customize.GradingGroupListServiceV1;
@@ -85,7 +86,7 @@ public class GradingGroupListController {
 
       //  GradingGroupList collegeSchool = gradingGroupListServiceV1.doService(reqBody);
         gradingGroupListRepository.delete(gradingGroupList);
-        return ResponseEntity.status(HttpStatus.OK).body("Success");
+        return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
     }
     
     @ResponseBody

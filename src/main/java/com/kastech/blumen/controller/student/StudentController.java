@@ -1,5 +1,6 @@
 package com.kastech.blumen.controller.student;
 
+import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.student.Student;
 import com.kastech.blumen.repository.student.StudentRepository;
 import org.slf4j.Logger;
@@ -43,6 +44,6 @@ public class StudentController {
     public ResponseEntity<String> deleteStudents(@RequestBody Student student) {
 
          studentRepository.delete(student);
-        return ResponseEntity.status(HttpStatus.OK).body("Success");
+         return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
     }
 }

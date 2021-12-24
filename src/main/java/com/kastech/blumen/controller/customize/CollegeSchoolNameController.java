@@ -1,6 +1,7 @@
 package com.kastech.blumen.controller.customize;
 
 import com.kastech.blumen.model.RequestDataVO;
+import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.customize.CollegeSchool;
 import com.kastech.blumen.repository.customize.CollegeSchoolRepository;
 import com.kastech.blumen.service.customize.CollegeSchoolServiceV1;
@@ -87,7 +88,7 @@ public class CollegeSchoolNameController {
 
       //  CollegeSchool collegeSchool = collegeSchoolServiceV1.doService(reqBody);
         collegeSchoolRepository.delete(collegeSchool);
-        return ResponseEntity.status(HttpStatus.OK).body("Success");
+        return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
     }
 
 
