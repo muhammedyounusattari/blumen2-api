@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.kastech.blumen.model.AnnualPerformance;
 import com.kastech.blumen.model.ConfigSettings;
+import com.kastech.blumen.model.SystemPreferences;
 import com.kastech.blumen.repository.admin.BOTFormMgmtRepository;
 import com.kastech.blumen.service.admin.BOTFormMgmtService;
 
@@ -50,10 +51,17 @@ public class BOTFormMgmtController {
 	}
 	
 	@ResponseBody
+	@GetMapping(path = "/getSystemPreferenceData/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<Collection<SystemPreferences>> getSystemPreferenceData() {
+		LOGGER.info("Inside getBOTMgmtFormList");
+		return ResponseEntity.ok(bOTFormMgmtService.getAllSystemPreferences());
+	}
+	
+	@ResponseBody
 	@PostMapping(path = "/postSystemPreferenceData/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<AnnualPerformance> postSystemPreferenceData(@RequestBody AnnualPerformance annualPerformance) {
+	public ResponseEntity<SystemPreferences> postSystemPreferenceData(@RequestBody SystemPreferences systemPreferences) {
 		LOGGER.info("Inside postSystemPreferenceData");
-		annualPerformance = bOTFormMgmtService.saveSystemPreferenceData(annualPerformance);
-		return ResponseEntity.ok(annualPerformance);
+		systemPreferences = bOTFormMgmtService.saveSystemPreferenceData(systemPreferences);
+		return ResponseEntity.ok(systemPreferences);
 	}
 }

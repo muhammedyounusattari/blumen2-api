@@ -11,8 +11,9 @@ import org.springframework.stereotype.Component;
 
 import com.kastech.blumen.model.AnnualPerformance;
 import com.kastech.blumen.model.ConfigSettings;
+import com.kastech.blumen.model.SystemPreferences;
 import com.kastech.blumen.model.admin.BOTMgmtForm;
-import com.kastech.blumen.repository.admin.AnnualPerformanceRepository;
+import com.kastech.blumen.repository.admin.SystemPreferencesRepository;
 import com.kastech.blumen.repository.admin.ConfigSettingRepository;
 
 
@@ -23,13 +24,17 @@ public class BOTFormMgmtService {
 	ConfigSettingRepository configSettingRepository;
 	
 	@Autowired
-	AnnualPerformanceRepository annualPerformanceRepository;
+	SystemPreferencesRepository systemPreferencesRepository;
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(BOTFormMgmtService.class);
 
-	public AnnualPerformance saveSystemPreferenceData(AnnualPerformance annualPerformance) {
+	public SystemPreferences saveSystemPreferenceData(SystemPreferences systemPreferences) {
 		LOGGER.info("Inside BotFormMgmtService ");		
-		return annualPerformanceRepository.save(annualPerformance)	;	
+		return systemPreferencesRepository.save(systemPreferences)	;	
+	}
+	
+	public List<SystemPreferences> getAllSystemPreferences(){
+		return systemPreferencesRepository.findAll();
 	}
 
 	public List<BOTMgmtForm> getBOTMgmtFormList() {
