@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class ReportSettings {
 
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO, generator="report_setting_seq_gen")
+	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="report_setting_seq_gen")
     @SequenceGenerator(name="report_setting_seq_gen", sequenceName="report_SETTING_SEQ")
 	private Long id;
 	private String reportTitle;

@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class ActivityGroupList {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="activity_grp_list_seq_gen")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="activity_grp_list_seq_gen")
     @SequenceGenerator(name="activity_grp_list_seq_gen", sequenceName="ACTIVITY_GROUP_LIST_SEQ")
     private Long activityGroupId;
     private String activityGroupName;

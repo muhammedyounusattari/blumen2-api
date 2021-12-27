@@ -1,14 +1,14 @@
 package com.kastech.blumen.model.customize;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "custom_fields_nametype", schema = "blumen2")
 public class CustomFieldsNameType {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="custom_fields_nametype_list_seq_gen")
+    @SequenceGenerator(name="custom_fields_nametype_list_seq_gen", sequenceName="CUSTOM_FIELDS_NAMETYPE_LIST_SEQ")
     private Long customId;
     private String pullDownName;
 

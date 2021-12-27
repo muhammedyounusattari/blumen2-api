@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class TimeClockManager implements Serializable {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="time_clock_manager_seq_gen")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="time_clock_manager_seq_gen")
     @SequenceGenerator(name="time_clock_manager_seq_gen", sequenceName="TIME_CLOCK_MANAGER_SEQ")
     private Long id;
     private String staffName;

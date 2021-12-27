@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class CustomFieldValue {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO, generator="custom_field_value_list_seq_gen")
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="custom_field_value_list_seq_gen")
     @SequenceGenerator(name="custom_field_value_list_seq_gen", sequenceName="CUSTOM_FIELD_VALUE_LIST_SEQ")
     private Long id;
     private String customFieldName;

@@ -1,7 +1,14 @@
 package com.kastech.blumen.model.admin;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "counselor_contact" ,schema = "blumen2")
 public class CounselorContact {
 
+	@Id
+	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="counselor_contact_seq_gen")
+	@SequenceGenerator(name="counselor_contact_seq_gen", sequenceName="COUNSELOR_CONTACT_SEQ")
 	private Integer id;
 	private String firstName;
 	private String lastName;

@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class StudentBotFormSubmissLog {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO, generator="student_botform_submisslog_list_seq_gen")
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="student_botform_submisslog_list_seq_gen")
     @SequenceGenerator(name="student_botform_submisslog_list_seq_gen", sequenceName="STUDENT_BOTFORM_SUBLOG_LIST_SEQ")
     private Long submissionId;
     private String botFormName;

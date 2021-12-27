@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class StudentLabContact {
 
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO, generator="student_lab_contact_list_seq_gen")
+	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="student_lab_contact_list_seq_gen")
 	@SequenceGenerator(name="student_lab_contact_list_seq_gen", sequenceName="STUDENT_LAB_CONTACT_LIST_SEQ")
 	private Integer id;
 	private String firstName;

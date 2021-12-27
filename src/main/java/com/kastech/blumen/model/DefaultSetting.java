@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class DefaultSetting {
 
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO, generator="default_setting_seq_gen")
+	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="default_setting_seq_gen")
     @SequenceGenerator(name="default_setting_seq_gen", sequenceName="DEFAULT_SETTING_SEQ")
 	private Long id;
 	private String fiscalYear;

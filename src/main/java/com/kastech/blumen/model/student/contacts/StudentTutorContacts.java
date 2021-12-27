@@ -1,8 +1,15 @@
 package com.kastech.blumen.model.student.contacts;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "student_tutor_contacts", schema = "blumen2")
 public class StudentTutorContacts {
 
-    private String ssno;
+    @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="stu_teachher_contact_list_seq_gen")
+    @SequenceGenerator(name="stu_teacher_contact_list_seq_gen", sequenceName="STUDENT_TEACHER_CONTACT_LIST_SEQ")
+    private Long ssno;
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -20,7 +27,7 @@ public class StudentTutorContacts {
     public StudentTutorContacts() {
     }
 
-    public StudentTutorContacts(String ssno, String firstName, String lastName, String phoneNumber, String contactDate, String tutor, String contactTime, String recontactDate, boolean active, boolean served, boolean reported, String school, String standing, String fiscalYear) {
+    public StudentTutorContacts(Long ssno, String firstName, String lastName, String phoneNumber, String contactDate, String tutor, String contactTime, String recontactDate, boolean active, boolean served, boolean reported, String school, String standing, String fiscalYear) {
         this.ssno = ssno;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -37,11 +44,11 @@ public class StudentTutorContacts {
         this.fiscalYear = fiscalYear;
     }
 
-    public String getSsno() {
+    public Long getSsno() {
         return ssno;
     }
 
-    public void setSsno(String ssno) {
+    public void setSsno(Long ssno) {
         this.ssno = ssno;
     }
 

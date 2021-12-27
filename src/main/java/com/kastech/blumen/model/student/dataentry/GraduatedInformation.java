@@ -15,7 +15,7 @@ public class GraduatedInformation {
 
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO, generator="graduated_information_list_seq_gen")
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="graduated_information_list_seq_gen")
     @SequenceGenerator(name="graduated_information_list_seq_gen", sequenceName="GRADUATED_INFORMATION_LIST_SEQ")
     private Long ssno;
     private String firstName;

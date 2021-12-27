@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class LabSettingPreferences {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO, generator="labsetting_pref_list_seq_gen")
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="labsetting_pref_list_seq_gen")
     @SequenceGenerator(name="labsetting_pref_list_seq_gen", sequenceName="LAB_SETTING_PREF_LIST_SEQ")
     private Long id;
     private String lapSearchPriority;

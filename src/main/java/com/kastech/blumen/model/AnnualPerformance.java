@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class AnnualPerformance {
 
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO, generator="annual_performance_seq_gen")
+	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="annual_performance_seq_gen")
     @SequenceGenerator(name="annual_performance_seq_gen", sequenceName="ANNUAL_PERFORMANCE_SEQ")
 	private Long id;
 	private String projectDirector;

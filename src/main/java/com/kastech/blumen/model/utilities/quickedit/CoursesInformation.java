@@ -1,5 +1,10 @@
 package com.kastech.blumen.model.utilities.quickedit;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "courses_information", schema = "blumen2")
 public class CoursesInformation {
 
     private String ssnoCourse;

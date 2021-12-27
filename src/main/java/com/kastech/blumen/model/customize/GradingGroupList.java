@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class GradingGroupList {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="grading_grp_list_seq_gen")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="grading_grp_list_seq_gen")
     @SequenceGenerator(name="grading_grp_list_seq_gen", sequenceName="GRADING_GROUP_LIST_SEQ")
     private Long gradeGroupId;
     private String gradeGroupName;

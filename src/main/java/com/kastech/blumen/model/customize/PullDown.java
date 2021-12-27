@@ -8,7 +8,7 @@ import java.util.List;
 public class PullDown {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO, generator="pulldown_seq_gen")
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="pulldown_seq_gen")
     @SequenceGenerator(name="pulldown_seq_gen", sequenceName="PULLDOWN_SEQ")
     private Long id;
     private String name;

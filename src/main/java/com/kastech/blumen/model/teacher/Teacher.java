@@ -16,7 +16,7 @@ import com.kastech.blumen.model.Address;
 public class Teacher {
 
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO, generator="teacher_seq_gen")
+	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="teacher_seq_gen")
     @SequenceGenerator(name="teacher_seq_gen", sequenceName="TEACHER_SEQ")
 	private Long id;
     private String staffName;

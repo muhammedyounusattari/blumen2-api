@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class CounselorClasses {
 
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO, generator="counselor_classes_seq_gen")
+	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="counselor_classes_seq_gen")
     @SequenceGenerator(name="counselor_classes_seq_gen", sequenceName="COUNSELOR_CLASSES_SEQ")
 	private Long id;
 	private String currentYear;

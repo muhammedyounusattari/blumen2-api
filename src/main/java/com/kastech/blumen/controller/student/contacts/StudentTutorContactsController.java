@@ -32,7 +32,7 @@ public class StudentTutorContactsController {
     @Autowired
     StudentTutorContactsValidator studentTutorContactsValidator;
 
-    Map<String, StudentTutorContacts> studentTutorContactsMap = new HashMap<String, StudentTutorContacts>();
+    Map<Long, StudentTutorContacts> studentTutorContactsMap = new HashMap<Long, StudentTutorContacts>();
 
     @Autowired
     private StudentRepository studentRepository;

@@ -91,4 +91,14 @@ public class CustomFieldValueController {
         customFieldValueRepository.delete(customFieldValue);
         return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
     }
+
+    @ResponseBody
+    @GetMapping(path = "/getCustomFieldValueList/v1",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public List<CustomFieldValue> getCustomFieldValuesList() {
+        List<CustomFieldValue> list = new ArrayList<>();
+        Iterable<CustomFieldValue> items = customFieldValueRepository.findAll();
+        items.forEach(list::add);
+        return list;
+    }
 }

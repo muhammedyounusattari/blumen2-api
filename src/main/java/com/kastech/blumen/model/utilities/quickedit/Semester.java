@@ -1,5 +1,10 @@
 package com.kastech.blumen.model.utilities.quickedit;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "semester", schema = "blumen2")
 public class Semester {
 
     private String semesterCurrentYear;

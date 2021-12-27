@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class AttendanceLog {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO, generator="attendance_log_list_seq_gen")
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="attendance_log_list_seq_gen")
     @SequenceGenerator(name="attendance_log_list_seq_gen", sequenceName="ATTENDANCE_LOG_LIST_SEQ")
     private Long id;
     private String attendanceDate;

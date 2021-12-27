@@ -10,7 +10,7 @@ public class StudentAttendanceLog {
 
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO, generator="student_attendance_log_seq_gen")
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="student_attendance_log_seq_gen")
     @SequenceGenerator(name="student_attendance_log_seq_gen", sequenceName="STUDENT_ATTENDANCE_LOG_SEQ")
     private Long ssno;
     private String firstName;

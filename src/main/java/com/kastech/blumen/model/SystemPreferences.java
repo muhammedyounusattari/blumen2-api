@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class SystemPreferences {
 
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO, generator="system_preferences_seq_gen")
+	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="system_preferences_seq_gen")
     @SequenceGenerator(name="system_preferences_seq_gen", sequenceName="SYSTEM_PREFERENCES_SEQ")
 	private Long id;
 	@OneToOne(cascade = CascadeType.ALL)

@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class AddressNotes {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO, generator="address_notes_list_seq_gen")
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="address_notes_list_seq_gen")
     @SequenceGenerator(name="address_notes_list_seq_gen", sequenceName="ADDRESS_NOTES_LIST_SEQ")
     private Long id;
     private String address;

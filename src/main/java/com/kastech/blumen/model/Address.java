@@ -13,7 +13,7 @@ public class Address {
 
 
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO, generator="address_seq_gen")
+	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="address_seq_gen")
     @SequenceGenerator(name="address_seq_gen", sequenceName="ADDRESS_SEQ")
 	private Long id;
     private String staffName;
