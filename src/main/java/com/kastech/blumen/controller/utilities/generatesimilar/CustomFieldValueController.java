@@ -23,7 +23,7 @@ import java.util.List;
 public class CustomFieldValueController {
 
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AttendanceLogController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CustomFieldValueController.class);
 
     @Autowired
     CustomFieldValueRepository customFieldValueRepository;
@@ -61,7 +61,7 @@ public class CustomFieldValueController {
     @ResponseBody
     @GetMapping(path = "/getOkToContinueCustomFieldValueList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public List<CustomFieldValue> getAttendanceLogList() {
+    public List<CustomFieldValue> getOkToContinueCustomFieldValueList() {
         List<CustomFieldValue> list = new ArrayList<>();
         Iterable<CustomFieldValue> items = customFieldValueRepository.findAll();
         items.forEach(list::add);

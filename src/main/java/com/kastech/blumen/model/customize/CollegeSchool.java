@@ -29,10 +29,13 @@ public class CollegeSchool {
     private String email;
     private String notes;
 
+    private String fafsaId;
+    private String fiscalYear;
+
     public CollegeSchool() {
     }
 
-    public CollegeSchool(String orgName, String orgType, String name, String codes, String title, String country, String ncesId, String address, String city, String states, String zipcode, String phone1, String phone2, String phone3, String website, String fax, String email, String notes) {
+    public CollegeSchool(String orgName, String orgType, String name, String codes, String title, String country, String ncesId, String address, String city, String states, String zipcode, String phone1, String phone2, String phone3, String website, String fax, String email, String notes, String fafsaId, String fiscalYear) {
         this.orgName = orgName;
         this.orgType = orgType;
         this.name = name;
@@ -51,6 +54,8 @@ public class CollegeSchool {
         this.fax = fax;
         this.email = email;
         this.notes = notes;
+        this.fafsaId = fafsaId;
+        this.fiscalYear = fiscalYear;
     }
 
     public String getOrgName() {
@@ -197,28 +202,20 @@ public class CollegeSchool {
         this.notes = notes;
     }
 
-    @Override
-    public String toString() {
-        return "CollegeSchool{" +
-                "orgName='" + orgName + '\'' +
-                ", orgType='" + orgType + '\'' +
-                ", name='" + name + '\'' +
-                ", codes='" + codes + '\'' +
-                ", title='" + title + '\'' +
-                ", country='" + country + '\'' +
-                ", ncesId='" + ncesId + '\'' +
-                ", address='" + address + '\'' +
-                ", city='" + city + '\'' +
-                ", states='" + states + '\'' +
-                ", zipcode='" + zipcode + '\'' +
-                ", phone1='" + phone1 + '\'' +
-                ", phone2='" + phone2 + '\'' +
-                ", phone3='" + phone3 + '\'' +
-                ", website='" + website + '\'' +
-                ", fax='" + fax + '\'' +
-                ", email='" + email + '\'' +
-                ", notes='" + notes + '\'' +
-                '}';
+    public String getFafsaId() {
+        return fafsaId;
+    }
+
+    public void setFafsaId(String fafsaId) {
+        this.fafsaId = fafsaId;
+    }
+
+    public String getFiscalYear() {
+        return fiscalYear;
+    }
+
+    public void setFiscalYear(String fiscalYear) {
+        this.fiscalYear = fiscalYear;
     }
 
     public CollegeSchool updateWith(CollegeSchool item) {
@@ -240,7 +237,9 @@ public class CollegeSchool {
                 item.website,
                 item.fax,
                 item.email,
-                item.notes
+                item.notes,
+                item.ncesId,
+                item.fiscalYear
         );
     }
 }
