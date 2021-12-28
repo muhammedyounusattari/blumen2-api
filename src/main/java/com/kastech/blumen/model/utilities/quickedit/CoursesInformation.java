@@ -1,5 +1,8 @@
 package com.kastech.blumen.model.utilities.quickedit;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 public class CoursesInformation {
 
     private String ssnoCourse;

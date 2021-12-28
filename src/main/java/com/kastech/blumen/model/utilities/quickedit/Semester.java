@@ -1,5 +1,9 @@
 package com.kastech.blumen.model.utilities.quickedit;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 public class Semester {
 
     private String semesterCurrentYear;
@@ -102,7 +106,7 @@ public class Semester {
     @Override
     public String toString() {
         return "Semester{" +
-                "semesterCurrentYear='" + semesterCurrentYear + '\'' +
+                ", semesterCurrentYear='" + semesterCurrentYear + '\'' +
                 ", semesterFiscalYear='" + semesterFiscalYear + '\'' +
                 ", semester='" + semester + '\'' +
                 ", active='" + active + '\'' +

@@ -1,5 +1,6 @@
 package com.kastech.blumen.controller.admin.systemtools;
 
+import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.admin.systemtools.TimeClockManager;
 import com.kastech.blumen.repository.admin.systemtools.TimeClockManagerRepository;
 import com.kastech.blumen.service.admin.systemtools.TimeClockManagerServiceV1;
@@ -90,6 +91,6 @@ public class TimeClockManagerController {
       //  TimeClockManager timeClockManager = timeClockManagerServiceV1.doService(reqBody);
         timeClockManagerRepository.delete(timeClockManager);
        // return ResponseEntity.noContent().build();
-        return ResponseEntity.status(HttpStatus.OK).body("Success");
+        return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
     }
 }
