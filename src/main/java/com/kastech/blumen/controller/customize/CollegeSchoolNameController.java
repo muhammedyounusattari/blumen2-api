@@ -55,9 +55,9 @@ public class CollegeSchoolNameController {
         CollegeSchool collegeSchoolObj = collegeSchool;
         String fafsaId = collegeSchoolObj.getFafsaId();
         String ncesId = collegeSchoolObj.getNcesId();
-        if(null!=fafsaId && !fafsaId.isEmpty()){
+        if (null != fafsaId && !fafsaId.isEmpty()) {
             collegeSchoolObj.setNcesId(null);
-        }else{
+        } else if (null != ncesId && !ncesId.isEmpty()) {
             collegeSchoolObj.setFafsaId(null);
         }
         return collegeSchoolRepository.save(collegeSchoolObj);
@@ -68,7 +68,7 @@ public class CollegeSchoolNameController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public Optional<CollegeSchool> editCollegeSchoolNameList(@RequestBody CollegeSchool collegeSchool) {
-     //   CollegeSchool collegeSchool = collegeSchoolServiceV1.doService(reqBody);
+        //   CollegeSchool collegeSchool = collegeSchoolServiceV1.doService(reqBody);
 
         return collegeSchoolRepository.findById(collegeSchool.getOrgName())
                 .map(oldItem -> {
@@ -83,7 +83,7 @@ public class CollegeSchoolNameController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> filterPullDownList(@RequestBody CollegeSchool collegeSchool) {
-      //  CollegeSchool pullDown = collegeSchoolServiceV1.doService(reqBody);
+        //  CollegeSchool pullDown = collegeSchoolServiceV1.doService(reqBody);
         return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
     }
 
@@ -94,7 +94,7 @@ public class CollegeSchoolNameController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> deleteCollegeSchoolNameList(@RequestBody CollegeSchool collegeSchool) {
 
-      //  CollegeSchool collegeSchool = collegeSchoolServiceV1.doService(reqBody);
+        //  CollegeSchool collegeSchool = collegeSchoolServiceV1.doService(reqBody);
         collegeSchoolRepository.delete(collegeSchool);
         return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
     }
@@ -102,13 +102,13 @@ public class CollegeSchoolNameController {
 
     @ResponseBody
     @GetMapping(path = "/collegeSchoolName/search/v1/{name}/{value}",
-            produces ={MediaType.APPLICATION_JSON_VALUE})
+            produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<CollegeSchool>> searchCollegeSchoolNameList(@PathVariable Map<String, String> pathVars, @RequestBody String reqBody) {
-        RequestDataVO requestDataVO = collegeShoolValidator.validate(RequestAPIType.PULL_DOWN_LIST_V1, reqBody,pathVars);
+        RequestDataVO requestDataVO = collegeShoolValidator.validate(RequestAPIType.PULL_DOWN_LIST_V1, reqBody, pathVars);
         String name = requestDataVO.getInputPathVars().get("name");
         String value = requestDataVO.getInputPathVars().get("value");
         List<CollegeSchool> list = new ArrayList<>();
-        if(null!=schoolCollegeMap.get(value)){
+        if (null != schoolCollegeMap.get(value)) {
             list.add(schoolCollegeMap.get(value));
             CollegeSchool pullDown = collegeSchoolServiceV1.doService(requestDataVO.getInputReqBodyString());
         }

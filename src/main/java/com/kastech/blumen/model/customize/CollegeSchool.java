@@ -238,7 +238,7 @@ public class CollegeSchool {
                 item.fax,
                 item.email,
                 item.notes,
-                item.ncesId,
+                item.fafsaId,
                 item.fiscalYear
         );
     }
