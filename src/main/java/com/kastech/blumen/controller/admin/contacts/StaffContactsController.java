@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -87,7 +88,7 @@ public class StaffContactsController {
 	}
 
 	@ResponseBody
-	@PostMapping(path = "/deleteStaffContact/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+	@DeleteMapping(path = "/deleteStaffContact/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<String> postSystemPreferenceData(@RequestParam("CouncellorContactId") String CouncellorContactId) {
 		LOGGER.info("Inside postSystemPreferenceData");
 		return ResponseEntity.ok(staffContactService.deleteStaffContact(CouncellorContactId));

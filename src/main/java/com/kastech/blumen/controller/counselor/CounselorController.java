@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -70,7 +71,7 @@ public class CounselorController {
 	}
 
 	@ResponseBody
-	@PutMapping(path = "/deleteCounselorList/v1", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
+	@DeleteMapping(path = "/deleteCounselorList/v1", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<String> deleteCounselorList(@RequestBody Long id) {
 		counselorServiceV1.deleteById(id);

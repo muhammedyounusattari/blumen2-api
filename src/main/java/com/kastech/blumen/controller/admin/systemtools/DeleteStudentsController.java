@@ -45,7 +45,7 @@ public class DeleteStudentsController {
     }
 
     @ResponseBody
-    @PostMapping(path = "/deleteStudentContinue/v1",
+    @DeleteMapping(path = "/deleteStudentContinue/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> submitDeleteStudentContinue(@RequestBody Long studentId) {

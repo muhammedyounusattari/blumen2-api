@@ -125,7 +125,7 @@ public class SemesterController {
     }
 
     @ResponseBody
-    @GetMapping(path = "/deleteSemesterCourses/v1",
+    @DeleteMapping(path = "/deleteSemesterCourses/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<CoursesInformation>> deleteSemesterCourses(@RequestParam("course-number") String courseNumber) {
         courseInformationData();

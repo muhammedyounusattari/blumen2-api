@@ -92,7 +92,7 @@ public class StudentAttendanceLogController {
 
 
     @ResponseBody
-    @PutMapping(path = "/deleteStudentAttendanceLogList/v1",
+    @DeleteMapping(path = "/deleteStudentAttendanceLogList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentAttendanceLog>> deleteStudentAttendanceLogList(@RequestBody StudentAttendanceLog studentAttendanceLog) {

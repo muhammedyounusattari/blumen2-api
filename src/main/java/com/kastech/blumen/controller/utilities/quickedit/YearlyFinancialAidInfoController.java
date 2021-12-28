@@ -80,7 +80,7 @@ public class YearlyFinancialAidInfoController {
     }
 
     @ResponseBody
-    @GetMapping(path = "/deleteYearlyFinancialAidInfo/v1",
+    @DeleteMapping(path = "/deleteYearlyFinancialAidInfo/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<Student>> deleteYearlyFinancialAidInfo(@RequestBody StudentProfile studentProfile) {
 

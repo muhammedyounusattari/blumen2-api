@@ -86,7 +86,7 @@ public class StudentTutorContactsController {
 
 
     @ResponseBody
-    @PutMapping(path = "/deleteStudentTutorContactsList/v1",
+    @DeleteMapping(path = "/deleteStudentTutorContactsList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentTutorContacts>> deleteStudentTutorContactsList(@RequestBody StudentTutorContacts studentTutorContacts) {
