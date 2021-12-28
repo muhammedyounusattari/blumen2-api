@@ -51,8 +51,16 @@ public class CollegeSchoolNameController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public CollegeSchool addToCollegeSchoolNameList(@RequestBody CollegeSchool collegeSchool) {
-      //  CollegeSchool collegeSchool = collegeSchoolServiceV1.doService(reqBody);
-        return collegeSchoolRepository.save(collegeSchool);
+        //  CollegeSchool collegeSchool = collegeSchoolServiceV1.doService(reqBody);
+        CollegeSchool collegeSchoolObj = collegeSchool;
+        String fafsaId = collegeSchoolObj.getFafsaId();
+        String ncesId = collegeSchoolObj.getNcesId();
+        if(null!=fafsaId && !fafsaId.isEmpty()){
+            collegeSchoolObj.setNcesId(null);
+        }else{
+            collegeSchoolObj.setFafsaId(null);
+        }
+        return collegeSchoolRepository.save(collegeSchoolObj);
     }
 
     @ResponseBody
