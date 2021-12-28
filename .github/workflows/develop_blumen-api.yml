@@ -49,5 +49,5 @@ jobs:
         with:
           app-name: 'blumen-api'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_997CA127323B496ABBBA5A07FBAB3EF1 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E27AA79163364C53ADA524E2EC1EB7D7 }}
           package: '*.jar'
