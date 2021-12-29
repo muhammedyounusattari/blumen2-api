@@ -9,6 +9,7 @@ import com.kastech.blumen.validator.staff.StaffValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +39,7 @@ public class StaffController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<Staff>> getStaffList() {
 
-        return ResponseEntity.ok(staffRepository.findAll());
+        return ResponseEntity.ok(staffRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
     }
 
     @ResponseBody

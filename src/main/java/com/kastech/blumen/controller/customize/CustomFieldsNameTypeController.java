@@ -8,6 +8,7 @@ import com.kastech.blumen.validator.customize.CustomFieldsNameTypeValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +40,7 @@ public class CustomFieldsNameTypeController {
     public List<CustomFieldsNameType> getCustomFieldsNameType() {
 
         List<CustomFieldsNameType> list = new ArrayList<>();
-        Iterable<CustomFieldsNameType> items = customFieldsNameTypeRepository.findAll();
+        Iterable<CustomFieldsNameType> items = customFieldsNameTypeRepository.findAll(Sort.by(Sort.Direction.ASC, "customId"));
         items.forEach(list::add);
         return list;
     }

@@ -8,6 +8,7 @@ import com.kastech.blumen.validator.customize.ActivityListValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +41,7 @@ public class ActivityListController {
     public List<ActivityList> getActivityList() {
 
         List<ActivityList> list = new ArrayList<>();
-        Iterable<ActivityList> items = activityListRepository.findAll();
+        Iterable<ActivityList> items = activityListRepository.findAll(Sort.by(Sort.Direction.ASC, "activityId"));
         items.forEach(list::add);
         return list;
     }

@@ -8,6 +8,7 @@ import com.kastech.blumen.validator.customize.GradingGroupListValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +40,7 @@ public class GradingGroupListController {
     public List<GradingGroupList> getGradingGroupList() {
 
         List<GradingGroupList> list = new ArrayList<>();
-        Iterable<GradingGroupList> items = gradingGroupListRepository.findAll();
+        Iterable<GradingGroupList> items = gradingGroupListRepository.findAll(Sort.by(Sort.Direction.ASC, "gradeGroupId"));
         items.forEach(list::add);
         return list;
     }
