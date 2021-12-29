@@ -47,17 +47,30 @@ public class CollegeSchoolNameController {
     }
 
     @ResponseBody
-    @PostMapping(path = "/collegeSchoolNameList/v1",
+    @PostMapping(path = "/addCollegeNameList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public CollegeSchool addToCollegeSchoolNameList(@RequestBody CollegeSchool collegeSchool) {
+    public CollegeSchool addToCollegeNameList(@RequestBody CollegeSchool collegeSchool) {
         //  CollegeSchool collegeSchool = collegeSchoolServiceV1.doService(reqBody);
         CollegeSchool collegeSchoolObj = collegeSchool;
         String fafsaId = collegeSchoolObj.getFafsaId();
         String ncesId = collegeSchoolObj.getNcesId();
         if (null != fafsaId && !fafsaId.isEmpty()) {
             collegeSchoolObj.setNcesId(null);
-        } else if (null != ncesId && !ncesId.isEmpty()) {
+        }
+        return collegeSchoolRepository.save(collegeSchoolObj);
+    }
+
+    @ResponseBody
+    @PostMapping(path = "/addSchoolNameList/v1",
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public CollegeSchool addToSchoolNameList(@RequestBody CollegeSchool collegeSchool) {
+        //  CollegeSchool collegeSchool = collegeSchoolServiceV1.doService(reqBody);
+        CollegeSchool collegeSchoolObj = collegeSchool;
+        String fafsaId = collegeSchoolObj.getFafsaId();
+        String ncesId = collegeSchoolObj.getNcesId();
+         if (null != ncesId && !ncesId.isEmpty()) {
             collegeSchoolObj.setFafsaId(null);
         }
         return collegeSchoolRepository.save(collegeSchoolObj);
