@@ -8,6 +8,7 @@ import com.kastech.blumen.validator.admin.systemtools.TimeClockManagerValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -41,7 +42,7 @@ public class TimeClockManagerController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<TimeClockManager> getTimeClockManagerList() {
         List<TimeClockManager> list = new ArrayList<>();
-        Iterable<TimeClockManager> items = timeClockManagerRepository.findAll();
+        Iterable<TimeClockManager> items = timeClockManagerRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
         items.forEach(list::add);
         return list;
     }

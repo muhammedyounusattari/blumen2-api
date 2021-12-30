@@ -11,6 +11,8 @@ public class TeacherContact {
 	private String contactTime;
 	private String reContactDate;
 
+	public TeacherContact() {}
+	
 	public TeacherContact(Integer id, String firstName, String lastName, String phone, String contactDate,
                                    String counselor, String contactTime, String reContactDate) {
 		super();

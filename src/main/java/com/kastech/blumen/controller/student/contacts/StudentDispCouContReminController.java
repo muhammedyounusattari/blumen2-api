@@ -10,6 +10,7 @@ import com.kastech.blumen.validator.student.contacts.StudentDispCouContReminVali
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +41,7 @@ public class StudentDispCouContReminController {
     @GetMapping(path = "/getStudentDispCouContRemin/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
     public List<Student> getStudentDispCouContRemin() {
         List<Student> list = new ArrayList<>();
-        Iterable<Student> items = studentRepository.findAll();
+        Iterable<Student> items = studentRepository.findAll(Sort.by(Sort.Direction.ASC, "ssno"));
         items.forEach(list::add);
         return list;
     }
@@ -49,7 +50,7 @@ public class StudentDispCouContReminController {
     @GetMapping(path = "/getStudentDispCouContReminList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentDispCouContRemin>> getStudentDispCouContReminList() {
-        return ResponseEntity.ok(studentDispCouContReminRepository.findAll());
+        return ResponseEntity.ok(studentDispCouContReminRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
     }
 
     @ResponseBody
@@ -83,7 +84,7 @@ public class StudentDispCouContReminController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentDispCouContRemin>> filterStudentDispCouContReminList(@RequestBody String reqBody) {
         StudentDispCouContRemin studentDispCouContRemin = studentDispCouContReminServiceV1.doService(reqBody);
-        return ResponseEntity.ok(studentDispCouContReminRepository.findAll());
+        return ResponseEntity.ok(studentDispCouContReminRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
     }
 
 
@@ -103,7 +104,7 @@ public class StudentDispCouContReminController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentDispCouContRemin>> getStudentDispCouContReminByFiscalyear(@RequestBody String reqBody) {
 
-        return ResponseEntity.ok(studentDispCouContReminRepository.findAll());
+        return ResponseEntity.ok(studentDispCouContReminRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
     }
 
     @ResponseBody
@@ -113,7 +114,7 @@ public class StudentDispCouContReminController {
     public ResponseEntity<Collection<StudentDispCouContRemin>> getStudentDispCouContReminByActive(@RequestBody String reqBody) {
 
         StudentDispCouContRemin studentDispCouContRemin = studentDispCouContReminServiceV1.doService(reqBody);
-        return ResponseEntity.ok(studentDispCouContReminRepository.findAll());
+        return ResponseEntity.ok(studentDispCouContReminRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
     }
 
 
@@ -124,7 +125,7 @@ public class StudentDispCouContReminController {
     public ResponseEntity<Collection<StudentDispCouContRemin>> getStudentDispCouContReminByServed(@RequestBody String reqBody) {
 
         StudentDispCouContRemin studentDispCouContRemin = studentDispCouContReminServiceV1.doService(reqBody);
-        return ResponseEntity.ok(studentDispCouContReminRepository.findAll());
+        return ResponseEntity.ok(studentDispCouContReminRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
     }
 
     @ResponseBody
@@ -134,6 +135,6 @@ public class StudentDispCouContReminController {
     public ResponseEntity<Collection<StudentDispCouContRemin>> getStudentDispCouContReminByReported(@RequestBody String reqBody) {
 
         StudentDispCouContRemin studentDispCouContRemin = studentDispCouContReminServiceV1.doService(reqBody);
-        return ResponseEntity.ok(studentDispCouContReminRepository.findAll());
+        return ResponseEntity.ok(studentDispCouContReminRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
     }
 }

@@ -10,6 +10,7 @@ import com.kastech.blumen.validator.admin.systemtools.DeleteStudentsValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -41,7 +42,7 @@ public class DeleteStudentsController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<Student>> getDeleteStudentList() {
        // addStudentProfile();
-        return ResponseEntity.ok(deleteStudentsRepository.findAll());
+        return ResponseEntity.ok(deleteStudentsRepository.findAll(Sort.by(Sort.Direction.ASC, "ssno")));
     }
 
     @ResponseBody

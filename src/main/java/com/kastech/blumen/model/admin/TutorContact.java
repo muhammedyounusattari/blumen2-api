@@ -17,6 +17,8 @@ public class TutorContact {
 	private String counselor;
 	private String contactTime;
 	private String reContactDate;
+	
+	public TutorContact() {}	
 
 	public TutorContact(Long id, String firstName, String lastName, String phone, String contactDate,
                                    String counselor, String contactTime, String reContactDate) {

@@ -51,6 +51,13 @@ public class BOTFormMgmtController {
 	}
 	
 	@ResponseBody
+	@PostMapping(path = "/postConfigSettingList/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<ConfigSettings> postConfigSettingList(@RequestBody ConfigSettings configSettings) {
+	   LOGGER.info("Inside getConfigSettingList");
+	   return ResponseEntity.ok(bOTFormMgmtService.saveConfigSettings(configSettings));
+	}
+	
+	@ResponseBody
 	@GetMapping(path = "/getSystemPreferenceData/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<Collection<SystemPreferences>> getSystemPreferenceData() {
 		LOGGER.info("Inside getBOTMgmtFormList");

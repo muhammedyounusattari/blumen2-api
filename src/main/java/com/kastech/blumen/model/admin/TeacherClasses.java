@@ -1,11 +1,18 @@
 package com.kastech.blumen.model.admin;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.kastech.blumen.model.student.Student;
 
 @Entity
 @Table(name = "teacher_classes" ,schema = "blumen2")
@@ -28,9 +35,8 @@ public class TeacherClasses {
 	private String maxLimit;
 	private String notes;
 	
-	//this will be enabled with @OneToMany mapping
-	//@OneToMany
-	//List<Student> studentList;
+	@OneToMany(cascade = CascadeType.ALL)
+	List<Student> studentList;
 
 	public TeacherClasses(){
 		super();
@@ -156,6 +162,15 @@ public class TeacherClasses {
 
 	public void setNotes(String notes) {
 		this.notes = notes;
+	}
+	
+//	@OneToMany(targetEntity = Student.class, mappedBy = "", 
+//		    cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	public List<Student> getStudentList() {
+		return studentList;
+	}
+	public void setStudentList(List<Student> studentList) {
+		this.studentList = studentList;
 	}
 	
 }

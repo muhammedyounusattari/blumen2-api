@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import com.kastech.blumen.model.counselor.Counselor;
@@ -23,7 +24,7 @@ public class CounselorServiceV1 {
 	}
 
 	public List<Counselor> findAll() {
-		return counselorRepository.findAll();
+		return counselorRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
 	}
 
 	public Counselor save(Counselor counselor) {

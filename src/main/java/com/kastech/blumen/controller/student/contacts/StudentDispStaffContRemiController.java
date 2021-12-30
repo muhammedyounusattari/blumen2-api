@@ -10,6 +10,7 @@ import com.kastech.blumen.validator.student.contacts.StudentDispStaffContRemiVal
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -42,7 +43,7 @@ public class StudentDispStaffContRemiController {
     @GetMapping(path = "/getStudentDispStaffContRemi/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
     public List<Student> getStudentDispStaffContRemi() {
         List<Student> list = new ArrayList<>();
-        Iterable<Student> items = studentRepository.findAll();
+        Iterable<Student> items = studentRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
         items.forEach(list::add);
         return list;
     }
@@ -53,7 +54,7 @@ public class StudentDispStaffContRemiController {
     public List<StudentDispStaffContReminder> getStudentDispStaffContReminderList() {
 
         List<StudentDispStaffContReminder> list = new ArrayList<>();
-        Iterable<StudentDispStaffContReminder> items = studentDispStaffContRemiRepository.findAll();
+        Iterable<StudentDispStaffContReminder> items = studentDispStaffContRemiRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
         items.forEach(list::add);
         return list;
     }

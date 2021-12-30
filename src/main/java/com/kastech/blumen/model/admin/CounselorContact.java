@@ -18,6 +18,8 @@ public class CounselorContact {
 	private String contactTime;
 	private String reContactDate;
 
+	public CounselorContact() {}
+	
 	public CounselorContact(Integer id, String firstName, String lastName, String phone, String contactDate,
                                    String counselor, String contactTime, String reContactDate) {
 		super();

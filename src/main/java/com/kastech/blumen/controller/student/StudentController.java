@@ -6,6 +6,7 @@ import com.kastech.blumen.repository.student.StudentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,7 @@ public class StudentController {
     @GetMapping(path = "/getStudents/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
     public List<Student> getStudents() {
         List<Student> list = new ArrayList<>();
-        Iterable<Student> items = studentRepository.findAll();
+        Iterable<Student> items = studentRepository.findAll(Sort.by(Sort.Direction.ASC, "ssno"));
         items.forEach(list::add);
         return list;
     }

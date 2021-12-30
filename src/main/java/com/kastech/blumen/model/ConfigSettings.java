@@ -1,7 +1,10 @@
 package com.kastech.blumen.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -9,6 +12,8 @@ import javax.persistence.Table;
 public class ConfigSettings {
 
 	@Id
+	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="config_setting_seq_gen")
+    @SequenceGenerator(name="config_setting_seq_gen", sequenceName="CONFIG_SETTING_SEQ")
 	private Long id;
 	private String configType;
 	private String configValue; 

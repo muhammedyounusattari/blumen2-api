@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.kastech.blumen.model.student.Student;
@@ -30,7 +31,7 @@ public class NationalStuClearinghouseDataInterfaceServiceV1 {
     }
     
     public List<Student> getAllStudent(){
-    	return nationalStuClearinghouseDataInterfaceRepository.findAll();
+    	return nationalStuClearinghouseDataInterfaceRepository.findAll(Sort.by(Sort.Direction.ASC, "ssno"));
     }
     
 }

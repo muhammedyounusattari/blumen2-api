@@ -7,6 +7,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import com.kastech.blumen.model.AnnualPerformance;
@@ -34,7 +35,7 @@ public class BOTFormMgmtService {
 	}
 	
 	public List<SystemPreferences> getAllSystemPreferences(){
-		return systemPreferencesRepository.findAll();
+		return systemPreferencesRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
 	}
 
 	public List<BOTMgmtForm> getBOTMgmtFormList() {
@@ -47,7 +48,11 @@ public class BOTFormMgmtService {
 	}
 
 	public List<ConfigSettings>  getConfigSettingList() {
-		return configSettingRepository.findAll();
+		return configSettingRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
+	}
+
+	public ConfigSettings saveConfigSettings(ConfigSettings configSettings) {
+		return configSettingRepository.save(configSettings);
 	}
 	
 	

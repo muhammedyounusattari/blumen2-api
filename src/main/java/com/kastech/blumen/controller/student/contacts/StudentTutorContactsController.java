@@ -10,6 +10,7 @@ import com.kastech.blumen.validator.student.contacts.StudentTutorContactsValidat
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -41,7 +42,7 @@ public class StudentTutorContactsController {
     @GetMapping(path = "/getStudentTutorContacts/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
     public List<Student> getStudentTutorContacts() {
         List<Student> list = new ArrayList<>();
-        Iterable<Student> items = studentRepository.findAll();
+        Iterable<Student> items = studentRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
         items.forEach(list::add);
         return list;
     }

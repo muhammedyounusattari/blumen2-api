@@ -3,6 +3,7 @@ package com.kastech.blumen.service.admin.classes;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.kastech.blumen.model.admin.CounselorClasses;
@@ -15,30 +16,30 @@ public class CounselorClassesService {
 	CounselorClassRepository counselorClassRepository;
 	
 	public List<CounselorClasses> getCounselorClassesList() {
-		return counselorClassRepository.findAll();
+		return counselorClassRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
 	}
 
 	public List<CounselorClasses> getCounselorClassesByNormalFilter(String fiscalYear, String active, String served,
 			String reported, String counselor, String status, String ethnicity, String standing, String school,
 			String eligibility, String gender) {
-		return counselorClassRepository.findAll();
+		return counselorClassRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
 	}
 
 	public List<CounselorClasses> getCounselorClassesByAdvanceFilter(String contactDateFrom, String contactDateTo,
 			String reContactedDateFrom, String reContactedDateTo, String councellorContact, String contactType,
 			String reContacted) {
-		return counselorClassRepository.findAll();
+		return counselorClassRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
 	}
 
 	public List<CounselorClasses> getCounselorClassesByMoreFilter(String collegeReady, String advisor, String codes,
 			String tutor, String entryDateFrom, String entrySchool, String collegeType, String collegeName,
 			String entryDateTo, String gpaEntry, String gpaStart, String gpaEnd) {
-		return counselorClassRepository.findAll();
+		return counselorClassRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
 	}
 
 	public List<CounselorClasses> getCounselorClassesByMoreAdvanceFilter(String zipCode, String major,
 			String siteLocation, String incomeSource, String entryCollege, String cohortYear) {
-		return counselorClassRepository.findAll();
+		return counselorClassRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
 	}
 
 }

@@ -9,6 +9,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,7 +28,7 @@ public class StudentWalletLogServiceV1 {
     }
     
     public List<StudentWalletLog> getAllStudentWalletLog(){
-    	return studentWalletLogRepository.findAll();
+    	return studentWalletLogRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
 
 	public void save(StudentWalletLog studentWalletLog) {

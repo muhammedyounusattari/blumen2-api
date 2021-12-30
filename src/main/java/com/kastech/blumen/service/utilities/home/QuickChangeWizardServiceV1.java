@@ -11,6 +11,7 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,7 +31,7 @@ public class QuickChangeWizardServiceV1 {
     }
     
     public List<Student> getAllStudent(){
-    	return quickChangeWizardRepository.findAll();
+    	return quickChangeWizardRepository.findAll(Sort.by(Sort.Direction.ASC, "ssno"));
     }
     
     public void changeFiscalYear(Long studentId, String changeTo) {

@@ -9,6 +9,7 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -50,7 +51,7 @@ public class TutorController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<Tutor>> getTutorList() {
 
-    	List<Tutor> tutorList=  tutorRepository.findAll();
+    	List<Tutor> tutorList=  tutorRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     	
         return ResponseEntity.ok(tutorList);
     }
@@ -83,9 +84,9 @@ public class TutorController {
     @PutMapping(path = "/filter/tutorlist/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> filterTutorList(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<Tutor>> filterTutorList(@RequestBody String reqBody) {
         Tutor tutor = tutorServiceV1.doService(reqBody);
-        return ResponseEntity.status(HttpStatus.OK).body(tutorRepository.findAll().toString());
+        return ResponseEntity.status(HttpStatus.OK).body(tutorRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
     }
 
 
@@ -93,7 +94,7 @@ public class TutorController {
     @DeleteMapping(path = "/deleteTutorList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<Tutor>> deleteTutorList(@RequestBody Tutor tutor) {
+    public ResponseEntity<String> deleteTutorList(@RequestBody Tutor tutor) {
 
         Optional<Tutor> tutorDb = tutorRepository.findById(tutor.getId());
     	

@@ -10,6 +10,7 @@ import com.kastech.blumen.validator.student.logs.StudentExamsLogValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -42,7 +43,7 @@ public class StudentExamsLogController {
     @GetMapping(path = "/getStudentDataExamsLog/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
     public List<Student> getStudentDataExamsLog() {
         List<Student> list = new ArrayList<>();
-        Iterable<Student> items = studentRepository.findAll();
+        Iterable<Student> items = studentRepository.findAll(Sort.by(Sort.Direction.ASC, "ssno"));
         items.forEach(list::add);
         return list;
     }
@@ -53,7 +54,7 @@ public class StudentExamsLogController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentExamsLog>> getStudentExamsLogList() {
 
-        return ResponseEntity.ok(studentExamsLogRepository.findAll());
+        return ResponseEntity.ok(studentExamsLogRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
     }
 
     @ResponseBody
@@ -80,7 +81,7 @@ public class StudentExamsLogController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentExamsLog>> filterStudentExamsLogList(@RequestBody StudentExamsLog studentExamsLog) {
-        return ResponseEntity.status(HttpStatus.OK).body(studentExamsLogRepository.findAll());
+        return ResponseEntity.status(HttpStatus.OK).body(studentExamsLogRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
     }
 
 
@@ -101,7 +102,7 @@ public class StudentExamsLogController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentExamsLog>> getStudentExamsLogByFiscalyear(@RequestBody StudentExamsLog studentExamsLog) {
 
-        return ResponseEntity.status(HttpStatus.OK).body(studentExamsLogRepository.findAll());
+        return ResponseEntity.status(HttpStatus.OK).body(studentExamsLogRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
     }
 
     @ResponseBody
@@ -110,7 +111,7 @@ public class StudentExamsLogController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentExamsLog>> getStudentExamsLogByActive(@RequestBody StudentExamsLog studentExamsLog) {
 
-        return ResponseEntity.status(HttpStatus.OK).body(studentExamsLogRepository.findAll());
+        return ResponseEntity.status(HttpStatus.OK).body(studentExamsLogRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
     }
 
 
@@ -121,7 +122,7 @@ public class StudentExamsLogController {
     public ResponseEntity<Collection<StudentExamsLog>> getStudentExamsLogByServed(@RequestBody StudentExamsLog studentExamsLog) {
 
 
-        return ResponseEntity.status(HttpStatus.OK).body(studentExamsLogRepository.findAll());
+        return ResponseEntity.status(HttpStatus.OK).body(studentExamsLogRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
     }
 
     @ResponseBody
@@ -130,6 +131,6 @@ public class StudentExamsLogController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentExamsLog>> getStudentExamsLogByReported(@RequestBody StudentExamsLog studentExamsLog) {
 
-        return ResponseEntity.status(HttpStatus.OK).body(studentExamsLogRepository.findAll());
+        return ResponseEntity.status(HttpStatus.OK).body(studentExamsLogRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
     }
 }

@@ -10,6 +10,8 @@ public class StaffContact {
 	private String counselor;
 	private String contactTime;
 	private String reContactDate;
+	
+	public StaffContact() {}
 
 	public StaffContact(Integer id, String firstName, String lastName, String phone, String contactDate,
                                    String counselor, String contactTime, String reContactDate) {
