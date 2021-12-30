@@ -175,4 +175,24 @@ public class StudentTutorContacts {
                 ", fiscalYear='" + fiscalYear + '\'' +
                 '}';
     }
+
+
+    public StudentTutorContacts updateWith(StudentTutorContacts item) {
+        return new StudentTutorContacts(
+                this.ssno,
+                item.firstName,
+                item.lastName,
+                item.phoneNumber,
+                item.contactDate,
+                item.tutor,
+                item.contactTime,
+                item.recontactDate,
+                item.active,
+                item.served,
+                item.reported,
+                item.school,
+                item.standing,
+                item.fiscalYear
+        );
+    }
 }

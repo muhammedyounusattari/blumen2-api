@@ -105,7 +105,7 @@ public class StudentStaffContactsController {
     }
 
 
-    @ResponseBody
+  /*  @ResponseBody
     @GetMapping(path = "/getStudentStaffContactsByFiscalyear/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -115,10 +115,10 @@ public class StudentStaffContactsController {
         studentStaffContactsMap.remove(studentStaffContacts.getSsno());
 
         return ResponseEntity.status(HttpStatus.OK).body(studentStaffContactsMap.values());
-    }
+    }*/
 
     @ResponseBody
-    @GetMapping(path = "/getStudentStaffContactsByActive/v1",
+    @GetMapping(path = "/getStudentStaffContactsFindBySsno/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public Optional<StudentStaffContacts> getStudentStaffContactsByActive(@RequestBody StudentStaffContacts studentStaffContacts) {
@@ -128,7 +128,7 @@ public class StudentStaffContactsController {
     }
 
 
-    @ResponseBody
+   /* @ResponseBody
     @GetMapping(path = "/getStudentStaffContactsByServed/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -150,5 +150,5 @@ public class StudentStaffContactsController {
         studentStaffContactsMap.remove(studentStaffContacts.getSsno());
 
         return ResponseEntity.status(HttpStatus.OK).body(studentStaffContactsMap.values());
-    }
+    }*/
 }

@@ -105,13 +105,13 @@ public class StudentTeacherContactsController {
     }
 
 
-    @ResponseBody
+  /*  @ResponseBody
     @GetMapping(path = "/getStudentTeacherContactsByFiscalyear/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentTeacherContacts>> getStudentTeacherContactsByFiscalyear(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<StudentTeacherContacts>> getStudentTeacherContactsByFiscalyear(@RequestBody StudentTeacherContacts studentTeacherContacts) {
 
-        StudentTeacherContacts studentTeacherContacts = studentTeacherContactsServiceV1.doService(reqBody);
+      //  StudentTeacherContacts studentTeacherContacts = studentTeacherContactsServiceV1.doService(reqBody);
         studentTeacherContactsMap.remove(studentTeacherContacts.getSsno());
 
         return ResponseEntity.status(HttpStatus.OK).body(studentTeacherContactsMap.values());
@@ -152,5 +152,5 @@ public class StudentTeacherContactsController {
         studentTeacherContactsMap.remove(studentTeacherContacts.getSsno());
 
         return ResponseEntity.status(HttpStatus.OK).body(studentTeacherContactsMap.values());
-    }
+    }*/
 }

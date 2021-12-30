@@ -9,7 +9,7 @@ public class StudentCounselorContact {
 	@Id
 	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="stu_counselor_contact_list_seq_gen")
 	@SequenceGenerator(name="stu_counselor_contact_list_seq_gen", sequenceName="STUDENT_COUNSELOR_CONTACT_LIST_SEQ")
-	private Integer id;
+	private Long id;
 	private String firstName;
 	private String lastName;
 	private String phone;
@@ -21,7 +21,7 @@ public class StudentCounselorContact {
 	public StudentCounselorContact() {
 	}
 
-	public StudentCounselorContact(Integer id, String firstName, String lastName, String phone, String contactDate,
+	public StudentCounselorContact(Long id, String firstName, String lastName, String phone, String contactDate,
 								   String counselor, String contactTime, String reContactDate) {
 		super();
 		this.id = id;
@@ -34,11 +34,11 @@ public class StudentCounselorContact {
 		this.reContactDate = reContactDate;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -110,5 +110,19 @@ public class StudentCounselorContact {
 				", contactTime='" + contactTime + '\'' +
 				", reContactDate='" + reContactDate + '\'' +
 				'}';
+	}
+
+
+	public StudentCounselorContact updateWith(StudentCounselorContact item) {
+		return new StudentCounselorContact(
+				this.id,
+				item.firstName,
+				item.lastName,
+				item.phone,
+				item.contactDate,
+				item.counselor,
+				item.contactTime,
+				item.reContactDate
+		);
 	}
 }

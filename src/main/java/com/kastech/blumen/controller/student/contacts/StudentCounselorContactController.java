@@ -3,6 +3,7 @@ package com.kastech.blumen.controller.student.contacts;
 import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.student.Student;
 import com.kastech.blumen.model.student.contacts.StudentCounselorContact;
+import com.kastech.blumen.model.student.contacts.StudentStaffContacts;
 import com.kastech.blumen.repository.student.StudentRepository;
 import com.kastech.blumen.repository.student.contacts.StudentCounselorContactRepository;
 import com.kastech.blumen.service.student.contacts.StudentCounselorContactService;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -46,7 +48,7 @@ public class StudentCounselorContactController {
 
 
 	@ResponseBody
-	@GetMapping(path = "/getCounselorContacts/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+	@GetMapping(path = "/getCounselorContactsList/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public List<StudentCounselorContact> getCounselorContactList() {
 		LOGGER.info("call received for getCounselorContactList under StudentCounselorContactController");
 		List<StudentCounselorContact> list = new ArrayList<>();
@@ -113,6 +115,40 @@ public class StudentCounselorContactController {
 	public ResponseEntity<String> postSystemPreferenceData(@RequestParam("CouncellorContactId") String CouncellorContactId) {
 		LOGGER.info("Inside postSystemPreferenceData");
 		studentCounselorContactRepository.deleteById(Long.parseLong(CouncellorContactId));
+		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+	}
+
+	@ResponseBody
+	@PostMapping(path = "/addStudentCounselorContactList/v1",
+			consumes = {MediaType.APPLICATION_JSON_VALUE},
+			produces = {MediaType.APPLICATION_JSON_VALUE})
+	public StudentCounselorContact addToStudentCounselorContactList(@RequestBody StudentCounselorContact studentCounselorContact) {
+		//  StudentStaffContacts studentStaffContacts = studentStaffContactsServiceV1.doService(reqBody);
+		return studentCounselorContactRepository.save(studentCounselorContact);
+	}
+
+	@ResponseBody
+	@PutMapping(path = "/updateStudentCounselorContactList/v1",
+			consumes = {MediaType.APPLICATION_JSON_VALUE},
+			produces = {MediaType.APPLICATION_JSON_VALUE})
+	public Optional<StudentCounselorContact> editStudentCounselorContactList(@RequestBody StudentCounselorContact studentCounselorContact) {
+		//   StudentStaffContacts studentStaffContacts = studentStaffContactsServiceV1.doService(reqBody);
+
+		return studentCounselorContactRepository.findById(studentCounselorContact.getId())
+				.map(oldItem -> {
+					StudentCounselorContact updated = oldItem.updateWith(studentCounselorContact);
+					return studentCounselorContactRepository.save(updated);
+				});
+	}
+
+	@ResponseBody
+	@DeleteMapping(path = "/deleteStudentCounselorContactList/v1",
+			consumes = {MediaType.APPLICATION_JSON_VALUE},
+			produces = {MediaType.APPLICATION_JSON_VALUE})
+	public ResponseEntity<String> deleteStudentCounselorContactList(@RequestBody StudentCounselorContact studentCounselorContact) {
+
+		//    StudentStaffContacts studentStaffContacts = studentStaffContactsServiceV1.doService(reqBody);
+		studentCounselorContactRepository.delete(studentCounselorContact);
 		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
 	}
 
