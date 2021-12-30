@@ -17,10 +17,14 @@ public class GradingList {
     private String gradingParticipantStatus;
     private String gradingYearEnbStatus;
 
+    private String gradingFiscalYear;
+
+
+
     public GradingList() {
     }
 
-    public GradingList(Long gradingId, boolean graduateList, String gradingName, String gradingGroupName, String gradingNewGrade, String gradingParticipantStatus, String gradingYearEnbStatus) {
+    public GradingList(Long gradingId, boolean graduateList, String gradingName, String gradingGroupName, String gradingNewGrade, String gradingParticipantStatus, String gradingYearEnbStatus, String gradingFiscalYear) {
         this.gradingId = gradingId;
         this.graduateList = graduateList;
         this.gradingName = gradingName;
@@ -28,6 +32,7 @@ public class GradingList {
         this.gradingNewGrade = gradingNewGrade;
         this.gradingParticipantStatus = gradingParticipantStatus;
         this.gradingYearEnbStatus = gradingYearEnbStatus;
+        this.gradingFiscalYear = gradingFiscalYear;
     }
 
     public Long getGradingId() {
@@ -86,16 +91,25 @@ public class GradingList {
         this.gradingYearEnbStatus = gradingYearEnbStatus;
     }
 
+    public String getGradingFiscalYear() {
+        return gradingFiscalYear;
+    }
+
+    public void setGradingFiscalYear(String gradingFiscalYear) {
+        this.gradingFiscalYear = gradingFiscalYear;
+    }
+
     @Override
     public String toString() {
         return "GradingList{" +
-                "gradingId='" + gradingId + '\'' +
+                "gradingId=" + gradingId +
                 ", graduateList=" + graduateList +
                 ", gradingName='" + gradingName + '\'' +
                 ", gradingGroupName='" + gradingGroupName + '\'' +
                 ", gradingNewGrade='" + gradingNewGrade + '\'' +
                 ", gradingParticipantStatus='" + gradingParticipantStatus + '\'' +
                 ", gradingYearEnbStatus='" + gradingYearEnbStatus + '\'' +
+                ", gradingFiscalYear='" + gradingFiscalYear + '\'' +
                 '}';
     }
 
@@ -107,7 +121,8 @@ public class GradingList {
                 item.gradingNewGrade,
                 item.gradingName,
                 item.gradingParticipantStatus,
-                item.gradingYearEnbStatus
+                item.gradingYearEnbStatus,
+                item.gradingFiscalYear
         );
     }
 }
