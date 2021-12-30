@@ -14,6 +14,8 @@ public class ConfigSettings {
 	private String configValue; 
 	private String description;
 	
+	public ConfigSettings() {}
+	
 	public ConfigSettings(Long id, String configType, String configValue, String description) {
 		super();
 		this.id = id;
