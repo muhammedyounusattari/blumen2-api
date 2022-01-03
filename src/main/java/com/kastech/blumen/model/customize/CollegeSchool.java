@@ -31,11 +31,12 @@ public class CollegeSchool {
 
     private String fafsaId;
     private String fiscalYear;
+    private boolean inPullDown;
 
     public CollegeSchool() {
     }
 
-    public CollegeSchool(String orgName, String orgType, String name, String codes, String title, String country, String ncesId, String address, String city, String states, String zipcode, String phone1, String phone2, String phone3, String website, String fax, String email, String notes, String fafsaId, String fiscalYear) {
+    public CollegeSchool(String orgName, String orgType, String name, String codes, String title, String country, String ncesId, String address, String city, String states, String zipcode, String phone1, String phone2, String phone3, String website, String fax, String email, String notes, String fafsaId, String fiscalYear, boolean inPullDown) {
         this.orgName = orgName;
         this.orgType = orgType;
         this.name = name;
@@ -56,6 +57,7 @@ public class CollegeSchool {
         this.notes = notes;
         this.fafsaId = fafsaId;
         this.fiscalYear = fiscalYear;
+        this.inPullDown=inPullDown;
     }
 
     public String getOrgName() {
@@ -217,8 +219,16 @@ public class CollegeSchool {
     public void setFiscalYear(String fiscalYear) {
         this.fiscalYear = fiscalYear;
     }
+    
+    public boolean isInPullDown() {
+		return inPullDown;
+	}
 
-    public CollegeSchool updateWith(CollegeSchool item) {
+	public void setInPullDown(boolean inPullDown) {
+		this.inPullDown = inPullDown;
+	}
+
+	public CollegeSchool updateWith(CollegeSchool item) {
         return new CollegeSchool(
                 this.orgName,
                 item.orgType,
@@ -239,7 +249,8 @@ public class CollegeSchool {
                 item.email,
                 item.notes,
                 item.fafsaId,
-                item.fiscalYear
+                item.fiscalYear,
+                item.inPullDown
         );
     }
 }

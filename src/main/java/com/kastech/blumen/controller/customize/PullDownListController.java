@@ -30,7 +30,6 @@ public class PullDownListController {
     @Autowired
     PullDownListServiceV1 pullDownListServiceV1;
 
-
     @Autowired
     PullDownListValidator pullDownListValidator;
 
@@ -54,6 +53,14 @@ public class PullDownListController {
     public PullDown addToPullDownList(@RequestBody PullDown pullDown) {
       //  PullDown pullDown = pullDownListServiceV1.doService(reqBody);
         return pullDownListRepository.save(pullDown);
+    }
+    
+    @ResponseBody
+    @GetMapping(path = "/pullDownList/v1/{id}",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public PullDown getPullDownListById(@PathVariable Long id) {
+      //  PullDown pullDown = pullDownListServiceV1.doService(reqBody);
+        return pullDownListRepository.findById(id).get();
     }
 
     @ResponseBody
