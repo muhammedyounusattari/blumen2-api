@@ -117,9 +117,9 @@ public class GradingList {
         return new GradingList(
                 this.gradingId,
                 item.graduateList,
+                item.gradingName,
                 item.gradingGroupName,
                 item.gradingNewGrade,
-                item.gradingName,
                 item.gradingParticipantStatus,
                 item.gradingYearEnbStatus,
                 item.gradingFiscalYear
