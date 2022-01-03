@@ -15,10 +15,10 @@ import com.kastech.blumen.model.Address;
 @Table(name = "staff" ,schema = "blumen2")
 public class Staff {
 
-	@Id
-	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="staff_seq_gen")
+    @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="staff_seq_gen")
     @SequenceGenerator(name="staff_seq_gen", sequenceName="STAFF_SEQ")
-	private Long id;
+    private Long id;
     private String staffName;
     private String staffId;
     private String staffTitle;
@@ -27,9 +27,9 @@ public class Staff {
 
     private String staffSSNO;
 
-    private String staffCounselor;
-    private String staffTeacher;
-    private String staffLab;
+    private boolean staffCounselor;
+    private boolean staffTeacher;
+    private boolean staffLab;
 
     private String staffCodes;
     private String staffDOB;
@@ -46,13 +46,24 @@ public class Staff {
     private String staffNotes;
     private String staffPicture;
 
+    private String staffFirstName;
+    private String staffLastName;
+    private String staffPhoneNumber;
+    private String staffContactDate;
+    private String staffContactTime;
+    private String staffRecontactDate;
+    private boolean staffBolt;
+
+
+
     @OneToOne(cascade = {CascadeType.ALL})
     private Address address;
 
     public Staff() {
     }
 
-    public Staff(String staffName, String staffId, String staffTitle, boolean staffActive, boolean staffTutor, String staffSSNO, String staffCounselor, String staffTeacher, String staffLab, String staffCodes, String staffDOB, String staffSpouseName, String staffHireDate, String staffDriverLicense, String staffTerminationDate, String staffCustomFieldOne, String staffCustomFieldTwo, String staffCustomFieldThree, String staffCustomFieldFour, String staffNotes, String staffPicture, Address address) {
+    public Staff(Long id, String staffName, String staffId, String staffTitle, boolean staffActive, boolean staffTutor, String staffSSNO, boolean staffCounselor, boolean staffTeacher, boolean staffLab, String staffCodes, String staffDOB, String staffSpouseName, String staffHireDate, String staffDriverLicense, String staffTerminationDate, String staffCustomFieldOne, String staffCustomFieldTwo, String staffCustomFieldThree, String staffCustomFieldFour, String staffNotes, String staffPicture, String staffFirstName, String staffLastName, String staffPhoneNumber, String staffContactDate, String staffContactTime, String staffRecontactDate, boolean staffBolt, Address address) {
+        this.id = id;
         this.staffName = staffName;
         this.staffId = staffId;
         this.staffTitle = staffTitle;
@@ -74,18 +85,25 @@ public class Staff {
         this.staffCustomFieldFour = staffCustomFieldFour;
         this.staffNotes = staffNotes;
         this.staffPicture = staffPicture;
+        this.staffFirstName = staffFirstName;
+        this.staffLastName = staffLastName;
+        this.staffPhoneNumber = staffPhoneNumber;
+        this.staffContactDate = staffContactDate;
+        this.staffContactTime = staffContactTime;
+        this.staffRecontactDate = staffRecontactDate;
+        this.staffBolt = staffBolt;
         this.address = address;
     }
 
     public Long getId() {
-		return id;
-	}
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getStaffName() {
+    public String getStaffName() {
         return staffName;
     }
 
@@ -133,27 +151,27 @@ public class Staff {
         this.staffSSNO = staffSSNO;
     }
 
-    public String getStaffCounselor() {
+    public boolean isStaffCounselor() {
         return staffCounselor;
     }
 
-    public void setStaffCounselor(String staffCounselor) {
+    public void setStaffCounselor(boolean staffCounselor) {
         this.staffCounselor = staffCounselor;
     }
 
-    public String getStaffTeacher() {
+    public boolean isStaffTeacher() {
         return staffTeacher;
     }
 
-    public void setStaffTeacher(String staffTeacher) {
+    public void setStaffTeacher(boolean staffTeacher) {
         this.staffTeacher = staffTeacher;
     }
 
-    public String getStaffLab() {
+    public boolean isStaffLab() {
         return staffLab;
     }
 
-    public void setStaffLab(String staffLab) {
+    public void setStaffLab(boolean staffLab) {
         this.staffLab = staffLab;
     }
 
@@ -253,6 +271,62 @@ public class Staff {
         this.staffPicture = staffPicture;
     }
 
+    public String getStaffFirstName() {
+        return staffFirstName;
+    }
+
+    public void setStaffFirstName(String staffFirstName) {
+        this.staffFirstName = staffFirstName;
+    }
+
+    public String getStaffLastName() {
+        return staffLastName;
+    }
+
+    public void setStaffLastName(String staffLastName) {
+        this.staffLastName = staffLastName;
+    }
+
+    public String getStaffPhoneNumber() {
+        return staffPhoneNumber;
+    }
+
+    public void setStaffPhoneNumber(String staffPhoneNumber) {
+        this.staffPhoneNumber = staffPhoneNumber;
+    }
+
+    public String getStaffContactDate() {
+        return staffContactDate;
+    }
+
+    public void setStaffContactDate(String staffContactDate) {
+        this.staffContactDate = staffContactDate;
+    }
+
+    public String getStaffContactTime() {
+        return staffContactTime;
+    }
+
+    public void setStaffContactTime(String staffContactTime) {
+        this.staffContactTime = staffContactTime;
+    }
+
+    public String getStaffRecontactDate() {
+        return staffRecontactDate;
+    }
+
+    public void setStaffRecontactDate(String staffRecontactDate) {
+        this.staffRecontactDate = staffRecontactDate;
+    }
+
+    public boolean isStaffBolt() {
+        return staffBolt;
+    }
+
+    public void setStaffBolt(boolean staffBolt) {
+        this.staffBolt = staffBolt;
+    }
+
     public Address getAddress() {
         return address;
     }
@@ -264,15 +338,16 @@ public class Staff {
     @Override
     public String toString() {
         return "Staff{" +
-                "staffName='" + staffName + '\'' +
+                "id=" + id +
+                ", staffName='" + staffName + '\'' +
                 ", staffId='" + staffId + '\'' +
                 ", staffTitle='" + staffTitle + '\'' +
                 ", staffActive=" + staffActive +
                 ", staffTutor=" + staffTutor +
                 ", staffSSNO='" + staffSSNO + '\'' +
-                ", staffCounselor='" + staffCounselor + '\'' +
-                ", staffTeacher='" + staffTeacher + '\'' +
-                ", staffLab='" + staffLab + '\'' +
+                ", staffCounselor=" + staffCounselor +
+                ", staffTeacher=" + staffTeacher +
+                ", staffLab=" + staffLab +
                 ", staffCodes='" + staffCodes + '\'' +
                 ", staffDOB='" + staffDOB + '\'' +
                 ", staffSpouseName='" + staffSpouseName + '\'' +
@@ -285,6 +360,13 @@ public class Staff {
                 ", staffCustomFieldFour='" + staffCustomFieldFour + '\'' +
                 ", staffNotes='" + staffNotes + '\'' +
                 ", staffPicture='" + staffPicture + '\'' +
+                ", staffFirstName='" + staffFirstName + '\'' +
+                ", staffLastName='" + staffLastName + '\'' +
+                ", staffPhoneNumber='" + staffPhoneNumber + '\'' +
+                ", staffContactDate='" + staffContactDate + '\'' +
+                ", staffContactTime='" + staffContactTime + '\'' +
+                ", staffRecontactDate='" + staffRecontactDate + '\'' +
+                ", staffBolt=" + staffBolt +
                 ", address=" + address +
                 '}';
     }
