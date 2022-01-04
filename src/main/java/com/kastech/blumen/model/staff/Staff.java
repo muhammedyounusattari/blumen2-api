@@ -15,12 +15,11 @@ import com.kastech.blumen.model.Address;
 @Table(name = "staff" ,schema = "blumen2")
 public class Staff {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="staff_seq_gen")
+	@Id
+	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="staff_seq_gen")
     @SequenceGenerator(name="staff_seq_gen", sequenceName="STAFF_SEQ")
-    private Long id;
+	private Long id;
     private String staffName;
-    private String staffId;
     private String staffTitle;
     private boolean staffActive;
     private boolean staffTutor;
@@ -43,16 +42,37 @@ public class Staff {
     private String staffCustomFieldThree;
     private String staffCustomFieldFour;
 
-    private String staffNotes;
+
     private String staffPicture;
 
     private String staffFirstName;
     private String staffLastName;
     private String staffPhoneNumber;
-    private String staffContactDate;
+
     private String staffContactTime;
-    private String staffRecontactDate;
+
     private boolean staffBolt;
+
+    private String staffContactDate;
+    private String staffFiscalYear;
+    private String staffRecontactDate;
+    private boolean staffRecontacted;
+    private String staffContactCounselor;
+    private String staffComponents;
+    private String staffAprSubject;
+    private String staffContactType;
+    private String staffSubject;
+    private String stafInstruction;
+    private String stafActivityService;
+    private String stafTotalTime;
+    private String stafActivityServiceRendered;
+    private String stafActivityTime;
+    private String staffNotes;
+
+    private String staffContactStaff;
+    private String staffContactTeacher;
+    private String staffContactTutor;
+    private String staffContactLab;
 
 
 
@@ -62,10 +82,9 @@ public class Staff {
     public Staff() {
     }
 
-    public Staff(Long id, String staffName, String staffId, String staffTitle, boolean staffActive, boolean staffTutor, String staffSSNO, boolean staffCounselor, boolean staffTeacher, boolean staffLab, String staffCodes, String staffDOB, String staffSpouseName, String staffHireDate, String staffDriverLicense, String staffTerminationDate, String staffCustomFieldOne, String staffCustomFieldTwo, String staffCustomFieldThree, String staffCustomFieldFour, String staffNotes, String staffPicture, String staffFirstName, String staffLastName, String staffPhoneNumber, String staffContactDate, String staffContactTime, String staffRecontactDate, boolean staffBolt, Address address) {
+    public Staff(Long id, String staffName, String staffTitle, boolean staffActive, boolean staffTutor, String staffSSNO, boolean staffCounselor, boolean staffTeacher, boolean staffLab, String staffCodes, String staffDOB, String staffSpouseName, String staffHireDate, String staffDriverLicense, String staffTerminationDate, String staffCustomFieldOne, String staffCustomFieldTwo, String staffCustomFieldThree, String staffCustomFieldFour, String staffPicture, String staffFirstName, String staffLastName, String staffPhoneNumber, String staffContactTime, boolean staffBolt, String staffContactDate, String staffFiscalYear, String staffRecontactDate, boolean staffRecontacted, String staffContactCounselor, String staffComponents, String staffAprSubject, String staffContactType, String staffSubject, String stafInstruction, String stafActivityService, String stafTotalTime, String stafActivityServiceRendered, String stafActivityTime, String staffNotes, String staffContactStaff, String staffContactTeacher, String staffContactTutor, String staffContactLab, Address address) {
         this.id = id;
         this.staffName = staffName;
-        this.staffId = staffId;
         this.staffTitle = staffTitle;
         this.staffActive = staffActive;
         this.staffTutor = staffTutor;
@@ -83,15 +102,31 @@ public class Staff {
         this.staffCustomFieldTwo = staffCustomFieldTwo;
         this.staffCustomFieldThree = staffCustomFieldThree;
         this.staffCustomFieldFour = staffCustomFieldFour;
-        this.staffNotes = staffNotes;
         this.staffPicture = staffPicture;
         this.staffFirstName = staffFirstName;
         this.staffLastName = staffLastName;
         this.staffPhoneNumber = staffPhoneNumber;
-        this.staffContactDate = staffContactDate;
         this.staffContactTime = staffContactTime;
-        this.staffRecontactDate = staffRecontactDate;
         this.staffBolt = staffBolt;
+        this.staffContactDate = staffContactDate;
+        this.staffFiscalYear = staffFiscalYear;
+        this.staffRecontactDate = staffRecontactDate;
+        this.staffRecontacted = staffRecontacted;
+        this.staffContactCounselor = staffContactCounselor;
+        this.staffComponents = staffComponents;
+        this.staffAprSubject = staffAprSubject;
+        this.staffContactType = staffContactType;
+        this.staffSubject = staffSubject;
+        this.stafInstruction = stafInstruction;
+        this.stafActivityService = stafActivityService;
+        this.stafTotalTime = stafTotalTime;
+        this.stafActivityServiceRendered = stafActivityServiceRendered;
+        this.stafActivityTime = stafActivityTime;
+        this.staffNotes = staffNotes;
+        this.staffContactStaff = staffContactStaff;
+        this.staffContactTeacher = staffContactTeacher;
+        this.staffContactTutor = staffContactTutor;
+        this.staffContactLab = staffContactLab;
         this.address = address;
     }
 
@@ -109,14 +144,6 @@ public class Staff {
 
     public void setStaffName(String staffName) {
         this.staffName = staffName;
-    }
-
-    public String getStaffId() {
-        return staffId;
-    }
-
-    public void setStaffId(String staffId) {
-        this.staffId = staffId;
     }
 
     public String getStaffTitle() {
@@ -255,14 +282,6 @@ public class Staff {
         this.staffCustomFieldFour = staffCustomFieldFour;
     }
 
-    public String getStaffNotes() {
-        return staffNotes;
-    }
-
-    public void setStaffNotes(String staffNotes) {
-        this.staffNotes = staffNotes;
-    }
-
     public String getStaffPicture() {
         return staffPicture;
     }
@@ -295,6 +314,22 @@ public class Staff {
         this.staffPhoneNumber = staffPhoneNumber;
     }
 
+    public String getStaffContactTime() {
+        return staffContactTime;
+    }
+
+    public void setStaffContactTime(String staffContactTime) {
+        this.staffContactTime = staffContactTime;
+    }
+
+    public boolean isStaffBolt() {
+        return staffBolt;
+    }
+
+    public void setStaffBolt(boolean staffBolt) {
+        this.staffBolt = staffBolt;
+    }
+
     public String getStaffContactDate() {
         return staffContactDate;
     }
@@ -303,12 +338,12 @@ public class Staff {
         this.staffContactDate = staffContactDate;
     }
 
-    public String getStaffContactTime() {
-        return staffContactTime;
+    public String getStaffFiscalYear() {
+        return staffFiscalYear;
     }
 
-    public void setStaffContactTime(String staffContactTime) {
-        this.staffContactTime = staffContactTime;
+    public void setStaffFiscalYear(String staffFiscalYear) {
+        this.staffFiscalYear = staffFiscalYear;
     }
 
     public String getStaffRecontactDate() {
@@ -319,12 +354,132 @@ public class Staff {
         this.staffRecontactDate = staffRecontactDate;
     }
 
-    public boolean isStaffBolt() {
-        return staffBolt;
+    public boolean isStaffRecontacted() {
+        return staffRecontacted;
     }
 
-    public void setStaffBolt(boolean staffBolt) {
-        this.staffBolt = staffBolt;
+    public void setStaffRecontacted(boolean staffRecontacted) {
+        this.staffRecontacted = staffRecontacted;
+    }
+
+    public String getStaffContactCounselor() {
+        return staffContactCounselor;
+    }
+
+    public void setStaffContactCounselor(String staffContactCounselor) {
+        this.staffContactCounselor = staffContactCounselor;
+    }
+
+    public String getStaffComponents() {
+        return staffComponents;
+    }
+
+    public void setStaffComponents(String staffComponents) {
+        this.staffComponents = staffComponents;
+    }
+
+    public String getStaffAprSubject() {
+        return staffAprSubject;
+    }
+
+    public void setStaffAprSubject(String staffAprSubject) {
+        this.staffAprSubject = staffAprSubject;
+    }
+
+    public String getStaffContactType() {
+        return staffContactType;
+    }
+
+    public void setStaffContactType(String staffContactType) {
+        this.staffContactType = staffContactType;
+    }
+
+    public String getStaffSubject() {
+        return staffSubject;
+    }
+
+    public void setStaffSubject(String staffSubject) {
+        this.staffSubject = staffSubject;
+    }
+
+    public String getStafInstruction() {
+        return stafInstruction;
+    }
+
+    public void setStafInstruction(String stafInstruction) {
+        this.stafInstruction = stafInstruction;
+    }
+
+    public String getStafActivityService() {
+        return stafActivityService;
+    }
+
+    public void setStafActivityService(String stafActivityService) {
+        this.stafActivityService = stafActivityService;
+    }
+
+    public String getStafTotalTime() {
+        return stafTotalTime;
+    }
+
+    public void setStafTotalTime(String stafTotalTime) {
+        this.stafTotalTime = stafTotalTime;
+    }
+
+    public String getStafActivityServiceRendered() {
+        return stafActivityServiceRendered;
+    }
+
+    public void setStafActivityServiceRendered(String stafActivityServiceRendered) {
+        this.stafActivityServiceRendered = stafActivityServiceRendered;
+    }
+
+    public String getStafActivityTime() {
+        return stafActivityTime;
+    }
+
+    public void setStafActivityTime(String stafActivityTime) {
+        this.stafActivityTime = stafActivityTime;
+    }
+
+    public String getStaffNotes() {
+        return staffNotes;
+    }
+
+    public void setStaffNotes(String staffNotes) {
+        this.staffNotes = staffNotes;
+    }
+
+    public String getStaffContactStaff() {
+        return staffContactStaff;
+    }
+
+    public void setStaffContactStaff(String staffContactStaff) {
+        this.staffContactStaff = staffContactStaff;
+    }
+
+    public String getStaffContactTeacher() {
+        return staffContactTeacher;
+    }
+
+    public void setStaffContactTeacher(String staffContactTeacher) {
+        this.staffContactTeacher = staffContactTeacher;
+    }
+
+    public String getStaffContactTutor() {
+        return staffContactTutor;
+    }
+
+    public void setStaffContactTutor(String staffContactTutor) {
+        this.staffContactTutor = staffContactTutor;
+    }
+
+    public String getStaffContactLab() {
+        return staffContactLab;
+    }
+
+    public void setStaffContactLab(String staffContactLab) {
+        this.staffContactLab = staffContactLab;
     }
 
     public Address getAddress() {
@@ -340,7 +495,6 @@ public class Staff {
         return "Staff{" +
                 "id=" + id +
                 ", staffName='" + staffName + '\'' +
-                ", staffId='" + staffId + '\'' +
                 ", staffTitle='" + staffTitle + '\'' +
                 ", staffActive=" + staffActive +
                 ", staffTutor=" + staffTutor +
@@ -358,15 +512,31 @@ public class Staff {
                 ", staffCustomFieldTwo='" + staffCustomFieldTwo + '\'' +
                 ", staffCustomFieldThree='" + staffCustomFieldThree + '\'' +
                 ", staffCustomFieldFour='" + staffCustomFieldFour + '\'' +
-                ", staffNotes='" + staffNotes + '\'' +
                 ", staffPicture='" + staffPicture + '\'' +
                 ", staffFirstName='" + staffFirstName + '\'' +
                 ", staffLastName='" + staffLastName + '\'' +
                 ", staffPhoneNumber='" + staffPhoneNumber + '\'' +
-                ", staffContactDate='" + staffContactDate + '\'' +
                 ", staffContactTime='" + staffContactTime + '\'' +
-                ", staffRecontactDate='" + staffRecontactDate + '\'' +
                 ", staffBolt=" + staffBolt +
+                ", staffContactDate='" + staffContactDate + '\'' +
+                ", staffFiscalYear='" + staffFiscalYear + '\'' +
+                ", staffRecontactDate='" + staffRecontactDate + '\'' +
+                ", staffRecontacted=" + staffRecontacted +
+                ", staffContactCounselor='" + staffContactCounselor + '\'' +
+                ", staffComponents='" + staffComponents + '\'' +
+                ", staffAprSubject='" + staffAprSubject + '\'' +
+                ", staffContactType='" + staffContactType + '\'' +
+                ", staffSubject='" + staffSubject + '\'' +
+                ", stafInstruction='" + stafInstruction + '\'' +
+                ", stafActivityService='" + stafActivityService + '\'' +
+                ", stafTotalTime='" + stafTotalTime + '\'' +
+                ", stafActivityServiceRendered='" + stafActivityServiceRendered + '\'' +
+                ", stafActivityTime='" + stafActivityTime + '\'' +
+                ", staffNotes='" + staffNotes + '\'' +
+                ", staffContactStaff='" + staffContactStaff + '\'' +
+                ", staffContactTeacher='" + staffContactTeacher + '\'' +
+                ", staffContactTutor='" + staffContactTutor + '\'' +
+                ", staffContactLab='" + staffContactLab + '\'' +
                 ", address=" + address +
                 '}';
     }

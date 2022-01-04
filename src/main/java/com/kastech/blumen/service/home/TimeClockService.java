@@ -16,15 +16,15 @@ public class TimeClockService {
 		
 		Staff staff1= new Staff();
 		staff1.setStaffName("ANDERSON");
-		staff1.setStaffId("1");
+		staff1.setId(1l);
 		
 		Staff staff2= new Staff();
 		staff1.setStaffName("BOOKER");
-		staff1.setStaffId("2");
+		staff1.setId(2l);
 		
 		Staff staff3= new Staff();
 		staff1.setStaffName("CAMARELLO");
-		staff1.setStaffId("3");
+		staff1.setId(3l);
 		
 		staffList.add(staff1);
 		staffList.add(staff2);
