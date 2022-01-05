@@ -15,10 +15,10 @@ import com.kastech.blumen.model.Address;
 @Table(name = "staff" ,schema = "blumen2")
 public class Staff {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="staff_seq_gen")
+	@Id
+	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="staff_seq_gen")
     @SequenceGenerator(name="staff_seq_gen", sequenceName="STAFF_SEQ")
-    private Long id;
+	private Long id;
     private String staffName;
     private String staffTitle;
     private boolean staffActive;

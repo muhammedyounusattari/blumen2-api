@@ -2,7 +2,7 @@ package com.kastech.blumen.model.keycloak;
 
 import java.util.List;
 
-public class CreateUserRequest {
+public class User {
     String username;
     String firstName;
     String lastName;

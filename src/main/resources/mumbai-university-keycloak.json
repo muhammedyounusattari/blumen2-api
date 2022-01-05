@@ -1,0 +1,10 @@
+{
+	"realm": "mumbai-university",
+	"auth-server-url": "https://keycloak-blumen.azurewebsites.net/auth",
+	"ssl-required": "external",
+	"resource": "mumbai-university-client",
+	"credentials" : {
+		"secret" : "FI4RmkDI1moQRZKsoNYKn3jiRik755Y6"
+	},
+	"principal-attribute": "preferred_username"
+}

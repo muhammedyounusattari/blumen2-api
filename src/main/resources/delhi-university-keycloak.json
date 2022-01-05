@@ -1,0 +1,10 @@
+{
+	"realm": "delhi-university",
+	"auth-server-url": "https://keycloak-blumen.azurewebsites.net/auth",
+	"ssl-required": "external",
+	"resource": "delhi-university-client",
+	"credentials" : {
+		"secret" : "XcUW8hDEADoRmON62M7XloYwI7kh4b8A"
+	},
+	"principal-attribute": "preferred_username"
+}
