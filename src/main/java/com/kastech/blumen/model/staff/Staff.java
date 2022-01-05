@@ -15,10 +15,10 @@ import com.kastech.blumen.model.Address;
 @Table(name = "staff" ,schema = "blumen2")
 public class Staff {
 
-	@Id
-	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="staff_seq_gen")
+    @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="staff_seq_gen")
     @SequenceGenerator(name="staff_seq_gen", sequenceName="STAFF_SEQ")
-	private Long id;
+    private Long id;
     private String staffName;
     private String staffTitle;
     private boolean staffActive;
@@ -73,7 +73,7 @@ public class Staff {
     private String staffContactTeacher;
     private String staffContactTutor;
     private String staffContactLab;
-
+    private boolean staff;
 
 
     @OneToOne(cascade = {CascadeType.ALL})
@@ -82,7 +82,7 @@ public class Staff {
     public Staff() {
     }
 
-    public Staff(Long id, String staffName, String staffTitle, boolean staffActive, boolean staffTutor, String staffSSNO, boolean staffCounselor, boolean staffTeacher, boolean staffLab, String staffCodes, String staffDOB, String staffSpouseName, String staffHireDate, String staffDriverLicense, String staffTerminationDate, String staffCustomFieldOne, String staffCustomFieldTwo, String staffCustomFieldThree, String staffCustomFieldFour, String staffPicture, String staffFirstName, String staffLastName, String staffPhoneNumber, String staffContactTime, boolean staffBolt, String staffContactDate, String staffFiscalYear, String staffRecontactDate, boolean staffRecontacted, String staffContactCounselor, String staffComponents, String staffAprSubject, String staffContactType, String staffSubject, String stafInstruction, String stafActivityService, String stafTotalTime, String stafActivityServiceRendered, String stafActivityTime, String staffNotes, String staffContactStaff, String staffContactTeacher, String staffContactTutor, String staffContactLab, Address address) {
+    public Staff(Long id, String staffName, String staffTitle, boolean staffActive, boolean staffTutor, String staffSSNO, boolean staffCounselor, boolean staffTeacher, boolean staffLab, String staffCodes, String staffDOB, String staffSpouseName, String staffHireDate, String staffDriverLicense, String staffTerminationDate, String staffCustomFieldOne, String staffCustomFieldTwo, String staffCustomFieldThree, String staffCustomFieldFour, String staffPicture, String staffFirstName, String staffLastName, String staffPhoneNumber, String staffContactTime, boolean staffBolt, String staffContactDate, String staffFiscalYear, String staffRecontactDate, boolean staffRecontacted, String staffContactCounselor, String staffComponents, String staffAprSubject, String staffContactType, String staffSubject, String stafInstruction, String stafActivityService, String stafTotalTime, String stafActivityServiceRendered, String stafActivityTime, String staffNotes, String staffContactStaff, String staffContactTeacher, String staffContactTutor, String staffContactLab, boolean staff, Address address) {
         this.id = id;
         this.staffName = staffName;
         this.staffTitle = staffTitle;
@@ -127,6 +127,7 @@ public class Staff {
         this.staffContactTeacher = staffContactTeacher;
         this.staffContactTutor = staffContactTutor;
         this.staffContactLab = staffContactLab;
+        this.staff = staff;
         this.address = address;
     }
 
@@ -482,6 +483,14 @@ public class Staff {
         this.staffContactLab = staffContactLab;
     }
 
+    public boolean isStaff() {
+        return staff;
+    }
+
+    public void setStaff(boolean staff) {
+        this.staff = staff;
+    }
+
     public Address getAddress() {
         return address;
     }
@@ -537,6 +546,7 @@ public class Staff {
                 ", staffContactTeacher='" + staffContactTeacher + '\'' +
                 ", staffContactTutor='" + staffContactTutor + '\'' +
                 ", staffContactLab='" + staffContactLab + '\'' +
+                ", staff=" + staff +
                 ", address=" + address +
                 '}';
     }
