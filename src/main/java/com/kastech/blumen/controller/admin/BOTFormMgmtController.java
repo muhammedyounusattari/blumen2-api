@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.kastech.blumen.model.AnnualPerformance;
 import com.kastech.blumen.model.ConfigSettings;
+import com.kastech.blumen.model.GeneralSetting;
 import com.kastech.blumen.model.SystemPreferences;
 import com.kastech.blumen.repository.admin.BOTFormMgmtRepository;
 import com.kastech.blumen.service.admin.BOTFormMgmtService;
@@ -66,9 +67,9 @@ public class BOTFormMgmtController {
 	
 	@ResponseBody
 	@PostMapping(path = "/postSystemPreferenceData/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<SystemPreferences> postSystemPreferenceData(@RequestBody SystemPreferences systemPreferences) {
+	public ResponseEntity<SystemPreferences> postSystemPreferenceData(@RequestBody SystemPreferences SystemPreferences) {
 		LOGGER.info("Inside postSystemPreferenceData");
-		systemPreferences = bOTFormMgmtService.saveSystemPreferenceData(systemPreferences);
-		return ResponseEntity.ok(systemPreferences);
+		SystemPreferences = bOTFormMgmtService.saveSystemPreferenceData(SystemPreferences);
+		return ResponseEntity.ok(SystemPreferences);
 	}
 }

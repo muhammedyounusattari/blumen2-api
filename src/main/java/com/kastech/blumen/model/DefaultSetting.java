@@ -1,5 +1,9 @@
 package com.kastech.blumen.model;
 
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,60 +19,97 @@ public class DefaultSetting {
 	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="default_setting_seq_gen")
     @SequenceGenerator(name="default_setting_seq_gen", sequenceName="DEFAULT_SETTING_SEQ")
 	private Long id;
-	private String fiscalYear;
-	private String currentYear;
-	private String semester;
-	private String component;
 	
-	public DefaultSetting() {
-		super();
-	}
-
-	public DefaultSetting(String fiscalYear, String currentYear, String semester, String component) {
-		super();
-		this.fiscalYear = fiscalYear;
-		this.currentYear = currentYear;
-		this.semester = semester;
-		this.component = component;
-	}
+	private boolean copyPreviousData;
+	private boolean studentActive;
+	private boolean studentServed;
+	private boolean studentReported;
+	private boolean addStudentToFiscalYear;
+	private boolean updateFirstDateOfService;
+	private boolean updateLastDateOfService;
+	
+	@Column
+	@ElementCollection(targetClass=Integer.class)
+	private List<Integer> gpaScale;
+	
+	@Column
+    @ElementCollection(targetClass=String.class)
+	private List<String> stateTest;
+	private String ageCalculator;
+	private String siteLocation;
 	
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public String getFiscalYear() {
-		return fiscalYear;
+	public boolean isCopyPreviousData() {
+		return copyPreviousData;
 	}
-	public void setFiscalYear(String fiscalYear) {
-		this.fiscalYear = fiscalYear;
+	public void setCopyPreviousData(boolean copyPreviousData) {
+		this.copyPreviousData = copyPreviousData;
 	}
-	public String getCurrentYear() {
-		return currentYear;
+	public boolean isStudentActive() {
+		return studentActive;
 	}
-	public void setCurrentYear(String currentYear) {
-		this.currentYear = currentYear;
+	public void setStudentActive(boolean studentActive) {
+		this.studentActive = studentActive;
 	}
-	public String getSemester() {
-		return semester;
+	public boolean isStudentServed() {
+		return studentServed;
 	}
-	public void setSemester(String semester) {
-		this.semester = semester;
+	public void setStudentServed(boolean studentServed) {
+		this.studentServed = studentServed;
 	}
-	public String getComponent() {
-		return component;
+	public boolean isStudentReported() {
+		return studentReported;
 	}
-	public void setComponent(String component) {
-		this.component = component;
+	public void setStudentReported(boolean studentReported) {
+		this.studentReported = studentReported;
 	}
-	@Override
-	public String toString() {
-		return "DefaultSetting [fiscalYear=" + fiscalYear + ", currentYear=" + currentYear + ", semester=" + semester
-				+ ", component=" + component + "]";
+	public boolean isAddStudentToFiscalYear() {
+		return addStudentToFiscalYear;
 	}
-	
+	public void setAddStudentToFiscalYear(boolean addStudentToFiscalYear) {
+		this.addStudentToFiscalYear = addStudentToFiscalYear;
+	}
+	public boolean isUpdateFirstDateOfService() {
+		return updateFirstDateOfService;
+	}
+	public void setUpdateFirstDateOfService(boolean updateFirstDateOfService) {
+		this.updateFirstDateOfService = updateFirstDateOfService;
+	}
+	public boolean isUpdateLastDateOfService() {
+		return updateLastDateOfService;
+	}
+	public void setUpdateLastDateOfService(boolean updateLastDateOfService) {
+		this.updateLastDateOfService = updateLastDateOfService;
+	}
+		
+	public List<Integer> getGpaScale() {
+		return gpaScale;
+	}
+	public void setGpaScale(List<Integer> gpaScale) {
+		this.gpaScale = gpaScale;
+	}
+	public List<String> getStateTest() {
+		return stateTest;
+	}
+	public void setStateTest(List<String> stateTest) {
+		this.stateTest = stateTest;
+	}
+	public String getAgeCalculator() {
+		return ageCalculator;
+	}
+	public void setAgeCalculator(String ageCalculator) {
+		this.ageCalculator = ageCalculator;
+	}
+	public String getSiteLocation() {
+		return siteLocation;
+	}
+	public void setSiteLocation(String siteLocation) {
+		this.siteLocation = siteLocation;
+	}
 	
 }
