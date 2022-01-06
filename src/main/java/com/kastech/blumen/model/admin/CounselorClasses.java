@@ -39,14 +39,14 @@ public class CounselorClasses {
 	
 	public CounselorClasses() {}
 
-	public CounselorClasses(Long id, String currentYear, String semester, String tutorName, String subject,
+	public CounselorClasses(Long id, String currentYear, String semester, String counselorName, String subject,
 			String classPeriod, String meetingTime, String days, String room, String studentAssigned, String duration,
-			String maxLimit, String notes) {
+			String maxLimit, String notes, List<Student> studentList) {
 		super();
 		this.id = id;
 		this.currentYear = currentYear;
 		this.semester = semester;
-		this.counselorName = tutorName;
+		this.counselorName = counselorName;
 		this.subject = subject;
 		this.classPeriod = classPeriod;
 		this.meetingTime = meetingTime;
@@ -56,6 +56,7 @@ public class CounselorClasses {
 		this.duration = duration;
 		this.maxLimit = maxLimit;
 		this.notes = notes;
+		this.studentList=studentList;
 	}
 
 	public Long getId() {
@@ -82,12 +83,12 @@ public class CounselorClasses {
 		this.semester = semester;
 	}
 
-	public String getTutorName() {
+	public String getCounselorName() {
 		return counselorName;
 	}
 
-	public void setTutorName(String tutorName) {
-		this.counselorName = tutorName;
+	public void setCounselorName(String counselorName) {
+		this.counselorName = counselorName;
 	}
 
 	public String getSubject() {

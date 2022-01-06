@@ -41,14 +41,14 @@ public class StaffClasses {
 	public StaffClasses(){
 		super();
 	}
-	public StaffClasses(Long id, String currentYear, String semester, String tutorName, String subject,
+	public StaffClasses(Long id, String currentYear, String semester, String staffName, String subject,
 			String classPeriod, String meetingTime, String days, String room, String studentAssigned, String duration,
-			String maxLimit, String notes) {
+			String maxLimit, String notes,List<Student> studentList) {
 		super();
 		this.id = id;
 		this.currentYear = currentYear;
 		this.semester = semester;
-		this.staffName = tutorName;
+		this.staffName = staffName;
 		this.subject = subject;
 		this.classPeriod = classPeriod;
 		this.meetingTime = meetingTime;
@@ -58,6 +58,7 @@ public class StaffClasses {
 		this.duration = duration;
 		this.maxLimit = maxLimit;
 		this.notes = notes;
+		this.studentList=studentList;
 	}
 
 	public Long getId() {
@@ -83,15 +84,12 @@ public class StaffClasses {
 	public void setSemester(String semester) {
 		this.semester = semester;
 	}
-
-	public String getTutorName() {
+	public String getStaffName() {
 		return staffName;
 	}
-
-	public void setTutorName(String tutorName) {
-		this.staffName = tutorName;
+	public void setStaffName(String staffName) {
+		this.staffName = staffName;
 	}
-
 	public String getSubject() {
 		return subject;
 	}
