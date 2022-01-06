@@ -24,7 +24,7 @@ public class TeacherClasses {
 	private Long id;
 	private String currentYear;
 	private String semester;
-	private String tutorName;
+	private String teacherName;
 	private String subject;
 	private String classPeriod;
 	private String meetingTime;
@@ -35,8 +35,8 @@ public class TeacherClasses {
 	private String maxLimit;
 	private String notes;
 	
-	/*@OneToMany(cascade = CascadeType.ALL)
-	List<Student> studentList;*/
+	@OneToMany(cascade = CascadeType.ALL) 
+	List<Student> studentList;
 
 	public TeacherClasses(){
 		super();
@@ -48,7 +48,7 @@ public class TeacherClasses {
 		this.id = id;
 		this.currentYear = currentYear;
 		this.semester = semester;
-		this.tutorName = tutorName;
+		this.teacherName = tutorName;
 		this.subject = subject;
 		this.classPeriod = classPeriod;
 		this.meetingTime = meetingTime;
@@ -85,11 +85,11 @@ public class TeacherClasses {
 	}
 
 	public String getTutorName() {
-		return tutorName;
+		return teacherName;
 	}
 
 	public void setTutorName(String tutorName) {
-		this.tutorName = tutorName;
+		this.teacherName = tutorName;
 	}
 
 	public String getSubject() {
@@ -166,11 +166,11 @@ public class TeacherClasses {
 	
 //	@OneToMany(targetEntity = Student.class, mappedBy = "", 
 //		    cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	/*public List<Student> getStudentList() {
+	public List<Student> getStudentList() {
 		return studentList;
 	}
 	public void setStudentList(List<Student> studentList) {
 		this.studentList = studentList;
-	}*/
+	}
 	
 }

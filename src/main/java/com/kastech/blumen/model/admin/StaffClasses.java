@@ -23,7 +23,7 @@ public class StaffClasses {
 	private Long id;
 	private String currentYear;
 	private String semester;
-	private String tutorName;
+	private String staffName;
 	private String subject;
 	private String classPeriod;
 	private String meetingTime;
@@ -34,8 +34,8 @@ public class StaffClasses {
 	private String maxLimit;
 	private String notes;
 	
-	/*@OneToMany(cascade = CascadeType.ALL)
-	List<Student> studentList;*/
+	@OneToMany(cascade = CascadeType.ALL)
+	List<Student> studentList;
 
 
 	public StaffClasses(){
@@ -48,7 +48,7 @@ public class StaffClasses {
 		this.id = id;
 		this.currentYear = currentYear;
 		this.semester = semester;
-		this.tutorName = tutorName;
+		this.staffName = tutorName;
 		this.subject = subject;
 		this.classPeriod = classPeriod;
 		this.meetingTime = meetingTime;
@@ -85,11 +85,11 @@ public class StaffClasses {
 	}
 
 	public String getTutorName() {
-		return tutorName;
+		return staffName;
 	}
 
 	public void setTutorName(String tutorName) {
-		this.tutorName = tutorName;
+		this.staffName = tutorName;
 	}
 
 	public String getSubject() {
@@ -162,6 +162,12 @@ public class StaffClasses {
 
 	public void setNotes(String notes) {
 		this.notes = notes;
+	}
+	public List<Student> getStudentList() {
+		return studentList;
+	}
+	public void setStudentList(List<Student> studentList) {
+		this.studentList = studentList;
 	}
 	
 }
