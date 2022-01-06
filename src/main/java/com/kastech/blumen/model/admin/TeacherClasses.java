@@ -35,8 +35,8 @@ public class TeacherClasses {
 	private String maxLimit;
 	private String notes;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	List<Student> studentList;
+	/*@OneToMany(cascade = CascadeType.ALL)
+	List<Student> studentList;*/
 
 	public TeacherClasses(){
 		super();
@@ -166,11 +166,11 @@ public class TeacherClasses {
 	
 //	@OneToMany(targetEntity = Student.class, mappedBy = "", 
 //		    cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	public List<Student> getStudentList() {
+	/*public List<Student> getStudentList() {
 		return studentList;
 	}
 	public void setStudentList(List<Student> studentList) {
 		this.studentList = studentList;
-	}
+	}*/
 	
 }

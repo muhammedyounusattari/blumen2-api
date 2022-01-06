@@ -2,17 +2,15 @@ package com.kastech.blumen.controller.admin.classes;
 
 import java.util.Collection;
 
+import com.kastech.blumen.model.Response;
+import com.kastech.blumen.model.counselor.Counselor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.kastech.blumen.model.admin.CounselorClasses;
 import com.kastech.blumen.service.admin.classes.CounselorClassesService;
@@ -84,6 +82,35 @@ public class CounselorClassesController {
 		LOGGER.info("call received for getCounselorClassessByMoreFilter under CounselorClassesController");
 		return ResponseEntity.ok(counselorClassesService.getCounselorClassesByMoreAdvanceFilter(zipCode, major, siteLocation,
 				incomeSource, entryCollege, cohortYear));
+	}
+
+	@ResponseBody
+	@PostMapping(path = "/counselorClassesList/v1", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<String> addToCounselorClassesList(@RequestBody CounselorClasses counselor) {
+		counselor = counselorClassesService.saveData(counselor);
+		if (counselor != null)
+			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+
+		return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
+	}
+
+	@ResponseBody
+	@PutMapping(path = "/updateCounselorClasses/v1", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<String> updateCounselorClasses(@RequestBody CounselorClasses counselor) {
+		counselor = counselorClassesService.saveData(counselor);
+		if (counselor != null)
+			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+
+		return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
+	}
+	@ResponseBody
+	@DeleteMapping(path = "/deleteCounselorClasses/v1", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<String> deleteCounselorClasses(@RequestBody CounselorClasses counselor) {
+		counselorClassesService.deleteData(counselor);
+		return ResponseEntity.status(HttpStatus.OK).body("Success");
 	}
 
 

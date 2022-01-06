@@ -34,8 +34,8 @@ public class TutorClasses {
 	private String maxLimit;
 	private String notes;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	List<Student> studentList;
+	/*@OneToMany(cascade = CascadeType.ALL)
+	List<Student> studentList;*/
 
 	public TutorClasses() {}
 	
@@ -161,10 +161,10 @@ public class TutorClasses {
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
-	public List<Student> getStudentList() {
+	/*public List<Student> getStudentList() {
 		return studentList;
 	}
 	public void setStudentList(List<Student> studentList) {
 		this.studentList = studentList;
-	}
+	}*/
 }

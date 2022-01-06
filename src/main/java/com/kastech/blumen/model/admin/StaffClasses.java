@@ -34,8 +34,8 @@ public class StaffClasses {
 	private String maxLimit;
 	private String notes;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	List<Student> studentList;
+	/*@OneToMany(cascade = CascadeType.ALL)
+	List<Student> studentList;*/
 
 
 	public StaffClasses(){
