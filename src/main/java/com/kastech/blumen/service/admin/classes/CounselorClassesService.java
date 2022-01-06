@@ -46,8 +46,8 @@ public class CounselorClassesService {
 		return counselorClassRepository.save(counselorClasses);
 	}
 
-	public void deleteData(CounselorClasses counselorClasses){
-		 counselorClassRepository.delete(counselorClasses);
+	public void deleteData(Long id){
+		 counselorClassRepository.deleteById(id);
 	}
 
 }

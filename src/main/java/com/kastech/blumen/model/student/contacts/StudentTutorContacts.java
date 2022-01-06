@@ -56,11 +56,11 @@ public class StudentTutorContacts {
     private String staffAprSubject;
     private String staffContactType;
     private String staffSubject;
-    private String stafInstruction;
-    private String stafActivityService;
-    private String stafTotalTime;
-    private String stafActivityServiceRendered;
-    private String stafActivityTime;
+    private String staffInstruction;
+    private String staffActivityService;
+    private String staffTotalTime;
+    private String staffActivityServiceRendered;
+    private String staffActivityTime;
     private String staffNotes;
 
     private String staffContactStaff;
@@ -106,11 +106,11 @@ public class StudentTutorContacts {
         this.staffAprSubject = staffAprSubject;
         this.staffContactType = staffContactType;
         this.staffSubject = staffSubject;
-        this.stafInstruction = stafInstruction;
-        this.stafActivityService = stafActivityService;
-        this.stafTotalTime = stafTotalTime;
-        this.stafActivityServiceRendered = stafActivityServiceRendered;
-        this.stafActivityTime = stafActivityTime;
+        this.staffInstruction = stafInstruction;
+        this.staffActivityService = stafActivityService;
+        this.staffTotalTime = stafTotalTime;
+        this.staffActivityServiceRendered = stafActivityServiceRendered;
+        this.staffActivityTime = stafActivityTime;
         this.staffNotes = staffNotes;
         this.staffContactStaff = staffContactStaff;
         this.staffContactTeacher = staffContactTeacher;
@@ -375,44 +375,44 @@ public class StudentTutorContacts {
         this.staffSubject = staffSubject;
     }
 
-    public String getStafInstruction() {
-        return stafInstruction;
+    public String getStaffInstruction() {
+        return staffInstruction;
     }
 
-    public void setStafInstruction(String stafInstruction) {
-        this.stafInstruction = stafInstruction;
+    public void setStaffInstruction(String staffInstruction) {
+        this.staffInstruction = staffInstruction;
     }
 
-    public String getStafActivityService() {
-        return stafActivityService;
+    public String getStaffActivityService() {
+        return staffActivityService;
     }
 
-    public void setStafActivityService(String stafActivityService) {
-        this.stafActivityService = stafActivityService;
+    public void setStaffActivityService(String staffActivityService) {
+        this.staffActivityService = staffActivityService;
     }
 
-    public String getStafTotalTime() {
-        return stafTotalTime;
+    public String getStaffTotalTime() {
+        return staffTotalTime;
     }
 
-    public void setStafTotalTime(String stafTotalTime) {
-        this.stafTotalTime = stafTotalTime;
+    public void setStaffTotalTime(String staffTotalTime) {
+        this.staffTotalTime = staffTotalTime;
     }
 
-    public String getStafActivityServiceRendered() {
-        return stafActivityServiceRendered;
+    public String getStaffActivityServiceRendered() {
+        return staffActivityServiceRendered;
     }
 
-    public void setStafActivityServiceRendered(String stafActivityServiceRendered) {
-        this.stafActivityServiceRendered = stafActivityServiceRendered;
+    public void setStaffActivityServiceRendered(String stafActivityServiceRendered) {
+        this.staffActivityServiceRendered = stafActivityServiceRendered;
     }
 
     public String getStafActivityTime() {
-        return stafActivityTime;
+        return staffActivityTime;
     }
 
     public void setStafActivityTime(String stafActivityTime) {
-        this.stafActivityTime = stafActivityTime;
+        this.staffActivityTime = stafActivityTime;
     }
 
     public String getStaffNotes() {
@@ -507,11 +507,11 @@ public class StudentTutorContacts {
                 ", staffAprSubject='" + staffAprSubject + '\'' +
                 ", staffContactType='" + staffContactType + '\'' +
                 ", staffSubject='" + staffSubject + '\'' +
-                ", stafInstruction='" + stafInstruction + '\'' +
-                ", stafActivityService='" + stafActivityService + '\'' +
-                ", stafTotalTime='" + stafTotalTime + '\'' +
-                ", stafActivityServiceRendered='" + stafActivityServiceRendered + '\'' +
-                ", stafActivityTime='" + stafActivityTime + '\'' +
+                ", staffInstruction='" + staffInstruction + '\'' +
+                ", staffActivityService='" + staffActivityService + '\'' +
+                ", staffTotalTime='" + staffTotalTime + '\'' +
+                ", staffActivityServiceRendered='" + staffActivityServiceRendered + '\'' +
+                ", staffActivityTime='" + staffActivityTime + '\'' +
                 ", staffNotes='" + staffNotes + '\'' +
                 ", staffContactStaff='" + staffContactStaff + '\'' +
                 ", staffContactTeacher='" + staffContactTeacher + '\'' +
