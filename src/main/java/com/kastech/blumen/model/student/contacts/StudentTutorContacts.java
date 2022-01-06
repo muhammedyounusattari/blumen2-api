@@ -18,8 +18,8 @@ public class StudentTutorContacts {
     @OneToOne(cascade = {CascadeType.ALL})
     private Student student;
 
-    @OneToMany(cascade = {CascadeType.ALL})
-    List<ActivityRendered> activityRenderedList;
+  //  @OneToMany(cascade = {CascadeType.ALL})
+  //  List<ActivityRendered> activityRenderedList;
 
     private String firstName;
     private String lastName;
@@ -72,10 +72,10 @@ public class StudentTutorContacts {
     public StudentTutorContacts() {
     }
 
-    public StudentTutorContacts(Long ssno, Student student, List<ActivityRendered> activityRenderedList, String firstName, String lastName, String phoneNumber, String contactDate, String tutor, String contactTime, String recontactDate, boolean active, boolean served, boolean reported, String school, String standing, String fiscalYear, boolean staffCounselor, boolean staffTeacher, boolean staffLab, String staffFirstName, String staffLastName, String staffPhoneNumber, String staffContactTime, boolean staffBolt, String staffContactDate, String staffFiscalYear, String staffRecontactDate, boolean staffRecontacted, String staffContactCounselor, String staffComponents, String staffAprSubject, String staffContactType, String staffSubject, String stafInstruction, String stafActivityService, String stafTotalTime, String stafActivityServiceRendered, String stafActivityTime, String staffNotes, String staffContactStaff, String staffContactTeacher, String staffContactTutor, String staffContactLab, boolean staff) {
+    public StudentTutorContacts(Long ssno, Student student,/* List<ActivityRendered> activityRenderedList,*/ String firstName, String lastName, String phoneNumber, String contactDate, String tutor, String contactTime, String recontactDate, boolean active, boolean served, boolean reported, String school, String standing, String fiscalYear, boolean staffCounselor, boolean staffTeacher, boolean staffLab, String staffFirstName, String staffLastName, String staffPhoneNumber, String staffContactTime, boolean staffBolt, String staffContactDate, String staffFiscalYear, String staffRecontactDate, boolean staffRecontacted, String staffContactCounselor, String staffComponents, String staffAprSubject, String staffContactType, String staffSubject, String stafInstruction, String stafActivityService, String stafTotalTime, String stafActivityServiceRendered, String stafActivityTime, String staffNotes, String staffContactStaff, String staffContactTeacher, String staffContactTutor, String staffContactLab, boolean staff) {
         this.ssno = ssno;
         this.student = student;
-        this.activityRenderedList = activityRenderedList;
+       // this.activityRenderedList = activityRenderedList;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
@@ -463,20 +463,20 @@ public class StudentTutorContacts {
         this.staff = staff;
     }
 
-    public List<ActivityRendered> getActivityRenderedList() {
-        return activityRenderedList;
-    }
-
-    public void setActivityRenderedList(List<ActivityRendered> activityRenderedList) {
-        this.activityRenderedList = activityRenderedList;
-    }
+//    public List<ActivityRendered> getActivityRenderedList() {
+//        return activityRenderedList;
+//    }
+//
+//    public void setActivityRenderedList(List<ActivityRendered> activityRenderedList) {
+//        this.activityRenderedList = activityRenderedList;
+//    }
 
     @Override
     public String toString() {
         return "StudentTutorContacts{" +
                 "ssno=" + ssno +
                 ", student=" + student +
-                ", activityRenderedList=" + activityRenderedList +
+              //  ", activityRenderedList=" + activityRenderedList +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
@@ -542,8 +542,8 @@ public class StudentTutorContacts {
     }*/
 }
 
-@Entity
-@Table(name = "activity_rendered", schema = "blumen2")
+//@Entity
+//@Table(name = "activity_rendered", schema = "blumen2")
  class ActivityRendered{
 
     public ActivityRendered() {
@@ -555,12 +555,12 @@ public class StudentTutorContacts {
         this.totalTime = totalTime;
     }
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="activity_rendered_list_seq_gen")
-    @SequenceGenerator(name="activity_rendered_list_seq_gen", sequenceName="ACTIVITY_RENDERED_LIST_SEQ")
+  //  @Id
+  //  @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="activity_rendered_list_seq_gen")
+  //  @SequenceGenerator(name="activity_rendered_list_seq_gen", sequenceName="ACTIVITY_RENDERED_LIST_SEQ")
     private Long id;
 
-    @OneToOne
+  //  @OneToOne
     private ActivityList activity;
     private String totalTime;
 
