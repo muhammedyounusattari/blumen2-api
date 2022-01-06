@@ -18,8 +18,8 @@ public class StudentTutorContacts {
     @OneToOne(cascade = {CascadeType.ALL})
     private Student student;
 
-    //  @OneToMany(cascade = {CascadeType.ALL})
-    //  List<ActivityRendered> activityRenderedList;
+    @OneToMany(cascade = {CascadeType.ALL})
+    List<ActivityRendered> activityRenderedList;
 
     private String firstName;
     private String lastName;
@@ -56,26 +56,26 @@ public class StudentTutorContacts {
     private String staffAprSubject;
     private String staffContactType;
     private String staffSubject;
-    private String stafInstruction;
-    private String stafActivityService;
-    private String stafTotalTime;
-    private String stafActivityServiceRendered;
-    private String stafActivityTime;
+    private String staffInstruction;
+    private String staffActivityService;
+    private String staffTotalTime;
+    private String staffActivityServiceRendered;
+    private String staffActivityTime;
     private String staffNotes;
 
     private String staffContactStaff;
     private String staffContactTeacher;
     private String staffContactTutor;
     private String staffContactLab;
-    private boolean staff;
+    private String staff;
 
     public StudentTutorContacts() {
     }
 
-    public StudentTutorContacts(Long ssno, Student student,/* List<ActivityRendered> activityRenderedList,*/ String firstName, String lastName, String phoneNumber, String contactDate, String tutor, String contactTime, String recontactDate, boolean active, boolean served, boolean reported, String school, String standing, String fiscalYear, boolean staffCounselor, boolean staffTeacher, boolean staffLab, String staffFirstName, String staffLastName, String staffPhoneNumber, String staffContactTime, boolean staffBolt, String staffContactDate, String staffFiscalYear, String staffRecontactDate, boolean staffRecontacted, String staffContactCounselor, String staffComponents, String staffAprSubject, String staffContactType, String staffSubject, String stafInstruction, String stafActivityService, String stafTotalTime, String stafActivityServiceRendered, String stafActivityTime, String staffNotes, String staffContactStaff, String staffContactTeacher, String staffContactTutor, String staffContactLab, boolean staff) {
+    public StudentTutorContacts(Long ssno, Student student, List<ActivityRendered> activityRenderedList, String firstName, String lastName, String phoneNumber, String contactDate, String tutor, String contactTime, String recontactDate, boolean active, boolean served, boolean reported, String school, String standing, String fiscalYear, boolean staffCounselor, boolean staffTeacher, boolean staffLab, String staffFirstName, String staffLastName, String staffPhoneNumber, String staffContactTime, boolean staffBolt, String staffContactDate, String staffFiscalYear, String staffRecontactDate, boolean staffRecontacted, String staffContactCounselor, String staffComponents, String staffAprSubject, String staffContactType, String staffSubject, String stafInstruction, String stafActivityService, String stafTotalTime, String stafActivityServiceRendered, String stafActivityTime, String staffNotes, String staffContactStaff, String staffContactTeacher, String staffContactTutor, String staffContactLab, String staff) {
         this.ssno = ssno;
         this.student = student;
-        // this.activityRenderedList = activityRenderedList;
+        this.activityRenderedList = activityRenderedList;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
@@ -106,11 +106,11 @@ public class StudentTutorContacts {
         this.staffAprSubject = staffAprSubject;
         this.staffContactType = staffContactType;
         this.staffSubject = staffSubject;
-        this.stafInstruction = stafInstruction;
-        this.stafActivityService = stafActivityService;
-        this.stafTotalTime = stafTotalTime;
-        this.stafActivityServiceRendered = stafActivityServiceRendered;
-        this.stafActivityTime = stafActivityTime;
+        this.staffInstruction = stafInstruction;
+        this.staffActivityService = stafActivityService;
+        this.staffTotalTime = stafTotalTime;
+        this.staffActivityServiceRendered = stafActivityServiceRendered;
+        this.staffActivityTime = stafActivityTime;
         this.staffNotes = staffNotes;
         this.staffContactStaff = staffContactStaff;
         this.staffContactTeacher = staffContactTeacher;
@@ -375,44 +375,44 @@ public class StudentTutorContacts {
         this.staffSubject = staffSubject;
     }
 
-    public String getStafInstruction() {
-        return stafInstruction;
+    public String getStaffInstruction() {
+        return staffInstruction;
     }
 
-    public void setStafInstruction(String stafInstruction) {
-        this.stafInstruction = stafInstruction;
+    public void setStaffInstruction(String staffInstruction) {
+        this.staffInstruction = staffInstruction;
     }
 
-    public String getStafActivityService() {
-        return stafActivityService;
+    public String getStaffActivityService() {
+        return staffActivityService;
     }
 
-    public void setStafActivityService(String stafActivityService) {
-        this.stafActivityService = stafActivityService;
+    public void setStaffActivityService(String staffActivityService) {
+        this.staffActivityService = staffActivityService;
     }
 
-    public String getStafTotalTime() {
-        return stafTotalTime;
+    public String getStaffTotalTime() {
+        return staffTotalTime;
     }
 
-    public void setStafTotalTime(String stafTotalTime) {
-        this.stafTotalTime = stafTotalTime;
+    public void setStaffTotalTime(String staffTotalTime) {
+        this.staffTotalTime = staffTotalTime;
     }
 
-    public String getStafActivityServiceRendered() {
-        return stafActivityServiceRendered;
+    public String getStaffActivityServiceRendered() {
+        return staffActivityServiceRendered;
     }
 
-    public void setStafActivityServiceRendered(String stafActivityServiceRendered) {
-        this.stafActivityServiceRendered = stafActivityServiceRendered;
+    public void setStaffActivityServiceRendered(String stafActivityServiceRendered) {
+        this.staffActivityServiceRendered = stafActivityServiceRendered;
     }
 
     public String getStafActivityTime() {
-        return stafActivityTime;
+        return staffActivityTime;
     }
 
     public void setStafActivityTime(String stafActivityTime) {
-        this.stafActivityTime = stafActivityTime;
+        this.staffActivityTime = stafActivityTime;
     }
 
     public String getStaffNotes() {
@@ -455,21 +455,21 @@ public class StudentTutorContacts {
         this.staffContactLab = staffContactLab;
     }
 
-    public boolean isStaff() {
+    public String isStaff() {
         return staff;
     }
 
-    public void setStaff(boolean staff) {
+    public void setStaff(String staff) {
         this.staff = staff;
     }
 
-//    public List<ActivityRendered> getActivityRenderedList() {
-//        return activityRenderedList;
-//    }
-//
-//    public void setActivityRenderedList(List<ActivityRendered> activityRenderedList) {
-//        this.activityRenderedList = activityRenderedList;
-//    }
+    public List<ActivityRendered> getActivityRenderedList() {
+        return activityRenderedList;
+    }
+
+    public void setActivityRenderedList(List<ActivityRendered> activityRenderedList) {
+        this.activityRenderedList = activityRenderedList;
+    }
 
     @Override
     public String toString() {
@@ -507,11 +507,11 @@ public class StudentTutorContacts {
                 ", staffAprSubject='" + staffAprSubject + '\'' +
                 ", staffContactType='" + staffContactType + '\'' +
                 ", staffSubject='" + staffSubject + '\'' +
-                ", stafInstruction='" + stafInstruction + '\'' +
-                ", stafActivityService='" + stafActivityService + '\'' +
-                ", stafTotalTime='" + stafTotalTime + '\'' +
-                ", stafActivityServiceRendered='" + stafActivityServiceRendered + '\'' +
-                ", stafActivityTime='" + stafActivityTime + '\'' +
+                ", staffInstruction='" + staffInstruction + '\'' +
+                ", staffActivityService='" + staffActivityService + '\'' +
+                ", staffTotalTime='" + staffTotalTime + '\'' +
+                ", staffActivityServiceRendered='" + staffActivityServiceRendered + '\'' +
+                ", staffActivityTime='" + staffActivityTime + '\'' +
                 ", staffNotes='" + staffNotes + '\'' +
                 ", staffContactStaff='" + staffContactStaff + '\'' +
                 ", staffContactTeacher='" + staffContactTeacher + '\'' +
@@ -542,58 +542,3 @@ public class StudentTutorContacts {
     }*/
 }
 
-//@Entity
-//@Table(name = "activity_rendered", schema = "blumen2")
-class ActivityRendered{
-
-    public ActivityRendered() {
-    }
-
-    public ActivityRendered(Long id, ActivityList activity, String totalTime) {
-        this.id = id;
-        this.activity = activity;
-        this.totalTime = totalTime;
-    }
-
-    //  @Id
-    //  @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="activity_rendered_list_seq_gen")
-    //  @SequenceGenerator(name="activity_rendered_list_seq_gen", sequenceName="ACTIVITY_RENDERED_LIST_SEQ")
-    private Long id;
-
-    //  @OneToOne
-    private ActivityList activity;
-    private String totalTime;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public ActivityList getActivity() {
-        return activity;
-    }
-
-    public void setActivity(ActivityList activity) {
-        this.activity = activity;
-    }
-
-    public String getTotalTime() {
-        return totalTime;
-    }
-
-    public void setTotalTime(String totalTime) {
-        this.totalTime = totalTime;
-    }
-
-    @Override
-    public String toString() {
-        return "ActivityRendered{" +
-                "id=" + id +
-                ", activity=" + activity +
-                ", totalTime='" + totalTime + '\'' +
-                '}';
-    }
-}

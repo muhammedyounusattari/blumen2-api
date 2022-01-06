@@ -24,7 +24,7 @@ public class TeacherClasses {
 	private Long id;
 	private String currentYear;
 	private String semester;
-	private String tutorName;
+	private String teacherName;
 	private String subject;
 	private String classPeriod;
 	private String meetingTime;
@@ -35,20 +35,20 @@ public class TeacherClasses {
 	private String maxLimit;
 	private String notes;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL) 
 	List<Student> studentList;
 
 	public TeacherClasses(){
 		super();
 	}
-	public TeacherClasses(Long id, String currentYear, String semester, String tutorName, String subject,
+	public TeacherClasses(Long id, String currentYear, String semester, String teacherName, String subject,
 			String classPeriod, String meetingTime, String days, String room, String studentAssigned, String duration,
-			String maxLimit, String notes) {
+			String maxLimit, String notes,List<Student> studentList) {
 		super();
 		this.id = id;
 		this.currentYear = currentYear;
 		this.semester = semester;
-		this.tutorName = tutorName;
+		this.teacherName = teacherName;
 		this.subject = subject;
 		this.classPeriod = classPeriod;
 		this.meetingTime = meetingTime;
@@ -58,6 +58,7 @@ public class TeacherClasses {
 		this.duration = duration;
 		this.maxLimit = maxLimit;
 		this.notes = notes;
+		this.studentList=studentList;
 	}
 
 	public Long getId() {
@@ -84,14 +85,13 @@ public class TeacherClasses {
 		this.semester = semester;
 	}
 
-	public String getTutorName() {
-		return tutorName;
+	public String getTeacherName() {
+		return teacherName;
 	}
-
-	public void setTutorName(String tutorName) {
-		this.tutorName = tutorName;
+	
+	public void setTeacherName(String teacherName) {
+		this.teacherName = teacherName;
 	}
-
 	public String getSubject() {
 		return subject;
 	}

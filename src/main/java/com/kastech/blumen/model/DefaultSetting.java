@@ -27,14 +27,8 @@ public class DefaultSetting {
 	private boolean addStudentToFiscalYear;
 	private boolean updateFirstDateOfService;
 	private boolean updateLastDateOfService;
-	
-	@Column
-	@ElementCollection(targetClass=Integer.class)
-	private List<Integer> gpaScale;
-	
-	@Column
-    @ElementCollection(targetClass=String.class)
-	private List<String> stateTest;
+	private Integer gpaScale;
+	private String stateTest;
 	private String ageCalculator;
 	private String siteLocation;
 	
@@ -87,16 +81,16 @@ public class DefaultSetting {
 		this.updateLastDateOfService = updateLastDateOfService;
 	}
 		
-	public List<Integer> getGpaScale() {
+	public Integer getGpaScale() {
 		return gpaScale;
 	}
-	public void setGpaScale(List<Integer> gpaScale) {
+	public void setGpaScale(Integer gpaScale) {
 		this.gpaScale = gpaScale;
 	}
-	public List<String> getStateTest() {
+	public String getStateTest() {
 		return stateTest;
 	}
-	public void setStateTest(List<String> stateTest) {
+	public void setStateTest(String stateTest) {
 		this.stateTest = stateTest;
 	}
 	public String getAgeCalculator() {

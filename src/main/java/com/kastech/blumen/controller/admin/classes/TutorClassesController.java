@@ -2,17 +2,16 @@ package com.kastech.blumen.controller.admin.classes;
 
 import java.util.Collection;
 
+import com.kastech.blumen.model.Response;
+import com.kastech.blumen.model.admin.TeacherClasses;
+import com.kastech.blumen.repository.tutor.TutorClassRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.kastech.blumen.model.admin.TutorClasses;
 import com.kastech.blumen.service.admin.classes.TutorClassesService;
@@ -20,6 +19,9 @@ import com.kastech.blumen.service.admin.classes.TutorClassesService;
 @RestController
 @RequestMapping("/api/blumen-api/admin/classes")
 public class TutorClassesController {
+
+	@Autowired
+	TutorClassRepository tutorClassRepository;
 
 	@Autowired
 	private TutorClassesService tutorClassesService;
@@ -87,11 +89,34 @@ public class TutorClassesController {
 	}
 
 	@ResponseBody
-	@PostMapping(path = "/deleteTutorClasses/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+	@DeleteMapping(path = "/deleteTutorClasses/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<String> postSystemPreferenceData(@RequestParam("CouncellorContactId") Long tutorClassesId) {
 		LOGGER.info("Inside postSystemPreferenceData");
 		tutorClassesService.deleteTutorClasses(tutorClassesId);
 		return ResponseEntity.ok("Success");
 	}
+
+	@ResponseBody
+	@PostMapping(path = "/addToTutorClassesList/v1", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<String> addToTutorClassesList(@RequestBody TutorClasses tutorClasses) {
+		tutorClasses = tutorClassRepository.save(tutorClasses);
+		if (tutorClasses != null)
+			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+
+		return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
+	}
+
+	@ResponseBody
+	@PutMapping(path = "/updateTutorClasses/v1", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<String> updateTutorClasses(@RequestBody TutorClasses tutorClasses) {
+		tutorClasses = tutorClassRepository.save(tutorClasses);
+		if (tutorClasses != null)
+			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+
+		return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
+	}
+
 
 }

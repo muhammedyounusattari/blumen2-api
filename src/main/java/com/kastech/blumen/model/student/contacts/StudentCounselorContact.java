@@ -59,12 +59,12 @@ public class StudentCounselorContact {
 	private String staffContactTeacher;
 	private String staffContactTutor;
 	private String staffContactLab;
-	private boolean staff;
+	private String staff;
 
 	public StudentCounselorContact() {
 	}
 
-	public StudentCounselorContact(Long id, Student student, List<ActivityRendered> activityRenderedList, String firstName, String lastName, String phone, String contactDate, String counselor, String contactTime, String reContactDate, boolean staffCounselor, boolean staffTeacher, boolean staffLab, String staffFirstName, String staffLastName, String staffPhoneNumber, String staffContactTime, boolean staffBolt, String staffContactDate, String staffFiscalYear, String staffRecontactDate, boolean staffRecontacted, String staffContactCounselor, String staffComponents, String staffAprSubject, String staffContactType, String staffSubject, String stafInstruction, String stafActivityService, String stafTotalTime, String stafActivityServiceRendered, String stafActivityTime, String staffNotes, String staffContactStaff, String staffContactTeacher, String staffContactTutor, String staffContactLab, boolean staff) {
+	public StudentCounselorContact(Long id, Student student, List<ActivityRendered> activityRenderedList, String firstName, String lastName, String phone, String contactDate, String counselor, String contactTime, String reContactDate, boolean staffCounselor, boolean staffTeacher, boolean staffLab, String staffFirstName, String staffLastName, String staffPhoneNumber, String staffContactTime, boolean staffBolt, String staffContactDate, String staffFiscalYear, String staffRecontactDate, boolean staffRecontacted, String staffContactCounselor, String staffComponents, String staffAprSubject, String staffContactType, String staffSubject, String stafInstruction, String stafActivityService, String stafTotalTime, String stafActivityServiceRendered, String stafActivityTime, String staffNotes, String staffContactStaff, String staffContactTeacher, String staffContactTutor, String staffContactLab, String staff) {
 		this.id = id;
 		this.student = student;
 		this.activityRenderedList = activityRenderedList;
@@ -401,11 +401,11 @@ public class StudentCounselorContact {
 		this.staffContactLab = staffContactLab;
 	}
 
-	public boolean isStaff() {
+	public String isStaff() {
 		return staff;
 	}
 
-	public void setStaff(boolean staff) {
+	public void setStaff(String staff) {
 		this.staff = staff;
 	}
 

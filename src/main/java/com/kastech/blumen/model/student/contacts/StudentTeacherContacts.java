@@ -66,12 +66,12 @@ public class StudentTeacherContacts {
     private String staffContactTeacher;
     private String staffContactTutor;
     private String staffContactLab;
-    private boolean staff;
+    private String staff;
 
     public StudentTeacherContacts() {
     }
 
-    public StudentTeacherContacts(Long ssno, Student student, List<ActivityRendered> activityRenderedList, String firstName, String lastName, String phoneNumber, String contactDate, String teacher, String contactTime, String recontactDate, boolean active, boolean served, boolean reported, String school, String standing, String fiscalYear, boolean staffCounselor, boolean staffTeacher, boolean staffLab, String staffFirstName, String staffLastName, String staffPhoneNumber, String staffContactTime, boolean staffBolt, String staffContactDate, String staffFiscalYear, String staffRecontactDate, boolean staffRecontacted, String staffContactCounselor, String staffComponents, String staffAprSubject, String staffContactType, String staffSubject, String stafInstruction, String stafActivityService, String stafTotalTime, String stafActivityServiceRendered, String stafActivityTime, String staffNotes, String staffContactStaff, String staffContactTeacher, String staffContactTutor, String staffContactLab, boolean staff) {
+    public StudentTeacherContacts(Long ssno, Student student, List<ActivityRendered> activityRenderedList, String firstName, String lastName, String phoneNumber, String contactDate, String teacher, String contactTime, String recontactDate, boolean active, boolean served, boolean reported, String school, String standing, String fiscalYear, boolean staffCounselor, boolean staffTeacher, boolean staffLab, String staffFirstName, String staffLastName, String staffPhoneNumber, String staffContactTime, boolean staffBolt, String staffContactDate, String staffFiscalYear, String staffRecontactDate, boolean staffRecontacted, String staffContactCounselor, String staffComponents, String staffAprSubject, String staffContactType, String staffSubject, String stafInstruction, String stafActivityService, String stafTotalTime, String stafActivityServiceRendered, String stafActivityTime, String staffNotes, String staffContactStaff, String staffContactTeacher, String staffContactTutor, String staffContactLab, String staff) {
         this.ssno = ssno;
         this.student = student;
         this.activityRenderedList = activityRenderedList;
@@ -462,11 +462,11 @@ public class StudentTeacherContacts {
         this.staffContactLab = staffContactLab;
     }
 
-    public boolean isStaff() {
+    public String isStaff() {
         return staff;
     }
 
-    public void setStaff(boolean staff) {
+    public void setStaff(String staff) {
         this.staff = staff;
     }
 
