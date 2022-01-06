@@ -41,7 +41,7 @@ public class TutorClasses {
 	
 	public TutorClasses(Long id, String currentYear, String semester, String tutorName, String subject,
 			String classPeriod, String meetingTime, String days, String room, String studentAssigned, String duration,
-			String maxLimit, String notes,List<Student> studentList) {
+			String maxLimit, String notes) {
 		super();
 		this.id = id;
 		this.currentYear = currentYear;
@@ -56,7 +56,6 @@ public class TutorClasses {
 		this.duration = duration;
 		this.maxLimit = maxLimit;
 		this.notes = notes;
-		this.studentList=studentList;
 	}
 
 	public Long getId() {

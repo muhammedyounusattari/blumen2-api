@@ -23,7 +23,7 @@ public class StaffClasses {
 	private Long id;
 	private String currentYear;
 	private String semester;
-	private String staffName;
+	private String tutorName;
 	private String subject;
 	private String classPeriod;
 	private String meetingTime;
@@ -41,14 +41,14 @@ public class StaffClasses {
 	public StaffClasses(){
 		super();
 	}
-	public StaffClasses(Long id, String currentYear, String semester, String staffName, String subject,
+	public StaffClasses(Long id, String currentYear, String semester, String tutorName, String subject,
 			String classPeriod, String meetingTime, String days, String room, String studentAssigned, String duration,
-			String maxLimit, String notes,List<Student> studentList) {
+			String maxLimit, String notes) {
 		super();
 		this.id = id;
 		this.currentYear = currentYear;
 		this.semester = semester;
-		this.staffName = staffName;
+		this.tutorName = tutorName;
 		this.subject = subject;
 		this.classPeriod = classPeriod;
 		this.meetingTime = meetingTime;
@@ -58,7 +58,6 @@ public class StaffClasses {
 		this.duration = duration;
 		this.maxLimit = maxLimit;
 		this.notes = notes;
-		this.studentList=studentList;
 	}
 
 	public Long getId() {
@@ -84,12 +83,15 @@ public class StaffClasses {
 	public void setSemester(String semester) {
 		this.semester = semester;
 	}
-	public String getStaffName() {
-		return staffName;
+
+	public String getTutorName() {
+		return tutorName;
 	}
-	public void setStaffName(String staffName) {
-		this.staffName = staffName;
+
+	public void setTutorName(String tutorName) {
+		this.tutorName = tutorName;
 	}
+
 	public String getSubject() {
 		return subject;
 	}
@@ -160,12 +162,6 @@ public class StaffClasses {
 
 	public void setNotes(String notes) {
 		this.notes = notes;
-	}
-	public List<Student> getStudentList() {
-		return studentList;
-	}
-	public void setStudentList(List<Student> studentList) {
-		this.studentList = studentList;
 	}
 	
 }

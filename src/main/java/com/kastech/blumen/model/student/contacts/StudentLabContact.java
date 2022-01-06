@@ -59,12 +59,12 @@ public class StudentLabContact {
 	private String staffContactTeacher;
 	private String staffContactTutor;
 	private String staffContactLab;
-	private String staff;
+	private boolean staff;
 
 	public StudentLabContact() {
 	}
 
-	public StudentLabContact(Integer id, Student student, List<ActivityRendered> activityRenderedList, String firstName, String lastName, String labDate, String checkIn, String checkOut, String reasonForVisit, boolean staffCounselor, boolean staffTeacher, boolean staffLab, String staffFirstName, String staffLastName, String staffPhoneNumber, String staffContactTime, boolean staffBolt, String staffContactDate, String staffFiscalYear, String staffRecontactDate, boolean staffRecontacted, String staffContactCounselor, String staffComponents, String staffAprSubject, String staffContactType, String staffSubject, String stafInstruction, String stafActivityService, String stafTotalTime, String stafActivityServiceRendered, String stafActivityTime, String staffNotes, String staffContactStaff, String staffContactTeacher, String staffContactTutor, String staffContactLab, String staff) {
+	public StudentLabContact(Integer id, Student student, List<ActivityRendered> activityRenderedList, String firstName, String lastName, String labDate, String checkIn, String checkOut, String reasonForVisit, boolean staffCounselor, boolean staffTeacher, boolean staffLab, String staffFirstName, String staffLastName, String staffPhoneNumber, String staffContactTime, boolean staffBolt, String staffContactDate, String staffFiscalYear, String staffRecontactDate, boolean staffRecontacted, String staffContactCounselor, String staffComponents, String staffAprSubject, String staffContactType, String staffSubject, String stafInstruction, String stafActivityService, String stafTotalTime, String stafActivityServiceRendered, String stafActivityTime, String staffNotes, String staffContactStaff, String staffContactTeacher, String staffContactTutor, String staffContactLab, boolean staff) {
 		this.id = id;
 		this.student = student;
 		this.activityRenderedList = activityRenderedList;
@@ -392,11 +392,11 @@ public class StudentLabContact {
 		this.staffContactLab = staffContactLab;
 	}
 
-	public String isStaff() {
+	public boolean isStaff() {
 		return staff;
 	}
 
-	public void setStaff(String staff) {
+	public void setStaff(boolean staff) {
 		this.staff = staff;
 	}
 

@@ -44,7 +44,7 @@ public class StudentTutorContactsController {
     @GetMapping(path = "/getStudentTutorContacts/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
     public List<Student> getStudentTutorContacts() {
         List<Student> list = new ArrayList<>();
-        Iterable<Student> items = studentRepository.findAll(Sort.by(Sort.Direction.ASC, "ssno"));
+        Iterable<Student> items = studentRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
         items.forEach(list::add);
         return list;
     }

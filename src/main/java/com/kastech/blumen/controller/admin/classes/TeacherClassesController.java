@@ -2,17 +2,17 @@ package com.kastech.blumen.controller.admin.classes;
 
 import java.util.Collection;
 
-import com.kastech.blumen.model.Response;
-import com.kastech.blumen.model.admin.StaffClasses;
-import com.kastech.blumen.repository.teacher.TeacherClassRepository;
-import com.kastech.blumen.repository.teacher.TeacherRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.kastech.blumen.model.admin.TeacherClasses;
 import com.kastech.blumen.service.admin.classes.TeacherClassesService;
@@ -20,9 +20,6 @@ import com.kastech.blumen.service.admin.classes.TeacherClassesService;
 @RestController
 @RequestMapping("/api/blumen-api/admin/classes")
 public class TeacherClassesController {
-
-	@Autowired
-	private TeacherClassRepository teacherRepository;
 
 	@Autowired
 	private TeacherClassesService teacherClassesService;
@@ -87,35 +84,6 @@ public class TeacherClassesController {
 		LOGGER.info("call received for getTeacherClassessByMoreFilter under StudentCouncellorContactController");
 		return ResponseEntity.ok(teacherClassesService.getTeacherClassessByMoreAdvanceFilter(zipCode, major, siteLocation,
 				incomeSource, entryCollege, cohortYear));
-	}
-
-	@ResponseBody
-	@PostMapping(path = "/addToTeacherClassesList/v1", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
-			MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<String> addToTeacherClassesList(@RequestBody TeacherClasses teacherClasses) {
-		teacherClasses = teacherRepository.save(teacherClasses);
-		if (teacherClasses != null)
-			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
-
-		return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
-	}
-
-	@ResponseBody
-	@PutMapping(path = "/updateTeacherClasses/v1", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
-			MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<String> updateTeacherClasses(@RequestBody TeacherClasses teacherClasses) {
-		teacherClasses = teacherRepository.save(teacherClasses);
-		if (teacherClasses != null)
-			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
-
-		return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
-	}
-	@ResponseBody
-	@DeleteMapping(path = "/deleteTeacherClasses/v1", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
-			MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<String> deleteTeacherClasses(@RequestParam("TeacherClassesId") Long id) {
-		teacherRepository.deleteById(id);
-		return ResponseEntity.status(HttpStatus.OK).body("Success");
 	}
 
 

@@ -42,12 +42,4 @@ public class CounselorClassesService {
 		return counselorClassRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
 	}
 
-	public CounselorClasses saveData(CounselorClasses counselorClasses){
-		return counselorClassRepository.save(counselorClasses);
-	}
-
-	public void deleteData(Long id){
-		 counselorClassRepository.deleteById(id);
-	}
-
 }
