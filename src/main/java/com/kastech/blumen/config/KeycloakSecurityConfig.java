@@ -44,6 +44,18 @@ public class KeycloakSecurityConfig extends KeycloakWebSecurityConfigurerAdapter
         SecurityContextHolder.setStrategyName(SecurityContextHolder.MODE_INHERITABLETHREADLOCAL);
     }
 
+    /**
+     * If you don't want to use the keycloak.json file, then uncomment this bean.
+     */
+    /**
+     * Use properties in application.properties instead of keycloak.json
+     */
+    @Bean
+    @Primary
+    public KeycloakConfigResolver keycloakConfigResolver(KeycloakSpringBootProperties properties) {
+        return new CustomKeycloakSpringBootConfigResolver(properties);
+    }
+
     @Bean
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public KeycloakRestTemplate keycloakRestTemplate() {
