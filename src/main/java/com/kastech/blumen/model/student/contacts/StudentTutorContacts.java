@@ -549,14 +549,28 @@ public class StudentTutorContacts {
     public ActivityRendered() {
     }
 
-    public ActivityRendered(ActivityList activity, String totalTime) {
+    public ActivityRendered(Long id, ActivityList activity, String totalTime) {
+        this.id = id;
         this.activity = activity;
         this.totalTime = totalTime;
     }
 
-    @OneToOne(mappedBy = "activityId")
+    @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="activity_rendered_list_seq_gen")
+    @SequenceGenerator(name="activity_rendered_list_seq_gen", sequenceName="ACTIVITY_RENDERED_LIST_SEQ")
+    private Long id;
+
+    @OneToOne
     private ActivityList activity;
     private String totalTime;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public ActivityList getActivity() {
         return activity;
@@ -577,7 +591,8 @@ public class StudentTutorContacts {
     @Override
     public String toString() {
         return "ActivityRendered{" +
-                "activity=" + activity +
+                "id=" + id +
+                ", activity=" + activity +
                 ", totalTime='" + totalTime + '\'' +
                 '}';
     }
