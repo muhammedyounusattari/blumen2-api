@@ -72,14 +72,15 @@ public class StudentStaffContactsController {
     @PutMapping(path = "/updateStudentStaffContactsList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Optional<StudentStaffContacts> editStudentStaffContactsList(@RequestBody StudentStaffContacts studentStaffContacts) {
+    public StudentStaffContacts editStudentStaffContactsList(@RequestBody StudentStaffContacts studentStaffContacts) {
      //   StudentStaffContacts studentStaffContacts = studentStaffContactsServiceV1.doService(reqBody);
 
-        return studentStaffContactsRepository.findById(studentStaffContacts.getSsno())
+        return studentStaffContactsRepository.save(studentStaffContacts);
+       /* return studentStaffContactsRepository.findById(studentStaffContacts.getSsno())
                 .map(oldItem -> {
                     StudentStaffContacts updated = oldItem.updateWith(studentStaffContacts);
                     return studentStaffContactsRepository.save(updated);
-                });
+                });*/
     }
 
 

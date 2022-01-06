@@ -10,6 +10,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.kastech.blumen.model.Address;
+import com.kastech.blumen.model.student.Student;
 
 @Entity
 @Table(name = "staff" ,schema = "blumen2")
@@ -19,6 +20,10 @@ public class Staff {
 	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="staff_seq_gen")
     @SequenceGenerator(name="staff_seq_gen", sequenceName="STAFF_SEQ")
 	private Long id;
+
+    @OneToOne(cascade = {CascadeType.ALL})
+	private Student student;
+
     private String staffName;
     private String staffTitle;
     private boolean staffActive;
@@ -82,8 +87,9 @@ public class Staff {
     public Staff() {
     }
 
-    public Staff(Long id, String staffName, String staffTitle, boolean staffActive, boolean staffTutor, String staffSSNO, boolean staffCounselor, boolean staffTeacher, boolean staffLab, String staffCodes, String staffDOB, String staffSpouseName, String staffHireDate, String staffDriverLicense, String staffTerminationDate, String staffCustomFieldOne, String staffCustomFieldTwo, String staffCustomFieldThree, String staffCustomFieldFour, String staffPicture, String staffFirstName, String staffLastName, String staffPhoneNumber, String staffContactTime, boolean staffBolt, String staffContactDate, String staffFiscalYear, String staffRecontactDate, boolean staffRecontacted, String staffContactCounselor, String staffComponents, String staffAprSubject, String staffContactType, String staffSubject, String stafInstruction, String stafActivityService, String stafTotalTime, String stafActivityServiceRendered, String stafActivityTime, String staffNotes, String staffContactStaff, String staffContactTeacher, String staffContactTutor, String staffContactLab, boolean staff, Address address) {
+    public Staff(Long id, Student student, String staffName, String staffTitle, boolean staffActive, boolean staffTutor, String staffSSNO, boolean staffCounselor, boolean staffTeacher, boolean staffLab, String staffCodes, String staffDOB, String staffSpouseName, String staffHireDate, String staffDriverLicense, String staffTerminationDate, String staffCustomFieldOne, String staffCustomFieldTwo, String staffCustomFieldThree, String staffCustomFieldFour, String staffPicture, String staffFirstName, String staffLastName, String staffPhoneNumber, String staffContactTime, boolean staffBolt, String staffContactDate, String staffFiscalYear, String staffRecontactDate, boolean staffRecontacted, String staffContactCounselor, String staffComponents, String staffAprSubject, String staffContactType, String staffSubject, String stafInstruction, String stafActivityService, String stafTotalTime, String stafActivityServiceRendered, String stafActivityTime, String staffNotes, String staffContactStaff, String staffContactTeacher, String staffContactTutor, String staffContactLab, boolean staff, Address address) {
         this.id = id;
+        this.student = student;
         this.staffName = staffName;
         this.staffTitle = staffTitle;
         this.staffActive = staffActive;
@@ -137,6 +143,14 @@ public class Staff {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     public String getStaffName() {
@@ -503,6 +517,7 @@ public class Staff {
     public String toString() {
         return "Staff{" +
                 "id=" + id +
+                ", student=" + student +
                 ", staffName='" + staffName + '\'' +
                 ", staffTitle='" + staffTitle + '\'' +
                 ", staffActive=" + staffActive +

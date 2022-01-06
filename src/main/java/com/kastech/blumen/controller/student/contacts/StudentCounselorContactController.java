@@ -131,14 +131,15 @@ public class StudentCounselorContactController {
 	@PutMapping(path = "/updateStudentCounselorContactList/v1",
 			consumes = {MediaType.APPLICATION_JSON_VALUE},
 			produces = {MediaType.APPLICATION_JSON_VALUE})
-	public Optional<StudentCounselorContact> editStudentCounselorContactList(@RequestBody StudentCounselorContact studentCounselorContact) {
+	public StudentCounselorContact editStudentCounselorContactList(@RequestBody StudentCounselorContact studentCounselorContact) {
 		//   StudentStaffContacts studentStaffContacts = studentStaffContactsServiceV1.doService(reqBody);
 
-		return studentCounselorContactRepository.findById(studentCounselorContact.getId())
+		return studentCounselorContactRepository.save(studentCounselorContact);
+		/*return studentCounselorContactRepository.findById(studentCounselorContact.getId())
 				.map(oldItem -> {
 					StudentCounselorContact updated = oldItem.updateWith(studentCounselorContact);
 					return studentCounselorContactRepository.save(updated);
-				});
+				});*/
 	}
 
 	@ResponseBody

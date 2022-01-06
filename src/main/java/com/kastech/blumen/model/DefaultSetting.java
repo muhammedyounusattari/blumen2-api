@@ -29,12 +29,12 @@ public class DefaultSetting {
 	private boolean updateLastDateOfService;
 	
 	@Column
-	@ElementCollection(targetClass=Integer.class)
-	private List<Integer> gpaScale;
+	//@ElementCollection(targetClass=Integer.class)
+	private String gpaScale;
 	
 	@Column
-    @ElementCollection(targetClass=String.class)
-	private List<String> stateTest;
+  //  @ElementCollection(targetClass=String.class)
+	private String stateTest;
 	private String ageCalculator;
 	private String siteLocation;
 	
@@ -86,19 +86,15 @@ public class DefaultSetting {
 	public void setUpdateLastDateOfService(boolean updateLastDateOfService) {
 		this.updateLastDateOfService = updateLastDateOfService;
 	}
-		
-	public List<Integer> getGpaScale() {
+
+	public String getGpaScale() {
 		return gpaScale;
 	}
-	public void setGpaScale(List<Integer> gpaScale) {
+
+	public void setGpaScale(String gpaScale) {
 		this.gpaScale = gpaScale;
 	}
-	public List<String> getStateTest() {
-		return stateTest;
-	}
-	public void setStateTest(List<String> stateTest) {
-		this.stateTest = stateTest;
-	}
+
 	public String getAgeCalculator() {
 		return ageCalculator;
 	}
