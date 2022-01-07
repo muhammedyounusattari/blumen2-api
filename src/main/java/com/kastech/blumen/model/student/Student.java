@@ -30,6 +30,8 @@ public class Student implements Serializable {
     private String school;
     private String standing;
     private String fiscalYear;
+    private String grade;
+    private String gradeNotes;
 
     //private EndOfYearStatus endOfYearStatus;
     @OneToOne(cascade = CascadeType.ALL)
@@ -184,6 +186,22 @@ public class Student implements Serializable {
 
     public void setGraduatedInformation(GraduatedInformation graduatedInformation) {
         this.graduatedInformation = graduatedInformation;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
+    public String getGradeNotes() {
+        return gradeNotes;
+    }
+
+    public void setGradeNotes(String gradeNotes) {
+        this.gradeNotes = gradeNotes;
     }
 
     //    class EndOfYearStatus {
