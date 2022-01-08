@@ -1,6 +1,8 @@
 package com.kastech.blumen.model.student.contacts;
 
 import com.kastech.blumen.model.student.Student;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,9 +16,13 @@ public class StudentCounselorContact {
 	@SequenceGenerator(name="stu_counselor_contact_list_seq_gen", sequenceName="STUDENT_COUNSELOR_CONTACT_LIST_SEQ")
 	private Long id;
 
+//	@OnDelete(action = OnDeleteAction.CASCADE)
+//	@JoinColumn(name = "student_ssno", referencedColumnName="ssno")
 	@OneToOne(cascade = {CascadeType.ALL})
 	private Student student;
 
+//	@OnDelete(action = OnDeleteAction.CASCADE)
+//	@JoinColumn(name = "actifivity_id", referencedColumnName="id")
 	@OneToMany(cascade = {CascadeType.ALL})
 	List<ActivityRendered> activityRenderedList;
 	private String firstName;

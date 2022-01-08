@@ -14,9 +14,9 @@ import java.util.List;
 @Table(name = "student" ,schema = "blumen2")
 public class Student implements Serializable {
 
-	@Id
+    @Id
     private Long ssno;
-	private String orgId;
+    private String orgId;
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -36,7 +36,7 @@ public class Student implements Serializable {
     //private EndOfYearStatus endOfYearStatus;
     @OneToOne(cascade = CascadeType.ALL)
     private GraduatedInformation graduatedInformation;
-  //  private Activities activities;
+    //  private Activities activities;
 
     public Student() {
     }
