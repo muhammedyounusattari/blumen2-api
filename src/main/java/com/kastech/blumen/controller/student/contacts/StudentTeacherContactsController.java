@@ -54,7 +54,7 @@ public class StudentTeacherContactsController {
     public List<StudentTeacherContacts> getStudentTeacherContactsList() {
 
         List<StudentTeacherContacts> list = new ArrayList<>();
-        Iterable<StudentTeacherContacts> items = studentTeacherContactsRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
+        Iterable<StudentTeacherContacts> items = studentTeacherContactsRepository.findAll(Sort.by(Sort.Direction.ASC, "ssno"));
         items.forEach(list::add);
         return list;
     }

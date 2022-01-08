@@ -5,6 +5,7 @@ import java.util.Collection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.admin.TutorContact;
 import com.kastech.blumen.service.admin.TutorContactsService;
 
@@ -92,7 +94,7 @@ public class TutorContactsController {
 	public ResponseEntity<String> postSystemPreferenceData(@RequestParam("CouncellorContactId") Long tutorContactId) {
 		LOGGER.info("Inside postSystemPreferenceData");
 		tutorContactService.deleteTutorContact(tutorContactId);
-		return ResponseEntity.ok("Success");
+		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
 	}
 
 }

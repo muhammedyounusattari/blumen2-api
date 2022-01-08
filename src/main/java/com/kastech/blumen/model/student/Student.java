@@ -5,8 +5,11 @@ import com.kastech.blumen.model.student.dataentry.GraduatedInformation;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.List;
@@ -15,6 +18,8 @@ import java.util.List;
 public class Student implements Serializable {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="student_seq_gen")
+    @SequenceGenerator(name="student_seq_gen", sequenceName="student_SEQ")
     private Long ssno;
     private String orgId;
     private String firstName;
@@ -34,7 +39,7 @@ public class Student implements Serializable {
     private String gradeNotes;
 
     //private EndOfYearStatus endOfYearStatus;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.ALL})
     private GraduatedInformation graduatedInformation;
     //  private Activities activities;
 

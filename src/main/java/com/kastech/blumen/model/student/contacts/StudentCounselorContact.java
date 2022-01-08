@@ -18,7 +18,7 @@ public class StudentCounselorContact {
 
 //	@OnDelete(action = OnDeleteAction.CASCADE)
 //	@JoinColumn(name = "student_ssno", referencedColumnName="ssno")
-	@OneToOne(cascade = {CascadeType.ALL})
+	 @OneToOne(cascade = {CascadeType.REMOVE,CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	private Student student;
 
 //	@OnDelete(action = OnDeleteAction.CASCADE)

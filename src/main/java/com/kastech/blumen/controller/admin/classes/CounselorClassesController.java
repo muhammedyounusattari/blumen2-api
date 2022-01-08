@@ -106,7 +106,7 @@ public class CounselorClassesController {
 		return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
 	}
 	@ResponseBody
-	@DeleteMapping(path = "/deleteCounselorClasses/v1", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
+	@DeleteMapping(path = "/deleteCounselorClasses/v1", produces = {
 			MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<String> deleteCounselorClasses(@RequestParam("CounselorClassesId") Long id) {
 		counselorClassesService.deleteData(id);

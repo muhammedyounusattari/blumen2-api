@@ -14,7 +14,7 @@ public class StudentLabContact {
 	@SequenceGenerator(name="student_lab_contact_list_seq_gen", sequenceName="STUDENT_LAB_CONTACT_LIST_SEQ")
 	private Integer id;
 
-	@OneToOne(cascade = {CascadeType.ALL})
+	@OneToOne(cascade = {CascadeType.REMOVE,CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	private Student student;
 
 	@OneToMany(cascade = {CascadeType.ALL})

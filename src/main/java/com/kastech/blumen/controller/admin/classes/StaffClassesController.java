@@ -110,11 +110,11 @@ public class StaffClassesController {
 		return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
 	}
 	@ResponseBody
-	@DeleteMapping(path = "/deleteStaffClasses/v1", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
+	@DeleteMapping(path = "/deleteStaffClasses/v1",  produces = {
 			MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<String> deleteStaffClasses(@RequestParam("StaffClassesId") Long id) {
 		staffClassRepository.deleteById(id);
-		return ResponseEntity.status(HttpStatus.OK).body("Success");
+		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
 	}
 
 	

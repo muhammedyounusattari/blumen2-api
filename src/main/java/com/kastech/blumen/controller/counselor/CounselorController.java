@@ -75,7 +75,7 @@ public class CounselorController {
 			MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<String> deleteCounselorList(@RequestBody Long id) {
 		counselorServiceV1.deleteById(id);
-		return ResponseEntity.status(HttpStatus.OK).body("Success");
+		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
 	}
 
 }
