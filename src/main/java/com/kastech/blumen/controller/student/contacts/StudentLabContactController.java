@@ -2,6 +2,7 @@ package com.kastech.blumen.controller.student.contacts;
 
 import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.student.Student;
+import com.kastech.blumen.model.student.contacts.StudentCounselorContact;
 import com.kastech.blumen.model.student.contacts.StudentLabContact;
 import com.kastech.blumen.repository.student.StudentRepository;
 import com.kastech.blumen.repository.student.contacts.StudentLabContactRepository;
@@ -53,7 +54,7 @@ public class StudentLabContactController {
 		return list;
 	}
 
-	@ResponseBody
+/*	@ResponseBody
 	@GetMapping(path = "/getLabContactsByNormalFilter/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<Collection<StudentLabContact>> getLabContactsByNormalFilter(
 			@RequestParam("checkInFrom") String checkInFrom, @RequestParam("checkInTo") String checkInTo,
@@ -91,7 +92,7 @@ public class StudentLabContactController {
 		LOGGER.info("call received for getLabContactsByMoreFilter under StudentLabContactController");
 		return ResponseEntity.ok(labContactService.getLabContactsByMoreFilter(zipCode, major, siteLocation,
 				incomeSource, entryCollege, cohortYear));
-	}
+	}*/
 
 	@ResponseBody
 	@DeleteMapping(path = "/deleteLabContact/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
@@ -99,6 +100,22 @@ public class StudentLabContactController {
 		LOGGER.info("Inside postSystemPreferenceData");
 		studentLabContactRepository.deleteById(Long.parseLong(labContactId));
 		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+	}
+
+	@ResponseBody
+	@PostMapping(path = "/addStudentLabContactList/v1",
+			consumes = {MediaType.APPLICATION_JSON_VALUE},
+			produces = {MediaType.APPLICATION_JSON_VALUE})
+	public StudentLabContact addToStudentLabContactList(@RequestBody StudentLabContact studentLabContact) {
+		return studentLabContactRepository.save(studentLabContact);
+	}
+
+	@ResponseBody
+	@PutMapping(path = "/updateStudentLabContactList/v1",
+			consumes = {MediaType.APPLICATION_JSON_VALUE},
+			produces = {MediaType.APPLICATION_JSON_VALUE})
+	public StudentLabContact editStudentLabContactList(@RequestBody StudentLabContact studentLabContact) {
+		return studentLabContactRepository.save(studentLabContact);
 	}
 
 }

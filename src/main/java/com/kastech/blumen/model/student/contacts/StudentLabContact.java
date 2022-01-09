@@ -12,7 +12,7 @@ public class StudentLabContact {
 	@Id
 	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="student_lab_contact_list_seq_gen")
 	@SequenceGenerator(name="student_lab_contact_list_seq_gen", sequenceName="STUDENT_LAB_CONTACT_LIST_SEQ")
-	private Integer id;
+	private Long id;
 
 	@OneToOne(cascade = {CascadeType.REMOVE,CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
 	private Student student;
@@ -64,7 +64,7 @@ public class StudentLabContact {
 	public StudentLabContact() {
 	}
 
-	public StudentLabContact(Integer id, Student student, List<ActivityRendered> activityRenderedList, String firstName, String lastName, String labDate, String checkIn, String checkOut, String reasonForVisit, boolean staffCounselor, boolean staffTeacher, boolean staffLab, String staffFirstName, String staffLastName, String staffPhoneNumber, String staffContactTime, boolean staffBolt, String staffContactDate, String staffFiscalYear, String staffRecontactDate, boolean staffRecontacted, String staffContactCounselor, String staffComponents, String staffAprSubject, String staffContactType, String staffSubject, String stafInstruction, String stafActivityService, String stafTotalTime, String stafActivityServiceRendered, String stafActivityTime, String staffNotes, String staffContactStaff, String staffContactTeacher, String staffContactTutor, String staffContactLab, String staff) {
+	public StudentLabContact(Long id, Student student, List<ActivityRendered> activityRenderedList, String firstName, String lastName, String labDate, String checkIn, String checkOut, String reasonForVisit, boolean staffCounselor, boolean staffTeacher, boolean staffLab, String staffFirstName, String staffLastName, String staffPhoneNumber, String staffContactTime, boolean staffBolt, String staffContactDate, String staffFiscalYear, String staffRecontactDate, boolean staffRecontacted, String staffContactCounselor, String staffComponents, String staffAprSubject, String staffContactType, String staffSubject, String stafInstruction, String stafActivityService, String stafTotalTime, String stafActivityServiceRendered, String stafActivityTime, String staffNotes, String staffContactStaff, String staffContactTeacher, String staffContactTutor, String staffContactLab, String staff) {
 		this.id = id;
 		this.student = student;
 		this.activityRenderedList = activityRenderedList;
@@ -104,11 +104,11 @@ public class StudentLabContact {
 		this.staff = staff;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
