@@ -3,6 +3,7 @@ package com.kastech.blumen.controller.admin.classes;
 import java.util.Collection;
 
 import com.kastech.blumen.model.Response;
+import com.kastech.blumen.model.admin.TutorClasses;
 import com.kastech.blumen.model.admin.TeacherClasses;
 import com.kastech.blumen.repository.tutor.TutorClassRepository;
 import org.slf4j.Logger;
@@ -51,13 +52,13 @@ public class TutorClassesController {
 			
 			@RequestParam("fiscalYear") String fiscalYear, @RequestParam("active") String active,
 			@RequestParam("served") String served, @RequestParam("reported") String reported,
-			@RequestParam("counselor") String counselor, @RequestParam("status") String status,
+			@RequestParam("Tutor") String Tutor, @RequestParam("status") String status,
 			@RequestParam("ethnicity") String ethnicity, @RequestParam("standing") String standing,
 			@RequestParam("school") String school, @RequestParam("eligibility") String eligibility,
 			@RequestParam("gender") String gender) {
 		LOGGER.info("call received for getTutorClassessByNormalFilter under StudentCouncellorContactController");
 		return ResponseEntity.ok(tutorClassesService.getTutorClassessByNormalFilter( fiscalYear,
-				active, served, reported, counselor, status, ethnicity, standing, school, eligibility, gender));
+				active, served, reported, Tutor, status, ethnicity, standing, school, eligibility, gender));
 	}
 
 	@ResponseBody
@@ -128,5 +129,11 @@ public class TutorClassesController {
 		return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
 	}
 
+	@ResponseBody
+    @GetMapping(path = "/getTutorClass/v1/{id}",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public TutorClasses getTutorClassId(@PathVariable Long id) {
+        return tutorClassesService.findById(id);
+    }
 
 }

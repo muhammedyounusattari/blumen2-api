@@ -50,4 +50,8 @@ public class CounselorClassesService {
 		 counselorClassRepository.deleteById(id);
 	}
 
+	public CounselorClasses findById(Long id) {
+		return counselorClassRepository.findById(id).get();
+	}
+
 }

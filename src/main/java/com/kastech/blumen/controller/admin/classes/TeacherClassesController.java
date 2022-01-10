@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.kastech.blumen.model.admin.TeacherClasses;
+import com.kastech.blumen.model.customize.PullDown;
 import com.kastech.blumen.service.admin.classes.TeacherClassesService;
 
 @RestController
@@ -117,6 +118,14 @@ public class TeacherClassesController {
 		teacherRepository.deleteById(teacherClasses.getId());
 		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
 	}
+	
+
+    @ResponseBody
+    @GetMapping(path = "/getTeacherClass/v1/{id}",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public TeacherClasses getTeacherClassId(@PathVariable Long id) {
+        return teacherClassesService.findById(id);
+    }
 
 
 }

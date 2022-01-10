@@ -46,4 +46,8 @@ public class TutorClassesService {
 		tutorClassRepository.deleteById(TutorClassesId);
 	}
 
+	public TutorClasses findById(Long id) {
+		return tutorClassRepository.findById(id).get();
+	}
+
 }

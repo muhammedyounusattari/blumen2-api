@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.admin.StaffClasses;
+import com.kastech.blumen.model.admin.CounselorClasses;
 import com.kastech.blumen.model.counselor.Counselor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -114,5 +115,11 @@ public class CounselorClassesController {
 		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
 	}
 
+	@ResponseBody
+    @GetMapping(path = "/getCounselorClass/v1/{id}",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public CounselorClasses getCounselorClassId(@PathVariable Long id) {
+        return counselorClassesService.findById(id);
+    }
 
 }

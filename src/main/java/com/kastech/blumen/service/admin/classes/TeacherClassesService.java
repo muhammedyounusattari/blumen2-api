@@ -48,4 +48,8 @@ public class TeacherClassesService {
 		teacherClassRepository.deleteById(TeacherClassesId);
 	}
 
+	public TeacherClasses findById(Long id) {
+		return teacherClassRepository.findById(id).get();
+	}
+
 }

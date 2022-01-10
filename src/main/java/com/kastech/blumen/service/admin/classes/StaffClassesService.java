@@ -45,4 +45,8 @@ public class StaffClassesService {
 		return staffClassRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
 	}
 
+	public StaffClasses findById(Long id) {
+		return staffClassRepository.findById(id).get();
+	}
+
 }
