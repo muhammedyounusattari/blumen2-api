@@ -108,9 +108,9 @@ public class CounselorClassesController {
 	@ResponseBody
 	@DeleteMapping(path = "/deleteCounselorClasses/v1", produces = {
 			MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<String> deleteCounselorClasses(@RequestParam("CounselorClassesId") Long id) {
-		counselorClassesService.deleteData(id);
-		return ResponseEntity.status(HttpStatus.OK).body("Success");
+	public ResponseEntity<String> deleteCounselorClasses(@RequestParam("CounselorClassesId") String id) {
+		counselorClassesService.deleteData(Long.parseLong(id));
+		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
 	}
 
 

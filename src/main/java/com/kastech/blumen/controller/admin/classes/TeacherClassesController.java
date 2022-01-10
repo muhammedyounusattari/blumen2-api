@@ -63,7 +63,7 @@ public class TeacherClassesController {
 		return ResponseEntity.ok(teacherClassesService.getTeacherClassessByAdvanceFilter(contactDateFrom, contactDateTo,
 				reContactedDateFrom, reContactedDateTo, councellorContact, contactType, reContacted));
 	}
-	
+
 	@ResponseBody
 	@GetMapping(path = "/getTeacherClassessByMoreFilter/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<Collection<TeacherClasses>> getCouncellorContactsByMoreFilter(
@@ -113,8 +113,8 @@ public class TeacherClassesController {
 	@ResponseBody
 	@DeleteMapping(path = "/deleteTeacherClasses/v1", produces = {
 			MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<String> deleteTeacherClasses(@RequestParam("TeacherClassesId") Long id) {
-		teacherRepository.deleteById(id);
+	public ResponseEntity<String> deleteTeacherClasses(@RequestParam("TeacherClassesId") String id) {
+		teacherRepository.deleteById(Long.parseLong(id));
 		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
 	}
 

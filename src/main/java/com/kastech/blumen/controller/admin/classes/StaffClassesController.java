@@ -112,8 +112,8 @@ public class StaffClassesController {
 	@ResponseBody
 	@DeleteMapping(path = "/deleteStaffClasses/v1",  produces = {
 			MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<String> deleteStaffClasses(@RequestParam("StaffClassesId") Long id) {
-		staffClassRepository.deleteById(id);
+	public ResponseEntity<String> deleteStaffClasses(@RequestParam("StaffClassesId") String id) {
+		staffClassRepository.deleteById(Long.parseLong(id));
 		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
 	}
 
