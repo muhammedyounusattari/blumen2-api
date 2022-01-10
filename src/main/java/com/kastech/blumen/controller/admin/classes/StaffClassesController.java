@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.admin.CounselorClasses;
+import com.kastech.blumen.model.admin.TutorClasses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,8 +113,8 @@ public class StaffClassesController {
 	@ResponseBody
 	@DeleteMapping(path = "/deleteStaffClasses/v1",  produces = {
 			MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<String> deleteStaffClasses(@RequestParam("StaffClassesId") String id) {
-		staffClassRepository.deleteById(Long.parseLong(id));
+	public ResponseEntity<String> deleteStaffClasses(@RequestBody StaffClasses staffClasses) {
+		staffClassRepository.deleteById(staffClasses.getId());
 		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
 	}
 

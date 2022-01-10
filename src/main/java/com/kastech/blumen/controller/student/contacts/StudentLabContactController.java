@@ -1,6 +1,7 @@
 package com.kastech.blumen.controller.student.contacts;
 
 import com.kastech.blumen.model.Response;
+import com.kastech.blumen.model.admin.TutorContact;
 import com.kastech.blumen.model.student.Student;
 import com.kastech.blumen.model.student.contacts.StudentCounselorContact;
 import com.kastech.blumen.model.student.contacts.StudentLabContact;
@@ -96,9 +97,9 @@ public class StudentLabContactController {
 
 	@ResponseBody
 	@DeleteMapping(path = "/deleteLabContact/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<String> postSystemPreferenceData(@RequestParam("labContactId") String labContactId) {
+	public ResponseEntity<String> postSystemPreferenceData(@RequestBody StudentLabContact studentLabContact) {
 		LOGGER.info("Inside postSystemPreferenceData");
-		studentLabContactRepository.deleteById(Long.parseLong(labContactId));
+		studentLabContactRepository.deleteById(studentLabContact.getId());
 		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
 	}
 

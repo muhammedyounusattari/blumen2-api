@@ -81,7 +81,7 @@ public class TeacherContactsService {
 		return studentTeacherContacts;
 	}
 
-	public String deleteTeacherContact(String TeacherContactId) {
+	public String deleteTeacherContact(Integer TeacherContactId) {
 		// TODO Place repository code
 		return "Deleted";
 	}

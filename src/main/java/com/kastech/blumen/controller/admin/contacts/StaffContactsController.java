@@ -2,18 +2,13 @@ package com.kastech.blumen.controller.admin.contacts;
 
 import java.util.Collection;
 
+import com.kastech.blumen.model.admin.CounselorContact;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.kastech.blumen.model.admin.StaffContact;
 import com.kastech.blumen.service.admin.StaffContactsService;
@@ -89,9 +84,9 @@ public class StaffContactsController {
 
 	@ResponseBody
 	@DeleteMapping(path = "/deleteStaffContact/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<String> postSystemPreferenceData(@RequestParam("CouncellorContactId") String CouncellorContactId) {
+	public ResponseEntity<String> postSystemPreferenceData(@RequestBody StaffContact staffContact) {
 		LOGGER.info("Inside postSystemPreferenceData");
-		return ResponseEntity.ok(staffContactService.deleteStaffContact(CouncellorContactId));
+		return ResponseEntity.ok(staffContactService.deleteStaffContact(staffContact.getId()));
 	}
 
 }

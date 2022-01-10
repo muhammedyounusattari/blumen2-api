@@ -3,6 +3,7 @@ package com.kastech.blumen.controller.admin.classes;
 import java.util.Collection;
 
 import com.kastech.blumen.model.Response;
+import com.kastech.blumen.model.admin.StaffClasses;
 import com.kastech.blumen.model.counselor.Counselor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -108,8 +109,8 @@ public class CounselorClassesController {
 	@ResponseBody
 	@DeleteMapping(path = "/deleteCounselorClasses/v1", produces = {
 			MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<String> deleteCounselorClasses(@RequestParam("CounselorClassesId") String id) {
-		counselorClassesService.deleteData(Long.parseLong(id));
+	public ResponseEntity<String> deleteCounselorClasses(@RequestBody CounselorClasses counselor) {
+		counselorClassesService.deleteData(counselor.getId());
 		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
 	}
 
