@@ -36,6 +36,16 @@ public class TutorClassesController {
 	}
 
 	@ResponseBody
+	@GetMapping(path = "/getTutorClassessSearch/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<Collection<TutorClasses>> getTutorClassesSearch(@RequestParam(value = "search") String search){
+		
+		
+		
+		return ResponseEntity.ok(tutorClassesService.getTutorClassesList());
+	}
+	
+	
+	@ResponseBody
 	@GetMapping(path = "/getTutorClassessByNormalFilter/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<Collection<TutorClasses>> getTutorClassesByNormalFilter(
 			

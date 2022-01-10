@@ -27,7 +27,7 @@ public class StaffClasses {
 	private String maxLimit;
 	private String notes;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = {CascadeType.DETACH})
 	List<Student> studentList;
 
 
