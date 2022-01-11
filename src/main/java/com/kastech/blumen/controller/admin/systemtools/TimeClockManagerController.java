@@ -5,6 +5,7 @@ import com.kastech.blumen.model.admin.systemtools.TimeClockManager;
 import com.kastech.blumen.repository.admin.systemtools.TimeClockManagerRepository;
 import com.kastech.blumen.service.admin.systemtools.TimeClockManagerServiceV1;
 import com.kastech.blumen.validator.admin.systemtools.TimeClockManagerValidator;
+import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,17 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.temporal.ChronoField;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/api/blumen-api/admin/systemtools")
@@ -53,7 +64,10 @@ public class TimeClockManagerController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public TimeClockManager addTimeClockManagerList(@RequestBody TimeClockManager timeClockManager) {
-     //   TimeClockManager timeClockManager = timeClockManagerServiceV1.doService(reqBody);
+        final String dateStart = timeClockManager.getCheckInTime();
+        final String dateStop = timeClockManager.getCheckOutTime();
+        String duration = findDifference(dateStart, dateStop);
+        timeClockManager.setDuration(duration);
         return timeClockManagerRepository.save(timeClockManager);
     }
 
@@ -62,11 +76,15 @@ public class TimeClockManagerController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public Optional<TimeClockManager> editTimeClockManagerList(@RequestBody TimeClockManager timeClockManager) {
-     //   TimeClockManager timeClockManager = timeClockManagerServiceV1.doService(reqBody);
+        //   TimeClockManager timeClockManager = timeClockManagerServiceV1.doService(reqBody);
 
         return timeClockManagerRepository.findById(timeClockManager.getId())
                 .map(oldItem -> {
                     TimeClockManager updated = oldItem.updateWith(timeClockManager);
+                    final String dateStart = timeClockManager.getCheckInTime();
+                    final String dateStop = timeClockManager.getCheckOutTime();
+                    String duration = findDifference(dateStart, dateStop);
+                    updated.setDuration(duration);
                     return timeClockManagerRepository.save(updated);
                 });
     }
@@ -77,7 +95,7 @@ public class TimeClockManagerController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> filterTimeClockManagerList(@RequestBody TimeClockManager timeClockManager) {
-     //   TimeClockManager timeClockManager = timeClockManagerServiceV1.doService(reqBody);
+        //   TimeClockManager timeClockManager = timeClockManagerServiceV1.doService(reqBody);
         return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
     }
 
@@ -89,9 +107,109 @@ public class TimeClockManagerController {
     public ResponseEntity<?> deleteTimeClockManagerList(@RequestBody TimeClockManager timeClockManager) {
 
 
-      //  TimeClockManager timeClockManager = timeClockManagerServiceV1.doService(reqBody);
+        //  TimeClockManager timeClockManager = timeClockManagerServiceV1.doService(reqBody);
         timeClockManagerRepository.delete(timeClockManager);
-       // return ResponseEntity.noContent().build();
+        // return ResponseEntity.noContent().build();
         return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
     }
+
+    public static String
+    findDifference(String start_date,
+                   String end_date) {
+
+        String difference = null;
+        String daysBetween = null;
+        Long difference_In_Hours = null;
+        Long difference_In_Minutes = null;
+
+        // SimpleDateFormat converts the
+        // string format to date object
+        SimpleDateFormat sdf
+                = new SimpleDateFormat(
+                "dd/MM/yyyy HH:mm:ss");
+
+        // Try Block
+        try {
+
+            // parse method is used to parse
+            // the text from a string to
+            // produce the date
+            Date d1 = sdf.parse(start_date);
+            Date d2 = sdf.parse(end_date);
+
+            long diff = d1.getTime() - d2.getTime();
+            daysBetween = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) + " days ";
+            System.out.println ("Days: " + TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
+            // Calucalte time difference
+            // in milliseconds
+            long difference_In_Time
+                    = d2.getTime() - d1.getTime();
+
+            // Calucalte time difference in
+            // seconds, minutes, hours, years,
+            // and days
+            long difference_In_Seconds
+                    = (difference_In_Time
+                    / 1000)
+                    % 60;
+
+             difference_In_Minutes
+                    = (difference_In_Time
+                    / (1000 * 60))
+                    % 60;
+
+             difference_In_Hours
+                    = (difference_In_Time
+                    / (1000 * 60 * 60))
+                    % 24;
+
+            long difference_In_Years
+                    = (difference_In_Time
+                    / (1000l * 60 * 60 * 24 * 365));
+
+            long difference_In_Days
+                    = (difference_In_Time
+                    / (1000 * 60 * 60 * 24))
+                    % 365;
+
+            // Print the date difference in
+            // years, in days, in hours, in
+            // minutes, and in seconds
+
+            System.out.print(
+                    "Difference "
+                            + "between two dates is: ");
+
+
+            difference = difference_In_Years
+                    + " years, "
+                    + difference_In_Days
+                    + " days, "
+                    + difference_In_Hours
+                    + " hours, "
+                    + difference_In_Minutes
+                    + " minutes, "
+                    + difference_In_Seconds
+                    + " seconds";
+            System.out.println(
+                    difference_In_Years
+                            + " years, "
+                            + difference_In_Days
+                            + " days, "
+                            + difference_In_Hours
+                            + " hours, "
+                            + difference_In_Minutes
+                            + " minutes, "
+                            + difference_In_Seconds
+                            + " seconds");
+        }
+
+        // Catch the Exception
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return daysBetween.replace("-","") + difference_In_Hours + ":" + difference_In_Minutes;
+    }
+
 }
