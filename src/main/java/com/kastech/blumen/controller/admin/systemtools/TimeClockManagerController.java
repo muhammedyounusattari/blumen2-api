@@ -33,6 +33,8 @@ public class TimeClockManagerController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TimeClockManagerController.class);
 
+    public static final String datePattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'";
+
     @Autowired
     TimeClockManagerRepository timeClockManagerRepository;
 
@@ -126,7 +128,7 @@ public class TimeClockManagerController {
         // string format to date object
         SimpleDateFormat sdf
                 = new SimpleDateFormat(
-                "dd/MM/yyyy HH:mm:ss");
+                datePattern);
 
         // Try Block
         try {
@@ -163,20 +165,20 @@ public class TimeClockManagerController {
                     / (1000 * 60 * 60))
                     % 24;
 
-            long difference_In_Years
+        /*    long difference_In_Years
                     = (difference_In_Time
                     / (1000l * 60 * 60 * 24 * 365));
 
             long difference_In_Days
                     = (difference_In_Time
                     / (1000 * 60 * 60 * 24))
-                    % 365;
+                    % 365;*/
 
             // Print the date difference in
             // years, in days, in hours, in
             // minutes, and in seconds
 
-            System.out.print(
+          /*  System.out.print(
                     "Difference "
                             + "between two dates is: ");
 
@@ -201,7 +203,7 @@ public class TimeClockManagerController {
                             + difference_In_Minutes
                             + " minutes, "
                             + difference_In_Seconds
-                            + " seconds");
+                            + " seconds");*/
         }
 
         // Catch the Exception

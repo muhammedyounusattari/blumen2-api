@@ -6,6 +6,7 @@ import com.kastech.blumen.model.student.contacts.StudentDispCouContRemin;
 import com.kastech.blumen.repository.student.StudentRepository;
 import com.kastech.blumen.repository.student.contacts.StudentDispCouContReminRepository;
 import com.kastech.blumen.service.student.contacts.StudentDispCouContReminServiceV1;
+import com.kastech.blumen.utility.DateUtil;
 import com.kastech.blumen.validator.student.contacts.StudentDispCouContReminValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @RestController
@@ -38,7 +40,7 @@ public class StudentDispCouContReminController {
     private StudentRepository studentRepository;
 
     @ResponseBody
-    @GetMapping(path = "/getStudentDispCouContRemin/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+    @GetMapping(path = "/getStudentDispCouContRemin/v1", produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<Student> getStudentDispCouContRemin() {
         List<Student> list = new ArrayList<>();
         Iterable<Student> items = studentRepository.findAll(Sort.by(Sort.Direction.ASC, "ssno"));
@@ -50,7 +52,25 @@ public class StudentDispCouContReminController {
     @GetMapping(path = "/getStudentDispCouContReminList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentDispCouContRemin>> getStudentDispCouContReminList() {
-        return ResponseEntity.ok(studentDispCouContReminRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
+        List<StudentDispCouContRemin> studentDispCouContReminList = studentDispCouContReminRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
+
+        List<StudentDispCouContRemin> studentDispCouContReminListData = new ArrayList<StudentDispCouContRemin>();
+        for (StudentDispCouContRemin studentDispCouContRemin : studentDispCouContReminList) {
+            String contactDate = studentDispCouContRemin.getContactDate();
+            String isRecontactDate = studentDispCouContRemin.getRecontactDate();
+
+            //if contact date is greater than todays date then it is a reminder
+
+            if ((null != contactDate && !contactDate.isEmpty())) {
+                String todayDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+                if (DateUtil.compareTwoDates(contactDate, todayDate)) {
+                    studentDispCouContRemin.setReminder(true);
+                }
+            }
+            studentDispCouContReminListData.add(studentDispCouContRemin);
+        }
+
+        return ResponseEntity.ok(studentDispCouContReminListData);
     }
 
     @ResponseBody
@@ -59,10 +79,10 @@ public class StudentDispCouContReminController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> addToStudentDispCouContReminList(@RequestBody StudentDispCouContRemin studentDispCouContRemin) {
         studentDispCouContRemin = studentDispCouContReminRepository.save(studentDispCouContRemin);
-		if (studentDispCouContRemin != null)
-			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
-		else
-			return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
+        if (studentDispCouContRemin != null)
+            return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+        else
+            return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
     }
 
     @ResponseBody
@@ -71,21 +91,21 @@ public class StudentDispCouContReminController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> editStudentDispCouContReminList(@RequestBody StudentDispCouContRemin studentDispCouContRemin) {
         studentDispCouContRemin = studentDispCouContReminRepository.save(studentDispCouContRemin);
-		if (studentDispCouContRemin != null)
-			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
-		else
-			return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
+        if (studentDispCouContRemin != null)
+            return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+        else
+            return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
     }
 
 
-    @ResponseBody
+    /*@ResponseBody
     @PutMapping(path = "/filter/studentDispCouContReminlist/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentDispCouContRemin>> filterStudentDispCouContReminList(@RequestBody String reqBody) {
         StudentDispCouContRemin studentDispCouContRemin = studentDispCouContReminServiceV1.doService(reqBody);
         return ResponseEntity.ok(studentDispCouContReminRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
-    }
+    }*/
 
 
     @ResponseBody
@@ -98,7 +118,7 @@ public class StudentDispCouContReminController {
     }
 
 
-    @ResponseBody
+   /* @ResponseBody
     @GetMapping(path = "/getStudentDispCouContReminByFiscalyear/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -136,5 +156,5 @@ public class StudentDispCouContReminController {
 
         StudentDispCouContRemin studentDispCouContRemin = studentDispCouContReminServiceV1.doService(reqBody);
         return ResponseEntity.ok(studentDispCouContReminRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
-    }
+    }*/
 }

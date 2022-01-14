@@ -1,11 +1,15 @@
 package com.kastech.blumen.controller.student.contacts;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import com.kastech.blumen.model.student.Student;
+import com.kastech.blumen.model.student.contacts.StudentDispTeacherContRemi;
 import com.kastech.blumen.repository.student.StudentRepository;
+import com.kastech.blumen.utility.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +56,26 @@ public class StudentDispTutorContReminderController {
 	@GetMapping(path = "/getStudentDispTutorContReminderList/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<Collection<StudentDispTutorContReminder>> getStudentDispTutorContReminderList() {
 
-		return ResponseEntity.ok(studentDispTutorContReminderRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
+		List<StudentDispTutorContReminder> list = new ArrayList<>();
+		Iterable<StudentDispTutorContReminder> items = studentDispTutorContReminderRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
+
+		List<StudentDispTutorContReminder> studentDispTutorContReminderList = new ArrayList<StudentDispTutorContReminder>();
+		for (StudentDispTutorContReminder studentDispTutorContReminder : items) {
+			String contactDate = studentDispTutorContReminder.getContactDate();
+			String isRecontactDate = studentDispTutorContReminder.getRecontactDate();
+
+			//if contact date is greater than todays date then it is a reminder
+
+			if ((null != contactDate && !contactDate.isEmpty())) {
+				String todayDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+				if (DateUtil.compareTwoDates(contactDate, todayDate)) {
+					studentDispTutorContReminder.setReminder(true);
+				}
+			}
+			studentDispTutorContReminderList.add(studentDispTutorContReminder);
+		}
+		//return ResponseEntity.ok(studentDispTutorContReminderRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
+		return ResponseEntity.ok(studentDispTutorContReminderList);
 	}
 
 	@ResponseBody
@@ -81,15 +104,15 @@ public class StudentDispTutorContReminderController {
 			return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
 	}
 
-	@ResponseBody
+	/*@ResponseBody
 	@PutMapping(path = "/filter/studentDispTutorContReminderlist/v1", consumes = {
 			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<Collection<StudentDispTutorContReminder>> filterStudentDispTutorContReminderList(
 			@RequestBody StudentDispTutorContReminder studentDispTutorContReminder) {
-		/*StudentDispTutorContReminder studentDispTutorContReminder = studentDispTutorContReminderServiceV1
-				.doService(reqBody);*/
+		*//*StudentDispTutorContReminder studentDispTutorContReminder = studentDispTutorContReminderServiceV1
+				.doService(reqBody);*//*
 		return ResponseEntity.status(HttpStatus.OK).body(studentDispTutorContReminderRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
-	}
+	}*/
 
 	@ResponseBody
 	@DeleteMapping(path = "/deleteStudentDispTutorContReminderList/v1", consumes = {
@@ -102,14 +125,14 @@ public class StudentDispTutorContReminderController {
 		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
 	}
 
-	@ResponseBody
+	/*@ResponseBody
 	@GetMapping(path = "/getStudentDispTutorContReminderByFiscalyear/v1", consumes = {
 			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<Collection<StudentDispTutorContReminder>> getStudentDispTutorContReminderByFiscalyear(
 			@RequestBody StudentDispTutorContReminder studentDispTutorContReminder) {
 
-		/*StudentDispTutorContReminder studentDispTutorContReminder = studentDispTutorContReminderServiceV1
-				.doService(reqBody);*/
+		*//*StudentDispTutorContReminder studentDispTutorContReminder = studentDispTutorContReminderServiceV1
+				.doService(reqBody);*//*
 
 		return ResponseEntity.status(HttpStatus.OK).body(studentDispTutorContReminderRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
 	}
@@ -120,8 +143,8 @@ public class StudentDispTutorContReminderController {
 	public ResponseEntity<Collection<StudentDispTutorContReminder>> getStudentDispTutorContReminderByActive(
 			@RequestBody StudentDispTutorContReminder studentDispTutorContReminder) {
 
-		/*StudentDispTutorContReminder studentDispTutorContReminder = studentDispTutorContReminderServiceV1
-				.doService(reqBody);*/
+		*//*StudentDispTutorContReminder studentDispTutorContReminder = studentDispTutorContReminderServiceV1
+				.doService(reqBody);*//*
 
 		return ResponseEntity.status(HttpStatus.OK).body(studentDispTutorContReminderRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
 	}
@@ -132,9 +155,9 @@ public class StudentDispTutorContReminderController {
 	public ResponseEntity<Collection<StudentDispTutorContReminder>> getStudentDispTutorContReminderByServed(
 			@RequestBody StudentDispTutorContReminder studentDispTutorContReminder) {
 
-		/*StudentDispTutorContReminder studentDispTutorContReminder = studentDispTutorContReminderServiceV1
+		*//*StudentDispTutorContReminder studentDispTutorContReminder = studentDispTutorContReminderServiceV1
 				.doService(reqBody);
-*/
+*//*
 		return ResponseEntity.status(HttpStatus.OK).body(studentDispTutorContReminderRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
 	}
 
@@ -144,9 +167,9 @@ public class StudentDispTutorContReminderController {
 	public ResponseEntity<Collection<StudentDispTutorContReminder>> getStudentDispTutorContReminderByReported(
 			@RequestBody StudentDispTutorContReminder studentDispTutorContReminder) {
 
-		/*StudentDispTutorContReminder studentDispTutorContReminder = studentDispTutorContReminderServiceV1
-				.doService(reqBody);*/
+		*//*StudentDispTutorContReminder studentDispTutorContReminder = studentDispTutorContReminderServiceV1
+				.doService(reqBody);*//*
 
 		return ResponseEntity.status(HttpStatus.OK).body(studentDispTutorContReminderRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
-	}
+	}*/
 }

@@ -1,11 +1,15 @@
 package com.kastech.blumen.controller.student.contacts;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import com.kastech.blumen.model.student.Student;
+import com.kastech.blumen.model.student.contacts.StudentDispStaffContReminder;
 import com.kastech.blumen.repository.student.StudentRepository;
+import com.kastech.blumen.utility.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +56,27 @@ public class StudentDispTeacherContRemiController {
 	@GetMapping(path = "/getStudentDispTeacherContRemiList/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<Collection<StudentDispTeacherContRemi>> getStudentDispTeacherContRemiList() {
 
-		return ResponseEntity.ok(studentDispTeacherContRemiRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
+		List<StudentDispTeacherContRemi> list = new ArrayList<>();
+		Iterable<StudentDispTeacherContRemi> items = studentDispTeacherContRemiRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
+
+		List<StudentDispTeacherContRemi> studentDispTeacherContRemiList = new ArrayList<StudentDispTeacherContRemi>();
+		for (StudentDispTeacherContRemi studentDispTeacherContRemi : items) {
+			String contactDate = studentDispTeacherContRemi.getContactDate();
+			String isRecontactDate = studentDispTeacherContRemi.getRecontactDate();
+
+			//if contact date is greater than todays date then it is a reminder
+
+			if ((null != contactDate && !contactDate.isEmpty())) {
+				String todayDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+				if (DateUtil.compareTwoDates(contactDate, todayDate)) {
+					studentDispTeacherContRemi.setReminder(true);
+				}
+			}
+			studentDispTeacherContRemiList.add(studentDispTeacherContRemi);
+		}
+
+		return ResponseEntity.ok(studentDispTeacherContRemiList);
+		//return ResponseEntity.ok(studentDispTeacherContRemiRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
 	}
 
 	@ResponseBody
@@ -79,14 +103,14 @@ public class StudentDispTeacherContRemiController {
 			return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
 	}
 
-	@ResponseBody
+	/*@ResponseBody
 	@PutMapping(path = "/filter/studentDispTeacherContRemilist/v1", consumes = {
 			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<Collection<StudentDispTeacherContRemi>> filterStudentDispTeacherContRemiList(
 			@RequestBody String reqBody) {
 		StudentDispTeacherContRemi studentDispTeacherContRemi = studentDispTeacherContRemiServiceV1.doService(reqBody);
 		return ResponseEntity.ok(studentDispTeacherContRemiRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
-	}
+	}*/
 
 	@ResponseBody
 	@DeleteMapping(path = "/deleteStudentDispTeacherContRemiList/v1", consumes = {
@@ -99,7 +123,7 @@ public class StudentDispTeacherContRemiController {
 		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
 	}
 
-	@ResponseBody
+/*	@ResponseBody
 	@GetMapping(path = "/getStudentDispTeacherContRemiByFiscalyear/v1", consumes = {
 			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<Collection<StudentDispTeacherContRemi>> getStudentDispTeacherContRemiByFiscalyear(
@@ -140,5 +164,5 @@ public class StudentDispTeacherContRemiController {
 	//	StudentDispTeacherContRemi studentDispTeacherContRemi = studentDispTeacherContRemiServiceV1.doService(reqBody);
 
 		return ResponseEntity.status(HttpStatus.OK).body(studentDispTeacherContRemiRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
-	}
+	}*/
 }
