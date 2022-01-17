@@ -70,9 +70,10 @@ public class StudentDispTutorContReminderController {
 				String todayDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 				if (DateUtil.compareTwoDates(contactDate, todayDate)) {
 					studentDispTutorContReminder.setReminder(true);
+					studentDispTutorContReminderList.add(studentDispTutorContReminder);
 				}
 			}
-			studentDispTutorContReminderList.add(studentDispTutorContReminder);
+
 		}
 		//return ResponseEntity.ok(studentDispTutorContReminderRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
 		return ResponseEntity.ok(studentDispTutorContReminderList);

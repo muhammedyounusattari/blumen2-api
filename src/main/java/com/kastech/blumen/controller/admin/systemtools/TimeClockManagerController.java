@@ -119,8 +119,8 @@ public class TimeClockManagerController {
     findDifference(String start_date,
                    String end_date) {
 
-        String difference = null;
-        String daysBetween = null;
+        String durationCalculation = null;
+        long daysBetween=0;
         Long difference_In_Hours = null;
         Long difference_In_Minutes = null;
 
@@ -139,8 +139,8 @@ public class TimeClockManagerController {
             Date d1 = sdf.parse(start_date);
             Date d2 = sdf.parse(end_date);
 
-            long diff = d1.getTime() - d2.getTime();
-            daysBetween = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) + " days ";
+            long diff = d1.getTime()/*+28800000 */- d2.getTime()/*+28800000*/;
+            daysBetween = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
             System.out.println ("Days: " + TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
             // Calucalte time difference
             // in milliseconds
@@ -211,7 +211,29 @@ public class TimeClockManagerController {
             e.printStackTrace();
         }
 
-        return daysBetween.replace("-","") + difference_In_Hours + ":" + difference_In_Minutes;
+        String finalHours = null;
+        String finalMinutes = null;
+        String diffHours = difference_In_Hours+"";
+        String diffMinutes = difference_In_Minutes+"";
+        if(diffHours.length()==1){
+            finalHours = "0"+diffHours;
+        }else {
+            finalHours = diffHours;
+        }
+        if(diffMinutes.length()==1){
+            finalMinutes = "0"+diffMinutes;
+        }else{
+            finalMinutes = diffMinutes;
+        }
+
+        if(daysBetween>0) {
+
+            durationCalculation = daysBetween + " days " .replace("-", "") + finalHours + ":" + finalMinutes;
+        }else if(finalHours!=null && finalMinutes!=null){
+            durationCalculation = finalHours + ":" + finalMinutes;
+        }
+
+        return durationCalculation;
     }
 
 }

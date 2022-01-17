@@ -65,9 +65,10 @@ public class StudentDispCouContReminController {
                 String todayDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
                 if (DateUtil.compareTwoDates(contactDate, todayDate)) {
                     studentDispCouContRemin.setReminder(true);
+                    studentDispCouContReminListData.add(studentDispCouContRemin);
                 }
             }
-            studentDispCouContReminListData.add(studentDispCouContRemin);
+
         }
 
         return ResponseEntity.ok(studentDispCouContReminListData);
