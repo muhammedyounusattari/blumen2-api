@@ -1,6 +1,10 @@
 package com.kastech.blumen.model.student;
 
 import com.kastech.blumen.controller.student.Activities;
+import com.kastech.blumen.model.admin.CounselorClasses;
+import com.kastech.blumen.model.admin.StaffClasses;
+import com.kastech.blumen.model.admin.TeacherClasses;
+import com.kastech.blumen.model.admin.TutorClasses;
 import com.kastech.blumen.model.student.dataentry.GraduatedInformation;
 
 import javax.persistence.CascadeType;
@@ -8,10 +12,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 @Entity
 @Table(name = "student" ,schema = "blumen2")
@@ -42,6 +48,18 @@ public class Student implements Serializable {
     @OneToOne(cascade = {CascadeType.ALL})
     private GraduatedInformation graduatedInformation;
     //  private Activities activities;
+    
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "studentList")
+    private List<TeacherClasses> teacherClasses = new ArrayList<TeacherClasses>();
+    
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "studentList")
+    private List<CounselorClasses> counselorClasses = new ArrayList<CounselorClasses>();
+    
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "studentList")
+    private List<StaffClasses> staffClasses = new ArrayList<StaffClasses>();
+    
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "studentList")
+    private List<TutorClasses> tutorClasses = new ArrayList<TutorClasses>();
 
     public Student() {
     }
@@ -63,6 +81,22 @@ public class Student implements Serializable {
         this.standing = standing;
         this.fiscalYear = fiscalYear;
         this.graduatedInformation = graduatedInformation;
+    }
+    
+    public void assignTeacherClasses(List<TeacherClasses> teacherClassList) {
+    	teacherClasses.addAll(teacherClassList);
+    }
+    
+    public void assignCounselorClasses(List<CounselorClasses> counselorClassList) {
+    	counselorClasses.addAll(counselorClassList);
+    }
+    
+    public void assignStaffClasses(List<StaffClasses> staffClassList) {
+    	staffClasses.addAll(staffClassList);
+    }
+    
+    public void assignTutorClasses(List<TutorClasses> tutorClassList) {
+    	tutorClasses.addAll(tutorClassList);
     }
 
     public Long getSsno() {

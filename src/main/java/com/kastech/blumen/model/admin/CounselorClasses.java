@@ -1,5 +1,6 @@
 package com.kastech.blumen.model.admin;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -27,8 +28,12 @@ public class CounselorClasses {
 	private String maxLimit;
 	private String notes;
 	
-	@ManyToMany(cascade = {CascadeType.DETACH})
-	List<Student> studentList;
+	@ManyToMany
+	@JoinTable(
+			name =  "counselor_class_students",
+			joinColumns = @JoinColumn(name = "counselorclass_id"),
+			inverseJoinColumns = @JoinColumn(name="student_ssno"))
+	List<Student> studentList = new ArrayList<Student>();
 	
 	public CounselorClasses() {}
 
@@ -50,6 +55,10 @@ public class CounselorClasses {
 		this.maxLimit = maxLimit;
 		this.notes = notes;
 		this.studentList=studentList;
+	}
+	
+	public void addStudents(List<Student> students) {
+		studentList.addAll(students);
 	}
 
 	public Long getId() {
