@@ -20,7 +20,7 @@ public class PathBasedConfigResolver implements KeycloakConfigResolver {
     public KeycloakDeployment resolve(OIDCHttpFacade.Request request) {
 
         String path = request.getURI();
-        int multitenantIndex = path.indexOf("tenant/");
+       /* int multitenantIndex = path.indexOf("tenant/");
 
         if (multitenantIndex == -1) {
             throw new IllegalStateException("Not able to resolve realm from the request path!");
@@ -29,7 +29,8 @@ public class PathBasedConfigResolver implements KeycloakConfigResolver {
         String realm = path.substring(path.indexOf("tenant/")).split("/")[1];
         if (realm.contains("?")) {
             realm = realm.split("\\?")[0];
-        }
+        }*/
+        String realm = "mcn-demo";//harcoded the realm for now.
 
         if (!cache.containsKey(realm)) {
             InputStream is = getClass().getResourceAsStream("/" + realm + "-keycloak.json");

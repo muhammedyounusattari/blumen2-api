@@ -13,29 +13,40 @@ public class PullDown {
     private Long id;
     private String name;
     private String selectionType;
-    private String active;
+    private int active;
     private String apr;
 
     @Column
     @ElementCollection(targetClass=String.class)
-    private List<String> orgType;
+    private List<String> pullDownItems;
     private String orgId;
-
+    
+    @Column(unique = true)
+    private String code;
 
     public PullDown() {
     }
 
-    public PullDown(Long id, String name, String selectionType, String active, String apr, List<String> orgType, String orgId) {
+    public PullDown(Long id, String name, String selectionType, int active, String apr, List<String> pullDownItems, String orgId, String code) {
         this.id = id;
         this.name = name;
         this.selectionType = selectionType;
         this.active = active;
         this.apr = apr;
-        this.orgType = orgType;
+        this.pullDownItems = pullDownItems;
         this.orgId = orgId;
+        this.code = code;
     }
+    
+    public String getCode() {
+		return code;
+	}
 
-    public Long getId() {
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public Long getId() {
         return id;
     }
 
@@ -59,11 +70,11 @@ public class PullDown {
         this.selectionType = selectionType;
     }
 
-    public String getActive() {
+    public int getActive() {
         return active;
     }
 
-    public void setActive(String active) {
+    public void setActive(int active) {
         this.active = active;
     }
 
@@ -75,12 +86,12 @@ public class PullDown {
         this.apr = apr;
     }
 
-    public List<String> getOrgType() {
-        return orgType;
+    public List<String> getpullDownItems() {
+        return pullDownItems;
     }
 
-    public void setOrgType(List<String> orgType) {
-        this.orgType = orgType;
+    public void setpullDownItems(List<String> pullDownItems) {
+        this.pullDownItems = pullDownItems;
     }
 
     public String getOrgId() {
@@ -99,7 +110,7 @@ public class PullDown {
                 ", selectionType='" + selectionType + '\'' +
                 ", active='" + active + '\'' +
                 ", apr='" + apr + '\'' +
-                ", orgType=" + orgType +
+                ", pullDownItems=" + pullDownItems +
                 ", orgId='" + orgId + '\'' +
                 '}';
     }
@@ -111,8 +122,9 @@ public class PullDown {
                 item.selectionType,
                 item.active,
                 item.apr,
-                item.orgType,
-                item.orgId
+                item.pullDownItems,
+                item.orgId,
+                item.code
         );
     }
 }

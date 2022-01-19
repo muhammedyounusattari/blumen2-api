@@ -103,6 +103,9 @@ public class KeycloakSecurityConfig extends KeycloakWebSecurityConfigurerAdapter
 
 
         expressionInterceptUrlRegistry = expressionInterceptUrlRegistry.antMatchers("/login*").anonymous().anyRequest().permitAll();
+        expressionInterceptUrlRegistry = expressionInterceptUrlRegistry.antMatchers("/api/blumen-api*").anonymous().anyRequest().permitAll();
+        expressionInterceptUrlRegistry = expressionInterceptUrlRegistry.antMatchers("/api/blumen-api/keycloak").permitAll();
+
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
