@@ -4,8 +4,10 @@ import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.student.Student;
 import com.kastech.blumen.model.student.contacts.StudentDispCouContRemin;
 import com.kastech.blumen.model.student.contacts.StudentDispStaffContReminder;
+import com.kastech.blumen.model.student.contacts.StudentStaffContacts;
 import com.kastech.blumen.repository.student.StudentRepository;
 import com.kastech.blumen.repository.student.contacts.StudentDispStaffContRemiRepository;
+import com.kastech.blumen.repository.student.contacts.StudentStaffContactsRepository;
 import com.kastech.blumen.service.student.contacts.StudentDispStaffContRemiServiceV1;
 import com.kastech.blumen.utility.DateUtil;
 import com.kastech.blumen.validator.student.contacts.StudentDispStaffContRemiValidator;
@@ -28,7 +30,11 @@ public class StudentDispStaffContRemiController {
     private static final Logger LOGGER = LoggerFactory.getLogger(StudentDispStaffContRemiController.class);
 
     @Autowired
+    StudentStaffContactsRepository studentStaffContactsRepository;
+
+    @Autowired
     StudentDispStaffContRemiRepository studentDispStaffContRemiRepository;
+
 
     @Autowired
     StudentDispStaffContRemiServiceV1 studentDispStaffContRemiServiceV1;
@@ -54,19 +60,19 @@ public class StudentDispStaffContRemiController {
     @ResponseBody
     @GetMapping(path = "/getStudentDispStaffContReminderList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public List<StudentDispStaffContReminder> getStudentDispStaffContReminderList() {
+    public List<StudentStaffContacts> getStudentDispStaffContReminderList() {
 
-        List<StudentDispStaffContReminder> list = new ArrayList<>();
-        Iterable<StudentDispStaffContReminder> items = studentDispStaffContRemiRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
+        List<StudentStaffContacts> list = new ArrayList<>();
+        Iterable<StudentStaffContacts> items = studentStaffContactsRepository.findAll();
 
-        List<StudentDispStaffContReminder> studentDispStaffContReminders = new ArrayList<StudentDispStaffContReminder>();
-        for (StudentDispStaffContReminder studentDispStaffContReminder : items) {
-            String contactDate = studentDispStaffContReminder.getContactDate();
-            String isRecontactDate = studentDispStaffContReminder.getRecontactDate();
+        List<StudentStaffContacts> studentDispStaffContReminders = new ArrayList<StudentStaffContacts>();
+        for (StudentStaffContacts studentDispStaffContReminder : items) {
+            String contactDate = studentDispStaffContReminder.getStaffContactDate();
+            String isRecontactDate = studentDispStaffContReminder.getStaffRecontactDate();
 
             //if contact date is greater than todays date then it is a reminder
 
-            if ((null != contactDate && !contactDate.isEmpty())) {
+            if ((null != contactDate && !contactDate.isEmpty())|| studentDispStaffContReminder.isStaffRecontacted()) {
                 String todayDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
                 if (DateUtil.compareTwoDates(contactDate, todayDate)) {
                     studentDispStaffContReminder.setReminder(true);

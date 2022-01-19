@@ -66,6 +66,7 @@ public class StudentCounselorContact {
 	private String staffContactTutor;
 	private String staffContactLab;
 	private String staff;
+	private transient boolean isReminder;
 
 	public StudentCounselorContact() {
 	}
@@ -413,6 +414,14 @@ public class StudentCounselorContact {
 
 	public void setStaff(String staff) {
 		this.staff = staff;
+	}
+
+	public boolean isReminder() {
+		return isReminder;
+	}
+
+	public void setReminder(boolean reminder) {
+		isReminder = reminder;
 	}
 
 	@Override

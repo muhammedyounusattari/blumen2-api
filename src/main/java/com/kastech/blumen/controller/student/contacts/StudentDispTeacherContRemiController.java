@@ -8,7 +8,9 @@ import java.util.List;
 
 import com.kastech.blumen.model.student.Student;
 import com.kastech.blumen.model.student.contacts.StudentDispStaffContReminder;
+import com.kastech.blumen.model.student.contacts.StudentTeacherContacts;
 import com.kastech.blumen.repository.student.StudentRepository;
+import com.kastech.blumen.repository.student.contacts.StudentTeacherContactsRepository;
 import com.kastech.blumen.utility.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,73 +22,71 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.kastech.blumen.model.Response;
-import com.kastech.blumen.model.student.contacts.StudentDispTeacherContRemi;
-import com.kastech.blumen.repository.student.contacts.StudentDispTeacherContRemiRepository;
-import com.kastech.blumen.service.student.contacts.StudentDispTeacherContRemiServiceV1;
-import com.kastech.blumen.validator.student.contacts.StudentDispTeacherContRemiValidator;
+import com.kastech.blumen.service.student.contacts.StudentTeacherContactsServiceV1;
+import com.kastech.blumen.validator.student.contacts.StudentTeacherContactsValidator;
 
 @RestController
 @RequestMapping("/api/blumen-api/student-contacts")
 public class StudentDispTeacherContRemiController {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(StudentDispTeacherContRemiController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(StudentTeacherContactsController.class);
 
 	@Autowired
-	StudentDispTeacherContRemiRepository studentDispTeacherContRemiRepository;
+	StudentTeacherContactsRepository studentTeacherContactsRepository;
 
 	@Autowired
-	StudentDispTeacherContRemiServiceV1 studentDispTeacherContRemiServiceV1;
+	StudentTeacherContactsServiceV1 StudentTeacherContactsServiceV1;
 
 	@Autowired
-	StudentDispTeacherContRemiValidator studentDispTeacherContRemiValidator;
+	StudentTeacherContactsValidator studentTeacherContactsValidator;
 
 	@Autowired
 	private StudentRepository studentRepository;
 
-	@ResponseBody
-	@GetMapping(path = "/getStudentDispTeacherContRemi/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public List<Student> getStudentDispTeacherContRemi() {
-		List<Student> list = new ArrayList<>();
-		Iterable<Student> items = studentRepository.findAll(Sort.by(Sort.Direction.ASC, "ssno"));
-		items.forEach(list::add);
-		return list;
-	}
+//	@ResponseBody
+//	@GetMapping(path = "/getStudentDispTeacherContRemi/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+//	public List<Student> getStudentTeacherContacts() {
+//		List<Student> list = new ArrayList<>();
+//		Iterable<Student> items = studentRepository.findAll(Sort.by(Sort.Direction.ASC, "ssno"));
+//		items.forEach(list::add);
+//		return list;
+//	}
 
 	@ResponseBody
 	@GetMapping(path = "/getStudentDispTeacherContRemiList/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<Collection<StudentDispTeacherContRemi>> getStudentDispTeacherContRemiList() {
+	public ResponseEntity<Collection<StudentTeacherContacts>> getStudentTeacherContactsList() {
 
-		List<StudentDispTeacherContRemi> list = new ArrayList<>();
-		Iterable<StudentDispTeacherContRemi> items = studentDispTeacherContRemiRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
+		List<StudentTeacherContacts> list = new ArrayList<>();
+		Iterable<StudentTeacherContacts> items = studentTeacherContactsRepository.findAll();
 
-		List<StudentDispTeacherContRemi> studentDispTeacherContRemiList = new ArrayList<StudentDispTeacherContRemi>();
-		for (StudentDispTeacherContRemi studentDispTeacherContRemi : items) {
-			String contactDate = studentDispTeacherContRemi.getContactDate();
-			String isRecontactDate = studentDispTeacherContRemi.getRecontactDate();
+		List<StudentTeacherContacts> StudentTeacherContactsList = new ArrayList<StudentTeacherContacts>();
+		for (StudentTeacherContacts studentTeacherContacts : items) {
+			String contactDate = studentTeacherContacts.getStaffContactDate();
+			String isRecontactDate = studentTeacherContacts.getStaffRecontactDate();
 
 			//if contact date is greater than todays date then it is a reminder
 
-			if ((null != contactDate && !contactDate.isEmpty())) {
+			if ((null != contactDate && !contactDate.isEmpty()) || studentTeacherContacts.isStaffRecontacted()) {
 				String todayDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 				if (DateUtil.compareTwoDates(contactDate, todayDate)) {
-					studentDispTeacherContRemi.setReminder(true);
-					studentDispTeacherContRemiList.add(studentDispTeacherContRemi);
+					studentTeacherContacts.setReminder(true);
+					StudentTeacherContactsList.add(studentTeacherContacts);
 				}
 			}
 
 		}
 
-		return ResponseEntity.ok(studentDispTeacherContRemiList);
-		//return ResponseEntity.ok(studentDispTeacherContRemiRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
+		return ResponseEntity.ok(StudentTeacherContactsList);
+		//return ResponseEntity.ok(studentTeacherContactsRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
 	}
 
 	@ResponseBody
 	@PostMapping(path = "/studentDispTeacherContRemiList/v1", consumes = {
 			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<String> addToStudentDispTeacherContRemiList(@RequestBody String reqBody) {
-		StudentDispTeacherContRemi studentDispTeacherContRemi = studentDispTeacherContRemiServiceV1.doService(reqBody);
-		studentDispTeacherContRemi = studentDispTeacherContRemiRepository.save(studentDispTeacherContRemi);
-		if (studentDispTeacherContRemi != null)
+	public ResponseEntity<String> addToStudentTeacherContactsList(@RequestBody String reqBody) {
+		StudentTeacherContacts StudentTeacherContacts = StudentTeacherContactsServiceV1.doService(reqBody);
+		StudentTeacherContacts = studentTeacherContactsRepository.save(StudentTeacherContacts);
+		if (StudentTeacherContacts != null)
 			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
 		else
 			return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
@@ -95,75 +95,75 @@ public class StudentDispTeacherContRemiController {
 	@ResponseBody
 	@PutMapping(path = "/updateStudentDispTeacherContRemiList/v1", consumes = {
 			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<String> editStudentDispTeacherContRemiList(@RequestBody StudentDispTeacherContRemi studentDispTeacherContRemi) {
-		//StudentDispTeacherContRemi studentDispTeacherContRemi = studentDispTeacherContRemiServiceV1.doService(reqBody);
-		studentDispTeacherContRemi = studentDispTeacherContRemiRepository.save(studentDispTeacherContRemi);
-		if (studentDispTeacherContRemi != null)
+	public ResponseEntity<String> editStudentTeacherContactsList(@RequestBody StudentTeacherContacts StudentTeacherContacts) {
+		//StudentTeacherContacts StudentTeacherContacts = StudentTeacherContactsServiceV1.doService(reqBody);
+		StudentTeacherContacts = studentTeacherContactsRepository.save(StudentTeacherContacts);
+		if (StudentTeacherContacts != null)
 			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
 		else
 			return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
 	}
 
 	/*@ResponseBody
-	@PutMapping(path = "/filter/studentDispTeacherContRemilist/v1", consumes = {
+	@PutMapping(path = "/filter/StudentTeacherContactslist/v1", consumes = {
 			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<Collection<StudentDispTeacherContRemi>> filterStudentDispTeacherContRemiList(
+	public ResponseEntity<Collection<StudentTeacherContacts>> filterStudentTeacherContactsList(
 			@RequestBody String reqBody) {
-		StudentDispTeacherContRemi studentDispTeacherContRemi = studentDispTeacherContRemiServiceV1.doService(reqBody);
-		return ResponseEntity.ok(studentDispTeacherContRemiRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
+		StudentTeacherContacts StudentTeacherContacts = StudentTeacherContactsServiceV1.doService(reqBody);
+		return ResponseEntity.ok(studentTeacherContactsRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
 	}*/
 
 	@ResponseBody
 	@DeleteMapping(path = "/deleteStudentDispTeacherContRemiList/v1", consumes = {
 			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<String> deleteStudentDispTeacherContRemiList(@RequestBody StudentDispTeacherContRemi studentDispTeacherContRemi) {
+	public ResponseEntity<String> deleteStudentTeacherContactsList(@RequestBody StudentTeacherContacts StudentTeacherContacts) {
 
-	//	StudentDispTeacherContRemi studentDispTeacherContRemi = studentDispTeacherContRemiServiceV1.doService(reqBody);
-		studentDispTeacherContRemiRepository.delete(studentDispTeacherContRemi);
+	//	StudentTeacherContacts StudentTeacherContacts = StudentTeacherContactsServiceV1.doService(reqBody);
+		studentTeacherContactsRepository.delete(StudentTeacherContacts);
 
 		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
 	}
 
 /*	@ResponseBody
-	@GetMapping(path = "/getStudentDispTeacherContRemiByFiscalyear/v1", consumes = {
+	@GetMapping(path = "/getStudentTeacherContactsByFiscalyear/v1", consumes = {
 			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<Collection<StudentDispTeacherContRemi>> getStudentDispTeacherContRemiByFiscalyear(
-			@RequestBody StudentDispTeacherContRemi studentDispTeacherContRemi) {
+	public ResponseEntity<Collection<StudentTeacherContacts>> getStudentTeacherContactsByFiscalyear(
+			@RequestBody StudentTeacherContacts StudentTeacherContacts) {
 
-	//	StudentDispTeacherContRemi studentDispTeacherContRemi = studentDispTeacherContRemiServiceV1.doService(reqBody);
-		return ResponseEntity.status(HttpStatus.OK).body(studentDispTeacherContRemiRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
+	//	StudentTeacherContacts StudentTeacherContacts = StudentTeacherContactsServiceV1.doService(reqBody);
+		return ResponseEntity.status(HttpStatus.OK).body(studentTeacherContactsRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
 	}
 
 	@ResponseBody
-	@GetMapping(path = "/getStudentDispTeacherContRemiByActive/v1", consumes = {
+	@GetMapping(path = "/getStudentTeacherContactsByActive/v1", consumes = {
 			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<Collection<StudentDispTeacherContRemi>> getStudentDispTeacherContRemiByActive(
-			@RequestBody StudentDispTeacherContRemi studentDispTeacherContRemi) {
+	public ResponseEntity<Collection<StudentTeacherContacts>> getStudentTeacherContactsByActive(
+			@RequestBody StudentTeacherContacts StudentTeacherContacts) {
 
-	//	StudentDispTeacherContRemi studentDispTeacherContRemi = studentDispTeacherContRemiServiceV1.doService(reqBody);
+	//	StudentTeacherContacts StudentTeacherContacts = StudentTeacherContactsServiceV1.doService(reqBody);
 
-		return ResponseEntity.status(HttpStatus.OK).body(studentDispTeacherContRemiRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
+		return ResponseEntity.status(HttpStatus.OK).body(studentTeacherContactsRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
 	}
 
 	@ResponseBody
-	@GetMapping(path = "/getStudentDispTeacherContRemiByServed/v1", consumes = {
+	@GetMapping(path = "/getStudentTeacherContactsByServed/v1", consumes = {
 			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<Collection<StudentDispTeacherContRemi>> getStudentDispTeacherContRemiByServed(
-			@RequestBody StudentDispTeacherContRemi studentDispTeacherContRemi) {
+	public ResponseEntity<Collection<StudentTeacherContacts>> getStudentTeacherContactsByServed(
+			@RequestBody StudentTeacherContacts StudentTeacherContacts) {
 
-	//	StudentDispTeacherContRemi studentDispTeacherContRemi = studentDispTeacherContRemiServiceV1.doService(reqBody);
+	//	StudentTeacherContacts StudentTeacherContacts = StudentTeacherContactsServiceV1.doService(reqBody);
 
-		return ResponseEntity.status(HttpStatus.OK).body(studentDispTeacherContRemiRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
+		return ResponseEntity.status(HttpStatus.OK).body(studentTeacherContactsRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
 	}
 
 	@ResponseBody
-	@GetMapping(path = "/getStudentDispTeacherContRemiByReported/v1", consumes = {
+	@GetMapping(path = "/getStudentTeacherContactsByReported/v1", consumes = {
 			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<Collection<StudentDispTeacherContRemi>> getStudentDispTeacherContRemiByReported(
-			@RequestBody StudentDispTeacherContRemi studentDispTeacherContRemi) {
+	public ResponseEntity<Collection<StudentTeacherContacts>> getStudentTeacherContactsByReported(
+			@RequestBody StudentTeacherContacts StudentTeacherContacts) {
 
-	//	StudentDispTeacherContRemi studentDispTeacherContRemi = studentDispTeacherContRemiServiceV1.doService(reqBody);
+	//	StudentTeacherContacts StudentTeacherContacts = StudentTeacherContactsServiceV1.doService(reqBody);
 
-		return ResponseEntity.status(HttpStatus.OK).body(studentDispTeacherContRemiRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
+		return ResponseEntity.status(HttpStatus.OK).body(studentTeacherContactsRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
 	}*/
 }

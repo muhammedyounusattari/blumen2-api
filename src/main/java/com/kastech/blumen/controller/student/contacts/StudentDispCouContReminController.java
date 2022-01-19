@@ -2,8 +2,10 @@ package com.kastech.blumen.controller.student.contacts;
 
 import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.student.Student;
+import com.kastech.blumen.model.student.contacts.StudentCounselorContact;
 import com.kastech.blumen.model.student.contacts.StudentDispCouContRemin;
 import com.kastech.blumen.repository.student.StudentRepository;
+import com.kastech.blumen.repository.student.contacts.StudentCounselorContactRepository;
 import com.kastech.blumen.repository.student.contacts.StudentDispCouContReminRepository;
 import com.kastech.blumen.service.student.contacts.StudentDispCouContReminServiceV1;
 import com.kastech.blumen.utility.DateUtil;
@@ -30,6 +32,9 @@ public class StudentDispCouContReminController {
     StudentDispCouContReminRepository studentDispCouContReminRepository;
 
     @Autowired
+    StudentCounselorContactRepository studentCounselorContactRepository;
+
+    @Autowired
     StudentDispCouContReminServiceV1 studentDispCouContReminServiceV1;
 
 
@@ -51,17 +56,17 @@ public class StudentDispCouContReminController {
     @ResponseBody
     @GetMapping(path = "/getStudentDispCouContReminList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<StudentDispCouContRemin>> getStudentDispCouContReminList() {
-        List<StudentDispCouContRemin> studentDispCouContReminList = studentDispCouContReminRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
+    public ResponseEntity<Collection<StudentCounselorContact>> getStudentDispCouContReminList() {
+        List<StudentCounselorContact> studentDispCouContReminList = studentCounselorContactRepository.findAll();
 
-        List<StudentDispCouContRemin> studentDispCouContReminListData = new ArrayList<StudentDispCouContRemin>();
-        for (StudentDispCouContRemin studentDispCouContRemin : studentDispCouContReminList) {
-            String contactDate = studentDispCouContRemin.getContactDate();
-            String isRecontactDate = studentDispCouContRemin.getRecontactDate();
+        List<StudentCounselorContact> studentDispCouContReminListData = new ArrayList<StudentCounselorContact>();
+        for (StudentCounselorContact studentDispCouContRemin : studentDispCouContReminList) {
+            String contactDate = studentDispCouContRemin.getStaffContactDate();
+            String isRecontactDate = studentDispCouContRemin.getStaffRecontactDate();
 
             //if contact date is greater than todays date then it is a reminder
 
-            if ((null != contactDate && !contactDate.isEmpty())) {
+            if ((null != contactDate && !contactDate.isEmpty()) || studentDispCouContRemin.isStaffRecontacted()) {
                 String todayDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
                 if (DateUtil.compareTwoDates(contactDate, todayDate)) {
                     studentDispCouContRemin.setReminder(true);

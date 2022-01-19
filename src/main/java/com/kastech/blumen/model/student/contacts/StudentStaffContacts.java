@@ -66,12 +66,12 @@ public class StudentStaffContacts {
     private String staffContactTeacher;
     private String staffContactTutor;
     private String staffContactLab;
-
+    private transient boolean isReminder;
 
     public StudentStaffContacts() {
     }
 
-    public StudentStaffContacts(Long ssno, Student student, List<ActivityRendered> activityRenderedList, String firstName, String lastName, String phoneNumber, String contactDate, String staff, String contactTime, String recontactDate, boolean active, boolean served, boolean reported, String school, String standing, String fiscalYear, boolean staffCounselor, boolean staffTeacher, boolean staffLab, String staffFirstName, String staffLastName, String staffPhoneNumber, String staffContactTime, boolean staffBolt, String staffContactDate, String staffFiscalYear, String staffRecontactDate, boolean staffRecontacted, String staffContactCounselor, String staffComponents, String staffAprSubject, String staffContactType, String staffSubject, String stafInstruction, String stafActivityService, String stafTotalTime, String stafActivityServiceRendered, String stafActivityTime, String staffNotes, String staffContactStaff, String staffContactTeacher, String staffContactTutor, String staffContactLab) {
+    public StudentStaffContacts(Long ssno, Student student, List<ActivityRendered> activityRenderedList, String firstName, String lastName, String phoneNumber, String contactDate, String staff, String contactTime, String recontactDate, boolean active, boolean served, boolean reported, String school, String standing, String fiscalYear, boolean staffCounselor, boolean staffTeacher, boolean staffLab, String staffFirstName, String staffLastName, String staffPhoneNumber, String staffContactTime, boolean staffBolt, String staffContactDate, String staffFiscalYear, String staffRecontactDate, boolean staffRecontacted, String staffContactCounselor, String staffComponents, String staffAprSubject, String staffContactType, String staffSubject, String stafInstruction, String stafActivityService, String stafTotalTime, String stafActivityServiceRendered, String stafActivityTime, String staffNotes, String staffContactStaff, String staffContactTeacher, String staffContactTutor, String staffContactLab, boolean isReminder) {
         this.ssno = ssno;
         this.student = student;
         this.activityRenderedList = activityRenderedList;
@@ -115,6 +115,7 @@ public class StudentStaffContacts {
         this.staffContactTeacher = staffContactTeacher;
         this.staffContactTutor = staffContactTutor;
         this.staffContactLab = staffContactLab;
+        this.isReminder = isReminder;
     }
 
     public Long getSsno() {
@@ -459,6 +460,14 @@ public class StudentStaffContacts {
 
     public void setStaffContactLab(String staffContactLab) {
         this.staffContactLab = staffContactLab;
+    }
+
+    public boolean isReminder() {
+        return isReminder;
+    }
+
+    public void setReminder(boolean reminder) {
+        isReminder = reminder;
     }
 
     @Override
