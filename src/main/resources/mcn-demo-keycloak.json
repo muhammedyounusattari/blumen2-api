@@ -1,0 +1,10 @@
+{
+	"realm": "mcn-demo",
+	"auth-server-url": "https://keycloak-blumen.azurewebsites.net/auth",
+	"ssl-required": "external",
+	"resource": "mcn-demo-client",
+	"credentials" : {
+		"secret" : "LsFJ3lYJ2nVmPEfuu2oFoYSmzxQl7aTc"
+	},
+	"principal-attribute": "preferred_username"
+}
