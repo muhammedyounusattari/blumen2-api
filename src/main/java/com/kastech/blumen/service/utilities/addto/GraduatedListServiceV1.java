@@ -32,4 +32,12 @@ public class GraduatedListServiceV1 {
     public List<GraduatedInformation> getGraduatedList(){
     	return graduatedListRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
+    
+    public GraduatedInformation save(GraduatedInformation graduatedInformation){
+    	return graduatedListRepository.save(graduatedInformation);
+    }
+
+	public void deleteById(Long id) {
+		graduatedListRepository.deleteById(id);
+	}
 }
