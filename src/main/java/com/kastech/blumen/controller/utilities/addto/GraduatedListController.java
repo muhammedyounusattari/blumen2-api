@@ -74,7 +74,7 @@ public class GraduatedListController {
 	@ResponseBody
 	@DeleteMapping(path = "/graduatedList/v1", produces = {
 			MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<String> deleteTeacherClasses(@RequestBody Long id) {
+	public ResponseEntity<String> deleteGraduatedList(@RequestBody Long id) {
 		graduatedListServiceV1.deleteById(id);
 		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
 	}

@@ -36,14 +36,18 @@ public class StudentController {
     @ResponseBody
     @PostMapping(path = "/addStudents/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
     public Student addStudents(@RequestBody Student student) {
-
+        return studentRepository.save(student);
+    }
+    
+    @ResponseBody
+    @PutMapping(path = "/student/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public Student updateStudent(@RequestBody Student student) {
         return studentRepository.save(student);
     }
 
     @ResponseBody
     @DeleteMapping(path = "/deleteStudents/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<String> deleteStudents(@RequestBody Student student) {
-
          studentRepository.delete(student);
          return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
     }

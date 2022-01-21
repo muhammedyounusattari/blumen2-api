@@ -15,6 +15,8 @@ public class PullDown {
     private String selectionType;
     private int active;
     private String apr;
+    @Column(columnDefinition="BOOLEAN DEFAULT false")
+    private boolean editable;
 
     @Column
     @ElementCollection(targetClass=String.class)
@@ -38,7 +40,16 @@ public class PullDown {
         this.code = code;
     }
     
-    public String getCode() {
+    
+    public boolean isEditable() {
+		return editable;
+	}
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+
+	public String getCode() {
 		return code;
 	}
 
