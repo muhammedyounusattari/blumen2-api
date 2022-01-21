@@ -2,6 +2,8 @@ package com.kastech.blumen.model.utilities.generatesimilar;
 
 import javax.persistence.*;
 
+import com.kastech.blumen.model.student.Student;
+
 @Entity
 @Table(name = "attendance_log", schema = "blumen2")
 public class AttendanceLog {
@@ -14,6 +16,10 @@ public class AttendanceLog {
     private boolean attendanceChecked;
     private String attendanceAmount;
     private String attendanceNote;
+    
+    @OneToOne
+    @JoinColumn(name="student_ssno")
+    private Student student;
 
     public AttendanceLog() {
     }
@@ -26,7 +32,15 @@ public class AttendanceLog {
         this.attendanceNote = attendanceNote;
     }
 
-    public Long getId() {
+    public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+	public Long getId() {
         return id;
     }
 

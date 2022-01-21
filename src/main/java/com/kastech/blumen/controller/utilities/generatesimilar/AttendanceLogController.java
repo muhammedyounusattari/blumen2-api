@@ -1,5 +1,6 @@
 package com.kastech.blumen.controller.utilities.generatesimilar;
 
+import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.student.Student;
 import com.kastech.blumen.model.student.dataentry.AddressNotes;
 import com.kastech.blumen.model.student.dataentry.GraduatedInformation;
@@ -27,54 +28,38 @@ public class AttendanceLogController {
     private static final Logger LOGGER = LoggerFactory.getLogger(AttendanceLogController.class);
 
     @Autowired
-    AttendanceLogRepository attendanceLogRepository;
-
-    @Autowired
     AttendanceLogServiceV1 attendanceLogServiceV1;
-
 
     @Autowired
     AttendanceLogValidator attendanceLogValidator;
-
-    List<Student> studentList = new ArrayList<>();
-
-
-    public void addStudentProfile() {
-
-        AddressNotes addressNotes = new AddressNotes(111L, "BANGALORE", "BANGALORER", "karnataka", "560044", "dee@gmail.com", "phone1", "phone2", "www.deepak.com", "notes ");
-        GraduatedInformation graduatedInformation = new GraduatedInformation(111l, "firstname", "secondname", "trrarck", "graduated", "counselor", "phole1", "major", "employer", "ma", "engineer", "militiry", "completed", "fulltime", "2021", addressNotes);
-
-        Student studentOne = new Student(111 - 234 - 333l, "11", "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017", graduatedInformation);
-        studentList.add(studentOne);
-
-        Student studentTwo = new Student(222 - 234 - 333l, "22", "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017", graduatedInformation);
-        studentList.add(studentTwo);
-        Student studentThree = new Student(333 - 234 - 333l, "33", "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017", graduatedInformation);
-        studentList.add(studentThree);
-
-        Student studentFour = new Student(444 - 234 - 333l, "44", "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2018", graduatedInformation);
-        studentList.add(studentFour);
-
-        Student studentFive = new Student(555 - 234 - 333l, "55", "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2018", graduatedInformation);
-        studentList.add(studentFive);
-    }
-
     @ResponseBody
-    @GetMapping(path = "/getOkToContinueAttendanceLogList/v1",
+    
+    @GetMapping(path = "/attendance/log/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<AttendanceLog> getAttendanceLogList() {
-        List<AttendanceLog> list = new ArrayList<>();
-        Iterable<AttendanceLog> items = attendanceLogRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
-        items.forEach(list::add);
-        return list;
+       return attendanceLogServiceV1.findAll();
     }
 
 
     @ResponseBody
-    @PostMapping(path = "/clickFinishAttendanceLogList/v1",
+    @PostMapping(path = "/attendance/log/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public AttendanceLog clickFinishAttendanceLogList(@RequestBody AttendanceLog attendanceLog) {
-     //   AttendanceLog attendanceLog = attendanceLogServiceV1.doService(reqBody);
-        return attendanceLogRepository.save(attendanceLog);
+    public AttendanceLog createAttendanceLog(@RequestBody AttendanceLog attendanceLog) {
+        return attendanceLogServiceV1.save(attendanceLog);
+    }
+    
+    @ResponseBody
+    @PutMapping(path = "/attendance/log/v1",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public AttendanceLog updateAttendanceLog(@RequestBody AttendanceLog attendanceLog) {
+        return attendanceLogServiceV1.save(attendanceLog);
+    }
+    
+    @ResponseBody
+    @DeleteMapping(path = "/attendance/log/v1",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> deleteAttendanceLog(@RequestBody Long id) {
+        attendanceLogServiceV1.deleteById(id);
+        return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
     }
 }
