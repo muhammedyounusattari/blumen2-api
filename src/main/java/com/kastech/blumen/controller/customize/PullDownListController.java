@@ -26,6 +26,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.customize.PullDown;
+import com.kastech.blumen.model.customize.PullDownItem;
+import com.kastech.blumen.repository.customize.PullDownItemsRepository;
 import com.kastech.blumen.repository.customize.PullDownListRepository;
 import com.kastech.blumen.service.customize.PullDownListServiceV1;
 import com.kastech.blumen.validator.customize.PullDownListValidator;
@@ -38,6 +40,9 @@ public class PullDownListController {
 
     @Autowired
     PullDownListRepository pullDownListRepository;
+    
+    @Autowired
+    PullDownItemsRepository pullDownItemRepository;
 
     @Autowired
     PullDownListServiceV1 pullDownListServiceV1;
@@ -51,11 +56,7 @@ public class PullDownListController {
     @GetMapping(path = "/getPullDownList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<PullDown> getPullDownList() {
-
-        List<PullDown> list = new ArrayList<>();
-        Iterable<PullDown> items = pullDownListRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
-        items.forEach(list::add);
-        return list;
+        return pullDownListRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
 
     @ResponseBody
@@ -63,7 +64,6 @@ public class PullDownListController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> addToPullDownList(@RequestBody PullDown pullDown) {
-      //  PullDown pullDown = pullDownListServiceV1.doService(reqBody);
     	if(pullDownListRepository.findByCode(pullDown.getCode()).isEmpty())
     		return ResponseEntity.ok(pullDownListRepository.save(pullDown));
     	else
@@ -75,22 +75,36 @@ public class PullDownListController {
     @GetMapping(path = "/pullDownList/v1/{id}",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public PullDown getPullDownListById(@PathVariable Long id) {
-      //  PullDown pullDown = pullDownListServiceV1.doService(reqBody);
         return pullDownListRepository.findById(id).get();
     }
 
     @ResponseBody
+    @GetMapping(path = "/pullDownItems/v1/{id}",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public List<PullDownItem> getPullDownItemsById(@PathVariable Long id) {
+        return pullDownItemRepository.findByPulldownId(id);
+    }
+    
+	@ResponseBody
+	@PostMapping(path = "/pullDownItems/v1/{id}", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<?> addPullDownItem(@PathVariable Long id, @RequestBody List<PullDownItem> pullDownItems) {
+		PullDown pulldown = pullDownListRepository.findById(id).get();
+		if (pulldown != null) {
+			pulldown.addPullDownItems(pullDownItems);
+			return ResponseEntity.ok(pullDownListRepository.save(pulldown));
+		} else {
+			return new ResponseEntity(new Response(200, "pulldown does not exist"), null, HttpStatus.OK);
+		}
+	}
+    
+    @ResponseBody
     @PutMapping(path = "/updatePullDownList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Optional<PullDown> editPullDownList(@RequestBody PullDown pullDown) {
-      //  PullDown pullDown = pullDownListServiceV1.doService(reqBody);
-
-        return pullDownListRepository.findById(pullDown.getId())
-                .map(oldItem -> {
-                    PullDown updated = oldItem.updateWith(pullDown);
-                    return pullDownListRepository.save(updated);
-                });
+    public PullDown editPullDownList(@RequestBody PullDown pullDown) {
+        return pullDownListRepository.save(pullDown);
+               
     }
 
 
@@ -116,7 +130,6 @@ public class PullDownListController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> deletePullDownList(@RequestBody PullDown pullDown) {
-      //  PullDown collegeSchool = pullDownListServiceV1.doService(reqBody);
         pullDownListRepository.delete(pullDown);
         return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
     }

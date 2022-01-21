@@ -1,6 +1,8 @@
 package com.kastech.blumen.model.customize;
 
 import javax.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,9 +20,11 @@ public class PullDown {
     @Column(columnDefinition="BOOLEAN DEFAULT false")
     private boolean editable;
 
-    @Column
-    @ElementCollection(targetClass=String.class)
-    private List<String> pullDownItems;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+			name =  "pull_down_items_mapping",
+			joinColumns = @JoinColumn(name = "pulldown_id"))
+    private List<PullDownItem> pullDownItems;
     private String orgId;
     
     @Column(unique = true)
@@ -29,17 +33,26 @@ public class PullDown {
     public PullDown() {
     }
 
-    public PullDown(Long id, String name, String selectionType, int active, String apr, List<String> pullDownItems, String orgId, String code) {
+    public PullDown(Long id, String name, String selectionType, int active, String apr,  String orgId, String code) {
         this.id = id;
         this.name = name;
         this.selectionType = selectionType;
         this.active = active;
         this.apr = apr;
-        this.pullDownItems = pullDownItems;
         this.orgId = orgId;
         this.code = code;
     }
     
+    public void addPullDownItems(List<PullDownItem> pullDownItemList) {
+    	if(pullDownItems==null)
+    		pullDownItems = new ArrayList<PullDownItem>();
+    	pullDownItems.addAll(pullDownItemList);
+    }
+    
+    public void deletePullDownItems(List<PullDownItem> pullDownItemList) {
+    	if(pullDownItems!=null)
+    		pullDownItems.removeAll(pullDownItemList);
+    }
     
     public boolean isEditable() {
 		return editable;
@@ -97,11 +110,11 @@ public class PullDown {
         this.apr = apr;
     }
 
-    public List<String> getpullDownItems() {
+    public List<PullDownItem> getpullDownItems() {
         return pullDownItems;
     }
 
-    public void setpullDownItems(List<String> pullDownItems) {
+    public void setpullDownItems(List<PullDownItem> pullDownItems) {
         this.pullDownItems = pullDownItems;
     }
 
@@ -126,16 +139,4 @@ public class PullDown {
                 '}';
     }
 
-    public PullDown updateWith(PullDown item) {
-        return new PullDown(
-                this.id,
-                item.name,
-                item.selectionType,
-                item.active,
-                item.apr,
-                item.pullDownItems,
-                item.orgId,
-                item.code
-        );
-    }
 }
