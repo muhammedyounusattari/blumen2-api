@@ -11,6 +11,7 @@ public class TimeClockManager implements Serializable {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="time_clock_manager_seq_gen")
     @SequenceGenerator(name="time_clock_manager_seq_gen", sequenceName="TIME_CLOCK_MANAGER_SEQ")
     private Long id;
+    private String staffId;
     private String staffName;
     private String checkInTime;
     private String checkOutTime;
@@ -19,12 +20,13 @@ public class TimeClockManager implements Serializable {
     public TimeClockManager() {
     }
 
-    public TimeClockManager(Long id, String staffName, String checkInTime, String checkOutTime, String duration) {
+    public TimeClockManager(Long id, String staffId, String staffName, String checkInTime, String checkOutTime, String duration) {
+        this.id = id;
+        this.staffId = staffId;
         this.staffName = staffName;
         this.checkInTime = checkInTime;
         this.checkOutTime = checkOutTime;
         this.duration = duration;
-        this.id = id;
     }
 
     public Long getId() {
@@ -33,6 +35,14 @@ public class TimeClockManager implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getStaffId() {
+        return staffId;
+    }
+
+    public void setStaffId(String staffId) {
+        this.staffId = staffId;
     }
 
     public String getStaffName() {
@@ -70,7 +80,8 @@ public class TimeClockManager implements Serializable {
     @Override
     public String toString() {
         return "TimeClockManager{" +
-                "id='" + id + '\'' +
+                "id=" + id +
+                ", staffId='" + staffId + '\'' +
                 ", staffName='" + staffName + '\'' +
                 ", checkInTime='" + checkInTime + '\'' +
                 ", checkOutTime='" + checkOutTime + '\'' +
@@ -81,6 +92,7 @@ public class TimeClockManager implements Serializable {
     public TimeClockManager updateWith(TimeClockManager item) {
         return new TimeClockManager(
                 this.id,
+                item.staffId,
                 item.staffName,
                 item.checkInTime,
                 item.checkOutTime,
