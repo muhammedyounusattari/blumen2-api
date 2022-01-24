@@ -35,7 +35,7 @@ public class TimeClockManagerServiceV1 {
         return timeClockManager;
     }
 
-    public String findDifference(String start_date, String end_date) {
+    public static String findDifference(String start_date, String end_date) {
 
         String finalValue = null;
         SimpleDateFormat sdf = new SimpleDateFormat(datePattern);

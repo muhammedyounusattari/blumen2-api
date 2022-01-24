@@ -6,6 +6,7 @@ import java.util.*;
 import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.admin.systemtools.TimeClockManager;
 import com.kastech.blumen.repository.admin.systemtools.TimeClockManagerRepository;
+import com.kastech.blumen.service.admin.systemtools.TimeClockManagerServiceV1;
 import com.kastech.blumen.validator.admin.systemtools.TimeClockManagerValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -91,10 +92,11 @@ public class TimeClockController {
             responseEntity = new ResponseEntity(new Response(200, staffName + " has Clocked In at " + currentTimeStamp), null, HttpStatus.OK);
         } else if("clock-out".equals(statusClockInOrOut)) {
             TimeClockManager createOutTimeClockManagerRequest = new TimeClockManager();
-            createOutTimeClockManagerRequest.setCheckInTime(currentTimeStamp);
+            createOutTimeClockManagerRequest.setCheckInTime(timeClockManager.getCheckInTime());
             createOutTimeClockManagerRequest.setCheckOutTime(currentTimeStamp);
             createOutTimeClockManagerRequest.setStaffId(timeClockManager.getStaffId());
             createOutTimeClockManagerRequest.setStaffName(timeClockManager.getStaffName());
+            createOutTimeClockManagerRequest.setDuration(TimeClockManagerServiceV1.findDifference(timeClockManager.getCheckInTime(),currentTimeStamp));
             timeClockManagerRepository.save(createOutTimeClockManagerRequest);
             responseEntity = new ResponseEntity(new Response(200, staffName + " has Clocked Out at " + currentTimeStamp), null, HttpStatus.OK);
         }

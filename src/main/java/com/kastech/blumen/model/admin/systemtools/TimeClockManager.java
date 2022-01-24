@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "time_clock_manager" ,schema = "blumen2")
+@Table(name = "time_clock" ,schema = "blumen2")
 public class TimeClockManager implements Serializable {
 
     @Id
