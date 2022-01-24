@@ -16,17 +16,19 @@ public class TimeClockManager implements Serializable {
     private String checkInTime;
     private String checkOutTime;
     private String duration;
+    private String statusInOut;
 
     public TimeClockManager() {
     }
 
-    public TimeClockManager(Long id, String staffId, String staffName, String checkInTime, String checkOutTime, String duration) {
+    public TimeClockManager(Long id, String staffId, String staffName, String checkInTime, String checkOutTime, String duration, String statusInOut) {
         this.id = id;
         this.staffId = staffId;
         this.staffName = staffName;
         this.checkInTime = checkInTime;
         this.checkOutTime = checkOutTime;
         this.duration = duration;
+        this.statusInOut = statusInOut;
     }
 
     public Long getId() {
@@ -77,6 +79,14 @@ public class TimeClockManager implements Serializable {
         this.duration = duration;
     }
 
+    public String getStatusInOut() {
+        return statusInOut;
+    }
+
+    public void setStatusInOut(String statusInOut) {
+        this.statusInOut = statusInOut;
+    }
+
     @Override
     public String toString() {
         return "TimeClockManager{" +
@@ -86,6 +96,7 @@ public class TimeClockManager implements Serializable {
                 ", checkInTime='" + checkInTime + '\'' +
                 ", checkOutTime='" + checkOutTime + '\'' +
                 ", duration='" + duration + '\'' +
+                ", statusInOut='" + statusInOut + '\'' +
                 '}';
     }
 
@@ -96,7 +107,8 @@ public class TimeClockManager implements Serializable {
                 item.staffName,
                 item.checkInTime,
                 item.checkOutTime,
-                item.duration
+                item.duration,
+                item.statusInOut
         );
     }
 }

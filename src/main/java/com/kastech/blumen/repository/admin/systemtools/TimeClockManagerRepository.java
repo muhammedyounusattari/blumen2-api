@@ -15,6 +15,9 @@ public interface TimeClockManagerRepository extends JpaRepository<TimeClockManag
 
 
     @Query(value = "SELECT t FROM TimeClockManager t where t.staffId=?1 ORDER BY checkOutTime")
-    List<TimeClockManager> findAllStaffById(@Param("staffId") String staffId);
+    List<TimeClockManager> findAllStaffByIdOrderByCheckoutTime(@Param("staffId") String staffId);
+
+    @Query(value = "SELECT t FROM TimeClockManager t where t.staffId=?1 ORDER BY checkInTime")
+    List<TimeClockManager> findAllStaffByIdOrderByClockInTime(@Param("staffId") String staffId);
 
 }
