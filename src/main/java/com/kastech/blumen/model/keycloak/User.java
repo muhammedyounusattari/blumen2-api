@@ -8,6 +8,7 @@ public class User {
     String lastName;
     String email;
     boolean emailVerified;
+    boolean enabled;
     List<Credentials> credentials;
 
     public String getUsername() {
@@ -48,6 +49,14 @@ public class User {
 
     public void setEmailVerified(boolean emailVerified) {
         this.emailVerified = emailVerified;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public List<Credentials> getCredentials() {

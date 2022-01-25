@@ -30,7 +30,7 @@ public class PathBasedConfigResolver implements KeycloakConfigResolver {
         if (realm.contains("?")) {
             realm = realm.split("\\?")[0];
         }*/
-        String realm = "mcn-demo";//harcoded the realm for now.
+        String realm = "mumbai-university";//harcoded the realm for now.
 
         if (!cache.containsKey(realm)) {
             InputStream is = getClass().getResourceAsStream("/" + realm + "-keycloak.json");

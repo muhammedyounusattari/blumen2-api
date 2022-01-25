@@ -28,6 +28,10 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.core.io.Resource;
 
 import java.io.UnsupportedEncodingException;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Service
@@ -84,11 +88,16 @@ public class KeycloakAdminClientService {
 
             JSONObject accessTokenPayloadJSON = new JSONObject(new String(decoder.decode(chunks[1]), "UTF-8"));
             int iat = (Integer) accessTokenPayloadJSON.get("iat");
-            int exp = (Integer) accessTokenPayloadJSON.get("iat");
+            int exp = (Integer) accessTokenPayloadJSON.get("exp");
             String jti = accessTokenPayloadJSON.getString("jti");
             String email = accessTokenPayloadJSON.getString("email");
+            LocalDateTime issueDate = LocalDateTime.ofInstant(Instant.ofEpochSecond(iat), ZoneId.systemDefault());
+            LocalDateTime expiryDate = LocalDateTime.ofInstant(Instant.ofEpochSecond(exp), ZoneId.systemDefault());
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss a");
+            String issueDateStr = issueDate.format(dateTimeFormatter);
+            String expiryDateStr = expiryDate.format(dateTimeFormatter);
 
-            LoggedUser loggedUser = new LoggedUser(jti, iat, exp, loginRequest.getUsername());
+            LoggedUser loggedUser = new LoggedUser(jti, iat, exp, issueDateStr, expiryDateStr, loginRequest.getUsername());
             Optional<LoggedUser> loggedUserFound = loggedUserServiceV1.findLoggedUser(loginRequest.getUsername());
             if(loggedUserFound.isPresent()) {
                 loggedUserServiceV1.deleteById(loggedUserFound.get().getId());

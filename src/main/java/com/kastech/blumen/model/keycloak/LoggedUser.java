@@ -19,6 +19,9 @@ public class LoggedUser {
 
     private int ita;
     private int exp;
+
+    private String issueDate;
+    private String expiryDate;
     private String userName;
 
     public int getIta() {
@@ -46,10 +49,12 @@ public class LoggedUser {
     }
     public LoggedUser() {}
 
-    public LoggedUser(String id, int ita, int exp, String userName){
+    public LoggedUser(String id, int ita, int exp, String issueDate, String expiryDate, String userName){
         this.id = id;
         this.ita = ita;
         this.exp = exp;
+        this.issueDate = issueDate;
+        this.expiryDate = expiryDate;
         this.userName = userName;
     }
 
@@ -59,6 +64,8 @@ public class LoggedUser {
                 "id=" + id +
                 ", ita='" + ita + '\'' +
                 ", exp='" + exp + '\'' +
+                ", issueDate='" + issueDate + '\'' +
+                ", expiryDate='" + expiryDate + '\'' +
                 ", userName='" + userName + '\'' +
                 '}';
     }
