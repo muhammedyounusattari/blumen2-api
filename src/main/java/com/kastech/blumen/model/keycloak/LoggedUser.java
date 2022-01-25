@@ -22,6 +22,23 @@ public class LoggedUser {
 
     private String issueDate;
     private String expiryDate;
+
+    public String getIssueDate() {
+        return issueDate;
+    }
+
+    public void setIssueDate(String issueDate) {
+        this.issueDate = issueDate;
+    }
+
+    public String getExpiryDate() {
+        return expiryDate;
+    }
+
+    public void setExpiryDate(String expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+
     private String userName;
 
     public int getIta() {
