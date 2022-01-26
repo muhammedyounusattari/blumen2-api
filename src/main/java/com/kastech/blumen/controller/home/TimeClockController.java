@@ -62,7 +62,8 @@ public class TimeClockController {
             timeClockManager.setStaffId(staff.getId() + "");
             timeClockManager.setCheckInTime(currentTimeStamp);
             timeClockManagerRepository.save(timeClockManager);
-            responseEntity = new ResponseEntity(new Response(200, "clocked in time on " + currentTimeStamp), null, HttpStatus.OK);
+            String response = timeClockManager.getStaffName() + " last clocked out time on ";
+            responseEntity = new ResponseEntity(new Response(200, response), null, HttpStatus.OK);
         } else if (timeClockManagerObjList.size() > 1) {
             TimeClockManager timeClockManager = timeClockManagerObjList.get(1);
             String lastClockedInTime = timeClockManager.getCheckInTime();
