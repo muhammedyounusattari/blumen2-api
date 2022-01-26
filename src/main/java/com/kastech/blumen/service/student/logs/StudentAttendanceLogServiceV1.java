@@ -31,12 +31,8 @@ public class StudentAttendanceLogServiceV1 {
         return studentAttendanceLogRepository.save(studentAttendanceLog);
     }
 
-    public Optional<StudentAttendanceLog> editStudentAttendanceLogList(StudentAttendanceLog studentAttendanceLog) {
-        return studentAttendanceLogRepository.findById(studentAttendanceLog.getSsno())
-                .map(oldItem -> {
-                    StudentAttendanceLog updated = oldItem.updateWith(studentAttendanceLog);
-                    return studentAttendanceLogRepository.save(updated);
-                });
+    public StudentAttendanceLog editStudentAttendanceLogList(StudentAttendanceLog studentAttendanceLog) {
+        return studentAttendanceLogRepository.save(studentAttendanceLog);
     }
 }
 

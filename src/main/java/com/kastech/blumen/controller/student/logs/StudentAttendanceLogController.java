@@ -1,5 +1,6 @@
 package com.kastech.blumen.controller.student.logs;
 
+import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.student.Student;
 import com.kastech.blumen.model.student.logs.StudentAttendanceLog;
 import com.kastech.blumen.repository.student.StudentRepository;
@@ -20,7 +21,6 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/blumen-api/student-logs")
@@ -76,12 +76,12 @@ public class StudentAttendanceLogController {
     @PutMapping(path = "/updateStudentAttendanceLogList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Optional<StudentAttendanceLog> editStudentAttendanceLogList(@RequestBody StudentAttendanceLog studentAttendanceLog) {
+    public StudentAttendanceLog editStudentAttendanceLogList(@RequestBody StudentAttendanceLog studentAttendanceLog) {
      //   StudentAttendanceLog studentAttendanceLog = studentAttendanceLogServiceV1.doService(reqBody);
         return studentAttendanceLogServiceV1.editStudentAttendanceLogList(studentAttendanceLog);
     }
 
-
+/*
     @ResponseBody
     @PutMapping(path = "/filter/studentAttendanceLoglist/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
@@ -89,7 +89,7 @@ public class StudentAttendanceLogController {
     public ResponseEntity<String> filterStudentAttendanceLogList(@RequestBody StudentAttendanceLog studentAttendanceLog) {
      //   StudentAttendanceLog studentAttendanceLog = studentAttendanceLogServiceV1.doService(reqBody);
         return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
-    }
+    }*/
 
 
     @ResponseBody
@@ -98,14 +98,13 @@ public class StudentAttendanceLogController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentAttendanceLog>> deleteStudentAttendanceLogList(@RequestBody StudentAttendanceLog studentAttendanceLog) {
 
-      //  StudentAttendanceLog studentAttendanceLog = studentAttendanceLogServiceV1.doService(reqBody);
-        stringStudentAttendanceLogMap.remove(studentAttendanceLog.getSsno());
+        studentAttendanceLogRepository.delete(studentAttendanceLog);
 
-        return ResponseEntity.status(HttpStatus.OK).body(stringStudentAttendanceLogMap.values());
+        return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
     }
 
 
-    @ResponseBody
+   /* @ResponseBody
     @GetMapping(path = "/getStudentAttendanceLogByFiscalyear/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -152,7 +151,7 @@ public class StudentAttendanceLogController {
         stringStudentAttendanceLogMap.remove(studentAttendanceLog.getSsno());
 
         return ResponseEntity.status(HttpStatus.OK).body(stringStudentAttendanceLogMap.values());
-    }
+    }*/
 
 
 }

@@ -1,14 +1,15 @@
 package com.kastech.blumen.model.student.logs;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "exam_log" ,schema = "blumen2")
 public class StudentExamsLog {
 
 	@Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="student_exam_log_seq_gen")
+    @SequenceGenerator(name="student_exam_log_seq_gen", sequenceName="STUDENT_EXAM_LOG_SEQ")
 	private Long id;
     private String ssno;
     private String firstName;
@@ -27,10 +28,20 @@ public class StudentExamsLog {
     private String school;
     private String standing;
 
+    private String examLetterGrade;
+    private String subExamName;
+    private String maxMumMarks;
+    private String totalMarks;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<SubExamLogEntry> subExamLogEntry;
+    private String examNotes;
+
     public StudentExamsLog() {
     }
 
-    public StudentExamsLog(String ssno, String firstName, String lastName, String phoneNumber, String examDate, String examName, String marks, String maxMarks, String letterGrade, String fiscalYear, boolean active, boolean served, boolean reported, String councelor, String school, String standing) {
+    public StudentExamsLog(Long id, String ssno, String firstName, String lastName, String phoneNumber, String examDate, String examName, String marks, String maxMarks, String letterGrade, String fiscalYear, boolean active, boolean served, boolean reported, String councelor, String school, String standing, String examLetterGrade, String subExamName, String maxMumMarks, String totalMarks, List<SubExamLogEntry> subExamLogEntry, String examNotes) {
+        this.id = id;
         this.ssno = ssno;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -47,17 +58,23 @@ public class StudentExamsLog {
         this.councelor = councelor;
         this.school = school;
         this.standing = standing;
+        this.examLetterGrade = examLetterGrade;
+        this.subExamName = subExamName;
+        this.maxMumMarks = maxMumMarks;
+        this.totalMarks = totalMarks;
+        this.subExamLogEntry = subExamLogEntry;
+        this.examNotes = examNotes;
     }
 
     public Long getId() {
-		return id;
-	}
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getSsno() {
+    public String getSsno() {
         return ssno;
     }
 
@@ -185,10 +202,59 @@ public class StudentExamsLog {
         this.standing = standing;
     }
 
+    public String getExamLetterGrade() {
+        return examLetterGrade;
+    }
+
+    public void setExamLetterGrade(String examLetterGrade) {
+        this.examLetterGrade = examLetterGrade;
+    }
+
+    public String getSubExamName() {
+        return subExamName;
+    }
+
+    public void setSubExamName(String subExamName) {
+        this.subExamName = subExamName;
+    }
+
+    public String getMaxMumMarks() {
+        return maxMumMarks;
+    }
+
+    public void setMaxMumMarks(String maxMumMarks) {
+        this.maxMumMarks = maxMumMarks;
+    }
+
+    public String getTotalMarks() {
+        return totalMarks;
+    }
+
+    public void setTotalMarks(String totalMarks) {
+        this.totalMarks = totalMarks;
+    }
+
+    public List<SubExamLogEntry> getSubExamLogEntry() {
+        return subExamLogEntry;
+    }
+
+    public void setSubExamLogEntry(List<SubExamLogEntry> subExamLogEntry) {
+        this.subExamLogEntry = subExamLogEntry;
+    }
+
+    public String getExamNotes() {
+        return examNotes;
+    }
+
+    public void setExamNotes(String examNotes) {
+        this.examNotes = examNotes;
+    }
+
     @Override
     public String toString() {
         return "StudentExamsLog{" +
-                "ssno='" + ssno + '\'' +
+                "id=" + id +
+                ", ssno='" + ssno + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
@@ -204,6 +270,12 @@ public class StudentExamsLog {
                 ", councelor='" + councelor + '\'' +
                 ", school='" + school + '\'' +
                 ", standing='" + standing + '\'' +
+                ", examLetterGrade='" + examLetterGrade + '\'' +
+                ", subExamName='" + subExamName + '\'' +
+                ", maxMumMarks='" + maxMumMarks + '\'' +
+                ", totalMarks='" + totalMarks + '\'' +
+                ", subExamLogEntry=" + subExamLogEntry +
+                ", examNotes='" + examNotes + '\'' +
                 '}';
     }
 }

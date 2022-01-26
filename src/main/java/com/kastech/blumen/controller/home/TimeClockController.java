@@ -6,6 +6,7 @@ import java.util.*;
 import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.admin.systemtools.TimeClockManager;
 import com.kastech.blumen.repository.admin.systemtools.TimeClockManagerRepository;
+import com.kastech.blumen.repository.staff.StaffRepository;
 import com.kastech.blumen.service.admin.systemtools.TimeClockManagerServiceV1;
 import com.kastech.blumen.validator.admin.systemtools.TimeClockManagerValidator;
 import org.slf4j.Logger;
@@ -41,6 +42,9 @@ public class TimeClockController {
     TimeClockManagerValidator timeClockManagerValidator;
 
     @Autowired
+    StaffRepository staffRepository;
+
+    @Autowired
     private RestTemplate restTemplate;
 
     @ResponseBody
@@ -49,7 +53,17 @@ public class TimeClockController {
 
         ResponseEntity<String> responseEntity = null;
         List<TimeClockManager> timeClockManagerObjList = timeClockManagerRepository.findAllStaffByIdOrderByCheckoutTime(staffId);
-        if (timeClockManagerObjList.size() > 1) {
+        if (timeClockManagerObjList.isEmpty()) {
+            Optional<Staff> staffObj = staffRepository.findById(Long.parseLong(staffId));
+            String currentTimeStamp = new SimpleDateFormat(datePattern).format(new Date());
+            Staff staff = staffObj.get();
+            TimeClockManager timeClockManager = new TimeClockManager();
+            timeClockManager.setStaffName(staff.getStaffName());
+            timeClockManager.setStaffId(staff.getId() + "");
+            timeClockManager.setCheckInTime(currentTimeStamp);
+            timeClockManagerRepository.save(timeClockManager);
+            responseEntity = new ResponseEntity(new Response(200, "clocked in time on " + currentTimeStamp), null, HttpStatus.OK);
+        } else if (timeClockManagerObjList.size() > 1) {
             TimeClockManager timeClockManager = timeClockManagerObjList.get(1);
             String lastClockedInTime = timeClockManager.getCheckInTime();
             String response = timeClockManager.getStaffName() + " last clocked in time on " + lastClockedInTime;
@@ -90,13 +104,13 @@ public class TimeClockController {
             createInTimeClockManagerRequest.setStaffName(timeClockManager.getStaffName());
             timeClockManagerRepository.save(createInTimeClockManagerRequest);
             responseEntity = new ResponseEntity(new Response(200, staffName + " has Clocked In at " + currentTimeStamp), null, HttpStatus.OK);
-        } else if("clock-out".equals(statusClockInOrOut)) {
+        } else if ("clock-out".equals(statusClockInOrOut)) {
             TimeClockManager createOutTimeClockManagerRequest = new TimeClockManager();
             createOutTimeClockManagerRequest.setCheckInTime(timeClockManager.getCheckInTime());
             createOutTimeClockManagerRequest.setCheckOutTime(currentTimeStamp);
             createOutTimeClockManagerRequest.setStaffId(timeClockManager.getStaffId());
             createOutTimeClockManagerRequest.setStaffName(timeClockManager.getStaffName());
-            createOutTimeClockManagerRequest.setDuration(TimeClockManagerServiceV1.findDifference(timeClockManager.getCheckInTime(),currentTimeStamp));
+            createOutTimeClockManagerRequest.setDuration(TimeClockManagerServiceV1.findDifference(timeClockManager.getCheckInTime(), currentTimeStamp));
             timeClockManagerRepository.save(createOutTimeClockManagerRequest);
             responseEntity = new ResponseEntity(new Response(200, staffName + " has Clocked Out at " + currentTimeStamp), null, HttpStatus.OK);
         }

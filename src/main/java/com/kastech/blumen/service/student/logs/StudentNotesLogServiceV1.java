@@ -30,7 +30,7 @@ public class StudentNotesLogServiceV1 {
     }
 
     public Optional<StudentNotesLog> editStudentNotesLogList(StudentNotesLog studentNotesLog) {
-        return studentNotesLogRepository.findById(studentNotesLog.getSsno())
+        return studentNotesLogRepository.findById(studentNotesLog.getId())
                 .map(oldItem -> {
                     StudentNotesLog updated = oldItem.updateWith(studentNotesLog);
                     return studentNotesLogRepository.save(updated);

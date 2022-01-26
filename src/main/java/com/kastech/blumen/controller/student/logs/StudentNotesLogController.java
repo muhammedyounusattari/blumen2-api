@@ -84,14 +84,14 @@ public class StudentNotesLogController {
     }
 
 
-    @ResponseBody
+  /*  @ResponseBody
     @PutMapping(path = "/filter/studentNotesLoglist/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> filterStudentNotesLogList(@RequestBody StudentNotesLog studentNotesLog) {
      //   StudentNotesLog studentNotesLog = studentNotesLogServiceV1.doService(reqBody);
         return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
-    }
+    }*/
 
 
     @ResponseBody
@@ -108,14 +108,14 @@ public class StudentNotesLogController {
     }
 
 
-    @ResponseBody
+   /* @ResponseBody
     @GetMapping(path = "/getStudentNotesLogByFiscalyear/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentNotesLog>> getStudentNotesLogByFiscalyear(@RequestBody StudentNotesLog studentNotesLog) {
 
      //   StudentNotesLog studentNotesLog = studentNotesLogServiceV1.doService(reqBody);
-        studentNotesLogMap.remove(studentNotesLog.getSsno());
+        studentNotesLogMap.remove(studentNotesLog.getStudentssno());
 
         return ResponseEntity.status(HttpStatus.OK).body(studentNotesLogMap.values());
     }
@@ -127,7 +127,7 @@ public class StudentNotesLogController {
     public ResponseEntity<Collection<StudentNotesLog>> getStudentNotesLogByActive(@RequestBody StudentNotesLog studentNotesLog) {
 
      //   StudentNotesLog studentNotesLog = studentNotesLogServiceV1.doService(reqBody);
-        studentNotesLogMap.remove(studentNotesLog.getSsno());
+        studentNotesLogMap.remove(studentNotesLog.getStudentssno());
 
         return ResponseEntity.status(HttpStatus.OK).body(studentNotesLogMap.values());
     }
@@ -140,7 +140,7 @@ public class StudentNotesLogController {
     public ResponseEntity<Collection<StudentNotesLog>> getStudentNotesLogByServed(@RequestBody StudentNotesLog studentNotesLog) {
 
        // StudentNotesLog studentNotesLog = studentNotesLogServiceV1.doService(reqBody);
-        studentNotesLogMap.remove(studentNotesLog.getSsno());
+        studentNotesLogMap.remove(studentNotesLog.getStudentssno());
 
         return ResponseEntity.status(HttpStatus.OK).body(studentNotesLogMap.values());
     }
@@ -152,8 +152,8 @@ public class StudentNotesLogController {
     public ResponseEntity<Collection<StudentNotesLog>> getStudentNotesLogByReported(@RequestBody StudentNotesLog studentNotesLog) {
 
     //    StudentNotesLog studentNotesLog = studentNotesLogServiceV1.doService(reqBody);
-        studentNotesLogMap.remove(studentNotesLog.getSsno());
+        studentNotesLogMap.remove(studentNotesLog.getStudentssno());
 
         return ResponseEntity.status(HttpStatus.OK).body(studentNotesLogMap.values());
-    }
+    }*/
 }

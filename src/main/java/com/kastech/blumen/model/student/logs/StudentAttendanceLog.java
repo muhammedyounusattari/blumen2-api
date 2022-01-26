@@ -5,22 +5,24 @@ import com.kastech.blumen.model.customize.PullDown;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "student_attendance_log" ,schema = "blumen2")
+@Table(name = "student_attendance_log", schema = "blumen2")
 public class StudentAttendanceLog {
 
 
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="student_attendance_log_seq_gen")
-    @SequenceGenerator(name="student_attendance_log_seq_gen", sequenceName="STUDENT_ATTENDANCE_LOG_SEQ")
-    private Long ssno;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_attendance_log_seq_gen")
+    @SequenceGenerator(name = "student_attendance_log_seq_gen", sequenceName = "STUDENT_ATTENDANCE_LOG_SEQ")
+    private Long id;
+    private String ssno;
     private String firstName;
     private String lastName;
     private String phoneNumber;
     private String attendanceDate;
+    private boolean dontApplyStipend;
     private String attendanceAmount;
+    private String attendanceNotes;
     private String attendanceLogged;
-    private String maxMarks;
-    private String letterGrade;
+
 
     private String fiscalYear;
     private boolean active;
@@ -33,16 +35,17 @@ public class StudentAttendanceLog {
     public StudentAttendanceLog() {
     }
 
-    public StudentAttendanceLog(Long ssno, String firstName, String lastName, String phoneNumber, String attendanceDate, String attendanceAmount, String attendanceLogged, String maxMarks, String letterGrade, String fiscalYear, boolean active, boolean served, boolean reported, String councelor, String school, String standing) {
+    public StudentAttendanceLog(Long id, String ssno, String firstName, String lastName, String phoneNumber, String attendanceDate, boolean dontApplyStipend, String attendanceAmount, String attendanceNotes, String attendanceLogged, String fiscalYear, boolean active, boolean served, boolean reported, String councelor, String school, String standing) {
+        this.id = id;
         this.ssno = ssno;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.attendanceDate = attendanceDate;
+        this.dontApplyStipend = dontApplyStipend;
         this.attendanceAmount = attendanceAmount;
+        this.attendanceNotes = attendanceNotes;
         this.attendanceLogged = attendanceLogged;
-        this.maxMarks = maxMarks;
-        this.letterGrade = letterGrade;
         this.fiscalYear = fiscalYear;
         this.active = active;
         this.served = served;
@@ -52,11 +55,19 @@ public class StudentAttendanceLog {
         this.standing = standing;
     }
 
-    public Long getSsno() {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getSsno() {
         return ssno;
     }
 
-    public void setSsno(Long ssno) {
+    public void setSsno(String ssno) {
         this.ssno = ssno;
     }
 
@@ -92,6 +103,14 @@ public class StudentAttendanceLog {
         this.attendanceDate = attendanceDate;
     }
 
+    public boolean isDontApplyStipend() {
+        return dontApplyStipend;
+    }
+
+    public void setDontApplyStipend(boolean dontApplyStipend) {
+        this.dontApplyStipend = dontApplyStipend;
+    }
+
     public String getAttendanceAmount() {
         return attendanceAmount;
     }
@@ -100,28 +119,20 @@ public class StudentAttendanceLog {
         this.attendanceAmount = attendanceAmount;
     }
 
+    public String getAttendanceNotes() {
+        return attendanceNotes;
+    }
+
+    public void setAttendanceNotes(String attendanceNotes) {
+        this.attendanceNotes = attendanceNotes;
+    }
+
     public String getAttendanceLogged() {
         return attendanceLogged;
     }
 
     public void setAttendanceLogged(String attendanceLogged) {
         this.attendanceLogged = attendanceLogged;
-    }
-
-    public String getMaxMarks() {
-        return maxMarks;
-    }
-
-    public void setMaxMarks(String maxMarks) {
-        this.maxMarks = maxMarks;
-    }
-
-    public String getLetterGrade() {
-        return letterGrade;
-    }
-
-    public void setLetterGrade(String letterGrade) {
-        this.letterGrade = letterGrade;
     }
 
     public String getFiscalYear() {
@@ -183,15 +194,16 @@ public class StudentAttendanceLog {
     @Override
     public String toString() {
         return "StudentAttendanceLog{" +
-                "ssno='" + ssno + '\'' +
+                "id=" + id +
+                ", ssno='" + ssno + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", attendanceDate='" + attendanceDate + '\'' +
+                ", dontApplyStipend=" + dontApplyStipend +
                 ", attendanceAmount='" + attendanceAmount + '\'' +
+                ", attendanceNotes='" + attendanceNotes + '\'' +
                 ", attendanceLogged='" + attendanceLogged + '\'' +
-                ", maxMarks='" + maxMarks + '\'' +
-                ", letterGrade='" + letterGrade + '\'' +
                 ", fiscalYear='" + fiscalYear + '\'' +
                 ", active=" + active +
                 ", served=" + served +
@@ -200,26 +212,5 @@ public class StudentAttendanceLog {
                 ", school='" + school + '\'' +
                 ", standing='" + standing + '\'' +
                 '}';
-    }
-
-    public StudentAttendanceLog updateWith(StudentAttendanceLog item) {
-        return new StudentAttendanceLog(
-                item.ssno,
-                item.firstName,
-                item.lastName,
-                item.phoneNumber,
-                item.attendanceDate,
-                item.attendanceAmount,
-                item.attendanceLogged,
-                item.maxMarks,
-                item.letterGrade,
-                item.fiscalYear,
-                item.active,
-                item.served,
-                item.reported,
-                item.councelor,
-                item.school,
-                item.standing
-        );
     }
 }

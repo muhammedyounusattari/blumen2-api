@@ -25,6 +25,7 @@ public class StudentExamsLogController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(StudentExamsLogController.class);
 
+    @Autowired
     StudentExamsLogRepository studentExamsLogRepository;
 
     @Autowired
@@ -76,13 +77,13 @@ public class StudentExamsLogController {
 	}
 
 
-    @ResponseBody
+  /*  @ResponseBody
     @PutMapping(path = "/filter/studentExamsLoglist/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<StudentExamsLog>> filterStudentExamsLogList(@RequestBody StudentExamsLog studentExamsLog) {
         return ResponseEntity.status(HttpStatus.OK).body(studentExamsLogRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
-    }
+    }*/
 
 
     @ResponseBody
@@ -95,7 +96,7 @@ public class StudentExamsLogController {
     	return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
     }
 
-
+/*
     @ResponseBody
     @GetMapping(path = "/getStudentExamsLogByFiscalyear/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
@@ -132,5 +133,5 @@ public class StudentExamsLogController {
     public ResponseEntity<Collection<StudentExamsLog>> getStudentExamsLogByReported(@RequestBody StudentExamsLog studentExamsLog) {
 
         return ResponseEntity.status(HttpStatus.OK).body(studentExamsLogRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
-    }
+    }*/
 }
