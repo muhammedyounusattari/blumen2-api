@@ -49,12 +49,12 @@ public class TimeClockController {
 
     @ResponseBody
     @GetMapping(path = "/getStaffTimeById/v1", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> getStaffClockInClockOutTime(@RequestParam(value = "staffId") String staffId) {
+    public ResponseEntity<String> getStaffClockInClockOutTime(@RequestParam(value = "staffId") String staffId, @RequestParam(value = "staffName") String staffName) {
 
         ResponseEntity<String> responseEntity = null;
         List<TimeClockManager> timeClockManagerObjList = timeClockManagerRepository.findAllStaffByIdOrderByCheckoutTime(staffId);
         if (timeClockManagerObjList.isEmpty()) {
-            Optional<Staff> staffObj = staffRepository.findById(Long.parseLong(staffId));
+            /*Optional<Staff> staffObj = staffRepository.findById(Long.parseLong(staffId));
             String currentTimeStamp = new SimpleDateFormat(datePattern).format(new Date());
             Staff staff = staffObj.get();
             TimeClockManager timeClockManager = new TimeClockManager();
@@ -63,7 +63,11 @@ public class TimeClockController {
             timeClockManager.setCheckInTime(currentTimeStamp);
             timeClockManagerRepository.save(timeClockManager);
             String response = timeClockManager.getStaffName() + " last clocked out time on ";
+            responseEntity = new ResponseEntity(new Response(200, response), null, HttpStatus.OK);*/
+
+            String response = staffName + " last clocked Out on ";
             responseEntity = new ResponseEntity(new Response(200, response), null, HttpStatus.OK);
+
         } else if (timeClockManagerObjList.size() > 1) {
             TimeClockManager timeClockManager = timeClockManagerObjList.get(1);
             String lastClockedInTime = timeClockManager.getCheckInTime();
@@ -72,8 +76,14 @@ public class TimeClockController {
 
         } else {
             TimeClockManager timeClockManager = timeClockManagerObjList.get(0);
-            String highestCheckOutTime = timeClockManager.getCheckOutTime();
-            String response = timeClockManager.getStaffName() + " last clocked Out on " + highestCheckOutTime;
+            String checkInTime = timeClockManager.getCheckInTime();
+            String checkOutTime = timeClockManager.getCheckOutTime();
+            String response = null;
+            if (null != timeClockManager.getCheckOutTime()) {
+                response = timeClockManager.getStaffName() + " clocked out since " + checkOutTime;
+            } else {
+                response = timeClockManager.getStaffName() + " clocked in since " + checkInTime;
+            }
             responseEntity = new ResponseEntity(new Response(200, response), null, HttpStatus.OK);
         }
 
@@ -97,27 +107,51 @@ public class TimeClockController {
         String staffName = timeClockManager.getStaffName();
         String currentTimeStamp = new SimpleDateFormat(datePattern).format(new Date());
         String statusClockInOrOut = timeClockManager.getStatusInOut();
-        if ("clock-in".equals(statusClockInOrOut)) {
+
+        List<TimeClockManager> timeClockManagerObjList = timeClockManagerRepository.findAllStaffByIdOrderByCheckoutTime(timeClockManager.getStaffId());
+
+        if (!timeClockManagerObjList.isEmpty()) {
+            TimeClockManager timeClockManagerObj = timeClockManagerObjList.get(0);
+            if (timeClockManagerObj.getStaffId().equals(timeClockManager.getStaffId())) {
+                if ("clock-in".equals(statusClockInOrOut)) {
+                    TimeClockManager createInTimeClockManagerRequest = new TimeClockManager();
+                    createInTimeClockManagerRequest.setStaffName(timeClockManager.getStaffName());
+                    createInTimeClockManagerRequest.setCheckInTime(currentTimeStamp);
+                    // createInTimeClockManagerRequest.setCheckOutTime(currentTimeStamp);
+                    createInTimeClockManagerRequest.setStaffId(timeClockManager.getStaffId());
+
+                    timeClockManagerRepository.save(createInTimeClockManagerRequest);
+                    responseEntity = new ResponseEntity(new Response(200, staffName + " has Clocked In at " + currentTimeStamp), null, HttpStatus.OK);
+                } else if ("clock-out".equals(statusClockInOrOut)) {
+
+                    timeClockManagerObj.setCheckOutTime(currentTimeStamp);
+                    timeClockManagerObj.setDuration(TimeClockManagerServiceV1.findDifference(timeClockManager.getCheckInTime(), currentTimeStamp));
+                  /*  TimeClockManager createOutTimeClockManagerRequest = new TimeClockManager();
+                    createOutTimeClockManagerRequest.setCheckInTime(timeClockManager.getCheckInTime());
+                    createOutTimeClockManagerRequest.setCheckOutTime(currentTimeStamp);
+                    createOutTimeClockManagerRequest.setStaffId(timeClockManager.getStaffId());
+                    createOutTimeClockManagerRequest.setStaffName(timeClockManager.getStaffName());
+                    createOutTimeClockManagerRequest.setDuration(TimeClockManagerServiceV1.findDifference(timeClockManager.getCheckInTime(), currentTimeStamp));*/
+                    timeClockManagerRepository.save(timeClockManagerObj);
+                    responseEntity = new ResponseEntity(new Response(200, staffName + " has Clocked Out at " + currentTimeStamp), null, HttpStatus.OK);
+                }
+            }
+
+        } else {
             TimeClockManager createInTimeClockManagerRequest = new TimeClockManager();
-            createInTimeClockManagerRequest.setCheckInTime(currentTimeStamp);
-            //createTimeClockManagerRequest.setCheckOutTime(currentTimeStamp);
-            createInTimeClockManagerRequest.setStaffId(timeClockManager.getStaffId());
             createInTimeClockManagerRequest.setStaffName(timeClockManager.getStaffName());
+            createInTimeClockManagerRequest.setCheckInTime(currentTimeStamp);
+            // createInTimeClockManagerRequest.setCheckOutTime(currentTimeStamp);
+            createInTimeClockManagerRequest.setStaffId(timeClockManager.getStaffId());
+
             timeClockManagerRepository.save(createInTimeClockManagerRequest);
             responseEntity = new ResponseEntity(new Response(200, staffName + " has Clocked In at " + currentTimeStamp), null, HttpStatus.OK);
-        } else if ("clock-out".equals(statusClockInOrOut)) {
-            TimeClockManager createOutTimeClockManagerRequest = new TimeClockManager();
-            createOutTimeClockManagerRequest.setCheckInTime(timeClockManager.getCheckInTime());
-            createOutTimeClockManagerRequest.setCheckOutTime(currentTimeStamp);
-            createOutTimeClockManagerRequest.setStaffId(timeClockManager.getStaffId());
-            createOutTimeClockManagerRequest.setStaffName(timeClockManager.getStaffName());
-            createOutTimeClockManagerRequest.setDuration(TimeClockManagerServiceV1.findDifference(timeClockManager.getCheckInTime(), currentTimeStamp));
-            timeClockManagerRepository.save(createOutTimeClockManagerRequest);
-            responseEntity = new ResponseEntity(new Response(200, staffName + " has Clocked Out at " + currentTimeStamp), null, HttpStatus.OK);
         }
+
 
         return responseEntity;
     }
 
 
 }
+

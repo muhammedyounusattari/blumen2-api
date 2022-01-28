@@ -4,7 +4,9 @@ package com.kastech.blumen.service.keycloak;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kastech.blumen.model.keycloak.*;
 import com.kastech.blumen.service.admin.LoggedUserServiceV1;
+import com.kastech.blumen.service.admin.UserMetaDataServiceV1;
 import com.kastech.blumen.utility.KeycloakPropertyReader;
+import com.kastech.blumen.utility.KeycloakUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.keycloak.KeycloakPrincipal;
@@ -44,6 +46,9 @@ public class KeycloakAdminClientService {
 
     @Autowired
     private KeycloakPropertyReader keycloakPropertyReader;
+
+    @Autowired
+    private UserMetaDataServiceV1 userMetaDataServiceV1;
 
     @Autowired
     ApplicationContext applicationContext;
@@ -113,7 +118,7 @@ public class KeycloakAdminClientService {
         return ResponseEntity.ok(response);
     }
 
-    public List listUsers(String token, String realmId) {
+    public List listUsersRest(String token, String realmId) {
         KeycloakConfigurationValues keycloakConfigurationValues = loadValues(realmId);
         String keycloakUserListUrl = "/admin/realms/realm-to-be-replaced/users";
         keycloakUserListUrl = keycloakConfigurationValues.getAuthServerUrl() + keycloakUserListUrl;
@@ -125,22 +130,118 @@ public class KeycloakAdminClientService {
         return restTemplate.getForObject(keycloakUserListUrl, List.class, request);
     }
 
-    public Object createUser(String token, User user, String realmId) {
+    public List<UserInfo> listUsers(String token, String realmId) {
+        List<UserInfo> userInfoList = new ArrayList<>();
+        List<LinkedHashMap> usersList = listUsersRest(token, realmId);
+        String userId = null;
+        Optional<UserMetaData> optionalUserMetaData = null;
+        for(LinkedHashMap linkedHashMap : usersList) {
+            if(linkedHashMap != null) {
+                if(linkedHashMap.get("id") != null) {
+                    userId = linkedHashMap.get("id").toString();
+                    optionalUserMetaData = userMetaDataServiceV1.findUserMetaDataById(userId);
+                }
+            }
+            UserInfo userInfo = KeycloakUtil.convertUserLinkedHashmapToUserInfo(linkedHashMap,optionalUserMetaData );
+            if(userInfo != null) {
+                userInfoList.add(userInfo);
+            }
+        }
+        return userInfoList;
+    }
+
+    public UserInfo createUser(String token, CreateUserRequest createUserRequest, String realmId) {
+        @SuppressWarnings("unchecked")
+        KeycloakPrincipal<RefreshableKeycloakSecurityContext> principal = (KeycloakPrincipal<RefreshableKeycloakSecurityContext>) SecurityContextHolder.getContext()
+                .getAuthentication().getPrincipal();
+        String loggedInUserId = principal.getKeycloakSecurityContext().getToken().getSubject();
+
         KeycloakConfigurationValues keycloakConfigurationValues = loadValues(realmId);
+        String userCreatedId = null;
+        UserMetaData userMetaData = null;
+        String password="PASSWORD_NOT_SET";
         String keycloakCreateUserUrl = "/admin/realms/realm-to-be-replaced/users";
         keycloakCreateUserUrl = keycloakConfigurationValues.getAuthServerUrl() + keycloakCreateUserUrl;
         keycloakCreateUserUrl = keycloakCreateUserUrl.replace("realm-to-be-replaced", realmId);
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
         headers.add("Authorization", token);
         headers.add("Content-Type", "application/json");
+        User userToBeCreated = KeycloakUtil.convertCreateUserRequestToUser(createUserRequest);
 
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-        HttpEntity<User> httpEntity = new HttpEntity<>(user, headers);
-        return restTemplate.postForObject(keycloakCreateUserUrl, httpEntity, String.class);
+        HttpEntity<User> httpEntity = new HttpEntity<>(userToBeCreated, headers);
+        Object object =  restTemplate.postForObject(keycloakCreateUserUrl, httpEntity, String.class);
+        List<LinkedHashMap> userList = listUsersRest(token, realmId);
+        for(LinkedHashMap userObj : userList) {
+            if(createUserRequest.getUsername().equals(userObj.get("username"))) {
+                userCreatedId = (String) userObj.get("id");
+                break;
+            }
+        }
+        if(createUserRequest.getCredentials() != null && !createUserRequest.getCredentials().isEmpty()) {
+            password = createUserRequest.getCredentials().get(0).getValue();
+        }
+        if(userCreatedId != null) {
+            userMetaData = new UserMetaData(userCreatedId, password, realmId, createUserRequest.getRoleName(), createUserRequest.getSiteLocation(), createUserRequest.isActive());
+            userMetaDataServiceV1.addUserMetaData(userMetaData);
+        }
+
+        UserInfo userInfo = KeycloakUtil.convertUserPlusMetaToUserInfo(userToBeCreated, userMetaData);
+        addDefaultRealmManagementRoleToUser(token, realmId, loggedInUserId, userCreatedId, keycloakConfigurationValues);
+
+       return userInfo;
+
     }
 
-    public Object getUserInfo(String token, String realmId, String id) {
+    private void addDefaultRealmManagementRoleToUser(String token, String realmId, String loggedInUserId, String createdUserId,
+                                                        KeycloakConfigurationValues keycloakConfigurationValues) {
+        //First get the clients for the mumbai-university and get the realm-management-client client id.
+        String keyCloakClientsUnderRealmUrl = "/admin/realms/realm-to-be-replaced/clients/";
+        keyCloakClientsUnderRealmUrl = keycloakConfigurationValues.getAuthServerUrl() + keyCloakClientsUnderRealmUrl;
+        keyCloakClientsUnderRealmUrl = keyCloakClientsUnderRealmUrl.replace("realm-to-be-replaced", realmId);
+        String idForClient = null;
+        MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
+        headers.add("Authorization", token);
+
+        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(null, headers);
+        List<LinkedHashMap> clientsList = restTemplate.getForObject(keyCloakClientsUnderRealmUrl, List.class, request);
+        for(LinkedHashMap clientObj : clientsList) {
+            if(clientObj != null && clientObj.get("clientId") != null && "realm-management".equals(clientObj.get("clientId"))) {
+                if(clientObj.get("id") != null)
+                idForClient = clientObj.get("id").toString();
+                break;
+            }
+        }
+
+        MultiValueMap<String, String> headersForAdd = new LinkedMultiValueMap<String, String>();
+        headersForAdd.add("Authorization", token);
+        headersForAdd.add("Content-Type", "application/json");
+
+        //Get all the role-mappings under the realm-management client for the logged in user
+        String keyCloakRoleMappingsUnderRealmManagementUrl = "/admin/realms/realm-to-be-replaced/users/userid-to-be-replaced/role-mappings/clients/clientid-to-be-replaced";
+        keyCloakRoleMappingsUnderRealmManagementUrl = keycloakConfigurationValues.getAuthServerUrl() + keyCloakRoleMappingsUnderRealmManagementUrl;
+        keyCloakRoleMappingsUnderRealmManagementUrl = keyCloakRoleMappingsUnderRealmManagementUrl.replace("realm-to-be-replaced", realmId);
+        keyCloakRoleMappingsUnderRealmManagementUrl = keyCloakRoleMappingsUnderRealmManagementUrl.replace("userid-to-be-replaced", loggedInUserId);
+        keyCloakRoleMappingsUnderRealmManagementUrl = keyCloakRoleMappingsUnderRealmManagementUrl.replace("clientid-to-be-replaced", idForClient);
+
+        List<LinkedHashMap> roleMappingsList = restTemplate.getForObject(keyCloakRoleMappingsUnderRealmManagementUrl, List.class, request);
+
+        //Assign the realm-management-role-mappings to the newly created user id.
+        //Get all the role-mappings under the realm-management client for the logged in user
+        String keyCloakAddRoleMappingToClientUrl = "/admin/realms/realm-to-be-replaced/users/userid-to-be-replaced/role-mappings/clients/clientid-to-be-replaced";
+        keyCloakAddRoleMappingToClientUrl = keycloakConfigurationValues.getAuthServerUrl() + keyCloakAddRoleMappingToClientUrl;
+        keyCloakAddRoleMappingToClientUrl = keyCloakAddRoleMappingToClientUrl.replace("realm-to-be-replaced", realmId);
+        keyCloakAddRoleMappingToClientUrl = keyCloakAddRoleMappingToClientUrl.replace("userid-to-be-replaced", createdUserId);
+        keyCloakAddRoleMappingToClientUrl = keyCloakAddRoleMappingToClientUrl.replace("clientid-to-be-replaced", idForClient);
+
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+        HttpEntity<List<LinkedHashMap>> httpEntity = new HttpEntity<>(roleMappingsList, headersForAdd);
+        Object object =  restTemplate.postForObject(keyCloakAddRoleMappingToClientUrl, httpEntity, String.class);
+    }
+
+    public UserInfo getUserInfo(String token, String realmId, String id) {
         KeycloakConfigurationValues keycloakConfigurationValues = loadValues(realmId);
         String keycloakUserInfoUrl = "/admin/realms/realm-to-be-replaced/users/user-id-to-be-replaced";
         keycloakUserInfoUrl = keycloakConfigurationValues.getAuthServerUrl() + keycloakUserInfoUrl;
@@ -150,10 +251,20 @@ public class KeycloakAdminClientService {
         headers.add("Authorization", token);
 
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(null, headers);
-        return restTemplate.getForObject(keycloakUserInfoUrl, String.class, request);
+        LinkedHashMap userLinkedHashMap =  (LinkedHashMap) restTemplate.getForObject(keycloakUserInfoUrl, LinkedHashMap.class, request);
+        Optional<UserMetaData> optionalUserMetaData = null;
+        String userId = null;
+        if(userLinkedHashMap != null) {
+            if(userLinkedHashMap.get("id") != null) {
+                userId = userLinkedHashMap.get("id").toString();
+                optionalUserMetaData = userMetaDataServiceV1.findUserMetaDataById(userId);
+            }
+        }
+        UserInfo userInfo = KeycloakUtil.convertUserLinkedHashmapToUserInfo(userLinkedHashMap,optionalUserMetaData );
+        return userInfo;
     }
 
-    public Object getCurrentUser(String token, String realmId) {
+    public UserInfo getCurrentUser(String token, String realmId) {
 
         @SuppressWarnings("unchecked")
         KeycloakPrincipal<RefreshableKeycloakSecurityContext> principal = (KeycloakPrincipal<RefreshableKeycloakSecurityContext>) SecurityContextHolder.getContext()
@@ -169,7 +280,16 @@ public class KeycloakAdminClientService {
         headers.add("Authorization", token);
 
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(null, headers);
-        return restTemplate.getForObject(keycloakUserInfoUrl, String.class, request);
+        LinkedHashMap userLinkedHashMap =  (LinkedHashMap) restTemplate.getForObject(keycloakUserInfoUrl, LinkedHashMap.class, request);
+        Optional<UserMetaData> optionalUserMetaData = null;
+        if(userLinkedHashMap != null) {
+            if(userLinkedHashMap.get("id") != null) {
+                userId = userLinkedHashMap.get("id").toString();
+                optionalUserMetaData = userMetaDataServiceV1.findUserMetaDataById(userId);
+            }
+        }
+        UserInfo userInfo = KeycloakUtil.convertUserLinkedHashmapToUserInfo(userLinkedHashMap,optionalUserMetaData );
+        return userInfo;
     }
 
     public void resetPassword(String token, Credentials credentials, String realmId, String id) {

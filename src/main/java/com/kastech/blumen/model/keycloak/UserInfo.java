@@ -1,19 +1,36 @@
 package com.kastech.blumen.model.keycloak;
 
-import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 
-public class CreateUserRequest {
-    String username;
-    String firstName;
-    String lastName;
-    String email;
-    boolean enabled;
-    boolean emailVerified;
-    List<Credentials> credentials;
-    private String orgId;
-    private String roleName;
-    private String siteLocation;
+public class UserInfo {
+    private String userId;
+    private String username;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String orgId = StringUtils.EMPTY;
+    private String roleName = StringUtils.EMPTY;
+    private String siteLocation = StringUtils.EMPTY;
     private boolean active;
+    private boolean emailVerified;
+    private boolean enabled;
+    private String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public String getOrgId() {
         return orgId;
@@ -93,13 +110,5 @@ public class CreateUserRequest {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
-    }
-
-    public List<Credentials> getCredentials() {
-        return credentials;
-    }
-
-    public void setCredentials(List<Credentials> credentials) {
-        this.credentials = credentials;
     }
 }

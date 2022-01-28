@@ -19,14 +19,14 @@ public class KeycloakController {
     private KeycloakAdminClientService keycloakAdminClientService;
 
     @GetMapping(value = "tenant/{realmId}/userInfo/v1/{id}")
-    public ResponseEntity<Object> getUserInfo(@RequestHeader("Authorization") String authHeader,
+    public ResponseEntity<UserInfo> getUserInfo(@RequestHeader("Authorization") String authHeader,
                                               @PathVariable String realmId,
                                               @PathVariable String id) {
         return ResponseEntity.ok(keycloakAdminClientService.getUserInfo(authHeader, realmId, id));
     }
 
     @GetMapping(value = "tenant/{realmId}/currentUser/v1")
-    public ResponseEntity<Object> getUserInfo(@RequestHeader("Authorization") String authHeader,
+    public ResponseEntity<UserInfo> getUserInfo(@RequestHeader("Authorization") String authHeader,
                                               @PathVariable String realmId) {
         return ResponseEntity.ok(keycloakAdminClientService.getCurrentUser(authHeader, realmId));
     }
@@ -46,10 +46,10 @@ public class KeycloakController {
     }
 
     @PostMapping(value = "tenant/{realmId}/createUser/v1")
-    public ResponseEntity<Object> createUser(@RequestHeader("Authorization") String authHeader,
-                                             @RequestBody User user,
+    public ResponseEntity<UserInfo> createUser(@RequestHeader("Authorization") String authHeader,
+                                             @RequestBody CreateUserRequest createUserRequest,
                                              @PathVariable String realmId) {
-        return ResponseEntity.ok(keycloakAdminClientService.createUser(authHeader, user, realmId));
+        return ResponseEntity.ok(keycloakAdminClientService.createUser(authHeader, createUserRequest, realmId));
     }
 
     @PostMapping(path = "tenant/{realmId}/login/v1")
