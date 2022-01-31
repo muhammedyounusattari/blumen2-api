@@ -14,15 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.customize.PullDown;
@@ -60,14 +52,29 @@ public class PullDownListController {
     }
 
     @ResponseBody
+    @GetMapping(path = "/getPulldownValidate/v1/{pullId}/{pulldownId}",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public List<PullDownItem> getPulldownValidate(@PathVariable Integer pullId, @PathVariable Long pulldownId) {
+        return pullDownItemRepository.findByIdAndPullId(pullId,pulldownId);
+    }
+
+
+
+    @ResponseBody
     @PostMapping(path = "/pullDownList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> addToPullDownList(@RequestBody PullDown pullDown) {
-    	if(pullDownListRepository.findByCode(pullDown.getCode()).isEmpty())
+        List<PullDownItem> pullDownItemLst = pullDown.getpullDownItems();
+        if (!pullDownItemLst.isEmpty()) {
+            PullDownItem pullDownItem = pullDownItemLst.get(0);
+            if (pullDownItem.getId() != null && pullDownItem.getPullId()!=null && !pullDownItemRepository.findByIdAndPullId(pullDownItem.getPullId(),pullDownItem.getId()).isEmpty()) {
+                return new ResponseEntity(new Response(404, "Id is already in use, either you can edit or revoke it"), null, HttpStatus.NOT_FOUND);
+            } else {
     		return ResponseEntity.ok(pullDownListRepository.save(pullDown));
-    	else
-    		 return new ResponseEntity(new Response(200, "code already exist"), null, HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity(new Response(404, "pull down items missing"), null, HttpStatus.NOT_FOUND);
     		
     }
     
@@ -88,15 +95,22 @@ public class PullDownListController {
 	@ResponseBody
 	@PostMapping(path = "/pullDownItems/v1/{id}", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<?> addPullDownItem(@PathVariable Long id, @RequestBody List<PullDownItem> pullDownItems) {
+	public ResponseEntity<?> addPullDownItem(@PathVariable Long id, @RequestBody PullDownItem pullDownItems) {
 		PullDown pulldown = pullDownListRepository.findById(id).get();
-		if (pulldown != null) {
-			pulldown.addPullDownItems(pullDownItems);
-			return ResponseEntity.ok(pullDownListRepository.save(pulldown));
+		if (pulldown != null && pullDownItems.getPullId()!=null && pullDownItemRepository.findByIdAndPullId(pullDownItems.getPullId(),id).isEmpty()) {
+			return ResponseEntity.ok(pullDownItemRepository.save(pullDownItems));
 		} else {
-			return new ResponseEntity(new Response(200, "pulldown does not exist"), null, HttpStatus.OK);
+			return new ResponseEntity(new Response(200, "Pullid "+pullDownItems.getPullId()+"is already in use"), null, HttpStatus.OK);
 		}
 	}
+
+    @ResponseBody
+    @PostMapping(path = "/nonNumericPullDownItems/v1/{id}", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
+            MediaType.APPLICATION_JSON_VALUE })
+    public ResponseEntity<?> addNonNumericPullDownItems(@PathVariable Long id, @RequestBody PullDownItem pullDownItems) {
+        PullDown pulldown = pullDownListRepository.findById(id).get();
+        return ResponseEntity.ok(pullDownItemRepository.save(pullDownItems));
+    }
     
     @ResponseBody
     @PutMapping(path = "/updatePullDownList/v1",
@@ -107,12 +121,20 @@ public class PullDownListController {
                
     }
 
+    @ResponseBody
+    @PutMapping(path = "/updatePullDownItem/v1",
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public PullDownItem editPullDownItem(@RequestBody PullDownItem pullDown) {
+        return pullDownItemRepository.save(pullDown);
+
+    }
+
 
     @ResponseBody
     @GetMapping(path = "/pulldownlist/type/{type}",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<PullDown>> getPullDownListByType(@PathVariable String type) {
-    	
         return ResponseEntity.ok(pullDownListRepository.findByType(type));
     }
     
@@ -129,8 +151,8 @@ public class PullDownListController {
     @DeleteMapping(path = "/deletePullDownList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> deletePullDownList(@RequestBody PullDown pullDown) {
-        pullDownListRepository.delete(pullDown);
+    public ResponseEntity<?> deletePullDownList(@RequestBody PullDownItem pullDownItem) {
+        pullDownItemRepository.delete(pullDownItem);
         return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
     }
 

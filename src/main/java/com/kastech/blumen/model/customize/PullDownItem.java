@@ -25,13 +25,21 @@ public class PullDownItem {
 	@Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;
+	private Integer pullId;
 	private Long pulldownId;
 	private Integer displayId;
     @Column(columnDefinition="boolean default true")
     private boolean active;
 	private String name;
-	
-	
+
+	public Integer getPullId() {
+		return pullId;
+	}
+
+	public void setPullId(Integer pullId) {
+		this.pullId = pullId;
+	}
+
 	public Long getPulldownId() {
 		return pulldownId;
 	}
@@ -62,5 +70,7 @@ public class PullDownItem {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+
 	
 }
