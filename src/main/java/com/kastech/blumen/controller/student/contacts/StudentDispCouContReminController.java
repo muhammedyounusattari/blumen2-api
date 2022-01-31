@@ -83,8 +83,8 @@ public class StudentDispCouContReminController {
     @PostMapping(path = "/studentDispCouContReminList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> addToStudentDispCouContReminList(@RequestBody StudentCounselorContact studentDispCouContRemin) {
-        studentDispCouContRemin = studentCounselorContactRepository.save(studentDispCouContRemin);
+    public ResponseEntity<String> addToStudentDispCouContReminList(@RequestBody StudentDispCouContRemin studentDispCouContRemin) {
+        studentDispCouContRemin = studentDispCouContReminRepository.save(studentDispCouContRemin);
         if (studentDispCouContRemin != null)
             return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
         else

@@ -1,15 +1,17 @@
 package com.kastech.blumen.controller.utilities.quickedit;
 
-import com.kastech.blumen.model.StudentProfile;
+import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.student.Student;
 import com.kastech.blumen.model.student.dataentry.AddressNotes;
 import com.kastech.blumen.model.student.dataentry.GraduatedInformation;
+import com.kastech.blumen.repository.student.StudentRepository;
 import com.kastech.blumen.repository.utilities.quickedit.YearlyFinancialAidInfoRepository;
 import com.kastech.blumen.service.utilities.quickedit.YearlyFinancialAidInfoServiceV1;
 import com.kastech.blumen.validator.utilities.quickedit.YearlyFinancialAidInfoValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +33,9 @@ public class YearlyFinancialAidInfoController {
     @Autowired
     YearlyFinancialAidInfoValidator yearlyFinancialAidInfoValidator;
 
+    @Autowired
+    StudentRepository studentRepository;
+
 
     List<Student> studentList = new ArrayList<>();
 
@@ -39,7 +44,7 @@ public class YearlyFinancialAidInfoController {
     public void addStudentProfile() {
 
         AddressNotes addressNotes = new AddressNotes(111L, "BANGALORE", "BANGALORER", "karnataka", "560044", "dee@gmail.com", "phone1", "phone2", "www.deepak.com", "notes ");
-        GraduatedInformation graduatedInformation = new GraduatedInformation(111l, "firstname", "secondname", "trrarck", "graduated", "counselor", "phole1", "major", "employer", "ma", "engineer", "militiry", "completed", "fulltime", "2021", addressNotes);
+        GraduatedInformation graduatedInformation = new GraduatedInformation(111l, 111l, "firstname", "secondname", "trrarck", "graduated", "counselor", "phole1", "major", "employer", "ma", "engineer", "militiry", "completed", "fulltime", "2021", addressNotes);
 
         Student studentOne = new Student(111 - 234 - 333l, "11", "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017", graduatedInformation);
         studentList.add(studentOne);
@@ -63,6 +68,30 @@ public class YearlyFinancialAidInfoController {
     }
 
     @ResponseBody
+    @GetMapping(path = "/getAllStudentsByFiscalYearForYearly/v1",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<Collection<Student>> getAllStudentsByFiscalYearForYearly(@RequestParam("fiscalYear") String fiscalYear) {
+        List<Student> studentList = studentRepository.findAllStudentbyFiscalYear(fiscalYear);
+
+        return ResponseEntity.ok(studentList);
+    }
+
+    @ResponseBody
+    @PutMapping(path = "/updateSelectedStudentFieldByFiscalYear/v1",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<String> updateSelectedStudentFieldByFiscalYear(@RequestBody List<Student> studentList) {
+        ResponseEntity<String> responseEntity = null;
+        if (!studentList.isEmpty()) {
+            studentRepository.saveAll(studentList);
+            responseEntity = new ResponseEntity(new Response(200, studentList.size() + " no of Students updated "), null, HttpStatus.OK);
+        } else {
+            responseEntity = new ResponseEntity(new Response(200, " Empty Students  "), null, HttpStatus.OK);
+        }
+
+        return responseEntity;
+    }
+
+   /* @ResponseBody
     @GetMapping(path = "/newYearlyFinancialAidInfo/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<Student>> newYearlyFinancialAidInfo() {
@@ -85,5 +114,5 @@ public class YearlyFinancialAidInfoController {
     public ResponseEntity<Collection<Student>> deleteYearlyFinancialAidInfo(@RequestBody StudentProfile studentProfile) {
 
         return ResponseEntity.ok(studentMap.values());
-    }
+    }*/
 }

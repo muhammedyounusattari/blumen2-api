@@ -57,7 +57,7 @@ public class PersonalizedLettersController {
         studentProfileList.add(studentProfileThree);*/
 
         AddressNotes addressNotes = new AddressNotes(111L,"BANGALORE","BANGALORER","karnataka","560044","dee@gmail.com","phone1","phone2","www.deepak.com","notes ");
-        GraduatedInformation graduatedInformation = new GraduatedInformation(111l,"firstname","secondname","trrarck","graduated","counselor","phole1","major","employer","ma","engineer","militiry","completed","fulltime","2021",addressNotes);
+        GraduatedInformation graduatedInformation = new GraduatedInformation(111l,111l,"firstname","secondname","trrarck","graduated","counselor","phole1","major","employer","ma","engineer","militiry","completed","fulltime","2021",addressNotes);
 
         Student studentOne = new Student(111-234-333l,"11", "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017",graduatedInformation);
         studentList.add(studentOne);

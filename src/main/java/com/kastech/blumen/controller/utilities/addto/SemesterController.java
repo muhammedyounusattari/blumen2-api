@@ -1,9 +1,13 @@
 package com.kastech.blumen.controller.utilities.addto;
 
+import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.student.Student;
 import com.kastech.blumen.model.student.dataentry.AddressNotes;
 import com.kastech.blumen.model.student.dataentry.GraduatedInformation;
+import com.kastech.blumen.model.utilities.FiscalGraduatedYearRequest;
+import com.kastech.blumen.model.utilities.SemesterRequest;
 import com.kastech.blumen.model.utilities.quickedit.CoursesInformation;
+import com.kastech.blumen.repository.student.StudentRepository;
 import com.kastech.blumen.repository.utilities.addto.SemesterRepository;
 import com.kastech.blumen.service.utilities.addto.SemesterServiceV1;
 import com.kastech.blumen.validator.utilities.addto.SemesterValidator;
@@ -32,57 +36,50 @@ public class SemesterController {
     @Autowired
     SemesterValidator semesterValidator;
 
-    List<Student> studentList = new ArrayList<>();
-
-    Map<String, String> semesterList = new HashMap<>();
-
-    public void semesterList() {
-        semesterList.put("3", "Fall");
-        semesterList.put("1", "Spring");
-        semesterList.put("2", "Summer");
-        semesterList.put("4", "Winter");
-        semesterList.put("0", " ");
-    }
-
-    Map<String, CoursesInformation> coursesInformationHashMap = new HashMap<String, CoursesInformation>();
-
-
-    public void courseInformationData() {
-        CoursesInformation coursesInformation1 = new CoursesInformation("753-15-9456", "John", "Adams", "2017", "3", "1234", "ADVANCED MATHS", "True", "False", "False", "", "0", "", "3", "ALICIA", "", "");
-        coursesInformationHashMap.put(coursesInformation1.getSsnoCourse(), coursesInformation1);
-        CoursesInformation coursesInformation2 = new CoursesInformation("753-15-9456", "John", "Adams", "2017", "3", "B4875", "ALGEBRA II", "True", "False", "False", "", "", "", "3", "ALICIA", "", "");
-        coursesInformationHashMap.put(coursesInformation2.getSsnoCourse(), coursesInformation2);
-        CoursesInformation coursesInformation3 = new CoursesInformation("999-00-1101", "John", "Adams", "2017", "3", "B4875", "ALGEBRA II", "True", "False", "False", "", "", "", "3", "ALICIA", "", "");
-        coursesInformationHashMap.put(coursesInformation3.getSsnoCourse(), coursesInformation3);
-        CoursesInformation coursesInformation4 = new CoursesInformation("852-15-9743", "Savannah", "Avery", "", "3", "B4875", "ALGEBRA II", "True", "False", "False", "", "", "", "3", "ALICIA", "", "");
-        coursesInformationHashMap.put(coursesInformation4.getSsnoCourse(), coursesInformation4);
-        CoursesInformation coursesInformation5 = new CoursesInformation("781-26-5345", "Sean", "Avery", "2017", "3", "8888", "ALGEBRA II", "True", "False", "False", "", "", "", "3", "ALICIA", "", "");
-        coursesInformationHashMap.put(coursesInformation5.getSsnoCourse(), coursesInformation5);
-
-    }
-
-
-    public void addStudentProfile() {
-
-        AddressNotes addressNotes = new AddressNotes(111L,"BANGALORE","BANGALORER","karnataka","560044","dee@gmail.com","phone1","phone2","www.deepak.com","notes ");
-        GraduatedInformation graduatedInformation = new GraduatedInformation(111l,"firstname","secondname","trrarck","graduated","counselor","phole1","major","employer","ma","engineer","militiry","completed","fulltime","2021",addressNotes);
-
-        Student studentOne = new Student(111-234-333l,"11", "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017",graduatedInformation);
-        studentList.add(studentOne);
-
-        Student studentTwo = new Student(222-234-333l,"22", "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017",graduatedInformation);
-        studentList.add(studentTwo);
-        Student studentThree = new Student(333-234-333l,"33", "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017",graduatedInformation);
-        studentList.add(studentThree);
-
-        Student studentFour = new Student(444-234-333l,"44", "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2018",graduatedInformation);
-        studentList.add(studentFour);
-
-        Student studentFive = new Student(555-234-333l,"55", "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2018",graduatedInformation);
-        studentList.add(studentFive);
-    }
+    @Autowired
+    StudentRepository studentRepository;
 
     @ResponseBody
+    @GetMapping(path = "/getAllStudentsByFiscalYearForSemester/v1",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<Collection<Student>> getAllStudentsByFiscalYearForSemester(@RequestParam("fiscalYear") String fiscalYear) {
+        List<Student> studentList = studentRepository.findAllStudentbyFiscalYear(fiscalYear);
+
+        return ResponseEntity.ok(studentList);
+    }
+
+   /* need to be implemnted here
+   @ResponseBody
+    @PostMapping(path = "/moveSelectedStudentListFromFiscalYearForSemester/v1",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<Collection<Student>> moveSelectedStudentListFromFiscalYearForSemester(@RequestBody SemesterRequest semesterRequest) {
+        List<String> ssnoList = null;
+        String graduatedYear = null;
+        if (null != fiscalGraduatedYearRequest) {
+            graduatedYear = fiscalGraduatedYearRequest.getFiscalYear();
+            ssnoList = fiscalGraduatedYearRequest.getSsnoList();
+            LOGGER.info("Students to be moved to fiscal year " + fiscalGraduatedYearRequest.getFiscalYear());
+            LOGGER.info("no of received students received to move to fiscal year " + ssnoList.size());
+            List<Student> studentsListObj = new ArrayList<>();
+            if (!ssnoList.isEmpty()) {
+
+                for (String ssno : ssnoList) {
+                    Optional<Student> studentObj = studentRepository.findById(Long.parseLong(ssno));
+                    if (null != studentObj.get() && null != studentObj.get().getGraduatedInformation()) {
+                        studentObj.get().getGraduatedInformation().setGraduatedYear(graduatedYear);
+                    }
+                    studentsListObj.add(studentObj.get());
+                }
+            }
+            studentRepository.saveAll(studentsListObj);
+        }
+
+        return new ResponseEntity(new Response(200, ssnoList.size() + " no of Students are added to the Graduated year " + graduatedYear), null, HttpStatus.OK);
+    }*/
+
+
+
+    /*@ResponseBody
     @GetMapping(path = "/getOkToContinueSemesterList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<Student>> getOkToContinueSemesterList() {
@@ -145,5 +142,5 @@ public class SemesterController {
     public ResponseEntity<String> getSemesterCoursesNotes(@RequestBody CoursesInformation coursesInformation) {
         courseInformationData();
         return ResponseEntity.status(HttpStatus.OK).body("Data updated successfully " );
-    }
+    }*/
 }

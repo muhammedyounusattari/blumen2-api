@@ -17,6 +17,7 @@ public class GraduatedInformation {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="graduated_information_list_seq_gen")
     @SequenceGenerator(name="graduated_information_list_seq_gen", sequenceName="GRADUATED_INFORMATION_LIST_SEQ")
+    private Long id;
     private Long ssno;
     private String firstName;
     private String lastName;
@@ -40,7 +41,8 @@ public class GraduatedInformation {
     public GraduatedInformation() {
     }
 
-    public GraduatedInformation(Long ssno,String firstName, String lastName, String track, String graduated, String counselor, String phone1, String major, String employer, String degreeIn, String titleOrPosition, String militaryType, String graduatedEducationStatus, String employmentType, String graduatedYear, AddressNotes addressNotes) {
+    public GraduatedInformation(Long id, Long ssno, String firstName, String lastName, String track, String graduated, String counselor, String phone1, String major, String employer, String degreeIn, String titleOrPosition, String militaryType, String graduatedEducationStatus, String employmentType, String graduatedYear, AddressNotes addressNotes) {
+        this.id = id;
         this.ssno = ssno;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -57,6 +59,14 @@ public class GraduatedInformation {
         this.employmentType = employmentType;
         this.graduatedYear = graduatedYear;
         this.addressNotes = addressNotes;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -190,7 +200,8 @@ public class GraduatedInformation {
     @Override
     public String toString() {
         return "GraduatedInformation{" +
-                "ssno='" + ssno + '\'' +
+                "id=" + id +
+                ", ssno=" + ssno +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", track='" + track + '\'' +
@@ -209,10 +220,10 @@ public class GraduatedInformation {
                 '}';
     }
 
-
     public GraduatedInformation updateWith(GraduatedInformation item) {
         return new GraduatedInformation(
-                this.ssno,
+                this.id,
+                item.ssno,
                 item.firstName,
                 item.lastName,
                 item.track,

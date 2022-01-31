@@ -31,16 +31,22 @@ public class Student implements Serializable {
     private String firstName;
     private String lastName;
     private String phoneNumber;
-    private String contactDate;
-    private String staff;
-    private String contactTime;
-    private String recontactDate;
+    private String fiscalYear;
     private String active;
     private String served;
     private String reported;
+    private String staff;
     private String school;
     private String standing;
-    private String fiscalYear;
+
+    private String contactDate;
+
+    private String contactTime;
+    private String recontactDate;
+
+
+
+
     private String grade;
     private String gradeNotes;
 
