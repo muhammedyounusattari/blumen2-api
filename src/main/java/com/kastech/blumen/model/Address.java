@@ -58,6 +58,9 @@ public class Address {
         this.staffWebsite = staffWebsite;
         this.staffFax = staffFax;
         this.staffAdditionalNotes = staffAdditionalNotes;
+        this.isPermanentAddress = isPermanentAddress;
+        this.staffMaillingName = staffMaillingName;
+        this.isUsedForMailling = isUsedForMailling;
     }
     
 	public Long getId() {
