@@ -1,5 +1,7 @@
 package com.kastech.blumen.model;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,11 +33,16 @@ public class Address {
     private String staffWebsite;
     private String staffFax;
     private String staffAdditionalNotes;
+    private Boolean isPermanentAddress;
+    private String staffMaillingName;
+    private Boolean isUsedForMailling;
+
 
     public Address() {
     }
 
-    public Address(String staffName, String staffAddress, String staffCity, String staffState, String staffZipcodes, String staffPhone1, String staffPhone2, String staffPhone3, String staffPhoneType1, String staffPhoneType2, String staffPhoneType3, String staffEmail, String staffWebsite, String staffFax, String staffAdditionalNotes) {
+    public Address(String staffName, String staffAddress, String staffCity, String staffState, String staffZipcodes, String staffPhone1, String staffPhone2, String staffPhone3, String staffPhoneType1, String staffPhoneType2, String staffPhoneType3, String staffEmail, String staffWebsite, String staffFax, String staffAdditionalNotes, Boolean isPermanentAddress,  String staffMaillingName,
+    Boolean isUsedForMailling) {
         this.staffName = staffName;
         this.staffAddress = staffAddress;
         this.staffCity = staffCity;
@@ -51,6 +58,9 @@ public class Address {
         this.staffWebsite = staffWebsite;
         this.staffFax = staffFax;
         this.staffAdditionalNotes = staffAdditionalNotes;
+        this.isPermanentAddress = isPermanentAddress;
+        this.staffMaillingName = staffMaillingName;
+        this.isUsedForMailling = isUsedForMailling;
     }
     
 	public Long getId() {
@@ -181,10 +191,35 @@ public class Address {
         this.staffAdditionalNotes = staffAdditionalNotes;
     }
 
+    public Boolean getPermanentAddress() {
+        return isPermanentAddress;
+    }
+
+    public void setPermanentAddress(Boolean permanentAddress) {
+        isPermanentAddress = permanentAddress;
+    }
+
+    public String getStaffMaillingName() {
+        return staffMaillingName;
+    }
+
+    public void setStaffMaillingName(String staffMaillingName) {
+        this.staffMaillingName = staffMaillingName;
+    }
+
+    public Boolean getUsedForMailling() {
+        return isUsedForMailling;
+    }
+
+    public void setUsedForMailling(Boolean usedForMailling) {
+        isUsedForMailling = usedForMailling;
+    }
+
     @Override
     public String toString() {
         return "Address{" +
-                "staffName='" + staffName + '\'' +
+                "id=" + id +
+                ", staffName='" + staffName + '\'' +
                 ", staffAddress='" + staffAddress + '\'' +
                 ", staffCity='" + staffCity + '\'' +
                 ", staffState='" + staffState + '\'' +
@@ -199,6 +234,9 @@ public class Address {
                 ", staffWebsite='" + staffWebsite + '\'' +
                 ", staffFax='" + staffFax + '\'' +
                 ", staffAdditionalNotes='" + staffAdditionalNotes + '\'' +
+                ", isPermanentAddress=" + isPermanentAddress +
+                ", staffMaillingName='" + staffMaillingName + '\'' +
+                ", isUsedForMailling=" + isUsedForMailling +
                 '}';
     }
 }
