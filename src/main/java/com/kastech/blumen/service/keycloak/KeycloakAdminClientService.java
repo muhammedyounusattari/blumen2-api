@@ -5,8 +5,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kastech.blumen.model.keycloak.*;
 import com.kastech.blumen.service.admin.LoggedUserServiceV1;
 import com.kastech.blumen.service.admin.UserMetaDataServiceV1;
+import com.kastech.blumen.service.admin.UserSecurityInfoServiceV1;
 import com.kastech.blumen.utility.KeycloakPropertyReader;
 import com.kastech.blumen.utility.KeycloakUtil;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.keycloak.KeycloakPrincipal;
@@ -49,6 +51,9 @@ public class KeycloakAdminClientService {
 
     @Autowired
     private UserMetaDataServiceV1 userMetaDataServiceV1;
+
+    @Autowired
+    private UserSecurityInfoServiceV1 userSecurityInfoServiceV1;
 
     @Autowired
     ApplicationContext applicationContext;
@@ -102,10 +107,11 @@ public class KeycloakAdminClientService {
             String issueDateStr = issueDate.format(dateTimeFormatter);
             String expiryDateStr = expiryDate.format(dateTimeFormatter);
 
-            LoggedUser loggedUser = new LoggedUser(jti, iat, exp, issueDateStr, expiryDateStr, loginRequest.getUsername());
-            Optional<LoggedUser> loggedUserFound = loggedUserServiceV1.findLoggedUser(loginRequest.getUsername());
+            LoggedUser loggedUser = new LoggedUser(jti, realmId, iat, exp, issueDateStr, expiryDateStr, loginRequest.getUsername());
+            Optional<LoggedUser> loggedUserFound = loggedUserServiceV1.findLoggedUser(loginRequest.getUsername(), realmId);
             if(loggedUserFound.isPresent()) {
-                loggedUserServiceV1.deleteById(loggedUserFound.get().getId());
+                LoggedUserId loggedUserId = new LoggedUserId(loggedUserFound.get().getId(), realmId);
+                loggedUserServiceV1.deleteById(loggedUserId);
                 loggedUserServiceV1.addLoggedUser(loggedUser);
             } else {
                 loggedUserServiceV1.addLoggedUser(loggedUser);
@@ -139,7 +145,8 @@ public class KeycloakAdminClientService {
             if(linkedHashMap != null) {
                 if(linkedHashMap.get("id") != null) {
                     userId = linkedHashMap.get("id").toString();
-                    optionalUserMetaData = userMetaDataServiceV1.findUserMetaDataById(userId);
+                    UserMetaDataId userMetaDataId = new UserMetaDataId(userId, realmId);
+                    optionalUserMetaData = userMetaDataServiceV1.findUserMetaDataById(userMetaDataId);
                 }
             }
             UserInfo userInfo = KeycloakUtil.convertUserLinkedHashmapToUserInfo(linkedHashMap,optionalUserMetaData );
@@ -150,7 +157,7 @@ public class KeycloakAdminClientService {
         return userInfoList;
     }
 
-    public UserInfo createUser(String token, CreateUserRequest createUserRequest, String realmId) {
+    public UserInfo createUser(String token, UserInfo userInfo, String realmId) {
         @SuppressWarnings("unchecked")
         KeycloakPrincipal<RefreshableKeycloakSecurityContext> principal = (KeycloakPrincipal<RefreshableKeycloakSecurityContext>) SecurityContextHolder.getContext()
                 .getAuthentication().getPrincipal();
@@ -166,7 +173,9 @@ public class KeycloakAdminClientService {
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
         headers.add("Authorization", token);
         headers.add("Content-Type", "application/json");
-        User userToBeCreated = KeycloakUtil.convertCreateUserRequestToUser(createUserRequest);
+        //Create the random password.
+        String randomPassword = RandomStringUtils.randomAlphanumeric(15);
+        User userToBeCreated = KeycloakUtil.convertUserInfoToUser(userInfo, true, randomPassword);
 
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
@@ -174,20 +183,28 @@ public class KeycloakAdminClientService {
         Object object =  restTemplate.postForObject(keycloakCreateUserUrl, httpEntity, String.class);
         List<LinkedHashMap> userList = listUsersRest(token, realmId);
         for(LinkedHashMap userObj : userList) {
-            if(createUserRequest.getUsername().equals(userObj.get("username"))) {
+            if(userInfo.getUsername().equals(userObj.get("username"))) {
                 userCreatedId = (String) userObj.get("id");
                 break;
             }
         }
-        if(createUserRequest.getCredentials() != null && !createUserRequest.getCredentials().isEmpty()) {
-            password = createUserRequest.getCredentials().get(0).getValue();
+
+        String orgId = realmId;
+        if(userInfo.getOrgId() != null) {
+            orgId = userInfo.getOrgId();
         }
         if(userCreatedId != null) {
-            userMetaData = new UserMetaData(userCreatedId, password, realmId, createUserRequest.getRoleName(), createUserRequest.getSiteLocation(), createUserRequest.isActive());
+            userMetaData = new UserMetaData(userCreatedId, orgId, userInfo.getRoleName(),
+                    userInfo.getSiteLocation(), userInfo.isActive(), true, userInfo.getAddress1(),
+                    userInfo.getAddress2(), userInfo.getCity(), userInfo.getState(),
+                    userInfo.getZipcode(), userInfo.getMobile(), userInfo.getPhone2(),
+                    userInfo.getFax(), userInfo.getNotes(), userInfo.isSendMail());
             userMetaDataServiceV1.addUserMetaData(userMetaData);
+            UserSecurityInfo userSecurityInfo = new UserSecurityInfo(userCreatedId, realmId, userInfo.getUsername(), randomPassword, null, null, null, null);
+            userSecurityInfoServiceV1.addUserSecurityInfo(userSecurityInfo);
         }
 
-        UserInfo userInfo = KeycloakUtil.convertUserPlusMetaToUserInfo(userToBeCreated, userMetaData);
+        userInfo = KeycloakUtil.convertUserPlusMetaToUserInfo(userToBeCreated, userMetaData);
         addDefaultRealmManagementRoleToUser(token, realmId, loggedInUserId, userCreatedId, keycloakConfigurationValues);
 
        return userInfo;
@@ -196,7 +213,7 @@ public class KeycloakAdminClientService {
 
     private void addDefaultRealmManagementRoleToUser(String token, String realmId, String loggedInUserId, String createdUserId,
                                                         KeycloakConfigurationValues keycloakConfigurationValues) {
-        //First get the clients for the mumbai-university and get the realm-management-client client id.
+        //First get the clients for the given realm id and get the realm-management-client client id.
         String keyCloakClientsUnderRealmUrl = "/admin/realms/realm-to-be-replaced/clients/";
         keyCloakClientsUnderRealmUrl = keycloakConfigurationValues.getAuthServerUrl() + keyCloakClientsUnderRealmUrl;
         keyCloakClientsUnderRealmUrl = keyCloakClientsUnderRealmUrl.replace("realm-to-be-replaced", realmId);
@@ -257,7 +274,8 @@ public class KeycloakAdminClientService {
         if(userLinkedHashMap != null) {
             if(userLinkedHashMap.get("id") != null) {
                 userId = userLinkedHashMap.get("id").toString();
-                optionalUserMetaData = userMetaDataServiceV1.findUserMetaDataById(userId);
+                UserMetaDataId userMetaDataId = new UserMetaDataId(userId, realmId);
+                optionalUserMetaData = userMetaDataServiceV1.findUserMetaDataById(userMetaDataId);
             }
         }
         UserInfo userInfo = KeycloakUtil.convertUserLinkedHashmapToUserInfo(userLinkedHashMap,optionalUserMetaData );
@@ -285,14 +303,73 @@ public class KeycloakAdminClientService {
         if(userLinkedHashMap != null) {
             if(userLinkedHashMap.get("id") != null) {
                 userId = userLinkedHashMap.get("id").toString();
-                optionalUserMetaData = userMetaDataServiceV1.findUserMetaDataById(userId);
+                UserMetaDataId userMetaDataId = new UserMetaDataId(userId, realmId);
+                optionalUserMetaData = userMetaDataServiceV1.findUserMetaDataById(userMetaDataId);
             }
         }
         UserInfo userInfo = KeycloakUtil.convertUserLinkedHashmapToUserInfo(userLinkedHashMap,optionalUserMetaData );
         return userInfo;
     }
 
-    public void resetPassword(String token, Credentials credentials, String realmId, String id) {
+    public void changePassword(String token, UserSecurityInfo userSecurityInfo, String realmId, String id) {
+        String password = userSecurityInfo.getPassword();
+        KeycloakConfigurationValues keycloakConfigurationValues = loadValues(realmId);
+        String keycloakUserInfoUrl = "/admin/realms/realm-to-be-replaced/users/user-id-to-be-replaced/reset-password";
+        keycloakUserInfoUrl = keycloakConfigurationValues.getAuthServerUrl() + keycloakUserInfoUrl;
+        keycloakUserInfoUrl = keycloakUserInfoUrl.replace("user-id-to-be-replaced", id);
+        keycloakUserInfoUrl = keycloakUserInfoUrl.replace("realm-to-be-replaced",realmId);
+
+        //Build the Credentials object to pass it to the keycloak.
+        Credentials.CredentialsBuilder credentialsBuilder = new Credentials.CredentialsBuilder();
+        Credentials credentials = credentialsBuilder.type("password")
+                .value(password)
+                .temporary(false)
+                .buildCredentials();
+
+        MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
+        headers.add("Authorization", token);
+        headers.add("Content-Type", "application/json");
+        HttpEntity<Credentials> request = new HttpEntity<>(credentials, headers);
+        restTemplate.put(keycloakUserInfoUrl, request);
+
+        //Update the User Security Info with the new security question and answers
+
+        UserSecurityInfoId userSecurityInfoId = new UserSecurityInfoId(id, realmId);
+        Optional<UserSecurityInfo> optionalUserSecurityInfo = userSecurityInfoServiceV1.findUserSecurityInfoById(userSecurityInfoId);
+        if(optionalUserSecurityInfo.isPresent()) {
+            UserSecurityInfo userSecurityInfoToBeUpdated = optionalUserSecurityInfo.get();
+            userSecurityInfoToBeUpdated.setSecurityQuestion1(userSecurityInfo.getSecurityQuestion1());
+            userSecurityInfoToBeUpdated.setSecurityAnswer1(userSecurityInfo.getSecurityAnswer1());
+            userSecurityInfoToBeUpdated.setSecurityQuestion2(userSecurityInfo.getSecurityQuestion2());
+            userSecurityInfoToBeUpdated.setSecurityAnswer2(userSecurityInfo.getSecurityAnswer2());
+            userSecurityInfoToBeUpdated.setPassword(userSecurityInfo.getPassword());
+            userSecurityInfoServiceV1.updateUserSecurityInfo(userSecurityInfoToBeUpdated);
+        }
+
+
+
+        //Update the metadata to convey that the password is now changed permanently.
+        Optional<UserMetaData> optionalUserMetaData = null;
+        UserMetaDataId userMetaDataId = new UserMetaDataId(id, realmId);
+        optionalUserMetaData = userMetaDataServiceV1.findUserMetaDataById(userMetaDataId);
+        if(optionalUserMetaData.isPresent()) {
+            UserMetaData userMetaData = optionalUserMetaData.get();
+            userMetaData.setTemporary(false);
+        }
+
+    }
+
+    public void resetPassword(String token, String realmId, String id) {
+        //Generate the random password. Right now the email functionality is not present, but need to email this
+        //randomly generated password to the email.
+        //Create the random password.
+        String randomPassword = RandomStringUtils.randomAlphanumeric(15);
+        Credentials.CredentialsBuilder credentialsBuilder = new Credentials.CredentialsBuilder();
+        Credentials credentials = credentialsBuilder.type("password")
+                .value(randomPassword)
+                .temporary(false)
+                .buildCredentials();
+
         KeycloakConfigurationValues keycloakConfigurationValues = loadValues(realmId);
         String keycloakUserInfoUrl = "/admin/realms/realm-to-be-replaced/users/user-id-to-be-replaced/reset-password";
         keycloakUserInfoUrl = keycloakConfigurationValues.getAuthServerUrl() + keycloakUserInfoUrl;
@@ -303,10 +380,72 @@ public class KeycloakAdminClientService {
         headers.add("Content-Type", "application/json");
         HttpEntity<Credentials> request = new HttpEntity<>(credentials, headers);
         restTemplate.put(keycloakUserInfoUrl, request);
+
+        //Update the UserSecurityInfo object to update the newly created password.
+        UserSecurityInfoId userSecurityInfoId = new UserSecurityInfoId(id, realmId);
+        Optional<UserSecurityInfo> optionalUserSecurityInfo = userSecurityInfoServiceV1.findUserSecurityInfoById(userSecurityInfoId);
+        if(optionalUserSecurityInfo.isPresent()) {
+            UserSecurityInfo userSecurityInfo = optionalUserSecurityInfo.get();
+            userSecurityInfo.setPassword(randomPassword);
+            userSecurityInfoServiceV1.updateUserSecurityInfo(userSecurityInfo);
+        }
+
+        //Update the user Meta data
+        Optional<UserMetaData> optionalUserMetaData = null;
+        UserMetaDataId userMetaDataId = new UserMetaDataId(id, realmId);
+        optionalUserMetaData = userMetaDataServiceV1.findUserMetaDataById(userMetaDataId);
+        if(optionalUserMetaData.isPresent()) {
+            UserMetaData userMetaData = optionalUserMetaData.get();
+            userMetaData.setTemporary(true);
+            userMetaDataServiceV1.updateUserMetaData(userMetaData);
+        }
     }
 
-    public void updateUser(String token, User user, String realmId, String id) {
+    public void forgotPassword(String token, String realmId, String id) {
+        //Generate the random password. Right now the email functionality is not present, but need to email this
+        //randomly generated password to the email.
+        //Create the random password.
+        String randomPassword = RandomStringUtils.randomAlphanumeric(15);
+        Credentials.CredentialsBuilder credentialsBuilder = new Credentials.CredentialsBuilder();
+        Credentials credentials = credentialsBuilder.type("password")
+                .value(randomPassword)
+                .temporary(false)
+                .buildCredentials();
+
         KeycloakConfigurationValues keycloakConfigurationValues = loadValues(realmId);
+        String keycloakUserInfoUrl = "/admin/realms/realm-to-be-replaced/users/user-id-to-be-replaced/reset-password";
+        keycloakUserInfoUrl = keycloakConfigurationValues.getAuthServerUrl() + keycloakUserInfoUrl;
+        keycloakUserInfoUrl = keycloakUserInfoUrl.replace("user-id-to-be-replaced", id);
+        keycloakUserInfoUrl = keycloakUserInfoUrl.replace("realm-to-be-replaced",realmId);
+        MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
+        headers.add("Authorization", token);
+        headers.add("Content-Type", "application/json");
+        HttpEntity<Credentials> request = new HttpEntity<>(credentials, headers);
+        restTemplate.put(keycloakUserInfoUrl, request);
+
+        //Update the UserSecurityInfo object to update the newly created password.
+        UserSecurityInfoId userSecurityInfoId = new UserSecurityInfoId(id, realmId);
+        Optional<UserSecurityInfo> optionalUserSecurityInfo = userSecurityInfoServiceV1.findUserSecurityInfoById(userSecurityInfoId);
+        if(optionalUserSecurityInfo.isPresent()) {
+            UserSecurityInfo userSecurityInfo = optionalUserSecurityInfo.get();
+            userSecurityInfo.setPassword(randomPassword);
+            userSecurityInfoServiceV1.updateUserSecurityInfo(userSecurityInfo);
+        }
+
+        //Update the user Meta data
+        Optional<UserMetaData> optionalUserMetaData = null;
+        UserMetaDataId userMetaDataId = new UserMetaDataId(id, realmId);
+        optionalUserMetaData = userMetaDataServiceV1.findUserMetaDataById(userMetaDataId);
+        if(optionalUserMetaData.isPresent()) {
+            UserMetaData userMetaData = optionalUserMetaData.get();
+            userMetaData.setTemporary(true);
+            userMetaDataServiceV1.updateUserMetaData(userMetaData);
+        }
+    }
+
+    public void updateUser(String token, UserInfo userInfo, String realmId, String id) {
+        KeycloakConfigurationValues keycloakConfigurationValues = loadValues(realmId);
+        User userToBeUpdated = KeycloakUtil.convertUserInfoToUser(userInfo, false, null);
         String keycloakUserInfoUrl = "/admin/realms/realm-to-be-replaced/users/user-id-to-be-replaced";
         keycloakUserInfoUrl = keycloakConfigurationValues.getAuthServerUrl() + keycloakUserInfoUrl;
         keycloakUserInfoUrl = keycloakUserInfoUrl.replace("user-id-to-be-replaced", id);
@@ -314,8 +453,19 @@ public class KeycloakAdminClientService {
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
         headers.add("Authorization", token);
         headers.add("Content-Type", "application/json");
-        HttpEntity<User> request = new HttpEntity<>(user, headers);
+        HttpEntity<User> request = new HttpEntity<>(userToBeUpdated, headers);
         restTemplate.put(keycloakUserInfoUrl, request);
+
+        //Update the user metadata
+        Optional<UserMetaData> optionalUserMetaData = null;
+        UserMetaDataId userMetaDataId = new UserMetaDataId(id, realmId);
+        optionalUserMetaData = userMetaDataServiceV1.findUserMetaDataById(userMetaDataId);
+        if(optionalUserMetaData.isPresent()) {
+            UserMetaData userMetaData = optionalUserMetaData.get();
+            userMetaData.setTemporary(true);
+            userMetaDataServiceV1.updateUserMetaData(userMetaData);
+        }
+
     }
 
     public void deleteUser(String token, String realmId, String id) {
@@ -354,10 +504,10 @@ public class KeycloakAdminClientService {
             int exp = (Integer) accessTokenPayloadJSON.get("iat");
             String jti = accessTokenPayloadJSON.getString("jti");
             String email = accessTokenPayloadJSON.getString("email");
-
-            Optional<LoggedUser> optionalLoggedUser = loggedUserServiceV1.findLoggedUserById(jti);
+            LoggedUserId loggedUserId = new LoggedUserId(jti, realmId);
+            Optional<LoggedUser> optionalLoggedUser = loggedUserServiceV1.findLoggedUserById(loggedUserId);
             if(optionalLoggedUser.isPresent()) {
-                loggedUserServiceV1.deleteById(optionalLoggedUser.get().getId());
+                loggedUserServiceV1.deleteById(loggedUserId);
             }
         } catch(JSONException|UnsupportedEncodingException ie) {
             throw new IllegalStateException("Error in decrypting the access token object");

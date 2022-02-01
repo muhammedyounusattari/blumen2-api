@@ -1,13 +1,26 @@
 package com.kastech.blumen.model.keycloak;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
+@IdClass(LoggedUserId.class)
 @Table(name = "logged_user" ,schema = "blumen2")
-public class LoggedUser {
+public class LoggedUser implements Serializable {
 
     @Id
 	private String id;
+
+    @Id
+    private String orgId;
+
+    public String getOrgId() {
+        return orgId;
+    }
+
+    public void setOrgId(String orgId) {
+        this.orgId = orgId;
+    }
 
     public String getId() {
         return id;
@@ -66,8 +79,9 @@ public class LoggedUser {
     }
     public LoggedUser() {}
 
-    public LoggedUser(String id, int ita, int exp, String issueDate, String expiryDate, String userName){
+    public LoggedUser(String id, String orgId, int ita, int exp, String issueDate, String expiryDate, String userName){
         this.id = id;
+        this.orgId = orgId;
         this.ita = ita;
         this.exp = exp;
         this.issueDate = issueDate;
@@ -79,6 +93,7 @@ public class LoggedUser {
     public String toString() {
         return "LoggedUser{" +
                 "id=" + id +
+                "orgId=" + orgId +
                 ", ita='" + ita + '\'' +
                 ", exp='" + exp + '\'' +
                 ", issueDate='" + issueDate + '\'' +

@@ -1,7 +1,6 @@
 package com.kastech.blumen.controller.staff;
 
 import com.google.gson.Gson;
-import com.kastech.blumen.constants.RestURIConstant;
 import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.staff.Staff;
 import com.kastech.blumen.repository.staff.StaffRepository;
@@ -15,9 +14,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/blumen-api/staff")
@@ -84,18 +84,5 @@ public class StaffController {
         staffRepository.delete(staff);
 
         return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
-    }
-
-    @PostMapping(value = RestURIConstant.FILE_UPLOAD_URL, consumes = "multipart/form-data")
-    public ResponseEntity<?> uploadFileMulti(@PathVariable(name = "hashKey", required = true) String hashKey,
-                                             @PathVariable(name = "treatment", required = true) String treatment,
-                                             @PathVariable(name = "id", required = true) Integer id,
-                                             @PathVariable(name = "downloadID", required = false) Integer downloadIDs,
-                                             @PathVariable(name = "index", required = false) Integer index,
-                                             @RequestParam("uploadfile") MultipartFile files[]) {
-
-
-
-        return null;
     }
 }

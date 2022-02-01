@@ -1,6 +1,7 @@
 package com.kastech.blumen.service.admin;
 
 import com.kastech.blumen.model.keycloak.UserMetaData;
+import com.kastech.blumen.model.keycloak.UserMetaDataId;
 import com.kastech.blumen.repository.admin.UserMetaDataRepository;
 import com.kastech.blumen.utility.CommonUtil;
 import org.slf4j.Logger;
@@ -23,16 +24,20 @@ public class UserMetaDataServiceV1 {
         return userMetaData;
     }
 
+    public UserMetaData updateUserMetaData(UserMetaData userMetaData) {
+        return userMetaDataRepository.save(userMetaData);
+    }
+
     public UserMetaData addUserMetaData(UserMetaData userMetaData) {
         return userMetaDataRepository.save(userMetaData);
     }
 
-    public Optional<UserMetaData> findUserMetaDataById(String id) {
+    public Optional<UserMetaData> findUserMetaDataById(UserMetaDataId id) {
         Optional<UserMetaData> optionalUserMetaData=userMetaDataRepository.findById(id);
         return optionalUserMetaData;
     }
 
-    public void deleteById(String id) {
+    public void deleteById(UserMetaDataId id) {
         userMetaDataRepository.deleteById(id);
     }
 

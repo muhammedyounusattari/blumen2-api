@@ -1,6 +1,7 @@
 package com.kastech.blumen.service.admin;
 
 import com.kastech.blumen.model.keycloak.LoggedUser;
+import com.kastech.blumen.model.keycloak.LoggedUserId;
 import com.kastech.blumen.repository.admin.LoggedUserRepository;
 import com.kastech.blumen.utility.CommonUtil;
 import org.slf4j.Logger;
@@ -31,19 +32,18 @@ public class LoggedUserServiceV1 {
         return loggedUserRepository.save(loggedUser);
     }
 
-    public Optional<LoggedUser> findLoggedUser(String userName) {
-        Optional<LoggedUser> optionalLoggedUser = loggedUserRepository.findByUserName(userName);
+    public Optional<LoggedUser> findLoggedUser(String userName, String orgId) {
+        Optional<LoggedUser> optionalLoggedUser = loggedUserRepository.findByUserName(userName, orgId);
         return optionalLoggedUser;
     }
 
-    public Optional<LoggedUser> findLoggedUserById(String id) {
+    public Optional<LoggedUser> findLoggedUserById(LoggedUserId id) {
         Optional<LoggedUser> optionalLoggedUser=loggedUserRepository.findById(id);
         return optionalLoggedUser;
     }
 
-    public void deleteById(String id) {
+    public void deleteById(LoggedUserId id) {
         loggedUserRepository.deleteById(id);
     }
-
 
 }

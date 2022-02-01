@@ -2,11 +2,12 @@ package com.kastech.blumen.utility;
 
 
 import com.kastech.blumen.model.keycloak.*;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Optional;
 
 public class KeycloakUtil {
@@ -18,119 +19,87 @@ public class KeycloakUtil {
 
     }
 
-    public static User convertCreateUserRequestToUser(CreateUserRequest createUserRequest)  {
-        User user = new User();
-        if(createUserRequest != null) {
-            if(StringUtils.isNotBlank(createUserRequest.getUsername())) {
-                user.setUsername(createUserRequest.getUsername());
-            }
-            if(StringUtils.isNotBlank(createUserRequest.getEmail())) {
-                user.setEmail(createUserRequest.getEmail());
-            }
-            if(StringUtils.isNotBlank(createUserRequest.getFirstName())) {
-                user.setFirstName(createUserRequest.getFirstName());
-            }
-            if(StringUtils.isNotBlank(createUserRequest.getLastName())) {
-                user.setLastName(createUserRequest.getLastName());
-            }
+    public static User convertUserInfoToUser(UserInfo userInfo, boolean isCreate, String password)  {
+        User.UserBuilder userBuilder = new User.UserBuilder();
+        List<Credentials> credentialsList = new ArrayList<>();
+        if(userInfo != null) {
+            if(isCreate) {
+                Credentials.CredentialsBuilder credentialsBuilder = new Credentials.CredentialsBuilder();
+                Credentials credentials = credentialsBuilder.type("password").value(password).temporary(false).buildCredentials();
 
-            if(createUserRequest.getCredentials() != null && !createUserRequest.getCredentials().isEmpty()) {
-                user.setCredentials(createUserRequest.getCredentials());
+                credentialsList.add(credentials);
             }
-                user.setEnabled(createUserRequest.isEnabled());
-                user.setEmailVerified(createUserRequest.isEmailVerified());
-
+            userBuilder.username(userInfo.getUsername()).email(userInfo.getEmail())
+                    .firstName(userInfo.getFirstName()).lastName(userInfo.getLastName())
+                    .enabled(userInfo.isEnabled()).emailVerified(userInfo.isEmailVerified());
+            if(isCreate) {
+                userBuilder.credentials(credentialsList);
             }
-        return user;
         }
+        return userBuilder.buildUser();
+    }
 
     public static UserInfo convertUserPlusMetaToUserInfo(User user, UserMetaData userMetaData)  {
-        UserInfo userInfo= new UserInfo();
+        UserInfo.UserInfoBuilder userInfoBuilder = new UserInfo.UserInfoBuilder();
         if(user != null) {
-            if(StringUtils.isNotBlank(user.getUsername())) {
-                userInfo.setUsername(user.getUsername());
-            }
-            if(StringUtils.isNotBlank(user.getEmail())) {
-                userInfo.setEmail(user.getEmail());
-            }
-            if(StringUtils.isNotBlank(user.getFirstName())) {
-                userInfo.setFirstName(user.getFirstName());
-            }
-            if(StringUtils.isNotBlank(user.getLastName())) {
-                userInfo.setLastName(user.getLastName());
-            }
-            userInfo.setEnabled(user.isEnabled());
+            userInfoBuilder.id(user.getId())
+                    .username(user.getUsername()).email(user.getEmail()).firstName(user.getFirstName())
+                    .lastName(user.getLastName()).enabled(user.isEnabled());
         }
+
         if(userMetaData != null) {
-            if(StringUtils.isNotBlank(userMetaData.getRoleName())) {
-                userInfo.setRoleName(userMetaData.getRoleName());
-            }
-            if(StringUtils.isNotBlank(userMetaData.getId())) {
-                userInfo.setUserId(userMetaData.getId());
-            }
-            if(StringUtils.isNotBlank(userMetaData.getPassword())) {
-                userInfo.setPassword(userMetaData.getPassword());
-            }
-            if(StringUtils.isNotBlank(userMetaData.getOrgId())) {
-                userInfo.setOrgId(userMetaData.getOrgId());
-            }
-            if(StringUtils.isNotBlank(userMetaData.getSiteLocation())) {
-                userInfo.setSiteLocation(userMetaData.getSiteLocation());
-            }
-            if(StringUtils.isNotBlank(userMetaData.getSiteLocation())) {
-                userInfo.setActive(userMetaData.isActive());
-            }
+            userInfoBuilder.roleName(userMetaData.getRoleName()).id(userMetaData.getId()).orgId(userMetaData.getOrgId())
+                    .siteLocation(userMetaData.getSiteLocation()).active(userMetaData.isActive())
+                    .address1(userMetaData.getAddress1()).address2(userMetaData.getAddress2())
+                    .city(userMetaData.getCity()).state(userMetaData.getState())
+                    .zipcode(userMetaData.getZipcode()).phone2(userMetaData.getPhone2())
+                    .fax(userMetaData.getFax()).notes(userMetaData.getNotes())
+                    .sendMail(userMetaData.isSendMail());
         }
-        return userInfo;
+        return userInfoBuilder.buildUserInfo();
     }
 
     public static UserInfo convertUserLinkedHashmapToUserInfo(LinkedHashMap userLinkedHashMap, Optional<UserMetaData> optionalUserMetaData) {
-        UserInfo userInfo = new UserInfo();
+        UserInfo.UserInfoBuilder userInfoBuilder = new UserInfo.UserInfoBuilder();
         String userId = null;
         if(userLinkedHashMap != null) {
            if(userLinkedHashMap.get("id") != null) {
                userId = userLinkedHashMap.get("id").toString();
-                userInfo.setUserId(userId);
+                userInfoBuilder.id(userId);
            }
             if(userLinkedHashMap.get("username") != null) {
-                userInfo.setUsername(userLinkedHashMap.get("username").toString());
+                userInfoBuilder.username(userLinkedHashMap.get("username").toString());
             }
             if(userLinkedHashMap.get("firstName") != null) {
-                userInfo.setFirstName(userLinkedHashMap.get("firstName").toString());
+                userInfoBuilder.firstName(userLinkedHashMap.get("firstName").toString());
             }
             if(userLinkedHashMap.get("lastName") != null) {
-                userInfo.setLastName(userLinkedHashMap.get("lastName").toString());
+                userInfoBuilder.lastName(userLinkedHashMap.get("lastName").toString());
             }
             if(userLinkedHashMap.get("email") != null) {
-                userInfo.setEmail(userLinkedHashMap.get("email").toString());
+                userInfoBuilder.email(userLinkedHashMap.get("email").toString());
             }
             if(userLinkedHashMap.get("enabled") != null) {
-                userInfo.setEnabled((Boolean) userLinkedHashMap.get("enabled"));
+                userInfoBuilder.enabled((Boolean) userLinkedHashMap.get("enabled"));
             }
             if(userLinkedHashMap.get("emailVerified") != null) {
-                userInfo.setEmailVerified((Boolean) userLinkedHashMap.get("emailVerified"));
+                userInfoBuilder.emailVerified((Boolean) userLinkedHashMap.get("emailVerified"));
             }
 
             if(optionalUserMetaData != null && optionalUserMetaData.isPresent()) {
                 UserMetaData userMetaData = optionalUserMetaData.get();
                 if(userMetaData != null) {
-                    if(StringUtils.isNotBlank(userMetaData.getOrgId())) {
-                        userInfo.setOrgId(userMetaData.getOrgId());
-                    }
-                    if(StringUtils.isNotBlank(userMetaData.getRoleName())) {
-                        userInfo.setRoleName(userMetaData.getRoleName());
-                    }
-                    if(StringUtils.isNotBlank(userMetaData.getSiteLocation())) {
-                        userInfo.setSiteLocation(userMetaData.getSiteLocation());
-                    }
-                    if(StringUtils.isNotBlank(userMetaData.getPassword())) {
-                        userInfo.setPassword(userMetaData.getPassword());
-                    }
+                    userInfoBuilder.roleName(userMetaData.getRoleName()).id(userMetaData.getId()).orgId(userMetaData.getOrgId())
+                            .siteLocation(userMetaData.getSiteLocation()).active(userMetaData.isActive())
+                            .address1(userMetaData.getAddress1()).address2(userMetaData.getAddress2())
+                            .city(userMetaData.getCity()).state(userMetaData.getState())
+                            .zipcode(userMetaData.getZipcode()).phone2(userMetaData.getPhone2())
+                            .fax(userMetaData.getFax()).notes(userMetaData.getNotes())
+                            .sendMail(userMetaData.isSendMail());
                 }
             }
-
        }
-        return userInfo;
+        return userInfoBuilder.buildUserInfo();
     }
 
 }

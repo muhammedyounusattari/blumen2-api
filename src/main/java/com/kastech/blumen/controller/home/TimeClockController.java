@@ -68,13 +68,13 @@ public class TimeClockController {
             String response = staffName + " last clocked Out on ";
             responseEntity = new ResponseEntity(new Response(200, response), null, HttpStatus.OK);
 
-        } else if (timeClockManagerObjList.size() > 1) {
+        }/* else if (timeClockManagerObjList.size() > 1) {
             TimeClockManager timeClockManager = timeClockManagerObjList.get(1);
             String lastClockedInTime = timeClockManager.getCheckInTime();
             String response = timeClockManager.getStaffName() + " last clocked in time on " + lastClockedInTime;
             responseEntity = new ResponseEntity(new Response(200, response), null, HttpStatus.OK);
 
-        } else {
+        }*/ else {
             TimeClockManager timeClockManager = timeClockManagerObjList.get(0);
             String checkInTime = timeClockManager.getCheckInTime();
             String checkOutTime = timeClockManager.getCheckOutTime();
@@ -115,6 +115,7 @@ public class TimeClockController {
             if (timeClockManagerObj.getStaffId().equals(timeClockManager.getStaffId())) {
                 if ("clock-in".equals(statusClockInOrOut)) {
                     TimeClockManager createInTimeClockManagerRequest = new TimeClockManager();
+                    createInTimeClockManagerRequest.setId(timeClockManagerObj.getId());
                     createInTimeClockManagerRequest.setStaffName(timeClockManager.getStaffName());
                     createInTimeClockManagerRequest.setCheckInTime(currentTimeStamp);
                     // createInTimeClockManagerRequest.setCheckOutTime(currentTimeStamp);
@@ -123,7 +124,7 @@ public class TimeClockController {
                     timeClockManagerRepository.save(createInTimeClockManagerRequest);
                     responseEntity = new ResponseEntity(new Response(200, staffName + " has Clocked In at " + currentTimeStamp), null, HttpStatus.OK);
                 } else if ("clock-out".equals(statusClockInOrOut)) {
-
+                    timeClockManagerObj.setId(timeClockManagerObj.getId());
                     timeClockManagerObj.setCheckOutTime(currentTimeStamp);
                     timeClockManagerObj.setDuration(TimeClockManagerServiceV1.findDifference(timeClockManager.getCheckInTime(), currentTimeStamp));
                   /*  TimeClockManager createOutTimeClockManagerRequest = new TimeClockManager();

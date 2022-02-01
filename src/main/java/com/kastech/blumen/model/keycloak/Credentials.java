@@ -9,23 +9,45 @@ public class Credentials {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public String getValue() {
         return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
     }
 
     public boolean isTemporary() {
         return temporary;
     }
 
-    public void setTemporary(boolean temporary) {
-        this.temporary = temporary;
+
+    public Credentials(CredentialsBuilder credentialsBuilder) {
+        this.type = credentialsBuilder.type;
+        this.value = credentialsBuilder.value;
+        this.temporary = credentialsBuilder.temporary;
+    }
+
+    public static class CredentialsBuilder {
+        String type;
+        String value;
+        boolean temporary;
+        public CredentialsBuilder() {}
+
+        public CredentialsBuilder type(String type) {
+            this.type = type;
+            return this;
+        }
+
+        public CredentialsBuilder value(String value) {
+            this.value = value;
+            return this;
+        }
+
+        public CredentialsBuilder temporary(boolean temporary) {
+            this.temporary = temporary;
+            return this;
+        }
+
+        public Credentials buildCredentials() {
+            return new Credentials(this);
+        }
+
     }
 }

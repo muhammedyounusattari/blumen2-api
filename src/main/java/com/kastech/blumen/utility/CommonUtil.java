@@ -8,6 +8,7 @@ import com.kastech.blumen.model.counselor.Counselor;
 import com.kastech.blumen.model.customize.*;
 import com.kastech.blumen.model.keycloak.LoggedUser;
 import com.kastech.blumen.model.keycloak.UserMetaData;
+import com.kastech.blumen.model.keycloak.UserSecurityInfo;
 import com.kastech.blumen.model.staff.Staff;
 import com.kastech.blumen.model.student.contacts.*;
 import com.kastech.blumen.model.student.dataentry.AddressNotes;
@@ -307,6 +308,19 @@ public class CommonUtil {
             throw new ServiceLayerException("Unable to parse json string to object");
         }
         return userMetaData;
+    }
+
+    public static UserSecurityInfo convertJsonStringToPojoForUserSecurityInfo(String object)  {
+        UserSecurityInfo userSecurityInfo = null;
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(NON_NULL);
+        try {
+            userSecurityInfo = mapper.readValue(object, UserSecurityInfo.class);
+        } catch (Exception e) {
+            LOGGER.error("Error parsing {} json string to object ", object.getClass(), e);
+            throw new ServiceLayerException("Unable to parse json string to object");
+        }
+        return userSecurityInfo;
     }
 
     public static StudentDispCouContRemin convertJsonStringToPojoForStudentDispCouContRemin(String object)  {

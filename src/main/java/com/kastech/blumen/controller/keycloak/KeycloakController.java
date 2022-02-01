@@ -37,19 +37,33 @@ public class KeycloakController {
         return ResponseEntity.ok(keycloakAdminClientService.listUsers(authHeader, realmId));
     }
 
+    @PutMapping(value = "tenant/{realmId}/changePassword/v1/{id}")
+    public void changePassword(@RequestHeader("Authorization") String authHeader,
+                              @RequestBody UserSecurityInfo userSecurityInfo,
+                              @PathVariable String realmId,
+                              @PathVariable String id) {
+        keycloakAdminClientService.changePassword(authHeader, userSecurityInfo, realmId, id);
+    }
+
     @PutMapping(value = "tenant/{realmId}/resetPassword/v1/{id}")
     public void resetPassword(@RequestHeader("Authorization") String authHeader,
-                                            @RequestBody Credentials credentials,
                                             @PathVariable String realmId,
                                             @PathVariable String id) {
-        keycloakAdminClientService.resetPassword(authHeader, credentials, realmId, id);
+        keycloakAdminClientService.resetPassword(authHeader, realmId, id);
+    }
+
+    @PutMapping(value = "tenant/{realmId}/forgotPassword/v1/{id}")
+    public void forgotPassword(@RequestHeader("Authorization") String authHeader,
+                              @PathVariable String realmId,
+                              @PathVariable String id) {
+        keycloakAdminClientService.forgotPassword(authHeader, realmId, id);
     }
 
     @PostMapping(value = "tenant/{realmId}/createUser/v1")
     public ResponseEntity<UserInfo> createUser(@RequestHeader("Authorization") String authHeader,
-                                             @RequestBody CreateUserRequest createUserRequest,
+                                             @RequestBody UserInfo userInfo,
                                              @PathVariable String realmId) {
-        return ResponseEntity.ok(keycloakAdminClientService.createUser(authHeader, createUserRequest, realmId));
+        return ResponseEntity.ok(keycloakAdminClientService.createUser(authHeader, userInfo, realmId));
     }
 
     @PostMapping(path = "tenant/{realmId}/login/v1")
@@ -68,7 +82,7 @@ public class KeycloakController {
 
     @PutMapping(value = "tenant/{realmId}/updateUser/v1/{id}")
     public void updateUser(@RequestHeader("Authorization") String authHeader,
-                              @RequestBody User user,
+                              @RequestBody UserInfo user,
                               @PathVariable String realmId,
                               @PathVariable String id) {
         keycloakAdminClientService.updateUser(authHeader, user, realmId, id);
