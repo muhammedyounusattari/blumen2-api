@@ -61,7 +61,7 @@ public class GraduatedListController {
     }
 
     @ResponseBody
-    @PostMapping(path = "/moveSelectedStudentListFromFiscalYearToGraduatedYear/v1",
+    @PostMapping(path = "/moveSelectedStudentListFromFiscalYearToGraduatedYear/v1",consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<Student>> moveSelectedStudentListFromFiscalYearToGraduatedYear(@RequestBody FiscalGraduatedYearRequest fiscalGraduatedYearRequest) {
         List<String> ssnoList = null;
@@ -89,7 +89,7 @@ public class GraduatedListController {
     }
 
     @ResponseBody
-    @PostMapping(path = "/updateGraduatedEntryForStudent/v1",
+    @PostMapping(path = "/updateGraduatedEntryForStudent/v1",consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> updateGraduatedEntryForStudent(@RequestBody GraduatedInfoAddressNotesRequest graduatedInfoAddressNotesRequest) {
         String ssno = graduatedInfoAddressNotesRequest.getSsno();

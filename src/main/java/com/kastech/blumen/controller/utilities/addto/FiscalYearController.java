@@ -51,7 +51,7 @@ public class FiscalYearController {
 
 
     @ResponseBody
-    @PostMapping(path = "/moveSelectedStudentListToFiscalYear/v1",
+    @PostMapping(path = "/moveSelectedStudentListToFiscalYear/v1",consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<Student>> moveSelectedStudentListToFiscalYear(@RequestBody FiscalGraduatedYearRequest fiscalYearRequest) {
         List<String> ssnoList = null;
