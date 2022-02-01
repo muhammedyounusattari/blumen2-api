@@ -1,6 +1,6 @@
 package com.kastech.blumen.model;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -58,9 +58,6 @@ public class Address {
         this.staffWebsite = staffWebsite;
         this.staffFax = staffFax;
         this.staffAdditionalNotes = staffAdditionalNotes;
-        this.isPermanentAddress = isPermanentAddress;
-        this.staffMaillingName = staffMaillingName;
-        this.isUsedForMailling = isUsedForMailling;
     }
     
 	public Long getId() {
@@ -189,30 +186,6 @@ public class Address {
 
     public void setStaffAdditionalNotes(String staffAdditionalNotes) {
         this.staffAdditionalNotes = staffAdditionalNotes;
-    }
-
-    public Boolean getPermanentAddress() {
-        return isPermanentAddress;
-    }
-
-    public void setPermanentAddress(Boolean permanentAddress) {
-        isPermanentAddress = permanentAddress;
-    }
-
-    public String getStaffMaillingName() {
-        return staffMaillingName;
-    }
-
-    public void setStaffMaillingName(String staffMaillingName) {
-        this.staffMaillingName = staffMaillingName;
-    }
-
-    public Boolean getUsedForMailling() {
-        return isUsedForMailling;
-    }
-
-    public void setUsedForMailling(Boolean usedForMailling) {
-        isUsedForMailling = usedForMailling;
     }
 
     @Override
