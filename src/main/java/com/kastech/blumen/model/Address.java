@@ -191,6 +191,30 @@ public class Address {
         this.staffAdditionalNotes = staffAdditionalNotes;
     }
 
+    public Boolean getPermanentAddress() {
+        return isPermanentAddress;
+    }
+
+    public void setPermanentAddress(Boolean permanentAddress) {
+        isPermanentAddress = permanentAddress;
+    }
+
+    public String getStaffMaillingName() {
+        return staffMaillingName;
+    }
+
+    public void setStaffMaillingName(String staffMaillingName) {
+        this.staffMaillingName = staffMaillingName;
+    }
+
+    public Boolean getUsedForMailling() {
+        return isUsedForMailling;
+    }
+
+    public void setUsedForMailling(Boolean usedForMailling) {
+        isUsedForMailling = usedForMailling;
+    }
+
     @Override
     public String toString() {
         return "Address{" +
