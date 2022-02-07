@@ -1,8 +1,14 @@
 package com.kastech.blumen.controller.student;
 
 import com.kastech.blumen.model.Response;
+import com.kastech.blumen.model.admin.CounselorClasses;
+import com.kastech.blumen.model.admin.StaffClasses;
+import com.kastech.blumen.model.admin.TeacherClasses;
+import com.kastech.blumen.model.admin.TutorClasses;
 import com.kastech.blumen.model.student.Student;
 import com.kastech.blumen.repository.student.StudentRepository;
+import com.kastech.blumen.service.student.StudentService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/blumen-api/student")
@@ -25,6 +32,9 @@ public class StudentController {
 
     @Autowired
     private StudentRepository studentRepository;
+    
+    @Autowired
+    private StudentService studentService;
 
     @ResponseBody
     @GetMapping(path = "/getStudents/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
@@ -186,4 +196,82 @@ public class StudentController {
 
         return responseEntity;
     }
+    
+    @ResponseBody
+	@PutMapping(path = "/teacherClasses/v1/{ssno}", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<String> assignTeacherClasses(@PathVariable Long ssno,
+			@RequestBody Set<Long> teacherClassIds) {
+		studentService.assignTeacherClasses(ssno, teacherClassIds);
+		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+	}
+
+	@ResponseBody
+	@GetMapping(path = "/teacherClasses/v1/{ssno}", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<Collection<TeacherClasses>> getAssignedTeacherClasses(@PathVariable Long ssno) {
+		Optional<Student> student = studentRepository.findById(ssno);
+		List<TeacherClasses> teacherClasses = new ArrayList<TeacherClasses>();
+		if (student.isPresent()) {
+			teacherClasses.addAll(student.get().getTeacherClasses());
+			return ResponseEntity.ok(teacherClasses);
+		}
+		return new ResponseEntity(new Response(200, "No classes assigned"), null, HttpStatus.OK);
+	}
+
+	@ResponseBody
+	@PutMapping(path = "/tutorClasses/v1/{ssno}", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<String> assignTutorClasses(@PathVariable Long ssno, @RequestBody Set<Long> TutorClassIds) {
+		studentService.assignTutorClasses(ssno, TutorClassIds);
+		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+	}
+
+	@ResponseBody
+	@GetMapping(path = "/tutorClasses/v1/{ssno}", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<Collection<TutorClasses>> getAssignedTutorClasses(@PathVariable Long ssno) {
+		Optional<Student> student = studentRepository.findById(ssno);
+		List<TutorClasses> TutorClasses = new ArrayList<TutorClasses>();
+		if (student.isPresent()) {
+			TutorClasses.addAll(student.get().getTutorClasses());
+			return ResponseEntity.ok(TutorClasses);
+		}
+		return new ResponseEntity(new Response(200, "No classes assigned"), null, HttpStatus.OK);
+	}
+
+	@ResponseBody
+	@PutMapping(path = "/StaffClasses/v1/{ssno}", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<String> assignStaffClasses(@PathVariable Long ssno, @RequestBody Set<Long> StaffClassIds) {
+		studentService.assignStaffClasses(ssno, StaffClassIds);
+		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+	}
+
+	@ResponseBody
+	@GetMapping(path = "/StaffClasses/v1/{ssno}", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<Collection<StaffClasses>> getAssignedStaffClasses(@PathVariable Long ssno) {
+		Optional<Student> student = studentRepository.findById(ssno);
+		List<StaffClasses> StaffClasses = new ArrayList<StaffClasses>();
+		if (student.isPresent()) {
+			StaffClasses.addAll(student.get().getStaffClasses());
+			return ResponseEntity.ok(StaffClasses);
+		}
+		return new ResponseEntity(new Response(200, "No classes assigned"), null, HttpStatus.OK);
+	}
+
+	@ResponseBody
+	@PutMapping(path = "/CounselorClasses/v1/{ssno}", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<String> assignCounselorClasses(@PathVariable Long ssno,
+			@RequestBody Set<Long> CounselorClassIds) {
+		studentService.assignCounselorClasses(ssno, CounselorClassIds);
+		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+	}
+
+	@ResponseBody
+	@GetMapping(path = "/CounselorClasses/v1/{ssno}", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<Collection<CounselorClasses>> getAssignedCounselorClasses(@PathVariable Long ssno) {
+		Optional<Student> student = studentRepository.findById(ssno);
+		List<CounselorClasses> CounselorClasses = new ArrayList<CounselorClasses>();
+		if (student.isPresent()) {
+			CounselorClasses.addAll(student.get().getCounselorClasses());
+			return ResponseEntity.ok(CounselorClasses);
+		}
+		return new ResponseEntity(new Response(200, "No classes assigned"), null, HttpStatus.OK);
+	}
 }

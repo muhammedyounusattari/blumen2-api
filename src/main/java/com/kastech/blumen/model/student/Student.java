@@ -1,5 +1,6 @@
 package com.kastech.blumen.model.student;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.kastech.blumen.controller.student.Activities;
 import com.kastech.blumen.model.admin.CounselorClasses;
 import com.kastech.blumen.model.admin.StaffClasses;
@@ -9,6 +10,7 @@ import com.kastech.blumen.model.student.dataentry.GraduatedInformation;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,7 +20,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 @Entity
 @Table(name = "student" ,schema = "blumen2")
 public class Student implements Serializable {
@@ -55,24 +59,28 @@ public class Student implements Serializable {
     private GraduatedInformation graduatedInformation;
     //  private Activities activities;
     
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "studentList")
-    private List<TeacherClasses> teacherClasses = new ArrayList<TeacherClasses>();
+    @JsonBackReference
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "studentList")
+    private Set<TeacherClasses> teacherClasses = new HashSet<TeacherClasses>();
     
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "studentList")
-    private List<CounselorClasses> counselorClasses = new ArrayList<CounselorClasses>();
+    @JsonBackReference
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "studentList")
+    private Set<CounselorClasses> counselorClasses = new HashSet<CounselorClasses>();
     
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "studentList")
-    private List<StaffClasses> staffClasses = new ArrayList<StaffClasses>();
+    @JsonBackReference
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "studentList")
+    private Set<StaffClasses> staffClasses = new HashSet<StaffClasses>();
     
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "studentList")
-    private List<TutorClasses> tutorClasses = new ArrayList<TutorClasses>();
+    @JsonBackReference
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "studentList")
+    private Set<TutorClasses> tutorClasses = new HashSet<TutorClasses>();
 
     private boolean isDeletedStudent;
 
     public Student() {
     }
 
-    public Student(Long ssno, String orgId, String firstName, String lastName, String phoneNumber, String fiscalYear, String active, String served, String reported, String staff, String school, String standing, String contactDate, String contactTime, String recontactDate, String grade, String gradeNotes, GraduatedInformation graduatedInformation, List<TeacherClasses> teacherClasses, List<CounselorClasses> counselorClasses, List<StaffClasses> staffClasses, List<TutorClasses> tutorClasses, boolean isDeletedStudent) {
+    public Student(Long ssno, String orgId, String firstName, String lastName, String phoneNumber, String fiscalYear, String active, String served, String reported, String staff, String school, String standing, String contactDate, String contactTime, String recontactDate, String grade, String gradeNotes, GraduatedInformation graduatedInformation, Set<TeacherClasses> teacherClasses, Set<CounselorClasses> counselorClasses, Set<StaffClasses> staffClasses, Set<TutorClasses> tutorClasses, boolean isDeletedStudent) {
         this.ssno = ssno;
         this.orgId = orgId;
         this.firstName = firstName;
@@ -106,20 +114,44 @@ public class Student implements Serializable {
         isDeletedStudent = deletedStudent;
     }
 
-    public void assignTeacherClasses(List<TeacherClasses> teacherClassList) {
-    	teacherClasses.addAll(teacherClassList);
+    public void assignTeacherClasses(TeacherClasses teacherClass) {
+    	this.teacherClasses.add(teacherClass);
+    	teacherClass.getStudentList().add(this);
     }
     
-    public void assignCounselorClasses(List<CounselorClasses> counselorClassList) {
-    	counselorClasses.addAll(counselorClassList);
+    public void removeTeacherClasses(TeacherClasses teacherClass) {
+    	this.teacherClasses.remove(teacherClass);
+    	teacherClass.getStudentList().remove(this);
     }
     
-    public void assignStaffClasses(List<StaffClasses> staffClassList) {
-    	staffClasses.addAll(staffClassList);
+    public void assignCounselorClasses(CounselorClasses CounselorClass) {
+    	this.counselorClasses.add(CounselorClass);
+    	CounselorClass.getStudentList().add(this);
     }
     
-    public void assignTutorClasses(List<TutorClasses> tutorClassList) {
-    	tutorClasses.addAll(tutorClassList);
+    public void removeCounselorClasses(CounselorClasses CounselorClass) {
+    	this.counselorClasses.remove(CounselorClass);
+    	CounselorClass.getStudentList().remove(this);
+    }
+    
+    public void assignStaffClasses(StaffClasses StaffClass) {
+    	this.staffClasses.add(StaffClass);
+    	StaffClass.getStudentList().add(this);
+    }
+    
+    public void removeStaffClasses(StaffClasses StaffClass) {
+    	this.staffClasses.remove(StaffClass);
+    	StaffClass.getStudentList().remove(this);
+    }
+    
+    public void assignTutorClasses(TutorClasses tutorClass) {
+    	this.tutorClasses.add(tutorClass);
+    	tutorClass.getStudentList().add(this);
+    }
+    
+    public void removeTutorClasses(TutorClasses tutorClass) {
+    	this.tutorClasses.remove(tutorClass);
+    	tutorClass.getStudentList().remove(this);
     }
 
     public Long getSsno() {
@@ -283,4 +315,36 @@ public class Student implements Serializable {
 //        private String name;
 //
 //    }
+    
+	public Set<TeacherClasses> getTeacherClasses() {
+		return teacherClasses;
+	}
+
+	public void setTeacherClasses(Set<TeacherClasses> teacherClasses) {
+		this.teacherClasses = teacherClasses;
+	}
+
+	public Set<CounselorClasses> getCounselorClasses() {
+		return counselorClasses;
+	}
+
+	public void setCounselorClasses(Set<CounselorClasses> counselorClasses) {
+		this.counselorClasses = counselorClasses;
+	}
+
+	public Set<StaffClasses> getStaffClasses() {
+		return staffClasses;
+	}
+
+	public void setStaffClasses(Set<StaffClasses> staffClasses) {
+		this.staffClasses = staffClasses;
+	}
+
+	public Set<TutorClasses> getTutorClasses() {
+		return tutorClasses;
+	}
+
+	public void setTutorClasses(Set<TutorClasses> tutorClasses) {
+		this.tutorClasses = tutorClasses;
+	}
 }
