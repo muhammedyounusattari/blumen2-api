@@ -1,19 +1,29 @@
 package com.kastech.blumen.service.admin.classes;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.kastech.blumen.model.admin.CounselorClasses;
+import com.kastech.blumen.model.admin.StaffClasses;
+import com.kastech.blumen.model.admin.TutorClasses;
+import com.kastech.blumen.model.student.Student;
 import com.kastech.blumen.repository.counselor.CounselorClassRepository;
+import com.kastech.blumen.repository.student.StudentRepository;
 
 @Service
 public class CounselorClassesService {
 
 	@Autowired
 	CounselorClassRepository counselorClassRepository;
+	
+	@Autowired
+	StudentRepository studentRepository;
 	
 	public List<CounselorClasses> getCounselorClassesList() {
 		return counselorClassRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
@@ -54,4 +64,33 @@ public class CounselorClassesService {
 		return counselorClassRepository.findById(id).get();
 	}
 
+	public List<Student> getStudents(Long id) {
+		List<Student> students = new ArrayList<Student>();
+		Optional<CounselorClasses> optTeacherClass= counselorClassRepository.findById(id);
+		if(optTeacherClass.isPresent()) {
+			students = optTeacherClass.get().getStudentList();
+		}
+		return students;
+	}
+	
+	public void assignStudents(Long classId, Set<Long> studentIds) {
+		Optional<CounselorClasses> optClass = counselorClassRepository.findById(classId);
+		if (optClass.isPresent()) {
+			CounselorClasses classObj = optClass.get();
+			List<Student> students = studentRepository.findAllById(studentIds);
+			students.forEach(st -> {
+				classObj.assignStudent(st);
+			});
+			counselorClassRepository.save(classObj);
+			//studentRepository.saveAll(students);
+		}
+	}
+	
+	public CounselorClasses save(CounselorClasses classes) {
+		return counselorClassRepository.save(classes);
+	}
+	
+	public void saveAll(List<CounselorClasses> classes) {
+		counselorClassRepository.saveAll(classes);
+	}
 }

@@ -41,38 +41,10 @@ public class PersonalizedLettersController {
 
     List<Student> studentList = new ArrayList<>();
 
-
-    public void addStudentProfile() {
-        /*StudentProfile studentProfileOne = new StudentProfile("StudentHeader", "2017", "Yes", "Yes", "Yes", "All", "All", "All", "560022", "All", "2018", "2021", "Aug", "All", "0", "All"
-                , "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "1", "3");
-        studentProfileList.add(studentProfileOne);
-
-
-        StudentProfile studentProfileTwo = new StudentProfile("StudentHeader", "2017", "Yes", "Yes", "Yes", "All", "All", "All", "560022", "All", "2018", "2021", "Aug", "All", "0", "All"
-                , "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "1", "3");
-        studentProfileList.add(studentProfileTwo);
-
-        StudentProfile studentProfileThree = new StudentProfile("StudentHeader", "2017", "Yes", "Yes", "Yes", "All", "All", "All", "560022", "All", "2018", "2021", "Aug", "All", "0", "All"
-                , "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "1", "3");
-        studentProfileList.add(studentProfileThree);*/
-
-        AddressNotes addressNotes = new AddressNotes(111L,"BANGALORE","BANGALORER","karnataka","560044","dee@gmail.com","phone1","phone2","www.deepak.com","notes ");
-        GraduatedInformation graduatedInformation = new GraduatedInformation(111l,111l,"firstname","secondname","trrarck","graduated","counselor","phole1","major","employer","ma","engineer","militiry","completed","fulltime","2021",addressNotes);
-
-        Student studentOne = new Student(111-234-333l,"11", "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017",graduatedInformation);
-        studentList.add(studentOne);
-
-        Student studentTwo = new Student(222-234-333l,"22", "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017",graduatedInformation);
-        studentList.add(studentTwo);
-        Student studentThree = new Student(222-234-333l,"22", "Craig", "Adams", "2234214", "20-11-2020", "student", "23:02", "20-11-2020", "Yes", "Yes", "Yes", "All", "All", "2017",graduatedInformation);
-        studentList.add(studentThree);
-    }
-
     @ResponseBody
     @GetMapping(path = "/getPersonalizedLettersStudentList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<Student> getPersonalizedLettersStudentList() {
-        addStudentProfile();
         List<Student> list = new ArrayList<>();
         Iterable<Student> items = personalizedLettersRepository.findAll(Sort.by(Sort.Direction.ASC, "ssno"));
         items.forEach(list::add);

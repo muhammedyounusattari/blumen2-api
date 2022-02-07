@@ -1,7 +1,5 @@
 package com.kastech.blumen.model;
 
-
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -218,8 +216,7 @@ public class Address {
     @Override
     public String toString() {
         return "Address{" +
-                "id=" + id +
-                ", staffName='" + staffName + '\'' +
+                "staffName='" + staffName + '\'' +
                 ", staffAddress='" + staffAddress + '\'' +
                 ", staffCity='" + staffCity + '\'' +
                 ", staffState='" + staffState + '\'' +

@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kastech.blumen.model.student.Student;
 
 @Entity
@@ -28,6 +30,7 @@ public class CounselorClasses {
 	private String maxLimit;
 	private String notes;
 	
+	@JsonBackReference
 	@ManyToMany
 	@JoinTable(
 			name =  "counselor_class_students",
@@ -169,5 +172,10 @@ public class CounselorClasses {
 	}
 	public void setStudentList(List<Student> studentList) {
 		this.studentList = studentList;
+	}
+	
+	public void assignStudent(Student st) {
+		this.studentList.add(st);
+    	st.getCounselorClasses().add(this);
 	}
 }

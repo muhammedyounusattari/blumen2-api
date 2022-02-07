@@ -1,9 +1,12 @@
 package com.kastech.blumen.controller.admin.classes;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.admin.TutorClasses;
+import com.kastech.blumen.model.student.Student;
 import com.kastech.blumen.model.admin.TeacherClasses;
 import com.kastech.blumen.repository.tutor.TutorClassRepository;
 import org.slf4j.Logger;
@@ -135,5 +138,30 @@ public class TutorClassesController {
     public TutorClasses getTutorClassId(@PathVariable Long id) {
         return tutorClassesService.findById(id);
     }
+	
+    
+    @ResponseBody
+    @GetMapping(path = "/getTutorClass/students/{id}",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public List<Student> getStudentList(@PathVariable Long id) {
+        return tutorClassesService.getStudents(id);
+    }
+    
+    @ResponseBody
+	@PutMapping(path = "/tutorClass/assignStudents/v1/{id}", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<String> assignStudents(@PathVariable Long id,
+			@RequestBody Set<Long> studentIds) {
+    	tutorClassesService.assignStudents(id, studentIds);
+		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+	}
+    
+    @ResponseBody
+	@PostMapping(path = "/tutorClass/bulk/v1", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<String> bulkClassesUpload(@RequestBody List<TutorClasses> classes) {
+    	tutorClassesService.saveAll(classes);
+	
+		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+	}
 
 }

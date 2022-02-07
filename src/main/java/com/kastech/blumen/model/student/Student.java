@@ -67,28 +67,45 @@ public class Student implements Serializable {
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "studentList")
     private List<TutorClasses> tutorClasses = new ArrayList<TutorClasses>();
 
+    private boolean isDeletedStudent;
+
     public Student() {
     }
 
-    public Student(Long ssno, String orgId, String firstName, String lastName, String phoneNumber, String contactDate, String staff, String contactTime, String recontactDate, String active, String served, String reported, String school, String standing, String fiscalYear, GraduatedInformation graduatedInformation) {
+    public Student(Long ssno, String orgId, String firstName, String lastName, String phoneNumber, String fiscalYear, String active, String served, String reported, String staff, String school, String standing, String contactDate, String contactTime, String recontactDate, String grade, String gradeNotes, GraduatedInformation graduatedInformation, List<TeacherClasses> teacherClasses, List<CounselorClasses> counselorClasses, List<StaffClasses> staffClasses, List<TutorClasses> tutorClasses, boolean isDeletedStudent) {
         this.ssno = ssno;
         this.orgId = orgId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
-        this.contactDate = contactDate;
-        this.staff = staff;
-        this.contactTime = contactTime;
-        this.recontactDate = recontactDate;
+        this.fiscalYear = fiscalYear;
         this.active = active;
         this.served = served;
         this.reported = reported;
+        this.staff = staff;
         this.school = school;
         this.standing = standing;
-        this.fiscalYear = fiscalYear;
+        this.contactDate = contactDate;
+        this.contactTime = contactTime;
+        this.recontactDate = recontactDate;
+        this.grade = grade;
+        this.gradeNotes = gradeNotes;
         this.graduatedInformation = graduatedInformation;
+        this.teacherClasses = teacherClasses;
+        this.counselorClasses = counselorClasses;
+        this.staffClasses = staffClasses;
+        this.tutorClasses = tutorClasses;
+        this.isDeletedStudent = isDeletedStudent;
     }
-    
+
+    public boolean isDeletedStudent() {
+        return isDeletedStudent;
+    }
+
+    public void setDeletedStudent(boolean deletedStudent) {
+        isDeletedStudent = deletedStudent;
+    }
+
     public void assignTeacherClasses(List<TeacherClasses> teacherClassList) {
     	teacherClasses.addAll(teacherClassList);
     }

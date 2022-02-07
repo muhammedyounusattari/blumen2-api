@@ -1,10 +1,15 @@
 package com.kastech.blumen.controller.admin.classes;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 import com.kastech.blumen.model.Response;
+import com.kastech.blumen.model.admin.CounselorClasses;
 import com.kastech.blumen.model.admin.StaffClasses;
 import com.kastech.blumen.model.admin.TutorClasses;
+import com.kastech.blumen.model.student.Student;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -125,5 +130,28 @@ public class StaffClassesController {
         return StaffClassesService.findById(id);
     }
 	
+    @ResponseBody
+    @GetMapping(path = "/getStaffClass/students/{id}",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public List<Student> getStudentList(@PathVariable Long id) {
+        return StaffClassesService.getStudents(id);
+    }
+    
+    @ResponseBody
+	@PutMapping(path = "/staffClass/assignStudents/v1/{id}", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<String> assignStudents(@PathVariable Long id,
+			@RequestBody Set<Long> studentIds) {
+    	StaffClassesService.assignStudents(id, studentIds);
+		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+	}
+    
+    @ResponseBody
+	@PostMapping(path = "/staffClass/bulk/v1", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<String> bulkClassesUpload(@RequestBody List<StaffClasses> classes) {
+    	StaffClassesService.saveAll(classes);
+	
+		return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
+	}
 
 }

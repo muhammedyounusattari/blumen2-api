@@ -1,6 +1,8 @@
 package com.kastech.blumen.controller.admin.classes;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.admin.StaffClasses;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.kastech.blumen.model.admin.TeacherClasses;
 import com.kastech.blumen.model.customize.PullDown;
+import com.kastech.blumen.model.student.Student;
 import com.kastech.blumen.service.admin.classes.TeacherClassesService;
 
 @RestController
@@ -105,7 +108,7 @@ public class TeacherClassesController {
 	@PutMapping(path = "/updateTeacherClasses/v1", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<String> updateTeacherClasses(@RequestBody TeacherClasses teacherClasses) {
-		teacherClasses = teacherRepository.save(teacherClasses);
+		teacherClasses = teacherClassesService.save(teacherClasses);
 		if (teacherClasses != null)
 			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
 
@@ -126,6 +129,29 @@ public class TeacherClassesController {
     public TeacherClasses getTeacherClassId(@PathVariable Long id) {
         return teacherClassesService.findById(id);
     }
+    
+    @ResponseBody
+    @GetMapping(path = "/getTeacherClass/students/{id}",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public List<Student> getStudentList(@PathVariable Long id) {
+        return teacherClassesService.getStudents(id);
+    }
 
+    @ResponseBody
+	@PutMapping(path = "/teacherClass/assignStudents/v1/{id}", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<String> assignStudents(@PathVariable Long id,
+			@RequestBody Set<Long> studentIds) {
+    	teacherClassesService.assignStudents(id, studentIds);
+		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+	}
+    
+    @ResponseBody
+	@PostMapping(path = "/teacherClass/bulk/v1", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<String> bulkClassesUpload(@RequestBody List<TeacherClasses> classes) {
+    	teacherClassesService.saveAll(classes);
+	
+		return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
+	}
 
 }
