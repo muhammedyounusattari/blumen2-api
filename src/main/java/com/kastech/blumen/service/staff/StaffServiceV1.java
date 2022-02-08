@@ -1,5 +1,6 @@
 package com.kastech.blumen.service.staff;
 
+import com.kastech.blumen.model.Address;
 import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.staff.Staff;
 import com.kastech.blumen.repository.staff.StaffRepository;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -19,6 +21,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class StaffServiceV1 {
@@ -56,7 +60,7 @@ public class StaffServiceV1 {
             Staff staff = new Staff();
             staffId =  staffRepository.save(staff).getId();
         }
-       String classPath =  this.getClass().getClassLoader().getName();
+        String classPath =  this.getClass().getClassLoader().getName();
         String extention = FilenameUtils.getExtension(file.getOriginalFilename());
         String filePath = "C:\\Users\\default.DESKTOP-9B0VHF3\\kastech\\blumen_2.0\\src\\main\\resources\\images\\"+staffId+"\\"+staffId+"." + extention;
 
@@ -74,13 +78,28 @@ public class StaffServiceV1 {
     }
 
     public byte[] getFile(String staffId) throws IOException {
-         byte []bytes = null;
+        byte []bytes = null;
         try {
             var imgFile = new ClassPathResource("images/"+staffId+"/"+staffId+"."+getFileExtention(staffId));
             bytes = StreamUtils.copyToByteArray(imgFile.getInputStream());
         } catch (IOException e) {
-           throw new IOException("FileNotFound ");
+            throw new IOException("FileNotFound ");
         }
         return bytes;
+    }
+
+    public List<Staff> validatePhoneNumber() {
+        List<Staff> updatedStaffList = new ArrayList<>();
+        for(Staff staff: staffRepository.findAll(Sort.by(Sort.Direction.ASC, "id"))){
+            for(Address address: staff.getAddress()){
+                if(address.getPermanentAddress()){
+                    staff.setStaffPhoneNumber(address.getStaffPhone1());
+                    updatedStaffList.add(staff);
+                } else {
+                    updatedStaffList.add(staff);
+                }
+            }
+        }
+        return updatedStaffList;
     }
 }

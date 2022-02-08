@@ -2,6 +2,7 @@ package com.kastech.blumen.controller.staff;
 
 import com.google.gson.Gson;
 import com.kastech.blumen.constants.RestURIConstant;
+import com.kastech.blumen.model.Address;
 import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.staff.Staff;
 import com.kastech.blumen.repository.staff.StaffRepository;
@@ -25,9 +26,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Stream;
 
 @RestController
@@ -49,8 +48,7 @@ public class StaffController {
     @GetMapping(path = "/getStaffList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<Staff>> getStaffList() {
-
-        return ResponseEntity.ok(staffRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
+        return ResponseEntity.ok(staffServiceV1.validatePhoneNumber());
     }
 
     @ResponseBody
@@ -59,10 +57,10 @@ public class StaffController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> addToStaffList(@RequestBody Staff staff) {
         staff = staffRepository.save(staff);
-		if (staff != null)
-			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+        if (staff != null)
+            return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
 
-		return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
+        return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
     }
 
     @ResponseBody
@@ -71,19 +69,19 @@ public class StaffController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> editStaffList(@RequestBody Staff staff) {
         staff = staffRepository.save(staff);
-		if (staff != null)
-			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+        if (staff != null)
+            return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
 
-		return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
+        return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
     }
 
 
-	@ResponseBody
-	@PutMapping(path = "/filter/stafflist/v1", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
-			MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<String> filterStaffList(@RequestBody Staff staff) {
-		return ResponseEntity.status(HttpStatus.OK).body(new Gson().toJson(staffRepository.findById(staff.getId())));
-	}
+    @ResponseBody
+    @PutMapping(path = "/filter/stafflist/v1", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
+            MediaType.APPLICATION_JSON_VALUE })
+    public ResponseEntity<String> filterStaffList(@RequestBody Staff staff) {
+        return ResponseEntity.status(HttpStatus.OK).body(new Gson().toJson(staffRepository.findById(staff.getId())));
+    }
 
 
     @ResponseBody
@@ -110,8 +108,8 @@ public class StaffController {
         Map<String, Long> resultMap = new HashMap<>();
         try {
             //TODO - replace system upload with
-           staffId = staffServiceV1.uplaodFile(file,staffId);
-           resultMap.put("staffId", staffId);
+            staffId = staffServiceV1.uplaodFile(file,staffId);
+            resultMap.put("staffId", staffId);
         } catch ( IOException e) {
             return  new ResponseEntity<>(new Response(500, "failure"), null, HttpStatus.BAD_REQUEST);
         } catch(Exception e){
