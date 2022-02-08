@@ -57,10 +57,10 @@ public class StaffController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> addToStaffList(@RequestBody Staff staff) {
         staff = staffRepository.save(staff);
-        if (staff != null)
-            return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+		if (staff != null)
+			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
 
-        return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
+		return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
     }
 
     @ResponseBody
@@ -69,19 +69,19 @@ public class StaffController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> editStaffList(@RequestBody Staff staff) {
         staff = staffRepository.save(staff);
-        if (staff != null)
-            return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+		if (staff != null)
+			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
 
-        return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
+		return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
     }
 
 
-    @ResponseBody
-    @PutMapping(path = "/filter/stafflist/v1", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
-            MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<String> filterStaffList(@RequestBody Staff staff) {
-        return ResponseEntity.status(HttpStatus.OK).body(new Gson().toJson(staffRepository.findById(staff.getId())));
-    }
+	@ResponseBody
+	@PutMapping(path = "/filter/stafflist/v1", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<String> filterStaffList(@RequestBody Staff staff) {
+		return ResponseEntity.status(HttpStatus.OK).body(new Gson().toJson(staffRepository.findById(staff.getId())));
+	}
 
 
     @ResponseBody
@@ -108,8 +108,8 @@ public class StaffController {
         Map<String, Long> resultMap = new HashMap<>();
         try {
             //TODO - replace system upload with
-            staffId = staffServiceV1.uplaodFile(file,staffId);
-            resultMap.put("staffId", staffId);
+           staffId = staffServiceV1.uplaodFile(file,staffId);
+           resultMap.put("staffId", staffId);
         } catch ( IOException e) {
             return  new ResponseEntity<>(new Response(500, "failure"), null, HttpStatus.BAD_REQUEST);
         } catch(Exception e){

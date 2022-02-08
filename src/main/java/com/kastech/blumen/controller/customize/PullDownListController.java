@@ -91,6 +91,15 @@ public class PullDownListController {
     public List<PullDownItem> getPullDownItemsById(@PathVariable Long id) {
         return pullDownItemRepository.findByPulldownId(id);
     }
+
+    @ResponseBody
+    @GetMapping(path = "/pullDownItems/v1/code/{code}",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public List<PullDownItem> getPullDownItemsByCode(@PathVariable String code) {
+        LOGGER.info("Call made for api pullDownItems/v1/code/{code} ", code);
+        return pullDownListServiceV1.getPullDownItemsByCode(code);
+        //return pullDownItemRepository.findByPulldownId(id);
+    }
     
 	@ResponseBody
 	@PostMapping(path = "/pullDownItems/v1/{id}", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
