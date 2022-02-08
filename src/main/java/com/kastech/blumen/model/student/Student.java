@@ -58,20 +58,20 @@ public class Student implements Serializable {
     @OneToOne(cascade = {CascadeType.ALL})
     private GraduatedInformation graduatedInformation;
     //  private Activities activities;
-    
-    //@JsonBackReference
+
+    @JsonBackReference
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "studentList")
     private Set<TeacherClasses> teacherClasses = new HashSet<TeacherClasses>();
-    
-    //@JsonBackReference
+
+    @JsonBackReference
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "studentList")
     private Set<CounselorClasses> counselorClasses = new HashSet<CounselorClasses>();
-    
-    //@JsonBackReference
+
+    @JsonBackReference
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "studentList")
     private Set<StaffClasses> staffClasses = new HashSet<StaffClasses>();
-    
-    //@JsonBackReference
+
+    @JsonBackReference
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "studentList")
     private Set<TutorClasses> tutorClasses = new HashSet<TutorClasses>();
 
@@ -115,43 +115,43 @@ public class Student implements Serializable {
     }
 
     public void assignTeacherClasses(TeacherClasses teacherClass) {
-    	this.teacherClasses.add(teacherClass);
-    	teacherClass.getStudentList().add(this);
+        this.teacherClasses.add(teacherClass);
+        teacherClass.getStudentList().add(this);
     }
-    
+
     public void removeTeacherClasses(TeacherClasses teacherClass) {
-    	this.teacherClasses.remove(teacherClass);
-    	teacherClass.getStudentList().remove(this);
+        this.teacherClasses.remove(teacherClass);
+        teacherClass.getStudentList().remove(this);
     }
-    
+
     public void assignCounselorClasses(CounselorClasses CounselorClass) {
-    	this.counselorClasses.add(CounselorClass);
-    	CounselorClass.getStudentList().add(this);
+        this.counselorClasses.add(CounselorClass);
+        CounselorClass.getStudentList().add(this);
     }
-    
+
     public void removeCounselorClasses(CounselorClasses CounselorClass) {
-    	this.counselorClasses.remove(CounselorClass);
-    	CounselorClass.getStudentList().remove(this);
+        this.counselorClasses.remove(CounselorClass);
+        CounselorClass.getStudentList().remove(this);
     }
-    
+
     public void assignStaffClasses(StaffClasses StaffClass) {
-    	this.staffClasses.add(StaffClass);
-    	StaffClass.getStudentList().add(this);
+        this.staffClasses.add(StaffClass);
+        StaffClass.getStudentList().add(this);
     }
-    
+
     public void removeStaffClasses(StaffClasses StaffClass) {
-    	this.staffClasses.remove(StaffClass);
-    	StaffClass.getStudentList().remove(this);
+        this.staffClasses.remove(StaffClass);
+        StaffClass.getStudentList().remove(this);
     }
-    
+
     public void assignTutorClasses(TutorClasses tutorClass) {
-    	this.tutorClasses.add(tutorClass);
-    	tutorClass.getStudentList().add(this);
+        this.tutorClasses.add(tutorClass);
+        tutorClass.getStudentList().add(this);
     }
-    
+
     public void removeTutorClasses(TutorClasses tutorClass) {
-    	this.tutorClasses.remove(tutorClass);
-    	tutorClass.getStudentList().remove(this);
+        this.tutorClasses.remove(tutorClass);
+        tutorClass.getStudentList().remove(this);
     }
 
     public Long getSsno() {
@@ -315,36 +315,36 @@ public class Student implements Serializable {
 //        private String name;
 //
 //    }
-    
-	public Set<TeacherClasses> getTeacherClasses() {
-		return teacherClasses;
-	}
 
-	public void setTeacherClasses(Set<TeacherClasses> teacherClasses) {
-		this.teacherClasses = teacherClasses;
-	}
+    public Set<TeacherClasses> getTeacherClasses() {
+        return teacherClasses;
+    }
 
-	public Set<CounselorClasses> getCounselorClasses() {
-		return counselorClasses;
-	}
+    public void setTeacherClasses(Set<TeacherClasses> teacherClasses) {
+        this.teacherClasses = teacherClasses;
+    }
 
-	public void setCounselorClasses(Set<CounselorClasses> counselorClasses) {
-		this.counselorClasses = counselorClasses;
-	}
+    public Set<CounselorClasses> getCounselorClasses() {
+        return counselorClasses;
+    }
 
-	public Set<StaffClasses> getStaffClasses() {
-		return staffClasses;
-	}
+    public void setCounselorClasses(Set<CounselorClasses> counselorClasses) {
+        this.counselorClasses = counselorClasses;
+    }
 
-	public void setStaffClasses(Set<StaffClasses> staffClasses) {
-		this.staffClasses = staffClasses;
-	}
+    public Set<StaffClasses> getStaffClasses() {
+        return staffClasses;
+    }
 
-	public Set<TutorClasses> getTutorClasses() {
-		return tutorClasses;
-	}
+    public void setStaffClasses(Set<StaffClasses> staffClasses) {
+        this.staffClasses = staffClasses;
+    }
 
-	public void setTutorClasses(Set<TutorClasses> tutorClasses) {
-		this.tutorClasses = tutorClasses;
-	}
+    public Set<TutorClasses> getTutorClasses() {
+        return tutorClasses;
+    }
+
+    public void setTutorClasses(Set<TutorClasses> tutorClasses) {
+        this.tutorClasses = tutorClasses;
+    }
 }
