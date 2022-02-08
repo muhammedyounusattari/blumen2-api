@@ -32,7 +32,7 @@ public class TeacherClasses {
 	private String notes;
 	
 	//@JsonManagedReference
-	@JsonBackReference
+	//@JsonBackReference
 	@ManyToMany
 	@JoinTable(
 			name =  "teacher_class_students",

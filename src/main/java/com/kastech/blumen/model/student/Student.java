@@ -59,19 +59,19 @@ public class Student implements Serializable {
     private GraduatedInformation graduatedInformation;
     //  private Activities activities;
     
-    @JsonBackReference
+    //@JsonBackReference
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "studentList")
     private Set<TeacherClasses> teacherClasses = new HashSet<TeacherClasses>();
     
-    @JsonBackReference
+    //@JsonBackReference
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "studentList")
     private Set<CounselorClasses> counselorClasses = new HashSet<CounselorClasses>();
     
-    @JsonBackReference
+    //@JsonBackReference
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "studentList")
     private Set<StaffClasses> staffClasses = new HashSet<StaffClasses>();
     
-    @JsonBackReference
+    //@JsonBackReference
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "studentList")
     private Set<TutorClasses> tutorClasses = new HashSet<TutorClasses>();
 

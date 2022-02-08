@@ -30,7 +30,7 @@ public class StaffClasses {
 	private String maxLimit;
 	private String notes;
 	
-	@JsonBackReference
+	//@JsonBackReference
 	@ManyToMany
 	@JoinTable(
 			name =  "staff_class_students",

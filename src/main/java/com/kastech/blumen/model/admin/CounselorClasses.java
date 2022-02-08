@@ -30,7 +30,7 @@ public class CounselorClasses {
 	private String maxLimit;
 	private String notes;
 	
-	@JsonBackReference
+	//@JsonBackReference
 	@ManyToMany
 	@JoinTable(
 			name =  "counselor_class_students",

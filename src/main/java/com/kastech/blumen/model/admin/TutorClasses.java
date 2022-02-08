@@ -31,7 +31,7 @@ public class TutorClasses {
 	private String maxLimit;
 	private String notes;
 	
-	@JsonBackReference
+	//@JsonBackReference
 	@ManyToMany
 	@JoinTable(
 			name =  "tutor_class_students",
