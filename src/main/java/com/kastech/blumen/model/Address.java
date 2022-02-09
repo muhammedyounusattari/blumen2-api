@@ -6,10 +6,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "address" ,schema = "blumen2")
-public class Address {
+public class Address implements Serializable {
 
 
 	@Id

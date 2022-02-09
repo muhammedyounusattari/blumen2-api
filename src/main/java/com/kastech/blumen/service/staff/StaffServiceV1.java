@@ -92,7 +92,7 @@ public class StaffServiceV1 {
         List<Staff> updatedStaffList = new ArrayList<>();
         for(Staff staff: staffRepository.findAll(Sort.by(Sort.Direction.ASC, "id"))){
             for(Address address: staff.getAddress()){
-                if(address.getPermanentAddress()){
+                if(address.getPermanentAddress()!=null && address.getPermanentAddress()){
                     staff.setStaffPhoneNumber(address.getStaffPhone1());
                     updatedStaffList.add(staff);
                 } else {

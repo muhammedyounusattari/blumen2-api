@@ -55,10 +55,10 @@ public class StaffController {
     @PostMapping(path = "/staffList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> addToStaffList(@RequestBody Staff staff) {
+    public ResponseEntity<Staff> addToStaffList(@RequestBody Staff staff) {
         staff = staffRepository.save(staff);
 		if (staff != null)
-			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+			return new ResponseEntity(staff, null, HttpStatus.OK);
 
 		return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
     }
