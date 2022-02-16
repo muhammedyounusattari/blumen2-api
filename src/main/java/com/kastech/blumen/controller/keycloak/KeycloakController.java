@@ -1,15 +1,21 @@
 package com.kastech.blumen.controller.keycloak;
 
+import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.keycloak.*;
 import com.kastech.blumen.service.keycloak.KeycloakAdminClientService;
+import org.keycloak.authorization.client.util.HttpResponseException;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(path = "/api/blumen-api/keycloak", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -52,6 +58,11 @@ public class KeycloakController {
         keycloakAdminClientService.resetPassword(authHeader, realmId, id);
     }
 
+    @GetMapping(value="tenant/{realmId}/generateTempPassword/v1/{id}")
+    public ResponseEntity<?> generateTempPassword(@PathVariable String realmId, @PathVariable String username){
+        return ResponseEntity.ok(keycloakAdminClientService.generateTempLink(realmId, username));
+    }
+
     @PutMapping(value = "tenant/{realmId}/forgotPassword/v1/{id}")
     public void forgotPassword(@RequestHeader("Authorization") String authHeader,
                               @PathVariable String realmId,
@@ -69,8 +80,10 @@ public class KeycloakController {
     @PostMapping(path = "tenant/{realmId}/login/v1")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest,
                                    @PathVariable String realmId)  {
-        return ResponseEntity.ok(keycloakAdminClientService.
-                login(loginRequest, realmId));
+
+        Map<String,String> statusMap = keycloakAdminClientService.login(loginRequest, realmId);
+        return success(statusMap, Integer.parseInt(statusMap.get("status")));
+
     }
 
     @PostMapping(value = "tenant/{realmId}/logout/v1/{id}")
@@ -93,5 +106,13 @@ public class KeycloakController {
                                          @PathVariable String realmId,
                                          @PathVariable String id) {
         keycloakAdminClientService.deleteUser(authHeader, realmId, id);
+    }
+
+    private ResponseEntity<?> success(Object t, Integer status ){
+        return new ResponseEntity(t,null, HttpStatus.valueOf(status));
+    }
+
+    private ResponseEntity<?> failure(Object t, int statusCode){
+        return new ResponseEntity(t,null, HttpStatus.valueOf(statusCode));
     }
 }

@@ -1,6 +1,8 @@
 package com.kastech.blumen.service.keycloak;
 
-
+import com.kastech.blumen.exception.LoginAttemptsException;
+import com.kastech.blumen.mailinator.BlumenMail;
+import org.keycloak.authorization.client.util.HttpResponseException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kastech.blumen.model.keycloak.*;
 import com.kastech.blumen.service.admin.LoggedUserServiceV1;
@@ -20,9 +22,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -56,6 +60,9 @@ public class KeycloakAdminClientService {
     private UserSecurityInfoServiceV1 userSecurityInfoServiceV1;
 
     @Autowired
+    private BlumenMail blumenMail;
+
+    @Autowired
     ApplicationContext applicationContext;
 
     @Autowired
@@ -80,16 +87,36 @@ public class KeycloakAdminClientService {
 
     }
 
-    public Object login(LoginRequest loginRequest, String realmId)  {
+    public Map<String,String> login(LoginRequest loginRequest, String realmId)throws HttpResponseException  {
+
+        AccessTokenResponse response = null;
+        Map<String,String> statusMap = new HashMap<>();
+        Integer wrongAttempts = 0;
+        LoggedUser loggedUser = new LoggedUser();
+
+        try {
         KeycloakConfigurationValues keycloakConfigurationValues = loadValues(realmId);
         Map<String, Object> clientCredentials = new HashMap<>();
         clientCredentials.put("secret", keycloakConfigurationValues.getClientSecret());
         clientCredentials.put("grant_type", "password");
         Configuration configuration = new Configuration(keycloakConfigurationValues.getAuthServerUrl(), realmId, keycloakConfigurationValues.getClientId(), clientCredentials, null);
         AuthzClient authzClient = AuthzClient.create(configuration);
-        AccessTokenResponse response = authzClient.obtainAccessToken(loginRequest.getUsername(), loginRequest.getPassword());
+        statusMap.put("status", "200");
 
-        try {
+            loggedUser = new LoggedUser();
+            Optional<LoggedUser> loggedUserFound = loggedUserServiceV1.findLoggedUser(loginRequest.getUsername(), realmId);
+            if (!loggedUserFound.isEmpty()) {
+                loggedUser = loggedUserFound.get();
+                wrongAttempts = loggedUser.getWrongAttempt();
+                if (wrongAttempts != null && wrongAttempts > 4) {
+                    throw new LoginAttemptsException();
+                }
+            } else {
+                throw new UsernameNotFoundException("Username not found");
+            }
+            response = authzClient.obtainAccessToken(loginRequest.getUsername(), loginRequest.getPassword());
+            statusMap.put("access-token",response.getToken());
+            statusMap.put("isFirstTime", ""+loggedUser.getFirstTime());
             //logic to decrypt the access token and insert the user details into the database.
             Base64.Decoder decoder = Base64.getUrlDecoder();
             String[] chunks = response.getToken().split("\\.");
@@ -106,9 +133,7 @@ public class KeycloakAdminClientService {
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss a");
             String issueDateStr = issueDate.format(dateTimeFormatter);
             String expiryDateStr = expiryDate.format(dateTimeFormatter);
-
-            LoggedUser loggedUser = new LoggedUser(jti, realmId, iat, exp, issueDateStr, expiryDateStr, loginRequest.getUsername());
-            Optional<LoggedUser> loggedUserFound = loggedUserServiceV1.findLoggedUser(loginRequest.getUsername(), realmId);
+            loggedUser.setWrongAttempt(0);
             if(loggedUserFound.isPresent()) {
                 LoggedUserId loggedUserId = new LoggedUserId(loggedUserFound.get().getId(), realmId);
                 loggedUserServiceV1.deleteById(loggedUserId);
@@ -117,11 +142,48 @@ public class KeycloakAdminClientService {
                 loggedUserServiceV1.addLoggedUser(loggedUser);
             }
 
-        } catch(JSONException|UnsupportedEncodingException ie) {
-            throw new IllegalStateException("Error in decrypting the access token object");
+        } catch (UsernameNotFoundException e){
+            statusMap.put("message", "Invalid Username.");
+            statusMap.put("status", "404");
+            return statusMap;
+        } catch (JSONException | UnsupportedEncodingException ie) {
+            statusMap.put("message", "Invalid Credentials.");
+            statusMap.put("status", "401");
+            return statusMap;
+        } catch (LoginAttemptsException e) {
+            statusMap.put("message", "WARNING: Your Account is locked. Please contact to support team or admin.");
+            statusMap.put("status", "403");
+            statusMap.put("wrongAttempts", "" + wrongAttempts);
+            return statusMap;
+        } catch (IllegalArgumentException e) {
+            statusMap.put("message", "OrganizationId is invalid");
+            statusMap.put("status", "404");
+            return statusMap;
+        } catch (Exception e1) {
+
+            if (wrongAttempts == null) {
+                wrongAttempts = 0;
+            }
+            wrongAttempts++;
+            loggedUser.setWrongAttempt(wrongAttempts);
+
+            if (e1 instanceof HttpResponseException) {
+
+                String message = "WARNING: Your Account will be Locked after "+(4-wrongAttempts)+" more unsuccessful attempts. Please check your credentials and try again or click on 'Forgot Password?'";
+                statusMap.put("message", message);
+                statusMap.put("status", "401");
+                statusMap.put("wrongAttempts", "" + wrongAttempts);
+                loggedUser = loggedUserServiceV1.addLoggedUser(loggedUser);
+                return statusMap;
+            } else {
+                statusMap.put("message", "Invalid Organization.");
+                statusMap.put("status", "401");
+                return statusMap;
+            }
+
         }
 
-        return ResponseEntity.ok(response);
+        return statusMap;
     }
 
     public List listUsersRest(String token, String realmId) {
@@ -518,5 +580,28 @@ public class KeycloakAdminClientService {
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();
+    }
+
+    public ResponseEntity<?> generateTempLink(String realmId, String username) {
+        LoggedUser loggedUser = new LoggedUser();
+        Map<String,String> statusMap = new HashMap<>();
+        Optional<LoggedUser> loggedUserFound = loggedUserServiceV1.findLoggedUser(username, realmId);
+        if(loggedUserFound.isEmpty()){
+            statusMap.put("message", "Invalid Username.");
+            statusMap.put("status", "404");
+            return new ResponseEntity<>(statusMap, HttpStatus.NOT_FOUND);
+        }
+        if (!loggedUserFound.isEmpty()) {
+            loggedUser = loggedUserFound.get();
+            String uuid = UUID.randomUUID().toString();
+            loggedUser.setTempLink(uuid);
+            loggedUser.setCreatedDate(new Date());
+            loggedUser = loggedUserServiceV1.addLoggedUser(loggedUser);
+           // blumenMail.sendMail(loggedUser);
+        }
+
+        statusMap.put("status","200");
+        statusMap.put("message", "Email sent successfully");
+        return new ResponseEntity<>(statusMap, HttpStatus.OK);
     }
 }

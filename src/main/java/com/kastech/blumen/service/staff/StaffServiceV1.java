@@ -60,7 +60,7 @@ public class StaffServiceV1 {
             Staff staff = new Staff();
             staffId =  staffRepository.save(staff).getId();
         }
-        String classPath =  this.getClass().getClassLoader().getName();
+       String classPath =  this.getClass().getClassLoader().getName();
         String extention = FilenameUtils.getExtension(file.getOriginalFilename());
         String filePath = "C:\\Users\\default.DESKTOP-9B0VHF3\\kastech\\blumen_2.0\\src\\main\\resources\\images\\"+staffId+"\\"+staffId+"." + extention;
 
@@ -78,12 +78,12 @@ public class StaffServiceV1 {
     }
 
     public byte[] getFile(String staffId) throws IOException {
-        byte []bytes = null;
+         byte []bytes = null;
         try {
             var imgFile = new ClassPathResource("images/"+staffId+"/"+staffId+"."+getFileExtention(staffId));
             bytes = StreamUtils.copyToByteArray(imgFile.getInputStream());
         } catch (IOException e) {
-            throw new IOException("FileNotFound ");
+           throw new IOException("FileNotFound ");
         }
         return bytes;
     }
