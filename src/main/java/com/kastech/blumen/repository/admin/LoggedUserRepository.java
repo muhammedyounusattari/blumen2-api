@@ -13,4 +13,8 @@ import java.util.Optional;
 public interface LoggedUserRepository extends JpaRepository<LoggedUser, LoggedUserId> {
     @Query("from LoggedUser lu where lu.userName=:userName and lu.orgId=:orgId")
     Optional<LoggedUser> findByUserName(@Param("userName") String userName, @Param("orgId") String orgId);
+
+    @Query("from LoggedUser lu where lu.orgId=:orgId")
+    Optional<LoggedUser> findByOrgId(@Param("orgId") String orgId);
+
 }

@@ -3,6 +3,7 @@ package com.kastech.blumen.controller.keycloak;
 import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.keycloak.*;
 import com.kastech.blumen.service.keycloak.KeycloakAdminClientService;
+import org.codehaus.plexus.util.StringUtils;
 import org.keycloak.authorization.client.util.HttpResponseException;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,16 +59,78 @@ public class KeycloakController {
         keycloakAdminClientService.resetPassword(authHeader, realmId, id);
     }
 
-    @GetMapping(value="tenant/{realmId}/generateTempPassword/v1/{id}")
-    public ResponseEntity<?> generateTempPassword(@PathVariable String realmId, @PathVariable String username){
-        return ResponseEntity.ok(keycloakAdminClientService.generateTempLink(realmId, username));
+    @GetMapping(value="tenant/{realmId}/generateTempPassword/v1/{user}")
+    public ResponseEntity<?> generateTempPassword(@PathVariable String realmId, @PathVariable String user){
+        return ResponseEntity.ok(keycloakAdminClientService.generateTempLink(user, realmId));
     }
 
-    @PutMapping(value = "tenant/{realmId}/forgotPassword/v1/{id}")
-    public void forgotPassword(@RequestHeader("Authorization") String authHeader,
-                              @PathVariable String realmId,
-                              @PathVariable String id) {
-        keycloakAdminClientService.forgotPassword(authHeader, realmId, id);
+    @PutMapping(value = "forgotPassword")
+    public ResponseEntity<?> forgotPassword(@RequestBody Map<String,String> requestPaylaod) {
+
+        Map<String,String> responsePayload = new HashMap<>();
+        String realmId = requestPaylaod.get("orgCode");
+        String username = requestPaylaod.get("username");
+
+        if (StringUtils.isBlank(realmId)) {
+            responsePayload.put("message", "OrganizationCode is missing");
+            responsePayload.put("status", "404");
+            return failure(responsePayload, 404);
+        }
+
+        if (StringUtils.isBlank(username)) {
+            responsePayload.put("message", "Username is missing");
+            responsePayload.put("status", "404");
+            return failure(responsePayload, 404);
+        }
+
+        Map<String, String> statusMap = keycloakAdminClientService.forgotPassword(realmId, username);
+        return success(statusMap, Integer.parseInt(statusMap.get("status")));
+    }
+
+    @PostMapping(value = "forgotPassword")
+    public ResponseEntity<?> getTempPassword(@RequestBody Map<String, String> requestPaylaod) {
+
+        Map<String, String> responsePayload = new HashMap<>();
+        String orgCode = requestPaylaod.get("orgCode");
+        String username = requestPaylaod.get("username");
+        String securityAnswer1 = requestPaylaod.get("securityAnswer1");
+        String securityAnswer2 = requestPaylaod.get("securityAnswer2");
+
+        if (StringUtils.isBlank(orgCode)) {
+            responsePayload.put("message", "OrganizationCode is missing");
+            responsePayload.put("status", "404");
+            return failure(responsePayload, 404);
+        }
+
+        if (StringUtils.isBlank(username) && StringUtils.isBlank(securityAnswer1) && StringUtils.isBlank(securityAnswer2)) {
+            responsePayload = keycloakAdminClientService.validateOrgCode(orgCode);
+            return success(responsePayload, Integer.parseInt(responsePayload.get("status")));
+        }
+        if (StringUtils.isBlank(username)) {
+            responsePayload.put("message", "Username is missing");
+            responsePayload.put("status", "404");
+            return failure(responsePayload, 404);
+        }
+
+        if (StringUtils.isBlank(securityAnswer1) && StringUtils.isBlank(securityAnswer2)) {
+            responsePayload = keycloakAdminClientService.getSecurityQuestions(orgCode, username);
+            return success(responsePayload, Integer.parseInt(responsePayload.get("status")));
+        }
+
+        if (StringUtils.isBlank(securityAnswer1)) {
+            responsePayload.put("message", "SecurityAnswer1 is missing");
+            responsePayload.put("status", "404");
+            return failure(responsePayload, 404);
+        }
+
+        if (StringUtils.isBlank(securityAnswer2)) {
+            responsePayload.put("message", "SecurityAnswer2 is missing");
+            responsePayload.put("status", "404");
+            return failure(responsePayload, 404);
+        }
+
+        Map<String, String> statusMap = keycloakAdminClientService.forgotPassword(orgCode, username, securityAnswer1, securityAnswer2);
+        return success(statusMap, Integer.parseInt(statusMap.get("status")));
     }
 
     @PostMapping(value = "tenant/{realmId}/createUser/v1")

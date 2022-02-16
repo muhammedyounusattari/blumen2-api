@@ -1,9 +1,7 @@
 package com.kastech.blumen.model.keycloak;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
-import javax.persistence.Table;
+import javax.annotation.Nullable;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -22,6 +20,12 @@ public class UserSecurityInfo implements Serializable {
     private String securityAnswer1;
     private String securityQuestion2;
     private String securityAnswer2;
+
+    @Nullable
+    private String email;
+
+    @Column(length =  5000)
+    private String accessToken;
 
     public String getOrgId() {
         return orgId;
@@ -87,9 +91,26 @@ public class UserSecurityInfo implements Serializable {
         this.password = password;
     }
 
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
+
+    @Nullable
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(@Nullable String email) {
+        this.email = email;
+    }
+
     public UserSecurityInfo() {}
 
-    public UserSecurityInfo(String id, String orgId, String username, String password, String securityQuestion1, String securityAnswer1, String securityQuestion2, String securityAnswer2){
+    public UserSecurityInfo(String id, String orgId, String username, String password, String securityQuestion1, String securityAnswer1, String securityQuestion2, String securityAnswer2, @Nullable String email, String accessToken) {
         this.id = id;
         this.orgId = orgId;
         this.username = username;
@@ -98,19 +119,23 @@ public class UserSecurityInfo implements Serializable {
         this.securityAnswer1 = securityAnswer1;
         this.securityQuestion2 = securityQuestion2;
         this.securityAnswer2 = securityAnswer2;
+        this.email = email;
+        this.accessToken = accessToken;
     }
 
     @Override
     public String toString() {
-        return "UserSecurityInformation{" +
-                "id=" + id +
-                "orgId=" + orgId +
-                "username=" + username +
-                ", password=" + password +
-                ", securityQuestion1=" + securityQuestion1 +
-                ", securityAnswer1=" + securityAnswer1 +
-                ", securityQuestion2=" + securityQuestion2 +
-                ", securityAnswer2=" + securityAnswer2 +
+        return "UserSecurityInfo{" +
+                "id='" + id + '\'' +
+                ", orgId='" + orgId + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", securityQuestion1='" + securityQuestion1 + '\'' +
+                ", securityAnswer1='" + securityAnswer1 + '\'' +
+                ", securityQuestion2='" + securityQuestion2 + '\'' +
+                ", securityAnswer2='" + securityAnswer2 + '\'' +
+                ", email='" + email + '\'' +
+                ", accessToken='" + accessToken + '\'' +
                 '}';
     }
 }

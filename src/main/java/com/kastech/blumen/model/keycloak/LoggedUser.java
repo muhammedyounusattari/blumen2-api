@@ -50,6 +50,9 @@ public class LoggedUser implements Serializable {
     @Nullable
     private Date createdDate;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private UserSecurityInfo userSecurityInfo;
+
     public String getIssueDate() {
         return issueDate;
     }
@@ -127,9 +130,17 @@ public class LoggedUser implements Serializable {
         this.createdDate = createdDate;
     }
 
+    public UserSecurityInfo getUserSecurityInfo() {
+        return userSecurityInfo;
+    }
+
+    public void setUserSecurityInfo(UserSecurityInfo userSecurityInfo) {
+        this.userSecurityInfo = userSecurityInfo;
+    }
+
     public LoggedUser() {}
 
-    public LoggedUser(String id, String orgId, int ita, int exp, String issueDate, String expiryDate, @Nullable Integer wrongAttempt, @Nullable Boolean firstTime, @Nullable String tempLink, @Nullable Date createdDate, String userName) {
+    public LoggedUser(String id, String orgId, int ita, int exp, String issueDate, String expiryDate, @Nullable Integer wrongAttempt, @Nullable Boolean firstTime, @Nullable String tempLink, @Nullable Date createdDate, UserSecurityInfo userSecurityInfo, String userName) {
         this.id = id;
         this.orgId = orgId;
         this.ita = ita;
@@ -140,6 +151,7 @@ public class LoggedUser implements Serializable {
         this.firstTime = firstTime;
         this.tempLink = tempLink;
         this.createdDate = createdDate;
+        this.userSecurityInfo = userSecurityInfo;
         this.userName = userName;
     }
 
@@ -156,6 +168,7 @@ public class LoggedUser implements Serializable {
                 ", firstTime=" + firstTime +
                 ", tempLink='" + tempLink + '\'' +
                 ", createdDate=" + createdDate +
+                ", userSecurityInfo=" + userSecurityInfo +
                 ", userName='" + userName + '\'' +
                 '}';
     }
