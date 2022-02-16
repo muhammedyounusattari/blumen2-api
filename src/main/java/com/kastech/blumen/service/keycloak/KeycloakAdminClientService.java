@@ -115,7 +115,7 @@ public class KeycloakAdminClientService {
                 throw new UsernameNotFoundException("Username not found");
             }
             response = authzClient.obtainAccessToken(loginRequest.getUsername(), loginRequest.getPassword());
-            statusMap.put("access-token",response.getToken());
+            statusMap.put("access_token",response.getToken());
             statusMap.put("isFirstTime", ""+loggedUser.getFirstTime());
             //logic to decrypt the access token and insert the user details into the database.
             Base64.Decoder decoder = Base64.getUrlDecoder();
