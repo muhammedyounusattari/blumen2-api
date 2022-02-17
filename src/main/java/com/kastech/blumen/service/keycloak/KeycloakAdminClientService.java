@@ -418,7 +418,7 @@ public class KeycloakAdminClientService {
                 .buildCredentials();
 
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-        headers.add("Authorization", token);
+        headers.add("Authorization", "Bearer "+token);
         headers.add("Content-Type", "application/json");
         HttpEntity<Credentials> request = new HttpEntity<>(credentials, headers);
         restTemplate.put(keycloakUserInfoUrl, request);
@@ -516,28 +516,39 @@ public class KeycloakAdminClientService {
         if (!loggedUserFound.isEmpty()) {
             LoggedUser loggedUser = loggedUserFound.get();
             if (loggedUser != null && loggedUser.getUserSecurityInfo() != null) {
-                UserSecurityInfo userSecurityInfo = loggedUser.getUserSecurityInfo();
-                if (!securityAnswer1.equalsIgnoreCase(userSecurityInfo.getSecurityAnswer1())) {
-                    statusMap.put("message", "Invalid Security Answer1");
-                    statusMap.put("status", "404");
+
+                Integer wrongAttempts = loggedUser.getWrongAttempt();
+                if (wrongAttempts != null && wrongAttempts > 4) {
+                    statusMap.put("message", "WARNING: Your Account is locked. Please contact to support team or admin.");
+                    statusMap.put("status", "403");
+                    statusMap.put("wrongAttempts", "" + wrongAttempts);
                     return statusMap;
                 }
+            }
 
-                if (!securityAnswer2.equalsIgnoreCase(userSecurityInfo.getSecurityAnswer2())) {
-                    statusMap.put("message", "Invalid Security Answer2");
-                    statusMap.put("status", "404");
-                    return statusMap;
-                }
-                userSecurityInfo.setHashedCode(UUID.randomUUID().toString());
-                userSecurityInfo.setLinkExpiryDate(setDate(1));
-                userSecurityInfo = userSecurityInfoServiceV1.addUserSecurityInfo(userSecurityInfo);
-                loggedUser.setUserSecurityInfo(userSecurityInfo);
-                loggedUserServiceV1.addLoggedUser(loggedUser);
-
-                statusMap.put("message", "Email has been sent to your registered mail id " + userSecurityInfo.getEmail());
-                statusMap.put("status", "200");
+            UserSecurityInfo userSecurityInfo = loggedUser.getUserSecurityInfo();
+            if (!securityAnswer1.equalsIgnoreCase(userSecurityInfo.getSecurityAnswer1())) {
+                statusMap.put("message", "Invalid Security Answer1");
+                statusMap.put("status", "404");
                 return statusMap;
             }
+
+            if (!securityAnswer2.equalsIgnoreCase(userSecurityInfo.getSecurityAnswer2())) {
+                statusMap.put("message", "Invalid Security Answer2");
+                statusMap.put("status", "404");
+                return statusMap;
+            }
+            userSecurityInfo.setHashedCode(UUID.randomUUID().toString());
+            userSecurityInfo.setLinkExpiryDate(setDate(1));
+            userSecurityInfo = userSecurityInfoServiceV1.addUserSecurityInfo(userSecurityInfo);
+            loggedUser.setUserSecurityInfo(userSecurityInfo);
+            loggedUserServiceV1.addLoggedUser(loggedUser);
+            String maskEmail = userSecurityInfo.getEmail();
+            if (maskEmail != null)
+                maskEmail = maskEmail.charAt(0) + "*****" + maskEmail.charAt(maskEmail.length() - 1);
+            statusMap.put("message", "Email has been sent to your registered mail id " + userSecurityInfo.getEmail());
+            statusMap.put("status", "200");
+            return statusMap;
         }
 
         statusMap = validateOrgCode(realmId);
@@ -758,7 +769,8 @@ public class KeycloakAdminClientService {
        if(!userSecurityInfoList.isEmpty()){
            UserSecurityInfo userSecurityInfo = userSecurityInfoList.get();
            if(userSecurityInfo.getHashedCode()!=null && userSecurityInfo.getLinkExpiryDate()!=null){
-               if(!userSecurityInfo.getLinkExpiryDate().before(new Date())){
+               Date date = new Date();
+               if(!date.before(userSecurityInfo.getLinkExpiryDate())){
                    statusMap.put("message", "Link got expired, please regenerate by access blumen application--> forgot password.");
                    statusMap.put("status", "404");
                    return statusMap;
@@ -781,5 +793,39 @@ public class KeycloakAdminClientService {
        }
        statusMap.put("status", "200");
        return statusMap;
+    }
+
+    public Map<String, String> updateSecurityQuestion(Map<String,String> requestPaylaod) {
+        String realmId = requestPaylaod.get("orgCode");
+        String username = requestPaylaod.get("username");
+        String securityQuestion1 = requestPaylaod.get("securityQuestion1");
+        String securityQuestion2 = requestPaylaod.get("securityQuestion2");
+        String securityAnswer1 = requestPaylaod.get("securityAnswer1");
+        String securityAnswer2 = requestPaylaod.get("securityAnswer2");
+
+        Map<String,String> statusMap = new HashMap<>();
+
+       Optional<LoggedUser> loggedUserFound = loggedUserServiceV1.findLoggedUser(username,realmId);
+       if(!loggedUserFound.isEmpty()){
+           LoggedUser loggedUser = loggedUserFound.get();
+           UserSecurityInfo userSecurityInfo = loggedUser.getUserSecurityInfo();
+           if(userSecurityInfo!=null){
+               userSecurityInfo.setSecurityQuestion1(securityQuestion1);
+               userSecurityInfo.setSecurityQuestion1(securityQuestion2);
+               userSecurityInfo.setSecurityAnswer1(securityAnswer1);
+               userSecurityInfo.setSecurityAnswer2(securityAnswer2);
+               userSecurityInfo = userSecurityInfoServiceV1.addUserSecurityInfo(userSecurityInfo);
+               loggedUser.setUserSecurityInfo(userSecurityInfo);
+               loggedUserServiceV1.addLoggedUser(loggedUser);
+
+               statusMap.put("message", "Security Questoins are successfully updated.");
+               statusMap.put("status", "200");
+               return statusMap;
+           }
+
+       }
+        statusMap.put("message", "User not found");
+        statusMap.put("status", "404");
+        return statusMap;
     }
 }

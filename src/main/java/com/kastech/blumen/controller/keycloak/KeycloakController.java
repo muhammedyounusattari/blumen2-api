@@ -52,6 +52,8 @@ public class KeycloakController {
         keycloakAdminClientService.changePassword(authHeader, userSecurityInfo, realmId, id);
     }
 
+
+
     @PutMapping(value = "tenant/{realmId}/resetPassword/v1/{id}")
     public void resetPassword(@RequestHeader("Authorization") String authHeader,
                                             @PathVariable String realmId,
@@ -64,27 +66,11 @@ public class KeycloakController {
         return ResponseEntity.ok(keycloakAdminClientService.generateTempLink(user, realmId));
     }
 
-    @PutMapping(value = "forgotPassword")
-    @Deprecated
+    @PutMapping(value = "updateSecurityQuestions")
     public ResponseEntity<?> forgotPassword(@RequestBody Map<String,String> requestPaylaod) {
 
         Map<String,String> responsePayload = new HashMap<>();
-        String realmId = requestPaylaod.get("orgCode");
-        String username = requestPaylaod.get("username");
-
-        if (StringUtils.isBlank(realmId)) {
-            responsePayload.put("message", "OrganizationCode is missing");
-            responsePayload.put("status", "404");
-            return failure(responsePayload, 404);
-        }
-
-        if (StringUtils.isBlank(username)) {
-            responsePayload.put("message", "Username is missing");
-            responsePayload.put("status", "404");
-            return failure(responsePayload, 404);
-        }
-
-        Map<String, String> statusMap = keycloakAdminClientService.forgotPassword(realmId, username);
+        Map<String, String> statusMap = keycloakAdminClientService.updateSecurityQuestion(requestPaylaod);
         return success(statusMap, Integer.parseInt(statusMap.get("status")));
     }
 
@@ -135,8 +121,8 @@ public class KeycloakController {
         return success(statusMap, Integer.parseInt(statusMap.get("status")));
     }
 
-    @PostMapping(value = "changePassword/{hashedCode}")
-    public ResponseEntity<?> changePassword(@RequestBody Map<String, String> requestPaylaod, @PathVariable(name = "hashedCode", required = true) String hashedCode) {
+    @PostMapping(value = "resetPassword/{hashedCode}")
+    public ResponseEntity<?> resetPassword(@RequestBody Map<String, String> requestPaylaod, @PathVariable(name = "hashedCode", required = true) String hashedCode) {
         Map<String, String> responsePayload = new HashMap<>();
         String password = requestPaylaod.get("password");
         String confPassword = requestPaylaod.get("confPassword");
