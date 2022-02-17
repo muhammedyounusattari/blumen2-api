@@ -22,22 +22,10 @@ public class SuperAdminController {
     private SuperAdminService superAdminService;
 
 
-    @GetMapping(path = "/{orgId}/securityQuestions1",  produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> createSecurityQuestions1(@PathVariable("orgId") String orgId){
+    @GetMapping(path = "/{orgCode}/securityQuestions1",  produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> createSecurityQuestions1(@PathVariable("orgCode") String orgCode){
 
-        List<SecurityQuestionsList> securityQuestionsList = new ArrayList<SecurityQuestionsList>();
-        securityQuestionsList.add( new SecurityQuestionsList(1l,"What is your pet's name"));
-        securityQuestionsList.add( new SecurityQuestionsList(2l,"What is your date of birth"));
-        securityQuestionsList.add( new SecurityQuestionsList(3l,"Which city were you born in"));
-        securityQuestionsList.add( new SecurityQuestionsList(4l,"What make was your first car"));
-        securityQuestionsList.add( new SecurityQuestionsList(5l,"What is your favorite sports team"));
-        securityQuestionsList.add( new SecurityQuestionsList(6l,"SQ 1-1"));
-        securityQuestionsList.add( new SecurityQuestionsList(7l,"SQ 1-2"));
-        securityQuestionsList.add( new SecurityQuestionsList(8l,"SQ 1-3"));
-        securityQuestionsList.add( new SecurityQuestionsList(9l,"SQ 1-4"));
-        securityQuestionsList.add( new SecurityQuestionsList(10l,"SQ 1-5"));
-
-        //statusMap.put("body",securityQuestionsList);
+        List<SecurityQuestionsList> securityQuestionsList = superAdminService.getSecurityQuestions(orgCode, "1");
         Map<String,Object> map = new HashMap<>();
         map.put("body", securityQuestionsList);
         map.put("status", "200");
@@ -45,26 +33,24 @@ public class SuperAdminController {
 
     }
 
-    @GetMapping(path = "/{orgId}/securityQuestions2",  produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> createSecurityQuestions2(@PathVariable("orgId") String orgId){
-        List<SecurityQuestionsList> securityQuestionsList = new ArrayList<SecurityQuestionsList>();
-        securityQuestionsList.add( new SecurityQuestionsList(1l,"what is your fav food"));
-        securityQuestionsList.add( new SecurityQuestionsList(2l,"which city you were born in"));
-        securityQuestionsList.add( new SecurityQuestionsList(3l,"What is your pet's name"));
-        securityQuestionsList.add( new SecurityQuestionsList(4l,"favorite nfl team"));
-        securityQuestionsList.add( new SecurityQuestionsList(5l,"What is your favorite sports team"));
-        securityQuestionsList.add( new SecurityQuestionsList(6l,"SQ 2-1"));
-        securityQuestionsList.add( new SecurityQuestionsList(7l,"SQ 2-2"));
-        securityQuestionsList.add( new SecurityQuestionsList(8l,"SQ 2-3"));
-        securityQuestionsList.add( new SecurityQuestionsList(9l,"SQ 2-4"));
-        securityQuestionsList.add( new SecurityQuestionsList(10l,"SQ 2-5"));
-        securityQuestionsList.add( new SecurityQuestionsList(11l,"SQ 2-5"));
+    @GetMapping(path = "/{orgCode}/securityQuestions2",  produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> createSecurityQuestions2(@PathVariable("orgCode") String orgCode){
+        List<SecurityQuestionsList> securityQuestionsList = superAdminService.getSecurityQuestions(orgCode, "2");
 
         Map<String,Object> map = new HashMap<>();
         map.put("body", securityQuestionsList);
         map.put("status", "200");
         return new ResponseEntity(map,null, HttpStatus.OK);
+    }
 
+    @GetMapping(path = "/{orgCode}/securityQuestions/{questionType}",  produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> createSecurityQuestions(@PathVariable("orgCode") String orgCode, @PathVariable("questionType") String questionType){
+
+        List<SecurityQuestionsList> securityQuestionsList = superAdminService.getSecurityQuestions(orgCode, questionType);
+        Map<String,Object> map = new HashMap<>();
+        map.put("body", securityQuestionsList);
+        map.put("status", "200");
+        return new ResponseEntity(map,null, HttpStatus.OK);
 
     }
 }
