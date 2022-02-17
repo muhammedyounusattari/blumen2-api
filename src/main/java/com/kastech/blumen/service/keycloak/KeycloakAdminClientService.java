@@ -291,7 +291,7 @@ public class KeycloakAdminClientService {
                     userInfo.getZipcode(), userInfo.getMobile(), userInfo.getPhone2(),
                     userInfo.getFax(), userInfo.getNotes(), userInfo.isSendMail());
             userMetaDataServiceV1.addUserMetaData(userMetaData);
-            UserSecurityInfo userSecurityInfo = new UserSecurityInfo(userCreatedId, realmId, userInfo.getUsername(), randomPassword, null, null, null, null, null, null);
+            UserSecurityInfo userSecurityInfo = new UserSecurityInfo(userCreatedId, realmId, userInfo.getUsername(), randomPassword, null, null, null, null, null, null, null, null);
             userSecurityInfoServiceV1.addUserSecurityInfo(userSecurityInfo);
         }
 
@@ -528,6 +528,11 @@ public class KeycloakAdminClientService {
                     statusMap.put("status", "404");
                     return statusMap;
                 }
+                userSecurityInfo.setHashedCode(UUID.randomUUID().toString());
+                userSecurityInfo.setLinkExpiryDate(setDate(1));
+                userSecurityInfo = userSecurityInfoServiceV1.addUserSecurityInfo(userSecurityInfo);
+                loggedUser.setUserSecurityInfo(userSecurityInfo);
+                loggedUserServiceV1.addLoggedUser(loggedUser);
 
                 statusMap.put("message", "Email has been sent to your registered mail id " + userSecurityInfo.getEmail());
                 statusMap.put("status", "200");
@@ -729,5 +734,52 @@ public class KeycloakAdminClientService {
         statusMap.put("status", "200");
         return statusMap;
 
+    }
+
+    private Date setDate(int day){
+        Date dt = new Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(dt);
+        c.add(Calendar.DATE, 1);
+        dt = c.getTime();
+
+        return dt;
+    }
+
+    public Map<String, String> changePassword(String hashedCode, String password) {
+       Map<String,String> statusMap = new HashMap<>();
+       Optional<UserSecurityInfo> userSecurityInfoList = userSecurityInfoServiceV1.validateHashedCode(hashedCode);
+       if(userSecurityInfoList.isEmpty()){
+           statusMap.put("message", "Invalid Link");
+           statusMap.put("status", "404");
+           return statusMap;
+       }
+
+       if(!userSecurityInfoList.isEmpty()){
+           UserSecurityInfo userSecurityInfo = userSecurityInfoList.get();
+           if(userSecurityInfo.getHashedCode()!=null && userSecurityInfo.getLinkExpiryDate()!=null){
+               if(!userSecurityInfo.getLinkExpiryDate().before(new Date())){
+                   statusMap.put("message", "Link got expired, please regenerate by access blumen application--> forgot password.");
+                   statusMap.put("status", "404");
+                   return statusMap;
+               }
+               try {
+                   userSecurityInfo.setPassword(password);
+                   changePassword(userSecurityInfo.getAccessToken(), userSecurityInfo, userSecurityInfo.getOrgId(), userSecurityInfo.getUsername() );
+                   userSecurityInfo.setHashedCode(UUID.randomUUID().toString());
+                   userSecurityInfoServiceV1.addUserSecurityInfo(userSecurityInfo);
+
+                   statusMap.put("message", "Password updated successfully.");
+                   statusMap.put("status", "200");
+                   return statusMap;
+               } catch (Exception e) {
+                   statusMap.put("message", e.getMessage());
+                   statusMap.put("status", "400");
+                   return statusMap;
+               }
+           }
+       }
+       statusMap.put("status", "200");
+       return statusMap;
     }
 }

@@ -15,4 +15,7 @@ public interface UserSecurityInfoRepository extends JpaRepository<UserSecurityIn
 
     @Query("from UserSecurityInfo usi where usi.username=:username and usi.orgId=:orgId")
     Optional<UserSecurityInfo> findByUsername(@Param("username") String username, @Param("orgId") String orgId);
+
+    @Query("from UserSecurityInfo usi where usi.hashedCode=:hashedCode ")
+    Optional<UserSecurityInfo> validateHashedCode(@Param("hashedCode") String hashedCode);
 }

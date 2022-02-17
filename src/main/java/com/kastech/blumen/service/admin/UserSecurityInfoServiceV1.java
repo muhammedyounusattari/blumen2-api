@@ -47,4 +47,7 @@ public class UserSecurityInfoServiceV1 {
         userSecurityInfoRepository.deleteById(id);
     }
 
+    public Optional<UserSecurityInfo> validateHashedCode(String hashedCode) {
+        return userSecurityInfoRepository.validateHashedCode(hashedCode);
+    }
 }

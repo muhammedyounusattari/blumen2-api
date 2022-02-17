@@ -3,6 +3,7 @@ package com.kastech.blumen.model.keycloak;
 import javax.annotation.Nullable;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @IdClass(UserSecurityInfoId.class)
@@ -26,6 +27,12 @@ public class UserSecurityInfo implements Serializable {
 
     @Column(length =  5000)
     private String accessToken;
+
+    @Nullable
+    private String hashedCode;
+
+    @Nullable
+    private Date linkExpiryDate;
 
     public String getOrgId() {
         return orgId;
@@ -108,9 +115,27 @@ public class UserSecurityInfo implements Serializable {
         this.email = email;
     }
 
+    @Nullable
+    public String getHashedCode() {
+        return hashedCode;
+    }
+
+    public void setHashedCode(@Nullable String hashedCode) {
+        this.hashedCode = hashedCode;
+    }
+
+    @Nullable
+    public Date getLinkExpiryDate() {
+        return linkExpiryDate;
+    }
+
+    public void setLinkExpiryDate(@Nullable Date linkExpiryDate) {
+        this.linkExpiryDate = linkExpiryDate;
+    }
+
     public UserSecurityInfo() {}
 
-    public UserSecurityInfo(String id, String orgId, String username, String password, String securityQuestion1, String securityAnswer1, String securityQuestion2, String securityAnswer2, @Nullable String email, String accessToken) {
+    public UserSecurityInfo(String id, String orgId, String username, String password, String securityQuestion1, String securityAnswer1, String securityQuestion2, String securityAnswer2, @Nullable String email, String accessToken, @Nullable String hashedCode, @Nullable Date linkExpiryDate) {
         this.id = id;
         this.orgId = orgId;
         this.username = username;
@@ -121,6 +146,8 @@ public class UserSecurityInfo implements Serializable {
         this.securityAnswer2 = securityAnswer2;
         this.email = email;
         this.accessToken = accessToken;
+        this.hashedCode = hashedCode;
+        this.linkExpiryDate = linkExpiryDate;
     }
 
     @Override
@@ -136,6 +163,8 @@ public class UserSecurityInfo implements Serializable {
                 ", securityAnswer2='" + securityAnswer2 + '\'' +
                 ", email='" + email + '\'' +
                 ", accessToken='" + accessToken + '\'' +
+                ", hashedCode='" + hashedCode + '\'' +
+                ", linkExpiryDate=" + linkExpiryDate +
                 '}';
     }
 }

@@ -65,6 +65,7 @@ public class KeycloakController {
     }
 
     @PutMapping(value = "forgotPassword")
+    @Deprecated
     public ResponseEntity<?> forgotPassword(@RequestBody Map<String,String> requestPaylaod) {
 
         Map<String,String> responsePayload = new HashMap<>();
@@ -86,6 +87,7 @@ public class KeycloakController {
         Map<String, String> statusMap = keycloakAdminClientService.forgotPassword(realmId, username);
         return success(statusMap, Integer.parseInt(statusMap.get("status")));
     }
+
 
     @PostMapping(value = "forgotPassword")
     public ResponseEntity<?> getTempPassword(@RequestBody Map<String, String> requestPaylaod) {
@@ -131,6 +133,28 @@ public class KeycloakController {
 
         Map<String, String> statusMap = keycloakAdminClientService.forgotPassword(orgCode, username, securityAnswer1, securityAnswer2);
         return success(statusMap, Integer.parseInt(statusMap.get("status")));
+    }
+
+    @PostMapping(value = "changePassword/{hashedCode}")
+    public ResponseEntity<?> changePassword(@RequestBody Map<String, String> requestPaylaod, @PathVariable(name = "hashedCode", required = true) String hashedCode) {
+        Map<String, String> responsePayload = new HashMap<>();
+        String password = requestPaylaod.get("password");
+        String confPassword = requestPaylaod.get("confPassword");
+
+        if (StringUtils.isBlank(password)) {
+            responsePayload.put("message", "Password is missing");
+            responsePayload.put("status", "404");
+            return failure(responsePayload, 404);
+        }
+
+        if (StringUtils.isBlank(confPassword)) {
+            responsePayload.put("message", "Confirm password is missing");
+            responsePayload.put("status", "404");
+            return failure(responsePayload, 404);
+        }
+
+        responsePayload = keycloakAdminClientService.changePassword(hashedCode, confPassword);
+        return success(responsePayload, Integer.parseInt(responsePayload.get("status")));
     }
 
     @PostMapping(value = "tenant/{realmId}/createUser/v1")
