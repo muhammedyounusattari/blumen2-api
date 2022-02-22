@@ -18,4 +18,6 @@ public interface PullDownListRepository extends JpaRepository<PullDown,Long> {
 	@Query("SELECT pd from PullDown pd where pd.code = ?1")
 	public List<PullDown> findByCode(String code);
 
+	@Query("SELECT pd from PullDown pd where pd.code in(?1)")
+	List<PullDown> findMultiplePulldownListByCodes(List<String> code);
 }

@@ -697,6 +697,7 @@ public class KeycloakAdminClientService {
             String uuid = UUID.randomUUID().toString();
             loggedUser.setTempLink(uuid);
             loggedUser.setCreatedDate(new Date());
+            statusMap.put("hashedCode", loggedUser.getTempLink());
             loggedUser = loggedUserServiceV1.addLoggedUser(loggedUser);
             // blumenMail.sendMail(loggedUser);
         }
@@ -802,8 +803,16 @@ public class KeycloakAdminClientService {
         String securityQuestion2 = requestPaylaod.get("securityQuestion2");
         String securityAnswer1 = requestPaylaod.get("securityAnswer1");
         String securityAnswer2 = requestPaylaod.get("securityAnswer2");
+        String securityAnswerId1 = requestPaylaod.get("securityAnswer1");
+        String securityAnswerId2 = requestPaylaod.get("securityAnswer2");
 
         Map<String,String> statusMap = new HashMap<>();
+
+        if(StringUtils.isEmpty(securityAnswerId1)||StringUtils.isEmpty(securityAnswerId2)){
+            statusMap.put("message","SecurityQuestionsId is missing");
+            statusMap.put("status", "404");
+            return statusMap;
+        }
 
        Optional<LoggedUser> loggedUserFound = loggedUserServiceV1.findLoggedUser(username,realmId);
        if(!loggedUserFound.isEmpty()){
@@ -815,15 +824,35 @@ public class KeycloakAdminClientService {
                userSecurityInfo.setSecurityAnswer1(securityAnswer1);
                userSecurityInfo.setSecurityAnswer2(securityAnswer2);
                userSecurityInfo = userSecurityInfoServiceV1.addUserSecurityInfo(userSecurityInfo);
+               loggedUser.setFirstTime(Boolean.FALSE);
                loggedUser.setUserSecurityInfo(userSecurityInfo);
                loggedUserServiceV1.addLoggedUser(loggedUser);
 
-               statusMap.put("message", "Security Questoins are successfully updated.");
+               statusMap.put("message", "Security Questions are successfully updated.");
                statusMap.put("status", "200");
                return statusMap;
            }
 
        }
+        statusMap.put("message", "User not found");
+        statusMap.put("status", "404");
+        return statusMap;
+    }
+
+    public Map<String,String> unlockUser(String user, String realmId) {
+        Map<String,String> statusMap = new HashMap<>();
+
+        Optional<LoggedUser> loggedUserFound = loggedUserServiceV1.findLoggedUser(user,realmId);
+        if(!loggedUserFound.isEmpty()){
+            LoggedUser loggedUser = loggedUserFound.get();
+                loggedUser.setWrongAttempt(0);
+                loggedUserServiceV1.addLoggedUser(loggedUser);
+
+                statusMap.put("message", "User Account is unlocked, and attempts made is set to 0");
+                statusMap.put("status", "200");
+                return statusMap;
+            }
+
         statusMap.put("message", "User not found");
         statusMap.put("status", "404");
         return statusMap;

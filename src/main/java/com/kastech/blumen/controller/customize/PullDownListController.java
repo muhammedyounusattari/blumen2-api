@@ -30,11 +30,6 @@ public class PullDownListController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PullDownListController.class);
 
-    @Autowired
-    PullDownListRepository pullDownListRepository;
-    
-    @Autowired
-    PullDownItemsRepository pullDownItemRepository;
 
     @Autowired
     PullDownListServiceV1 pullDownListServiceV1;
@@ -48,14 +43,15 @@ public class PullDownListController {
     @GetMapping(path = "/getPullDownList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<PullDown> getPullDownList() {
-        return pullDownListRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
+        return pullDownListServiceV1.getPullDownList(Sort.by(Sort.Direction.ASC, "id"));
     }
 
     @ResponseBody
     @GetMapping(path = "/getPulldownValidate/v1/{pullId}/{pulldownId}",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<PullDownItem> getPulldownValidate(@PathVariable Integer pullId, @PathVariable Long pulldownId) {
-        return pullDownItemRepository.findByIdAndPullId(pullId,pulldownId);
+        LOGGER.info("Call made to getPulldownValidate() of {}", this.getClass());
+        return pullDownListServiceV1.getPulldownValidate(pullId,pulldownId);
     }
 
 
@@ -65,68 +61,57 @@ public class PullDownListController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> addToPullDownList(@RequestBody PullDown pullDown) {
-        List<PullDownItem> pullDownItemLst = pullDown.getpullDownItems();
-        if (!pullDownItemLst.isEmpty()) {
-            PullDownItem pullDownItem = pullDownItemLst.get(0);
-            if (pullDownItem.getId() != null && pullDownItem.getPullId()!=null && !pullDownItemRepository.findByIdAndPullId(pullDownItem.getPullId(),pullDownItem.getId()).isEmpty()) {
-                return new ResponseEntity(new Response(404, "Id is already in use, either you can edit or revoke it"), null, HttpStatus.NOT_FOUND);
-            } else {
-    		return ResponseEntity.ok(pullDownListRepository.save(pullDown));
-            }
+        LOGGER.info("Call made to addToPullDownList() of {}", this.getClass());
+
+        Map<String,String> statusMap = pullDownListServiceV1.checkPullDownItemInUse(pullDown);
+        String status = statusMap.get("status");
+        if("404".equals(status)){
+            return new ResponseEntity(new Response(404, statusMap.get("message")), null, HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity(new Response(404, "pull down items missing"), null, HttpStatus.NOT_FOUND);
-    		
+        return ResponseEntity.ok(pullDownListServiceV1.addToPullDownList(pullDown));
     }
     
     @ResponseBody
     @GetMapping(path = "/pullDownList/v1/{id}",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public PullDown getPullDownListById(@PathVariable Long id) {
-        return pullDownListRepository.findById(id).get();
+        LOGGER.info("Call made to getPullDownListById() of {}", this.getClass());
+        return pullDownListServiceV1.getPullDownListById(id);
     }
 
     @ResponseBody
     @GetMapping(path = "/pullDownItems/v1/{id}",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<PullDownItem> getPullDownItemsById(@PathVariable Long id) {
-        return pullDownItemRepository.findByPulldownId(id);
+        LOGGER.info("Call made to getPullDownItemsById() of {}", this.getClass());
+        return pullDownListServiceV1.getPullDownItemsById(id);
     }
 
     @ResponseBody
     @GetMapping(path = "/pullDownItems/v1/code/{code}",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<PullDownItem> getPullDownItemsByCode(@PathVariable String code) {
-        LOGGER.info("Call made for api pullDownItems/v1/code/{code} ", code);
+        LOGGER.info("Call made to getPullDownItemsByCode() of {}", this.getClass());
         return pullDownListServiceV1.getPullDownItemsByCode(code);
-        //return pullDownItemRepository.findByPulldownId(id);
     }
     
 	@ResponseBody
 	@PostMapping(path = "/pullDownItems/v1/{id}", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<?> addPullDownItem(@PathVariable Long id, @RequestBody PullDownItem pullDownItems) {
-		PullDown pulldown = pullDownListRepository.findById(id).get();
-		if (pulldown != null && pullDownItems.getPullId()!=null && pullDownItemRepository.findByIdAndPullId(pullDownItems.getPullId(),id).isEmpty()) {
-			return ResponseEntity.ok(pullDownItemRepository.save(pullDownItems));
-		} else {
-			return new ResponseEntity(new Response(200, "Pullid "+pullDownItems.getPullId()+"is already in use"), null, HttpStatus.OK);
-		}
+        LOGGER.info("Call made to addPullDownItem() of {}", this.getClass());
+		return pullDownListServiceV1.addPullDownItem(id,pullDownItems);
 	}
 
-    @ResponseBody
-    @PostMapping(path = "/nonNumericPullDownItems/v1/{id}", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
-            MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<?> addNonNumericPullDownItems(@PathVariable Long id, @RequestBody PullDownItem pullDownItems) {
-        PullDown pulldown = pullDownListRepository.findById(id).get();
-        return ResponseEntity.ok(pullDownItemRepository.save(pullDownItems));
-    }
+
     
     @ResponseBody
     @PutMapping(path = "/updatePullDownList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public PullDown editPullDownList(@RequestBody PullDown pullDown) {
-        return pullDownListRepository.save(pullDown);
+        LOGGER.info("Call made to editPullDownList() of {}", this.getClass());
+        return pullDownListServiceV1.editPullDownList(pullDown);
                
     }
 
@@ -135,7 +120,8 @@ public class PullDownListController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public PullDownItem editPullDownItem(@RequestBody PullDownItem pullDown) {
-        return pullDownItemRepository.save(pullDown);
+        LOGGER.info("Call made to editPullDownItem() of {}", this.getClass());
+        return pullDownListServiceV1.editPullDownItem(pullDown);
 
     }
 
@@ -144,15 +130,35 @@ public class PullDownListController {
     @GetMapping(path = "/pulldownlist/type/{type}",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<PullDown>> getPullDownListByType(@PathVariable String type) {
-        return ResponseEntity.ok(pullDownListRepository.findByType(type));
+        LOGGER.info("Call made to getPullDownListByType() of {}", this.getClass());
+        return ResponseEntity.ok(pullDownListServiceV1.getPullDownListByType(type));
     }
     
     @ResponseBody
     @GetMapping(path = "/pulldownlist/code/{code}",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<PullDown>> getPullDownListByCode(@PathVariable String code) {
-    	
-        return ResponseEntity.ok(pullDownListRepository.findByCode(code));
+        LOGGER.info("Call made to getPullDownListByCode() of {}", this.getClass());
+        return ResponseEntity.ok(pullDownListServiceV1.getPullDownListByCode(code));
+    }
+
+    @ResponseBody
+    @GetMapping(path = "/multiplePulldownList/code/{codes}",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> getMultiplePullDownListByCode(@PathVariable(value = "codes", required = true) List<String> codes) {
+
+        LOGGER.info("Call made to getMultiplePullDownListByCode() of {} and codes {}", this.getClass(), codes);
+        Map<String,Object> statusMap = new HashMap<>();
+       try {
+           statusMap.put("body", pullDownListServiceV1.getPullDownListByCodes(codes));
+           statusMap.put("status", "200");
+           return success(statusMap,200);
+       } catch (Exception e){
+
+           statusMap.put("message", "please check your request url");
+           statusMap.put("status", "404");
+           return failure(statusMap,404);
+       }
     }
 
 
@@ -161,21 +167,17 @@ public class PullDownListController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> deletePullDownList(@RequestBody PullDownItem pullDownItem) {
-        pullDownItemRepository.delete(pullDownItem);
+        LOGGER.info("Call made to deletePullDownList() of {}", this.getClass());
+        pullDownListServiceV1.deletePullDownList(pullDownItem);
         return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
     }
 
+    private ResponseEntity<?> success(Object t, Integer status ){
 
-  /*  @ResponseBody
-    @PostMapping(path = "/add/pullDownList/v1",
-            consumes = {MediaType.APPLICATION_JSON_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> addsToPullDownList(@RequestBody String reqBody) {
+        return new ResponseEntity(t,null, HttpStatus.valueOf(status));
+    }
 
-        RequestDataVO requestDataVO = pullDownListValidator.validate(RequestAPIType.PULL_DOWN_LIST_V1, reqBody);
-        PullDown pullDown = pullDownListServiceV1.doService(requestDataVO.getInputReqBodyString());
-        pullMap.put(pullDown.getId(), pullDown);
-        return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
-    }*/
-
+    private ResponseEntity<?> failure(Object t, Integer status ){
+        return new ResponseEntity(t,null, HttpStatus.valueOf(status));
+    }
 }

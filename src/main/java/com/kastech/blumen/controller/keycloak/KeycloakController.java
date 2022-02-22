@@ -61,9 +61,9 @@ public class KeycloakController {
         keycloakAdminClientService.resetPassword(authHeader, realmId, id);
     }
 
-    @GetMapping(value="tenant/{realmId}/generateTempPassword/v1/{user}")
-    public ResponseEntity<?> generateTempPassword(@PathVariable String realmId, @PathVariable String user){
-        return ResponseEntity.ok(keycloakAdminClientService.generateTempLink(user, realmId));
+    @GetMapping(value="tenant/{realmId}/unlockUser/v1/{user}")
+    public ResponseEntity<?> unlockUser(@PathVariable String realmId, @PathVariable String user){
+        return ResponseEntity.ok(keycloakAdminClientService.unlockUser(user, realmId));
     }
 
     @PutMapping(value = "updateSecurityQuestions")
