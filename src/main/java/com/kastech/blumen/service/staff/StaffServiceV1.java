@@ -55,12 +55,13 @@ public class StaffServiceV1 {
         if(staffId == 0){
             staffId = 9999999l;
         }
+        //TODO- Need to check why build is failing due to this code
         //code create staffId
-        if(staffRepository.findById(staffId).isEmpty()){
+     /*   if(staffRepository.findById(staffId).isEmpty()){
             Staff staff = new Staff();
             staffId =  staffRepository.save(staff).getId();
-        }
-       String classPath =  this.getClass().getClassLoader().getName();
+        } */
+       String classPath =  "";//this.getClass().getClassLoader().getName();
         String extention = FilenameUtils.getExtension(file.getOriginalFilename());
         String filePath = "C:\\Users\\default.DESKTOP-9B0VHF3\\kastech\\blumen_2.0\\src\\main\\resources\\images\\"+staffId+"\\"+staffId+"." + extention;
 

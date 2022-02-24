@@ -16,11 +16,30 @@ public class UserSecurityInfo implements Serializable {
     private String orgId;
 
     private String username;
+    private String firstName;
+    private String lastName;
     private String password;
+    private String address1;
+    private String address2;
+    private String city;
+    private String state;
+    private String zipcode;
+    private String mobile;
+    private String phone1;
+    private String phone2;
+    private String fax;
+    private String notes;
+    private String role;
+    private String siteLocation;
+    private Boolean active;
+    private String createdBy;
+    private String editedBy;
+
     private String securityQuestion1;
     private String securityAnswer1;
     private String securityQuestion2;
     private String securityAnswer2;
+
 
     @Nullable
     private String email;
@@ -33,6 +52,17 @@ public class UserSecurityInfo implements Serializable {
 
     @Nullable
     private Date linkExpiryDate;
+
+    @OneToOne
+    private BOLT bolt;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getOrgId() {
         return orgId;
@@ -50,12 +80,132 @@ public class UserSecurityInfo implements Serializable {
         this.username = username;
     }
 
-    public String getId() {
-        return id;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getAddress1() {
+        return address1;
+    }
+
+    public void setAddress1(String address1) {
+        this.address1 = address1;
+    }
+
+    public String getAddress2() {
+        return address2;
+    }
+
+    public void setAddress2(String address2) {
+        this.address2 = address2;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getPhone1() {
+        return phone1;
+    }
+
+    public void setPhone1(String phone1) {
+        this.phone1 = phone1;
+    }
+
+    public String getPhone2() {
+        return phone2;
+    }
+
+    public void setPhone2(String phone2) {
+        this.phone2 = phone2;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getSiteLocation() {
+        return siteLocation;
+    }
+
+    public void setSiteLocation(String siteLocation) {
+        this.siteLocation = siteLocation;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     public String getSecurityQuestion1() {
@@ -90,12 +240,13 @@ public class UserSecurityInfo implements Serializable {
         this.securityAnswer2 = securityAnswer2;
     }
 
-    public String getPassword() {
-        return password;
+    @Nullable
+    public String getEmail() {
+        return email;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setEmail(@Nullable String email) {
+        this.email = email;
     }
 
     public String getAccessToken() {
@@ -104,15 +255,6 @@ public class UserSecurityInfo implements Serializable {
 
     public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
-    }
-
-    @Nullable
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(@Nullable String email) {
-        this.email = email;
     }
 
     @Nullable
@@ -133,13 +275,54 @@ public class UserSecurityInfo implements Serializable {
         this.linkExpiryDate = linkExpiryDate;
     }
 
-    public UserSecurityInfo() {}
+    public BOLT getBolt() {
+        return bolt;
+    }
 
-    public UserSecurityInfo(String id, String orgId, String username, String password, String securityQuestion1, String securityAnswer1, String securityQuestion2, String securityAnswer2, @Nullable String email, String accessToken, @Nullable String hashedCode, @Nullable Date linkExpiryDate) {
+    public void setBolt(BOLT bolt) {
+        this.bolt = bolt;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getEditedBy() {
+        return editedBy;
+    }
+
+    public void setEditedBy(String editedBy) {
+        this.editedBy = editedBy;
+    }
+
+    public UserSecurityInfo(){
+        super();
+    }
+
+    public UserSecurityInfo(String id, String orgId, String username, String firstName, String lastName, String password, String address1, String address2, String city, String state, String zipcode, String mobile, String phone1, String phone2, String fax, String notes, String role, String siteLocation, Boolean active, String securityQuestion1, String securityAnswer1, String securityQuestion2, String securityAnswer2, @Nullable String email, String accessToken, @Nullable String hashedCode, @Nullable Date linkExpiryDate, BOLT bolt) {
         this.id = id;
         this.orgId = orgId;
         this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.password = password;
+        this.address1 = address1;
+        this.address2 = address2;
+        this.city = city;
+        this.state = state;
+        this.zipcode = zipcode;
+        this.mobile = mobile;
+        this.phone1 = phone1;
+        this.phone2 = phone2;
+        this.fax = fax;
+        this.notes = notes;
+        this.role = role;
+        this.siteLocation = siteLocation;
+        this.active = active;
         this.securityQuestion1 = securityQuestion1;
         this.securityAnswer1 = securityAnswer1;
         this.securityQuestion2 = securityQuestion2;
@@ -148,6 +331,7 @@ public class UserSecurityInfo implements Serializable {
         this.accessToken = accessToken;
         this.hashedCode = hashedCode;
         this.linkExpiryDate = linkExpiryDate;
+        this.bolt = bolt;
     }
 
     @Override
@@ -156,7 +340,22 @@ public class UserSecurityInfo implements Serializable {
                 "id='" + id + '\'' +
                 ", orgId='" + orgId + '\'' +
                 ", username='" + username + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", password='" + password + '\'' +
+                ", address1='" + address1 + '\'' +
+                ", address2='" + address2 + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zipcode='" + zipcode + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", phone1='" + phone1 + '\'' +
+                ", phone2='" + phone2 + '\'' +
+                ", fax='" + fax + '\'' +
+                ", notes='" + notes + '\'' +
+                ", role='" + role + '\'' +
+                ", siteLocation='" + siteLocation + '\'' +
+                ", active=" + active +
                 ", securityQuestion1='" + securityQuestion1 + '\'' +
                 ", securityAnswer1='" + securityAnswer1 + '\'' +
                 ", securityQuestion2='" + securityQuestion2 + '\'' +
@@ -165,6 +364,7 @@ public class UserSecurityInfo implements Serializable {
                 ", accessToken='" + accessToken + '\'' +
                 ", hashedCode='" + hashedCode + '\'' +
                 ", linkExpiryDate=" + linkExpiryDate +
+                ", bolt=" + bolt +
                 '}';
     }
 }

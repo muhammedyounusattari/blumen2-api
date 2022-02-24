@@ -46,13 +46,13 @@ public class ChangeSSNOController {
     @GetMapping(path = "/changeSsnoToNewSsno/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> changeSsnoToNewSsno(@RequestParam("old_ssno") String oldSsno, @RequestParam("new_ssno") String newSsno) {
-        if (!(oldSsno.isEmpty() && newSsno.isEmpty())) {
+        /*if (!(oldSsno.isEmpty() && newSsno.isEmpty())) {
             for (int i = 0; i < studentList.size(); i++) {
                 if (studentList.get(i).getSsno().equals(oldSsno)) {
                     studentList.get(i).setSsno(Long.parseLong(newSsno));
                 }
             }
-        }
+        }*/
         return ResponseEntity.status(HttpStatus.OK).body("S.S.No has been changed successfully");
     }
 

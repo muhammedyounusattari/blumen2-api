@@ -26,6 +26,100 @@ public class UserInfo {
     private String notes;
     private boolean sendMail;
 
+    private BOLT bolt;
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setOrgId(String orgId) {
+        this.orgId = orgId;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
+    public void setSiteLocation(String siteLocation) {
+        this.siteLocation = siteLocation;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public void setEmailVerified(boolean emailVerified) {
+        this.emailVerified = emailVerified;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public void setAddress1(String address1) {
+        this.address1 = address1;
+    }
+
+    public void setAddress2(String address2) {
+        this.address2 = address2;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public void setPhone2(String phone2) {
+        this.phone2 = phone2;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public void setSendMail(boolean sendMail) {
+        this.sendMail = sendMail;
+    }
+
+    public BOLT getBolt() {
+        return bolt;
+    }
+
+    public void setBolt(BOLT bolt) {
+        this.bolt = bolt;
+    }
+
     public UserInfo() {}
 
     public String getAddress1() {
@@ -90,6 +184,31 @@ public class UserInfo {
         this.fax = userInfoBuilder.fax;
         this.notes = userInfoBuilder. notes;
         this.sendMail = userInfoBuilder.sendMail;
+    }
+
+    public UserInfo(String id, String username, String firstName, String lastName, String email, String orgId, String roleName, String siteLocation, boolean active, boolean emailVerified, boolean enabled, String address1, String address2, String city, String state, String zipcode, String mobile, String phone2, String fax, String notes, boolean sendMail, BOLT bolt) {
+        this.id = id;
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.orgId = orgId;
+        this.roleName = roleName;
+        this.siteLocation = siteLocation;
+        this.active = active;
+        this.emailVerified = emailVerified;
+        this.enabled = enabled;
+        this.address1 = address1;
+        this.address2 = address2;
+        this.city = city;
+        this.state = state;
+        this.zipcode = zipcode;
+        this.mobile = mobile;
+        this.phone2 = phone2;
+        this.fax = fax;
+        this.notes = notes;
+        this.sendMail = sendMail;
+        this.bolt = bolt;
     }
 
     public String getId() {

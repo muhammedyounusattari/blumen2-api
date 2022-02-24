@@ -29,6 +29,5 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     @Query(value = "update Student s SET s.fiscalYear =:fiscalYear where s.ssno in (:ssnoList) ")
     void updateAllStudentbyFiscalYear(@Param("fiscalYear") String fiscalYear,@Param("ssNoList") List<String> ssNoList);*/
 
-
 }
 

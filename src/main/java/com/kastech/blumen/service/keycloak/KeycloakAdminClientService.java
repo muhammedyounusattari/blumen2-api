@@ -69,7 +69,7 @@ public class KeycloakAdminClientService {
     private RestTemplate restTemplate;
 
     @Autowired
-    LoggedUserServiceV1 loggedUserServiceV1;
+    private LoggedUserServiceV1 loggedUserServiceV1;
 
     private KeycloakConfigurationValues loadValues(String realmId) {
         KeycloakConfigurationValues keycloakConfigurationValues = new KeycloakConfigurationValues();
@@ -248,8 +248,22 @@ public class KeycloakAdminClientService {
         return userInfoList;
     }
 
-    public UserInfo createUser(String token, UserInfo userInfo, String realmId) {
+    public UserInfo createUser(String token, UserInfo userInfo, String realmId, String user) {
         @SuppressWarnings("unchecked")
+        //validate if the user exist or not
+        Optional<LoggedUser> loggedUserOptional = loggedUserServiceV1.findLoggedUser(userInfo.getUsername(), userInfo.getOrgId());
+        if(loggedUserOptional.isEmpty()) {
+         loggedUserOptional =   loggedUserServiceV1.findLoggedUser(user, realmId);
+         if(!loggedUserOptional.isEmpty()){
+             UserSecurityInfo userSecurityInfo = loggedUserOptional.get().getUserSecurityInfo();
+             if(userSecurityInfo !=null && userSecurityInfo.getAccessToken() !=null){
+                 token = userSecurityInfo.getAccessToken();
+             }
+         }
+        } else {
+            //throw exception here
+        }
+
         KeycloakPrincipal<RefreshableKeycloakSecurityContext> principal = (KeycloakPrincipal<RefreshableKeycloakSecurityContext>) SecurityContextHolder.getContext()
                 .getAuthentication().getPrincipal();
         String loggedInUserId = principal.getKeycloakSecurityContext().getToken().getSubject();
@@ -285,13 +299,14 @@ public class KeycloakAdminClientService {
             orgId = userInfo.getOrgId();
         }
         if (userCreatedId != null) {
-            userMetaData = new UserMetaData(userCreatedId, orgId, userInfo.getRoleName(),
+            userMetaData = new UserMetaData(userInfo.getUsername(), orgId, userInfo.getRoleName(),
                     userInfo.getSiteLocation(), userInfo.isActive(), true, userInfo.getAddress1(),
                     userInfo.getAddress2(), userInfo.getCity(), userInfo.getState(),
                     userInfo.getZipcode(), userInfo.getMobile(), userInfo.getPhone2(),
                     userInfo.getFax(), userInfo.getNotes(), userInfo.isSendMail());
             userMetaDataServiceV1.addUserMetaData(userMetaData);
-            UserSecurityInfo userSecurityInfo = new UserSecurityInfo(userCreatedId, realmId, userInfo.getUsername(), randomPassword, null, null, null, null, null, null, null, null);
+            UserSecurityInfo userSecurityInfo = new //UserSecurityInfo(userCreatedId, realmId, userInfo.getUsername(), randomPassword, null, null, null, null, null, null, null, null);
+             UserSecurityInfo(userCreatedId, realmId, userInfo.getUsername(), userInfo.getFirstName(), userInfo.getLastName(), randomPassword, userInfo.getAddress1(), userInfo.getAddress2(), userInfo.getCity(), userInfo.getState(), userInfo.getZipcode(), userInfo.getMobile(), userInfo.getPhone2(), userInfo.getPhone2(), userInfo.getFax(), userInfo.getNotes(), userInfo.getRoleName(), userInfo.getSiteLocation(), userInfo.isActive(), null, null, null, null, userInfo.getEmail(), null, null, null, null);
             userSecurityInfoServiceV1.addUserSecurityInfo(userSecurityInfo);
         }
 
@@ -510,6 +525,18 @@ public class KeycloakAdminClientService {
         return statusMap;
     }
 
+    public Map<String, String> validateUser(String orgCode, String user){
+        Map<String,String> statusMap = new HashMap<>();
+        Optional<LoggedUser> loggedUserFound = loggedUserServiceV1.findLoggedUser(user, orgCode);
+        if (!loggedUserFound.isEmpty()) {
+            statusMap.put("status", "404");
+            statusMap.put("message", "User "+user+" already exist");
+            return statusMap;
+        }
+        statusMap.put("status", "200");
+        return statusMap;
+    }
+
     public Map<String, String> forgotPassword(String realmId, String username, String securityAnswer1, String securityAnswer2) {
         Map<String, String> statusMap = new HashMap<>();
         Optional<LoggedUser> loggedUserFound = loggedUserServiceV1.findLoggedUser(username, realmId);
@@ -563,6 +590,35 @@ public class KeycloakAdminClientService {
 
     }
 
+    public Map<String,String> resetUserPassword(String orgCode, String user){
+        Map<String,String> statusMap = new HashMap<>();
+        Optional<LoggedUser> loggedUserFound = loggedUserServiceV1.findLoggedUser(user, orgCode);
+        if (!loggedUserFound.isEmpty()) {
+            statusMap.put("status", "404");
+            statusMap.put("message", "User "+user+" already exist");
+            return statusMap;
+        }
+
+        LoggedUser loggedUser = loggedUserFound.get();
+        if(loggedUser.getUserSecurityInfo()!=null){
+            UserSecurityInfo userSecurityInfo = loggedUser.getUserSecurityInfo();
+            userSecurityInfo.setHashedCode(UUID.randomUUID().toString());
+            userSecurityInfo.setLinkExpiryDate(setDate(1));
+            userSecurityInfo = userSecurityInfoServiceV1.addUserSecurityInfo(userSecurityInfo);
+            loggedUser.setUserSecurityInfo(userSecurityInfo);
+            loggedUserServiceV1.addLoggedUser(loggedUser);
+            String maskEmail = userSecurityInfo.getEmail();
+            if (maskEmail != null)
+                maskEmail = maskEmail.charAt(0) + "*****" + maskEmail.charAt(maskEmail.length() - 1);
+            statusMap.put("message", "Email has been sent to your registered mail id " + maskEmail +"with hashed code "+userSecurityInfo.getHashedCode());
+            statusMap.put("status", "200");
+            return statusMap;
+        }
+
+        statusMap.put("status", "404");
+        statusMap.put("message", "User doesn't exist");
+        return statusMap;
+    }
 
     public void forgotPassword(String token, String realmId, String id) {
         //Generate the random password. Right now the email functionality is not present, but need to email this

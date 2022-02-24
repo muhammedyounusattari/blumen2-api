@@ -75,6 +75,21 @@ public class KeycloakController {
     }
 
 
+    @GetMapping(value="/validateUser/{orgId}/{user}")
+    public ResponseEntity<?> validateUser(@PathVariable(value = "orgId", required = true) String orgId, @PathVariable(value="user", required = true) String user){
+        Map<String,String> statusMap = keycloakAdminClientService.validateUser(orgId, user);
+        return success(statusMap, Integer.parseInt(statusMap.get("status")));
+    }
+
+    @GetMapping(value = "/resetUserPassword/{orgId}/{user}")
+    public ResponseEntity<?> resetUserPassword(@RequestHeader("Authorization") String authHeader, @PathVariable(value = "orgId", required = true) String orgId, @PathVariable(value="user", required = true) String user){
+        Map<String,String> statusMap = keycloakAdminClientService.validateUser(orgId, user);
+        String status = statusMap.get("status");
+
+        keycloakAdminClientService.resetPassword(authHeader, orgId,user);
+        return success(statusMap, Integer.parseInt(statusMap.get("status")));
+    }
+
     @PostMapping(value = "forgotPassword")
     public ResponseEntity<?> getTempPassword(@RequestBody Map<String, String> requestPaylaod) {
 
@@ -143,11 +158,11 @@ public class KeycloakController {
         return success(responsePayload, Integer.parseInt(responsePayload.get("status")));
     }
 
-    @PostMapping(value = "tenant/{realmId}/createUser/v1")
-    public ResponseEntity<UserInfo> createUser(@RequestHeader("Authorization") String authHeader,
+    @PostMapping(value = "tenant/{realmId}/createUser/v1/{user}")
+    public ResponseEntity<UserInfo> createUser(@RequestHeader("Authorization") String authHeader,@PathVariable("user") String user,
                                              @RequestBody UserInfo userInfo,
                                              @PathVariable String realmId) {
-        return ResponseEntity.ok(keycloakAdminClientService.createUser(authHeader, userInfo, realmId));
+        return ResponseEntity.ok(keycloakAdminClientService.createUser(authHeader, userInfo, realmId, user));
     }
 
     @PostMapping(path = "tenant/{realmId}/login/v1")

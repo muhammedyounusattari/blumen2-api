@@ -37,10 +37,10 @@ public class QuickChangeWizardServiceV1 {
     public void changeFiscalYear(Long studentId, String changeTo) {
     	Optional<Student> student = quickChangeWizardRepository.findById(studentId);
     	
-    	if(student.isPresent()) {
+    	/*if(student.isPresent()) {
     		Student updateStudent = student.get();
     		updateStudent.setFiscalYear(changeTo);
     		quickChangeWizardRepository.save(updateStudent);
-    	}
+    	}*/
     }
 }

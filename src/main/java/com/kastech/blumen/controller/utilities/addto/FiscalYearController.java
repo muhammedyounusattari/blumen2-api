@@ -2,6 +2,7 @@ package com.kastech.blumen.controller.utilities.addto;
 
 import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.student.Student;
+import com.kastech.blumen.model.student.StudentYearlyData;
 import com.kastech.blumen.model.utilities.FiscalGraduatedYearRequest;
 import com.kastech.blumen.repository.student.StudentRepository;
 import com.kastech.blumen.repository.utilities.addto.FiscalYearRepository;
@@ -56,7 +57,7 @@ public class FiscalYearController {
     public ResponseEntity<Collection<Student>> moveSelectedStudentListToFiscalYear(@RequestBody FiscalGraduatedYearRequest fiscalYearRequest) {
         List<String> ssnoList = null;
         String fiscalYear = null;
-        if (null != fiscalYearRequest) {
+        /*if (null != fiscalYearRequest) {
             fiscalYear = fiscalYearRequest.getFiscalYear();
             ssnoList = fiscalYearRequest.getSsnoList();
             LOGGER.info("Students to be moved to fiscal year " + fiscalYearRequest.getFiscalYear());
@@ -66,13 +67,15 @@ public class FiscalYearController {
 
                 for (String ssno : ssnoList) {
                     Optional<Student> studentObj = studentRepository.findById(Long.parseLong(ssno));
-                    studentObj.get().setFiscalYear(fiscalYear);
+                    StudentYearlyData studentYearlyData = studentObj.getStudentYearlyData();
+                    studentYearlyData.setYearfi(8);
+                    studentObj.get().setStudentYearlyData(studentYearlyData);
                     studentsListObj.add(studentObj.get());
                 }
             }
             studentRepository.saveAll(studentsListObj);
         }
-
+*/
         return new ResponseEntity(new Response(200, ssnoList.size() + " no of Students are added to the fiscal year " + fiscalYear), null, HttpStatus.OK);
     }
 
