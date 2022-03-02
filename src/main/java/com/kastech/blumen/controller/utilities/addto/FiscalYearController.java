@@ -41,7 +41,7 @@ public class FiscalYearController {
     FiscalYearValidator fiscalYearValidator;
 
 
-    @ResponseBody
+   /* @ResponseBody
     @GetMapping(path = "/getAllStudentsByFiscalYear/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<Student>> getAllStudentsByFiscalYear(@RequestParam("fiscalYear") String fiscalYear) {
@@ -49,7 +49,7 @@ public class FiscalYearController {
 
         return ResponseEntity.ok(studentList);
     }
-
+*/
 
     @ResponseBody
     @PostMapping(path = "/moveSelectedStudentListToFiscalYear/v1",consumes = {MediaType.APPLICATION_JSON_VALUE},

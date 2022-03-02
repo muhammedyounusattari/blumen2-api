@@ -7,15 +7,15 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "student_datafield_def" ,schema = "blumen2")
+@Table(name = "student_data_field_definitions", schema = "blumen2")
 public class StudentDataFieldDefinitions {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @SequenceGenerator(name="student_data_field_definitions_seq_gen", sequenceName="student_data_field_definitions_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "student_data_field_definitions_seq_gen", sequenceName = "student_data_field_definitions_seq")
     private Long Id;
     private String fieldDescription;
     private Integer studentDataTabsId;
-    private  Integer studentDataFieldMasterId;
+    private Integer studentDataFieldMasterId;
     private boolean isBluItem;
     private boolean isAPR;
     private boolean isPIField;
@@ -26,13 +26,29 @@ public class StudentDataFieldDefinitions {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name =  "pull_down_items_mapping",
+            name = "pull_down_items_mapping",
             joinColumns = @JoinColumn(name = "pullId"))
     private List<PullDownItem> pullDownItems;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-    @JoinColumn(name="studentDataFieldMasterId", insertable = false, updatable = false)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "studentDataFieldMasterId", insertable = false, updatable = false)
     private StudentDataFieldMaster studentDataFieldMasters;
+
+    public List<PullDownItem> getPullDownItems() {
+        return pullDownItems;
+    }
+
+    public void setPullDownItems(List<PullDownItem> pullDownItems) {
+        this.pullDownItems = pullDownItems;
+    }
+
+    public StudentDataFieldMaster getStudentDataFieldMasters() {
+        return studentDataFieldMasters;
+    }
+
+    public void setStudentDataFieldMasters(StudentDataFieldMaster studentDataFieldMasters) {
+        this.studentDataFieldMasters = studentDataFieldMasters;
+    }
 
     public Long getId() {
         return Id;
@@ -122,20 +138,6 @@ public class StudentDataFieldDefinitions {
         this.pullTypeId = pullTypeId;
     }
 
-    public List<PullDownItem> getPullDownItems() {
-        return pullDownItems;
-    }
 
-    public void setPullDownItems(List<PullDownItem> pullDownItems) {
-        this.pullDownItems = pullDownItems;
-    }
-
-    public StudentDataFieldMaster getStudentDataFieldMasters() {
-        return studentDataFieldMasters;
-    }
-
-    public void setStudentDataFieldMasters(StudentDataFieldMaster studentDataFieldMasters) {
-        this.studentDataFieldMasters = studentDataFieldMasters;
-    }
 }
 

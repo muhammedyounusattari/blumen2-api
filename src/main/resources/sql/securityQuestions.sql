@@ -8,8 +8,6 @@ insert into blumen2.security_question_list(id,name,org_code,org_id,question_type
 insert into blumen2.security_question_list(id,name,org_code,org_id,question_type) values(8, 'SQ 1-3', 'EOC_DEMO',1,1);
 insert into blumen2.security_question_list(id,name,org_code,org_id,question_type) values(9, 'SQ 1-4', 'EOC_DEMO',1,1);
 insert into blumen2.security_question_list(id,name,org_code,org_id,question_type) values(10, 'SQ 1-5', 'EOC_DEMO',1,1);
-
-
 insert into blumen2.security_question_list(id,name,org_code,org_id,question_type) values(11,'what is your fav food?','EOC_DEMO',1 ,2);
 insert into blumen2.security_question_list(id,name,org_code,org_id,question_type) values(12,'which city you were born in ?','EOC_DEMO',1 ,2);
 insert into blumen2.security_question_list(id,name,org_code,org_id,question_type) values(13,'What is your pet's name?','EOC_DEMO',1 ,2);

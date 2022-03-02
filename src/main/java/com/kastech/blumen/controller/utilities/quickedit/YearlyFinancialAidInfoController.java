@@ -42,14 +42,14 @@ public class YearlyFinancialAidInfoController {
     Map<Long, Student> studentMap = new HashMap<Long, Student>();
 
 
-    @ResponseBody
+    /*@ResponseBody
     @GetMapping(path = "/getAllStudentsByFiscalYearForYearly/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<Student>> getAllStudentsByFiscalYearForYearly(@RequestParam("fiscalYear") String fiscalYear) {
         List<Student> studentList = studentRepository.findAllStudentbyFiscalYear(fiscalYear);
 
         return ResponseEntity.ok(studentList);
-    }
+    }*/
 
     @ResponseBody
     @PutMapping(path = "/updateSelectedStudentFieldByFiscalYear/v1",

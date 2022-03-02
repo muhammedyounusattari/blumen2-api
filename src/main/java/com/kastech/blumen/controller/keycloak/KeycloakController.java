@@ -75,8 +75,8 @@ public class KeycloakController {
     }
 
 
-    @GetMapping(value="/validateUser/{orgId}/{user}")
-    public ResponseEntity<?> validateUser(@PathVariable(value = "orgId", required = true) String orgId, @PathVariable(value="user", required = true) String user){
+    @GetMapping(value="/validateUser/{orgId}")
+    public ResponseEntity<?> validateUser( @PathVariable(value = "orgId", required = true) String orgId, @RequestParam(value="user", required = true) String user){
         Map<String,String> statusMap = keycloakAdminClientService.validateUser(orgId, user);
         return success(statusMap, Integer.parseInt(statusMap.get("status")));
     }

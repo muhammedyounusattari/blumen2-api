@@ -21,10 +21,7 @@ public class CounselorClassesService {
 
 	@Autowired
 	CounselorClassRepository counselorClassRepository;
-	
-	@Autowired
-	StudentRepository studentRepository;
-	
+
 	public List<CounselorClasses> getCounselorClassesList() {
 		return counselorClassRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
 	}
@@ -66,15 +63,15 @@ public class CounselorClassesService {
 
 	public List<Student> getStudents(Long id) {
 		List<Student> students = new ArrayList<Student>();
-		Optional<CounselorClasses> optTeacherClass= counselorClassRepository.findById(id);
+		/*Optional<CounselorClasses> optTeacherClass= counselorClassRepository.findById(id);
 		if(optTeacherClass.isPresent()) {
 			students = optTeacherClass.get().getStudentList();
-		}
+		}*/
 		return students;
 	}
 	
 	public void assignStudents(Long classId, Set<Long> studentIds) {
-		Optional<CounselorClasses> optClass = counselorClassRepository.findById(classId);
+		/*Optional<CounselorClasses> optClass = counselorClassRepository.findById(classId);
 		if (optClass.isPresent()) {
 			CounselorClasses classObj = optClass.get();
 			List<Student> students = studentRepository.findAllById(studentIds);
@@ -83,7 +80,7 @@ public class CounselorClassesService {
 			});
 			counselorClassRepository.save(classObj);
 			//studentRepository.saveAll(students);
-		}
+		}*/
 	}
 	
 	public CounselorClasses save(CounselorClasses classes) {

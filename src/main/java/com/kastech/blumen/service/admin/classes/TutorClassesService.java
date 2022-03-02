@@ -20,9 +20,9 @@ public class TutorClassesService {
 
 	@Autowired
 	TutorClassRepository tutorClassRepository;
-
+/*
 	@Autowired
-	StudentRepository studentRepository;
+	StudentRepository studentRepository;*/
 	
 	public List<TutorClasses> getTutorClassesList() {
 		return tutorClassRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
@@ -61,16 +61,16 @@ public class TutorClassesService {
 	
 	public List<Student> getStudents(Long id) {
 		List<Student> students = new ArrayList<Student>();
-		Optional<TutorClasses> optTeacherClass= tutorClassRepository.findById(id);
+		/*Optional<TutorClasses> optTeacherClass= tutorClassRepository.findById(id);
 		if(optTeacherClass.isPresent()) {
 			students = optTeacherClass.get().getStudentList();
-		}
+		}*/
 		return students;
 	}
 	
 	public void assignStudents(Long classId, Set<Long> studentIds) {
 		Optional<TutorClasses> optClass = tutorClassRepository.findById(classId);
-		if (optClass.isPresent()) {
+		/*if (optClass.isPresent()) {
 			TutorClasses classObj = optClass.get();
 			List<Student> students = studentRepository.findAllById(studentIds);
 			students.forEach(st -> {
@@ -78,7 +78,7 @@ public class TutorClassesService {
 			});
 			tutorClassRepository.save(classObj);
 			//studentRepository.saveAll(students);
-		}
+		}*/
 	}
 	
 	public TutorClasses save(TutorClasses classes) {

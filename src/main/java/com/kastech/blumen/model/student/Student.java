@@ -28,7 +28,7 @@ public class Student implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="student_seq_gen")
     @SequenceGenerator(name="student_seq_gen", sequenceName="student_SEQ")
-    //Student data AS IS structure
+    private long stuid;
     private String sfirst;
     private String slast;
     private String smi;
@@ -139,7 +139,6 @@ public class Student implements Serializable {
     private Integer vetschecir;
     private Integer vetscherea;
     private String mainuid;
-    private Integer stuid;
     private Integer deleted;
     private Integer organizationid;
     private Integer enterenrol;
@@ -1178,11 +1177,11 @@ public class Student implements Serializable {
         this.mainuid = mainuid;
     }
 
-    public Integer getStuid() {
+    public Long getStuid() {
         return stuid;
     }
 
-    public void setStuid(Integer stuid) {
+    public void setStuid(Long stuid) {
         this.stuid = stuid;
     }
 

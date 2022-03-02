@@ -11,9 +11,9 @@ public class OrganizationType {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY, generator="organization_type_seq_gen")
     @SequenceGenerator(name="organization_type_seq_gen", sequenceName="organization_type_SEQ")
-    private long id;
-    private String orgnizationType;
-    private String description;
+    private long Id;
+    private String OrgType;
+    private String Descriptions;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -30,26 +30,26 @@ public class OrganizationType {
     }
 
     public long getId() {
-        return id;
+        return Id;
     }
 
     public void setId(long id) {
-        this.id = id;
+        Id = id;
     }
 
-    public String getOrgnizationType() {
-        return orgnizationType;
+    public String getOrgType() {
+        return OrgType;
     }
 
-    public void setOrgnizationType(String orgnizationType) {
-        this.orgnizationType = orgnizationType;
+    public void setOrgType(String orgType) {
+        OrgType = orgType;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescriptions() {
+        return Descriptions;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescriptions(String descriptions) {
+        Descriptions = descriptions;
     }
 }

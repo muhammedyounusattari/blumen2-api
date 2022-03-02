@@ -39,14 +39,14 @@ public class SemesterController {
     @Autowired
     StudentRepository studentRepository;
 
-    @ResponseBody
+    /*@ResponseBody
     @GetMapping(path = "/getAllStudentsByFiscalYearForSemester/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<Student>> getAllStudentsByFiscalYearForSemester(@RequestParam("fiscalYear") String fiscalYear) {
         List<Student> studentList = studentRepository.findAllStudentbyFiscalYear(fiscalYear);
 
         return ResponseEntity.ok(studentList);
-    }
+    }*/
 
    /* need to be implemnted here
    @ResponseBody

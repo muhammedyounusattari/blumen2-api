@@ -6,6 +6,7 @@ import com.kastech.blumen.model.admin.StaffClasses;
 import com.kastech.blumen.model.admin.TeacherClasses;
 import com.kastech.blumen.model.admin.TutorClasses;
 import com.kastech.blumen.model.student.Student;
+import com.kastech.blumen.model.student.StudentDataObject;
 import com.kastech.blumen.repository.student.StudentRepository;
 import com.kastech.blumen.service.student.StudentService;
 
@@ -46,16 +47,17 @@ public class StudentController {
     }
 
     @ResponseBody
-    @PostMapping(path = "/addStudents/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public Student addStudents(@RequestBody Student student) {
-        return studentRepository.save(student);
+    @PostMapping(path = "/saveStudent/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public StudentDataObject saveStudent(@RequestBody StudentDataObject student) {
+        return studentService.saveStudent(student);
     }
-    
-    @ResponseBody
+
+   /* @ResponseBody
     @PutMapping(path = "/student/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
     public Student updateStudent(@RequestBody Student student) {
         return studentRepository.save(student);
     }
+
 
     @ResponseBody
     @DeleteMapping(path = "/deleteStudents/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
@@ -67,10 +69,10 @@ public class StudentController {
 
     // Below apis for admin--systemtools--DeleteStudents module
 
-    /**
+    *//**
      * To get the list of deleted students
      * @return
-     */
+     *//*
     @ResponseBody
     @GetMapping(path = "/getDeleteStudentList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -79,11 +81,11 @@ public class StudentController {
         return ResponseEntity.ok(studentRepository.getAllDeletedStudent());
     }
 
-    /**
+    *//**
      * To get all deleted students by fiscal year
      * @param fiscalYear
      * @return
-     */
+     *//*
     @ResponseBody
     @GetMapping(path = "/getAllStudentsByFiscalYearForDeletedStudentList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -93,11 +95,11 @@ public class StudentController {
         return ResponseEntity.ok(studentList);
     }
 
-    /**
+    *//**
      * To delete the list of student ssno
      * @param studentSsno
      * @return
-     */
+     *//*
     @ResponseBody
     @DeleteMapping(path = "/deleteListOfStudentSsno/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
@@ -138,21 +140,21 @@ public class StudentController {
 // Below apis for admin--systemtools--RecallStudents module
 
 
-    /**
+    *//**
      * To get the RecallStudent list
      * @return
-     */
+     *//*
     @ResponseBody
     @GetMapping(path = "/getRecallStudentList/v1", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<Student>> getRecallStudentList() {
         return ResponseEntity.status(HttpStatus.OK).body(studentRepository.getAllDeletedStudent());
     }
 
-    /**
+    *//**
      * To recall the list of student ssno back to studnet model
      * @param studentSsno
      * @return
-     */
+     *//*
     @ResponseBody
     @DeleteMapping(path = "/recallSelectedStudent/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
@@ -174,9 +176,9 @@ public class StudentController {
                             studentObj.setDeletedStudent(false);
                             studentList.add(studentObj);
 
-                           /* studentList.add(student.get());
+                           *//* studentList.add(student.get());
                             deleteStudentsRepository.deleteById(Long.parseLong(ssno));
-                            studentRepository.save(student.get());*/
+                            studentRepository.save(student.get());*//*
                         } else {
                             LOGGER.info("dint find the student with ssno " + ssno);
                         }
@@ -273,5 +275,5 @@ public class StudentController {
 			return ResponseEntity.ok(CounselorClasses);
 		}
 		return new ResponseEntity(new Response(200, "No classes assigned"), null, HttpStatus.OK);
-	}
+	}*/
 }

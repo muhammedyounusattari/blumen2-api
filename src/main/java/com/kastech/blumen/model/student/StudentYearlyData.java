@@ -10,7 +10,7 @@ public class StudentYearlyData {
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="student_yearly_list_seq_gen")
     @SequenceGenerator(name="student_yearly_list_seq_gen", sequenceName="STUDENT_YEARLY_LIST_SEQ")
     private Long id;
-    private Integer stuid;
+    private Long stuid;
     private Integer yearfi;
     private Integer active;
     private Integer served;
@@ -130,11 +130,11 @@ public class StudentYearlyData {
     private Integer GRADASSIST;
     private Integer GREASON;
 
-    public Integer getStuid() {
+    public Long getStuid() {
         return stuid;
     }
 
-    public void setStuid(Integer stuid) {
+    public void setStuid(Long stuid) {
         this.stuid = stuid;
     }
 

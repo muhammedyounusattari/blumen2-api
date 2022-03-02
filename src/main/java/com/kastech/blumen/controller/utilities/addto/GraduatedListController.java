@@ -51,14 +51,14 @@ public class GraduatedListController {
         return ResponseEntity.ok(graduatedListServiceV1.getGraduatedList());
     }
 
-    @ResponseBody
+    /*@ResponseBody
     @GetMapping(path = "/getAllStudentsByFiscalYearForGraduatedList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<Student>> getAllStudentsByFiscalYearForGraduatedList(@RequestParam("fiscalYear") String fiscalYear) {
         List<Student> studentList = studentRepository.findAllStudentbyFiscalYear(fiscalYear);
 
         return ResponseEntity.ok(studentList);
-    }
+    }*/
 
     @ResponseBody
     @PostMapping(path = "/moveSelectedStudentListFromFiscalYearToGraduatedYear/v1",consumes = {MediaType.APPLICATION_JSON_VALUE},

@@ -37,7 +37,7 @@ public class TeacherClasses {
 	@JoinTable(
 			name =  "teacher_class_students",
 			joinColumns = @JoinColumn(name = "teacherclass_id"),
-			inverseJoinColumns = @JoinColumn(name="student_ssno"))
+			inverseJoinColumns = @JoinColumn(name="stuid"))
 	List<Student> studentList = new ArrayList<Student>();
 
 	public TeacherClasses(){

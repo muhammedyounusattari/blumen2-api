@@ -13,7 +13,6 @@ import com.kastech.blumen.model.admin.TeacherContact;
 @Service
 public class TeacherContactsService {
 
-	@Autowired
 
 	public List<TeacherContact> getTeacherContactList() {
 		List<TeacherContact> studentTeacherContacts = new ArrayList<>();

@@ -21,9 +21,9 @@ public class TeacherClassesService {
 
 	@Autowired
 	TeacherClassRepository teacherClassRepository;
-	
+	/*
 	@Autowired
-	StudentRepository studentRepository;
+	StudentRepository studentRepository;*/
 
 	public List<TeacherClasses> getTeacherClassesList() {
 		return teacherClassRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
@@ -62,16 +62,16 @@ public class TeacherClassesService {
 	
 	public List<Student> getStudents(Long id) {
 		List<Student> students = new ArrayList<Student>();
-		Optional<TeacherClasses> optTeacherClass= teacherClassRepository.findById(id);
+		/*Optional<TeacherClasses> optTeacherClass= teacherClassRepository.findById(id);
 		if(optTeacherClass.isPresent()) {
 			students = optTeacherClass.get().getStudentList();
-		}
+		}*/
 		return students;
 	}
 
 	public void assignStudents(Long classId, Set<Long> studentIds) {
 		Optional<TeacherClasses> optClass = teacherClassRepository.findById(classId);
-		if (optClass.isPresent()) {
+		/*if (optClass.isPresent()) {
 			TeacherClasses classObj = optClass.get();
 			List<Student> students = studentRepository.findAllById(studentIds);
 			students.forEach(st -> {
@@ -79,7 +79,7 @@ public class TeacherClassesService {
 			});
 			teacherClassRepository.save(classObj);
 			//studentRepository.saveAll(students);
-		}
+		}*/
 	}
 
 	public TeacherClasses save(TeacherClasses classes) {

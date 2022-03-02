@@ -13,8 +13,6 @@ import com.kastech.blumen.model.admin.StaffContact;
 @Service
 public class StaffContactsService {
 
-	@Autowired
-
 	public List<StaffContact> getStaffContactList() {
 		List<StaffContact> studentStaffContacts = new ArrayList<>();
 		StaffContact counselor1 = new StaffContact(1, "Alex", "Smith", "(832)654-6546",
