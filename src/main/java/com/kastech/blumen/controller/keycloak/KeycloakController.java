@@ -68,8 +68,8 @@ public class KeycloakController {
         keycloakAdminClientService.resetPassword(authHeader, realmId, id);
     }
 
-    @GetMapping(value="tenant/{realmId}/unlockUser/v1/{user}")
-    public ResponseEntity<?> unlockUser(@PathVariable String realmId, @PathVariable String user){
+    @GetMapping(value="tenant/{realmId}/unlockUser/v1")
+    public ResponseEntity<?> unlockUser(@PathVariable String realmId, @RequestParam String user){
         return ResponseEntity.ok(keycloakAdminClientService.unlockUser(user, realmId));
     }
 

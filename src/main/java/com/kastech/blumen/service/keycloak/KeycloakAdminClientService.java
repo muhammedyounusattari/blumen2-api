@@ -114,7 +114,7 @@ public class KeycloakAdminClientService {
             if (!loggedUserFound.isEmpty()) {
                 loggedUser = loggedUserFound.get();
                 wrongAttempts = loggedUser.getWrongAttempt();
-                if (wrongAttempts != null && wrongAttempts > 4) {
+                if (wrongAttempts != null && wrongAttempts >= 4) {
                     throw new LoginAttemptsException();
                 }
             } else {
@@ -203,7 +203,7 @@ public class KeycloakAdminClientService {
 
             if (e1 instanceof HttpResponseException) {
 
-                String message = "WARNING: Your Account will be Locked after " + (4 - wrongAttempts) + " more unsuccessful attempts. Please check your credentials and try again or click on 'Forgot Password?'";
+                String message = "WARNING: Your Account will be Locked after " + (5 - wrongAttempts) + " more unsuccessful attempts. Please check your credentials and try again or click on 'Forgot Password?'";
                 statusMap.put("message", message);
                 statusMap.put("status", "401");
                 statusMap.put("wrongAttempts", "" + wrongAttempts);
@@ -597,7 +597,7 @@ public class KeycloakAdminClientService {
             String maskEmail = userSecurityInfo.getEmail();
             if (maskEmail != null)
                 maskEmail = maskEmail.charAt(0) + "*****" + maskEmail.charAt(maskEmail.length() - 1);
-            statusMap.put("message", "Email has been sent to your registered mail id " + maskEmail);
+            statusMap.put("message", "Email has been sent to your registered mail id " + maskEmail+"and hashedCode is "+userSecurityInfo.getHashedCode());
             statusMap.put("status", "200");
             return statusMap;
         }
