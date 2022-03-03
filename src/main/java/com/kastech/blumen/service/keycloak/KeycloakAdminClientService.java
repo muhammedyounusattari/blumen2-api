@@ -18,6 +18,8 @@ import org.keycloak.adapters.RefreshableKeycloakSecurityContext;
 import org.keycloak.authorization.client.AuthzClient;
 import org.keycloak.authorization.client.Configuration;
 import org.keycloak.representations.AccessTokenResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -31,6 +33,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.util.StringUtils;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import org.springframework.core.io.Resource;
@@ -70,6 +73,8 @@ public class KeycloakAdminClientService {
 
     @Autowired
     private LoggedUserServiceV1 loggedUserServiceV1;
+
+    private  final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
     private KeycloakConfigurationValues loadValues(String realmId) {
         KeycloakConfigurationValues keycloakConfigurationValues = new KeycloakConfigurationValues();
@@ -242,7 +247,18 @@ public class KeycloakAdminClientService {
             }
             UserInfo userInfo = KeycloakUtil.convertUserLinkedHashmapToUserInfo(linkedHashMap, optionalUserMetaData);
             if (userInfo != null) {
-                userInfoList.add(userInfo);
+                UserInfo userInfoClone = new UserInfo();
+                userInfoClone.setId(userInfo.getId());
+                userInfoClone.setUsername(userInfo.getUsername());
+                userInfoClone.setFirstName(userInfo.getFirstName());
+                userInfoClone.setLastName(userInfo.getLastName());
+                userInfoClone.setOrgId(userInfo.getOrgId());
+                userInfoClone.setEmail(userInfo.getEmail());
+                userInfoClone.setSiteLocation(userInfo.getSiteLocation());
+                userInfoClone.setActive(userInfo.isActive());
+                userInfoClone.setRoleName(userInfo.getRoleName());
+
+                userInfoList.add(userInfoClone);
             }
         }
         return userInfoList;
@@ -285,7 +301,14 @@ public class KeycloakAdminClientService {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
         HttpEntity<User> httpEntity = new HttpEntity<>(userToBeCreated, headers);
-        Object object = restTemplate.postForObject(keycloakCreateUserUrl, httpEntity, String.class);
+        try{
+            Object object = restTemplate.postForObject(keycloakCreateUserUrl, httpEntity, String.class);
+        } catch(Exception e){
+            e.printStackTrace();;
+           String errorMessage =  ((HttpClientErrorException.Conflict) e).getResponseBodyAsString();
+           LOGGER.error("detailed errorMessage is {}", errorMessage);
+        }
+
         List<LinkedHashMap> userList = listUsersRest(token, realmId);
         for (LinkedHashMap userObj : userList) {
             if (userInfo.getUsername().equals(userObj.get("username"))) {

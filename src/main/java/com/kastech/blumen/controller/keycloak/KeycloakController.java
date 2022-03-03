@@ -39,9 +39,15 @@ public class KeycloakController {
     }
 
     @GetMapping(value = "tenant/{realmId}/userList/v1")
-    public ResponseEntity<List> getUserList(@RequestHeader("Authorization") String authHeader,
+    public ResponseEntity<?> getUserList(@RequestHeader("Authorization") String authHeader,
                                             @PathVariable String realmId) {
-        return ResponseEntity.ok(keycloakAdminClientService.listUsers(authHeader, realmId));
+        Map<String,List<UserInfo>> statusMap = new HashMap<>();
+        try {
+            statusMap.put("body", keycloakAdminClientService.listUsers(authHeader, realmId));
+            return success(statusMap, 200);
+        } catch(Exception e){
+            return failure(statusMap, 400);
+        }
     }
 
     @PutMapping(value = "tenant/{realmId}/changePassword/v1/{id}")
