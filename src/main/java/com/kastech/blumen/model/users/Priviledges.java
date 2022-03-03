@@ -1,6 +1,7 @@
 package com.kastech.blumen.model.users;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -10,17 +11,27 @@ public class Priviledges {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY, generator="priviledges_seq_gen")
     @SequenceGenerator(name="priviledges_seq_gen", sequenceName="priviledges_SEQ")
-    private long PriviledgesId;
+    private long Id;
     private String PriviledgeName;
     private long PriviledgesParentId;
-    private AccessType IsAccess;
 
-    public long getPriviledgesId() {
-        return PriviledgesId;
+    @OneToMany(mappedBy = "PriviledgesParentId")
+    private List<Priviledges> priviledgesList = new ArrayList<Priviledges>();
+
+    public long getId() {
+        return Id;
     }
 
-    public void setPriviledgesId(long priviledgesId) {
-        PriviledgesId = priviledgesId;
+    public void setId(long id) {
+        Id = id;
+    }
+
+    public List<Priviledges> getPriviledgesList() {
+        return priviledgesList;
+    }
+
+    public void setPriviledgesList(List<Priviledges> priviledgesList) {
+        this.priviledgesList = priviledgesList;
     }
 
     public String getPriviledgeName() {
@@ -39,11 +50,4 @@ public class Priviledges {
         PriviledgesParentId = priviledgesParentId;
     }
 
-    public AccessType getIsAccess() {
-        return IsAccess;
-    }
-
-    public void setIsAccess(AccessType isAccess) {
-        IsAccess = isAccess;
-    }
 }

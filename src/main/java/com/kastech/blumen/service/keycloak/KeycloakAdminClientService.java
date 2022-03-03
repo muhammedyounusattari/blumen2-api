@@ -252,11 +252,12 @@ public class KeycloakAdminClientService {
                 userInfoClone.setUsername(userInfo.getUsername());
                 userInfoClone.setFirstName(userInfo.getFirstName());
                 userInfoClone.setLastName(userInfo.getLastName());
-                userInfoClone.setOrgId(userInfo.getOrgId());
+                userInfoClone.setOrgId("mumbai-university");
                 userInfoClone.setEmail(userInfo.getEmail());
-                userInfoClone.setSiteLocation(userInfo.getSiteLocation());
+                userInfoClone.setSiteLocation("test");
                 userInfoClone.setActive(userInfo.isActive());
-                userInfoClone.setRoleName(userInfo.getRoleName());
+                userInfoClone.setRoleName("Admin(Default)");
+
 
                 userInfoList.add(userInfoClone);
             }
@@ -592,11 +593,11 @@ public class KeycloakAdminClientService {
             userSecurityInfo.setLinkExpiryDate(setDate(1));
             userSecurityInfo = userSecurityInfoServiceV1.addUserSecurityInfo(userSecurityInfo);
             loggedUser.setUserSecurityInfo(userSecurityInfo);
-            loggedUserServiceV1.addLoggedUser(loggedUser);
+            loggedUser = loggedUserServiceV1.addLoggedUser(loggedUser);
             String maskEmail = userSecurityInfo.getEmail();
             if (maskEmail != null)
                 maskEmail = maskEmail.charAt(0) + "*****" + maskEmail.charAt(maskEmail.length() - 1);
-            statusMap.put("message", "Email has been sent to your registered mail id " + userSecurityInfo.getEmail());
+            statusMap.put("message", "Email has been sent to your registered mail id " + maskEmail);
             statusMap.put("status", "200");
             return statusMap;
         }
@@ -899,7 +900,7 @@ public class KeycloakAdminClientService {
            UserSecurityInfo userSecurityInfo = loggedUser.getUserSecurityInfo();
            if(userSecurityInfo!=null){
                userSecurityInfo.setSecurityQuestion1(securityQuestion1);
-               userSecurityInfo.setSecurityQuestion1(securityQuestion2);
+               userSecurityInfo.setSecurityQuestion2(securityQuestion2);
                userSecurityInfo.setSecurityAnswer1(securityAnswer1);
                userSecurityInfo.setSecurityAnswer2(securityAnswer2);
                userSecurityInfo = userSecurityInfoServiceV1.addUserSecurityInfo(userSecurityInfo);

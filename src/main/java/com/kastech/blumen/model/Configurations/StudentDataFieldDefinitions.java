@@ -1,5 +1,6 @@
 package com.kastech.blumen.model.Configurations;
 
+import com.kastech.blumen.model.customize.PullDown;
 import com.kastech.blumen.model.customize.PullDownItem;
 
 import javax.persistence.*;
@@ -11,36 +12,34 @@ import java.util.List;
 public class StudentDataFieldDefinitions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @SequenceGenerator(name = "student_data_field_definitions_seq_gen", sequenceName = "student_data_field_definitions_seq")
     private Long Id;
     private String fieldDescription;
-    private Integer studentDataTabsId;
-    private Integer studentDataFieldMasterId;
+    private long studentDataTabsId;
+    private long studentDataFieldMasterId;
     private boolean isBluItem;
     private boolean isAPR;
     private boolean isPIField;
     private boolean isImportFileField;
     private boolean isPullDownList;
     private boolean isMandetory;
-    private int pullTypeId;
+    private long pullTypeId;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "pull_down_items_mapping",
-            joinColumns = @JoinColumn(name = "pullId"))
-    private List<PullDownItem> pullDownItems;
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "id", updatable = false, insertable = false, nullable=false)
+    private PullDown pullDownItems;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "studentDataFieldMasterId", insertable = false, updatable = false)
+
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "studentDataFieldMasterId", updatable = false, insertable = false, nullable=false)
     private StudentDataFieldMaster studentDataFieldMasters;
 
-    public List<PullDownItem> getPullDownItems() {
+    public PullDown getPullDownItems() {
         return pullDownItems;
     }
 
-    public void setPullDownItems(List<PullDownItem> pullDownItems) {
-        this.pullDownItems = pullDownItems;
-    }
+
+    public void setPullDownItems(PullDown pullDownItems) {
+        this.pullDownItems = pullDownItems;}
 
     public StudentDataFieldMaster getStudentDataFieldMasters() {
         return studentDataFieldMasters;
@@ -66,19 +65,19 @@ public class StudentDataFieldDefinitions {
         this.fieldDescription = fieldDescription;
     }
 
-    public Integer getStudentDataTabsId() {
+    public long getStudentDataTabsId() {
         return studentDataTabsId;
     }
 
-    public void setStudentDataTabsId(Integer studentDataTabsId) {
+    public void setStudentDataTabsId(long studentDataTabsId) {
         this.studentDataTabsId = studentDataTabsId;
     }
 
-    public Integer getStudentDataFieldMasterId() {
+    public Long getStudentDataFieldMasterId() {
         return studentDataFieldMasterId;
     }
 
-    public void setStudentDataFieldMasterId(Integer studentDataFieldMasterId) {
+    public void setStudentDataFieldMasterId(Long studentDataFieldMasterId) {
         this.studentDataFieldMasterId = studentDataFieldMasterId;
     }
 
@@ -130,11 +129,11 @@ public class StudentDataFieldDefinitions {
         isMandetory = mandetory;
     }
 
-    public int getPullTypeId() {
+    public long getPullTypeId() {
         return pullTypeId;
     }
 
-    public void setPullTypeId(int pullTypeId) {
+    public void setPullTypeId(long pullTypeId) {
         this.pullTypeId = pullTypeId;
     }
 

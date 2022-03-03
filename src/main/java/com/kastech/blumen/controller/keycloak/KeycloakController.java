@@ -41,11 +41,12 @@ public class KeycloakController {
     @GetMapping(value = "tenant/{realmId}/userList/v1")
     public ResponseEntity<?> getUserList(@RequestHeader("Authorization") String authHeader,
                                             @PathVariable String realmId) {
-        Map<String,List<UserInfo>> statusMap = new HashMap<>();
+        Map<String,Object> statusMap = new HashMap<>();
         try {
             statusMap.put("body", keycloakAdminClientService.listUsers(authHeader, realmId));
             return success(statusMap, 200);
         } catch(Exception e){
+            statusMap.put("message",e.getMessage());
             return failure(statusMap, 400);
         }
     }
@@ -97,7 +98,7 @@ public class KeycloakController {
     }
 
     @PostMapping(value = "forgotPassword")
-    public ResponseEntity<?> getTempPassword(@RequestBody Map<String, String> requestPaylaod) {
+    public ResponseEntity<?> forgotPasswordUpdate(@RequestBody Map<String, String> requestPaylaod) {
 
         Map<String, String> responsePayload = new HashMap<>();
         String orgCode = requestPaylaod.get("orgCode");

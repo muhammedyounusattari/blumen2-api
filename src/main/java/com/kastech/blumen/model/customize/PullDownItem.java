@@ -24,9 +24,9 @@ public class PullDownItem {
 	
 	@Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-	private Long id;
+	private long id;
 	private Integer pullId;
-	private Long pulldownId;
+	private long pulldownId;
 	private Integer displayId;
     @Column(columnDefinition="boolean default true")
     private boolean active;
@@ -40,10 +40,10 @@ public class PullDownItem {
 		this.pullId = pullId;
 	}
 
-	public Long getPulldownId() {
+	public long getPulldownId() {
 		return pulldownId;
 	}
-	public void setPulldownId(Long pulldownId) {
+	public void setPulldownId(long pulldownId) {
 		this.pulldownId = pulldownId;
 	}
 	public boolean isActive() {

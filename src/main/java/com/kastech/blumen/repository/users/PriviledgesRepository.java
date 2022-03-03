@@ -15,4 +15,6 @@ public interface PriviledgesRepository extends JpaRepository<Priviledges, Long> 
     @Query(value = "SELECT p FROM Priviledges p where p.PriviledgesParentId=?1 ")
     List<Priviledges> findAllByParentId (@Param("parentId") Long parentId);
 
+
+
 }

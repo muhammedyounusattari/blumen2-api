@@ -25,21 +25,21 @@ public class UserServices {
     @Autowired
     private PriviledgesRepository priviledgesRepository;
 
-    public GenerateResponse getPriviledgeLists()
+    public List<Priviledges> getPriviledgeLists()
     {
         Integer ErrorCode = 0 ;
+        long roleId=0;
         String Message = "Success";
-        List<PriviledgeResponse> priviledges = generateList((long)0);
-
-        return new GenerateResponse(ErrorCode, Message, priviledges);
+        List<Priviledges> priviledges = priviledgesRepository.findAllByParentId(roleId);
+        return priviledges;
     }
 
     public GenerateResponse getPriviledgeListByRoleId(long roleId)
     {
         Integer ErrorCode = 0 ;
         String Message = "Success";
-        List<UserPriviledges> userPriviledges = userPriviledgesRepository.findAllByUserRoleId(roleId);
-        List<PriviledgeResponse> priviledges = generateListByRoleId((long)0, roleId, userPriviledges);
+        List<Priviledges> priviledges = priviledgesRepository.findAllByParentId(roleId);
+        //List<PriviledgeResponse> priviledges = generateListByRoleId((long)0, roleId, userPriviledges);
 
         return new GenerateResponse(ErrorCode, Message, priviledges);
     }
@@ -165,11 +165,11 @@ public class UserServices {
         };
         for (final Priviledges Priviledge : priviledges) {
             PriviledgeResponse responseItem = new PriviledgeResponse();
-            responseItem.setPriviledgesId(Priviledge.getPriviledgesId());
-            responseItem.setIsAccess(Priviledge.getIsAccess());
+            responseItem.setPriviledgesId(Priviledge.getId());
+//            responseItem.setIsAccess(Priviledge.getIsAccess());
             responseItem.setPriviledgesParentId(Priviledge.getPriviledgesParentId());
             responseItem.setPriviledgeName(Priviledge.getPriviledgeName());
-            responseItem.setPriviledgesList( this.generateList(Priviledge.getPriviledgesId()));
+            responseItem.setPriviledgesList( this.generateList(Priviledge.getId()));
             priviledgeResponse.add(responseItem);
         }
         return priviledgeResponse;
@@ -297,11 +297,11 @@ public class UserServices {
         };
         for (final Priviledges Priviledge : priviledges) {
             PriviledgeResponse responseItem = new PriviledgeResponse();
-            responseItem.setPriviledgesId(Priviledge.getPriviledgesId());
-            responseItem.setIsAccess(validateAccess(Priviledge.getPriviledgesId(), userPriviledges));
+            responseItem.setPriviledgesId(Priviledge.getId());
+            responseItem.setIsAccess(validateAccess(Priviledge.getId(), userPriviledges));
             responseItem.setPriviledgesParentId(Priviledge.getPriviledgesParentId());
             responseItem.setPriviledgeName(Priviledge.getPriviledgeName());
-            responseItem.setPriviledgesList( this.generateList(Priviledge.getPriviledgesId()));
+            responseItem.setPriviledgesList( this.generateList(Priviledge.getId()));
             priviledgeResponse.add(responseItem);
         }
         return priviledgeResponse;

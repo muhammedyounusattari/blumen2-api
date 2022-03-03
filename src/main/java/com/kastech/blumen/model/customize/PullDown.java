@@ -8,11 +8,10 @@ import java.util.List;
 @Entity
 @Table(name = "pulldown" ,schema = "blumen2")
 public class PullDown {
-
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="pulldown_seq_gen")
     @SequenceGenerator(name="pulldown_seq_gen", sequenceName="PULLDOWN_SEQ")
-    private Long id;
+    private long id;
     private String name;
     private String selectionType;
     private int active;
@@ -20,10 +19,7 @@ public class PullDown {
     @Column(columnDefinition="BOOLEAN DEFAULT false")
     private boolean editable;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-			name =  "pull_down_items_mapping",
-			joinColumns = @JoinColumn(name = "pulldown_id"))
+    @OneToMany(mappedBy = "pulldownId")
     private List<PullDownItem> pullDownItems;
     private String orgId;
     
@@ -33,7 +29,7 @@ public class PullDown {
     public PullDown() {
     }
 
-    public PullDown(Long id, String name, String selectionType, int active, String apr,  String orgId, String code) {
+    public PullDown(long id, String name, String selectionType, int active, String apr,  String orgId, String code) {
         this.id = id;
         this.name = name;
         this.selectionType = selectionType;
@@ -70,11 +66,11 @@ public class PullDown {
 		this.code = code;
 	}
 
-	public Long getId() {
+	public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
