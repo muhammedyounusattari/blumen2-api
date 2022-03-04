@@ -2,7 +2,7 @@ package com.kastech.blumen.model.keycloak;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.USE_DEFAULTS)
 public class UserInfo {
     private String id;
     private String username;
