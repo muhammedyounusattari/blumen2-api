@@ -247,19 +247,10 @@ public class KeycloakAdminClientService {
             }
             UserInfo userInfo = KeycloakUtil.convertUserLinkedHashmapToUserInfo(linkedHashMap, optionalUserMetaData);
             if (userInfo != null) {
-                UserInfo userInfoClone = new UserInfo();
-                userInfoClone.setId(userInfo.getId());
-                userInfoClone.setUsername(userInfo.getUsername());
-                userInfoClone.setFirstName(userInfo.getFirstName());
-                userInfoClone.setLastName(userInfo.getLastName());
-                userInfoClone.setOrgId("mumbai-university");
-                userInfoClone.setEmail(userInfo.getEmail());
-                userInfoClone.setSiteLocation("test");
-                userInfoClone.setActive(userInfo.isActive());
-                userInfoClone.setRoleName("Admin(Default)");
-
-
-                userInfoList.add(userInfoClone);
+                userInfo.setOrgId("mumbai-university");
+                userInfo.setSiteLocation("test");
+                userInfo.setRoleName("Admin(Default)");
+                userInfoList.add(userInfo);
             }
         }
         return userInfoList;
@@ -595,9 +586,11 @@ public class KeycloakAdminClientService {
             loggedUser.setUserSecurityInfo(userSecurityInfo);
             loggedUser = loggedUserServiceV1.addLoggedUser(loggedUser);
             String maskEmail = userSecurityInfo.getEmail();
-            if (maskEmail != null)
+            if (maskEmail != null){
+
                 maskEmail = maskEmail.charAt(0) + "*****" + maskEmail.charAt(maskEmail.length() - 1);
-            statusMap.put("message", "Email has been sent to your registered mail id " + maskEmail+"and hashedCode is "+userSecurityInfo.getHashedCode());
+            }
+            statusMap.put("message", "Email has been sent to your registered mail id " + maskEmail+" and hashedCode is "+userSecurityInfo.getHashedCode());
             statusMap.put("status", "200");
             return statusMap;
         }
