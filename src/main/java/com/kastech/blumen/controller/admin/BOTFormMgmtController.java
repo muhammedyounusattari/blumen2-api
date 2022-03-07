@@ -9,12 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.kastech.blumen.model.AnnualPerformance;
 import com.kastech.blumen.model.ConfigSettings;
@@ -45,10 +40,10 @@ public class BOTFormMgmtController {
 	}
 	
 	@ResponseBody
-	@GetMapping(path = "/getConfigSettingList/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<Collection<ConfigSettings>> getConfigSettingList() {
-		LOGGER.info("Inside getConfigSettingList");	
-		return ResponseEntity.ok(bOTFormMgmtService.getConfigSettingList());
+	@GetMapping(path = "/getConfigSettingList/v1/{orgId}", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<Collection<ConfigSettings>> getConfigSettingList(@PathVariable("orgId") String orgId, @RequestParam("user") String user) {
+		LOGGER.info("Inside getConfigSettingList orgId {}, name {}", orgId, user);
+		return ResponseEntity.ok(bOTFormMgmtService.getConfigSettingList(orgId, user));
 	}
 	
 	@ResponseBody

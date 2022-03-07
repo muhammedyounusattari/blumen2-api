@@ -3,6 +3,7 @@ package com.kastech.blumen.service.admin;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,12 +47,18 @@ public class BOTFormMgmtService {
 		return botMgmtForms;
 	}
 
-	public List<ConfigSettings>  getConfigSettingList() {
-		return configSettingRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
+	public List<ConfigSettings>  getConfigSettingList(String orgId, String user) {
+		return configSettingRepository.findByOrganizationTypeAndUserSecurityInfo(orgId, user);
 	}
 
 	public ConfigSettings saveConfigSettings(ConfigSettings configSettings) {
-		return configSettingRepository.save(configSettings);
+		Optional<ConfigSettings> configSettingss = configSettingRepository.findById(configSettings.getId());
+		ConfigSettings configSettingsDB = new ConfigSettings();
+		if(!configSettingss.isEmpty()) {
+			configSettingsDB = configSettingss.get();
+			configSettingsDB.setConfigValue(configSettings.getConfigValue());
+		}
+		return configSettingRepository.save(configSettingsDB);
 	}
 	
 	
