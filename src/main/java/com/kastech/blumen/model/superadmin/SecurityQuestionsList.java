@@ -2,10 +2,7 @@ package com.kastech.blumen.model.superadmin;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "security_question_list" ,schema = "blumen2")
@@ -13,6 +10,8 @@ import javax.persistence.Table;
 public class SecurityQuestionsList {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)//, generator="security_question_list_seq_gen")
+   // @SequenceGenerator(name="security_question_list_seq_gen", sequenceName="security_question_list_seq")
     private Long id;
 
     @Column(length = 1000)
