@@ -9,7 +9,8 @@ import java.io.Serializable;
 public class ConfigSettings implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="config_setting_seq_gen")
+    @SequenceGenerator(name="config_setting_seq_gen", sequenceName="CONFIG_SETTING_SEQ")
 	private Long id;
 
 	@Column(nullable = false)
@@ -20,12 +21,9 @@ public class ConfigSettings implements Serializable {
 	private String description;
 
 	@Column(nullable = false)
-	private String organisationType;
+	private String origanisationType;
 
 	@Column(nullable = false)
-	private String orgId;
-
-	@Column(nullable = true)
 	private String users;
 
 	public ConfigSettings() {}
@@ -36,7 +34,7 @@ public class ConfigSettings implements Serializable {
 		this.configType = configType;
 		this.configValue = configValue;
 		this.description = description;
-		this.organisationType = origanisationType;
+		this.origanisationType = origanisationType;
 		this.users = users;
 	}
 
@@ -81,11 +79,11 @@ public class ConfigSettings implements Serializable {
 	}
 
 	public String getOriganisationType() {
-		return organisationType;
+		return origanisationType;
 	}
 
 	public void setOriganisationType(String origanisationType) {
-		this.organisationType = origanisationType;
+		this.origanisationType = origanisationType;
 	}
 
 	public String getUsers() {
@@ -96,14 +94,6 @@ public class ConfigSettings implements Serializable {
 		this.users = users;
 	}
 
-	public String getOrgId() {
-		return orgId;
-	}
-
-	public void setOrgId(String orgId) {
-		this.orgId = orgId;
-	}
-
 	@Override
 	public String toString() {
 		return "ConfigSettings{" +
@@ -112,7 +102,7 @@ public class ConfigSettings implements Serializable {
 				", configType='" + configType + '\'' +
 				", configValue='" + configValue + '\'' +
 				", description='" + description + '\'' +
-				", origanisationType='" + organisationType + '\'' +
+				", origanisationType='" + origanisationType + '\'' +
 				", users='" + users + '\'' +
 				'}';
 	}

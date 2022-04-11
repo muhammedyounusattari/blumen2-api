@@ -44,8 +44,8 @@ public class TimeClockController {
     @Autowired
     StaffRepository staffRepository;
 
-    @Autowired
-    private RestTemplate restTemplate;
+//    @Autowired
+    private RestTemplate restTemplate = new RestTemplate();
 
     @ResponseBody
     @GetMapping(path = "/getStaffTimeById/v1", produces = {MediaType.APPLICATION_JSON_VALUE})

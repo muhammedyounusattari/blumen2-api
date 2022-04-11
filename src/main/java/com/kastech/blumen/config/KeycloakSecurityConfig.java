@@ -31,8 +31,8 @@ import org.springframework.security.web.authentication.session.NullAuthenticated
 import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 
-@KeycloakConfiguration
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@KeycloakConfiguration
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class KeycloakSecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
 
     private final KeycloakClientRequestFactory keycloakClientRequestFactory;

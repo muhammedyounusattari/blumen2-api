@@ -9,7 +9,8 @@ import java.util.List;
 @Table(name = "pulldown" ,schema = "blumen2")
 public class PullDown {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="pulldown_seq_gen")
+    @SequenceGenerator(name="pulldown_seq_gen", sequenceName="PULLDOWN_SEQ")
     private long id;
     private String name;
     private String selectionType;
@@ -20,11 +21,9 @@ public class PullDown {
 
     @OneToMany(mappedBy = "pulldownId")
     private List<PullDownItem> pullDownItems;
-
-    @Column(nullable = false)
     private String orgId;
     
-    @Column(nullable  = false)
+    @Column(unique = true)
     private String code;
 
     public PullDown() {

@@ -69,7 +69,7 @@ public class KeycloakAdminClientService {
     ApplicationContext applicationContext;
 
     @Autowired
-    private RestTemplate restTemplate;
+    private RestTemplate restTemplate = new RestTemplate();
 
     @Autowired
     private LoggedUserServiceV1 loggedUserServiceV1;

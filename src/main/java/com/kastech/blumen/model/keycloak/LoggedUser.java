@@ -17,27 +17,13 @@ public class LoggedUser implements Serializable {
     @Id
     private String orgId;
 
-    public String getOrgId() {
-        return orgId;
-    }
-
-    public void setOrgId(String orgId) {
-        this.orgId = orgId;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
     private int ita;
+
     private int exp;
 
-    private String issueDate;
-    private String expiryDate;
+    private Date issueDate;
+    private Date expiryDate;
+
     @Nullable
     private Integer wrongAttempt;
 
@@ -47,37 +33,47 @@ public class LoggedUser implements Serializable {
     @Nullable
     private String tempLink;
 
-    @Nullable
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false)
+    private String organizationType;
+
+    @Column(nullable = false)
+    private String scope;
+
+    @Column(nullable = true)
+    private String createdBy;
+
+    @Column(nullable = true)
     private Date createdDate;
+
+    @Column(nullable = true)
+    private Date editedDate;
+
+    @Column(nullable = true)
+    private Date lastLogin;
 
     @OneToOne(cascade = CascadeType.ALL)
     private UserSecurityInfo userSecurityInfo;
 
-    public String getIssueDate() {
-        return issueDate;
+    public LoggedUser() {}
+
+    public String getId() {
+        return id;
     }
 
-    public void setIssueDate(String issueDate) {
-        this.issueDate = issueDate;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getExpiryDate() {
-        return expiryDate;
+    public String getOrgId() {
+        return orgId;
     }
 
-    public void setExpiryDate(String expiryDate) {
-        this.expiryDate = expiryDate;
+    public void setOrgId(String orgId) {
+        this.orgId = orgId;
     }
-
-    public Integer getWrongAttempt() {
-        return wrongAttempt;
-    }
-
-    public void setWrongAttempt(Integer wrongAttempt) {
-        this.wrongAttempt = wrongAttempt;
-    }
-
-    private String userName;
 
     public int getIta() {
         return ita;
@@ -95,12 +91,29 @@ public class LoggedUser implements Serializable {
         this.exp = exp;
     }
 
-    public String getUserName() {
-        return userName;
+    public Date getIssueDate() {
+        return issueDate;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setIssueDate(Date issueDate) {
+        this.issueDate = issueDate;
+    }
+
+    public Date getExpiryDate() {
+        return expiryDate;
+    }
+
+    public void setExpiryDate(Date expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+
+    @Nullable
+    public Integer getWrongAttempt() {
+        return wrongAttempt;
+    }
+
+    public void setWrongAttempt(@Nullable Integer wrongAttempt) {
+        this.wrongAttempt = wrongAttempt;
     }
 
     @Nullable
@@ -121,13 +134,60 @@ public class LoggedUser implements Serializable {
         this.tempLink = tempLink;
     }
 
-    @Nullable
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getOrganizationType() {
+        return organizationType;
+    }
+
+    public void setOrganizationType(String organizationType) {
+        this.organizationType = organizationType;
+    }
+
+    public String getScope() {
+        return scope;
+    }
+
+    public void setScope(String scope) {
+        this.scope = scope;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
     public Date getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(@Nullable Date createdDate) {
+    public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public Date getEditedDate() {
+        return editedDate;
+    }
+
+    public void setEditedDate(Date editedDate) {
+        this.editedDate = editedDate;
+    }
+
+    public Date getLastLogin() {
+        return lastLogin;
+    }
+
+    public void setLastLogin(Date lastLogin) {
+        this.lastLogin = lastLogin;
     }
 
     public UserSecurityInfo getUserSecurityInfo() {
@@ -138,9 +198,7 @@ public class LoggedUser implements Serializable {
         this.userSecurityInfo = userSecurityInfo;
     }
 
-    public LoggedUser() {}
-
-    public LoggedUser(String id, String orgId, int ita, int exp, String issueDate, String expiryDate, @Nullable Integer wrongAttempt, @Nullable Boolean firstTime, @Nullable String tempLink, @Nullable Date createdDate, UserSecurityInfo userSecurityInfo, String userName) {
+    public LoggedUser(String id, String orgId, int ita, int exp, Date issueDate, Date expiryDate, @Nullable Integer wrongAttempt, @Nullable Boolean firstTime, @Nullable String tempLink, String password, String organizationType, String scope, String createdBy, Date createdDate, Date editedDate, Date lastLogin, UserSecurityInfo userSecurityInfo) {
         this.id = id;
         this.orgId = orgId;
         this.ita = ita;
@@ -150,9 +208,14 @@ public class LoggedUser implements Serializable {
         this.wrongAttempt = wrongAttempt;
         this.firstTime = firstTime;
         this.tempLink = tempLink;
+        this.password = password;
+        this.organizationType = organizationType;
+        this.scope = scope;
+        this.createdBy = createdBy;
         this.createdDate = createdDate;
+        this.editedDate = editedDate;
+        this.lastLogin = lastLogin;
         this.userSecurityInfo = userSecurityInfo;
-        this.userName = userName;
     }
 
     @Override
@@ -162,14 +225,19 @@ public class LoggedUser implements Serializable {
                 ", orgId='" + orgId + '\'' +
                 ", ita=" + ita +
                 ", exp=" + exp +
-                ", issueDate='" + issueDate + '\'' +
-                ", expiryDate='" + expiryDate + '\'' +
+                ", issueDate=" + issueDate +
+                ", expiryDate=" + expiryDate +
                 ", wrongAttempt=" + wrongAttempt +
                 ", firstTime=" + firstTime +
                 ", tempLink='" + tempLink + '\'' +
+                ", password='" + password + '\'' +
+                ", organizationType='" + organizationType + '\'' +
+                ", scope='" + scope + '\'' +
+                ", createdBy='" + createdBy + '\'' +
                 ", createdDate=" + createdDate +
+                ", editedDate=" + editedDate +
+                ", lastLogin=" + lastLogin +
                 ", userSecurityInfo=" + userSecurityInfo +
-                ", userName='" + userName + '\'' +
                 '}';
     }
 }

@@ -1,22 +1,25 @@
 package com.kastech.blumen.service.superadmin;
 
+import com.kastech.blumen.model.keycloak.LoggedUser;
 import com.kastech.blumen.model.superadmin.SecurityQuestionsList;
+import com.kastech.blumen.model.superadmin.SuperAdmin;
 import com.kastech.blumen.repository.superadmin.SecurityQuestionsListRepository;
+import com.kastech.blumen.repository.superadmin.SuperAdminRepository;
 import com.kastech.blumen.service.keycloak.KeycloakAdminClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Component
 public class SuperAdminService {
 
     @Autowired
     private SecurityQuestionsListRepository securityQuestionsRepository;
+
+    @Autowired
+    private SuperAdminRepository superAdminRepository;
 
     @Autowired
     private KeycloakAdminClientService keycloakAdminClientService;
@@ -60,5 +63,10 @@ public class SuperAdminService {
         statusMap.put("message", "SecurityQuestion added successfully");
         return statusMap;
 
+    }
+
+    public List<SuperAdmin> findLoggedUserDetails(String userName, String password, String orgId) {
+        List<SuperAdmin> superAdmins = superAdminRepository.findByUserDetails(userName,password, orgId);
+        return superAdmins;
     }
 }
