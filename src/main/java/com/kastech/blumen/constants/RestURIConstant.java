@@ -2,7 +2,7 @@ package com.kastech.blumen.constants;
 
 public class RestURIConstant {
 
-    public static final String ROOT = "/api/blumen";
+    public static final String ROOT = "/api/blumen-api";
 
     //AUTHENTICATE
     public static final String LOGIN ="/authenticate";
