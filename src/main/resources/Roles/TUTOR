@@ -1,0 +1,77 @@
+
+MY Home
+. HOME
+  . Change My Password
+  . My Calendar
+  . Send Message
+  . Set My Preferences
+  . Time Clock
+  . View Messages
+. My Favorite Tasks
+. My Favorite Reports
+
+Student
+. HOME
+	. Asset/Inventory Management
+	. Send Bulk Text Messages
+. Data Entry (R)
+. Contacts
+	. Lab Contacts
+	. Tutor Contacts
+	. Display Tutor Contacts Reminder
+. Logs
+	. Text Message Log
+	. Text Message Replies
+
+
+Utilities
+. Home
+. Quick Edit(R)
+. Add To(R)
+. Generate Simillar(R)
+. Generate Schedule
+	. Copy Tutor Classes
+	. Tutor Schedule
+. Generate Contacts
+	. Tutor Contacts
+
+Report (HUGE)
+.
+
+APR
+. Home
+. APR Sections (R)
+. Clear Profiles (R)
+. Update Profiles
+	. Update Student Profile from Lab Contacts
+
+Counselor
+. Home (R)
+. Reports (R)
+
+Tutor
+. Home
+    . Assign Students to Tutor Classes
+    . Tutor Classes
+    . Tutor Contacts
+. Reports
+
+Teacher
+. Home (R)
+. Reports (R)
+
+Staff
+. Home (R)
+. Reports (R)
+
+Admin
+. Home
+    . System Preferences
+. Customize
+    . Activity / Services Group List
+    . Activity / Services List
+    . Custom Fields Value
+    . Grade / Standing Group List
+    . Pulldown Lists
+    . School Names
+. System Tools (R)

@@ -157,19 +157,17 @@ public class KeycloakAdminClientService {
             String expiryDateStr = expiryDate.format(dateTimeFormatter);
             loggedUser.setWrongAttempt(0);
             UserSecurityInfo userSecurityInfo = null;
-            if (loggedUser.getUserSecurityInfo() == null) {
+           /* if (loggedUser.getUserSecurityInfo() == null) {
                 userSecurityInfo = new UserSecurityInfo();
-                userSecurityInfo.setAccessToken(response.getToken());
                 userSecurityInfo.setOrgId(realmId);
                 userSecurityInfo.setId(realmId);
                 userSecurityInfo.setUsername(loginRequest.getUsername());
                 userSecurityInfo = userSecurityInfoServiceV1.addUserSecurityInfo(userSecurityInfo);
                 loggedUser.setUserSecurityInfo(userSecurityInfo);
-            }
+            } */
 
-            loggedUser.getUserSecurityInfo().setAccessToken(response.getToken());
             if (loggedUserFound.isPresent()) {
-                LoggedUserId loggedUserId = new LoggedUserId(loggedUserFound.get().getId(), realmId);
+                LoggedUserId loggedUserId = new LoggedUserId("22", realmId);
                 loggedUserServiceV1.deleteById(loggedUserId);
                 loggedUserServiceV1.addLoggedUser(loggedUser);
             } else {
@@ -263,10 +261,8 @@ public class KeycloakAdminClientService {
         if(loggedUserOptional.isEmpty()) {
          loggedUserOptional =   loggedUserServiceV1.findLoggedUser(user, realmId);
          if(!loggedUserOptional.isEmpty()){
-             UserSecurityInfo userSecurityInfo = loggedUserOptional.get().getUserSecurityInfo();
-             if(userSecurityInfo !=null && userSecurityInfo.getAccessToken() !=null){
-                 token = userSecurityInfo.getAccessToken();
-             }
+             UserSecurityInfo userSecurityInfo = null;//loggedUserOptional.get().getUserSecurityInfo();
+
          }
         } else {
             //throw exception here
@@ -320,8 +316,8 @@ public class KeycloakAdminClientService {
                     userInfo.getZipcode(), userInfo.getMobile(), userInfo.getPhone2(),
                     userInfo.getFax(), userInfo.getNotes(), userInfo.isSendMail());
             userMetaDataServiceV1.addUserMetaData(userMetaData);
-            UserSecurityInfo userSecurityInfo = new //UserSecurityInfo(userCreatedId, realmId, userInfo.getUsername(), randomPassword, null, null, null, null, null, null, null, null);
-             UserSecurityInfo(userCreatedId, realmId, userInfo.getUsername(), userInfo.getFirstName(), userInfo.getLastName(), randomPassword, userInfo.getAddress1(), userInfo.getAddress2(), userInfo.getCity(), userInfo.getState(), userInfo.getZipcode(), userInfo.getMobile(), userInfo.getPhone2(), userInfo.getPhone2(), userInfo.getFax(), userInfo.getNotes(), userInfo.getRoleName(), userInfo.getSiteLocation(), userInfo.isActive(), null, null, null, null, userInfo.getEmail(), null, null, null, null);
+            UserSecurityInfo userSecurityInfo = null; //new //UserSecurityInfo(userCreatedId, realmId, userInfo.getUsername(), randomPassword, null, null, null, null, null, null, null, null);
+            // UserSecurityInfo(userCreatedId, realmId, userInfo.getUsername(), userInfo.getFirstName(), userInfo.getLastName(), randomPassword, userInfo.getAddress1(), userInfo.getAddress2(), userInfo.getCity(), userInfo.getState(), userInfo.getZipcode(), userInfo.getMobile(), userInfo.getPhone2(), userInfo.getPhone2(), userInfo.getFax(), userInfo.getNotes(), userInfo.getRoleName(), userInfo.getSiteLocation(), userInfo.isActive(), null, null, null, null, userInfo.getEmail(), null, null, null, null);
             userSecurityInfoServiceV1.addUserSecurityInfo(userSecurityInfo);
         }
 
@@ -527,13 +523,13 @@ public class KeycloakAdminClientService {
         Optional<LoggedUser> loggedUserFound = loggedUserServiceV1.findLoggedUser(username, realmId);
         if (!loggedUserFound.isEmpty()) {
             LoggedUser loggedUser = loggedUserFound.get();
-            if (loggedUser != null && loggedUser.getUserSecurityInfo() != null) {
+           /* if (loggedUser != null && loggedUser.getUserSecurityInfo() != null) {
                 UserSecurityInfo userSecurityInfo = loggedUser.getUserSecurityInfo();
                 statusMap.put("SecurityQuestion1", userSecurityInfo.getSecurityQuestion1());
                 statusMap.put("SecurityQuestion2", userSecurityInfo.getSecurityQuestion2());
                 statusMap.put("status", "200");
                 return statusMap;
-            }
+            } */
         }
         statusMap.put("message", "Invalid details");
         statusMap.put("status", "404");
@@ -557,7 +553,7 @@ public class KeycloakAdminClientService {
         Optional<LoggedUser> loggedUserFound = loggedUserServiceV1.findLoggedUser(username, realmId);
         if (!loggedUserFound.isEmpty()) {
             LoggedUser loggedUser = loggedUserFound.get();
-            if (loggedUser != null && loggedUser.getUserSecurityInfo() != null) {
+            if (loggedUser != null /*&& loggedUser.getUserSecurityInfo() != null*/) {
 
                 Integer wrongAttempts = loggedUser.getWrongAttempt();
                 if (wrongAttempts != null && wrongAttempts > 4) {
@@ -568,7 +564,7 @@ public class KeycloakAdminClientService {
                 }
             }
 
-            UserSecurityInfo userSecurityInfo = loggedUser.getUserSecurityInfo();
+            UserSecurityInfo userSecurityInfo = null;//loggedUser.getUserSecurityInfo();
             if (!securityAnswer1.equalsIgnoreCase(userSecurityInfo.getSecurityAnswer1())) {
                 statusMap.put("message", "Invalid Security Answer1");
                 statusMap.put("status", "404");
@@ -583,9 +579,9 @@ public class KeycloakAdminClientService {
             userSecurityInfo.setHashedCode(UUID.randomUUID().toString());
             userSecurityInfo.setLinkExpiryDate(setDate(1));
             userSecurityInfo = userSecurityInfoServiceV1.addUserSecurityInfo(userSecurityInfo);
-            loggedUser.setUserSecurityInfo(userSecurityInfo);
+          //  loggedUser.setUserSecurityInfo(userSecurityInfo);
             loggedUser = loggedUserServiceV1.addLoggedUser(loggedUser);
-            String maskEmail = userSecurityInfo.getEmail();
+            String maskEmail = "";//userSecurityInfo.getEmail();
             if (maskEmail != null){
 
                 maskEmail = maskEmail.charAt(0) + "*****" + maskEmail.charAt(maskEmail.length() - 1);
@@ -595,7 +591,7 @@ public class KeycloakAdminClientService {
             return statusMap;
         }
 
-        statusMap = validateOrgCode(realmId);
+        statusMap = validateOrgCode(1l);
         if (statusMap.get("status").equals("200")) {
 
             statusMap.put("message", "Invalid username");
@@ -617,20 +613,20 @@ public class KeycloakAdminClientService {
         }
 
         LoggedUser loggedUser = loggedUserFound.get();
-        if(loggedUser.getUserSecurityInfo()!=null){
+    /*    if(loggedUser.getUserSecurityInfo()!=null){
             UserSecurityInfo userSecurityInfo = loggedUser.getUserSecurityInfo();
             userSecurityInfo.setHashedCode(UUID.randomUUID().toString());
             userSecurityInfo.setLinkExpiryDate(setDate(1));
             userSecurityInfo = userSecurityInfoServiceV1.addUserSecurityInfo(userSecurityInfo);
             loggedUser.setUserSecurityInfo(userSecurityInfo);
             loggedUserServiceV1.addLoggedUser(loggedUser);
-            String maskEmail = userSecurityInfo.getEmail();
+            String maskEmail = ""; //userSecurityInfo.getEmail();
             if (maskEmail != null)
                 maskEmail = maskEmail.charAt(0) + "*****" + maskEmail.charAt(maskEmail.length() - 1);
             statusMap.put("message", "Email has been sent to your registered mail id " + maskEmail +"with hashed code "+userSecurityInfo.getHashedCode());
             statusMap.put("status", "200");
             return statusMap;
-        }
+        } */
 
         statusMap.put("status", "404");
         statusMap.put("message", "User doesn't exist");
@@ -785,15 +781,15 @@ public class KeycloakAdminClientService {
         Optional<LoggedUser> loggedUserFound = loggedUserServiceV1.findLoggedUser(username, orgCode);
         if (!loggedUserFound.isEmpty()) {
             LoggedUser loggedUser = loggedUserFound.get();
-            if (loggedUser != null && loggedUser.getUserSecurityInfo() != null) {
+        /*    if (loggedUser != null && loggedUser.getUserSecurityInfo() != null) {
                 UserSecurityInfo userSecurityInfo = loggedUser.getUserSecurityInfo();
                 statusMap.put("SecurityQuestion1", userSecurityInfo.getSecurityQuestion1());
                 statusMap.put("SecurityQuestion2", userSecurityInfo.getSecurityQuestion2());
                 statusMap.put("status", "200");
                 return statusMap;
-            }
+            }*/
         } else {
-            statusMap = validateOrgCode(orgCode);
+            statusMap = validateOrgCode(1l);
             if (statusMap.get("status").equals("200")) {
                 statusMap.put("message", "Invalid username");
                 statusMap.put("status", "404");
@@ -807,7 +803,7 @@ public class KeycloakAdminClientService {
         return statusMap;
     }
 
-    public Map<String, String> validateOrgCode(String orgCode) {
+    public Map<String, String> validateOrgCode(Long orgCode) {
         Map<String, String> statusMap = new HashMap<>();
         Optional<LoggedUser> loggedUser = loggedUserServiceV1.findByOrgId(orgCode);
 
@@ -851,7 +847,7 @@ public class KeycloakAdminClientService {
                }
                try {
                    userSecurityInfo.setPassword(password);
-                   changePassword(userSecurityInfo.getAccessToken(), userSecurityInfo, userSecurityInfo.getOrgId(), userSecurityInfo.getUsername() );
+                //   changePassword(userSecurityInfo.getAccessToken(), userSecurityInfo, userSecurityInfo.getOrgId(), userSecurityInfo.getUsername() );
                    userSecurityInfo.setHashedCode(UUID.randomUUID().toString());
                    userSecurityInfoServiceV1.addUserSecurityInfo(userSecurityInfo);
 
@@ -890,7 +886,7 @@ public class KeycloakAdminClientService {
        Optional<LoggedUser> loggedUserFound = loggedUserServiceV1.findLoggedUser(username,realmId);
        if(!loggedUserFound.isEmpty()){
            LoggedUser loggedUser = loggedUserFound.get();
-           UserSecurityInfo userSecurityInfo = loggedUser.getUserSecurityInfo();
+           UserSecurityInfo userSecurityInfo = null; //loggedUser.getUserSecurityInfo();
            if(userSecurityInfo!=null){
                userSecurityInfo.setSecurityQuestion1(securityQuestion1);
                userSecurityInfo.setSecurityQuestion2(securityQuestion2);
@@ -898,7 +894,7 @@ public class KeycloakAdminClientService {
                userSecurityInfo.setSecurityAnswer2(securityAnswer2);
                userSecurityInfo = userSecurityInfoServiceV1.addUserSecurityInfo(userSecurityInfo);
                loggedUser.setFirstTime(Boolean.FALSE);
-               loggedUser.setUserSecurityInfo(userSecurityInfo);
+              // loggedUser.setUserSecurityInfo(userSecurityInfo);
                loggedUserServiceV1.addLoggedUser(loggedUser);
 
                statusMap.put("message", "Security Questions are successfully updated.");

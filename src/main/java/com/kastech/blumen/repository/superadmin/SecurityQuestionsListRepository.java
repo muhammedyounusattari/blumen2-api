@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface SecurityQuestionsListRepository extends JpaRepository<SecurityQuestionsList, Long> {
 
-    @Query(value = "SELECT sq FROM SecurityQuestionsList sq where sq.orgCode=?1 and sq.questionType=?2 ORDER BY orgCode")
-    List<SecurityQuestionsList> findByOrgCode(@Param("orgCode") String orgCode,@Param("questionType") String questionType);
+    @Query(value = "SELECT sq FROM SecurityQuestionsList sq where sq.orgId=?1 and sq.questionType=?2 ORDER BY orgId")
+    List<SecurityQuestionsList> findByOrgCode(@Param("orgCode") Long orgCode,@Param("questionType") String questionType);
 }

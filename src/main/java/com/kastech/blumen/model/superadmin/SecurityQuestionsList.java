@@ -2,10 +2,7 @@ package com.kastech.blumen.model.superadmin;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "security_question_list" ,schema = "blumen2")
@@ -13,6 +10,7 @@ import javax.persistence.Table;
 public class SecurityQuestionsList {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
     @Column(length = 1000)
@@ -22,10 +20,18 @@ public class SecurityQuestionsList {
     private String questionType;
 
     @Column
-    private String orgCode;
+    private Long orgId;
 
-    @Column
-    private String orgId;
+   public SecurityQuestionsList(){
+
+   }
+
+    public SecurityQuestionsList(Long id, String name, String questionType, Long orgId) {
+        this.id = id;
+        this.name = name;
+        this.questionType = questionType;
+        this.orgId = orgId;
+    }
 
     public Long getId() {
         return id;
@@ -43,22 +49,6 @@ public class SecurityQuestionsList {
         this.name = name;
     }
 
-    public String getOrgCode() {
-        return orgCode;
-    }
-
-    public void setOrgCode(String orgCode) {
-        this.orgCode = orgCode;
-    }
-
-    public String getOrgId() {
-        return orgId;
-    }
-
-    public void setOrgId(String orgId) {
-        this.orgId = orgId;
-    }
-
     public String getQuestionType() {
         return questionType;
     }
@@ -67,19 +57,11 @@ public class SecurityQuestionsList {
         this.questionType = questionType;
     }
 
-    public SecurityQuestionsList() {
+    public Long getOrgId() {
+        return orgId;
     }
 
-    public SecurityQuestionsList(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public SecurityQuestionsList(Long id, String name, String questionType, String orgCode, String orgId) {
-        this.id = id;
-        this.name = name;
-        this.questionType = questionType;
-        this.orgCode = orgCode;
+    public void setOrgId(Long orgId) {
         this.orgId = orgId;
     }
 }

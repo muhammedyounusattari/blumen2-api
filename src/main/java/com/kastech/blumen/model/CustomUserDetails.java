@@ -29,7 +29,9 @@ public class CustomUserDetails implements UserDetails {
 
     private String orgType;
 
-    public CustomUserDetails(Collection<? extends GrantedAuthority> authorities, String email, String displayName, String password, String username, Boolean enabled, Boolean accountNonExpired, Boolean accountNonLocked, boolean credentialsNonExpired, String scope, String orgType) {
+    private Long orgId;
+
+    public CustomUserDetails(Collection<? extends GrantedAuthority> authorities, String email, String displayName, String password, String username, Boolean enabled, Boolean accountNonExpired, Boolean accountNonLocked, boolean credentialsNonExpired, String scope, String orgType, Long orgId) {
         this.authorities = authorities;
         this.email = email;
         this.displayName = displayName;
@@ -41,30 +43,16 @@ public class CustomUserDetails implements UserDetails {
         this.credentialsNonExpired = credentialsNonExpired;
         this.scope = scope;
         this.orgType = orgType;
+        this.orgId = orgId;
     }
 
-    public CustomUserDetails(String email, String displayName, String username, String password, Boolean enabled, Collection<? extends GrantedAuthority> authorities) {
-        this.email = email;
-        this.displayName = displayName;
-        this.enabled=enabled;
-        this.username=username;
-        this.password=password;
-        this.accountNonExpired=true;
-        this.accountNonLocked=true;
-        this.credentialsNonExpired=true;
-        this.authorities=authorities;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
     }
 
-    public CustomUserDetails(String email, String displayName, String password, String username, Boolean enabled, Boolean accountNonExpired, Boolean accountNonLocked, boolean credentialsNonExpired, Collection<? extends GrantedAuthority> authorities) {
+    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
         this.authorities = authorities;
-        this.email = email;
-        this.displayName = displayName;
-        this.password = password;
-        this.username = username;
-        this.enabled = enabled;
-        this.accountNonExpired = accountNonExpired;
-        this.accountNonLocked = accountNonLocked;
-        this.credentialsNonExpired = credentialsNonExpired;
     }
 
     public String getEmail() {
@@ -84,13 +72,12 @@ public class CustomUserDetails implements UserDetails {
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
-    }
-
-    @Override
     public String getPassword() {
         return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
@@ -100,34 +87,12 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return accountNonExpired;
+        return false;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return accountNonLocked;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return credentialsNonExpired;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void eraseCredentials(){
-        this.password=null;
-    }
-
-    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
-        this.authorities = authorities;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+        return false;
     }
 
     public void setUsername(String username) {
@@ -158,6 +123,16 @@ public class CustomUserDetails implements UserDetails {
         this.accountNonLocked = accountNonLocked;
     }
 
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return credentialsNonExpired;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
+
     public void setCredentialsNonExpired(boolean credentialsNonExpired) {
         this.credentialsNonExpired = credentialsNonExpired;
     }
@@ -176,5 +151,13 @@ public class CustomUserDetails implements UserDetails {
 
     public void setOrgType(String orgType) {
         this.orgType = orgType;
+    }
+
+    public Long getOrgId() {
+        return orgId;
+    }
+
+    public void setOrgId(Long orgId) {
+        this.orgId = orgId;
     }
 }

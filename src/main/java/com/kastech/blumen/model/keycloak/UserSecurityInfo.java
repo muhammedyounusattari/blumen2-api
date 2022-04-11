@@ -5,6 +5,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+@Deprecated
 @Entity
 @IdClass(UserSecurityInfoId.class)
 @Table(name = "user_security_info" ,schema = "blumen2")
@@ -29,7 +30,6 @@ public class UserSecurityInfo implements Serializable {
     private String phone2;
     private String fax;
     private String notes;
-    private String role;
     private String siteLocation;
     private Boolean active;
     private String createdBy;
@@ -39,13 +39,6 @@ public class UserSecurityInfo implements Serializable {
     private String securityAnswer1;
     private String securityQuestion2;
     private String securityAnswer2;
-
-
-    @Nullable
-    private String email;
-
-    @Column(length =  5000)
-    private String accessToken;
 
     @Nullable
     private String hashedCode;
@@ -184,14 +177,6 @@ public class UserSecurityInfo implements Serializable {
         this.notes = notes;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     public String getSiteLocation() {
         return siteLocation;
     }
@@ -241,23 +226,6 @@ public class UserSecurityInfo implements Serializable {
     }
 
     @Nullable
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(@Nullable String email) {
-        this.email = email;
-    }
-
-    public String getAccessToken() {
-        return accessToken;
-    }
-
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
-    }
-
-    @Nullable
     public String getHashedCode() {
         return hashedCode;
     }
@@ -303,7 +271,7 @@ public class UserSecurityInfo implements Serializable {
         super();
     }
 
-    public UserSecurityInfo(String id, String orgId, String username, String firstName, String lastName, String password, String address1, String address2, String city, String state, String zipcode, String mobile, String phone1, String phone2, String fax, String notes, String role, String siteLocation, Boolean active, String securityQuestion1, String securityAnswer1, String securityQuestion2, String securityAnswer2, @Nullable String email, String accessToken, @Nullable String hashedCode, @Nullable Date linkExpiryDate, BOLT bolt) {
+    public UserSecurityInfo(String id, String orgId, String username, String firstName, String lastName, String password, String address1, String address2, String city, String state, String zipcode, String mobile, String phone1, String phone2, String fax, String notes, String siteLocation, Boolean active, String securityQuestion1, String securityAnswer1, String securityQuestion2, String securityAnswer2, @Nullable String hashedCode, @Nullable Date linkExpiryDate, BOLT bolt) {
         this.id = id;
         this.orgId = orgId;
         this.username = username;
@@ -320,15 +288,12 @@ public class UserSecurityInfo implements Serializable {
         this.phone2 = phone2;
         this.fax = fax;
         this.notes = notes;
-        this.role = role;
         this.siteLocation = siteLocation;
         this.active = active;
         this.securityQuestion1 = securityQuestion1;
         this.securityAnswer1 = securityAnswer1;
         this.securityQuestion2 = securityQuestion2;
         this.securityAnswer2 = securityAnswer2;
-        this.email = email;
-        this.accessToken = accessToken;
         this.hashedCode = hashedCode;
         this.linkExpiryDate = linkExpiryDate;
         this.bolt = bolt;
@@ -353,15 +318,12 @@ public class UserSecurityInfo implements Serializable {
                 ", phone2='" + phone2 + '\'' +
                 ", fax='" + fax + '\'' +
                 ", notes='" + notes + '\'' +
-                ", role='" + role + '\'' +
                 ", siteLocation='" + siteLocation + '\'' +
                 ", active=" + active +
                 ", securityQuestion1='" + securityQuestion1 + '\'' +
                 ", securityAnswer1='" + securityAnswer1 + '\'' +
                 ", securityQuestion2='" + securityQuestion2 + '\'' +
                 ", securityAnswer2='" + securityAnswer2 + '\'' +
-                ", email='" + email + '\'' +
-                ", accessToken='" + accessToken + '\'' +
                 ", hashedCode='" + hashedCode + '\'' +
                 ", linkExpiryDate=" + linkExpiryDate +
                 ", bolt=" + bolt +

@@ -14,6 +14,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import com.kastech.blumen.model.Response;
@@ -88,9 +91,11 @@ public class PullDownListController {
     }
 
     @ResponseBody
+   // @PreAuthorize("hasRole('TRY')")
+ //   @Secured("T")
     @GetMapping(path = "/pullDownItems/v1/code/{code}",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public List<PullDownItem> getPullDownItemsByCode(@PathVariable String code) {
+    public List<PullDownItem> getPullDownItemsByCode(Authentication authentication,  @PathVariable String code) {
         LOGGER.info("Call made to getPullDownItemsByCode() of {}", this.getClass());
         return pullDownListServiceV1.getPullDownItemsByCode(code);
     }

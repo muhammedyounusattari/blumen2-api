@@ -1,0 +1,1 @@
+insert into blumen2.roles_privileges(role_id,privilege_id) values(:roleId, :privelegeId);

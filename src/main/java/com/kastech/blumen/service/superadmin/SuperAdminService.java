@@ -25,19 +25,19 @@ public class SuperAdminService {
     private KeycloakAdminClientService keycloakAdminClientService;
 
 
-    public List<SecurityQuestionsList> getSecurityQuestions(String orgCode, String questionNumber) {
+    public List<SecurityQuestionsList> getSecurityQuestions(Long orgCode, String questionNumber) {
         List<SecurityQuestionsList> securityQuestionsListList = new ArrayList<>();
         for(SecurityQuestionsList securityQuestions: securityQuestionsRepository.findByOrgCode(orgCode, questionNumber)){
-            securityQuestionsListList.add(new SecurityQuestionsList(securityQuestions.getId(), securityQuestions.getName()));
+            securityQuestionsListList.add(new SecurityQuestionsList(securityQuestions.getId(), securityQuestions.getName(),null, null));
         }
         return securityQuestionsListList;
     }
 
-    public Map<String, String> validateOrgCode(String orgCode) {
+    public Map<String, String> validateOrgCode(Long orgCode) {
         return keycloakAdminClientService.validateOrgCode(orgCode);
     }
 
-    public Map<String, String> addSecurityQuestions(Map<String, String> requestPaylaod, String orgCode) {
+    public Map<String, String> addSecurityQuestions(Map<String, String> requestPaylaod, Long orgId) {
         String securityQuestion = requestPaylaod.get("securityQuestion");
         String securityAnswer = requestPaylaod.get("securityAnswer");
         Map<String,String> statusMap = new HashMap<>();
@@ -56,8 +56,8 @@ public class SuperAdminService {
         SecurityQuestionsList securityQuestionsList = new SecurityQuestionsList();
         securityQuestionsList.setQuestionType(securityAnswer);
         securityQuestionsList.setName(securityQuestion);
-        securityQuestionsList.setOrgCode(orgCode);
-        securityQuestionsList.setOrgId(orgCode);
+        securityQuestionsList.setOrgId(orgId);
+
         securityQuestionsRepository.save(securityQuestionsList);
         statusMap.put("status", "200");
         statusMap.put("message", "SecurityQuestion added successfully");

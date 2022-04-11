@@ -24,7 +24,7 @@ public class SuperAdminController {
     private static final Logger LOGGER = LoggerFactory.getLogger(SuperAdminController.class);
 
     @GetMapping(path = "/{orgCode}/securityQuestions",  produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> getSecurityQuestions(@PathVariable(value = "orgCode", required = true) String orgCode){
+    public ResponseEntity<?> getSecurityQuestions(@PathVariable(value = "orgCode", required = true) Long orgCode){
 
         LOGGER.info("call made to createSecurityQuestions() under ", this.getClass());
 
@@ -48,7 +48,7 @@ public class SuperAdminController {
     }
 
     @PostMapping(value = "/{orgCode}/addSecurityQuestion", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<?> addSecurityQuestions(@PathVariable(value="orgCode", required = true) String orgCode, @RequestBody Map<String, String> requestPaylaod) {
+    public ResponseEntity<?> addSecurityQuestions(@PathVariable(value="orgCode", required = true) Long orgCode, @RequestBody Map<String, String> requestPaylaod) {
         LOGGER.info("call made to addSecurityQuestions() under ", this.getClass());
         //validate OrgCode
         Map<String,String> statusMap = superAdminService.validateOrgCode(orgCode);
@@ -56,7 +56,7 @@ public class SuperAdminController {
             return failure(statusMap, 404);
         }
 
-        return success(superAdminService.addSecurityQuestions(requestPaylaod, orgCode), 200);
+        return success(superAdminService.addSecurityQuestions(requestPaylaod, 1L), 200);
     }
 
     private ResponseEntity<?> success(Object t, Integer status ){

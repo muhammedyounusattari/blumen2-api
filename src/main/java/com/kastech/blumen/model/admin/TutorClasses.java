@@ -34,7 +34,7 @@ public class TutorClasses {
 	//@JsonBackReference
 	@ManyToMany
 	@JoinTable(
-			name =  "tutor_class_students",
+			name =  "tutor_class_students",schema = "blumen2",
 			joinColumns = @JoinColumn(name = "tutorclass_id"),
 			inverseJoinColumns = @JoinColumn(name="student_ssno"))
 	List<Student> studentList = new ArrayList<Student>();

@@ -1,22 +1,27 @@
 package com.kastech.blumen.service;
 
+import com.google.common.base.Function;
+import com.google.common.base.Functions;
+import com.google.common.collect.Collections2;
+import com.google.common.collect.Sets;
 import com.kastech.blumen.model.CustomUserDetails;
 import com.kastech.blumen.model.keycloak.LoggedUser;
-import com.kastech.blumen.model.superadmin.SuperAdmin;
+//import com.kastech.blumen.model.superadmin.SuperAdmin;
+import com.kastech.blumen.model.keycloak.Privileges;
+import com.kastech.blumen.model.keycloak.Roles;
 import com.kastech.blumen.service.admin.LoggedUserServiceV1;
-import com.kastech.blumen.service.superadmin.SuperAdminService;
+//import com.kastech.blumen.service.superadmin.SuperAdminService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -24,8 +29,8 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private LoggedUserServiceV1 loggedUserServiceV1;
 
-    @Autowired
-    private SuperAdminService superAdminService;
+//    @Autowired
+//    private SuperAdminService superAdminService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -33,43 +38,38 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     }
 
-    public UserDetails loadUserByEmailAndOrganization(String username, String orgType) throws UsernameNotFoundException {
-        return loadUser(username, orgType);
+    public UserDetails loadUserByEmailAndOrganization(String email, String orgType) throws UsernameNotFoundException {
+        return loadUser(email, orgType);
     }
 
     public UserDetails loadUserDetails(String username, String password, String organization) throws  UsernameNotFoundException {
-        List<SuperAdmin> superAdmins =   superAdminService.findLoggedUserDetails(username, password, organization);
-        SuperAdmin superAdmin = new SuperAdmin();
-        if(!superAdmins.isEmpty()){
-            superAdmin = superAdmins.get(0);
+        List<LoggedUser> loggedUsers =   loggedUserServiceV1.findLoggedUserDetails(username, password, organization);
+        LoggedUser loggedUser = new LoggedUser();
+        if(!loggedUsers.isEmpty()){
+            loggedUser = loggedUsers.get(0);
         } else {
             throw new UsernameNotFoundException("Bad credentials");
         }
 
         Collection<GrantedAuthority> grantedAuthoritySet = new HashSet<>();
 
-        /** Here rolese will sit **/
-        /*for (int i=0; i<userAccount.getRoles().size();i++)
-        {
-            JSONObject jsonObject = new JSONObject(userAccount.getRoles().get(i));
-            String role = jsonObject.getString("role");
-            gas.add(new SimpleGrantedAuthority(role));
-        } */
-        return new CustomUserDetails(superAdmin.getEmail(),superAdmin.getFirstName()+" "+superAdmin.getLastName(),superAdmin.getEmail(),superAdmin.getPassword(),Boolean.TRUE,null);
+
+        return new CustomUserDetails(grantedAuthoritySet, loggedUser.getUsername(), loggedUser.getFirstName(), null, loggedUser.getUsername(), Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, loggedUser.getScope(), loggedUser.getOrgType(), loggedUser.getOrgId());
+        //new CustomUserDetails(loggedUser.getUsername(),loggedUser.getFirstName()+" "+loggedUser.getLastName(),loggedUser.getUsername(),loggedUser.getPassword(),Boolean.TRUE,null);
 
     }
 
 
     public CustomUserDetails loadCustomUserDetails(String username, String password, String organization) throws  UsernameNotFoundException {
-        List<SuperAdmin> superAdmins =   superAdminService.findLoggedUserDetails(username, password, organization);
-        SuperAdmin superAdmin = new SuperAdmin();
-        if(!superAdmins.isEmpty()){
-            superAdmin = superAdmins.get(0);
+        List<LoggedUser> loggedUsers =   loggedUserServiceV1.findLoggedUserDetails(username, password, organization);
+        LoggedUser loggedUser = new LoggedUser();
+        if(!loggedUsers.isEmpty()){
+            loggedUser = loggedUsers.get(0);
         } else {
             throw new UsernameNotFoundException("Bad credentials");
         }
 
-        Collection<GrantedAuthority> grantedAuthoritySet = getAuthorities(superAdmin);
+        Collection<GrantedAuthority> grantedAuthoritySet = getAuthorities(loggedUser);
 
         /** Here rolese will sit **/
         /*for (int i=0; i<userAccount.getRoles().size();i++)
@@ -78,29 +78,34 @@ public class CustomUserDetailsService implements UserDetailsService {
             String role = jsonObject.getString("role");
             gas.add(new SimpleGrantedAuthority(role));
         } */
-        return new CustomUserDetails(grantedAuthoritySet,superAdmin.getEmail(),superAdmin.getFirstName()+" "+superAdmin.getLastName(), superAdmin.getPassword(), superAdmin.getEmail(), Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, true, superAdmin.getScope(), superAdmin.getOrganizationType());
+        return new CustomUserDetails(grantedAuthoritySet, loggedUser.getEmail(), loggedUser.getFirstName(), null, loggedUser.getUsername(), Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, loggedUser.getScope(), loggedUser.getOrgType(), loggedUser.getOrgId());
+        //return new CustomUserDetails(grantedAuthoritySet,loggedUser.getUsername(),loggedUser.getFirstName()+" "+loggedUser.getLastName(), loggedUser.getPassword(), loggedUser.getUsername(), Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, true, loggedUser.getScope(), loggedUser.getOrgType());
         //new CustomUserDetails(superAdmin.getEmail(),superAdmin.getFirstName()+" "+superAdmin.getLastName(),superAdmin.getEmail(),superAdmin.getPassword(),Boolean.TRUE,null);
 
     }
 
-    private Collection<GrantedAuthority> getAuthorities(SuperAdmin superAdmin) {
+    private Collection<GrantedAuthority> getAuthorities(LoggedUser loggedUser) {
 
-   /*     Set<Roles> userRoles = superAdmin.getRoles();
-        Collection<GrantedAuthority> authorities = new ArrayList<>(userRoles.size());
-        for(Roles role: grantedAuthoritySet){
-            authorities.add(new SimpleGrantedAuthority(role.getCode()));
+        final Set<Roles> userRoles = loggedUser.getRoles();
+        final Set<Privileges> privileges = Sets.newHashSet();
+        for (final Roles roleOfUser : userRoles) {
+            privileges.addAll(roleOfUser.getPrivileges());
         }
 
-        return authorities; */
+        final Function<Object, String> toStringFunction = Functions.toStringFunction();
 
-        return null;
+        final Collection<String> rolesToString = Collections2.transform(privileges, toStringFunction);
+        final String[] roleStringsAsArray = rolesToString.toArray(new String[rolesToString.size()]);
+        final List<GrantedAuthority> auths = AuthorityUtils.createAuthorityList(roleStringsAsArray);
+
+        return auths;
     }
 
 
-    private CustomUserDetails loadUser(String username, String orgType) throws UsernameNotFoundException {
+    private CustomUserDetails loadUser(String email, String orgType) throws UsernameNotFoundException {
 
 
-        Optional<LoggedUser> loggedUserOptional =  loggedUserServiceV1.findLoggedUser(username, orgType);
+        Optional<LoggedUser> loggedUserOptional =  loggedUserServiceV1.findLoggedUser(email, orgType);
         LoggedUser loggedUser = new LoggedUser();
 
         if(!loggedUserOptional.isEmpty()){
@@ -109,7 +114,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("Bad credentials");
         }
 
-        Collection<GrantedAuthority> grantedAuthoritySet = new HashSet<>();
+        Collection<GrantedAuthority> grantedAuthoritySet = getAuthorities(loggedUser);
 
         /** Here rolese will sit **/
         /*for (int i=0; i<userAccount.getRoles().size();i++)
@@ -118,7 +123,8 @@ public class CustomUserDetailsService implements UserDetailsService {
             String role = jsonObject.getString("role");
             gas.add(new SimpleGrantedAuthority(role));
         } */
-        return null; //new CustomUserDetails(null,loggedUser.getUserName(),loggedUser.getUserName(),"mumbai-university.password1",Boolean.TRUE,null);
+       // return null; //new CustomUserDetails(null,loggedUser.getUserName(),loggedUser.getUserName(),"mumbai-university.password1",Boolean.TRUE,null);
+        return new CustomUserDetails(grantedAuthoritySet, loggedUser.getUsername(), loggedUser.getFirstName(), null, loggedUser.getUsername(), Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, loggedUser.getScope(), loggedUser.getOrgType(), loggedUser.getOrgId());
 
     }
 

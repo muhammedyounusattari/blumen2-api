@@ -113,7 +113,7 @@ public class KeycloakController {
         }
 
         if (StringUtils.isBlank(username) && StringUtils.isBlank(securityAnswer1) && StringUtils.isBlank(securityAnswer2)) {
-            responsePayload = keycloakAdminClientService.validateOrgCode(orgCode);
+            responsePayload = keycloakAdminClientService.validateOrgCode(1l);
             return success(responsePayload, Integer.parseInt(responsePayload.get("status")));
         }
         if (StringUtils.isBlank(username)) {

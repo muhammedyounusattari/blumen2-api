@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import com.kastech.blumen.model.admin.TutorClasses;
@@ -34,6 +35,7 @@ public class TutorClassesController {
 
 	@ResponseBody
 	@GetMapping(path = "/getTutorClassess/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+	//@Secured("Tutor Contact Data")
 	public ResponseEntity<Collection<TutorClasses>> getTutorClassesList() {
 		LOGGER.info("call received for getTutorClassesList under StudentTutorClassesController");
 		return ResponseEntity.ok(tutorClassesService.getTutorClassesList());
