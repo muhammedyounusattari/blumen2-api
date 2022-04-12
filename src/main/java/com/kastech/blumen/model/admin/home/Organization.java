@@ -18,15 +18,15 @@ public class Organization implements Serializable {
     private String orgCode;
     private String orgDescription;
     private String orgBulkTemplate;
-    private String orgTwoFactor;
-    private String orgDeviceAuth;
-    private String orgSendMail;
+    private Boolean orgTwoFactor;
+    private Boolean orgDeviceAuth;
+    private Boolean orgSendMail;
     private Integer orgExpiryTime;
     private Boolean orgActive;
-    private String orgSiteLocation;
-    private String orgScript;
-    private String orgTrioBlumenLab;
-    private String orgPurge;
+    private Boolean orgSiteLocation;
+    private Boolean orgScript;
+    private Boolean orgTrioBlumenLab;
+    private Boolean orgPurge;
 
     private String orgAddress1;
     private String orgAddress2;
@@ -65,7 +65,7 @@ public class Organization implements Serializable {
     public Organization() {
     }
 
-    public Organization(Long orgId, String orgName, String orgCode, String orgDescription, String orgBulkTemplate, String orgTwoFactor, String orgDeviceAuth, String orgSendMail, Integer orgExpiryTime, Boolean orgActive, String orgSiteLocation, String orgScript, String orgTrioBlumenLab, String orgPurge, String orgAddress1, String orgAddress2, String orgProgramType, String orgOrganizationType, Integer orgDaysToExpire, Integer orgRemindOne, Integer orgRemindTwo, String orgCity, String orgState, Integer orgZipCode, Integer orgPhoneOne, Integer orgPhoneTwo, Integer orgPhoneThree, String mailServer, Integer orgFax, String orgWebSite, String orgEmail, String orgUserName, String orgDirector, String orgGoodTill, String orgNotes, String orgNavigateToUser, Set<LoggedUser> users) {
+    public Organization(Long orgId, String orgName, String orgCode, String orgDescription, String orgBulkTemplate, Boolean orgTwoFactor, Boolean orgDeviceAuth, Boolean orgSendMail, Integer orgExpiryTime, Boolean orgActive, Boolean orgSiteLocation, Boolean orgScript, Boolean orgTrioBlumenLab, Boolean orgPurge, String orgAddress1, String orgAddress2, String orgProgramType, String orgOrganizationType, Integer orgDaysToExpire, Integer orgRemindOne, Integer orgRemindTwo, String orgCity, String orgState, Integer orgZipCode, Integer orgPhoneOne, Integer orgPhoneTwo, Integer orgPhoneThree, String mailServer, Integer orgFax, String orgWebSite, String orgEmail, String orgUserName, String orgDirector, String orgGoodTill, String orgNotes, String orgNavigateToUser, Set<LoggedUser> users) {
         this.orgId = orgId;
         this.orgName = orgName;
         this.orgCode = orgCode;
@@ -145,27 +145,27 @@ public class Organization implements Serializable {
         this.orgBulkTemplate = orgBulkTemplate;
     }
 
-    public String getOrgTwoFactor() {
+    public Boolean getOrgTwoFactor() {
         return orgTwoFactor;
     }
 
-    public void setOrgTwoFactor(String orgTwoFactor) {
+    public void setOrgTwoFactor(Boolean orgTwoFactor) {
         this.orgTwoFactor = orgTwoFactor;
     }
 
-    public String getOrgDeviceAuth() {
+    public Boolean getOrgDeviceAuth() {
         return orgDeviceAuth;
     }
 
-    public void setOrgDeviceAuth(String orgDeviceAuth) {
+    public void setOrgDeviceAuth(Boolean orgDeviceAuth) {
         this.orgDeviceAuth = orgDeviceAuth;
     }
 
-    public String getOrgSendMail() {
+    public Boolean getOrgSendMail() {
         return orgSendMail;
     }
 
-    public void setOrgSendMail(String orgSendMail) {
+    public void setOrgSendMail(Boolean orgSendMail) {
         this.orgSendMail = orgSendMail;
     }
 
@@ -185,35 +185,35 @@ public class Organization implements Serializable {
         this.orgActive = orgActive;
     }
 
-    public String getOrgSiteLocation() {
+    public Boolean getOrgSiteLocation() {
         return orgSiteLocation;
     }
 
-    public void setOrgSiteLocation(String orgSiteLocation) {
+    public void setOrgSiteLocation(Boolean orgSiteLocation) {
         this.orgSiteLocation = orgSiteLocation;
     }
 
-    public String getOrgScript() {
+    public Boolean getOrgScript() {
         return orgScript;
     }
 
-    public void setOrgScript(String orgScript) {
+    public void setOrgScript(Boolean orgScript) {
         this.orgScript = orgScript;
     }
 
-    public String getOrgTrioBlumenLab() {
+    public Boolean getOrgTrioBlumenLab() {
         return orgTrioBlumenLab;
     }
 
-    public void setOrgTrioBlumenLab(String orgTrioBlumenLab) {
+    public void setOrgTrioBlumenLab(Boolean orgTrioBlumenLab) {
         this.orgTrioBlumenLab = orgTrioBlumenLab;
     }
 
-    public String getOrgPurge() {
+    public Boolean getOrgPurge() {
         return orgPurge;
     }
 
-    public void setOrgPurge(String orgPurge) {
+    public void setOrgPurge(Boolean orgPurge) {
         this.orgPurge = orgPurge;
     }
 
