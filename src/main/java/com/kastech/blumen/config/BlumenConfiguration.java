@@ -19,6 +19,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+import static com.kastech.blumen.constants.SecurityConstants.API_URL;
 import static com.kastech.blumen.constants.SecurityConstants.SIGN_UP_URL;
 
 @Configuration
@@ -65,7 +66,8 @@ public class BlumenConfiguration extends WebSecurityConfigurerAdapter {
                .cors().disable()
                .authorizeRequests()
                .antMatchers(SIGN_UP_URL).permitAll()
-               .anyRequest().authenticated()
+               .antMatchers(API_URL).authenticated()
+               .anyRequest().permitAll()
                .and()
              //  .addFilter(new JWTAuthenticationFilter())
               // .addFilter(new JWTAuthorizationFilter())
