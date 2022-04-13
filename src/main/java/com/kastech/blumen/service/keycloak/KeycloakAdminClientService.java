@@ -168,7 +168,7 @@ public class KeycloakAdminClientService {
 
             if (loggedUserFound.isPresent()) {
                 LoggedUserId loggedUserId = new LoggedUserId("22", realmId);
-                loggedUserServiceV1.deleteById(loggedUserId);
+                loggedUserServiceV1.deleteById(1l);
                 loggedUserServiceV1.addLoggedUser(loggedUser);
             } else {
                 loggedUserServiceV1.addLoggedUser(loggedUser);
@@ -737,9 +737,9 @@ public class KeycloakAdminClientService {
             String jti = accessTokenPayloadJSON.getString("jti");
             String email = accessTokenPayloadJSON.getString("email");
             LoggedUserId loggedUserId = new LoggedUserId(jti, realmId);
-            Optional<LoggedUser> optionalLoggedUser = loggedUserServiceV1.findLoggedUserById(loggedUserId);
+            Optional<LoggedUser> optionalLoggedUser = loggedUserServiceV1.findLoggedUserById(1l);
             if (optionalLoggedUser.isPresent()) {
-                loggedUserServiceV1.deleteById(loggedUserId);
+                loggedUserServiceV1.deleteById(1l);
             }
         } catch (JSONException | UnsupportedEncodingException ie) {
             throw new IllegalStateException("Error in decrypting the access token object");

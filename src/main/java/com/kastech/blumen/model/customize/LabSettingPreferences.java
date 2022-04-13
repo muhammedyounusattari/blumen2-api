@@ -1,6 +1,7 @@
 package com.kastech.blumen.model.customize;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "labsetting_preferences", schema = "blumen2")
@@ -30,10 +31,24 @@ public class LabSettingPreferences {
     private String labForcedTimeSpent;
     private boolean labAcknowledgement;
 
+    private Date createdDate;
+
+    private long createdBy;
+
+    private Date modifiedDate;
+
+    private long modifiedBy;
+
+    private Date deletedDate;
+
+    private long deletedBy;
+
+    private long orgId;
+
     public LabSettingPreferences() {
     }
 
-    public LabSettingPreferences(Long id, String lapSearchPriority, String labFiscalYear, String labComponents, boolean labHideStudentList, boolean labHideCheckOutList, String labWaitWindowTime, boolean labAutomaticallyCheckInCheckOut, boolean labServicesVisibile, boolean labServicerRequired, String labDefaultService, boolean labStudentsCanChooseMultipleService, boolean labReasonForVisitOptionVisible, boolean labStaffMemberOptionVisible, String labMaxCheckoutTime, String labForcedTimeSpent, boolean labAcknowledgement) {
+    public LabSettingPreferences(Long id, String lapSearchPriority, String labFiscalYear, String labComponents, boolean labHideStudentList, boolean labHideCheckOutList, String labWaitWindowTime, boolean labAutomaticallyCheckInCheckOut, boolean labServicesVisibile, boolean labServicerRequired, String labDefaultService, boolean labStudentsCanChooseMultipleService, boolean labReasonForVisitOptionVisible, boolean labStaffMemberOptionVisible, String labMaxCheckoutTime, String labForcedTimeSpent, boolean labAcknowledgement, Date createdDate, long createdBy, Date modifiedDate, long modifiedBy, Date deletedDate, long deletedBy, long orgId) {
         this.id = id;
         this.lapSearchPriority = lapSearchPriority;
         this.labFiscalYear = labFiscalYear;
@@ -51,6 +66,13 @@ public class LabSettingPreferences {
         this.labMaxCheckoutTime = labMaxCheckoutTime;
         this.labForcedTimeSpent = labForcedTimeSpent;
         this.labAcknowledgement = labAcknowledgement;
+        this.createdDate = createdDate;
+        this.createdBy = createdBy;
+        this.modifiedDate = modifiedDate;
+        this.modifiedBy = modifiedBy;
+        this.deletedDate = deletedDate;
+        this.deletedBy = deletedBy;
+        this.orgId = orgId;
     }
 
     public Long getId() {
@@ -189,6 +211,34 @@ public class LabSettingPreferences {
         this.labAcknowledgement = labAcknowledgement;
     }
 
+    public Date getCreatedDate() {return createdDate;}
+
+    public void setCreatedDate(Date createdDate) {this.createdDate = createdDate;}
+
+    public long getCreatedBy() {return createdBy;}
+
+    public void setCreatedBy(long createdBy) {this.createdBy = createdBy;}
+
+    public Date getModifiedDate() {return modifiedDate;}
+
+    public void setModifiedDate(Date modifiedDate) {this.modifiedDate = modifiedDate;}
+
+    public long getModifiedBy() {return modifiedBy;}
+
+    public void setModifiedBy(long modifiedBy) {this.modifiedBy = modifiedBy;}
+
+    public Date getDeletedDate() {return deletedDate;}
+
+    public void setDeletedDate(Date deletedDate) {this.deletedDate = deletedDate;}
+
+    public long getDeletedBy() {return deletedBy;}
+
+    public void setDeletedBy(long deletedBy) {this.deletedBy = deletedBy;}
+
+    public long getOrgId() {return orgId;}
+
+    public void setOrgId(long orgId) {this.orgId = orgId;}
+
     @Override
     public String toString() {
         return "LabSettingPreferences{" +
@@ -209,6 +259,13 @@ public class LabSettingPreferences {
                 ", labMaxCheckoutTime='" + labMaxCheckoutTime + '\'' +
                 ", labForcedTimeSpent='" + labForcedTimeSpent + '\'' +
                 ", labAcknowledgement=" + labAcknowledgement +
+                ", createdDate=" + createdDate +
+                ", createdBy=" + createdBy +
+                ", modifiedDate=" + modifiedDate +
+                ", modifiedBy=" + modifiedBy +
+                ", deletedDate=" + deletedDate +
+                ", deletedBy=" + deletedBy +
+                ", orgId=" + orgId +
                 '}';
     }
 }

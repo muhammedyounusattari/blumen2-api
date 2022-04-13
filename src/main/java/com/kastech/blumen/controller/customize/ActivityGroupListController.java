@@ -9,6 +9,7 @@ import com.kastech.blumen.model.customize.CollegeSchool;
 import com.kastech.blumen.model.customize.GradingGroupList;
 import com.kastech.blumen.repository.customize.ActivityGroupListRepository;
 import com.kastech.blumen.service.customize.ActivityGroupListServiceV1;
+import com.kastech.blumen.utility.SecurityUtil;
 import com.kastech.blumen.validator.customize.ActivityGroupListValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,7 +64,7 @@ public class ActivityGroupListController {
 
         List<ActivityGroupList> list = new ArrayList<>();
         //session param
-        long sessionOrgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         Iterable<ActivityGroupList> items = activityGroupListRepository.findByOrgId(sessionOrgId);
         items.forEach(list::add);
         return list;
@@ -81,7 +82,7 @@ public class ActivityGroupListController {
     public ActivityGroupList addToActivityGroupList(@RequestBody ActivityGroupList activityList) {
 
         //session param
-        long sessionOrgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         activityList.setOrgId(sessionOrgId);
         activityList.setCreatedDate(new Date());
         ActivityGroupList value = activityGroupListRepository.save(activityList);
@@ -101,7 +102,7 @@ public class ActivityGroupListController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ActivityGroupList editActivityGroupList(@RequestBody ActivityGroupList activityGroupList) {
-        long sessionOrgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         ActivityGroupList item = activityGroupListRepository.findByActivityGroupIdAndOrgId(activityGroupList.getActivityGroupId(), sessionOrgId);
 
         activityGroupList.setModifiedDate(new Date());
@@ -139,7 +140,7 @@ public class ActivityGroupListController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> deleteActivityGroupList(@RequestBody ActivityGroupList activityGroupList) {
-        long sessionOrgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         ActivityGroupList activity = activityGroupListRepository.findByActivityGroupIdAndOrgId(activityGroupList.getActivityGroupId(), sessionOrgId);
         //session param
         activity.setDeletedBy(activity.getActivityGroupId());
@@ -162,7 +163,7 @@ public class ActivityGroupListController {
     @GetMapping(path = "/getMaxActivityGroupId/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public Long getMaxActivityListId() {
-        long sessionOrgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         return activityGroupListRepository.getMaxId(sessionOrgId);
     }
 
@@ -179,7 +180,7 @@ public class ActivityGroupListController {
     public ActivityGroupList recoverDeletedActivityGroupById(@RequestBody ActivityGroupList activityGroupList) {
 
         //session param
-        long sessionOrgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         ActivityGroupList items = activityGroupListRepository.findDeletedItemByIdAndOrgId(activityGroupList.getId(),sessionOrgId);
         items.setDeletedBy(0L);
         items.setDeletedDate(null);
@@ -195,8 +196,8 @@ public class ActivityGroupListController {
     @GetMapping(path = "/getDeletedGroupById/v1/{id}",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ActivityGroupList getDeletedGroupById(@PathVariable long id) {
-        long orgId = 1;
-        return activityGroupListRepository.findDeletedItemByIdAndOrgId(id, orgId);
+        long sessionOrgId = SecurityUtil.getUserOrgId();
+        return activityGroupListRepository.findDeletedItemByIdAndOrgId(id, sessionOrgId);
     }
 
     /**
@@ -209,8 +210,8 @@ public class ActivityGroupListController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ActivityGroupList updateActivityGroupById(@RequestBody ActivityGroupList activityGroupList) {
-        long orgId = 1;
-        ActivityGroupList item = activityGroupListRepository.findByActivityId(activityGroupList.getTempId(), orgId);
+        long sessionOrgId = SecurityUtil.getUserOrgId();
+        ActivityGroupList item = activityGroupListRepository.findByActivityId(activityGroupList.getTempId(), sessionOrgId);
 
         item.setModifiedDate(new Date());
         item.setModifiedBy(item.getActivityGroupId());
@@ -231,7 +232,7 @@ public class ActivityGroupListController {
 //        long orgId = 2;
 //        activityGroupListRepository.deleteRecordByIdAndOrgId(activityGroupList.getId(), orgId);
 //        return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
-        long sessionOrgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         ActivityGroupList activity = activityGroupListRepository.findByActivityIdAndOrgId(activityGroupList.getId(), sessionOrgId);
         //session param
         activity.setDeletedBy(activity.getActivityGroupId());
@@ -256,8 +257,8 @@ public class ActivityGroupListController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ActivityGroupList getActivityGroupByActivityGroupNameAndActivityGroupType(@RequestBody ActivityGroupList activityGroupList) {
-        long orgId = 1;
-        return activityGroupListRepository.findActivityGroupByActivityGroupNameAndActivityGroupTypeAndOrgId(activityGroupList.getActivityGroupName(),activityGroupList.getActivityGroupType(), orgId);
+        long sessionOrgId = SecurityUtil.getUserOrgId();
+        return activityGroupListRepository.findActivityGroupByActivityGroupNameAndActivityGroupTypeAndOrgId(activityGroupList.getActivityGroupName(),activityGroupList.getActivityGroupType(), sessionOrgId);
 
     }
 

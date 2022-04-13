@@ -6,6 +6,7 @@ import com.kastech.blumen.model.customize.CollegeSchool;
 import com.kastech.blumen.repository.customize.CollegeSchoolRepository;
 import com.kastech.blumen.service.customize.CollegeSchoolServiceV1;
 import com.kastech.blumen.utility.RequestAPIType;
+import com.kastech.blumen.utility.SecurityUtil;
 import com.kastech.blumen.validator.customize.CollegeSchoolValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,10 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
+@PreAuthorize("hasAnyAuthority('College Names', 'School Names')")
 @RestController
 @RequestMapping("/api/blumen-api/customize")
 public class CollegeSchoolNameController {
@@ -53,7 +56,7 @@ public class CollegeSchoolNameController {
     public List<CollegeSchool> getCollegeSchoolNameList() {
         List<CollegeSchool> list = new ArrayList<>();
         //session param
-        long sessionOrgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         Iterable<CollegeSchool> items = collegeSchoolRepository.findByOrgId(sessionOrgId);
         items.forEach(list::add);
         return list;
@@ -71,7 +74,7 @@ public class CollegeSchoolNameController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public CollegeSchool addToCollegeNameList(@RequestBody CollegeSchool collegeSchool) {
         //session param
-        long sessionOrgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         String fafsaId = collegeSchool.getFafsaId();
         if (null != fafsaId && !fafsaId.isEmpty()) {
             collegeSchool.setNcesId(null);
@@ -98,7 +101,7 @@ public class CollegeSchoolNameController {
     public CollegeSchool addToSchoolNameList(@RequestBody CollegeSchool collegeSchool) {
 
         //session param
-        long sessionOrgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         String ncesId = collegeSchool.getNcesId();
         if (null != ncesId && !ncesId.isEmpty()) {
             collegeSchool.setFafsaId(null);
@@ -125,7 +128,7 @@ public class CollegeSchoolNameController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public CollegeSchool editCollegeSchoolNameList(@RequestBody CollegeSchool collegeSchool) {
-        long sessionOrgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         CollegeSchool item = collegeSchoolRepository.findByCollegeSchoolIdAndOrgId(collegeSchool.getCollegeSchoolId(), sessionOrgId);
 
         collegeSchool.setModifiedDate(new Date());
@@ -160,7 +163,7 @@ public class CollegeSchoolNameController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> deleteCollegeSchoolNameList(@RequestBody CollegeSchool collegeSchool) {
 
-        long sessionOrgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         CollegeSchool clgScl = collegeSchoolRepository.findByCollegeSchoolIdAndOrgId(collegeSchool.getCollegeSchoolId(), sessionOrgId);
         //session param
         clgScl.setDeletedBy(clgScl.getCollegeSchoolId());
@@ -207,12 +210,12 @@ public class CollegeSchoolNameController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public CollegeSchool getDeletedCollegeSchoolByName(@RequestBody CollegeSchool collegeSchool) {
-        long orgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         CollegeSchool item = new CollegeSchool();
         if(collegeSchool.getOrgName() !=null && !collegeSchool.getOrgName().isEmpty() && collegeSchool.getOrgName().equalsIgnoreCase("College")) {
-             item = collegeSchoolRepository.findDeletedCollegeByNameAndOrgId(collegeSchool.getName(), orgId);
+             item = collegeSchoolRepository.findDeletedCollegeByNameAndOrgId(collegeSchool.getName(), sessionOrgId);
         }else{
-             item =  collegeSchoolRepository.findDeletedSchoolByNameAndOrgId(collegeSchool.getName(), orgId);
+             item =  collegeSchoolRepository.findDeletedSchoolByNameAndOrgId(collegeSchool.getName(), sessionOrgId);
         }
         return item;
     }
@@ -227,13 +230,13 @@ public class CollegeSchoolNameController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public long getDeletedCollegeSchoolByNameAndOrgId(@RequestBody CollegeSchool collegeSchool) {
-        long orgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         long status = 0L;
         CollegeSchool item = new CollegeSchool();
         if(collegeSchool.getOrgName() !=null && !collegeSchool.getOrgName().isEmpty() && collegeSchool.getOrgName().equalsIgnoreCase("College")) {
-            item = collegeSchoolRepository.findDeletedCollegeByNameAndOrgId(collegeSchool.getName(), orgId);
+            item = collegeSchoolRepository.findDeletedCollegeByNameAndOrgId(collegeSchool.getName(), sessionOrgId);
         }else{
-            item =  collegeSchoolRepository.findDeletedSchoolByNameAndOrgId(collegeSchool.getName(), orgId);
+            item =  collegeSchoolRepository.findDeletedSchoolByNameAndOrgId(collegeSchool.getName(), sessionOrgId);
         }
         if(item !=null){
         status = item.getCollegeSchoolId();
@@ -253,7 +256,7 @@ public class CollegeSchoolNameController {
     public CollegeSchool recoverDeletedCollegeSchool(@RequestBody CollegeSchool collegeSchool) {
 
         //session param
-        long sessionOrgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         CollegeSchool items = collegeSchoolRepository.findDeletedCollegeSchoolByIdAndOrgId(collegeSchool.getCollegeSchoolId(),sessionOrgId);
         items.setDeletedBy(0L);
         items.setDeletedDate(null);
@@ -271,8 +274,8 @@ public class CollegeSchoolNameController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public CollegeSchool updateCollegeSchoolNameById(@RequestBody CollegeSchool collegeSchool) {
-        long orgId = 1;
-        CollegeSchool item = collegeSchoolRepository.findByCollegeSchoolId(collegeSchool.getCollegeSchoolId(), orgId);
+        long sessionOrgId = SecurityUtil.getUserOrgId();
+        CollegeSchool item = collegeSchoolRepository.findByCollegeSchoolId(collegeSchool.getCollegeSchoolId(), sessionOrgId);
         item.setModifiedDate(new Date());
         item.setName(collegeSchool.getName());
         item.setOrgName(collegeSchool.getName());
@@ -291,7 +294,7 @@ public class CollegeSchoolNameController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> mergeCollegeSchoolByName(@RequestBody CollegeSchool collegeSchool) {
-       long sessionOrgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         CollegeSchool colscl = collegeSchoolRepository.findByCollegeSchoolIdAndOrgId(collegeSchool.getCollegeSchoolId(), sessionOrgId);
         //session param
         colscl.setDeletedBy(colscl.getCollegeSchoolId());
@@ -316,12 +319,12 @@ public class CollegeSchoolNameController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public CollegeSchool getCollegeSchoolByName(@RequestBody CollegeSchool collegeSchool) {
-        long orgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         CollegeSchool item = new CollegeSchool();
         if(collegeSchool.getOrgName() !=null && !collegeSchool.getOrgName().isEmpty() && collegeSchool.getOrgName().equalsIgnoreCase("College")) {
-            item = collegeSchoolRepository.findCollegeByNameAndOrgId(collegeSchool.getName(), orgId);
+            item = collegeSchoolRepository.findCollegeByNameAndOrgId(collegeSchool.getName(), sessionOrgId);
         }else{
-            item =  collegeSchoolRepository.findSchoolByNameAndOrgId(collegeSchool.getName(), orgId);
+            item =  collegeSchoolRepository.findSchoolByNameAndOrgId(collegeSchool.getName(), sessionOrgId);
         }
         return item;
     }
@@ -336,12 +339,12 @@ public class CollegeSchoolNameController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public CollegeSchool getCollegeSchoolByCode(@RequestBody CollegeSchool collegeSchool) {
-        long orgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         CollegeSchool item = new CollegeSchool();
         if(collegeSchool !=null && collegeSchool.getOrgName() !=null && !collegeSchool.getOrgName().isEmpty() && collegeSchool.getOrgName().equalsIgnoreCase("College")) {
-            item = collegeSchoolRepository.findCollegeByCodeAndOrgId(collegeSchool.getCodes(), orgId);
+            item = collegeSchoolRepository.findCollegeByCodeAndOrgId(collegeSchool.getCodes(), sessionOrgId);
         }else{
-            item =  collegeSchoolRepository.findSchoolByCodeAndOrgId(collegeSchool.getCodes(), orgId);
+            item =  collegeSchoolRepository.findSchoolByCodeAndOrgId(collegeSchool.getCodes(), sessionOrgId);
         }
         return item;
     }
@@ -356,7 +359,7 @@ public class CollegeSchoolNameController {
     public List<CollegeSchool> getCollegeNameList() {
         List<CollegeSchool> list = new ArrayList<>();
         //session param
-        long sessionOrgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         Iterable<CollegeSchool> items = collegeSchoolRepository.findByOrgIdAndFafsaId(sessionOrgId);
         items.forEach(list::add);
         return list;
@@ -373,7 +376,7 @@ public class CollegeSchoolNameController {
     public List<CollegeSchool> getSchoolNameList() {
         List<CollegeSchool> list = new ArrayList<>();
         //session param
-        long sessionOrgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         Iterable<CollegeSchool> items = collegeSchoolRepository.findByOrgIdAndNcesId(sessionOrgId);
         items.forEach(list::add);
         return list;

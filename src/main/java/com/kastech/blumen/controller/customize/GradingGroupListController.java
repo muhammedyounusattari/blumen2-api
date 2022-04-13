@@ -6,6 +6,7 @@ import com.kastech.blumen.model.customize.GradingGroupList;
 import com.kastech.blumen.model.customize.GradingList;
 import com.kastech.blumen.repository.customize.GradingGroupListRepository;
 import com.kastech.blumen.service.customize.GradingGroupListServiceV1;
+import com.kastech.blumen.utility.SecurityUtil;
 import com.kastech.blumen.validator.customize.GradingGroupListValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,10 +15,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
+@PreAuthorize("hasAuthority('Grade / Standing Group List')")
 @RestController
 @RequestMapping("/api/blumen-api/customize")
 public class GradingGroupListController {
@@ -55,7 +58,7 @@ public class GradingGroupListController {
 
         List<GradingGroupList> list = new ArrayList<>();
         //session param
-        long sessionOrgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         Iterable<GradingGroupList> items = gradingGroupListRepository.findByOrgId(sessionOrgId);
         items.forEach(list::add);
         return list;
@@ -72,7 +75,7 @@ public class GradingGroupListController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public GradingGroupList addToGradingGroupList(@RequestBody GradingGroupList gradingGroupList) {
         //session param
-        long sessionOrgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         gradingGroupList.setOrgId(sessionOrgId);
         gradingGroupList.setCreatedDate(new Date());
         GradingGroupList value = gradingGroupListRepository.save(gradingGroupList);
@@ -90,7 +93,7 @@ public class GradingGroupListController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public GradingGroupList editGradingGroupList(@RequestBody GradingGroupList gradingGroupList) {
-        long sessionOrgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         GradingGroupList item = gradingGroupListRepository.findByGradingGroupIdAndOrgId(gradingGroupList.getGradeGroupId(), sessionOrgId);
 
         gradingGroupList.setModifiedDate(new Date());
@@ -127,7 +130,7 @@ public class GradingGroupListController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> deleteGradingGroupList(@RequestBody GradingGroupList gradingGroupList) {
 
-        long sessionOrgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         GradingGroupList grading = gradingGroupListRepository.findByGradingGroupIdAndOrgId(gradingGroupList.getGradeGroupId(), sessionOrgId);
         //session param
         grading.setDeletedBy(grading.getGradeGroupId());
@@ -150,7 +153,7 @@ public class GradingGroupListController {
     @GetMapping(path = "/getMaxGradingGroupId/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public Long getMaxGradingGroupId() {
-        long sessionOrgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         return gradingGroupListRepository.getMaxId(sessionOrgId);
     }
 
@@ -166,7 +169,7 @@ public class GradingGroupListController {
     public GradingGroupList recoverDeletedGradingGroupById(@RequestBody GradingGroupList gradingGroupList) {
 
         //session param
-        long sessionOrgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         GradingGroupList items = gradingGroupListRepository.findDeletedGradingByIdAndOrgId(gradingGroupList.getId(),sessionOrgId);
         items.setDeletedBy(0L);
         items.setDeletedDate(null);
@@ -183,8 +186,8 @@ public class GradingGroupListController {
     @GetMapping(path = "/getDeletedGradingGroupById/v1/{id}",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public GradingGroupList getDeletedGradingGroupById(@PathVariable long id) {
-        long orgId = 1;
-        GradingGroupList item = gradingGroupListRepository.findDeletedGradingByIdAndOrgId(id, orgId);
+        long sessionOrgId = SecurityUtil.getUserOrgId();
+        GradingGroupList item = gradingGroupListRepository.findDeletedGradingByIdAndOrgId(id, sessionOrgId);
         return item;
     }
 
@@ -198,8 +201,8 @@ public class GradingGroupListController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public GradingGroupList updateGradingGroupById(@RequestBody GradingGroupList gradingGroupList) {
-        long orgId = 1;
-        GradingGroupList item = gradingGroupListRepository.findByGradingId(gradingGroupList.getTempId(), orgId);
+        long sessionOrgId = SecurityUtil.getUserOrgId();
+        GradingGroupList item = gradingGroupListRepository.findByGradingId(gradingGroupList.getTempId(), sessionOrgId);
 
         item.setModifiedDate(new Date());
         item.setModifiedBy(item.getGradeGroupId());
@@ -217,7 +220,7 @@ public class GradingGroupListController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> mergeGradingGroupById(@RequestBody GradingGroupList gradingGroupList) {
-        long sessionOrgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         GradingGroupList gradingGroup = gradingGroupListRepository.findByGradingIdAndOrgId(gradingGroupList.getId(), sessionOrgId);
         //session param
         gradingGroup.setDeletedBy(gradingGroup.getGradeGroupId());
@@ -242,7 +245,7 @@ public class GradingGroupListController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public GradingGroupList getGradingGroupByGradingGroupNameAndGradingGroupType(@RequestBody GradingGroupList gradingGroup) {
-        long orgId = 1;
-        return gradingGroupListRepository.findByGradingGroupNameAndGradingGroupTypeAndOrgId(gradingGroup.getGradeGroupName(),gradingGroup.getGradeGroupGradeType(), orgId);
+        long sessionOrgId = SecurityUtil.getUserOrgId();
+        return gradingGroupListRepository.findByGradingGroupNameAndGradingGroupTypeAndOrgId(gradingGroup.getGradeGroupName(),gradingGroup.getGradeGroupGradeType(), sessionOrgId);
     }
 }

@@ -41,12 +41,12 @@ public class LoggedUserServiceV1 {
         return optionalLoggedUser;
     }
 
-    public Optional<LoggedUser> findLoggedUserById(LoggedUserId id) {
+    public Optional<LoggedUser> findLoggedUserById(Long id) {
         Optional<LoggedUser> optionalLoggedUser=loggedUserRepository.findById(id);
         return optionalLoggedUser;
     }
 
-    public void deleteById(LoggedUserId id) {
+    public void deleteById(Long id) {
         loggedUserRepository.deleteById(id);
     }
 

@@ -7,6 +7,7 @@ import com.kastech.blumen.model.customize.ActivityList;
 import com.kastech.blumen.model.customize.CollegeSchool;
 import com.kastech.blumen.repository.customize.ActivityListRepository;
 import com.kastech.blumen.service.customize.ActivityListServiceV1;
+import com.kastech.blumen.utility.SecurityUtil;
 import com.kastech.blumen.validator.customize.ActivityListValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,10 +16,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
+@PreAuthorize("hasAuthority('Activity / Services List')")
 @RestController
 @RequestMapping("/api/blumen-api/customize")
 public class ActivityListController {
@@ -56,7 +59,7 @@ public class ActivityListController {
 
         List<ActivityList> list = new ArrayList<>();
         //session param
-        long sessionOrgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         Iterable<ActivityList> items = activityListRepository.findByOrgId(sessionOrgId);
         items.forEach(list::add);
         return list;
@@ -74,7 +77,7 @@ public class ActivityListController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ActivityList addToActivityList(@RequestBody ActivityList activityList) {
         //session param
-        long sessionOrgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         activityList.setOrgId(sessionOrgId);
         activityList.setCreatedDate(new Date());
         ActivityList value = activityListRepository.save(activityList);
@@ -95,7 +98,7 @@ public class ActivityListController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ActivityList editActivityList(@RequestBody ActivityList activityList) {
 
-        long sessionOrgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         ActivityList item = activityListRepository.findByActivityIdAndOrgId(activityList.getActivityId(), sessionOrgId);
 
         activityList.setModifiedDate(new Date());
@@ -132,7 +135,7 @@ public class ActivityListController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> deleteActivityList(@RequestBody ActivityList activityList) {
 
-        long sessionOrgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         ActivityList activity = activityListRepository.findByActivityIdAndOrgId(activityList.getActivityId(), sessionOrgId);
         //session param
         activity.setDeletedBy(activity.getActivityId());
@@ -155,7 +158,7 @@ public class ActivityListController {
     @GetMapping(path = "/getMaxActivityId/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public Long getMaxActivityListId() {
-        long sessionOrgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         return activityListRepository.getMaxId(sessionOrgId);
     }
 
@@ -168,8 +171,8 @@ public class ActivityListController {
     @GetMapping(path = "/getDeletedActivityById/v1/{id}",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ActivityList getDeletedActivityById(@PathVariable long id) {
-        long orgId = 1;
-        ActivityList item = activityListRepository.findDeletedItemByIdAndOrgId(id, orgId);
+        long sessionOrgId = SecurityUtil.getUserOrgId();
+        ActivityList item = activityListRepository.findDeletedItemByIdAndOrgId(id, sessionOrgId);
         return item;
     }
 
@@ -185,7 +188,7 @@ public class ActivityListController {
     public ActivityList recoverDeletedActivityById(@RequestBody ActivityList activityList) {
 
         //session param
-        long sessionOrgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         ActivityList items = activityListRepository.findDeletedItemByIdAndOrgId(activityList.getId(),sessionOrgId);
         items.setDeletedBy(0L);
         items.setDeletedDate(null);
@@ -203,8 +206,8 @@ public class ActivityListController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ActivityList updateActivityById(@RequestBody ActivityList activityList) {
-        long orgId = 1;
-        ActivityList item = activityListRepository.findByActivityId(activityList.getTempId(), orgId);
+        long sessionOrgId = SecurityUtil.getUserOrgId();
+        ActivityList item = activityListRepository.findByActivityId(activityList.getTempId(), sessionOrgId);
 
         item.setModifiedDate(new Date());
         item.setModifiedBy(item.getActivityId());
@@ -222,10 +225,7 @@ public class ActivityListController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> mergeActivityById(@RequestBody ActivityList activityList) {
-//        long orgId = 1;
-//        activityListRepository.deleteRecordByIdAndOrgId(activityList.getId(), orgId);
-//        return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
-        long sessionOrgId = 1;
+        long sessionOrgId = SecurityUtil.getUserOrgId();
         ActivityList activity = activityListRepository.findByIdAndOrgId(activityList.getId(), sessionOrgId);
         //session param
         activity.setDeletedBy(activity.getActivityId());
@@ -250,7 +250,7 @@ public class ActivityListController {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ActivityList getActivityByActivityNameAndActivityGroupName(@RequestBody ActivityList activityList) {
-        long orgId = 1;
-       return activityListRepository.findByActivityNameAndGroupNameAndOrgId(activityList.getActivityName(),activityList.getActivityGroupName(), orgId);
+        long sessionOrgId = SecurityUtil.getUserOrgId();
+       return activityListRepository.findByActivityNameAndGroupNameAndOrgId(activityList.getActivityName(),activityList.getActivityGroupName(), sessionOrgId);
     }
 }
