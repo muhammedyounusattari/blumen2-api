@@ -27,6 +27,7 @@ public class Organization implements Serializable {
     private Boolean orgScript;
     private Boolean orgTrioBlumenLab;
     private Boolean orgPurge;
+    private Boolean deleted;
 
     private String orgAddress1;
     private String orgAddress2;
@@ -65,7 +66,7 @@ public class Organization implements Serializable {
     public Organization() {
     }
 
-    public Organization(Long orgId, String orgName, String orgCode, String orgDescription, String orgBulkTemplate, Boolean orgTwoFactor, Boolean orgDeviceAuth, Boolean orgSendMail, Integer orgExpiryTime, Boolean orgActive, Boolean orgSiteLocation, Boolean orgScript, Boolean orgTrioBlumenLab, Boolean orgPurge, String orgAddress1, String orgAddress2, String orgProgramType, String orgOrganizationType, Integer orgDaysToExpire, Integer orgRemindOne, Integer orgRemindTwo, String orgCity, String orgState, Integer orgZipCode, Integer orgPhoneOne, Integer orgPhoneTwo, Integer orgPhoneThree, String mailServer, Integer orgFax, String orgWebSite, String orgEmail, String orgUserName, String orgDirector, String orgGoodTill, String orgNotes, String orgNavigateToUser, Set<LoggedUser> users) {
+    public Organization(Long orgId, String orgName, String orgCode, String orgDescription, String orgBulkTemplate, Boolean orgTwoFactor, Boolean orgDeviceAuth, Boolean orgSendMail, Integer orgExpiryTime, Boolean orgActive, Boolean orgSiteLocation, Boolean orgScript, Boolean orgTrioBlumenLab, Boolean orgPurge, Boolean deleted, String orgAddress1, String orgAddress2, String orgProgramType, String orgOrganizationType, Integer orgDaysToExpire, Integer orgRemindOne, Integer orgRemindTwo, String orgCity, String orgState, Integer orgZipCode, Integer orgPhoneOne, Integer orgPhoneTwo, Integer orgPhoneThree, String mailServer, Integer orgFax, String orgWebSite, String orgEmail, String orgUserName, String orgDirector, String orgGoodTill, String orgNotes, String orgNavigateToUser, Set<LoggedUser> users) {
         this.orgId = orgId;
         this.orgName = orgName;
         this.orgCode = orgCode;
@@ -80,6 +81,7 @@ public class Organization implements Serializable {
         this.orgScript = orgScript;
         this.orgTrioBlumenLab = orgTrioBlumenLab;
         this.orgPurge = orgPurge;
+        this.deleted = deleted;
         this.orgAddress1 = orgAddress1;
         this.orgAddress2 = orgAddress2;
         this.orgProgramType = orgProgramType;
@@ -399,6 +401,14 @@ public class Organization implements Serializable {
 
     public void setUsers(Set<LoggedUser> users) {
         this.users = users;
+    }
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 
     @Override
