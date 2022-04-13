@@ -24,7 +24,7 @@ import static com.kastech.blumen.constants.SecurityConstants.SIGN_UP_URL;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(securedEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class BlumenConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired

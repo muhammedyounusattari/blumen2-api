@@ -1,14 +1,17 @@
 package com.kastech.blumen.model.customize;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "college_school", schema = "blumen2")
 public class CollegeSchool {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="college_school_seq_gen")
+    @SequenceGenerator(name="college_school_seq_gen", sequenceName="COLLEGE_SCHOOL_SEQ")
+    private long collegeSchoolId;
+
     private String orgName;
     private String orgType;
     private String name;
@@ -33,10 +36,20 @@ public class CollegeSchool {
     private String fiscalYear;
     private boolean inPullDown;
 
+    private Date createdDate;
+    private long createdBy;
+    private Date modifiedDate;
+    private long modifiedBy;
+    private Date deletedDate;
+    private long deletedBy;
+    private long orgId;
+
     public CollegeSchool() {
     }
 
-    public CollegeSchool(String orgName, String orgType, String name, String codes, String title, String country, String ncesId, String address, String city, String states, String zipcode, String phone1, String phone2, String phone3, String website, String fax, String email, String notes, String fafsaId, String fiscalYear, boolean inPullDown) {
+    public CollegeSchool(long collegeSchoolId , String orgName, String orgType, String name, String codes, String title, String country, String ncesId, String address, String city, String states, String zipcode, String phone1, String phone2, String phone3, String website, String fax, String email, String notes, String fafsaId, String fiscalYear, boolean inPullDown,
+                         Date createdDate,long createdBy,Date modifiedDate,long modifiedBy,Date deletedDate,long deletedBy,long orgId) {
+        this.collegeSchoolId = collegeSchoolId;
         this.orgName = orgName;
         this.orgType = orgType;
         this.name = name;
@@ -58,6 +71,13 @@ public class CollegeSchool {
         this.fafsaId = fafsaId;
         this.fiscalYear = fiscalYear;
         this.inPullDown=inPullDown;
+        this.createdDate=createdDate;
+        this.createdBy=createdBy;
+        this.modifiedDate=modifiedDate;
+        this.deletedDate=deletedDate;
+        this.modifiedBy=modifiedBy;
+        this.deletedBy=deletedBy;
+        this.orgId=orgId;
     }
 
     public String getOrgName() {
@@ -228,9 +248,42 @@ public class CollegeSchool {
 		this.inPullDown = inPullDown;
 	}
 
-	public CollegeSchool updateWith(CollegeSchool item) {
+    public Date getCreatedDate() {return createdDate;}
+
+    public void setCreatedDate(Date createdDate) {this.createdDate = createdDate;}
+
+    public long getCreatedBy() {return createdBy;}
+
+    public void setCreatedBy(long createdBy) {this.createdBy = createdBy;}
+
+    public Date getModifiedDate() {return modifiedDate;}
+
+    public void setModifiedDate(Date modifiedDate) {this.modifiedDate = modifiedDate;}
+
+    public long getModifiedBy() {return modifiedBy;}
+
+    public void setModifiedBy(long modifiedBy) {this.modifiedBy = modifiedBy;}
+
+    public Date getDeletedDate() {return deletedDate;}
+
+    public void setDeletedDate(Date deletedDate) {this.deletedDate = deletedDate;}
+
+    public long getDeletedBy() {return deletedBy;}
+
+    public void setDeletedBy(long deletedBy) {this.deletedBy = deletedBy;}
+
+    public long getOrgId() {return orgId;}
+
+    public void setOrgId(long orgId) {this.orgId = orgId;}
+
+    public long getCollegeSchoolId() {return collegeSchoolId;}
+
+    public void setCollegeSchoolId(long collegeSchoolId) {this.collegeSchoolId = collegeSchoolId;}
+
+    public CollegeSchool updateWith(CollegeSchool item) {
         return new CollegeSchool(
-                this.orgName,
+                item.collegeSchoolId,
+                item.orgName,
                 item.orgType,
                 item.name,
                 item.codes,
@@ -250,7 +303,14 @@ public class CollegeSchool {
                 item.notes,
                 item.fafsaId,
                 item.fiscalYear,
-                item.inPullDown
+                item.inPullDown,
+                item.createdDate,
+                item.createdBy,
+                item.modifiedDate,
+                item.modifiedBy,
+                item.deletedDate,
+                item.deletedBy,
+                item.orgId
         );
     }
 }

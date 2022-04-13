@@ -22,6 +22,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -91,13 +92,9 @@ public class CustomUserDetailsService implements UserDetailsService {
         for (final Roles roleOfUser : userRoles) {
             privileges.addAll(roleOfUser.getPrivileges());
         }
-
-        final Function<Object, String> toStringFunction = Functions.toStringFunction();
-
-        final Collection<String> rolesToString = Collections2.transform(privileges, toStringFunction);
-        final String[] roleStringsAsArray = rolesToString.toArray(new String[rolesToString.size()]);
-        final List<GrantedAuthority> auths = AuthorityUtils.createAuthorityList(roleStringsAsArray);
-
+        final  String[] roleStringsArray = Arrays.stream(privileges.toArray()).
+                map(a -> ((Privileges)a).getName()).collect(Collectors.toUnmodifiableList()).stream().toArray(String[]::new);
+        final List<GrantedAuthority> auths = AuthorityUtils.createAuthorityList(roleStringsArray);
         return auths;
     }
 
