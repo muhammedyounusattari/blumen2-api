@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.Calendar;
 import java.util.Date;
 
 public class DateUtil {
@@ -41,5 +42,14 @@ public class DateUtil {
         }
         return false;
 
+    }
+
+    public static Date setDates(int date){
+        Date dt = new Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(dt);
+        c.add(Calendar.DATE, date);
+        dt = c.getTime();
+        return dt;
     }
 }

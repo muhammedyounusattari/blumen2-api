@@ -30,4 +30,7 @@ public interface LoggedUserRepository extends JpaRepository<LoggedUser, Long> {
 
     @Query(value = "select *from blumen2.users u where u.org_Id=:orgId", nativeQuery = true)
     List<LoggedUser> getUsersList(@Param("orgId") Long orgId);
+
+    @Query(value = "select *From blumen2.users u where u.hashed_code=:hashedCode limit 1", nativeQuery = true)
+    Optional<LoggedUser> findByHashedCode(@Param("hashedCode") String hashedCode);
 }

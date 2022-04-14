@@ -10,6 +10,9 @@ import com.kastech.blumen.service.CustomUserDetailsService;
 import com.kastech.blumen.service.admin.LoggedUserServiceV1;
 import com.kastech.blumen.utility.JwtUtil;
 import com.kastech.blumen.utility.SecurityUtil;
+import org.codehaus.plexus.util.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -43,6 +46,8 @@ public class UserManagmentController {
     @Autowired
     private JwtUtil jwtUtil;
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserManagmentController.class);
+
     @GetMapping(path = "/test")
     @ResponseBody
     public ResponseEntity<?> healtCheck() {
@@ -50,25 +55,61 @@ public class UserManagmentController {
         return ResponseEntity.ok(message);
     }
 
-    @PutMapping(value = "/changePassword/v1/{id}")
-    public void changePassword(@RequestHeader("Authorization") String authHeader){
-
+   // @PutMapping(value = "/changePassword/v1/{hashedCode}")
+    public void changePassword(){
+       // loggedUserServiceV1.updatePassword()
     }
 
-    @GetMapping(value="/validateUser/{orgId}")
+    @GetMapping(value="/validateUser/v1/{orgId}")
     public ResponseEntity<?> validateUser( @PathVariable(value = "orgId", required = true) String orgId) {
         return null;
     }
 
-    @GetMapping(value = "/resetPassword/{user}")
-    public ResponseEntity<?> resetUserPassword(@PathVariable(value="user", required = true) String email) {
-        loggedUserServiceV1.resetPasswordForUser(email, SecurityUtil.getUserOrgType());
-        return null;
+    @GetMapping(value = "/resetPassword/v1/{user}")
+    public ResponseEntity<?> resetUserPassword(@PathVariable(value="user", required = true) String user) {
+        String sentMail = "";
+        try {
+            LOGGER.info("call made for /resetPassword for user {}", user);
+           sentMail =  loggedUserServiceV1.resetPasswordForUser(user, SecurityUtil.getUserOrgType());
+        } catch (UsernameNotFoundException e){
+            LOGGER.error("User with email {} not found ", user);
+           return failure("User with email "+user+ " not found", 404);
+        }
+        catch (Exception e) {
+            LOGGER.error("Problem in resetting password for email {}", user);
+            e.printStackTrace();
+           return failure("Problem in resetting password for email "+ user, 400);
+        }
+        return success("Email sent to address "+user+" "+sentMail, 200);
     }
 
-    @PostMapping(value = "/forgotPassword")
-    public ResponseEntity<?> forgotPasswordUpdate(@RequestBody Map<String, String> requestPaylaod) {
-        return null;
+    @PostMapping(value = "/updatePassword/v1/{hashedCode}")
+    public ResponseEntity<?> updatePassword(@PathVariable(value = "hashedCode", required = true)String hashedCode, @RequestBody Map<String, String> requestPaylaod) {
+
+        Map<String, String> responsePayload = new HashMap<>();
+        String password = requestPaylaod.get("password");
+        String confPassword = requestPaylaod.get("confPassword");
+
+        if (StringUtils.isBlank(password)) {
+            responsePayload.put("message", "Password is missing");
+            responsePayload.put("status", "404");
+            return failure(responsePayload, 404);
+        }
+
+        if (StringUtils.isBlank(confPassword)) {
+            responsePayload.put("message", "Confirm password is missing");
+            responsePayload.put("status", "404");
+            return failure(responsePayload, 404);
+        }
+
+
+        try {
+           return new ResponseEntity(loggedUserServiceV1.updatePassword(confPassword,hashedCode),null,HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return failure("Problem in updating password", 400);
+        }
+
     }
 
 
@@ -125,12 +166,14 @@ public class UserManagmentController {
     }
 
     private ResponseEntity<?> success(Object t, Integer status ){
-        return new ResponseEntity(t,null, HttpStatus.valueOf(status));
+        Map<String,Object> map = new HashMap<>();
+        map.put("message", t);
+        return new ResponseEntity(map,null, HttpStatus.valueOf(status));
     }
 
     private ResponseEntity<?> failure(Object t, int statusCode){
         Map<String,Object> errorMap = new HashMap<>();
         errorMap.put("message", t);
-        return new ResponseEntity(t,null, HttpStatus.valueOf(statusCode));
+        return new ResponseEntity(errorMap,null, HttpStatus.valueOf(statusCode));
     }
 }

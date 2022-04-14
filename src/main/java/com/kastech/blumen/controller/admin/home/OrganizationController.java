@@ -52,12 +52,20 @@ public class OrganizationController {
     @ResponseBody
     @GetMapping(path = "/getOrganizationList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Optional<Organization> getOrganizationList() {
+    public ResponseEntity<?> getOrganizationList() {
 
         List<Organization> list = new ArrayList<>();
-        Optional<Organization> items = organizationRepository.findById(SecurityUtil.getUserOrgId());
-       // items.forEach(list::add);
-        return items;
+        Optional<Organization> items = null;
+        try {
+            items = organizationRepository.findByOrgId(SecurityUtil.getUserOrgId());
+            return success(items, 200);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return failure("Problem in accessing organization users details", 400);
+        }
+        // items.forEach(list::add);
+
+       // return items;
     }
 
     @ResponseBody

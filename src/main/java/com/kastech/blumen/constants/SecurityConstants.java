@@ -10,5 +10,6 @@ public class SecurityConstants {
   public static final String API_URL = "/api/blumen-api/**";
   public static final String PRE_LOGIN_URL_1 = API_URL+ "/orgCount";
   public static final String PRE_LOGIN_URL_2 = API_URL+ "/ssoConfig";
+  public static final String UPDATE_PASSWORD = API_URL+"/updatePassword/**";
   public static final String AUTHORITIES = "roles";
 }

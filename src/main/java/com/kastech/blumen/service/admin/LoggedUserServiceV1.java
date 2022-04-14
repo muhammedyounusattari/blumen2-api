@@ -1,5 +1,6 @@
 package com.kastech.blumen.service.admin;
 
+import com.kastech.blumen.mail.SendMailService;
 import com.kastech.blumen.model.CustomUserDetails;
 import com.kastech.blumen.model.admin.home.Organization;
 import com.kastech.blumen.model.keycloak.LoggedUser;
@@ -8,14 +9,16 @@ import com.kastech.blumen.model.response.LoggedUserResponse;
 import com.kastech.blumen.repository.admin.LoggedUserRepository;
 import com.kastech.blumen.service.superadmin.OrganizationService;
 import com.kastech.blumen.utility.CommonUtil;
+import com.kastech.blumen.utility.DateUtil;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class LoggedUserServiceV1 {
@@ -25,6 +28,12 @@ public class LoggedUserServiceV1 {
 
     @Autowired
     OrganizationService organizationService;
+
+    @Autowired
+    SendMailService sendMailService;
+
+    @Value("${blumen2.url}")
+    private String blumenUrl;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LoggedUserServiceV1.class);
 
@@ -79,19 +88,59 @@ public class LoggedUserServiceV1 {
         return  loggedUserRepository.getUsersList(userOrgId);
     }
 
-    public String resetPasswordForUser(String email, String orgType) {
+    public String resetPasswordForUser(String email, String orgType) throws Exception{
+        LOGGER.info("call made for resetPasswordForUser under {}", this.getClass());
+        Optional<LoggedUser> optionalLoggedUser = loggedUserRepository.findByUserEmailAndOrgType(email, orgType);
+        if(optionalLoggedUser.isEmpty()){
+            LOGGER.error("Username {} not found in database", email);
+           throw new UsernameNotFoundException("Username not found");
+        }
 
+        LoggedUser loggedUser = optionalLoggedUser.get();
+        String uuid = UUID.randomUUID().toString();
+        loggedUser.setHashedCode(uuid);
+        loggedUser.setCreatedDate(new Date());
+        String tempLink = blumenUrl+"reset-password/#"+uuid;
+        loggedUser.setTempLink(tempLink);
+        //set expiry of link to 1 day
+        loggedUser.setLinkExpiryDate(DateUtil.setDates(1));
+        loggedUserRepository.save(loggedUser);
+        String subject = "Reset your password";
+        String content = "<h1>Please click on below link to reset password</h1> <h3>"+tempLink+"</h3>";
+
+        sendMailService.sendMail(loggedUser.getEmail(),subject,content);
+        return content;
         //check if the user exist in database or not
-       Optional<LoggedUser> loggedUsers = loggedUserRepository.findByUserEmailAndOrgType(email, orgType);
-       if(loggedUsers.isEmpty()){
-           return "User "+email+" doesn't exist";
-       }
-       String randomPassword = RandomStringUtils.randomAlphanumeric(15);
+    }
 
-       LoggedUser loggedUser = loggedUsers.get();
-       loggedUser.setPassword(randomPassword);
-       loggedUserRepository.save(loggedUser);
+    public void forgotPassword(Map<String, String> requestPaylaod) {
+    }
 
-       return randomPassword;
+    public Map<String,String> updatePassword(String updatePassword, String hashedCode) {
+        Map<String, String> statusMap = new HashMap<>();
+        if(hashedCode!=null) {
+
+            Optional<LoggedUser> loggedUsers = loggedUserRepository.findByHashedCode(hashedCode);
+            if (loggedUsers.isEmpty()) {
+                statusMap.put("message", "Invalid Link");
+                statusMap.put("status", "404");
+                return statusMap;
+            }
+
+            LoggedUser loggedUser = loggedUsers.get();
+            Date date = new Date();
+            if (!date.before(loggedUser.getLinkExpiryDate())) {
+                statusMap.put("message", "Link got expired, please regenerate by access blumen application--> forgot password.");
+                statusMap.put("status", "404");
+                return statusMap;
+            }
+
+            loggedUser.setExpiryDate(DateUtil.setDates(-1));
+            loggedUser.setPassword(updatePassword);
+            loggedUserRepository.save(loggedUser);
+            statusMap.put("message", "Password Updated successfully");
+            statusMap.put("status", "200");
+        }
+        return statusMap;
     }
 }
