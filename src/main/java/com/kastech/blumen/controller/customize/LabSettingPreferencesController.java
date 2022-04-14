@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
-@PreAuthorize("hasAuthority('Lab Setting Preferences')")
 @RestController
 @RequestMapping("/api/blumen-api/customize")
 public class LabSettingPreferencesController {
@@ -53,27 +53,30 @@ public class LabSettingPreferencesController {
     @PostMapping(path = "/labSettingPreferences/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('Lab Setting Preferences_Y')")
     public LabSettingPreferences addToLabSettingPreferences(@RequestBody LabSettingPreferences reqBody) {
        // LabSettingPreferences labSettingPreferences = labSettingPreferencesServiceV1.doService(reqBody);
         long sessionOrgId = SecurityUtil.getUserOrgId();
         reqBody.setOrgId(sessionOrgId);
         if(reqBody.getId() !=null && reqBody.getId() != 0l) {
+
+            Optional<LabSettingPreferences> peferences = labSettingPreferencesRepository.findById(reqBody.getId());
+            reqBody.setOrgId(peferences.get().getOrgId());
+            reqBody.setCreatedBy(peferences.get().getCreatedBy());
+            reqBody.setCreatedDate(peferences.get().getCreatedDate());
             reqBody.setModifiedDate(new Date());
-            LabSettingPreferences peferences = labSettingPreferencesRepository.save(reqBody);
-            peferences.setOrgId(peferences.getOrgId());
-            peferences.setCreatedBy(peferences.getCreatedBy());
-            peferences.setCreatedDate(peferences.getCreatedDate());
-            return labSettingPreferencesRepository.save(peferences);
+            reqBody.setModifiedBy(SecurityUtil.getUserId());
+            return labSettingPreferencesRepository.save(reqBody);
         }else {
             reqBody.setCreatedDate(new Date());
-            LabSettingPreferences setting = labSettingPreferencesRepository.save(reqBody);
-            setting.setCreatedBy(setting.getId());
-            return labSettingPreferencesRepository.save(setting);
+            reqBody.setCreatedBy(SecurityUtil.getUserId());
+            return labSettingPreferencesRepository.save(reqBody);
         }
     }
 
     @ResponseBody
     @GetMapping(path = "/getLabSettingPreferences/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+    @PreAuthorize("hasAnyAuthority('Lab Setting Preferences_Y','Lab Setting Preferences_R')")
     public List<LabSettingPreferences> getLabSettingPreferences() {
         List<LabSettingPreferences> list = new ArrayList<>();
         //        Iterable<LabSettingPreferences> items = labSettingPreferencesRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));

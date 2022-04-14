@@ -31,7 +31,12 @@ public class CustomUserDetails implements UserDetails {
 
     private Long orgId;
 
-    public CustomUserDetails(Collection<? extends GrantedAuthority> authorities, String email, String displayName, String password, String username, Boolean enabled, Boolean accountNonExpired, Boolean accountNonLocked, boolean credentialsNonExpired, String scope, String orgType, Long orgId) {
+    private Long userId;
+
+    public CustomUserDetails(Collection<? extends GrantedAuthority> authorities, String email, String displayName,
+                             String password, String username, Boolean enabled, Boolean accountNonExpired,
+                             Boolean accountNonLocked, boolean credentialsNonExpired, String scope, String orgType,
+                             Long orgId, Long userId) {
         this.authorities = authorities;
         this.email = email;
         this.displayName = displayName;
@@ -44,6 +49,7 @@ public class CustomUserDetails implements UserDetails {
         this.scope = scope;
         this.orgType = orgType;
         this.orgId = orgId;
+        this.userId = userId;
     }
 
     @Override
@@ -160,4 +166,13 @@ public class CustomUserDetails implements UserDetails {
     public void setOrgId(Long orgId) {
         this.orgId = orgId;
     }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
 }

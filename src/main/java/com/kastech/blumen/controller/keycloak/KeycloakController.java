@@ -61,7 +61,7 @@ public class KeycloakController {
 
 
 
-    @PutMapping(value = "tenant/{realmId}/resetPassword/v1/{id}")
+   // @PutMapping(value = "tenant/{realmId}/resetPassword/v1/{id}")
     public void resetPassword(@RequestHeader("Authorization") String authHeader,
                                             @PathVariable String realmId,
                                             @PathVariable String id) {

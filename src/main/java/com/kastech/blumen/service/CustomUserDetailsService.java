@@ -55,7 +55,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         Collection<GrantedAuthority> grantedAuthoritySet = new HashSet<>();
 
 
-        return new CustomUserDetails(grantedAuthoritySet, loggedUser.getUsername(), loggedUser.getFirstName(), null, loggedUser.getUsername(), Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, loggedUser.getScope(), loggedUser.getOrgType(), loggedUser.getOrgId());
+        return new CustomUserDetails(grantedAuthoritySet, loggedUser.getUsername(), loggedUser.getFirstName(), null, loggedUser.getUsername(), Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, loggedUser.getScope(), loggedUser.getOrgType(), loggedUser.getOrgId(), loggedUser.getId());
         //new CustomUserDetails(loggedUser.getUsername(),loggedUser.getFirstName()+" "+loggedUser.getLastName(),loggedUser.getUsername(),loggedUser.getPassword(),Boolean.TRUE,null);
 
     }
@@ -79,12 +79,18 @@ public class CustomUserDetailsService implements UserDetailsService {
             String role = jsonObject.getString("role");
             gas.add(new SimpleGrantedAuthority(role));
         } */
-        return new CustomUserDetails(grantedAuthoritySet, loggedUser.getEmail(), loggedUser.getFirstName(), null, loggedUser.getUsername(), Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, loggedUser.getScope(), loggedUser.getOrgType(), loggedUser.getOrgId());
+        return new CustomUserDetails(grantedAuthoritySet, loggedUser.getEmail(), loggedUser.getFirstName(), null, loggedUser.getUsername(), Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, loggedUser.getScope(), loggedUser.getOrgType(), loggedUser.getOrgId(), loggedUser.getId());
         //return new CustomUserDetails(grantedAuthoritySet,loggedUser.getUsername(),loggedUser.getFirstName()+" "+loggedUser.getLastName(), loggedUser.getPassword(), loggedUser.getUsername(), Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, true, loggedUser.getScope(), loggedUser.getOrgType());
         //new CustomUserDetails(superAdmin.getEmail(),superAdmin.getFirstName()+" "+superAdmin.getLastName(),superAdmin.getEmail(),superAdmin.getPassword(),Boolean.TRUE,null);
 
     }
 
+    /*
+    *  Each Privilege has three kinds of subdivision making each privilege effectively 3 of them
+    *  privilge-name_Y - full privilege
+    *  privilge-name_N -  no privilege
+    *  privilge-name_R - readonly privilege
+    */
     private Collection<GrantedAuthority> getAuthorities(LoggedUser loggedUser) {
 
         final Set<Roles> userRoles = loggedUser.getRoles();
@@ -93,7 +99,8 @@ public class CustomUserDetailsService implements UserDetailsService {
             privileges.addAll(roleOfUser.getPrivileges());
         }
         final  String[] roleStringsArray = Arrays.stream(privileges.toArray()).
-                map(a -> ((Privileges)a).getName()).collect(Collectors.toUnmodifiableList()).stream().toArray(String[]::new);
+                map(a -> ((Privileges)a).getName() + "_"+ ((Privileges)a).getAccessType()).
+                collect(Collectors.toUnmodifiableList()).stream().toArray(String[]::new);
         final List<GrantedAuthority> auths = AuthorityUtils.createAuthorityList(roleStringsArray);
         return auths;
     }
@@ -121,7 +128,9 @@ public class CustomUserDetailsService implements UserDetailsService {
             gas.add(new SimpleGrantedAuthority(role));
         } */
        // return null; //new CustomUserDetails(null,loggedUser.getUserName(),loggedUser.getUserName(),"mumbai-university.password1",Boolean.TRUE,null);
-        return new CustomUserDetails(grantedAuthoritySet, loggedUser.getUsername(), loggedUser.getFirstName(), null, loggedUser.getUsername(), Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, loggedUser.getScope(), loggedUser.getOrgType(), loggedUser.getOrgId());
+        return new CustomUserDetails(grantedAuthoritySet, loggedUser.getUsername(), loggedUser.getFirstName(),
+                null, loggedUser.getUsername(), Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, Boolean.TRUE,
+                loggedUser.getScope(), loggedUser.getOrgType(), loggedUser.getOrgId(), loggedUser.getId());
 
     }
 

@@ -805,7 +805,7 @@ public class KeycloakAdminClientService {
 
     public Map<String, String> validateOrgCode(Long orgCode) {
         Map<String, String> statusMap = new HashMap<>();
-        Optional<LoggedUser> loggedUser = loggedUserServiceV1.findByOrgId(orgCode);
+        Optional<LoggedUser> loggedUser = null;// loggedUserServiceV1.findByOrgId(orgCode);
 
         if (loggedUser.isEmpty()) {
             statusMap.put("message", "Invalid OrgCode.");

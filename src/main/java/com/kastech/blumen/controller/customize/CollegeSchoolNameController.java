@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
-@PreAuthorize("hasAnyAuthority('College Names', 'School Names')")
 @RestController
 @RequestMapping("/api/blumen-api/customize")
 public class CollegeSchoolNameController {
@@ -53,6 +52,7 @@ public class CollegeSchoolNameController {
     @ResponseBody
     @GetMapping(path = "/getCollegeSchoolNameList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('College Names_Y', 'School Names_Y','College Names_R', 'School Names_R')")
     public List<CollegeSchool> getCollegeSchoolNameList() {
         List<CollegeSchool> list = new ArrayList<>();
         //session param
@@ -72,6 +72,7 @@ public class CollegeSchoolNameController {
     @PostMapping(path = "/addCollegeNameList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('College Names_Y', 'School Names_Y')")
     public CollegeSchool addToCollegeNameList(@RequestBody CollegeSchool collegeSchool) {
         //session param
         long sessionOrgId = SecurityUtil.getUserOrgId();
@@ -79,14 +80,10 @@ public class CollegeSchoolNameController {
         if (null != fafsaId && !fafsaId.isEmpty()) {
             collegeSchool.setNcesId(null);
         }
-
         collegeSchool.setOrgId(sessionOrgId);
         collegeSchool.setCreatedDate(new Date());
-        CollegeSchool collegeSchoolList = collegeSchoolRepository.save(collegeSchool);
-        //session param
-        long collegeSchoolId = collegeSchoolList.getCollegeSchoolId();
-        collegeSchoolList.setCreatedBy(collegeSchoolId);
-        return collegeSchoolRepository.save(collegeSchoolList);
+        collegeSchool.setCreatedBy(SecurityUtil.getUserId());
+        return collegeSchoolRepository.save(collegeSchool);
     }
 
     /**
@@ -98,6 +95,7 @@ public class CollegeSchoolNameController {
     @PostMapping(path = "/addSchoolNameList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('College Names_Y', 'School Names_Y')")
     public CollegeSchool addToSchoolNameList(@RequestBody CollegeSchool collegeSchool) {
 
         //session param
@@ -109,11 +107,9 @@ public class CollegeSchoolNameController {
 
         collegeSchool.setOrgId(sessionOrgId);
         collegeSchool.setCreatedDate(new Date());
-        CollegeSchool collegeSchoolList = collegeSchoolRepository.save(collegeSchool);
         //session param
-        long collegeSchoolId = collegeSchoolList.getCollegeSchoolId();
-        collegeSchoolList.setCreatedBy(collegeSchoolId);
-        return collegeSchoolRepository.save(collegeSchoolList);
+        collegeSchool.setCreatedBy(SecurityUtil.getUserId());
+        return collegeSchoolRepository.save(collegeSchool);
 
 
     }
@@ -127,12 +123,13 @@ public class CollegeSchoolNameController {
     @PutMapping(path = "/updateCollegeSchoolNameList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('College Names_Y', 'School Names_Y')")
     public CollegeSchool editCollegeSchoolNameList(@RequestBody CollegeSchool collegeSchool) {
         long sessionOrgId = SecurityUtil.getUserOrgId();
         CollegeSchool item = collegeSchoolRepository.findByCollegeSchoolIdAndOrgId(collegeSchool.getCollegeSchoolId(), sessionOrgId);
 
         collegeSchool.setModifiedDate(new Date());
-        collegeSchool.setModifiedBy(item.getCollegeSchoolId());
+        collegeSchool.setModifiedBy(SecurityUtil.getUserId());
         collegeSchool.setCreatedBy(item.getCreatedBy());
         collegeSchool.setCreatedDate(item.getCreatedDate());
         collegeSchool.setOrgId(item.getOrgId());
@@ -148,6 +145,7 @@ public class CollegeSchoolNameController {
     @PutMapping(path = "/filter/collegeSchoolNamelist/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('College Names_Y', 'School Names_Y','College Names_R', 'School Names_R')")
     public ResponseEntity<String> filterPullDownList(@RequestBody CollegeSchool collegeSchool) {
         return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
     }
@@ -161,12 +159,13 @@ public class CollegeSchoolNameController {
     @DeleteMapping(path = "/deleteCollegeSchoolNameList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('College Names_Y', 'School Names_Y')")
     public ResponseEntity<?> deleteCollegeSchoolNameList(@RequestBody CollegeSchool collegeSchool) {
 
         long sessionOrgId = SecurityUtil.getUserOrgId();
         CollegeSchool clgScl = collegeSchoolRepository.findByCollegeSchoolIdAndOrgId(collegeSchool.getCollegeSchoolId(), sessionOrgId);
         //session param
-        clgScl.setDeletedBy(clgScl.getCollegeSchoolId());
+        clgScl.setDeletedBy(SecurityUtil.getUserId());
         clgScl.setDeletedDate(new Date());
         CollegeSchool val = collegeSchoolRepository.save(clgScl);
         int statusCode = 200;
@@ -188,6 +187,7 @@ public class CollegeSchoolNameController {
     @ResponseBody
     @GetMapping(path = "/collegeSchoolName/search/v1/{name}/{value}",
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('College Names_Y', 'School Names_Y','College Names_R', 'School Names_R')")
     public ResponseEntity<List<CollegeSchool>> searchCollegeSchoolNameList(@PathVariable Map<String, String> pathVars, @RequestBody String reqBody) {
         RequestDataVO requestDataVO = collegeShoolValidator.validate(RequestAPIType.PULL_DOWN_LIST_V1, reqBody, pathVars);
         String name = requestDataVO.getInputPathVars().get("name");
@@ -209,6 +209,7 @@ public class CollegeSchoolNameController {
     @PostMapping(path = "/getDeletedCollegeSchoolByName/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('College Names_Y', 'School Names_Y','College Names_R', 'School Names_R')")
     public CollegeSchool getDeletedCollegeSchoolByName(@RequestBody CollegeSchool collegeSchool) {
         long sessionOrgId = SecurityUtil.getUserOrgId();
         CollegeSchool item = new CollegeSchool();
@@ -229,6 +230,7 @@ public class CollegeSchoolNameController {
     @PostMapping(path = "/getDeletedCollegeSchoolByNameAndOrgId/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('College Names_Y', 'School Names_Y','College Names_R', 'School Names_R')")
     public long getDeletedCollegeSchoolByNameAndOrgId(@RequestBody CollegeSchool collegeSchool) {
         long sessionOrgId = SecurityUtil.getUserOrgId();
         long status = 0L;
@@ -253,6 +255,7 @@ public class CollegeSchoolNameController {
     @PutMapping(path = "/recoverDeletedCollegeSchool/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('College Names_Y', 'School Names_Y')")
     public CollegeSchool recoverDeletedCollegeSchool(@RequestBody CollegeSchool collegeSchool) {
 
         //session param
@@ -273,13 +276,14 @@ public class CollegeSchoolNameController {
     @PutMapping(path = "/updateCollegeSchoolNameById/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('College Names_Y', 'School Names_Y')")
     public CollegeSchool updateCollegeSchoolNameById(@RequestBody CollegeSchool collegeSchool) {
         long sessionOrgId = SecurityUtil.getUserOrgId();
         CollegeSchool item = collegeSchoolRepository.findByCollegeSchoolId(collegeSchool.getCollegeSchoolId(), sessionOrgId);
         item.setModifiedDate(new Date());
         item.setName(collegeSchool.getName());
         item.setOrgName(collegeSchool.getName());
-        item.setModifiedBy(item.getCollegeSchoolId());
+        item.setModifiedBy(SecurityUtil.getUserId());
         return collegeSchoolRepository.save(item);
     }
 
@@ -293,11 +297,12 @@ public class CollegeSchoolNameController {
     @DeleteMapping(path = "/mergeCollegeSchoolByName/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('College Names_Y', 'School Names_Y')")
     public ResponseEntity<?> mergeCollegeSchoolByName(@RequestBody CollegeSchool collegeSchool) {
         long sessionOrgId = SecurityUtil.getUserOrgId();
         CollegeSchool colscl = collegeSchoolRepository.findByCollegeSchoolIdAndOrgId(collegeSchool.getCollegeSchoolId(), sessionOrgId);
         //session param
-        colscl.setDeletedBy(colscl.getCollegeSchoolId());
+        colscl.setDeletedBy(SecurityUtil.getUserId());
         colscl.setDeletedDate(new Date());
         CollegeSchool value = collegeSchoolRepository.save(colscl);
         int statusCode = 200;
@@ -318,6 +323,7 @@ public class CollegeSchoolNameController {
     @PostMapping(path = "/getCollegeSchoolByName/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('College Names_Y', 'School Names_Y','College Names_R', 'School Names_R')")
     public CollegeSchool getCollegeSchoolByName(@RequestBody CollegeSchool collegeSchool) {
         long sessionOrgId = SecurityUtil.getUserOrgId();
         CollegeSchool item = new CollegeSchool();
@@ -338,6 +344,7 @@ public class CollegeSchoolNameController {
     @PostMapping(path = "/getCollegeSchoolByCode/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('College Names_Y', 'School Names_Y','College Names_R', 'School Names_R')")
     public CollegeSchool getCollegeSchoolByCode(@RequestBody CollegeSchool collegeSchool) {
         long sessionOrgId = SecurityUtil.getUserOrgId();
         CollegeSchool item = new CollegeSchool();
@@ -356,6 +363,7 @@ public class CollegeSchoolNameController {
     @ResponseBody
     @GetMapping(path = "/getCollegeNameList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('College Names_Y', 'School Names_Y','College Names_R', 'School Names_R')")
     public List<CollegeSchool> getCollegeNameList() {
         List<CollegeSchool> list = new ArrayList<>();
         //session param
@@ -373,6 +381,7 @@ public class CollegeSchoolNameController {
     @ResponseBody
     @GetMapping(path = "/getSchoolNameList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('College Names_Y', 'School Names_Y','College Names_R', 'School Names_R')")
     public List<CollegeSchool> getSchoolNameList() {
         List<CollegeSchool> list = new ArrayList<>();
         //session param

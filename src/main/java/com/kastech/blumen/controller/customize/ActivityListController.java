@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
-@PreAuthorize("hasAuthority('Activity / Services List')")
 @RestController
 @RequestMapping("/api/blumen-api/customize")
 public class ActivityListController {
@@ -55,6 +54,7 @@ public class ActivityListController {
     @ResponseBody
     @GetMapping(path = "/getActivityList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('Activity / Services List_R','Activity / Services List_Y')")
     public List<ActivityList> getActivityList() {
 
         List<ActivityList> list = new ArrayList<>();
@@ -75,16 +75,14 @@ public class ActivityListController {
     @PostMapping(path = "/activityList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('Activity / Services List_Y')")
     public ActivityList addToActivityList(@RequestBody ActivityList activityList) {
         //session param
         long sessionOrgId = SecurityUtil.getUserOrgId();
         activityList.setOrgId(sessionOrgId);
         activityList.setCreatedDate(new Date());
-        ActivityList value = activityListRepository.save(activityList);
-
-        long activityId = value.getActivityId();
-        value.setCreatedBy(activityId);
-        return activityListRepository.save(value);
+        activityList.setCreatedBy(SecurityUtil.getUserId());
+        return activityListRepository.save(activityList);
     }
 
     /**
@@ -96,13 +94,14 @@ public class ActivityListController {
     @PutMapping(path = "/updateActivityList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('Activity / Services List_Y')")
     public ActivityList editActivityList(@RequestBody ActivityList activityList) {
 
         long sessionOrgId = SecurityUtil.getUserOrgId();
         ActivityList item = activityListRepository.findByActivityIdAndOrgId(activityList.getActivityId(), sessionOrgId);
 
         activityList.setModifiedDate(new Date());
-        activityList.setModifiedBy(item.getActivityId());
+        activityList.setModifiedBy(SecurityUtil.getUserId());
         activityList.setCreatedBy(item.getCreatedBy());
         activityList.setCreatedDate(item.getCreatedDate());
         activityList.setOrgId(item.getOrgId());
@@ -119,6 +118,7 @@ public class ActivityListController {
     @PutMapping(path = "/filter/activityList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('Activity / Services List_R','Activity / Services List_Y')")
     public ResponseEntity<String> filterActivityList(@RequestBody ActivityList activityList) {
      //   ActivityList activityList = activityListServiceV1.doService(reqBody);
         return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
@@ -133,12 +133,13 @@ public class ActivityListController {
     @DeleteMapping(path = "/deleteActivityList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('Activity / Services List_Y')")
     public ResponseEntity<?> deleteActivityList(@RequestBody ActivityList activityList) {
 
         long sessionOrgId = SecurityUtil.getUserOrgId();
         ActivityList activity = activityListRepository.findByActivityIdAndOrgId(activityList.getActivityId(), sessionOrgId);
         //session param
-        activity.setDeletedBy(activity.getActivityId());
+        activity.setDeletedBy(SecurityUtil.getUserId());
         activity.setDeletedDate(new Date());
         ActivityList value = activityListRepository.save(activity);
         int statusCode = 200;
@@ -157,6 +158,7 @@ public class ActivityListController {
     @ResponseBody
     @GetMapping(path = "/getMaxActivityId/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('Activity / Services List_R','Activity / Services List_Y')")
     public Long getMaxActivityListId() {
         long sessionOrgId = SecurityUtil.getUserOrgId();
         return activityListRepository.getMaxId(sessionOrgId);
@@ -170,6 +172,7 @@ public class ActivityListController {
     @ResponseBody
     @GetMapping(path = "/getDeletedActivityById/v1/{id}",
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('Activity / Services List_Y')")
     public ActivityList getDeletedActivityById(@PathVariable long id) {
         long sessionOrgId = SecurityUtil.getUserOrgId();
         ActivityList item = activityListRepository.findDeletedItemByIdAndOrgId(id, sessionOrgId);
@@ -185,6 +188,7 @@ public class ActivityListController {
     @PutMapping(path = "/recoverDeletedActivityById/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('Activity / Services List_Y')")
     public ActivityList recoverDeletedActivityById(@RequestBody ActivityList activityList) {
 
         //session param
@@ -205,12 +209,13 @@ public class ActivityListController {
     @PutMapping(path = "/updateActivityById/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('Activity / Services List_Y')")
     public ActivityList updateActivityById(@RequestBody ActivityList activityList) {
         long sessionOrgId = SecurityUtil.getUserOrgId();
         ActivityList item = activityListRepository.findByActivityId(activityList.getTempId(), sessionOrgId);
 
         item.setModifiedDate(new Date());
-        item.setModifiedBy(item.getActivityId());
+        item.setModifiedBy(SecurityUtil.getUserId());
         item.setId(activityList.getId());
         return activityListRepository.save(item);
     }
@@ -224,11 +229,12 @@ public class ActivityListController {
     @DeleteMapping(path = "/mergeActivityById/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('Activity / Services List_Y')")
     public ResponseEntity<?> mergeActivityById(@RequestBody ActivityList activityList) {
         long sessionOrgId = SecurityUtil.getUserOrgId();
         ActivityList activity = activityListRepository.findByIdAndOrgId(activityList.getId(), sessionOrgId);
         //session param
-        activity.setDeletedBy(activity.getActivityId());
+        activity.setDeletedBy(SecurityUtil.getUserId());
         activity.setDeletedDate(new Date());
         ActivityList value = activityListRepository.save(activity);
         int statusCode = 200;
@@ -249,6 +255,7 @@ public class ActivityListController {
     @PostMapping(path = "/getActivityByActivityNameAndActivityGroupName/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('Activity / Services List_R','Activity / Services List_Y')")
     public ActivityList getActivityByActivityNameAndActivityGroupName(@RequestBody ActivityList activityList) {
         long sessionOrgId = SecurityUtil.getUserOrgId();
        return activityListRepository.findByActivityNameAndGroupNameAndOrgId(activityList.getActivityName(),activityList.getActivityGroupName(), sessionOrgId);

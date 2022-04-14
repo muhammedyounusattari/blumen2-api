@@ -1,11 +1,14 @@
 package com.kastech.blumen.service.admin;
 
+import com.kastech.blumen.model.CustomUserDetails;
 import com.kastech.blumen.model.admin.home.Organization;
 import com.kastech.blumen.model.keycloak.LoggedUser;
 import com.kastech.blumen.model.keycloak.LoggedUserId;
+import com.kastech.blumen.model.response.LoggedUserResponse;
 import com.kastech.blumen.repository.admin.LoggedUserRepository;
 import com.kastech.blumen.service.superadmin.OrganizationService;
 import com.kastech.blumen.utility.CommonUtil;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,5 +72,26 @@ public class LoggedUserServiceV1 {
         }
 
         return loggedUser;
+    }
+
+
+    public List<LoggedUser> loadUsers(Long userOrgId) {
+        return  loggedUserRepository.getUsersList(userOrgId);
+    }
+
+    public String resetPasswordForUser(String email, String orgType) {
+
+        //check if the user exist in database or not
+       Optional<LoggedUser> loggedUsers = loggedUserRepository.findByUserEmailAndOrgType(email, orgType);
+       if(loggedUsers.isEmpty()){
+           return "User "+email+" doesn't exist";
+       }
+       String randomPassword = RandomStringUtils.randomAlphanumeric(15);
+
+       LoggedUser loggedUser = loggedUsers.get();
+       loggedUser.setPassword(randomPassword);
+       loggedUserRepository.save(loggedUser);
+
+       return randomPassword;
     }
 }

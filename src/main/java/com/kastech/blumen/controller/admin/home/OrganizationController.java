@@ -6,6 +6,7 @@ import com.kastech.blumen.model.keycloak.LoggedUser;
 import com.kastech.blumen.repository.admin.home.OrganizationRepository;
 import com.kastech.blumen.service.admin.LoggedUserServiceV1;
 import com.kastech.blumen.service.superadmin.OrganizationService;
+import com.kastech.blumen.utility.SecurityUtil;
 import com.kastech.blumen.validator.admin.home.OrganizationValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +15,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -42,8 +42,7 @@ public class OrganizationController {
     @ResponseBody
     @GetMapping(path = "/getOrganizationsList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public List<Organization> getOrganizationsList(Authentication authentication) {
-        //CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+    public List<Organization> getOrganizationsList() {
         List<Organization> list = new ArrayList<>();
         Iterable<Organization> items = organizationRepository.findAll(Sort.by(Sort.Direction.ASC, "orgId"));
         items.forEach(list::add);
@@ -53,10 +52,10 @@ public class OrganizationController {
     @ResponseBody
     @GetMapping(path = "/getOrganizationList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Optional<Organization> getOrganizationList(Authentication authentication) {
-        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+    public Optional<Organization> getOrganizationList() {
+
         List<Organization> list = new ArrayList<>();
-        Optional<Organization> items = organizationRepository.findById(userDetails.getOrgId());
+        Optional<Organization> items = organizationRepository.findById(SecurityUtil.getUserOrgId());
        // items.forEach(list::add);
         return items;
     }
@@ -105,9 +104,9 @@ public class OrganizationController {
     @PostMapping(path = "/createUser/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> createUser(Authentication authentication, @RequestBody LoggedUser loggedUser) {
+    public ResponseEntity<?> createUser( @RequestBody LoggedUser loggedUser) {
         LOGGER.info("Call made to createUser with payload {}", loggedUser);
-        CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
+        CustomUserDetails customUserDetails = SecurityUtil.getUserDetails();
         loggedUser.setEditedBy(customUserDetails.getUsername());
         try {
             loggedUser = loggedUserServiceV1.createUser(loggedUser);
@@ -117,14 +116,6 @@ public class OrganizationController {
            return failure("problem in creating a user for orgId "+loggedUser.getOrgId(), 500);
         }
 
-    }
-
-    @ResponseBody
-    @GetMapping(path = "/usersList/v1",
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Optional<LoggedUser> getUsersList(Authentication authentication) {
-        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-        return loggedUserServiceV1.findByOrgId(userDetails.getOrgId());
     }
 
 

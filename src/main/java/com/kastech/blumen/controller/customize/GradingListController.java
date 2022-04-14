@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
-@PreAuthorize("hasAuthority('Grade / Standing List')")
 @RestController
 @RequestMapping("/api/blumen-api/customize")
 public class GradingListController {
@@ -49,6 +48,7 @@ public class GradingListController {
     @ResponseBody
     @GetMapping(path = "/getGradingList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('Grade / Standing List_Y','Grade / Standing List_R')")
     public List<GradingList> getGradingList() {
 
         List<GradingList> list = new ArrayList<>();
@@ -68,6 +68,7 @@ public class GradingListController {
     @PostMapping(path = "/gradingList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('Grade / Standing List_Y')")
     public GradingList addToGradingList(@RequestBody GradingList gradingList) {
 
 
@@ -75,11 +76,8 @@ public class GradingListController {
         long sessionOrgId = SecurityUtil.getUserOrgId();
         gradingList.setOrgId(sessionOrgId);
         gradingList.setCreatedDate(new Date());
-        GradingList value = gradingListRepository.save(gradingList);
-
-        long gradingId = value.getGradingId();
-        value.setCreatedBy(gradingId);
-        return gradingListRepository.save(value);
+        gradingList.setCreatedBy(SecurityUtil.getUserId());
+        return gradingListRepository.save(gradingList);
 
     }
 
@@ -92,12 +90,13 @@ public class GradingListController {
     @PutMapping(path = "/updateGradingList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('Grade / Standing List_Y')")
     public GradingList editGradingList(@RequestBody GradingList gradingList) {
         long sessionOrgId = SecurityUtil.getUserOrgId();
         GradingList item = gradingListRepository.findByGradingIdAndOrgId(gradingList.getGradingId(), sessionOrgId);
 
         gradingList.setModifiedDate(new Date());
-        gradingList.setModifiedBy(item.getGradingId());
+        gradingList.setModifiedBy(SecurityUtil.getUserId());
         gradingList.setCreatedBy(item.getCreatedBy());
         gradingList.setCreatedDate(item.getCreatedDate());
         gradingList.setOrgId(item.getOrgId());
@@ -113,6 +112,7 @@ public class GradingListController {
     @PutMapping(path = "/filter/gradingList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('Grade / Standing List_Y','Grade / Standing List_R')")
     public ResponseEntity<String> filterGradingList(@RequestBody GradingList gradingList) {
       //  GradingList activityList = gradingListServiceV1.doService(reqBody);
         return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
@@ -127,12 +127,13 @@ public class GradingListController {
     @DeleteMapping(path = "/deleteGradingList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('Grade / Standing List_Y')")
     public ResponseEntity<?> deleteGradingList(@RequestBody GradingList gradingList) {
 
         long sessionOrgId = SecurityUtil.getUserOrgId();
         GradingList grading = gradingListRepository.findByGradingIdAndOrgId(gradingList.getGradingId(), sessionOrgId);
         //session param
-        grading.setDeletedBy(grading.getGradingId());
+        grading.setDeletedBy(SecurityUtil.getUserId());
         grading.setDeletedDate(new Date());
         GradingList value = gradingListRepository.save(grading);
         int statusCode = 200;
@@ -151,6 +152,7 @@ public class GradingListController {
     @ResponseBody
     @GetMapping(path = "/getMaxGradingListId/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('Grade / Standing List_Y','Grade / Standing List_R')")
     public Long getMaxGradingListId() {
         long sessionOrgId = SecurityUtil.getUserOrgId();
         return gradingListRepository.getMaxId(sessionOrgId);
@@ -164,6 +166,7 @@ public class GradingListController {
     @ResponseBody
     @GetMapping(path = "/getDeletedGradingById/v1/{id}",
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('Grade / Standing List_Y','Grade / Standing List_R')")
     public GradingList getDeletedGradingById(@PathVariable long id) {
         long sessionOrgId = SecurityUtil.getUserOrgId();
         GradingList item = gradingListRepository.findDeletedGradingByIdAndOrgId(id, sessionOrgId);
@@ -180,6 +183,7 @@ public class GradingListController {
     @PutMapping(path = "/recoverDeletedGradingById/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('Grade / Standing List_Y')")
     public GradingList recoverDeletedGradingById(@RequestBody GradingList gradingList) {
 
         //session param
@@ -200,12 +204,13 @@ public class GradingListController {
     @PutMapping(path = "/updateGradingById/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('Grade / Standing List_Y')")
     public GradingList updateGradingById(@RequestBody GradingList gradingList) {
         long sessionOrgId = SecurityUtil.getUserOrgId();
         GradingList item = gradingListRepository.findByGradingId(gradingList.getTempId(), sessionOrgId);
 
         item.setModifiedDate(new Date());
-        item.setModifiedBy(item.getGradingId());
+        item.setModifiedBy(SecurityUtil.getUserId());
         item.setId(gradingList.getId());
         return gradingListRepository.save(item);
     }
@@ -219,11 +224,12 @@ public class GradingListController {
     @DeleteMapping(path = "/mergeGradingById/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('Grade / Standing List_Y')")
     public ResponseEntity<?> mergeGradingById(@RequestBody GradingList gradingList) {
         long sessionOrgId = SecurityUtil.getUserOrgId();
         GradingList grading = gradingListRepository.findByIdAndOrgId(gradingList.getId(), sessionOrgId);
         //session param
-        grading.setDeletedBy(grading.getGradingId());
+        grading.setDeletedBy(SecurityUtil.getUserId());
         grading.setDeletedDate(new Date());
         GradingList value = gradingListRepository.save(grading);
         int statusCode = 200;
@@ -244,6 +250,7 @@ public class GradingListController {
     @PostMapping(path = "/getGradingByGradingNameAndGradingGroupName/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('Grade / Standing List_Y','Grade / Standing List_R')")
     public GradingList getGradingByGradingNameAndGradingGroupName(@RequestBody GradingList grading) {
         long sessionOrgId = SecurityUtil.getUserOrgId();
         return gradingListRepository.findByGradingNameAndGradingGroupNameAndOrgId(grading.getGradingName(),grading.getGradingGroupName(), sessionOrgId);

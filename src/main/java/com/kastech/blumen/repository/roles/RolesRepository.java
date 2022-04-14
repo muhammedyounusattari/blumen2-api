@@ -13,6 +13,8 @@ import java.util.Optional;
 @Repository
 public interface RolesRepository extends JpaRepository<Roles, Long> {
 
+    @Query(value = "select * from blumen2.roles role where role.org_Id=:orgId and (role.name=:role or role.code=:role) ", nativeQuery = true)
+    List<Roles> findByOrgIdAndRole(@Param("orgId") Long orgId, @Param("role") String role);
 
     @Query(value = "select * from blumen2.roles role where role.org_Id=:orgId", nativeQuery = true)
     List<Roles> findByOrgId(@Param("orgId") Long orgId);
