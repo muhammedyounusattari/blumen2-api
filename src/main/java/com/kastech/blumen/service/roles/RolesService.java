@@ -1,7 +1,9 @@
-package com.kastech.blumen.model.roles;
+package com.kastech.blumen.service.roles;
 
 import com.kastech.blumen.model.keycloak.Privileges;
 import com.kastech.blumen.model.keycloak.Roles;
+import com.kastech.blumen.model.roles.Privilege;
+import com.kastech.blumen.model.roles.Role;
 import com.kastech.blumen.repository.roles.RolesRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -11,8 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,26 +23,31 @@ public class RolesService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RolesService.class);
 
-    public List<Roles> getRolesByOrgId(Long orgId) {
+    public List<Role> getRolesByOrgId(Long orgId) {
         LOGGER.info("call made to getRolesByOrgId for orgId {} ", orgId);
-        return repository.findByOrgId(orgId);
+        List<Roles> roles = repository.findByOrgId(orgId);
+        return roles.stream().map(r -> new Role(r)).collect(Collectors.toList());
     }
 
     //Privileges from JPA don't have node list kind of structure so need needs to create new Privilege class
     //send back map of role_name+_+role_code, privileges in tree structure.
-    public Map<String, List<Privilege>> getRolesByOrgIdV2(Long orgId, String role) {
+    public List<Role> getRolesByOrgIdV2(Long orgId, String role) {
         LOGGER.info("call made to getRolesByOrgId for orgId {}, roleName {} ", orgId, role);
-        List<Roles> roles = null;
+        List<Roles> rolesFromDB = null;
+
         if (StringUtils.isNotEmpty(role)) {
-            roles = repository.findByOrgIdAndRole(orgId, role);
+            rolesFromDB = repository.findByOrgIdAndRole(orgId, role);
         } else {
-            roles = repository.findByOrgId(orgId);
+            rolesFromDB = repository.findByOrgId(orgId);
         }
-        Map<String, List<Privilege>> map = new TreeMap<>();
-        for (Roles r : roles) {
-            map.put(r.getName()+"::"+r.getCode(), buildPrivilegeTree(r.getPrivileges().stream().collect(Collectors.toList())));
+
+        List<Role> rolesResponseList = new ArrayList<>();
+        for (Roles r : rolesFromDB) {
+            Role tmpRole = new Role(r);
+            tmpRole.setPrivileges(buildPrivilegeTree(r.getPrivileges().stream().collect(Collectors.toList())));
+            rolesResponseList.add(tmpRole);
         }
-        return map;
+        return rolesResponseList;
     }
 
     private  List<Privilege>  buildPrivilegeTree(List<Privileges> privilegesFromDBList) {
