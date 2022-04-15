@@ -84,7 +84,7 @@ public class OrganizationService {
     public Organization batchUpdateForOrgAdmin(LoggedUser loggedUser, Organization organization) throws Exception {
         try {
         insertOrganizationUsers(loggedUser,organization);
-        insertSecurityQuestions(organization);
+       // insertSecurityQuestions(organization);
         insertPullDownList(organization);
         insertConfigSetting(organization);
         insertDefaultRoles(organization);

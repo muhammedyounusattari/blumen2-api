@@ -64,7 +64,7 @@ public class BlumenConfiguration extends WebSecurityConfigurerAdapter {
                .csrf().disable()
                .cors().disable()
                .authorizeRequests()
-               .antMatchers(SIGN_UP_URL,PRE_LOGIN_URL_1,PRE_LOGIN_URL_2,UPDATE_PASSWORD).permitAll()
+               .antMatchers(SIGN_UP_URL,PRE_LOGIN_URL_1,PRE_LOGIN_URL_2,UPDATE_PASSWORD,FORGOT_PASSWORD ).permitAll()
                .antMatchers(API_URL).authenticated()
                .anyRequest().permitAll()
                .and()

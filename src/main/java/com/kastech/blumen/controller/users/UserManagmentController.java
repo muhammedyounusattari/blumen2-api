@@ -112,6 +112,55 @@ public class UserManagmentController {
 
     }
 
+    @PostMapping(value = RestURIConstant.FORGOT_PASSWORD)
+    public ResponseEntity<?> forgotPassword(@RequestBody Map<String, String> requestPaylaod) {
+        LOGGER.info("forgotPassword api is called {}", this.getClass());
+
+        Map<String, String> responsePayload = new HashMap<>();
+        String orgType = requestPaylaod.get("orgType");
+        String email = requestPaylaod.get("email");
+        String securityAnswer1 = requestPaylaod.get("securityAnswer1");
+        String securityAnswer2 = requestPaylaod.get("securityAnswer2");
+
+        LOGGER.debug("email {}, orgType {}, securityAnswer1 {}, securityAnswer2 {}", email, orgType,securityAnswer1,securityAnswer2);
+        if (StringUtils.isBlank(orgType)) {
+            responsePayload.put("message", "OrganizationCode is missing");
+            responsePayload.put("status", "404");
+            LOGGER.warn("OrgType missing {}", orgType);
+            return failure(responsePayload, 404);
+        }
+
+        if (StringUtils.isBlank(email) && StringUtils.isBlank(securityAnswer1) && StringUtils.isBlank(securityAnswer2)) {
+            responsePayload = loggedUserServiceV1.validateOrgType(orgType);
+            return success(responsePayload, Integer.parseInt(responsePayload.get("status")));
+        }
+        if (StringUtils.isBlank(email)) {
+            responsePayload.put("message", "Email is missing");
+            responsePayload.put("status", "404");
+            return failure(responsePayload, 404);
+        }
+
+        if (StringUtils.isBlank(securityAnswer1) && StringUtils.isBlank(securityAnswer2)) {
+            responsePayload = loggedUserServiceV1.getSecurityQuestions(orgType, email);
+            return new ResponseEntity(responsePayload, HttpStatus.OK);
+        }
+
+        if (StringUtils.isBlank(securityAnswer1)) {
+            responsePayload.put("message", "SecurityAnswer1 is missing");
+            responsePayload.put("status", "404");
+            return failure(responsePayload, 404);
+        }
+
+        if (StringUtils.isBlank(securityAnswer2)) {
+            responsePayload.put("message", "SecurityAnswer2 is missing");
+            responsePayload.put("status", "404");
+            return failure(responsePayload, 404);
+        }
+
+        Map<String, String> statusMap = loggedUserServiceV1.checkCredentials(orgType, email, securityAnswer1, securityAnswer2);
+        return new ResponseEntity(statusMap,null, HttpStatus.OK);
+    }
+
 
 
     @PostMapping(path = RestURIConstant.LOGIN, consumes = {MediaType.APPLICATION_JSON_VALUE},

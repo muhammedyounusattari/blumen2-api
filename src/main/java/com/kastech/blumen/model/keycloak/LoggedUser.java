@@ -27,6 +27,7 @@ public class LoggedUser implements Serializable {
 
     private String email;
 
+    @JsonIgnore
     private String password;
 
     private String roleName;
@@ -61,8 +62,10 @@ public class LoggedUser implements Serializable {
 
     private Boolean active;
 
+    @JsonIgnore
     private String createdBy;
 
+    @JsonIgnore
     private String editedBy;
 
     private String securityQuestion1;
@@ -80,8 +83,10 @@ public class LoggedUser implements Serializable {
 
     private int exp;
 
+    @JsonIgnore
     private Date issueDate;
 
+    @JsonIgnore
     private Date expiryDate;
 
     @Nullable

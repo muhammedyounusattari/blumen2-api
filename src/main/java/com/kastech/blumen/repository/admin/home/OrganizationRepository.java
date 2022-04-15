@@ -14,4 +14,7 @@ public interface OrganizationRepository extends JpaRepository<Organization, Long
 
     @Query(value="select *from blumen2.organization where org_id=:orgId", nativeQuery = true)
     Optional<Organization> findByOrgId(@Param("orgId") Long orgId);
+
+    @Query(value="select *from blumen2.organization where org_organization_type=:orgType", nativeQuery = true)
+    Optional<Organization> findByOrgType(@Param("orgType") String orgType);
 }
