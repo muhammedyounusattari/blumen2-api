@@ -38,13 +38,13 @@ public class Organization implements Serializable {
     private Integer orgRemindTwo;
     private String orgCity;
     private String orgState;
-    private Integer orgZipCode;
+    private String orgZipCode;
 
-    private Integer orgPhoneOne;
-    private Integer orgPhoneTwo;
-    private Integer orgPhoneThree;
+    private String orgPhoneOne;
+    private String orgPhoneTwo;
+    private String orgPhoneThree;
     private String mailServer;
-    private Integer orgFax;
+    private String orgFax;
 
     private String orgWebSite;
     private String orgEmail;
@@ -66,7 +66,7 @@ public class Organization implements Serializable {
     public Organization() {
     }
 
-    public Organization(Long orgId, String orgName, String orgCode, String orgDescription, String orgBulkTemplate, Boolean orgTwoFactor, Boolean orgDeviceAuth, Boolean orgSendMail, Integer orgExpiryTime, Boolean orgActive, Boolean orgSiteLocation, Boolean orgScript, Boolean orgTrioBlumenLab, Boolean orgPurge, Boolean deleted, String orgAddress1, String orgAddress2, String orgProgramType, String orgOrganizationType, Integer orgDaysToExpire, Integer orgRemindOne, Integer orgRemindTwo, String orgCity, String orgState, Integer orgZipCode, Integer orgPhoneOne, Integer orgPhoneTwo, Integer orgPhoneThree, String mailServer, Integer orgFax, String orgWebSite, String orgEmail, String orgUserName, String orgDirector, String orgGoodTill, String orgNotes, String orgNavigateToUser, Set<LoggedUser> users) {
+    public Organization(Long orgId, String orgName, String orgCode, String orgDescription, String orgBulkTemplate, Boolean orgTwoFactor, Boolean orgDeviceAuth, Boolean orgSendMail, Integer orgExpiryTime, Boolean orgActive, Boolean orgSiteLocation, Boolean orgScript, Boolean orgTrioBlumenLab, Boolean orgPurge, Boolean deleted, String orgAddress1, String orgAddress2, String orgProgramType, String orgOrganizationType, Integer orgDaysToExpire, Integer orgRemindOne, Integer orgRemindTwo, String orgCity, String orgState, String orgZipCode, String orgPhoneOne, String orgPhoneTwo, String orgPhoneThree, String mailServer, String orgFax, String orgWebSite, String orgEmail, String orgUserName, String orgDirector, String orgGoodTill, String orgNotes, String orgNavigateToUser, Set<LoggedUser> users) {
         this.orgId = orgId;
         this.orgName = orgName;
         this.orgCode = orgCode;
@@ -291,35 +291,35 @@ public class Organization implements Serializable {
         this.orgState = orgState;
     }
 
-    public Integer getOrgZipCode() {
+    public String getOrgZipCode() {
         return orgZipCode;
     }
 
-    public void setOrgZipCode(Integer orgZipCode) {
+    public void setOrgZipCode(String orgZipCode) {
         this.orgZipCode = orgZipCode;
     }
 
-    public Integer getOrgPhoneOne() {
+    public String getOrgPhoneOne() {
         return orgPhoneOne;
     }
 
-    public void setOrgPhoneOne(Integer orgPhoneOne) {
+    public void setOrgPhoneOne(String orgPhoneOne) {
         this.orgPhoneOne = orgPhoneOne;
     }
 
-    public Integer getOrgPhoneTwo() {
+    public String getOrgPhoneTwo() {
         return orgPhoneTwo;
     }
 
-    public void setOrgPhoneTwo(Integer orgPhoneTwo) {
+    public void setOrgPhoneTwo(String orgPhoneTwo) {
         this.orgPhoneTwo = orgPhoneTwo;
     }
 
-    public Integer getOrgPhoneThree() {
+    public String getOrgPhoneThree() {
         return orgPhoneThree;
     }
 
-    public void setOrgPhoneThree(Integer orgPhoneThree) {
+    public void setOrgPhoneThree(String orgPhoneThree) {
         this.orgPhoneThree = orgPhoneThree;
     }
 
@@ -331,11 +331,11 @@ public class Organization implements Serializable {
         this.mailServer = mailServer;
     }
 
-    public Integer getOrgFax() {
+    public String getOrgFax() {
         return orgFax;
     }
 
-    public void setOrgFax(Integer orgFax) {
+    public void setOrgFax(String orgFax) {
         this.orgFax = orgFax;
     }
 
