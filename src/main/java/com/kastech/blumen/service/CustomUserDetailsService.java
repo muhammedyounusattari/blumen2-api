@@ -60,7 +60,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     }
 
-
+    boolean isSuperAdmin(LoggedUser loggedUser) {
+        return  (loggedUser.getOrgId() == 0 && loggedUser.getRoleName().equals("Super Admin"));
+    }
     public CustomUserDetails loadCustomUserDetails(String username, String password, String organization) throws  UsernameNotFoundException {
         List<LoggedUser> loggedUsers =   loggedUserServiceV1.findLoggedUserDetails(username, password, organization);
         LoggedUser loggedUser = new LoggedUser();
@@ -102,6 +104,11 @@ public class CustomUserDetailsService implements UserDetailsService {
                 map(a -> ((Privileges)a).getName() + "_"+ ((Privileges)a).getAccessType()).
                 collect(Collectors.toUnmodifiableList()).stream().toArray(String[]::new);
         final List<GrantedAuthority> auths = AuthorityUtils.createAuthorityList(roleStringsArray);
+        if (auths.isEmpty() && isSuperAdmin(loggedUser))  {
+            return AuthorityUtils.createAuthorityList("Super Admin");
+        }
+
+
         return auths;
     }
 

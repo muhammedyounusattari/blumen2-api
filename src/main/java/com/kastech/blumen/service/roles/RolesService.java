@@ -1,5 +1,6 @@
 package com.kastech.blumen.service.roles;
 
+import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.keycloak.Privileges;
 import com.kastech.blumen.model.keycloak.Roles;
 import com.kastech.blumen.model.roles.Privilege;
@@ -9,11 +10,15 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.Optional;
+
 
 @Service
 public class RolesService {
@@ -86,5 +91,45 @@ public class RolesService {
         return topPrivilege;
     }
 
+    public  ResponseEntity<String>  deleteRole(Long roleId) {
+        LOGGER.info("call made to deleteRole for orgId {} ", roleId);
+        Optional<Roles> role = repository.findById(roleId);
+        //repository.deleteById(roleId);
+        //role.setDeletedBy(SecurityUtil.getUserId());
+        //role.setDeletedDate(new Date());
+        repository.delete(role.get());
+        int statusCode = 200;
+        String message = "success";
+        return new ResponseEntity(new Response(statusCode, message), null, HttpStatus.OK);
+    }
+
+    public Roles updateRole(Roles roles) {
+        LOGGER.info("call made to updateRole for orgId {}, roleCode ", roles.getOrgId(), roles.getCode());
+        return repository.save(roles);
+    }
+
+    public Roles addRole(Long orgId, String newRoleCode, String newRoleName,
+                        String copyRoleName, boolean isDefault) {
+        Roles role = repository.findByOrgIdAndRole(orgId, copyRoleName).get(0);
+        Roles newRole = new Roles();
+        newRole.setDefault(isDefault);
+        newRole.setName(newRoleName);
+        newRole.setCode(newRoleCode);
+        newRole.setOrgId(orgId);
+        //newRole Id should be null
+        newRole.setPrivileges(role.getPrivileges().stream().map(p -> {
+            Privileges pp = new Privileges();
+            pp.setAccessType(p.getAccessType());
+            pp.setCode(p.getCode());
+            pp.setOrgId(p.getOrgId());
+            pp.setName(p.getName());
+            pp.setRoleCode(newRoleCode);
+            pp.setParentCode(p.getParentCode());
+            return pp;
+        }).collect(Collectors.toSet()));
+        return repository.save(newRole);
+
+
+    }
 
 }

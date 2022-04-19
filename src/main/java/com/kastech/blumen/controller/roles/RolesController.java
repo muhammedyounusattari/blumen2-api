@@ -1,5 +1,6 @@
 package com.kastech.blumen.controller.roles;
 
+import com.kastech.blumen.model.keycloak.Roles;
 import com.kastech.blumen.model.roles.Role;
 import com.kastech.blumen.service.roles.RolesService;
 import com.kastech.blumen.utility.SecurityUtil;
@@ -41,6 +42,31 @@ public class RolesController {
         LOGGER.info("Call made to getRolesList for orgId {}, {}", orgId, roleName);
         return ResponseEntity.accepted().body(rolesService.getRolesByOrgIdV2(orgId, roleName));
     }
+
+    @ResponseBody
+    @DeleteMapping(path = "/deleteRole/v1", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('Roles_Y')")
+    public ResponseEntity<String> deleteRole(@RequestParam Long roleId) {
+        LOGGER.info("Call made to deleteRoleId for roleId, {}",roleId);
+        return rolesService.deleteRole(roleId);
+    }
+
+    @ResponseBody
+    @PostMapping(path = "/addRole/v1", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('Roles_Y')")
+    public ResponseEntity<Roles> addRole(@RequestParam Long orgId, @RequestParam String newRoleCode, @RequestParam String newRoleName, @RequestParam String copyRoleName, @RequestParam boolean isDefault) {
+        LOGGER.info("Call made to addRole with new Role Name, existing Role Name, default {}",newRoleName,  copyRoleName, isDefault);
+        return ResponseEntity.accepted().body(rolesService.addRole(orgId, newRoleCode, newRoleName,  copyRoleName, isDefault));
+    }
+
+    @ResponseBody
+    @PutMapping(path = "/updateRole/v1", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('Roles_Y')")
+    public ResponseEntity<Roles> updateRole(@RequestBody Roles roles) {
+        LOGGER.info("Call made to updateRole with new Role Name or new privileges {}",roles);
+        return ResponseEntity.accepted().body(rolesService.updateRole(roles));
+    }
+
 //
 //    @ResponseBody
 //    @PostMapping(path = "/getPriviledgeListByRoleId/v1", produces = {MediaType.APPLICATION_JSON_VALUE})

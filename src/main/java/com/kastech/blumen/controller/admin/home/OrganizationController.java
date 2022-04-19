@@ -73,7 +73,7 @@ public class OrganizationController {
         try {
             LOGGER.info("call made to add organization with ppayload {}", organization);
             Map<String, Object> map = new HashMap<>();
-            map.put("body",  organizationService.createOrganization(organization).getOrgId());
+            map.put("body", "organization onboarded succcessfully with orgId "+ organizationService.createOrganization(organization).getOrgId());
             map.put("status", "200");
             return new ResponseEntity(map, null, HttpStatus.OK);
         } catch (Exception e) {
@@ -117,8 +117,8 @@ public class OrganizationController {
             loggedUser = loggedUserServiceV1.createUser(loggedUser);
             return success(loggedUser, 200);
         } catch (Exception e) {
-           LOGGER.info("problem occured while creating user");
-           return failure("problem in creating a user for orgId "+loggedUser.getOrgId(), 500);
+            LOGGER.info("problem occured while creating user");
+            return failure("problem in creating a user for orgId "+loggedUser.getOrgId(), 500);
         }
 
     }
