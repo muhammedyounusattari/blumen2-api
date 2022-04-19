@@ -69,7 +69,7 @@ public class OrganizationController {
     @PostMapping(path = "/addOrganization/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    @PreAuthorize("hasAnyAuthority('Super Admin')")
+   // @PreAuthorize("hasAnyAuthority('Super Admin')")
     public ResponseEntity<String> addOrganization(@RequestBody Organization organization) {
         try {
             LOGGER.info("call made to add organization with ppayload {}", organization);
