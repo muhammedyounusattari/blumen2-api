@@ -74,7 +74,7 @@ public class OrganizationController {
         try {
             LOGGER.info("call made to add organization with ppayload {}", organization);
             Map<String, Object> map = new HashMap<>();
-            map.put("body", "organization onboarded succcessfully with orgId "+ organizationService.createOrganization(organization).getOrgId());
+            map.put("body", organizationService.createOrganization(organization).getOrgId());
             map.put("status", "200");
             return new ResponseEntity(map, null, HttpStatus.OK);
         } catch (Exception e) {
