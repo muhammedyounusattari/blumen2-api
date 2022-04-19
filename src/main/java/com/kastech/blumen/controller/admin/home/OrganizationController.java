@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -50,14 +51,17 @@ public class OrganizationController {
     }
 
     @ResponseBody
-    @GetMapping(path = "/getOrganizationList/v1",
+    @GetMapping(path = "/getOrganizationUserList/v1/{orgId}",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> getOrganizationList() {
+    public ResponseEntity<?> getOrganizationUserList(@PathVariable("orgId") Long orgId) {
 
+        if(StringUtils.isEmpty(orgId)){
+            orgId = SecurityUtil.getUserOrgId();
+        }
         List<Organization> list = new ArrayList<>();
         Optional<Organization> items = null;
         try {
-            items = organizationRepository.findByOrgId(SecurityUtil.getUserOrgId());
+            items = organizationRepository.findByOrgId(orgId);
             return success(items, 200);
         } catch (Exception e) {
             e.printStackTrace();
@@ -69,7 +73,7 @@ public class OrganizationController {
     @PostMapping(path = "/addOrganization/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-   // @PreAuthorize("hasAnyAuthority('Super Admin')")
+    //@PreAuthorize("hasAnyAuthority('Super Admin')")
     public ResponseEntity<String> addOrganization(@RequestBody Organization organization) {
         try {
             LOGGER.info("call made to add organization with ppayload {}", organization);
