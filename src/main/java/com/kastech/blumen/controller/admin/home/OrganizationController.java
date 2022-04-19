@@ -15,9 +15,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.util.*;
 
 @RestController
@@ -69,6 +69,7 @@ public class OrganizationController {
     @PostMapping(path = "/addOrganization/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('Super Admin')")
     public ResponseEntity<String> addOrganization(@RequestBody Organization organization) {
         try {
             LOGGER.info("call made to add organization with ppayload {}", organization);
@@ -90,6 +91,7 @@ public class OrganizationController {
     @PutMapping(path = "/updateOrganization/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('Super Admin')")
     public ResponseEntity<String> updateOrganization(@RequestBody Organization organization) {
         Organization organizationObj = organizationRepository.save(organization);
         if (null != organizationObj) {
@@ -109,6 +111,7 @@ public class OrganizationController {
     @PostMapping(path = "/createUser/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('User Names and Password_Y', 'Super Admin')")
     public ResponseEntity<?> createUser( @RequestBody LoggedUser loggedUser) {
         LOGGER.info("Call made to createUser with payload {}", loggedUser);
         CustomUserDetails customUserDetails = SecurityUtil.getUserDetails();

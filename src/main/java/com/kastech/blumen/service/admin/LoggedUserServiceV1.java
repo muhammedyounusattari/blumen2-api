@@ -8,6 +8,7 @@ import com.kastech.blumen.repository.admin.home.OrganizationRepository;
 import com.kastech.blumen.service.superadmin.OrganizationService;
 import com.kastech.blumen.utility.CommonUtil;
 import com.kastech.blumen.utility.DateUtil;
+import com.kastech.blumen.utility.SecurityUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +63,7 @@ public class LoggedUserServiceV1 {
         loggedUserRepository.deleteById(id);
     }
 
-    public Optional<LoggedUser> findByOrgId(Long orgCode) {
+    public List<LoggedUser> findByOrgId(Long orgCode) {
         return loggedUserRepository.findByOrgId(orgCode);
     }
 
@@ -73,13 +74,23 @@ public class LoggedUserServiceV1 {
 
     public LoggedUser createUser(LoggedUser loggedUser) throws Exception {
         //only Admin can create users with in organization/// add role to method
-        loggedUser = loggedUserRepository.save(loggedUser);
-        if ("Admin".equalsIgnoreCase(loggedUser.getRoleName())) {
-            Organization organization = new Organization();
-            organization.setOrgId(loggedUser.getOrgId());
-            organization.setOrgOrganizationType(loggedUser.getOrgType());
-            organizationService.batchUpdateForOrgAdmin(loggedUser, organization);
+
+        Long orgIdOfUserLoggedIn = SecurityUtil.getUserOrgId();
+        //if login with org admin, get org id from jwt token.
+        if (orgIdOfUserLoggedIn != 0) { //org admin
+            loggedUser.setOrgId(SecurityUtil.getUserOrgId());
+            loggedUser.setOrgType(SecurityUtil.getUserOrgType());
+        } else if (orgIdOfUserLoggedIn == 0 && loggedUser.getOrgId() != null) {
+            //super admin - expect org type, org id from ui
+            loggedUser.setOrgId(loggedUser.getOrgId());
+            loggedUser.setOrgType(loggedUser.getOrgType());
         }
+
+        loggedUser = loggedUserRepository.save(loggedUser);
+        Organization organization = new Organization();
+        organization.setOrgId(loggedUser.getOrgId());
+        organization.setOrgOrganizationType(loggedUser.getOrgType());
+        organizationService.batchUpdateForOrgAdmin(loggedUser, organization);
 
         return loggedUser;
     }
