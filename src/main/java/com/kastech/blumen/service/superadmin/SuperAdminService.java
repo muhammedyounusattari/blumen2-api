@@ -25,9 +25,9 @@ public class SuperAdminService {
     private KeycloakAdminClientService keycloakAdminClientService;
 
 
-    public List<SecurityQuestionsList> getSecurityQuestions(Long orgCode, String questionNumber) {
+    public List<SecurityQuestionsList> getSecurityQuestions( String questionNumber) {
         List<SecurityQuestionsList> securityQuestionsListList = new ArrayList<>();
-        for(SecurityQuestionsList securityQuestions: securityQuestionsRepository.findByOrgCode(orgCode, questionNumber)){
+        for(SecurityQuestionsList securityQuestions: securityQuestionsRepository.findByOrgCode(questionNumber)){
             securityQuestionsListList.add(new SecurityQuestionsList(securityQuestions.getId(), securityQuestions.getName(),null, null));
         }
         return securityQuestionsListList;

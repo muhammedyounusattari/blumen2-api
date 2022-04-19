@@ -23,20 +23,16 @@ public class SuperAdminController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SuperAdminController.class);
 
-    @GetMapping(path = "/{orgCode}/securityQuestions",  produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> getSecurityQuestions(@PathVariable(value = "orgCode", required = true) Long orgCode){
+    @GetMapping(path = "/securityQuestions",  produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> getSecurityQuestions(){
 
         LOGGER.info("call made to createSecurityQuestions() under ", this.getClass());
 
-        //validate OrgCode
-        Map<String,String> statusMap = superAdminService.validateOrgCode(orgCode);
-        if("404".equals(statusMap.get("status"))){
-            return failure(statusMap, 404);
-        }
+
 
         Map<String, List<SecurityQuestionsList>> securityQuestionsMap = new LinkedHashMap<>();
-        List<SecurityQuestionsList> securityQuestionsList1 = superAdminService.getSecurityQuestions(orgCode, "1");
-        List<SecurityQuestionsList> securityQuestionsList2 = superAdminService.getSecurityQuestions(orgCode, "2");
+        List<SecurityQuestionsList> securityQuestionsList1 = superAdminService.getSecurityQuestions( "1");
+        List<SecurityQuestionsList> securityQuestionsList2 = superAdminService.getSecurityQuestions( "2");
 
         securityQuestionsMap.put("question1", securityQuestionsList1);
         securityQuestionsMap.put("question2",securityQuestionsList2);

@@ -55,7 +55,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         Collection<GrantedAuthority> grantedAuthoritySet = new HashSet<>();
 
 
-        return new CustomUserDetails(grantedAuthoritySet, loggedUser.getUsername(), loggedUser.getFirstName(), null, loggedUser.getUsername(), Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, loggedUser.getScope(), loggedUser.getOrgType(), loggedUser.getOrgId(), loggedUser.getId());
+        return new CustomUserDetails(grantedAuthoritySet, loggedUser.getEmail(), loggedUser.getFirstName(), null, loggedUser.getUsername(), Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, loggedUser.getScope(), loggedUser.getOrgType(), loggedUser.getOrgId(), loggedUser.getId());
         //new CustomUserDetails(loggedUser.getUsername(),loggedUser.getFirstName()+" "+loggedUser.getLastName(),loggedUser.getUsername(),loggedUser.getPassword(),Boolean.TRUE,null);
 
     }
@@ -135,7 +135,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             gas.add(new SimpleGrantedAuthority(role));
         } */
        // return null; //new CustomUserDetails(null,loggedUser.getUserName(),loggedUser.getUserName(),"mumbai-university.password1",Boolean.TRUE,null);
-        return new CustomUserDetails(grantedAuthoritySet, loggedUser.getUsername(), loggedUser.getFirstName(),
+        return new CustomUserDetails(grantedAuthoritySet, loggedUser.getEmail(), loggedUser.getFirstName(),
                 null, loggedUser.getUsername(), Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, Boolean.TRUE,
                 loggedUser.getScope(), loggedUser.getOrgType(), loggedUser.getOrgId(), loggedUser.getId());
 

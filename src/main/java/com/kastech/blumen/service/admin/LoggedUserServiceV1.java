@@ -2,7 +2,7 @@ package com.kastech.blumen.service.admin;
 
 import com.kastech.blumen.mail.SendMailService;
 import com.kastech.blumen.model.admin.home.Organization;
-import com.kastech.blumen.model.keycloak.LoggedUser;
+import com.kastech.blumen.model.keycloak.*;
 import com.kastech.blumen.repository.admin.LoggedUserRepository;
 import com.kastech.blumen.repository.admin.home.OrganizationRepository;
 import com.kastech.blumen.service.superadmin.OrganizationService;
@@ -13,8 +13,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.util.StringUtils;
 
 import java.util.*;
 
@@ -248,5 +253,97 @@ public class LoggedUserServiceV1 {
             return statusMap;
         }
 
+    }
+
+ /*   public void changePassword(String token, UserSecurityInfo userSecurityInfo, String realmId, String id) {
+        {
+            String password = userSecurityInfo.getPassword();
+            KeycloakConfigurationValues keycloakConfigurationValues = loadValues(realmId);
+            String keycloakUserInfoUrl = "/admin/realms/realm-to-be-replaced/users/user-id-to-be-replaced/reset-password";
+            keycloakUserInfoUrl = keycloakConfigurationValues.getAuthServerUrl() + keycloakUserInfoUrl;
+            keycloakUserInfoUrl = keycloakUserInfoUrl.replace("user-id-to-be-replaced", id);
+            keycloakUserInfoUrl = keycloakUserInfoUrl.replace("realm-to-be-replaced", realmId);
+
+            //Build the Credentials object to pass it to the keycloak.
+            Credentials.CredentialsBuilder credentialsBuilder = new Credentials.CredentialsBuilder();
+            Credentials credentials = credentialsBuilder.type("password")
+                    .value(password)
+                    .temporary(false)
+                    .buildCredentials();
+
+            MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
+            headers.add("Authorization", "Bearer "+token);
+            headers.add("Content-Type", "application/json");
+            HttpEntity<Credentials> request = new HttpEntity<>(credentials, headers);
+            restTemplate.put(keycloakUserInfoUrl, request);
+
+            //Update the User Security Info with the new security question and answers
+
+            UserSecurityInfoId userSecurityInfoId = new UserSecurityInfoId(id, realmId);
+            Optional<UserSecurityInfo> optionalUserSecurityInfo = userSecurityInfoServiceV1.findUserSecurityInfoById(userSecurityInfoId);
+            if (optionalUserSecurityInfo.isPresent()) {
+                UserSecurityInfo userSecurityInfoToBeUpdated = optionalUserSecurityInfo.get();
+                userSecurityInfoToBeUpdated.setSecurityQuestion1(userSecurityInfo.getSecurityQuestion1());
+                userSecurityInfoToBeUpdated.setSecurityAnswer1(userSecurityInfo.getSecurityAnswer1());
+                userSecurityInfoToBeUpdated.setSecurityQuestion2(userSecurityInfo.getSecurityQuestion2());
+                userSecurityInfoToBeUpdated.setSecurityAnswer2(userSecurityInfo.getSecurityAnswer2());
+                userSecurityInfoToBeUpdated.setPassword(userSecurityInfo.getPassword());
+                userSecurityInfoServiceV1.updateUserSecurityInfo(userSecurityInfoToBeUpdated);
+            }
+
+
+            //Update the metadata to convey that the password is now changed permanently.
+            Optional<UserMetaData> optionalUserMetaData = null;
+            UserMetaDataId userMetaDataId = new UserMetaDataId(id, realmId);
+            optionalUserMetaData = userMetaDataServiceV1.findUserMetaDataById(userMetaDataId);
+            if (optionalUserMetaData.isPresent()) {
+                UserMetaData userMetaData = optionalUserMetaData.get();
+                userMetaData.setTemporary(false);
+            }
+
+        }
+} */
+
+    public Map<String,String> changePassword(Map<String, String> requestPaylaod) {
+        String email = SecurityUtil.getEmail();
+        String orgType = SecurityUtil.getUserOrgType();
+        String password = requestPaylaod.get("password");
+        String confPassword = requestPaylaod.get("confPassword");
+        String securityQuestion1 = requestPaylaod.get("securityQuestion1");
+        String securityQuestion2 = requestPaylaod.get("securityQuestion2");
+        String securityAnswer1 = requestPaylaod.get("securityAnswer1");
+        String securityAnswer2 = requestPaylaod.get("securityAnswer2");
+        List<LoggedUser> loggedUsers = null;
+        //Basic validation
+        Map<String,String> successMap = new HashMap<>();
+        if(StringUtils.isEmpty(password)){
+            successMap.put("message", "Password missing");
+            successMap.put("status", "400");
+            return successMap;
+        }
+
+        //check if password exist
+        if(!StringUtils.isEmpty(password)){
+         loggedUsers =   loggedUserRepository.findByUserDetails(email, password,orgType);
+         if(loggedUsers.isEmpty()){
+             successMap.put("message", "Current Password is Invalid");
+             successMap.put("status", "400");
+             return successMap;
+         }
+        }
+
+        if(!(StringUtils.isEmpty(confPassword) || StringUtils.isEmpty(securityQuestion1) || StringUtils.isEmpty(securityQuestion2) ||  StringUtils.isEmpty(securityAnswer1 ) || StringUtils.isEmpty(securityAnswer2))){
+            LoggedUser loggedUser = loggedUsers.get(0);
+            loggedUser.setPassword(confPassword);
+            loggedUser.setSecurityQuestion1(securityQuestion1);
+            loggedUser.setSecurityQuestion2(securityQuestion2);
+            loggedUser.setSecurityAnswer1(securityAnswer1);
+            loggedUser.setSecurityAnswer2(securityAnswer2);
+            loggedUserRepository.save(loggedUser);
+            successMap.put("message", "Password updated successfully");
+            successMap.put("status", "200");
+            return successMap;
+        }
+        return successMap;
     }
 }

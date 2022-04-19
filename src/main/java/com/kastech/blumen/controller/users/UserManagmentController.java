@@ -55,9 +55,15 @@ public class UserManagmentController {
         return ResponseEntity.ok(message);
     }
 
-   // @PutMapping(value = "/changePassword/v1/{hashedCode}")
-    public void changePassword(){
-       // loggedUserServiceV1.updatePassword()
+    @PutMapping(value = "/changePassword/v1")
+    public ResponseEntity<?> changePassword(@RequestBody Map<String, String> requestPayload){
+        try {
+            LOGGER.info("Call made to changePassword with requestPayload {}", requestPayload);
+            return new ResponseEntity(loggedUserServiceV1.changePassword(requestPayload),HttpStatus.OK);
+        } catch (Exception e) {
+            LOGGER.error("Problem in performing changePassword {}", e.getMessage());
+            return failure("Error occured "+e.getMessage(),HttpStatus.NOT_FOUND.value());
+        }
     }
 
     @GetMapping(value="/validateUser/v1/{orgId}")
