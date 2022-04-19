@@ -66,11 +66,11 @@ public class RolesService {
     }
 
     private List<Privileges> getTopPrivileges(List<Privileges> privilegesList) {
-        return privilegesList.stream().filter(privileges ->  StringUtils.isNotEmpty(privileges.getParentId()) && privileges.getParentId().equals("0")).collect(Collectors.toList());
+        return privilegesList.stream().filter(privileges ->  privileges.getParentCode() != null && privileges.getParentCode() == 0).collect(Collectors.toList());
     }
 
     private List<Privileges> getRootPrivileges(List<Privileges> privilegesList) {
-        return privilegesList.stream().filter(privileges -> StringUtils.isEmpty(privileges.getParentId())).collect(Collectors.toList());
+        return privilegesList.stream().filter(privileges -> privileges.getParentCode() == null).collect(Collectors.toList());
     }
 
     //Recursion, building subtree structure
@@ -78,7 +78,7 @@ public class RolesService {
         Privilege topPrivilege = new Privilege(topLevelPrivilegeFromDB);
         List<Privilege> childPrivileges =new  ArrayList<Privilege>();
         for(Privileges privilegesFromDB : privilegesFromDBList) {
-            if((StringUtils.isEmpty(privilegesFromDB.getParentId())?"ROOT":privilegesFromDB.getParentId()).equals(topLevelPrivilegeFromDB.getId().toString())) {
+            if((privilegesFromDB.getParentCode() == null ? -1 : privilegesFromDB.getParentCode()) == topLevelPrivilegeFromDB.getCode()) {
                 childPrivileges.add(buildChildTree(privilegesFromDB, privilegesFromDBList));
             }
         }

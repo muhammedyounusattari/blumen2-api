@@ -1,16 +1,9 @@
 package com.kastech.blumen.model.staff;
 
+import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.kastech.blumen.model.Address;
 import com.kastech.blumen.model.student.Student;
@@ -83,6 +76,17 @@ public class Staff {
     private String staffContactLab;
     private boolean staff;
 
+    private Date createdDate;
+    private long createdBy;
+    private Date modifiedDate;
+    private long modifiedBy;
+    private Date deletedDate;
+    private long deletedBy;
+    private long orgId;
+    private long staffId;
+
+    @Transient
+    private long tempId;
 
     @OneToMany(cascade = {CascadeType.ALL})
     private List<Address> address;
@@ -90,9 +94,8 @@ public class Staff {
     public Staff() {
     }
 
-    public Staff(Long id /*, Student student */, String staffName, String staffTitle, boolean staffActive, boolean staffTutor, String staffSSNO, boolean staffCounselor, boolean staffTeacher, boolean staffLab, String staffCodes, String staffDOB, String staffSpouseName, String staffHireDate, String staffDriverLicense, String staffTerminationDate, String staffCustomFieldOne, String staffCustomFieldTwo, String staffCustomFieldThree, String staffCustomFieldFour, String staffPicture, String staffFirstName, String staffLastName, String staffPhoneNumber, String staffContactTime, boolean staffBolt, String staffContactDate, String staffFiscalYear, String staffRecontactDate, boolean staffRecontacted, String staffContactCounselor, String staffComponents, String staffAprSubject, String staffContactType, String staffSubject, String stafInstruction, String stafActivityService, String stafTotalTime, String stafActivityServiceRendered, String stafActivityTime, String staffNotes, String staffContactStaff, String staffContactTeacher, String staffContactTutor, String staffContactLab, boolean staff, List<Address> address) {
+    public Staff(Long id, String staffName, String staffTitle, boolean staffActive, boolean staffTutor, String staffSSNO, boolean staffCounselor, boolean staffTeacher, boolean staffLab, String staffCodes, String staffDOB, String staffSpouseName, String staffHireDate, String staffDriverLicense, String staffTerminationDate, String staffCustomFieldOne, String staffCustomFieldTwo, String staffCustomFieldThree, String staffCustomFieldFour, String staffPicture, String staffFirstName, String staffLastName, String staffPhoneNumber, String staffContactTime, boolean staffBolt, String staffContactDate, String staffFiscalYear, String staffRecontactDate, boolean staffRecontacted, String staffContactCounselor, String staffComponents, String staffAprSubject, String staffContactType, String staffSubject, String stafInstruction, String stafActivityService, String stafTotalTime, String stafActivityServiceRendered, String stafActivityTime, String staffNotes, String staffContactStaff, String staffContactTeacher, String staffContactTutor, String staffContactLab, boolean staff, Date createdDate, long createdBy, Date modifiedDate, long modifiedBy, Date deletedDate, long deletedBy, long orgId, long staffId, long tempId,  List<Address> address) {
         this.id = id;
-       // this.student = student;
         this.staffName = staffName;
         this.staffTitle = staffTitle;
         this.staffActive = staffActive;
@@ -137,6 +140,15 @@ public class Staff {
         this.staffContactTutor = staffContactTutor;
         this.staffContactLab = staffContactLab;
         this.staff = staff;
+        this.createdDate = createdDate;
+        this.createdBy = createdBy;
+        this.modifiedDate = modifiedDate;
+        this.modifiedBy = modifiedBy;
+        this.deletedDate = deletedDate;
+        this.deletedBy = deletedBy;
+        this.orgId = orgId;
+        this.staffId = staffId;
+        this.tempId = tempId;
         this.address = address;
     }
 
@@ -516,11 +528,47 @@ public class Staff {
         this.address = address;
     }
 
+
+    public Date getCreatedDate() {return createdDate;}
+
+    public void setCreatedDate(Date createdDate) {this.createdDate = createdDate;}
+
+    public long getCreatedBy() {return createdBy;}
+
+    public void setCreatedBy(long createdBy) {this.createdBy = createdBy;}
+
+    public Date getModifiedDate() {return modifiedDate;}
+
+    public void setModifiedDate(Date modifiedDate) {this.modifiedDate = modifiedDate;}
+
+    public long getModifiedBy() {return modifiedBy;}
+
+    public void setModifiedBy(long modifiedBy) {this.modifiedBy = modifiedBy;}
+
+    public Date getDeletedDate() {return deletedDate;}
+
+    public void setDeletedDate(Date deletedDate) {this.deletedDate = deletedDate;}
+
+    public long getDeletedBy() {return deletedBy;}
+
+    public void setDeletedBy(long deletedBy) {this.deletedBy = deletedBy;}
+
+    public long getOrgId() {return orgId;}
+
+    public void setOrgId(long orgId) {this.orgId = orgId;}
+
+    public long getStaffId() {return staffId;}
+
+    public void setStaffId(long staffId) {this.staffId = staffId;}
+
+    public long getTempId() {return tempId;}
+
+    public void setTempId(long tempId) {this.tempId = tempId;}
+
     @Override
     public String toString() {
         return "Staff{" +
                 "id=" + id +
-               // ", student=" + student +
                 ", staffName='" + staffName + '\'' +
                 ", staffTitle='" + staffTitle + '\'' +
                 ", staffActive=" + staffActive +
@@ -565,6 +613,15 @@ public class Staff {
                 ", staffContactTutor='" + staffContactTutor + '\'' +
                 ", staffContactLab='" + staffContactLab + '\'' +
                 ", staff=" + staff +
+                ", createdDate=" + createdDate +
+                ", createdBy=" + createdBy +
+                ", modifiedDate=" + modifiedDate +
+                ", modifiedBy=" + modifiedBy +
+                ", deletedDate=" + deletedDate +
+                ", deletedBy=" + deletedBy +
+                ", orgId=" + orgId +
+                ", staffId=" + staffId +
+                ", tempId=" + tempId +
                 ", address=" + address +
                 '}';
     }

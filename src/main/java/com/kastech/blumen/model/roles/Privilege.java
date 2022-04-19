@@ -7,9 +7,10 @@ import java.util.List;
 public class Privilege {
     private Long id;
     private String name;
+    private Long code;
     private String accessType;
     private Long orgId;
-    private String parentId;
+    private Long parentCode;
     private List<Privilege> privileges;
 
     public Privilege(Privileges privileges) {
@@ -17,7 +18,8 @@ public class Privilege {
         this.name = privileges.getName();
         this.accessType = privileges.getAccessType();
         this.orgId = privileges.getOrgId();
-        this.parentId = privileges.getParentId();
+        this.code = privileges.getCode();
+        this.parentCode = privileges.getParentCode();
     }
 
     public Long getId() {
@@ -36,6 +38,14 @@ public class Privilege {
         this.name = name;
     }
 
+    public Long getCode() {
+        return code;
+    }
+
+    public void setCode(Long code) {
+        this.code = code;
+    }
+
     public String getAccessType() {
         return accessType;
     }
@@ -52,12 +62,12 @@ public class Privilege {
         this.orgId = orgId;
     }
 
-    public String getParentId() {
-        return parentId;
+    public Long getParentCode() {
+        return parentCode;
     }
 
-    public void setParentId(String parentId) {
-        this.parentId = parentId;
+    public void setParentCode(Long parentCode) {
+        this.parentCode = parentCode;
     }
 
     public List<Privilege> getPrivileges() {

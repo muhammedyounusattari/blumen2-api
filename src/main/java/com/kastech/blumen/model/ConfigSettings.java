@@ -1,6 +1,5 @@
 package com.kastech.blumen.model;
 
-import javax.annotation.Nullable;
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -23,7 +22,7 @@ public class ConfigSettings implements Serializable {
 	private String organisationType;
 
 	@Column(nullable = false)
-	private String orgId;
+	private Long orgId;
 
 	@Column(nullable = true)
 	private String users;
@@ -96,11 +95,11 @@ public class ConfigSettings implements Serializable {
 		this.users = users;
 	}
 
-	public String getOrgId() {
+	public Long getOrgId() {
 		return orgId;
 	}
 
-	public void setOrgId(String orgId) {
+	public void setOrgId(Long orgId) {
 		this.orgId = orgId;
 	}
 

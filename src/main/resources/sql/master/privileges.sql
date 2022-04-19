@@ -1,363 +1,183 @@
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (0, 'All','Y',null);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (1, 'Allow Easy Add to Pulldown List','Y',0);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (2, 'Add New Student','Y',0);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (3, 'Delete Student','Y',0);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (4, 'Show System Serial Number','Y',null);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (5, 'Project Summary','Y',0);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (6, 'Project Interactive Summary','Y',0);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (7, 'Manage Filter List','Y',0);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (8, 'All Student Data','Y',0);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (9, 'Send Bulk E-mails','Y',8);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (10, 'Send Bulk Text Messaging','Y',8);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (11, 'Student Postsecondary Tracking','Y',8);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (12, 'Student Data Filter','Y',8);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (13, 'Student Data Entry','Y',12);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (14, 'Parent / Guardian Data Entry','Y',13);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (15, 'Text Message Data Filter','Y',12);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (16, 'Text Message Data Entry','Y',15);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (17, 'Yearly Data Filter','Y',12);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (18, 'Yearly Data Entry','Y',17);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (19, 'Semester Data Filter','Y',12);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (20, 'Semester Data Entry','Y',19);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (21, 'Courses Data Entry','Y',20);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (22, 'Graduated Data Filter','Y',12);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (23, 'Graduated Data Entry','Y',22);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (24, 'Tracking Data Entry','Y',12);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (25, 'Personalized Letters','Y',12);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (26, 'Demograhic Data','Y',22);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (27, 'Asset Filter','Y',12);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (28, 'Asset Data Entry','Y',27);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (29, 'Asset Check Out','Y',28);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (30, 'Asset Check In','Y',28);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (31, 'All Logs','Y',0);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (32, 'Attendance Data Filter','Y',31);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (33, 'Attendance Data Entry','Y',32);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (34, 'Stipend Data Filter','Y',31);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (35, 'Stipend Data Entry','Y',34);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (36, 'Exam Filter','Y',31);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (37, 'Exam Data Entry','Y',36);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (38, 'Wallet Data Filter','Y',31);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (39, 'Wallet Data Entry','Y',38);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (40, 'Notes Data Filter','Y',31);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (41, 'Notes Data Entry','Y',40);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (42, 'BOT Form Submission Log','Y',31);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (43, 'BOT Form Submission Detail','Y',42);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (44, 'All Contacts','Y',0);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (45, 'Counselor Contact Filter','Y',44);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (46, 'Counselor Contact Data','Y',45);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (47, 'Tutor Contact Filter','Y',44);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (48, 'Tutor Contact Data','Y',47);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (49, 'Teacher Contact Filter','Y',44);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (50, 'Teacher Contact Data','Y',49);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (51, 'Staff Contact Filter','Y',44);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (52, 'Staff Contact Data','Y',51);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (53, 'Lab Contact Filter','Y',44);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (54, 'Lab Contact Data','Y',53);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (55, 'Display Reminders','Y',44);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (56, 'All Classes','Y',0);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (57, 'Counselor Classes Filter','Y',56);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (58, 'Counselor Classes Data','Y',57);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (59, 'Tutor Classes Filter','Y',56);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (60, 'Tutor Classes Data','Y',59);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (61, 'Teacher Classes Filter','Y',56);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (62, 'Teacher Classes Data','Y',61);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (63, 'Staff Classes Filter','Y',56);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (64, 'Staff Classes Data','Y',63);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (65, 'All Schedules','Y',0);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (66, 'Counselor Schedule Filter','Y',65);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (67, 'Counselor Schedule Data','Y',66);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (68, 'Select Counselor Classes','Y',67);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (69, 'Tutor Schedule Filter','Y',65);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (70, 'Tutor Schedule Data','Y',69);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (71, 'Select Tutor Classes','Y',70);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (72, 'Teacher Schedule Filter','Y',65);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (73, 'Teacher Schedule Data','Y',72);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (74, 'Select Teacher Classes','Y',73);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (75, 'Staff Schedule Filter','Y',65);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (76, 'Staff Schedule Data','Y',75);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (77, 'Select Staff Classes','Y',76);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (78, 'All Staff','Y',0);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (79, 'Counselor Data Filter/ Entry','Y',78);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (80, 'Counselor Data Filter/ Entry','Y',78);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (81, 'Teacher Data Filter/ Entry','Y',78);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (82, 'Staff Data Filter/ Entry','Y',78);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (83, 'All Reports (Request Manager)','Y',0);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (84, 'All Annual Performance Report','Y',83);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (85, 'All APR Sections','Y',84);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (86, 'Annual Performance Report Section 1-Part II','Y',85);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (87, 'Annual Performance Report - Section I','Y',85);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (88, 'Annual Performance Report Section 1- Part 4','Y',85);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (89, 'Annual Performance Report - Section II','Y',85);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (90, 'Annual Performance Report - Section II (Quick Edit)','Y',85);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (91, 'Annual Performance Report Section 4-Part E','Y',85);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (92, 'Annual Performance Report - Section III','Y',85);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (93, 'Annual Performance Report - Section IV','Y',85);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (94, 'Goals / Objectives and Accomplishments','Y',85);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (95, 'Goals / Objectives and Accomplishments Data Entry','Y',85);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (96, 'Provision of Services','Y',85);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (97, 'APR Objectives / PE Points','Y',85);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (98, 'Copy APR Data','Y',85);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (99, 'Update fields from Tracking Data','Y',85);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (100, 'Update All Profiles','Y',84);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (101, 'Update Student Profile from Counselor Contacts','Y',100);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (102, 'Update Student Profile from Tutor Contacts','Y',100);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (103, 'Update Student Profile from Teacher Contacts','Y',100);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (104, 'Update Student Profile from Staff Contacts','Y',100);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (105, 'Update Student Profile from Lab Contacts','Y',100);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (106, 'Update Student Profile from Wallet','Y',100);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (107, 'Utilities','Y',0);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (108, 'Change S.S.No.','Y',107);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (109, 'Quick Change','Y',107);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (110, 'National Student Clearinghouse Data Interface','Y',107);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (111, 'All Quick Edit','Y',107);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (112, 'Quick Edit Student Demographic Information','Y',111);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (113, 'Quick Edit Student Yearly and Financial Aid Inform','Y',111);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (114, 'Quick Edit Student Semester Information','Y',111);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (115, 'Quick Edit Student Courses Information','Y',111);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (116, 'All Add Students to','Y',107);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (117, 'Add Students to Fiscal Year','Y',116);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (118, 'Add Students to Semester','Y',116);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (119, 'Add Students to Graduated List','Y',116);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (120, 'All Generate Similar','Y',107);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (121, 'Generate Similar Attendance Log','Y',120);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (122, 'Generate Similar Exam','Y',120);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (123, 'Generate Similar Wallet','Y',120);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (124, 'Generate Similar Stipend','Y',120);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (125, 'Generate Similar Yearly APR Subjects','Y',120);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (126, 'Generate Similar Yearly Activity','Y',120);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (127, 'Generate Similar Yearly End Status','Y',120);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (128, 'Generate Similar Yearly Wallet','Y',120);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (129, 'Generate Similar Yearly Activity','Y',120);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (130, 'Generate Similar Yearly End Status','Y',120);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (131, 'Generate Similar Yearly Wallet','Y',120);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (132, 'Generate Similar Custom Field Values','Y',120);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (133, 'Generate Similar Notes Log','Y',120);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (134, 'Generate Similar Lab Logs','Y',120);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (135, 'All Generate Contacts','Y',107);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (136, 'Generate Similar Counselor Contacts','Y',135);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (137, 'Generate Similar Counselor Contacts','Y',135);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (138, 'Generate Similar Teacher Contacts','Y',135);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (139, 'Generate Similar Staff Contacts','Y',135);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (140, 'All Generate Schedule','Y',107);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (141, 'Generate Similar Counselor Schedule','Y',140);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (142, 'Generate Similar Tutor Schedule','Y',140);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (143, 'Generate Similar Teacher Schedule','Y',140);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (144, 'Generate Similar Staff Schedule','Y',140);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (145, 'Copy Counselor Classes','Y',140);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (146, 'Copy Staff Classes','Y',140);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (147, 'Copy Teacher Classes','Y',140);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (148, 'Copy Tutor Classes','Y',140);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (149, 'Administration','Y',0);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (150, 'Set System Preferences','Y',149);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (151, 'Config Settings','Y',149);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (152, 'E-Mail Setup','Y',149);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (153, 'Roles','Y',149);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (154, 'User Names and Password','Y',149);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (155, 'Customize','Y',149);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (156, 'Activity / Services Group List','Y',155);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (157, 'Activity / Services List','Y',155);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (158, 'College Names','Y',155);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (159, 'Custom Fields Values','Y',155);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (160, 'Grade / Standing Group List','Y',155);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (161, 'Grade / Standing List','Y',155);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (162, 'Pulldown Lists','Y',155);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (163, 'School Names','Y',155);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (164, 'System Tools','Y',149);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (165, 'Staff Time Clock Manager','Y',164);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (166, 'Delete Students','Y',164);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (167, 'Recall Students','Y',164);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (168, 'Update GPA Wizard','Y',164);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (169, 'Update Year','Y',164);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (170, 'Update Age','Y',164);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (171, 'BOT Form Management','Y',149);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (172, 'BOT Form Detail','Y',171);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (173, 'BOT Form Submission Detail','Y',172);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (174, 'Delete All','Y',0);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (175, 'Mobile App Access','Y',0);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (176, 'Trio Blumen Lab','Y',0);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (177, 'Lab Setting Preferences','Y',176);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (178, 'Group checkout button','Y',177);
-insert into blumen2.privileges (privilege_id, name,access_type,parent_id)
-values (179, 'ImportWizard','Y',0);
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('All',0,'Y',null,1) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Allow Easy Add to Pulldown List',0,'Y',0,2) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Add New Student',0,'Y',0,3) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Delete Student',0,'Y',0,4) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Show System Serial Number',0,'Y',null,5) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Project Summary',0,'Y',0,6) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Project Interactive Summary',0,'Y',0,7) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Manage Filter List',0,'Y',0,8) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('All Student Data',0,'Y',0,9) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Send Bulk E-mails',0,'Y',8,10) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Send Bulk Text Messaging',0,'Y',8,11) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Student Postsecondary Tracking',0,'Y',8,12) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Student Data Filter',0,'Y',8,13) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Student Data Entry',0,'Y',12,14) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Parent / Guardian Data Entry',0,'Y',13,15) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Text Message Data Filter',0,'Y',12,16) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Text Message Data Entry',0,'Y',15,17) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Yearly Data Filter',0,'Y',12,18) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Yearly Data Entry',0,'Y',17,19) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Semester Data Filter',0,'Y',12,20) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Semester Data Entry',0,'Y',19,21) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Courses Data Entry',0,'Y',20,22) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Graduated Data Filter',0,'Y',12,23) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Graduated Data Entry',0,'Y',22,24) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Tracking Data Entry',0,'Y',12,25) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Personalized Letters',0,'Y',12,26) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Demograhic Data',0,'Y',22,27) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Asset Filter',0,'Y',12,28) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Asset Data Entry',0,'Y',27,29) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Asset Check Out',0,'Y',28,30) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Asset Check In',0,'Y',28,31) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('All Logs',0,'Y',0,32) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Attendance Data Filter',0,'Y',31,33) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Attendance Data Entry',0,'Y',32,34) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Stipend Data Filter',0,'Y',31,35) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Stipend Data Entry',0,'Y',34,36) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Exam Filter',0,'Y',31,37) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Exam Data Entry',0,'Y',36,38) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Wallet Data Filter',0,'Y',31,39) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Wallet Data Entry',0,'Y',38,40) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Notes Data Filter',0,'Y',31,41) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Notes Data Entry',0,'Y',40,42) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('BOT Form Submission Log',0,'Y',31,43) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('BOT Form Submission Detail',0,'Y',42,44) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('All Contacts',0,'Y',0,45) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Counselor Contact Filter',0,'Y',44,46) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Counselor Contact Data',0,'Y',45,47) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Tutor Contact Filter',0,'Y',44,48) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Tutor Contact Data',0,'Y',47,49) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Teacher Contact Filter',0,'Y',44,50) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Teacher Contact Data',0,'Y',49,51) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Staff Contact Filter',0,'Y',44,52) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Staff Contact Data',0,'Y',51,53) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Lab Contact Filter',0,'Y',44,54) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Lab Contact Data',0,'Y',53,55) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Display Reminders',0,'Y',44,56) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('All Classes',0,'Y',0,57) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Counselor Classes Filter',0,'Y',56,58) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Counselor Classes Data',0,'Y',57,59) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Tutor Classes Filter',0,'Y',56,60) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Tutor Classes Data',0,'Y',59,61) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Teacher Classes Filter',0,'Y',56,62) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Teacher Classes Data',0,'Y',61,63) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Staff Classes Filter',0,'Y',56,64) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Staff Classes Data',0,'Y',63,65) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('All Schedules',0,'Y',0,66) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Counselor Schedule Filter',0,'Y',65,67) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Counselor Schedule Data',0,'Y',66,68) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Select Counselor Classes',0,'Y',67,69) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Tutor Schedule Filter',0,'Y',65,70) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Tutor Schedule Data',0,'Y',69,71) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Select Tutor Classes',0,'Y',70,72) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Teacher Schedule Filter',0,'Y',65,73) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Teacher Schedule Data',0,'Y',72,74) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Select Teacher Classes',0,'Y',73,75) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Staff Schedule Filter',0,'Y',65,76) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Staff Schedule Data',0,'Y',75,77) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Select Staff Classes',0,'Y',76,78) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('All Staff',0,'Y',0,79) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Counselor Data Filter/ Entry',0,'Y',78,80) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Counselor Data Filter/ Entry',0,'Y',78,81) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Teacher Data Filter/ Entry',0,'Y',78,82) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Staff Data Filter/ Entry',0,'Y',78,83) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('All Reports (Request Manager)',0,'Y',0,84) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('All Annual Performance Report',0,'Y',83,85) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('All APR Sections',0,'Y',84,86) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Annual Performance Report Section 1-Part II',0,'Y',85,87) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Annual Performance Report - Section I',0,'Y',85,88) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Annual Performance Report Section 1- Part 4',0,'Y',85,89) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Annual Performance Report - Section II',0,'Y',85,90) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Annual Performance Report - Section II (Quick Edit)',0,'Y',85,91) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Annual Performance Report Section 4-Part E',0,'Y',85,92) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Annual Performance Report - Section III',0,'Y',85,93) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Annual Performance Report - Section IV',0,'Y',85,94) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Goals / Objectives and Accomplishments',0,'Y',85,95) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Goals / Objectives and Accomplishments Data Entry',0,'Y',85,96) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Provision of Services',0,'Y',85,97) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('APR Objectives / PE Points',0,'Y',85,98) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Copy APR Data',0,'Y',85,99) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Update fields from Tracking Data',0,'Y',85,100) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Update All Profiles',0,'Y',84,101) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Update Student Profile from Counselor Contacts',0,'Y',100,102) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Update Student Profile from Tutor Contacts',0,'Y',100,103) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Update Student Profile from Teacher Contacts',0,'Y',100,104) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Update Student Profile from Staff Contacts',0,'Y',100,105) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Update Student Profile from Lab Contacts',0,'Y',100,106) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Update Student Profile from Wallet',0,'Y',100,107) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Utilities',0,'Y',0,108) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Change S.S.No.',0,'Y',107,109) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Quick Change',0,'Y',107,110) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('National Student Clearinghouse Data Interface',0,'Y',107,111) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('All Quick Edit',0,'Y',107,112) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Quick Edit Student Demographic Information',0,'Y',111,113) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Quick Edit Student Yearly and Financial Aid Inform',0,'Y',111,114) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Quick Edit Student Semester Information',0,'Y',111,115) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Quick Edit Student Courses Information',0,'Y',111,116) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('All Add Students to',0,'Y',107,117) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Add Students to Fiscal Year',0,'Y',116,118) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Add Students to Semester',0,'Y',116,119) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Add Students to Graduated List',0,'Y',116,120) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('All Generate Similar',0,'Y',107,121) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Generate Similar Attendance Log',0,'Y',120,122) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Generate Similar Exam',0,'Y',120,123) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Generate Similar Wallet',0,'Y',120,124) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Generate Similar Stipend',0,'Y',120,125) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Generate Similar Yearly APR Subjects',0,'Y',120,126) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Generate Similar Yearly Activity',0,'Y',120,127) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Generate Similar Yearly End Status',0,'Y',120,128) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Generate Similar Yearly Wallet',0,'Y',120,129) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Generate Similar Yearly Activity',0,'Y',120,130) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Generate Similar Yearly End Status',0,'Y',120,131) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Generate Similar Yearly Wallet',0,'Y',120,132) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Generate Similar Custom Field Values',0,'Y',120,133) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Generate Similar Notes Log',0,'Y',120,134) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Generate Similar Lab Logs',0,'Y',120,135) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('All Generate Contacts',0,'Y',107,136) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Generate Similar Counselor Contacts',0,'Y',135,137) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Generate Similar Counselor Contacts',0,'Y',135,138) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Generate Similar Teacher Contacts',0,'Y',135,139) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Generate Similar Staff Contacts',0,'Y',135,140) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('All Generate Schedule',0,'Y',107,141) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Generate Similar Counselor Schedule',0,'Y',140,142) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Generate Similar Tutor Schedule',0,'Y',140,143) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Generate Similar Teacher Schedule',0,'Y',140,144) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Generate Similar Staff Schedule',0,'Y',140,145) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Copy Counselor Classes',0,'Y',140,146) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Copy Staff Classes',0,'Y',140,147) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Copy Teacher Classes',0,'Y',140,148) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Copy Tutor Classes',0,'Y',140,149) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Administration',0,'Y',0,150) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Set System Preferences',0,'Y',149,151) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Config Settings',0,'Y',149,152) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('E-Mail Setup',0,'Y',149,153) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Roles',0,'Y',149,154) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('User Names and Password',0,'Y',149,155) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Customize',0,'Y',149,156) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Activity / Services Group List',0,'Y',155,157) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Activity / Services List',0,'Y',155,158) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('College Names',0,'Y',155,159) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Custom Fields Values',0,'Y',155,160) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Grade / Standing Group List',0,'Y',155,161) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Grade / Standing List',0,'Y',155,162) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Pulldown Lists',0,'Y',155,163) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('School Names',0,'Y',155,164) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('System Tools',0,'Y',149,165) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Staff Time Clock Manager',0,'Y',164,166) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Delete Students',0,'Y',164,167) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Recall Students',0,'Y',164,168) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Update GPA Wizard',0,'Y',164,169) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Update Year',0,'Y',164,170) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Update Age',0,'Y',164,171) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('BOT Form Management',0,'Y',149,172) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('BOT Form Detail',0,'Y',171,173) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('BOT Form Submission Detail',0,'Y',172,174) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Delete All',0,'Y',0,175) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Mobile App Access',0,'Y',0,176) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Trio Blumen Lab',0,'Y',0,177) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Lab Setting Preferences',0,'Y',176,178) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('Group checkout button',0,'Y',177,179) ON CONFLICT (privilege_id) DO NOTHING;
+insert  into blumen2.privileges ( name,org_id, access_type,parent_code, code) values ('ImportWizard',0,'Y',0,180) ON CONFLICT (privilege_id) DO NOTHING;
 
 
 

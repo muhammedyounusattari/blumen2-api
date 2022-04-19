@@ -11,8 +11,8 @@ import java.util.List;
 @Repository
 public interface PriviledgesRepository extends JpaRepository<Privileges, Long> {
 
-    @Query(value = "SELECT p FROM Privileges p where p.parentId=?1 ")
-    List<Privileges> findAllByParentId(@Param("parentId") Long parentId);
+    @Query(value = "SELECT p FROM Privileges p where p.parentCode=?1 ")
+    List<Privileges> findAllByParentCode(@Param("parent_code") Long parent_code);
 
 
 }

@@ -63,9 +63,6 @@ public class OrganizationController {
             e.printStackTrace();
             return failure("Problem in accessing organization users details", 400);
         }
-        // items.forEach(list::add);
-
-       // return items;
     }
 
     @ResponseBody

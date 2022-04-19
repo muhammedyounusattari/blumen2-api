@@ -16,23 +16,30 @@ public class Privileges implements Serializable {
     @Column(nullable = false)
     private String name;
 
+    @Column(nullable = true)
+    private Long code;
+
     @Column(nullable = false)
     private String accessType;
 
     private Long orgId;
 
     @Column(nullable = true)
-    private String parentId;
+    private Long parentCode;
+
+    @Column(nullable = true)
+    private String roleCode;
 
     public Privileges() {
     }
 
-    public Privileges(Long id, String name, String accessType, Long orgId, String parentId) {
+    public Privileges(Long id, String name, Long code, String accessType, Long orgId, Long parentCode) {
         this.id = id;
         this.name = name;
+        this.code = code;
         this.accessType = accessType;
         this.orgId = orgId;
-        this.parentId = parentId;
+        this.parentCode = parentCode;
     }
 
     public Long getId() {
@@ -51,6 +58,14 @@ public class Privileges implements Serializable {
         this.name = name;
     }
 
+    public Long getCode() {
+        return code;
+    }
+
+    public void setCode(Long code) {
+        this.code = code;
+    }
+
     public String getAccessType() {
         return accessType;
     }
@@ -67,11 +82,19 @@ public class Privileges implements Serializable {
         this.orgId = orgId;
     }
 
-    public String getParentId() {
-        return parentId;
+    public Long getParentCode() {
+        return parentCode;
     }
 
-    public void setParentId(String parentId) {
-        this.parentId = parentId;
+    public void setParentCode(Long parentCode) {
+        this.parentCode = parentCode;
+    }
+
+    public String getRoleCode() {
+        return roleCode;
+    }
+
+    public void setRoleCode(String roleCode) {
+        this.roleCode = roleCode;
     }
 }

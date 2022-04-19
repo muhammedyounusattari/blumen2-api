@@ -72,6 +72,7 @@ public class LoggedUserServiceV1 {
     }
 
     public LoggedUser createUser(LoggedUser loggedUser) throws Exception {
+        //only Admin can create users with in organization/// add role to method
         loggedUser = loggedUserRepository.save(loggedUser);
         if ("Admin".equalsIgnoreCase(loggedUser.getRoleName())) {
             Organization organization = new Organization();

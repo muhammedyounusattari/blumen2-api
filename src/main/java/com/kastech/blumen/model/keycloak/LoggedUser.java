@@ -523,4 +523,18 @@ public class LoggedUser implements Serializable {
     public void setOrganizationSet(Set<Organization> organizationSet) {
         this.organizationSet = organizationSet;
     }
+
+    @Override
+    public String toString() {
+        return "LoggedUser{" +
+                "id=" + id +
+                ", orgType='" + orgType + '\'' +
+                ", orgId=" + orgId +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", roleName='" + roleName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 }

@@ -1,1 +1,0 @@
-insert into blumen2.users_roles(user_id,role_id) values (:userId, :roleId);

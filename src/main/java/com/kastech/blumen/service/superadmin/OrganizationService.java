@@ -49,13 +49,16 @@ public class OrganizationService {
     private String defaultRolesUrl;
 
     @Value("${config.setting}")
-    private String configSetting;
+    private String configSettingUrl;
 
     @Value("${org.users}")
-    private String orgUsers;
+    private String orgUsersUrl;
 
+    @Value("${new.org.data.copy}")
+    private String newOrgDataCopyUrl;
 
-
+    @Value("${users.roles}")
+    private String usersRolesUrl;
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
@@ -70,31 +73,20 @@ public class OrganizationService {
         organization = organizationRepository.save(organization);
 
         try {
-            insertSecurityQuestions(organization);
-            insertPullDownList(organization);
-            insertConfigSetting(organization);
-            insertDefaultRoles(organization);
-            insertUserPrivileges(organization);
+            this.newOrgDataFromMaster(organization);
             return  organization;
         } catch (Exception e) {
            throw new Exception(e.getMessage());
         }
     }
 
-    public Organization batchUpdateForOrgAdmin(LoggedUser loggedUser, Organization organization) throws Exception {
+    public void batchUpdateForOrgAdmin(LoggedUser loggedUser, Organization organization) throws Exception {
         try {
         insertOrganizationUsers(loggedUser,organization);
-       // insertSecurityQuestions(organization);
-        insertPullDownList(organization);
-        insertConfigSetting(organization);
-        insertDefaultRoles(organization);
         insertUserRoles(loggedUser,organization);
-        insertUserPrivileges(organization);
-       // insertRolesPrivileges(user,organization);
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
-        return organization;
     }
 
     private void insertOrganizationUsers(LoggedUser loggedUser, Organization organization) throws IOException {
@@ -102,56 +94,25 @@ public class OrganizationService {
         Map<String, Object> map = new HashMap<>();
         map.put("orgId", organization.getOrgId());
         map.put("userId", loggedUser.getId());
-        namedParameterJdbcTemplate.update(readFile(orgUsers), map);
-    }
-
-    private void insertSecurityQuestions(final Organization organization) throws IOException {
-        LOG.info("Inside insertSecurityQuestions, with organization {} ", organization);
-        Map<String, Object> map = new HashMap<>();
-        map.put("orgId", organization.getOrgId());
-        map.put("orgType", organization.getOrgOrganizationType());
-        namedParameterJdbcTemplate.update(readFile(securityQuestionUrl), map);
-
+        namedParameterJdbcTemplate.update(readFile(orgUsersUrl), map);
     }
 
 
-    private void insertPullDownList(Organization organization) throws IOException {
-        LOG.info("Inside insertPullDownList, with parameter {} ", organization);
+    private void newOrgDataFromMaster(final Organization organization) throws IOException {
+        LOG.info("Inside newOrgDataFromMaster() with organization {} ", organization);
         Map<String, Object> map = new HashMap<>();
-        map.put("orgId", organization.getOrgId());
-        namedParameterJdbcTemplate.update(readFile(pullDownListUrl), map);
-    }
+        map.put("org_id", organization.getOrgId());
+        namedParameterJdbcTemplate.update(readFile(newOrgDataCopyUrl), map);
 
-    private void insertConfigSetting(final Organization organization) throws IOException {
-        LOG.info("Inside insertConfigSetting, with organization {} ", organization);
-        Map<String, Object> map = new HashMap<>();
-        map.put("orgId", organization.getOrgId());
-        map.put("orgType", organization.getOrgOrganizationType());
-        namedParameterJdbcTemplate.update(readFile(configSetting), map);
-
-    }
-
-    private void insertUserPrivileges(Organization organization) throws IOException {
-        LOG.info("Inside insertUserPrivileges, with parameter {} ", organization);
-        Map<String, Object> map = new HashMap<>();
-        map.put("orgId", organization.getOrgId());
-        namedParameterJdbcTemplate.update(readFile(userPrivilegesUrl), map);
-    }
-
-    private void insertDefaultRoles(Organization organization)throws IOException {
-        LOG.info("Inside insertDefaultRoles, with parameter {} ", organization);
-        LOG.info("Inside insertConfigSetting, with organization {} ", organization);
-        Map<String, Object> map = new HashMap<>();
-        map.put("orgId", organization.getOrgId());
-        namedParameterJdbcTemplate.update(readFile(defaultRolesUrl), map);
     }
 
     private void insertUserRoles(LoggedUser user, Organization organization)throws IOException {
-        LOG.info("Inside insertDefaultRoles, with parameter {} ", organization);
-        LOG.info("Inside insertConfigSetting, with organization {} ", organization);
+        LOG.info("Inside insertUserRoles() with parameter {}, {} ", organization, user);
         Map<String, Object> map = new HashMap<>();
         map.put("orgId", organization.getOrgId());
-        namedParameterJdbcTemplate.update(readFile(defaultRolesUrl), map);
+        map.put("roleName", user.getRoleName());
+        map.put("userId", user.getId());
+        namedParameterJdbcTemplate.update(readFile(usersRolesUrl), map);
     }
 
     private String readFile(final String relFilePath) throws IOException {

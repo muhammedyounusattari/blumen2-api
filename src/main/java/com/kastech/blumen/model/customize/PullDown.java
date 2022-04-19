@@ -22,7 +22,7 @@ public class PullDown {
     private List<PullDownItem> pullDownItems;
 
     @Column(nullable = false)
-    private String orgId;
+    private Long orgId;
     
     @Column(nullable  = false)
     private String code;
@@ -30,7 +30,7 @@ public class PullDown {
     public PullDown() {
     }
 
-    public PullDown(long id, String name, String selectionType, int active, String apr,  String orgId, String code) {
+    public PullDown(long id, String name, String selectionType, int active, String apr,  Long orgId, String code) {
         this.id = id;
         this.name = name;
         this.selectionType = selectionType;
@@ -115,11 +115,11 @@ public class PullDown {
         this.pullDownItems = pullDownItems;
     }
 
-    public String getOrgId() {
+    public Long getOrgId() {
         return orgId;
     }
 
-    public void setOrgId(String orgId) {
+    public void setOrgId(Long orgId) {
         this.orgId = orgId;
     }
 
