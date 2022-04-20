@@ -27,7 +27,7 @@ public class CustomUserDetails implements UserDetails {
 
     private String scope;
 
-    private String orgType;
+    private String orgCode;
 
     private Long orgId;
 
@@ -35,7 +35,7 @@ public class CustomUserDetails implements UserDetails {
 
     public CustomUserDetails(Collection<? extends GrantedAuthority> authorities, String email, String displayName,
                              String password, String username, Boolean enabled, Boolean accountNonExpired,
-                             Boolean accountNonLocked, boolean credentialsNonExpired, String scope, String orgType,
+                             Boolean accountNonLocked, boolean credentialsNonExpired, String scope, String orgCode,
                              Long orgId, Long userId) {
         this.authorities = authorities;
         this.email = email;
@@ -47,7 +47,7 @@ public class CustomUserDetails implements UserDetails {
         this.accountNonLocked = accountNonLocked;
         this.credentialsNonExpired = credentialsNonExpired;
         this.scope = scope;
-        this.orgType = orgType;
+        this.orgCode = orgCode;
         this.orgId = orgId;
         this.userId = userId;
     }
@@ -151,12 +151,12 @@ public class CustomUserDetails implements UserDetails {
         this.scope = scope;
     }
 
-    public String getOrgType() {
-        return orgType;
+    public String getOrgCode() {
+        return orgCode;
     }
 
-    public void setOrgType(String orgType) {
-        this.orgType = orgType;
+    public void setOrgCode(String orgCode) {
+        this.orgCode = orgCode;
     }
 
     public Long getOrgId() {

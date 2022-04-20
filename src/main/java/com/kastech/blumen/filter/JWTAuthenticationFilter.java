@@ -40,17 +40,17 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
         String requestTokenHeader =request.getHeader(HEADER_STRING);
         String email = null;
         String jwtToken = null;
-        String orgType = null;
+        String orgCode = null;
         UserDetails userDetails = null;
         if(!StringUtils.isBlank(requestTokenHeader) && requestTokenHeader.startsWith(TOKEN_PREFIX)){
 
 
             jwtToken = requestTokenHeader.substring(7);
             email = this.jwtUtil.extractUsername(jwtToken);
-            orgType = this.jwtUtil.extractKeyFromToken(jwtToken, "orgType");
+            orgCode = this.jwtUtil.extractKeyFromToken(jwtToken, "orgCode");
 
-            if(!(StringUtils.isBlank(email) || StringUtils.isBlank(orgType))) {
-                userDetails = this.customUserDetailsService.loadUserByEmailAndOrganization(email, orgType);
+            if(!(StringUtils.isBlank(email) || StringUtils.isBlank(orgCode))) {
+                userDetails = this.customUserDetailsService.loadUserByEmailAndOrganization(email, orgCode);
                 if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                     UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                     usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
@@ -59,7 +59,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
                     LOG.error("TOKEN invalid ");
                 }
             } else {
-                LOG.error("email || orgType is missing");
+                LOG.error("email || orgCode is missing");
             }
         }
         filterChain.doFilter(request,response);

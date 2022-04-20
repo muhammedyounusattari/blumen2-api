@@ -1,7 +1,6 @@
 package com.kastech.blumen.service.admin;
 
 import com.kastech.blumen.mail.EmailService;
-import com.kastech.blumen.mail.SendMailService;
 import com.kastech.blumen.model.admin.home.Organization;
 import com.kastech.blumen.model.keycloak.*;
 import com.kastech.blumen.repository.admin.LoggedUserRepository;
@@ -14,12 +13,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.util.StringUtils;
 
 import java.util.*;
@@ -56,8 +51,8 @@ public class LoggedUserServiceV1 {
         return loggedUserRepository.save(loggedUser);
     }
 
-    public Optional<LoggedUser> findLoggedUser(String email, String orgType) {
-        Optional<LoggedUser> optionalLoggedUser = loggedUserRepository.findByUserEmailAndOrgType(email, orgType);
+    public Optional<LoggedUser> findLoggedUser(String email, String orgCode) {
+        Optional<LoggedUser> optionalLoggedUser = loggedUserRepository.findByUserEmailAndOrgCode(email, orgCode);
         return optionalLoggedUser;
     }
 
@@ -74,8 +69,8 @@ public class LoggedUserServiceV1 {
         return loggedUserRepository.findByOrgId(orgCode);
     }
 
-    public List<LoggedUser> findLoggedUserDetails(String userName, String password, String orgId) {
-        List<LoggedUser> loggedUsers = loggedUserRepository.findByUserDetails(userName, password, orgId);
+    public List<LoggedUser> findLoggedUserDetails(String userName, String password, String orgCode) {
+        List<LoggedUser> loggedUsers = loggedUserRepository.findByUserDetails(userName, password, orgCode);
         return loggedUsers;
     }
 
@@ -86,17 +81,17 @@ public class LoggedUserServiceV1 {
         //if login with org admin, get org id from jwt token.
         if (orgIdOfUserLoggedIn != 0) { //org admin
             loggedUser.setOrgId(SecurityUtil.getUserOrgId());
-            loggedUser.setOrgType(SecurityUtil.getUserOrgType());
+            loggedUser.setOrgCode(SecurityUtil.getUserOrgCode());
         } else if (orgIdOfUserLoggedIn == 0 && loggedUser.getOrgId() != null) {
             //super admin - expect org type, org id from ui
             loggedUser.setOrgId(loggedUser.getOrgId());
-            loggedUser.setOrgType(loggedUser.getOrgType());
+            loggedUser.setOrgCode(loggedUser.getOrgCode());
         }
 
         loggedUser = loggedUserRepository.save(loggedUser);
         Organization organization = new Organization();
         organization.setOrgId(loggedUser.getOrgId());
-        organization.setOrgOrganizationType(loggedUser.getOrgType());
+        organization.setOrgOrganizationType(loggedUser.getOrgCode());
         organizationService.batchUpdateForOrgAdmin(loggedUser, organization);
 
         //send email service
@@ -109,7 +104,7 @@ public class LoggedUserServiceV1 {
         loggedUser.setLinkExpiryDate(DateUtil.setDates(1));
         loggedUserRepository.save(loggedUser);
 
-        sendMailService.sendMail(loggedUser.getEmail(),"Usercreated password link","Congratulation your account with orgType "+loggedUser.getOrgType()+" and email "+loggedUser.getEmail()+" and password set link "+loggedUser.getTempLink());
+        sendMailService.sendMail(loggedUser.getEmail(),"Usercreated password link","Congratulation your account with orgCode "+loggedUser.getOrgCode()+" and email "+loggedUser.getEmail()+" and password set link "+loggedUser.getTempLink());
 
         return loggedUser;
     }
@@ -119,9 +114,9 @@ public class LoggedUserServiceV1 {
         return loggedUserRepository.getUsersList(userOrgId);
     }
 
-    public String resetPasswordForUser(String email, String orgType) throws Exception {
+    public String resetPasswordForUser(String email, String orgCode) throws Exception {
         LOGGER.info("call made for resetPasswordForUser under {}", this.getClass());
-        Optional<LoggedUser> optionalLoggedUser = loggedUserRepository.findByUserEmailAndOrgType(email, orgType);
+        Optional<LoggedUser> optionalLoggedUser = loggedUserRepository.findByUserEmailAndOrgCode(email, orgCode);
         if (optionalLoggedUser.isEmpty()) {
             LOGGER.error("Username {} not found in database", email);
             throw new UsernameNotFoundException("Username not found");
@@ -173,9 +168,9 @@ public class LoggedUserServiceV1 {
         return statusMap;
     }
 
-    public Map<String, String> validateOrgType(String orgTyp) {
+    public Map<String, String> validateOrgCode(String orgCode) {
         Map<String, String> statusMap = new HashMap<>();
-        Optional<Organization> organizations = organizationRepository.findByOrgType(orgTyp);
+        Optional<Organization> organizations = organizationRepository.findByOrgCode(orgCode);
 
         if (organizations.isEmpty()) {
             statusMap.put("message", "Invalid OrgCode.");
@@ -187,9 +182,9 @@ public class LoggedUserServiceV1 {
 
     }
 
-    public Map<String, String> getSecurityQuestions(String orgType, String email) {
+    public Map<String, String> getSecurityQuestions(String orgCode, String email) {
         Map<String, String> statusMap = new HashMap<>();
-        Optional<LoggedUser> loggedUserFound = loggedUserRepository.findByEmailAndOrgType(email, orgType);
+        Optional<LoggedUser> loggedUserFound = loggedUserRepository.findByEmailAndOrgCode(email, orgCode);
         if (loggedUserFound.isEmpty()) {
             statusMap.put("message", "Invalid Credentials.");
             statusMap.put("status", "404");
@@ -209,13 +204,13 @@ public class LoggedUserServiceV1 {
         //    return statusMap;
     }
 
-    public Map<String, String> checkCredentials(String orgType, String email, String securityAnswer1, String securityAnswer2) {
+    public Map<String, String> checkCredentials(String orgCode, String email, String securityAnswer1, String securityAnswer2) {
         Map<String, String> statusMap = new HashMap<>();
         LOGGER.info("Call made to checkCredentials of ", this.getClass());
         try {
-            Optional<LoggedUser> loggedUserFound = loggedUserRepository.findByEmailAndOrgType(email, orgType);
+            Optional<LoggedUser> loggedUserFound = loggedUserRepository.findByEmailAndOrgCode(email, orgCode);
             if (!loggedUserFound.isEmpty()) {
-                LOGGER.info("user with email {} and orgType {} is valid", email, orgType);
+                LOGGER.info("user with email {} and orgCode {} is valid", email, orgCode);
                 LoggedUser loggedUser = loggedUserFound.get();
                 Integer wrongAttempts = loggedUser.getWrongAttempt();
                 if (wrongAttempts != null && wrongAttempts > 4) {
@@ -320,7 +315,7 @@ public class LoggedUserServiceV1 {
 
     public Map<String,String> changePassword(Map<String, String> requestPaylaod) {
         String email = SecurityUtil.getEmail();
-        String orgType = SecurityUtil.getUserOrgType();
+        String orgCode = SecurityUtil.getUserOrgCode();
         String password = requestPaylaod.get("password");
         String confPassword = requestPaylaod.get("confPassword");
         String securityQuestion1 = requestPaylaod.get("securityQuestion1");
@@ -338,7 +333,7 @@ public class LoggedUserServiceV1 {
 
         //check if password exist
         if(!StringUtils.isEmpty(password)){
-         loggedUsers =   loggedUserRepository.findByUserDetails(email, password,orgType);
+         loggedUsers =   loggedUserRepository.findByUserDetails(email, password,orgCode);
          if(loggedUsers.isEmpty()){
              successMap.put("message", "Current Password is Invalid");
              successMap.put("status", "400");

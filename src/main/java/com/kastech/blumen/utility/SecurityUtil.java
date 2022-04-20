@@ -27,9 +27,9 @@ public class SecurityUtil {
         return ((CustomUserDetails) authentication.getPrincipal()).getUserId();
     }
 
-    public static String getUserOrgType(){
+    public static String getUserOrgCode(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
-        return customUserDetails.getOrgType();
+        return customUserDetails.getOrgCode();
     }
 }

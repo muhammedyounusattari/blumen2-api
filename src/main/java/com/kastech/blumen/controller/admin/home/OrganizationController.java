@@ -125,7 +125,7 @@ public class OrganizationController {
         loggedUser.setEditedBy(customUserDetails.getUsername());
         try {
             loggedUser = loggedUserServiceV1.createUser(loggedUser);
-            return success("Your orgType "+ loggedUser.getOrgType()+" email "+loggedUser.getEmail()+" tempLink "+loggedUser.getTempLink(), 200);
+            return success("Your orgCode "+ loggedUser.getOrgCode()+" email "+loggedUser.getEmail()+" tempLink "+loggedUser.getTempLink(), 200);
         } catch (Exception e) {
             LOGGER.error("problem occurred while creating user");
             e.printStackTrace();

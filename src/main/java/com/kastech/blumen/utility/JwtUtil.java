@@ -1,8 +1,6 @@
 package com.kastech.blumen.utility;
 
 import com.kastech.blumen.model.CustomUserDetails;
-import com.kastech.blumen.model.keycloak.Privileges;
-import com.kastech.blumen.model.keycloak.Roles;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -15,10 +13,8 @@ import static com.kastech.blumen.constants.SecurityConstants.*;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import com.google.common.collect.Sets;
 
 @Service
 public class JwtUtil {
@@ -82,7 +78,7 @@ public class JwtUtil {
                 .setIssuer(user.getUsername())
                 .setSubject(user.getEmail())
                // .claim(AUTHORITIES, authorities)
-                .claim("orgType", user.getOrgType())
+                .claim("orgCode", user.getOrgCode())
                 .claim("orgId", user.getOrgId())
                 .claim("email", user.getEmail())
                 .claim("scope", user.getScope())

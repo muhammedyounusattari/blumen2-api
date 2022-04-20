@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(value = RestURIConstant.ROOT)
@@ -76,7 +75,7 @@ public class UserManagmentController {
         String sentMail = "";
         try {
             LOGGER.info("call made for /resetPassword for user {}", user);
-           sentMail =  loggedUserServiceV1.resetPasswordForUser(user, SecurityUtil.getUserOrgType());
+           sentMail =  loggedUserServiceV1.resetPasswordForUser(user, SecurityUtil.getUserOrgCode());
         } catch (UsernameNotFoundException e){
             LOGGER.error("User with email {} not found ", user);
            return failure("User with email "+user+ " not found", 404);
@@ -123,21 +122,21 @@ public class UserManagmentController {
         LOGGER.info("forgotPassword api is called {}", this.getClass());
 
         Map<String, String> responsePayload = new HashMap<>();
-        String orgType = requestPaylaod.get("orgType");
+        String orgCode = requestPaylaod.get("orgCode");
         String email = requestPaylaod.get("email");
         String securityAnswer1 = requestPaylaod.get("securityAnswer1");
         String securityAnswer2 = requestPaylaod.get("securityAnswer2");
 
-        LOGGER.debug("email {}, orgType {}, securityAnswer1 {}, securityAnswer2 {}", email, orgType,securityAnswer1,securityAnswer2);
-        if (StringUtils.isBlank(orgType)) {
+        LOGGER.debug("email {}, orgCode {}, securityAnswer1 {}, securityAnswer2 {}", email, orgCode,securityAnswer1,securityAnswer2);
+        if (StringUtils.isBlank(orgCode)) {
             responsePayload.put("message", "OrganizationCode is missing");
             responsePayload.put("status", "404");
-            LOGGER.warn("OrgType missing {}", orgType);
+            LOGGER.warn("orgCode missing {}", orgCode);
             return failure(responsePayload, 404);
         }
 
         if (StringUtils.isBlank(email) && StringUtils.isBlank(securityAnswer1) && StringUtils.isBlank(securityAnswer2)) {
-            responsePayload = loggedUserServiceV1.validateOrgType(orgType);
+            responsePayload = loggedUserServiceV1.validateOrgCode(orgCode);
             return success(responsePayload, Integer.parseInt(responsePayload.get("status")));
         }
         if (StringUtils.isBlank(email)) {
@@ -147,7 +146,7 @@ public class UserManagmentController {
         }
 
         if (StringUtils.isBlank(securityAnswer1) && StringUtils.isBlank(securityAnswer2)) {
-            responsePayload = loggedUserServiceV1.getSecurityQuestions(orgType, email);
+            responsePayload = loggedUserServiceV1.getSecurityQuestions(orgCode, email);
             return new ResponseEntity(responsePayload, HttpStatus.OK);
         }
 
@@ -163,7 +162,7 @@ public class UserManagmentController {
             return failure(responsePayload, 404);
         }
 
-        Map<String, String> statusMap = loggedUserServiceV1.checkCredentials(orgType, email, securityAnswer1, securityAnswer2);
+        Map<String, String> statusMap = loggedUserServiceV1.checkCredentials(orgCode, email, securityAnswer1, securityAnswer2);
         return new ResponseEntity(statusMap,null, HttpStatus.OK);
     }
 
@@ -219,8 +218,8 @@ public class UserManagmentController {
     ///should support unauthenticated access
     @GetMapping(path = "/ssoConfig")
     @ResponseBody
-    public  ResponseEntity<String> getSsoConfig(@RequestParam("email") String email, @RequestParam("orgType") String orgType) {
-        return  ResponseEntity.ok(usersRepository.findByUserAndOrgType(email, orgType));
+    public  ResponseEntity<String> getSsoConfig(@RequestParam("email") String email, @RequestParam("orgType") String orgCode) {
+        return  ResponseEntity.ok(usersRepository.findByUserAndOrgCode(email, orgCode));
     }
 
     private ResponseEntity<?> success(Object t, Integer status ){

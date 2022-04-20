@@ -19,7 +19,7 @@ public class LoggedUser implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String orgType;
+    private String orgCode;
 
     private Long orgId;
 
@@ -129,9 +129,9 @@ public class LoggedUser implements Serializable {
     public LoggedUser() {
     }
 
-    public LoggedUser(Long id, String orgType, Long orgId, String username, String email, String password, String roleName, String firstName, String lastName, String scope, String address1, String address2, String city, String state, String zipcode, String mobile, String phone1, String phone2, String fax, String notes, String siteLocation, Boolean active, String createdBy, String editedBy, String securityQuestion1, String securityAnswer1, String securityQuestion2, String securityAnswer2, BOLT bolt, int ita, int exp, Date issueDate, Date expiryDate, @Nullable Integer wrongAttempt, @Nullable Boolean firstTime, @Nullable String tempLink, Date createdDate, Date editedDate, Date lastLogin, Set<Roles> roles, @Nullable String hashedCode, @Nullable Date linkExpiryDate, Set<Organization> organizationSet ) {
+    public LoggedUser(Long id, String orgCode, Long orgId, String username, String email, String password, String roleName, String firstName, String lastName, String scope, String address1, String address2, String city, String state, String zipcode, String mobile, String phone1, String phone2, String fax, String notes, String siteLocation, Boolean active, String createdBy, String editedBy, String securityQuestion1, String securityAnswer1, String securityQuestion2, String securityAnswer2, BOLT bolt, int ita, int exp, Date issueDate, Date expiryDate, @Nullable Integer wrongAttempt, @Nullable Boolean firstTime, @Nullable String tempLink, Date createdDate, Date editedDate, Date lastLogin, Set<Roles> roles, @Nullable String hashedCode, @Nullable Date linkExpiryDate, Set<Organization> organizationSet ) {
         this.id = id;
-        this.orgType = orgType;
+        this.orgCode = orgCode;
         this.orgId = orgId;
         this.username = username;
         this.email = email;
@@ -183,12 +183,12 @@ public class LoggedUser implements Serializable {
         this.id = id;
     }
 
-    public String getOrgType() {
-        return orgType;
+    public String getOrgCode() {
+        return orgCode;
     }
 
-    public void setOrgType(String orgType) {
-        this.orgType = orgType;
+    public void setOrgCode(String orgCode) {
+        this.orgCode = orgCode;
     }
 
     public Long getOrgId() {
@@ -528,7 +528,7 @@ public class LoggedUser implements Serializable {
     public String toString() {
         return "LoggedUser{" +
                 "id=" + id +
-                ", orgType='" + orgType + '\'' +
+                ", orgCode='" + orgCode + '\'' +
                 ", orgId=" + orgId +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +

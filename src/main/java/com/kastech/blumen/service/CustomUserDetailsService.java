@@ -1,8 +1,5 @@
 package com.kastech.blumen.service;
 
-import com.google.common.base.Function;
-import com.google.common.base.Functions;
-import com.google.common.collect.Collections2;
 import com.google.common.collect.Sets;
 import com.kastech.blumen.model.CustomUserDetails;
 import com.kastech.blumen.model.keycloak.LoggedUser;
@@ -15,7 +12,6 @@ import com.kastech.blumen.service.admin.LoggedUserServiceV1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -39,8 +35,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     }
 
-    public UserDetails loadUserByEmailAndOrganization(String email, String orgType) throws UsernameNotFoundException {
-        return loadUser(email, orgType);
+    public UserDetails loadUserByEmailAndOrganization(String email, String orgCode) throws UsernameNotFoundException {
+        return loadUser(email, orgCode);
     }
 
     public UserDetails loadUserDetails(String username, String password, String organization) throws  UsernameNotFoundException {
@@ -55,7 +51,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         Collection<GrantedAuthority> grantedAuthoritySet = new HashSet<>();
 
 
-        return new CustomUserDetails(grantedAuthoritySet, loggedUser.getEmail(), loggedUser.getFirstName(), null, loggedUser.getUsername(), Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, loggedUser.getScope(), loggedUser.getOrgType(), loggedUser.getOrgId(), loggedUser.getId());
+        return new CustomUserDetails(grantedAuthoritySet, loggedUser.getEmail(), loggedUser.getFirstName(), null, loggedUser.getUsername(), Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, loggedUser.getScope(), loggedUser.getOrgCode(), loggedUser.getOrgId(), loggedUser.getId());
         //new CustomUserDetails(loggedUser.getUsername(),loggedUser.getFirstName()+" "+loggedUser.getLastName(),loggedUser.getUsername(),loggedUser.getPassword(),Boolean.TRUE,null);
 
     }
@@ -81,7 +77,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             String role = jsonObject.getString("role");
             gas.add(new SimpleGrantedAuthority(role));
         } */
-        return new CustomUserDetails(grantedAuthoritySet, loggedUser.getEmail(), loggedUser.getFirstName(), null, loggedUser.getUsername(), Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, loggedUser.getScope(), loggedUser.getOrgType(), loggedUser.getOrgId(), loggedUser.getId());
+        return new CustomUserDetails(grantedAuthoritySet, loggedUser.getEmail(), loggedUser.getFirstName(), null, loggedUser.getUsername(), Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, loggedUser.getScope(), loggedUser.getOrgCode(), loggedUser.getOrgId(), loggedUser.getId());
         //return new CustomUserDetails(grantedAuthoritySet,loggedUser.getUsername(),loggedUser.getFirstName()+" "+loggedUser.getLastName(), loggedUser.getPassword(), loggedUser.getUsername(), Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, true, loggedUser.getScope(), loggedUser.getOrgType());
         //new CustomUserDetails(superAdmin.getEmail(),superAdmin.getFirstName()+" "+superAdmin.getLastName(),superAdmin.getEmail(),superAdmin.getPassword(),Boolean.TRUE,null);
 
@@ -113,10 +109,10 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
 
-    private CustomUserDetails loadUser(String email, String orgType) throws UsernameNotFoundException {
+    private CustomUserDetails loadUser(String email, String orgCode) throws UsernameNotFoundException {
 
 
-        Optional<LoggedUser> loggedUserOptional =  loggedUserServiceV1.findLoggedUser(email, orgType);
+        Optional<LoggedUser> loggedUserOptional =  loggedUserServiceV1.findLoggedUser(email, orgCode);
         LoggedUser loggedUser = new LoggedUser();
 
         if(!loggedUserOptional.isEmpty()){
@@ -137,7 +133,7 @@ public class CustomUserDetailsService implements UserDetailsService {
        // return null; //new CustomUserDetails(null,loggedUser.getUserName(),loggedUser.getUserName(),"mumbai-university.password1",Boolean.TRUE,null);
         return new CustomUserDetails(grantedAuthoritySet, loggedUser.getEmail(), loggedUser.getFirstName(),
                 null, loggedUser.getUsername(), Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, Boolean.TRUE,
-                loggedUser.getScope(), loggedUser.getOrgType(), loggedUser.getOrgId(), loggedUser.getId());
+                loggedUser.getScope(), loggedUser.getOrgCode(), loggedUser.getOrgId(), loggedUser.getId());
 
     }
 
