@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/blumen-api/customize")
@@ -24,6 +25,14 @@ public class PullDownMasterController {
     public List<PullDownMaster> getPullDownList(@RequestParam(required = true) Long orgId,@RequestParam(required = false) Long projType,
                                                 @RequestParam(required = true) String pullType) {
         return pullDownMasterServiceV1.getPullDownList(orgId , pullType,projType);
+    }
+
+    @ResponseBody
+    @GetMapping(path = "/getMultiPullDownMaster/v1",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public Map<String,List<PullDownMaster>> getMultiPullDownMaster(@RequestParam(required = true) Long orgId, @RequestParam(required = false) Long projType,
+                                                            @RequestParam(required = true) String pullType) {
+        return pullDownMasterServiceV1.getMultiPullDownMaster(orgId , pullType,projType);
     }
 
     @ResponseBody

@@ -1,6 +1,7 @@
 package com.kastech.blumen.model.admin.home;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "Pulltype" ,schema = "blumen2")
@@ -9,26 +10,34 @@ public class PullType {
     @Id
     private Long pullTypeId;
     @Column(nullable = false,length = 100 )
+    @NotNull
     private String pullDesc;
     @Column(nullable = false,length = 30 )
+    @NotNull
     private String pullType;
     @Column(nullable = false)
+
     private Boolean isNumeric;
     @Column(nullable = false)
+    @NotNull
     private Boolean apr;
     @Column(nullable = false)
+    @NotNull
     private Boolean noEdit;
     @Column(nullable = true,length = 300  )
     private String dataFields;
     @Column(nullable = false  )
+    @NotNull
     private Long serType;
     @Column(name = "projType",nullable=false)
+    @NotNull
     private Long projType;
     @Column(nullable = true  )
     private String sortOrder;
     @Column(nullable = true,length = 500   )
     private String quickEditDesc;
     @Column(nullable = false  )
+    @NotNull
     private Boolean isPrimary;
 
 

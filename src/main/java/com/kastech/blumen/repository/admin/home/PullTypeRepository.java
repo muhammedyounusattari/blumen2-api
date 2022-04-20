@@ -17,4 +17,6 @@ public interface PullTypeRepository extends JpaRepository<PullType,Long> {
     public List<PullType> findByPullDescStartsWithIgnoreCaseAndPullTypeStartsWithIgnoreCaseAndProjType(@Param("pullDesc")String pullDesc,@Param("pullType") String pullType , @Param("projType") Long projType);
 
     public List<PullType> findByPullType(String pullType);
+
+    public List<PullType> findByPullTypeAndProjType(String pullType,Long projType);
 }

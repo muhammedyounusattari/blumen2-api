@@ -1,6 +1,7 @@
 package com.kastech.blumen.controller.admin.home;
 
 import com.kastech.blumen.model.admin.home.PullType;
+import com.kastech.blumen.model.admin.home.PullTypeMultiSearchRequest;
 import com.kastech.blumen.model.admin.home.PullTypeSearchRequest;
 import com.kastech.blumen.service.home.PullTypeServiceV1;
 import org.slf4j.Logger;
@@ -15,6 +16,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/blumen-api/admin/home")
@@ -31,6 +33,17 @@ public class PullTypeController {
         PullTypeSearchRequest pullTypeSearchRequest = new PullTypeSearchRequest();
         pullTypeSearchRequest.setPullType(pullType);
         pullTypeSearchRequest.setDescription(description);
+        pullTypeSearchRequest.setProgramType(programType);
+        return new ResponseEntity<>(pullTypeServiceV1.findPullTypesList(pullTypeSearchRequest),HttpStatus.OK);
+    }
+
+    @ResponseBody
+    @GetMapping (path = "/getMultiPullTypesList/v1",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<Map<String,List<PullType>>> getMultiPullTypesList(@RequestParam(value = "pullType",required = true) String pullType
+      , @RequestParam(value = "programType",required = false) Long programType) {
+        PullTypeMultiSearchRequest pullTypeSearchRequest = new PullTypeMultiSearchRequest();
+        pullTypeSearchRequest.setPullType(pullType);
         pullTypeSearchRequest.setProgramType(programType);
         return new ResponseEntity<>(pullTypeServiceV1.findPullTypesList(pullTypeSearchRequest),HttpStatus.OK);
     }
