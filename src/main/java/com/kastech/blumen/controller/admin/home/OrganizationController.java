@@ -53,7 +53,7 @@ public class OrganizationController {
     @ResponseBody
     @GetMapping(path = "/getOrganizationUserList/v1/{orgId}",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> getOrganizationUserList(@PathVariable("orgId") Long orgId) {
+    public ResponseEntity<?> getOrganizationUserList(@PathVariable Long orgId) {
 
         if(StringUtils.isEmpty(orgId)){
             orgId = SecurityUtil.getUserOrgId();
@@ -62,6 +62,9 @@ public class OrganizationController {
         Optional<Organization> items = null;
         try {
             items = organizationRepository.findByOrgId(orgId);
+            if(items.isEmpty()){
+                return success("Organization with id "+orgId+" not found", 200);
+            }
             return success(items, 200);
         } catch (Exception e) {
             e.printStackTrace();
@@ -122,9 +125,10 @@ public class OrganizationController {
         loggedUser.setEditedBy(customUserDetails.getUsername());
         try {
             loggedUser = loggedUserServiceV1.createUser(loggedUser);
-            return success(loggedUser, 200);
+            return success("Your orgType "+ loggedUser.getOrgType()+" email "+loggedUser.getEmail()+" tempLink "+loggedUser.getTempLink(), 200);
         } catch (Exception e) {
-            LOGGER.info("problem occured while creating user");
+            LOGGER.error("problem occurred while creating user");
+            e.printStackTrace();
             return failure("problem in creating a user for orgId "+loggedUser.getOrgId(), 500);
         }
 

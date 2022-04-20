@@ -1,5 +1,6 @@
 package com.kastech.blumen.service.admin;
 
+import com.kastech.blumen.mail.EmailService;
 import com.kastech.blumen.mail.SendMailService;
 import com.kastech.blumen.model.admin.home.Organization;
 import com.kastech.blumen.model.keycloak.*;
@@ -36,7 +37,8 @@ public class LoggedUserServiceV1 {
     OrganizationRepository organizationRepository;
 
     @Autowired
-    SendMailService sendMailService;
+    private EmailService sendMailService;
+    //SendMailService sendMailService;
 
     @Value("${blumen2.url}")
     private String blumenUrl;
@@ -96,6 +98,18 @@ public class LoggedUserServiceV1 {
         organization.setOrgId(loggedUser.getOrgId());
         organization.setOrgOrganizationType(loggedUser.getOrgType());
         organizationService.batchUpdateForOrgAdmin(loggedUser, organization);
+
+        //send email service
+        String uuid = UUID.randomUUID().toString();
+        loggedUser.setHashedCode(uuid);
+        loggedUser.setCreatedDate(new Date());
+        String tempLink = blumenUrl + "reset-password/#" + uuid;
+        loggedUser.setTempLink(tempLink);
+        //set expiry of link to 1 day
+        loggedUser.setLinkExpiryDate(DateUtil.setDates(1));
+        loggedUserRepository.save(loggedUser);
+
+        sendMailService.sendMail(loggedUser.getEmail(),"Usercreated password link","Congratulation your account with orgType "+loggedUser.getOrgType()+" and email "+loggedUser.getEmail()+" and password set link "+loggedUser.getTempLink());
 
         return loggedUser;
     }

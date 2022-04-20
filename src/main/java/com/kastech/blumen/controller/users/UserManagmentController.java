@@ -173,20 +173,23 @@ public class UserManagmentController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> authenticate(@RequestBody JWTRequest jwtRequest) throws Exception {
         Authentication authentication = null;
+        String token = "";
         try {
+            LOGGER.info("Call made to /authenticate api");
             authentication = this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getEmail(), jwtRequest.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
-
+            CustomUserDetails customUserDetails = this.customUserDetailsService.loadCustomUserDetails(jwtRequest.getEmail(), jwtRequest.getPassword(), jwtRequest.getOrganization());
+            token = this.jwtUtil.generateToken(authentication, customUserDetails);
         } catch (UsernameNotFoundException e) {
+            LOGGER.error("Exception occured due to bad credentials");
             e.printStackTrace();
-            throw new Exception("Username not found");
+            return success(e.getMessage(),403);
         } catch (Exception e) {
+            LOGGER.error("Problem occurred while authenticating a user");
             e.printStackTrace();
             throw new Exception("Bad credentials ");
         }
 
-        CustomUserDetails customUserDetails = this.customUserDetailsService.loadCustomUserDetails(jwtRequest.getEmail(), jwtRequest.getPassword(), jwtRequest.getOrganization());
-        String token = this.jwtUtil.generateToken(authentication, customUserDetails);
         return ResponseEntity.ok(new JWTResponse(token, this.jwtUtil.extractKeyFromToken(token,"ita"), this.jwtUtil.extractKeyFromToken(token,"exp"), 200));
     }
 
