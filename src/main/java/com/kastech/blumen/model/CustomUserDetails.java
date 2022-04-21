@@ -33,10 +33,12 @@ public class CustomUserDetails implements UserDetails {
 
     private Long userId;
 
+    private String roleName;
+
     public CustomUserDetails(Collection<? extends GrantedAuthority> authorities, String email, String displayName,
                              String password, String username, Boolean enabled, Boolean accountNonExpired,
                              Boolean accountNonLocked, boolean credentialsNonExpired, String scope, String orgCode,
-                             Long orgId, Long userId) {
+                             Long orgId, Long userId, String roleName) {
         this.authorities = authorities;
         this.email = email;
         this.displayName = displayName;
@@ -50,6 +52,7 @@ public class CustomUserDetails implements UserDetails {
         this.orgCode = orgCode;
         this.orgId = orgId;
         this.userId = userId;
+        this.roleName = roleName;
     }
 
     @Override
@@ -175,4 +178,11 @@ public class CustomUserDetails implements UserDetails {
         this.userId = userId;
     }
 
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
 }

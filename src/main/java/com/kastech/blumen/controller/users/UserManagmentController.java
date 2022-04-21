@@ -5,7 +5,9 @@ import com.kastech.blumen.constants.RestURIConstant;
 import com.kastech.blumen.model.CustomUserDetails;
 import com.kastech.blumen.model.JWTRequest;
 import com.kastech.blumen.model.JWTResponse;
+import com.kastech.blumen.model.admin.home.Organization;
 import com.kastech.blumen.repository.admin.LoggedUserRepository;
+import com.kastech.blumen.repository.admin.home.OrganizationRepository;
 import com.kastech.blumen.service.CustomUserDetailsService;
 import com.kastech.blumen.service.admin.LoggedUserServiceV1;
 import com.kastech.blumen.utility.JwtUtil;
@@ -24,7 +26,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = RestURIConstant.ROOT)
@@ -41,6 +45,9 @@ public class UserManagmentController {
 
     @Autowired
     private LoggedUserRepository usersRepository;
+
+    @Autowired
+    private OrganizationRepository organizationRepository;
 
     @Autowired
     private JwtUtil jwtUtil;
@@ -75,15 +82,15 @@ public class UserManagmentController {
         String sentMail = "";
         try {
             LOGGER.info("call made for /resetPassword for user {}", user);
-           sentMail =  loggedUserServiceV1.resetPasswordForUser(user, SecurityUtil.getUserOrgCode());
+            sentMail =  loggedUserServiceV1.resetPasswordForUser(user, SecurityUtil.getUserOrgCode());
         } catch (UsernameNotFoundException e){
             LOGGER.error("User with email {} not found ", user);
-           return failure("User with email "+user+ " not found", 404);
+            return failure("User with email "+user+ " not found", 404);
         }
         catch (Exception e) {
             LOGGER.error("Problem in resetting password for email {}", user);
             e.printStackTrace();
-           return failure("Problem in resetting password for email "+ user, 400);
+            return failure("Problem in resetting password for email "+ user, 400);
         }
         return success("Email sent to address "+user+" "+sentMail, 200);
     }
@@ -109,7 +116,7 @@ public class UserManagmentController {
 
 
         try {
-           return new ResponseEntity(loggedUserServiceV1.updatePassword(confPassword,hashedCode),null,HttpStatus.OK);
+            return new ResponseEntity(loggedUserServiceV1.updatePassword(confPassword,hashedCode),null,HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
             return failure("Problem in updating password", 400);
@@ -172,13 +179,23 @@ public class UserManagmentController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> authenticate(@RequestBody JWTRequest jwtRequest) throws Exception {
         Authentication authentication = null;
+        CustomUserDetails customUserDetails = null;
         String token = "";
+        JWTResponse jwtResponse = null;
         try {
             LOGGER.info("Call made to /authenticate api");
             authentication = this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getEmail(), jwtRequest.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            CustomUserDetails customUserDetails = this.customUserDetailsService.loadCustomUserDetails(jwtRequest.getEmail(), jwtRequest.getPassword(), jwtRequest.getOrganization());
+            customUserDetails = this.customUserDetailsService.loadCustomUserDetails(jwtRequest.getEmail(), jwtRequest.getPassword(), jwtRequest.getOrganization());
             token = this.jwtUtil.generateToken(authentication, customUserDetails);
+            Optional<Organization> organizations = organizationRepository.findByOrgId(customUserDetails.getOrgId());
+            Organization organization = new Organization();
+            if(!organizations.isEmpty()){
+                organization = organizations.get();
+            }
+
+            jwtResponse = new JWTResponse(token, this.jwtUtil.extractKeyFromToken(token,"ita"), this.jwtUtil.extractKeyFromToken(token,"exp"), 200,organization.getOrgName(),organization.getOrgId(),organization.getOrgProgramType(),organization.getOrgOrganizationType(), customUserDetails.getRoleName());
+
         } catch (UsernameNotFoundException e) {
             LOGGER.error("Exception occured due to bad credentials");
             e.printStackTrace();
@@ -189,7 +206,7 @@ public class UserManagmentController {
             throw new Exception("Bad credentials ");
         }
 
-        return ResponseEntity.ok(new JWTResponse(token, this.jwtUtil.extractKeyFromToken(token,"ita"), this.jwtUtil.extractKeyFromToken(token,"exp"), 200));
+        return ResponseEntity.ok(jwtResponse);
     }
 
     ///should support unauthenticated access

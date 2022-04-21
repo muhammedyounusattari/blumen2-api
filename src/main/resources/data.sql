@@ -4,7 +4,7 @@ insert  into blumen2.users(
   edited_date, exp, expiry_date, fax,
   first_name, hashed_code, issue_date,
   ita, last_login, last_name, link_expiry_date,
-  mobile, notes, org_type, password,
+  mobile, notes, org_code, password,
   phone1, phone2, scope, security_answer1,
   security_answer2, security_question1,
   security_question2, site_location,
@@ -405,3 +405,23 @@ insert  into blumen2.roles_privileges(role_id,privilege_id) values(1, 177) ON CO
 insert  into blumen2.roles_privileges(role_id,privilege_id) values(1, 178) ON CONFLICT (role_id,privilege_id) DO NOTHING;
 insert  into blumen2.roles_privileges(role_id,privilege_id) values(1, 179) ON CONFLICT (role_id,privilege_id) DO NOTHING;
 insert  into blumen2.roles_privileges(role_id,privilege_id) values(1, 180) ON CONFLICT (role_id,privilege_id) DO NOTHING;
+
+insert into blumen2.security_question_list(name,question_type) values('What is your date of birth', 1);
+insert into blumen2.security_question_list(name,question_type) values('Which city were you born in', 1);
+insert into blumen2.security_question_list(name,question_type) values( 'What make was your first car', 1);
+insert into blumen2.security_question_list(name,question_type) values( 'What is your favorite sports team?', 1);
+insert into blumen2.security_question_list(name,question_type) values( 'SQ 1-1', 1);
+insert into blumen2.security_question_list(name,question_type) values( 'SQ 1-2', 1);
+insert into blumen2.security_question_list(name,question_type) values( 'SQ 1-3', 1);
+insert into blumen2.security_question_list(name,question_type) values( 'SQ 1-4', 1);
+insert into blumen2.security_question_list(name,question_type) values( 'SQ 1-5', 1);
+insert into blumen2.security_question_list(name,question_type) values( 'what is your fav food?',2);
+insert into blumen2.security_question_list(name,question_type) values('which city you were born in ?',2);
+insert into blumen2.security_question_list(name,question_type) values('What is your pet''s name?',2);
+insert into blumen2.security_question_list(name,question_type) values('favorite nfl team',2);
+insert into blumen2.security_question_list(name,question_type) values('SQ 2-1',2);
+insert into blumen2.security_question_list(name,question_type) values('SQ 2-2',2);
+insert into blumen2.security_question_list(name,question_type) values('SQ 2-3',2);
+insert into blumen2.security_question_list(name,question_type) values('SQ 2-4',2);
+insert into blumen2.security_question_list(name,question_type) values('SQ 2-5',2);
+insert into blumen2.security_question_list(name,question_type) values('SQ 2-6',2);

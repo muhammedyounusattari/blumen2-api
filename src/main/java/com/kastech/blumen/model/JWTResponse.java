@@ -6,13 +6,22 @@ public class JWTResponse {
     private String ita;
     private String exp;
     private Integer status;
+    private String orgName;
+    private Long orgId;
+    private String programType;
+    private String orgCode;
+    private String roleName;
 
-
-    public JWTResponse(String access_token, String ita, String exp, Integer status) {
+    public JWTResponse(String access_token, String ita, String exp, Integer status, String orgName, Long orgId, String programType, String orgCode, String roleName) {
         this.access_token = access_token;
         this.ita = ita;
         this.exp = exp;
         this.status = status;
+        this.orgName = orgName;
+        this.orgId = orgId;
+        this.programType = programType;
+        this.orgCode = orgCode;
+        this.roleName = roleName;
     }
 
     public String getAccess_token() {
@@ -37,5 +46,53 @@ public class JWTResponse {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getExp() {
+        return exp;
+    }
+
+    public void setExp(String exp) {
+        this.exp = exp;
+    }
+
+    public String getOrgName() {
+        return orgName;
+    }
+
+    public void setOrgName(String orgName) {
+        this.orgName = orgName;
+    }
+
+    public Long getOrgId() {
+        return orgId;
+    }
+
+    public void setOrgId(Long orgId) {
+        this.orgId = orgId;
+    }
+
+    public String getProgramType() {
+        return programType;
+    }
+
+    public void setProgramType(String programType) {
+        this.programType = programType;
+    }
+
+    public String getOrgCode() {
+        return orgCode;
+    }
+
+    public void setOrgCode(String orgCode) {
+        this.orgCode = orgCode;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 }
