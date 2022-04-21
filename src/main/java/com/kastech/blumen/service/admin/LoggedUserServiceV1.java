@@ -65,7 +65,7 @@ public class LoggedUserServiceV1 {
         loggedUserRepository.deleteById(id);
     }
 
-    public Optional<LoggedUser> findByOrgId(Long orgCode) {
+    public List<LoggedUser> findByOrgId(Long orgCode) {
         return loggedUserRepository.findByOrgId(orgCode);
     }
 

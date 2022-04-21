@@ -11,7 +11,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "users", schema = "blumen2")
+@Table(name = "users", schema = "blumen2",
+        uniqueConstraints = { @UniqueConstraint(columnNames = { "orgId", "email" }) })
 public class LoggedUser implements Serializable {
 
     @Id

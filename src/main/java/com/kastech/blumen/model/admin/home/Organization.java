@@ -15,6 +15,7 @@ public class Organization implements Serializable {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long orgId;
     private String orgName;
+    @Column(unique=true)
     private String orgCode;
     private String orgDescription;
     private String orgBulkTemplate;

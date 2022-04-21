@@ -10,13 +10,14 @@ delete from blumen2.privileges where org_id=:org_id;
 delete from blumen2.users_roles where role_id in (select role_id from  blumen2.roles where org_id=:org_id);
 delete from blumen2.roles where org_id=:org_id;
 
---copy security questions from org0
-insert into blumen2.security_question_list(name,org_id,question_type)
-select name,:org_id,question_type from  blumen2.security_question_list where org_id=0;
+-- copy security questions from org0 is no more needed
+-- since security questions only with org 0 and every org uses them
+-- insert into blumen2.security_question_list(name,org_id,question_type)
+-- select name,:org_id,question_type from  blumen2.security_question_list where org_id=0;
 
---copy pulldown questions from org0
-insert into blumen2.pulldown(active,code,name,org_id)
-select active,code,name,:org_id from  blumen2.pulldown where org_id=0;
+--copy pulldownmaster questions from org0
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column)
+ select deleted,inoriginal,is_numeric,current_timestamp,user,longpullna,:org_id,projtype,pullid,pullname,pulltype,current_timestamp  from blumen2.pull_down_master where organizationid=0;
 
 --copy config_setting questions from org0
 insert into blumen2.config_setting(config_id,config_type,config_value,description,organisation_type,org_id)

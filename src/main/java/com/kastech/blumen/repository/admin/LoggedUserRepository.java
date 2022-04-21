@@ -1,8 +1,6 @@
 package com.kastech.blumen.repository.admin;
 
 import com.kastech.blumen.model.keycloak.LoggedUser;
-import com.kastech.blumen.model.keycloak.LoggedUserId;
-import com.kastech.blumen.model.response.LoggedUserResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,7 +15,7 @@ public interface LoggedUserRepository extends JpaRepository<LoggedUser, Long> {
     Optional<LoggedUser> findByUserEmailAndOrgCode(@Param("email") String email, @Param("orgCode") String orgCode);
 
     @Query("from LoggedUser lu where lu.orgId=:orgId")
-    Optional<LoggedUser> findByOrgId(@Param("orgId") Long orgId);
+    List<LoggedUser> findByOrgId(@Param("orgId") Long orgId);
 
     @Query(value="SELECT lu from LoggedUser lu where lu.email=?1 and lu.password=?2 and lu.orgCode=?3 ")
     List<LoggedUser> findByUserDetails(@Param("email") String email, @Param("password") String password, @Param("orgCode") String orgCode);

@@ -8,23 +8,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Service;
-import org.springframework.test.context.jdbc.Sql;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Service
@@ -70,9 +62,11 @@ public class OrganizationService {
     @Transactional
     public Organization createOrganization(Organization organization) throws Exception {
         LOG.info("Inside createOrganization, with payload {} ", organization);
-        organization = organizationRepository.save(organization);
-
         try {
+            organization = organizationRepository.save(organization);
+            if (organization.getOrgId() != null & organization.getOrgId() == 0) {
+                throw new Exception("Org-0 setup is partial done &  need manual setup");
+            }
             this.newOrgDataFromMaster(organization);
             return  organization;
         } catch (Exception e) {

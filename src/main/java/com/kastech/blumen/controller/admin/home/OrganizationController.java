@@ -1,6 +1,7 @@
 package com.kastech.blumen.controller.admin.home;
 
 import com.kastech.blumen.model.CustomUserDetails;
+import com.kastech.blumen.model.admin.home.OrgInfo;
 import com.kastech.blumen.model.admin.home.Organization;
 import com.kastech.blumen.model.keycloak.LoggedUser;
 import com.kastech.blumen.repository.admin.home.OrganizationRepository;
@@ -48,6 +49,38 @@ public class OrganizationController {
         Iterable<Organization> items = organizationRepository.findAll(Sort.by(Sort.Direction.ASC, "orgId"));
         items.forEach(list::add);
         return list;
+    }
+
+    @ResponseBody
+    @GetMapping(path = "/getAllOrganizations/v1",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public List<OrgInfo> getAllOrganizations() {
+        List<OrgInfo> list = new ArrayList<>();
+        Iterable<Organization> orgs = organizationRepository.findAll(Sort.by(Sort.Direction.ASC, "orgId"));
+        orgs.forEach( o -> list.add(new OrgInfo(o)));
+        return list;
+    }
+
+    @ResponseBody
+    @GetMapping(path = "/getUsers/v1/{orgId}",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> getUsers(@PathVariable Long orgId) {
+
+        if(StringUtils.isEmpty(orgId)){
+            orgId = SecurityUtil.getUserOrgId();
+        }
+        List<LoggedUser> items = null;
+        try {
+            items = loggedUserServiceV1.findByOrgId(orgId);
+            if(items.isEmpty()){
+                return success("Organization with id "+ orgId +" not found", 200);
+            }
+            items.forEach(i -> i.getRoles().forEach( r -> r.setPrivileges(null)));
+            return success(items, 200);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return failure("Problem in accessing organization users details", 400);
+        }
     }
 
     @ResponseBody
