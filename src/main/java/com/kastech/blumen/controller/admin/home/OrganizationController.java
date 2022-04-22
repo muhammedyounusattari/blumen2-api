@@ -161,7 +161,10 @@ public class OrganizationController {
     @PostMapping(path = "/createUser/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    @PreAuthorize("hasAnyAuthority('User Names and Password_Y', 'Super Admin')")
+   // @PreAuthorize("hasAnyAuthority('User Names and Password_Y', 'Super Admin')")
+    /**
+     * Need to check with chandra regarding access to method
+     */
     public ResponseEntity<?> createUser( @RequestBody LoggedUser loggedUser) {
         LOGGER.info("Call made to createUser with payload {}", loggedUser);
         CustomUserDetails customUserDetails = SecurityUtil.getUserDetails();

@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface ConfigSettingRepository extends JpaRepository<ConfigSettings, Long> {
 
-    @Query(value = "SELECT cs FROM ConfigSettings cs where cs.organisationType=:organisationType and cs.users=:userSecurityInfo order by cs.id ")
-    List<ConfigSettings> findByOrganizationTypeAndUserSecurityInfo(@Param("organisationType") String organisationType, @Param("userSecurityInfo") String userSecurityInfo);
+    @Query(value = "SELECT cs FROM ConfigSettings cs where cs.orgId=:orgId and cs.userId=:userId order by cs.id ")
+    List<ConfigSettings> findByOrganizationTypeAndUserSecurityInfo(@Param("orgId") Long orgId, @Param("userId") Long userId);
 
 }

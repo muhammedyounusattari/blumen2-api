@@ -19,24 +19,21 @@ public class ConfigSettings implements Serializable {
 	private String description;
 
 	@Column(nullable = false)
-	private String organisationType;
-
-	@Column(nullable = false)
 	private Long orgId;
 
-	@Column(nullable = true)
-	private String users;
+	@Column(nullable = false)
+	private Long userId;
 
 	public ConfigSettings() {}
 
-	public ConfigSettings(Long id, Integer configId, String configType, String configValue, String description, String origanisationType, String users) {
+	public ConfigSettings(Long id, Integer configId, String configType, String configValue, String description, Long orgId, Long userId) {
 		this.id = id;
 		this.configId = configId;
 		this.configType = configType;
 		this.configValue = configValue;
 		this.description = description;
-		this.organisationType = origanisationType;
-		this.users = users;
+		this.orgId = orgId;
+		this.userId = userId;
 	}
 
 	public Long getId() {
@@ -79,28 +76,20 @@ public class ConfigSettings implements Serializable {
 		this.description = description;
 	}
 
-	public String getOriganisationType() {
-		return organisationType;
-	}
-
-	public void setOriganisationType(String origanisationType) {
-		this.organisationType = origanisationType;
-	}
-
-	public String getUsers() {
-		return users;
-	}
-
-	public void setUsers(String users) {
-		this.users = users;
-	}
-
 	public Long getOrgId() {
 		return orgId;
 	}
 
 	public void setOrgId(Long orgId) {
 		this.orgId = orgId;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	@Override
@@ -111,8 +100,8 @@ public class ConfigSettings implements Serializable {
 				", configType='" + configType + '\'' +
 				", configValue='" + configValue + '\'' +
 				", description='" + description + '\'' +
-				", origanisationType='" + organisationType + '\'' +
-				", users='" + users + '\'' +
+				", orgId=" + orgId +
+				", userId=" + userId +
 				'}';
 	}
 }

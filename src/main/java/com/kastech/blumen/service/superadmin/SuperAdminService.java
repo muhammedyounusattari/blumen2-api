@@ -37,9 +37,11 @@ public class SuperAdminService {
         return keycloakAdminClientService.validateOrgCode(orgCode);
     }
 
-    public Map<String, String> addSecurityQuestions(Map<String, String> requestPaylaod, Long orgId) {
+    public Map<String, String> addSecurityQuestions(Map<String, String> requestPaylaod) {
+        System.out.println(requestPaylaod);
         String securityQuestion = requestPaylaod.get("securityQuestion");
         String securityAnswer = requestPaylaod.get("securityAnswer");
+        String id = requestPaylaod.get("id");
         Map<String,String> statusMap = new HashMap<>();
 
         if(StringUtils.isEmpty(securityQuestion)){
@@ -56,8 +58,9 @@ public class SuperAdminService {
         SecurityQuestionsList securityQuestionsList = new SecurityQuestionsList();
         securityQuestionsList.setQuestionType(securityAnswer);
         securityQuestionsList.setName(securityQuestion);
-        securityQuestionsList.setOrgId(orgId);
-
+        if(id !=null && !id.isEmpty()) {
+            securityQuestionsList.setId(Long.valueOf(id));
+        }
         securityQuestionsRepository.save(securityQuestionsList);
         statusMap.put("status", "200");
         statusMap.put("message", "SecurityQuestion added successfully");

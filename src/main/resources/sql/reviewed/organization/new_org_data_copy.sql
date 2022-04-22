@@ -19,10 +19,6 @@ delete from blumen2.roles where org_id=:org_id;
 INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column)
  select deleted,inoriginal,is_numeric,current_timestamp,user,longpullna,:org_id,projtype,pullid,pullname,pulltype,current_timestamp  from blumen2.pull_down_master where organizationid=0;
 
---copy config_setting questions from org0
-insert into blumen2.config_setting(config_id,config_type,config_value,description,organisation_type,org_id)
-select config_id,config_type,config_value,description,organisation_type,:org_id from  blumen2.config_setting where org_id='0';
-
 --copy roles  from org0
 insert into blumen2.roles(name,code,is_default,org_id)
 select name,code,is_default,:org_id  from  blumen2.roles where org_id=0;

@@ -19,7 +19,7 @@ import com.kastech.blumen.repository.admin.SystemPreferencesRepository;
 
 
 @Component
-public class BOTFormMgmtService {
+public class ConfigSettingService {
 
 	@Autowired
 	ConfigSettingRepository configSettingRepository;
@@ -27,7 +27,7 @@ public class BOTFormMgmtService {
 	@Autowired
 	SystemPreferencesRepository systemPreferencesRepository;
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(BOTFormMgmtService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ConfigSettingService.class);
 
 	public SystemPreferences saveSystemPreferenceData(SystemPreferences systemPreferences) {
 		LOGGER.info("Inside BotFormMgmtService ");		
@@ -47,7 +47,7 @@ public class BOTFormMgmtService {
 		return botMgmtForms;
 	}
 
-	public List<ConfigSettings>  getConfigSettingList(String orgId, String user) {
+	public List<ConfigSettings>  getConfigSettingList(Long orgId, Long user) {
 		return configSettingRepository.findByOrganizationTypeAndUserSecurityInfo(orgId, user);
 	}
 

@@ -43,16 +43,11 @@ public class SuperAdminController {
         return new ResponseEntity(map,null, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/{orgCode}/addSecurityQuestion", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<?> addSecurityQuestions(@PathVariable(value="orgCode", required = true) Long orgCode, @RequestBody Map<String, String> requestPaylaod) {
+    @PostMapping(value = "/addSecurityQuestion", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public ResponseEntity<?> addSecurityQuestions(@RequestBody Map<String, String> requestPaylaod) {
         LOGGER.info("call made to addSecurityQuestions() under ", this.getClass());
-        //validate OrgCode
-        Map<String,String> statusMap = superAdminService.validateOrgCode(orgCode);
-        if("404".equals(statusMap.get("status"))){
-            return failure(statusMap, 404);
-        }
 
-        return success(superAdminService.addSecurityQuestions(requestPaylaod, 1L), 200);
+        return success(superAdminService.addSecurityQuestions(requestPaylaod), 200);
     }
 
     private ResponseEntity<?> success(Object t, Integer status ){
