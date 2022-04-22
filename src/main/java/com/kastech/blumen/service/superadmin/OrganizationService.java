@@ -64,9 +64,6 @@ public class OrganizationService {
         LOG.info("Inside createOrganization, with payload {} ", organization);
         try {
             organization = organizationRepository.save(organization);
-            if (organization.getOrgId() != null & organization.getOrgId() == 0) {
-                throw new Exception("Org-0 setup is partial done &  need manual setup");
-            }
             this.newOrgDataFromMaster(organization);
             return  organization;
         } catch (Exception e) {

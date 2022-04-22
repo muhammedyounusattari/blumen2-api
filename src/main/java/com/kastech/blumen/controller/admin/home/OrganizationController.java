@@ -112,8 +112,18 @@ public class OrganizationController {
     //@PreAuthorize("hasAnyAuthority('Super Admin')")
     public ResponseEntity<String> addOrganization(@RequestBody Organization organization) {
         try {
-            LOGGER.info("call made to add organization with ppayload {}", organization);
+            LOGGER.info("call made to add organization with payload {}", organization);
             Map<String, Object> map = new HashMap<>();
+            if(null != organization.getOrgId()) {
+                map.put("message", "Org Id should be empty string while adding organization");
+                map.put("status", "400");
+                return new ResponseEntity(map, null, HttpStatus.OK);
+            }
+            if (null != organization.getOrgId() &&  organization.getOrgId() == 0L) {
+                map.put("message", "Organization 0 needs manual DB setup ");
+                map.put("status", "400");
+                return new ResponseEntity(map, null, HttpStatus.OK);
+            }
             map.put("body", organizationService.createOrganization(organization).getOrgId());
             map.put("status", "200");
             return new ResponseEntity(map, null, HttpStatus.OK);
@@ -157,12 +167,21 @@ public class OrganizationController {
         CustomUserDetails customUserDetails = SecurityUtil.getUserDetails();
         loggedUser.setEditedBy(customUserDetails.getUsername());
         try {
+            if(null != loggedUser.getId()) {
+                Map<String, Object> map = new HashMap<>();
+                map.put("message", "User Id Id should be empty string while adding User");
+                map.put("status", "400");
+                return new ResponseEntity(map, null, HttpStatus.OK);
+            }
             loggedUser = loggedUserServiceV1.createUser(loggedUser);
             return success("Your orgCode "+ loggedUser.getOrgCode()+" email "+loggedUser.getEmail()+" tempLink "+loggedUser.getTempLink(), 200);
         } catch (Exception e) {
             LOGGER.error("problem occurred while creating user");
             e.printStackTrace();
-            return failure("problem in creating a user for orgId "+loggedUser.getOrgId(), 500);
+            Map<String, Object> map = new HashMap<>();
+            map.put("message", "problem in creating a user for orgId "+loggedUser.getOrgId());
+            map.put("status", "400");
+            return new ResponseEntity(map, null, HttpStatus.OK);
         }
 
     }
