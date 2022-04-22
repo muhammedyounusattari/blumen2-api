@@ -75,6 +75,8 @@ public class OrganizationService {
         try {
         insertOrganizationUsers(loggedUser,organization);
         insertUserRoles(loggedUser,organization);
+        insertConfigSettings(loggedUser,organization);
+
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
@@ -104,6 +106,14 @@ public class OrganizationService {
         map.put("roleName", user.getRoleName());
         map.put("userId", user.getId());
         namedParameterJdbcTemplate.update(readFile(usersRolesUrl), map);
+    }
+
+    private void insertConfigSettings(LoggedUser user, Organization organization)throws IOException {
+        LOG.info("Inside insertUserRoles() with parameter {}, {} ", organization, user);
+        Map<String, Object> map = new HashMap<>();
+        map.put("orgId", organization.getOrgId());
+        map.put("userId", user.getId());
+        namedParameterJdbcTemplate.update(readFile(configSettingUrl), map);
     }
 
     private String readFile(final String relFilePath) throws IOException {

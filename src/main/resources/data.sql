@@ -425,3 +425,27 @@ insert into blumen2.security_question_list(name,question_type) values('SQ 2-3',2
 insert into blumen2.security_question_list(name,question_type) values('SQ 2-4',2);
 insert into blumen2.security_question_list(name,question_type) values('SQ 2-5',2);
 insert into blumen2.security_question_list(name,question_type) values('SQ 2-6',2);
+
+INSERT INTO blumen2.config_setting(config_id,config_type,config_value,description,org_id, user_id) VALUES (1,'N','2017','Fiscal Year',0,1);
+INSERT INTO blumen2.config_setting(config_id,config_type,config_value,description,org_id, user_id) VALUES (2,'N','3','Current Semester',0,1);
+INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id) VALUES(3,'N','2017','Current Year',0,1);
+INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id) VALUES(4,'L','FALSE','Is Remote',0,1);
+INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(5,'N','1','Remote ID',0,1);
+INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(6,'C','Compansol','Report Title 1',0,1);
+INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(7,'C','Blumen Online for TRIO (BOT)','Report Title 2',0,1);
+INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(8,'C','Copyright (1992-2020)','Report Footer',0,1);
+INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(10,'N','1','Component',0,1);
+INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(13,'N','3',' ',0,1);
+INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(14,'D','9/1/2017 12:00:00 AM','Start Date',0,1);
+INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(15,'D','8/31/2018 12:00:00 AM','End Date',0,1);
+INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(16,'C','09/01','For Calculating Age',0,1);
+INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(30,'N','1','GPA Scale',0,1);
+INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(31,'N','1','State Test',0,1);
+INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(42,'L','TRUE','Copy Active, Serverd Reported Status',0,1);
+INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(43,'L','TRUE','Prompt to mark a student ACTIVE for the fiscal year',0,1);
+INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(44,'L','TRUE','Prompt to mark a student SERVED for the fiscal year',0,1);
+INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(45,'L','TRUE','Prompt to mark a student REPORTED for the fiscal year',0,1);
+INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(46,'L','TRUE','Prompt to ADD a student to the fiscal year',0,1);
+INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(47,'L','TRUE','Update First Date of Service',0,1);
+INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(48,'L','TRUE','Update Date of last project service for the fiscal year',0,1);
+INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(200,'N','60','Time Out',0,1);
