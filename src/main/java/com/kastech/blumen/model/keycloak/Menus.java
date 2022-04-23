@@ -11,7 +11,6 @@ public class Menus implements Serializable {
 
     @Id
     @Column(name="menus_id")
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
@@ -20,14 +19,6 @@ public class Menus implements Serializable {
     @ManyToOne
     @JoinColumn(name = "parent_id")
     private Menus parentId;
-
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "menu_roles",schema = "blumen2",
-            joinColumns = @JoinColumn(name = "menu_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private Set<Roles> roles = new HashSet<>();
 
     public Menus() {
     }
@@ -62,11 +53,4 @@ public class Menus implements Serializable {
         this.parentId = parentId;
     }
 
-    public Set<Roles> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Roles> roles) {
-        this.roles = roles;
-    }
 }

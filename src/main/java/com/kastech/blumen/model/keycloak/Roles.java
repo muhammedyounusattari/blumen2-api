@@ -25,7 +25,11 @@ public class Roles implements Serializable {
     @Column(nullable = true)
     private Boolean isDefault;
 
+    @Column(nullable = false)
     private Long orgId;
+
+    @Column(nullable = true)
+    private String copyRoleName;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
@@ -40,13 +44,15 @@ public class Roles implements Serializable {
     public Roles() {
     }
 
-    public Roles(Long id, String name, String code, Boolean isDefault, Long orgId, Set<Privileges> privileges) {
+    public Roles(Long id, String name, String code, Boolean isDefault, Long orgId,
+                 Set<Privileges> privileges, String copyRoleName) {
         this.id = id;
         this.name = name;
         this.code = code;
         this.isDefault = isDefault;
         this.orgId = orgId;
         this.privileges = privileges;
+        this.copyRoleName = copyRoleName;
 
     }
 
@@ -97,5 +103,12 @@ public class Roles implements Serializable {
     public void setPrivileges(Set<Privileges> privileges) {
         this.privileges = privileges;
     }
-    
+
+    public String getCopyRoleName() {
+        return this.copyRoleName;
+    }
+
+    public void setCopyRoleName(String copyRoleName) {
+        this.copyRoleName = copyRoleName;
+    }
 }

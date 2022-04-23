@@ -22,6 +22,12 @@ public class SecurityUtil {
         return customUserDetails.getOrgId();
     }
 
+    public static String getRoleName(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
+        return customUserDetails.getRoleName();
+    }
+
     public static Long getUserId(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return ((CustomUserDetails) authentication.getPrincipal()).getUserId();

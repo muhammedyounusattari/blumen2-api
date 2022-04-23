@@ -192,6 +192,13 @@ public class UserManagmentController {
             Organization organization = new Organization();
             if(!organizations.isEmpty()){
                 organization = organizations.get();
+            } else {
+                //for super admin
+                //as we don't have any record for superAdmin in organization table
+                //TODO need to come up to some approach, to insert record for superAdmin in organization table
+                organization.setOrgId(0l);
+                organization.setOrgCode("COMPANSOL");
+                organization.setOrgName("COMPANSOL");
             }
 
             jwtResponse = new JWTResponse(token, this.jwtUtil.extractKeyFromToken(token,"ita"), this.jwtUtil.extractKeyFromToken(token,"exp"), 200,organization.getOrgName(),organization.getOrgId(),organization.getOrgProgramType(),organization.getOrgOrganizationType(), customUserDetails.getRoleName());

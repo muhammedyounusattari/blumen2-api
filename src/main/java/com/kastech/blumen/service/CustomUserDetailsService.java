@@ -7,7 +7,6 @@ import com.kastech.blumen.model.keycloak.LoggedUser;
 import com.kastech.blumen.model.keycloak.Privileges;
 import com.kastech.blumen.model.keycloak.Roles;
 import com.kastech.blumen.service.admin.LoggedUserServiceV1;
-//import com.kastech.blumen.service.superadmin.SuperAdminService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,6 +18,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static com.kastech.blumen.utility.Constants.SUPER_ADMIN;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -57,7 +58,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     boolean isSuperAdmin(LoggedUser loggedUser) {
-        return  (loggedUser.getOrgId() == 0 && loggedUser.getRoleName().equals("Super Admin"));
+        return  loggedUser.getOrgId() == 0 && loggedUser.getRoleName().equals(SUPER_ADMIN);
     }
     public CustomUserDetails loadCustomUserDetails(String username, String password, String organization) throws  UsernameNotFoundException {
         List<LoggedUser> loggedUsers =   loggedUserServiceV1.findLoggedUserDetails(username, password, organization);
@@ -103,7 +104,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                 collect(Collectors.toUnmodifiableList()).stream().toArray(String[]::new);
         final List<GrantedAuthority> auths = AuthorityUtils.createAuthorityList(roleStringsArray);
         if (auths.isEmpty() && isSuperAdmin(loggedUser))  {
-            return AuthorityUtils.createAuthorityList("Super Admin");
+            return AuthorityUtils.createAuthorityList(SUPER_ADMIN);
         }
 
 

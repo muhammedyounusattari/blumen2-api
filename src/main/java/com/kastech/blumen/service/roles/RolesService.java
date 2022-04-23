@@ -116,6 +116,7 @@ public class RolesService {
         newRole.setName(newRoleName);
         newRole.setCode(newRoleCode);
         newRole.setOrgId(orgId);
+        newRole.setCopyRoleName(copyRoleName);
         //newRole Id should be null
         newRole.setPrivileges(role.getPrivileges().stream().map(p -> {
             Privileges pp = new Privileges();

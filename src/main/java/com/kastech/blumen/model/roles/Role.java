@@ -9,6 +9,7 @@ public class Role {
     private String code;
     private Boolean isDefault;
     private Long orgId;
+    private String copyRoleName;
     private List<Privilege> privileges;
 
     public Role(Roles roles) {
@@ -17,6 +18,7 @@ public class Role {
         this.code = roles.getCode();
         this.isDefault = roles.getDefault();
         this.orgId = roles.getOrgId();
+        this.copyRoleName = roles.getCopyRoleName();
     }
 
     public Long getId() {
@@ -65,5 +67,13 @@ public class Role {
 
     public void setPrivileges(List<Privilege> privileges) {
         this.privileges = privileges;
+    }
+
+    public String getCopyRoleName() {
+        return copyRoleName;
+    }
+
+    public void setCopyRoleName(String copyRoleName) {
+        this.copyRoleName = copyRoleName;
     }
 }

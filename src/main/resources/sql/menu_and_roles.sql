@@ -275,3 +275,12 @@ INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (274,'Tutor Summary b
 INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (275,'Favorites',33);
 INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (276,'Project Summary - Educational Opportunity Center',275);
 INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (277,'TEXT_ED',275);
+
+INSERT INTO blumen2.display_roles (role_id,role_name) VALUES (1,'Admin');
+INSERT INTO blumen2.display_roles (role_id,role_name) VALUES (2,'Manager');
+INSERT INTO blumen2.display_roles (role_id,role_name) VALUES (3,'Counselor');
+INSERT INTO blumen2.display_roles (role_id,role_name) VALUES (4,'Tutor');
+INSERT INTO blumen2.display_roles (role_id,role_name) VALUES (5,'Teacher');
+INSERT INTO blumen2.display_roles (role_id,role_name) VALUES (6,'Student Worker');
+INSERT INTO blumen2.display_roles (role_id,role_name) VALUES (7,'Staff');
+INSERT INTO blumen2.display_roles (role_id,role_name) VALUES (8,'Super Admin');
