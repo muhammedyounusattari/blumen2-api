@@ -201,7 +201,7 @@ public class UserManagmentController {
                 organization.setOrgName("COMPANSOL");
             }
 
-            jwtResponse = new JWTResponse(token, this.jwtUtil.extractKeyFromToken(token,"ita"), this.jwtUtil.extractKeyFromToken(token,"exp"), 200,organization.getOrgName(),organization.getOrgId(),organization.getOrgProgramType(),organization.getOrgOrganizationType(), customUserDetails.getRoleName());
+            jwtResponse = new JWTResponse(token, this.jwtUtil.extractKeyFromToken(token,"ita"), this.jwtUtil.extractKeyFromToken(token,"exp"), 200,organization.getOrgName(),organization.getOrgId(),organization.getOrgProgramType(),organization.getOrgCode(), customUserDetails.getRoleName());
 
         } catch (UsernameNotFoundException e) {
             LOGGER.error("Exception occured due to bad credentials");

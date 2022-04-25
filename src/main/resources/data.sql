@@ -1710,3 +1710,6612 @@ INSERT INTO blumen2.menu_display_roles (menu_id,role_id)
 SELECT menus_id, 7 from blumen2.menus; -- admin menus
 INSERT INTO blumen2.menu_display_roles (menu_id,role_id)
 SELECT menus_id, 8 from blumen2.menus; -- admin menus
+
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1,true,'main.gender',true,false,false,'APR II D - Gender','GENDER',NULL,0,'-1',1),
+	 (2,false,'yearly.partstatus',true,false,false,'APR II A - Participant Status','PARTSTATUS',NULL,0,'10',1),
+	 (3,true,'main.eligibilit',true,false,false,'APR II B - Eligibility','ELIGIBILITY',NULL,0,'10',1),
+	 (4,true,'main.ethnic',true,false,false,'APR II C - Ethnicity','ETHNIC',NULL,0,'10',1),
+	 (5,true,'yearly.dualenroll',true,false,false,'APR II H - Dual Enrollment','DUALENROLL',NULL,0,'10',1),
+	 (6,true,'yearly.rigorous',true,false,false,'APR II I - Rigorous Enrollment','RIGOROUS',NULL,0,'10',1),
+	 (7,true,'yearly.othertrio',true,false,false,'APR II J - Served by Other Trio','OTHERTRIO',NULL,0,'10',1),
+	 (8,true,'yearly.fafsa',true,false,false,'APR II K - FAFSA completion','FAFSA',NULL,0,'10',1),
+	 (9,true,'yearly.vcalllen',true,false,false,'APR II L - Competitive Preference Priorities (CPP)','VCALLLEN',NULL,0,'10',1),
+	 (10,true,'yearlychild.servalue',true,true,false,'APR IV - End Status','ENDSTATUS',NULL,4,'10',1);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (11,true,'yearly.collegety',true,false,false,'APR IV D - College Type','COLLEGETYPE',NULL,0,'10',1),
+	 (12,true,'yearly.standing
+semester.standing',true,false,true,'APR III - Grade / Standing','STANDING','APR III - Grade / Standing~Standing',0,'10~50',1),
+	 (13,true,'main.highdegree
+yearly.degree',true,false,false,'APR IV E - Highest Degree Complete','HIGHDEGREE','APR IV E - Highest Degree Completed~Degree/Certificate Completed (Non APR)',0,'10~50',1),
+	 (14,false,'yearly.school
+main.schoolent
+main.schoolend',false,false,true,'APR II M - School Name/Code','SCHOOL','APR II M - School(Current Fiscal Year)~School (Entry into Project)~School (End of Project)',0,'10~50~50',1),
+	 (15,true,'main.acadneed',true,false,false,'Academic Need','ACADNEED',NULL,0,'50',1),
+	 (16,true,'yearly.acadstand',true,false,false,'Academic Standing','ACADSTAND',NULL,0,'50',1),
+	 (17,true,'activity.actgid',true,false,true,'Activity Group','ACTIVITYGROUP',NULL,2,'50',1),
+	 (18,true,NULL,true,false,false,'Activity Group Type','ACTIVITYGROUPTYPE',NULL,0,'50',1),
+	 (19,true,'yearly.advancemat',true,false,false,'Advanced Math Course','ADVANCEMAT',NULL,0,'50',1),
+	 (20,true,'yearly.apcourse',true,false,false,'Advanced Placement Course','APCOURSE',NULL,0,'50',1);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (21,false,'yearly.advisor',false,false,false,'Advisor','ADVISOR',NULL,0,'50',1),
+	 (22,false,'asset.amake',false,false,false,'Asset Make','ASSET MAKE',NULL,0,'50',1),
+	 (23,false,'asset.amodel',false,false,false,'Asset Model','ASSET MODEL',NULL,0,'50',1),
+	 (24,false,'asset.astatus',true,false,false,'Asset Status','ASSETSTATUS',NULL,0,'50',1),
+	 (25,false,'asset.atype',false,false,false,'Asset Type','ASSET TYPE',NULL,0,'50',1),
+	 (26,true,'yearly.adegree',true,false,false,'Associate Degree','ADEGREE',NULL,0,'50',1),
+	 (27,true,'main.atralgebra',true,false,false,'At Risk Algebra','ATRALGEBRA',NULL,0,'50',1),
+	 (28,true,'main.atrlowgpa',true,false,false,'At Risk Low GPA','ATRLOWGPA',NULL,0,'50',1),
+	 (29,true,'main.atrschool',true,false,false,'At Risk Out of School','ATRSCHOOL',NULL,0,'50',1),
+	 (30,true,'main.atrstdtest',true,false,false,'At Risk Standard Test','ATRSTDTEST',NULL,0,'50',1);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (31,true,'main.commcoll',true,false,false,'Attended Community College','COMMCOLL',NULL,0,'50',1),
+	 (32,false,'main.birthplace',false,false,false,'Birth Place','BIRTH PLACE',NULL,0,'50',1),
+	 (33,false,'botform_submission.SUBMISSION_STATUS',true,false,false,'BOT Form Status','BOTFORMSTATUS',NULL,0,'50',1),
+	 (34,true,'yearly.certi',true,false,false,'Certificate/ Diploma Completed','CERTI',NULL,0,'50',1),
+	 (35,true,'main.vetschecir',true,false,false,'Circumstances of Recheduling','VETSCHECIR',NULL,0,'50',1),
+	 (36,false,'main.codes',false,false,false,'Codes','CODES',NULL,0,'50',1),
+	 (37,true,'main.cohortyear',true,false,false,'Cohort Year','COHORTYEAR',NULL,0,'50',1),
+	 (38,true,'main.enterexam',true,false,false,'College Entrance Exam','ENTEREXAM',NULL,0,'50',1),
+	 (39,true,'yearly.collgradel',true,false,false,'College Grade Level','COLLGRADE',NULL,0,'50',1),
+	 (40,true,'yearly.collready',true,false,false,'College Ready','COLLREADY',NULL,0,'50',1);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (41,true,NULL,true,false,false,'Compare Symbols','COMPARE',NULL,0,'50',1),
+	 (42,true,'yearly.completeyr',true,false,false,'Completion Year','COMPLETEYR',NULL,0,'50',1),
+	 (43,true,NULL,true,false,false,'Component Type','COMPONENT',NULL,0,'50',1),
+	 (44,true,NULL,true,false,false,'Component Type-APR','APRCOMPONENT',NULL,0,'50',1),
+	 (45,true,'contact.stftype',true,false,false,'Contact Staff Type','CONTACTSTAFFTYPE',NULL,0,'50',1),
+	 (46,false,'contact.conttype',true,false,false,'Contact Type','CONTACTTYPE',NULL,0,'50',1),
+	 (47,false,'courses.courseinst',false,false,false,'Course Instructor','COURSE INSTRUCTOR',NULL,0,'50',1),
+	 (48,false,'courses.coursename',false,false,false,'Course Name','COURSE NAME',NULL,0,'50',1),
+	 (49,false,'courses.coursenum',false,true,false,'Course Number','COURSE NUMBER',NULL,0,'50',1),
+	 (50,false,'main.custom1',false,false,false,'Custom Field 1','CUSTOM1',NULL,0,'50',1);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (51,false,'main.custom2',false,false,false,'Custom Field 2','CUSTOM2',NULL,0,'50',1),
+	 (52,false,'yearly.custom3',false,false,false,'Custom Field 3','CUSTOM3',NULL,0,'50',1),
+	 (53,false,'yearly.custom4',false,false,false,'Custom Field 4','CUSTOM4',NULL,0,'50',1),
+	 (54,false,'maincfields.customname',true,true,false,'Custom Field Names','CUSTOMFIELDNAME',NULL,0,'50',1),
+	 (55,true,NULL,true,true,true,'Custom Field Type','CUSTOMFIELDTYPE',NULL,0,'50',1),
+	 (56,false,'classes.days',false,false,false,'Days','DAYS',NULL,0,'50',1),
+	 (57,true,'yearly.deceased',true,false,false,'Deceased or Incapacitated','DECEASED',NULL,0,'50',1),
+	 (58,true,'main.disconnect',true,false,false,'Disconnected Youth','DISCONNECT',NULL,0,'50',1),
+	 (59,true,'main.docemploy',true,false,false,'Doctorate Employment Activity','DOCEMPLOY',NULL,0,'50',1),
+	 (60,true,'yearly.decredenti',true,false,false,'Dual Enrollment Credentials','DECREDENTI',NULL,0,'50',1);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (61,false,'main.eligtype',false,false,false,'Eligibility Type','ELIGIBILITY TYPE',NULL,0,'50',1),
+	 (62,true,'yearly.employ',true,false,false,'Employment','EMPLOY',NULL,0,'50',1),
+	 (63,true,NULL,true,false,false,'English Instructions','ENGLISH',NULL,0,'50',1),
+	 (64,false,'main.ethnictype',false,false,false,'Ethnic Type (National Origin)','ETHNIC TYPE',NULL,0,'50',1),
+	 (65,true,'main.finaidrecd',true,false,false,'Financial Aid','FINAIDRECD',NULL,0,'50',1),
+	 (66,false,'yearly.finaidname',false,false,false,'Financial Aid Name','FINANCIAL AID NAME',NULL,0,'50',1),
+	 (67,true,'yearly.finaidreas',true,false,false,'Financial Aid Un-met Reason','FINAIDREAS',NULL,0,'50',1),
+	 (68,false,'yearly.finaidunme',false,false,false,'Financial Aid Unmet Name','FINANCIAL AID UNMET',NULL,0,'50',1),
+	 (69,true,NULL,true,false,false,'Foreign Language Instructions','FOREIGNLANGUAGE',NULL,0,'50',1),
+	 (70,true,'eddata.contfreq',true,false,false,'Frequency of contacts between participants','CONTFREQ',NULL,0,'50',1);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (71,true,'yearly.fundsource',true,false,false,'Funding Source','FUNDSOURCE',NULL,0,'50',1),
+	 (72,true,'yearly.gradelevel',true,false,false,'Grade Level (at end of reporting period)','GRADELEVEL',NULL,0,'50',1),
+	 (73,true,'yearly.gradestart',true,false,false,'Grade Level (at start of reporting period)','GRADESTART',NULL,0,'50',1),
+	 (74,true,'main.enterlevel',true,false,false,'Grade Level (at time of first entry into project)','ENTERLEVEL',NULL,0,'50',1),
+	 (75,true,'yearly.hsgradepro',true,false,false,'Grade Progression Over Year','GRADEPRO',NULL,0,'50',1),
+	 (76,true,'yearly.gradassist',true,false,false,'Graduate Assistantships','GRADASSIST',NULL,0,'50',1),
+	 (77,true,'yearly.gradstudyl',true,false,false,'Graduate Current Year of Study','GRADSTUDYL',NULL,0,'50',1),
+	 (78,true,'main.gdegree',true,false,false,'Graduate Degree Earned','GDEGREE',NULL,0,'50',1),
+	 (79,false,'graduated.degreein',true,false,false,'Graduate Degree In','DEGREEIN',NULL,0,'50',1),
+	 (80,false,'graduated.gdedustat',true,false,false,'Graduate Educational Status','GRADUATEEDUCATIONALSTATUS',NULL,0,'50',1);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (81,false,'graduated.employtype',true,false,false,'Graduate Employment Type','EMPLOYTYPE',NULL,0,'50',1),
+	 (82,true,'main.gradadm',true,false,false,'Graduate School Admissions Test','GRADADM',NULL,0,'50',1),
+	 (83,true,'yearly.enrollobj',true,false,false,'Graduate School Enrollment Objective','ENROLLOBJ',NULL,0,'50',1),
+	 (84,true,'yearly.gpersist',true,false,false,'Graduate Student Persistence Status','GPERSIST',NULL,0,'50',1),
+	 (85,true,'main.bdegreeco',true,false,false,'Graduating Cohort Year of Bachelor''s Degree','BDEGREECO',NULL,0,'50',1),
+	 (86,true,'main.yearcogrd',true,false,false,'Graduation Cohort Year','YEARCOGRD',NULL,0,'50',1),
+	 (87,false,'main.healthname',false,false,false,'Health Name','HEALTH NAME',NULL,0,'50',1),
+	 (88,true,'yearly.hsgradstat',true,false,false,'High School Graduation Status','GRADSTATUS',NULL,0,'50',1),
+	 (89,true,'yearly.vettest',true,false,false,'Improved Score on Standardized Test','VETTEST',NULL,0,'50',1),
+	 (90,false,'main.incomelev',false,false,false,'Income Level','INCOME LEVEL',NULL,0,'50',1);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (91,false,'main.incomesou',false,false,false,'Income Source','INCOME SOURCE',NULL,0,'50',1),
+	 (92,true,'yearly.initiative',true,false,false,'Initiative','INITIATIVE',NULL,0,'50',1),
+	 (93,true,'yearly.mcintern',true,false,false,'Internship','INTERN',NULL,0,'50',1),
+	 (94,false,'labservice.labserid',true,false,true,'Lab Service','LABSERVICE',NULL,0,'50',1),
+	 (95,true,'yearly.partlength',true,false,false,'Length of Project Participation','PARTLENGTH',NULL,0,'50',1),
+	 (96,true,'yearly.mcnmajor',true,false,false,'Major of Graduate Study','MCNMAJOR',NULL,0,'50',1),
+	 (97,false,'main.marrstatus',true,false,false,'Marital Status','MARITALSTATUS',NULL,0,'50',1),
+	 (98,true,NULL,true,false,false,'Mathematics Instructions/ Tutorials','MATH',NULL,0,'50',1),
+	 (99,false,'classes.meettime',false,false,false,'Meeting Time','MEETING TIME',NULL,0,'50',1),
+	 (100,false,'usermessages.msgstatus',true,false,false,'Message Priority Type','MSGSTATUS',NULL,0,'50',1);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (101,false,'graduated.milirank',false,false,false,'Military Rank','MILITARY RANK',NULL,0,'50',1),
+	 (102,false,'graduated.militaryty',true,false,false,'Military Type','MILITARYTYPE',NULL,0,'50',1),
+	 (103,true,'yearlychild.servalue',true,true,false,'Old End Status-For TS and EOC (prior to 2006-07)','OLDENDSTATUS',NULL,7,'50',1),
+	 (104,false,'mainchild.ptitle',false,false,false,'Parent/ Guardian Relationship','PARENT RELATION',NULL,0,'50',1),
+	 (105,true,'yearly.projretain',true,false,false,'Participant Retention in Project','PROJRETAIN',NULL,0,'50',1),
+	 (106,true,'yearly.endstatus',true,false,false,'Participant Status (at end of Reporting Period)','PARTSTATUSEND',NULL,0,'50',1),
+	 (107,true,'yearly.partlevel',true,false,false,'Participation Level','PARTLEVEL',NULL,0,'50',1),
+	 (108,true,'yearly.persistend',true,false,false,'Persistence Graduation Status at end of year','PERSISTEND',NULL,0,'50',1),
+	 (109,true,'yearly.persiststa',true,false,false,'Persistence Status at beginning at next year','PERSISTSTA',NULL,0,'50',1),
+	 (110,true,'yearly.pscomplete',true,false,false,'Postsecondary Completion Objective','PSCOMPLETE',NULL,0,'50',1);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (111,true,'yearly.psenroll',true,false,false,'Postsecondary Enrollment Objective','PSENROLL',NULL,0,'50',1),
+	 (112,true,'yearly.pseterm',true,false,false,'Postsecondary Grading Period','PSETERM',NULL,0,'50',1),
+	 (113,true,'yearly.persistden',true,false,false,'Postsecondary Persistence Objective-Denominator','PERSISTDEN',NULL,0,'50',1),
+	 (114,true,'yearly.persistnum',true,false,false,'Postsecondary Persistence Objective-Numerator','PERSISTNUM',NULL,0,'50',1),
+	 (115,true,'yearly.psremediat',true,false,false,'Postsecondary Remediation','PSREMEDIAT',NULL,0,'50',1),
+	 (116,true,'yearly.stemdegree',true,false,false,'Postsecondary STEM Degree','STEMDEGREE',NULL,0,'50',1),
+	 (117,false,'lablog.visitreason',false,false,false,'Reason for Visit','VISIT REASON',NULL,0,'50',1),
+	 (118,true,'yearly.reasonleav',true,false,false,'Reason for Withdrawal/Leaving Project','REASON',NULL,0,'50',1),
+	 (119,true,'yearly.greason',true,false,false,'Reason left Graduate School','GREASON',NULL,0,'50',1),
+	 (120,true,'yearly.noenreason',true,false,false,'Reason Not Enrolled','NOENREASON',NULL,0,'50',1);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (121,true,'main.vetscherea',true,false,false,'Reason of Recheduling','VETSCHEREA',NULL,0,'50',1),
+	 (122,true,'yearly.recupdated',true,false,false,'Record Updated','RECUPDATED',NULL,0,'50',1),
+	 (123,true,'yearly.recruit',true,false,false,'Recruitment','RECRUIT',NULL,0,'50',1),
+	 (124,false,'main.referedby',false,false,false,'Referred By','REFERRED BY',NULL,0,'50',1),
+	 (125,true,'yearly.mcresearch
+',true,false,false,'Research Activities','RESEARCH',NULL,0,'50',1),
+	 (126,true,'main.vetrevsche',true,false,false,'Revised Scheduled Completion Year','VETREVSCHE',NULL,0,'50',1),
+	 (127,false,'classes.room',false,false,false,'Room','ROOM',NULL,0,'50',1),
+	 (128,true,'main.vetsche',true,false,false,'Scheduled Completion Year','VETSCHE',NULL,0,'50',1),
+	 (129,true,'yearly.mcscholar',true,false,false,'Scholarly Activity','SCHOLAR',NULL,0,'50',1),
+	 (130,true,NULL,true,false,false,'Science Instruction/Tutorials','SCIENCE',NULL,0,'50',1);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (131,true,'yearly.schpersist',true,false,false,'Secondary School Retention','SCHPERSIST',NULL,0,'50',1),
+	 (132,true,'yearly.selftran',true,false,false,'Source of Postsecondary Education Information','SELFTRAN',NULL,0,'50',1),
+	 (133,false,'staff.stfcodes',false,false,false,'Staff Codes','STAFF CODES',NULL,0,'50',1),
+	 (134,true,NULL,true,false,false,'Standing Group Type (APR Column)','STANDINGGROUPTYPE',NULL,0,'50',1),
+	 (135,true,'main.statetest',true,false,false,'State-Developed Test to Measure Academic Skills','STATETEST',NULL,0,'50',1),
+	 (136,true,'main.mcstem',true,false,false,'STEM Major','MCSTEM',NULL,0,'50',1),
+	 (137,true,'yearly.sumbridge',true,false,false,'Summer Bridge','SUMBRIDGE',NULL,0,'50',1),
+	 (138,false,NULL,false,false,true,'Teacher','TEACHER',NULL,0,'50',1),
+	 (139,true,'yearly.trackcomp',true,false,false,'Tracking Completed','TRACKCOMP',NULL,0,'50',1),
+	 (140,true,'yearly.transfers',true,false,false,'Transfers','TRANSFERS',NULL,0,'50',1);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (141,false,'yearly.tutor',false,false,true,'Tutor','TUTOR',NULL,0,'50',1),
+	 (142,true,'yearly.testtype',true,false,false,'Type of Standarized Tests','TESTTYPE',NULL,0,'50',1),
+	 (143,true,'eddata.summerresi',true,false,false,'UB,UBMS,VUB Summer residential Program Type','SUMMERRESI',NULL,0,'50',1),
+	 (144,true,'eddata.regional',true,false,false,'UBMS Project type','REGIONAL',NULL,0,'50',1),
+	 (145,true,'yearly.vcall',true,false,false,'Veteran Called to Active Duty Status','VCALL',NULL,0,'50',1),
+	 (146,true,'yearly.vgradelev',true,false,false,'Veteran Educational Status (at end)','VGRADELEVEL',NULL,0,'50',1),
+	 (147,true,'main.venterlev',true,false,false,'Veteran Educational Status (Entry into Project)','VENTERLEVEL',NULL,0,'50',1),
+	 (148,true,'main.venterjob',true,false,false,'Veteran Employment Status','VENTERJOB',NULL,0,'50',1),
+	 (149,true,'main.vfinaidrec',true,false,false,'Veteran Financial Aid','VFINAIDREC',NULL,0,'50',1),
+	 (150,false,'formslog.formname',false,false,false,'Wallet Name','Wallet Name',NULL,0,'50',1);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (151,true,NULL,true,false,false,'Yearly Child Service Heading','SERHEADING',NULL,0,'50',1),
+	 (152,true,NULL,true,false,false,'Yearly Child Service Type','SERTYPE',NULL,0,'50',1),
+	 (153,true,NULL,true,false,false,'Yes-No Options','YESNO',NULL,0,'50',1),
+	 (154,false,'contactchild.activityid
+yearlychild.servalue',true,true,true,'Activity','ACTIVITY','Activity~Activity',1,'50~50',1),
+	 (155,true,'yearlychild.servalue
+contact.aprsubject',true,true,false,'APR Subject Types','APR SUBJECT','APR Subject Types~APR Subject Types',6,'50~50',1),
+	 (156,true,'main.bdegree
+yearly.bdegree',true,false,false,'Bachelor''s Degree','BDEGREE','Bachelor''s Degree~Bachelor''s Degree Attained',0,'50~50',1),
+	 (157,false,'botform_submission.form_name
+botform_maintenance.form_name',false,false,false,'BOT Form Name','BOT FORM NAME','BOT Form Name~BOT Form Name',0,'50~50',1),
+	 (158,true,'yearly.enroll
+main.enterenrol',true,false,false,'Enrollment Status','ENROLL','Enrollment Status (at the end of the academic year)~Enrollment Status (in academic year first served)',0,'50~50',1),
+	 (159,false,'exam.examname
+examchild.examname',false,false,false,'Exam Name','EXAM NAME','Exam Name~Exam Name',0,'50~50',1),
+	 (160,true,'main.lepentry
+main.leplastser',true,false,false,'Limited English Proficiency Status','LIMITEDENGPRO','Limited English Proficiency (Date of First Participation)~Limited English Proficiency (Date of Last Service)',0,'50~50',1);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (161,false,'yearly.major
+graduated.major',false,false,false,'Major','MAJOR','Major~Major',0,'50~50',1),
+	 (162,false,'main.sitelocate
+appusers.sitelocate',false,false,false,'Site Location','SITE LOCATION','Site Location~Site Location',0,'50~50',1),
+	 (163,false,'yearly.counsel
+yearly.tutor',false,true,true,'Staff','STAFF','Staff~Tutor',0,'50~50',1),
+	 (164,true,'main.staterlagr
+main.statemathg',true,false,false,'State Grade level in which student was Assessed','STATE10GRADE','Grade level when Assessed for State 10th Reading Standard~Grade level when Assessed for State 10th Math Standard',0,'50~50',1),
+	 (165,true,'main.state8rla
+main.state8math',true,false,false,'State Met 8th Grade Achievement Standard Options','STATE8MET','Met 8th Grade State Reading Language Art Standard~Met 8th Grade State Math Standard',0,'50~50',1),
+	 (166,false,'contact.stfid
+classes.stfid',true,true,true,'STFID - DO NOT USE','STFID','Stfid~Stfid',0,'50~50',1),
+	 (167,false,'classes.subject
+contact.subject',false,false,false,'Subject ( Classes/ Contacts)','SUBJECT','Subject~Subject',0,'50~50',1),
+	 (168,false,'formslog.formtype
+yearlychild.servalue',true,true,false,'Wallet Type','Wallet Type','Wallet Type~Wallet Type',5,'50~50',1),
+	 (169,false,'classes.semester
+courses.semester
+semester.semester',true,true,false,'Semester Type','SEMESTER','Semester~Semester~Semester',0,'50~50~50',1),
+	 (170,false,'yearly.college
+main.collegeent
+main.gradcoll
+main.gdoccoll',false,false,true,'College','COLLEGE','College~College - Entry~Graduate School First Attended~Doctorate College',0,'50~50~50~50',1);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (171,false,'yearly.counsel
+graduated.counsel',false,false,true,'Counselor','COUNSELOR','Counselor~Counselor',0,'50~50~50~50',1),
+	 (172,true,'main.gpascale
+main.msgpascale
+yearly.gpaendsc
+yearly.gpastartsc',true,false,false,'GPA Scale','GPASCALE','GPA HS Scale (Entry into Project)~GPA MS Scale(Entry into Project)~GPA Scale (at end of Reporting Period)~GPA Scale (at start of Reporting Period)',0,'50~50~50~50',1),
+	 (173,false,'staff.stfcustom1
+staff.stfcustom2
+staff.stfcustom3
+staff.stfcustom4',false,false,false,'Staff Custom Field','STAFF CUSTOM','Staff Custom 1~Staff Custom 2~ Staff Custom 3~Staff Custom 4',0,'50~50~50~50',1),
+	 (174,true,'main.state10rla
+main.state10mat
+yearly.state10rla
+yearly.state10mat',true,false,false,'State Met 10th Grade Achievement Standard Options','STATE10MET','Met 10th Grade State Reading Language Art Standard~Met 10th Grade State Math Standard~Met HS State Acad. Achievement Standard at Proficient Level—Reading/language arts~Met HS State Acad. Achievement Standard at Proficient Level—Math',0,'50~50~50~50',1),
+	 (175,true,'main.city
+mainchild.pcity
+eddata.city
+graduated.city
+school.city
+staff.stfcity',false,false,false,'City','CITY','City~City~City~City~City~City',0,'50~50~50~50~50~50',1),
+	 (176,false,'main.state
+eddata.state
+graduated.state
+main.dlstate
+mainchild.pstate
+school.state
+staff.stfstate
+staffchild.stfstate',false,false,false,'State (Postal Address)','STATE','State (Postal Address)~State~State~State (Driving License)~State~State~State~State',0,'50~50~50~50~50~50~50~50',1),
+	 (241,true,'main.finaidrecd',true,false,false,'Financial Aid','FINAIDRECD',NULL,0,'50',2),
+	 (242,false,'yearly.finaidname',false,false,false,'Financial Aid Name','FINANCIAL AID NAME',NULL,0,'50',2),
+	 (177,false,'main.phn1ty
+main.phn2ty
+mainchild.pphn1ty
+mainchild.pphn2ty
+mainchild.pphn3ty
+staff.stfphn1ty
+staff.stfphn2ty
+staff.stfphn3ty
+staffchild.stfphn1ty
+staffchild.stfphn2ty
+staffchild.stfphn3ty',false,false,false,'Phone Type','PHONE TYPE','Phone Type 1~Phone Type 2~Phone Type 1~Phone Type 2~Phone Type 3~Phone Type 1~Phone Type 2~Phone Type 3~Phone Type 1~Phone Type 2~Phone Type 3',0,'50~50~50~50~50~50~50~50~50~50',1),
+	 (178,true,'main.track',true,false,false,'APR IV E - Tracking Graduate','TRACK',NULL,0,'A',1);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (179,true,'yearly.partstatus',true,false,false,'APR II A - Participant Status','PARTSTATUS',NULL,0,'10',2),
+	 (180,true,'main.eligibilit',true,false,false,'APR II B - Eligibility','ELIGIBILITY',NULL,0,'10',2),
+	 (181,true,'main.ethnic',true,false,false,'APR II C - Ethnicity','ETHNIC',NULL,0,'10',2),
+	 (182,true,'main.gender',true,false,false,'APR II D - Gender','GENDER',NULL,0,'10',2),
+	 (183,true,'yearly.othertrio',true,false,false,'APR II G - Served by Other Trio','OTHERTRIO',NULL,0,'10',2),
+	 (184,true,'yearly.vgradelev',true,false,false,'APR II I - Military Connected','VGRADELEVEL',NULL,0,'10',2),
+	 (185,true,'yearlychild.servalue',true,true,false,'APR IV - End Status','ENDSTATUS',NULL,4,'10',2),
+	 (186,true,'yearly.collegety',true,false,false,'APR IV E - College Type','COLLEGETYPE',NULL,0,'10',2),
+	 (187,false,'yearly.standing
+semester.standing',true,false,true,'APR III - Grade / Standing','STANDING','APR III - Grade / Standing~Standing',0,'10~50',2),
+	 (188,false,'yearly.school
+main.schoolent
+main.schoolend',false,false,true,'APR II H - School','SCHOOL','APR II H - School(Current Fiscal Year)~School (Entry into Project)~School (End of Project)',0,'10~50~50',2);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (189,true,'main.acadneed',true,false,false,'Academic Need','ACADNEED',NULL,0,'50',2),
+	 (190,true,'yearly.acadstand',true,false,false,'Academic Standing','ACADSTAND',NULL,0,'50',2),
+	 (191,true,'activity.actgid',true,false,true,'Activity Group','ACTIVITYGROUP',NULL,2,'50',2),
+	 (192,true,NULL,true,false,false,'Activity Group Type','ACTIVITYGROUPTYPE',NULL,0,'50',2),
+	 (193,true,'yearly.advancemat',true,false,false,'Advanced Math Course','ADVANCEMAT',NULL,0,'50',2),
+	 (194,true,'yearly.apcourse',true,false,false,'Advanced Placement Course','APCOURSE',NULL,0,'50',2),
+	 (195,false,'yearly.advisor',false,false,false,'Advisor','ADVISOR',NULL,0,'50',2),
+	 (196,false,'asset.amake',false,false,false,'Asset Make','ASSET MAKE',NULL,0,'50',2),
+	 (197,false,'asset.amodel',false,false,false,'Asset Model','ASSET MODEL',NULL,0,'50',2),
+	 (198,false,'asset.astatus',true,false,false,'Asset Status','ASSETSTATUS',NULL,0,'50',2);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (199,false,'asset.atype',false,false,false,'Asset Type','ASSET TYPE',NULL,0,'50',2),
+	 (200,true,'yearly.adegree',true,false,false,'Associate Degree','ADEGREE',NULL,0,'50',2),
+	 (201,true,'main.atralgebra',true,false,false,'At Risk Algebra','ATRALGEBRA',NULL,0,'50',2),
+	 (202,true,'main.atrlowgpa',true,false,false,'At Risk Low GPA','ATRLOWGPA',NULL,0,'50',2),
+	 (203,true,'main.atrschool',true,false,false,'At Risk Out of School','ATRSCHOOL',NULL,0,'50',2),
+	 (204,true,'main.atrstdtest',true,false,false,'At Risk Standard Test','ATRSTDTEST',NULL,0,'50',2),
+	 (205,true,'main.commcoll',true,false,false,'Attended Community College','COMMCOLL',NULL,0,'50',2),
+	 (206,false,'main.birthplace',false,false,false,'Birth Place','BIRTH PLACE',NULL,0,'50',2),
+	 (207,false,'botform_submission.SUBMISSION_STATUS',true,false,false,'BOT Form Status','BOTFORMSTATUS',NULL,0,'50',2),
+	 (208,true,'yearly.certi',true,false,false,'Certificate/ Diploma Completed','CERTI',NULL,0,'50',2);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (209,true,'main.vetschecir',true,false,false,'Circumstances of Recheduling','VETSCHECIR',NULL,0,'50',2),
+	 (210,false,'main.codes',false,false,false,'Codes','CODES',NULL,0,'50',2),
+	 (211,true,'main.cohortyear',true,false,false,'Cohort Year','COHORTYEAR',NULL,0,'50',2),
+	 (212,true,'main.enterexam',true,false,false,'College Entrance Exam','ENTEREXAM',NULL,0,'50',2),
+	 (213,true,'yearly.collgradel',true,false,false,'College Grade Level','COLLGRADE',NULL,0,'50',2),
+	 (214,true,'yearly.collready',true,false,false,'College Ready','COLLREADY',NULL,0,'50',2),
+	 (215,true,NULL,true,false,false,'Compare Symbols','COMPARE',NULL,0,'50',2),
+	 (216,true,'yearly.completeyr',true,false,false,'Completion Year','COMPLETEYR',NULL,0,'50',2),
+	 (217,true,NULL,true,false,false,'Component Type','COMPONENT',NULL,0,'50',2),
+	 (218,true,NULL,true,false,false,'Component Type-APR','APRCOMPONENT',NULL,0,'50',2);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (219,true,'contact.stftype',true,false,false,'Contact Staff Type','CONTACTSTAFFTYPE',NULL,0,'50',2),
+	 (220,false,'contact.conttype',true,false,false,'Contact Type','CONTACTTYPE',NULL,0,'50',2),
+	 (221,false,'courses.courseinst',false,false,false,'Course Instructor','COURSE INSTRUCTOR',NULL,0,'50',2),
+	 (222,false,'courses.coursename',false,false,false,'Course Name','COURSE NAME',NULL,0,'50',2),
+	 (223,false,'courses.coursenum',false,true,false,'Course Number','COURSE NUMBER',NULL,0,'50',2),
+	 (224,false,'main.custom1',false,false,false,'Custom Field 1','CUSTOM1',NULL,0,'50',2),
+	 (225,false,'main.custom2',false,false,false,'Custom Field 2','CUSTOM2',NULL,0,'50',2),
+	 (226,false,'yearly.custom3',false,false,false,'Custom Field 3','CUSTOM3',NULL,0,'50',2),
+	 (227,false,'yearly.custom4',false,false,false,'Custom Field 4','CUSTOM4',NULL,0,'50',2),
+	 (228,false,'maincfields.customname',true,true,false,'Custom Field Names','CUSTOMFIELDNAME',NULL,0,'50',2);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (229,true,NULL,true,true,true,'Custom Field Type','CUSTOMFIELDTYPE',NULL,0,'50',2),
+	 (230,false,'classes.days',false,false,false,'Days','DAYS',NULL,0,'50',2),
+	 (231,true,'yearly.deceased',true,false,false,'Deceased or Incapacitated','DECEASED',NULL,0,'50',2),
+	 (232,true,'main.disconnect',true,false,false,'Disconnected Youth','DISCONNECT',NULL,0,'50',2),
+	 (233,true,'main.docemploy',true,false,false,'Doctorate Employment Activity','DOCEMPLOY',NULL,0,'50',2),
+	 (234,true,'yearly.dualenroll',true,false,false,'Dual Enrollment','DUALENROLL',NULL,0,'50',2),
+	 (235,true,'yearly.decredenti',true,false,false,'Dual Enrollment Credentials','DECREDENTI',NULL,0,'50',2),
+	 (236,false,'main.eligtype',false,false,false,'Eligibility Type','ELIGIBILITY TYPE',NULL,0,'50',2),
+	 (237,true,'yearly.employ',true,false,false,'Employment','EMPLOY',NULL,0,'50',2),
+	 (238,true,NULL,true,false,false,'English Instructions','ENGLISH',NULL,0,'50',2);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (239,false,'main.ethnictype',false,false,false,'Ethnic Type (National Origin)','ETHNIC TYPE',NULL,0,'50',2),
+	 (240,true,' ',true,false,false,'FAFSA completion','FAFSA',NULL,0,'50',2),
+	 (243,true,'yearly.finaidreas',true,false,false,'Financial Aid Un-met Reason','FINAIDREAS',NULL,0,'50',2),
+	 (244,false,'yearly.finaidunme',false,false,false,'Financial Aid Unmet Name','FINANCIAL AID UNMET',NULL,0,'50',2),
+	 (245,true,NULL,true,false,false,'Foreign Language Instructions','FOREIGNLANGUAGE',NULL,0,'50',2),
+	 (246,true,'eddata.contfreq',true,false,false,'Frequency of contacts between participants','CONTFREQ',NULL,0,'50',2),
+	 (247,true,'yearly.fundsource',true,false,false,'Funding Source','FUNDSOURCE',NULL,0,'50',2),
+	 (248,true,'yearly.gradelevel',true,false,false,'Grade Level (at end of reporting period)','GRADELEVEL',NULL,0,'50',2),
+	 (249,true,'yearly.gradestart',true,false,false,'Grade Level (at start of reporting period)','GRADESTART',NULL,0,'50',2),
+	 (250,true,'main.enterlevel',true,false,false,'Grade Level (at time of first entry into project)','ENTERLEVEL',NULL,0,'50',2);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (251,true,'yearly.hsgradepro',true,false,false,'Grade Progression Over Year','GRADEPRO',NULL,0,'50',2),
+	 (252,true,'yearly.gradassist',true,false,false,'Graduate Assistantships','GRADASSIST',NULL,0,'50',2),
+	 (253,true,'yearly.gradstudyl',true,false,false,'Graduate Current Year of Study','GRADSTUDYL',NULL,0,'50',2),
+	 (254,true,'main.gdegree',true,false,false,'Graduate Degree Earned','GDEGREE',NULL,0,'50',2),
+	 (255,false,'graduated.degreein',true,false,false,'Graduate Degree In','DEGREEIN',NULL,0,'50',2),
+	 (256,false,'graduated.gdedustat',true,false,false,'Graduate Educational Status','GRADUATEEDUCATIONALSTATUS',NULL,0,'50',2),
+	 (257,false,'graduated.employtype',true,false,false,'Graduate Employment Type','EMPLOYTYPE',NULL,0,'50',2),
+	 (258,true,'main.gradadm',true,false,false,'Graduate School Admissions Test','GRADADM',NULL,0,'50',2),
+	 (259,true,'yearly.enrollobj',true,false,false,'Graduate School Enrollment Objective','ENROLLOBJ',NULL,0,'50',2),
+	 (260,true,'yearly.gpersist',true,false,false,'Graduate Student Persistence Status','GPERSIST',NULL,0,'50',2);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (261,true,'main.bdegreeco',true,false,false,'Graduating Cohort Year of Bachelor''s Degree','BDEGREECO',NULL,0,'50',2),
+	 (262,true,'main.yearcogrd',true,false,false,'Graduation Cohort Year','YEARCOGRD',NULL,0,'50',2),
+	 (263,false,'main.healthname',false,false,false,'Health Name','HEALTH NAME',NULL,0,'50',2),
+	 (264,true,'yearly.hsgradstat',true,false,false,'High School Graduation Status','GRADSTATUS',NULL,0,'50',2),
+	 (265,true,'yearly.vettest',true,false,false,'Improved Score on Standardized Test','VETTEST',NULL,0,'50',2),
+	 (266,false,'main.incomelev',false,false,false,'Income Level','INCOME LEVEL',NULL,0,'50',2),
+	 (267,false,'main.incomesou',false,false,false,'Income Source','INCOME SOURCE',NULL,0,'50',2),
+	 (268,true,'yearly.initiative',true,false,false,'Initiative','INITIATIVE',NULL,0,'50',2),
+	 (269,true,'yearly.mcintern',true,false,false,'Internship','INTERN',NULL,0,'50',2),
+	 (270,false,'labservice.labserid',true,false,true,'Lab Service','LABSERVICE',NULL,0,'50',2);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (271,true,'yearly.partlength',true,false,false,'Length of Project Participation','PARTLENGTH',NULL,0,'50',2),
+	 (272,true,'yearly.mcnmajor',true,false,false,'Major of Graduate Study','MCNMAJOR',NULL,0,'50',2),
+	 (273,false,'main.marrstatus',true,false,false,'Marital Status','MARITALSTATUS',NULL,0,'50',2),
+	 (274,true,NULL,true,false,false,'Mathematics Instructions/ Tutorials','MATH',NULL,0,'50',2),
+	 (275,false,'classes.meettime',false,false,false,'Meeting Time','MEETING TIME',NULL,0,'50',2),
+	 (276,false,'usermessages.msgstatus',true,false,false,'Message Priority Type','MSGSTATUS',NULL,0,'50',2),
+	 (277,false,'graduated.milirank',false,false,false,'Military Rank','MILITARY RANK',NULL,0,'50',2),
+	 (278,false,'graduated.militaryty',true,false,false,'Military Type','MILITARYTYPE',NULL,0,'50',2),
+	 (279,true,'yearlychild.servalue',true,true,false,'Old End Status-For TS and EOC (prior to 2006-07)','OLDENDSTATUS',NULL,7,'50',2),
+	 (280,false,'mainchild.ptitle',false,false,false,'Parent/ Guardian Relationship','PARENT RELATION',NULL,0,'50',2);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (281,true,'yearly.projretain',true,false,false,'Participant Retention in Project','PROJRETAIN',NULL,0,'50',2),
+	 (282,true,'yearly.endstatus',true,false,false,'Participant Status (at end of Reporting Period)','PARTSTATUSEND',NULL,0,'50',2),
+	 (283,true,'yearly.partlevel',true,false,false,'Participation Level','PARTLEVEL',NULL,0,'50',2),
+	 (284,true,'yearly.persistend',true,false,false,'Persistence Graduation Status at end of year','PERSISTEND',NULL,0,'50',2),
+	 (285,true,'yearly.persiststa',true,false,false,'Persistence Status at beginning at next year','PERSISTSTA',NULL,0,'50',2),
+	 (286,true,'yearly.pscomplete',true,false,false,'Postsecondary Completion Objective','PSCOMPLETE',NULL,0,'50',2),
+	 (287,true,'yearly.psenroll',true,false,false,'Postsecondary Enrollment Objective','PSENROLL',NULL,0,'50',2),
+	 (288,true,'yearly.pseterm',true,false,false,'Postsecondary Grading Period','PSETERM',NULL,0,'50',2),
+	 (289,true,'yearly.persistden',true,false,false,'Postsecondary Persistence Objective-Denominator','PERSISTDEN',NULL,0,'50',2),
+	 (290,true,'yearly.persistnum',true,false,false,'Postsecondary Persistence Objective-Numerator','PERSISTNUM',NULL,0,'50',2);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (291,true,'yearly.psremediat',true,false,false,'Postsecondary Remediation','PSREMEDIAT',NULL,0,'50',2),
+	 (292,true,'yearly.stemdegree',true,false,false,'Postsecondary STEM Degree','STEMDEGREE',NULL,0,'50',2),
+	 (293,false,'lablog.visitreason',false,false,false,'Reason for Visit','VISIT REASON',NULL,0,'50',2),
+	 (294,true,'yearly.reasonleav',true,false,false,'Reason for Withdrawal/Leaving Project','REASON',NULL,0,'50',2),
+	 (295,true,'yearly.greason',true,false,false,'Reason left Graduate School','GREASON',NULL,0,'50',2),
+	 (296,true,'yearly.noenreason',true,false,false,'Reason Not Enrolled','NOENREASON',NULL,0,'50',2),
+	 (297,true,'main.vetscherea',true,false,false,'Reason of Recheduling','VETSCHEREA',NULL,0,'50',2),
+	 (298,true,'yearly.recupdated',true,false,false,'Record Updated','RECUPDATED',NULL,0,'50',2),
+	 (299,true,'yearly.recruit',true,false,false,'Recruitment','RECRUIT',NULL,0,'50',2),
+	 (300,false,'main.referedby',false,false,false,'Referred By','REFERRED BY',NULL,0,'50',2);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (301,true,'yearly.mcresearch',true,false,false,'Research Activities','RESEARCH',NULL,0,'50',2),
+	 (302,true,'main.vetrevsche',true,false,false,'Revised Scheduled Completion Year','VETREVSCHE',NULL,0,'50',2),
+	 (303,true,'yearly.rigorous',true,false,false,'Rigorous Enrollment','RIGOROUS',NULL,0,'50',2),
+	 (304,false,'classes.room',false,false,false,'Room','ROOM',NULL,0,'50',2),
+	 (305,true,'main.vetsche',true,false,false,'Scheduled Completion Year','VETSCHE',NULL,0,'50',2),
+	 (306,true,'yearly.mcscholar',true,false,false,'Scholarly Activity','SCHOLAR',NULL,0,'50',2),
+	 (307,true,NULL,true,false,false,'Science Instruction/Tutorials','SCIENCE',NULL,0,'50',2),
+	 (308,true,'yearly.schpersist',true,false,false,'Secondary School Retention','SCHPERSIST',NULL,0,'50',2),
+	 (309,true,'yearly.selftran',true,false,false,'Source of Postsecondary Education Information','SELFTRAN',NULL,0,'50',2),
+	 (310,false,'staff.stfcodes',false,false,false,'Staff Codes','STAFF CODES',NULL,0,'50',2);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (311,true,NULL,true,false,false,'Standing Group Type (APR Column)','STANDINGGROUPTYPE',NULL,0,'50',2),
+	 (312,true,'main.statetest',true,false,false,'State-Developed Test to Measure Academic Skills','STATETEST',NULL,0,'50',2),
+	 (313,true,'main.mcstem',true,false,false,'STEM Major','MCSTEM',NULL,0,'50',2),
+	 (314,true,'yearly.sumbridge',true,false,false,'Summer Bridge','SUMBRIDGE',NULL,0,'50',2),
+	 (315,false,NULL,false,false,true,'Teacher','TEACHER',NULL,0,'50',2),
+	 (316,true,'yearly.trackcomp',true,false,false,'Tracking Completed','TRACKCOMP',NULL,0,'50',2),
+	 (317,true,'main.track',true,false,false,'Tracking Graduate','TRACK',NULL,0,'50',2),
+	 (318,true,'yearly.transfers',true,false,false,'Transfers','TRANSFERS',NULL,0,'50',2),
+	 (319,false,'yearly.tutor',false,false,true,'Tutor','TUTOR',NULL,0,'50',2),
+	 (320,true,'yearly.testtype',true,false,false,'Type of Standarized Tests','TESTTYPE',NULL,0,'50',2);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (321,true,'eddata.summerresi',true,false,false,'UB,UBMS,VUB Summer residential Program Type','SUMMERRESI',NULL,0,'50',2),
+	 (322,true,'eddata.regional',true,false,false,'UBMS Project type','REGIONAL',NULL,0,'50',2),
+	 (323,true,'yearly.vcalllen',true,false,false,'Veteran Call to Active Duty Length','VCALLLEN',NULL,0,'50',2),
+	 (324,true,'yearly.vcall',true,false,false,'Veteran Called to Active Duty Status','VCALL',NULL,0,'50',2),
+	 (325,true,'main.venterlev',true,false,false,'Veteran Educational Status (Entry into Project)','VENTERLEVEL',NULL,0,'50',2),
+	 (326,true,'main.venterjob',true,false,false,'Veteran Employment Status','VENTERJOB',NULL,0,'50',2),
+	 (327,true,'main.vfinaidrec',true,false,false,'Veteran Financial Aid','VFINAIDREC',NULL,0,'50',2),
+	 (328,false,'formslog.formname',false,false,false,'Wallet Name','Wallet Name',NULL,0,'50',2),
+	 (329,true,NULL,true,false,false,'Yearly Child Service Heading','SERHEADING',NULL,0,'50',2),
+	 (330,true,NULL,true,false,false,'Yearly Child Service Type','SERTYPE',NULL,0,'50',2);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (331,true,NULL,true,false,false,'Yes-No Options','YESNO',NULL,0,'50',2),
+	 (332,false,'contactchild.activityid
+yearlychild.servalue',true,true,true,'Activity','ACTIVITY','Activity~Activity',1,'50~50',2),
+	 (333,true,'yearlychild.servalue
+contact.aprsubject',true,true,false,'APR Subject Types','APR SUBJECT','APR Subject Types~APR Subject Types',6,'50~50',2),
+	 (334,true,'main.bdegree
+yearly.bdegree',true,false,false,'Bachelor''s Degree','BDEGREE','Bachelor''s Degree~Bachelor''s Degree Attained',0,'50~50',2),
+	 (335,false,'botform_submission.FORM_NAME
+BOTFORM_MAINTENANCE.FORM_NAME',false,false,false,'BOT Form Name','BOT FORM NAME','BOT Form Name~BOT Form Name',0,'50~50',2),
+	 (336,true,'main.highdegree
+yearly.degree',true,false,false,'Degree/Certificate Completed','HIGHDEGREE','Degree/Certificate Completed~Degree/Certificate Undergraduate Completed',0,'50~50',2),
+	 (337,true,'yearly.enroll
+main.enterenrol',true,false,false,'Enrollment Status','ENROLL','Enrollment Status (at the end of the academic year)~Enrollment Status (in academic year first served)',0,'50~50',2),
+	 (338,false,'exam.examname
+examchild.examname',false,false,false,'Exam Name','EXAM NAME','Exam Name~Exam Name',0,'50~50',2),
+	 (339,true,'main.lepentry
+main.leplastser',true,false,false,'Limited English Proficiency Status','LIMITEDENGPRO','Limited English Proficiency (Date of First Participation)~Limited English Proficiency (Date of Last Service)',0,'50~50',2),
+	 (340,false,'yearly.major
+graduated.major',false,false,false,'Major','MAJOR','Major~Major',0,'50~50',2);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (341,false,'main.sitelocate
+appusers.sitelocate',false,false,false,'Site Location','SITE LOCATION','Site Location~Site Location',0,'50~50',2),
+	 (342,false,'yearly.counsel
+yearly.tutor',false,true,true,'Staff','STAFF','Staff~Tutor',0,'50~50',2),
+	 (343,true,'main.staterlagr
+main.statemathg',true,false,false,'State Grade level in which student was Assessed','STATE10GRADE','Grade level when Assessed for State 10th Reading Standard~Grade level when Assessed for State 10th Math Standard',0,'50~50',2),
+	 (344,true,'main.state8rla
+main.state8math',true,false,false,'State Met 8th Grade Achievement Standard Options','STATE8MET','Met 8th Grade State Reading Language Art Standard~Met 8th Grade State Math Standard',0,'50~50',2),
+	 (345,false,'contact.stfid
+classes.stfid',true,true,true,'STFID - DO NOT USE','STFID','Stfid~Stfid',0,'50~50',2),
+	 (346,false,'classes.subject
+contact.subject',false,false,false,'Subject ( Classes/ Contacts)','SUBJECT','Subject~Subject',0,'50~50',2),
+	 (347,false,'formslog.formtype
+yearlychild.servalue',true,true,false,'Wallet Type','Wallet Type','Wallet Type Formslog ~Wallet Type Yearly Child',5,'50~50',2),
+	 (348,false,'classes.semester
+courses.semester
+semester.semester',true,true,false,'Semester Type','SEMESTER','Semester~Semester~Semester',0,'50~50~50',2),
+	 (349,true,'yearly.college
+main.collegeent
+main.gradcoll
+main.gdoccoll',false,false,true,'College','COLLEGE','College~College - Entry~Graduate School First Attended~Doctorate College',0,'50~50~50~50',2),
+	 (350,false,'yearly.counsel
+graduated.counsel',false,false,true,'Counselor','COUNSELOR','Counselor~Counselor',0,'50~50~50~50',2);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (351,true,'main.gpascale
+main.msgpascale
+yearly.gpaendsc
+yearly.gpastartsc',true,false,false,'GPA Scale','GPASCALE','GPA HS Scale (Entry into Project)~GPA MS Scale(Entry into Project)~GPA Scale (at end of Reporting Period)~GPA Scale (at start of Reporting Period)',0,'50~50~50~50',2),
+	 (352,false,'staff.stfcustom1
+staff.stfcustom2
+staff.stfcustom3
+staff.stfcustom4',false,false,false,'Staff Custom Field','STAFF CUSTOM','Staff Custom 1~Staff Custom 2~ Staff Custom 3~Staff Custom 4',0,'50~50~50~50',2),
+	 (353,true,'main.state10rla
+main.state10mat
+yearly.state10rla
+yearly.state10mat',true,false,false,'State Met 10th Grade Achievement Standard Options','STATE10MET','Met 10th Grade State Reading Language Art Standard~Met 10th Grade State Math Standard~Met HS State Acad. Achievement Standard at Proficient Level—Reading/language arts~Met HS State Acad. Achievement Standard at Proficient Level—Math',0,'50~50~50~50',2),
+	 (354,true,'main.city
+mainchild.pcity
+eddata.city
+graduated.city
+school.city
+staff.stfcity',false,false,false,'City','CITY','City~City~City~City~City~City',0,'50~50~50~50~50~50',2),
+	 (406,true,'main.commcoll',true,false,false,'Attended Community College','COMMCOLL',NULL,0,'50',3),
+	 (407,false,'main.birthplace',false,false,false,'Birth Place','BIRTH PLACE',NULL,0,'50',3),
+	 (355,false,'main.state
+eddata.state
+graduated.state
+main.dlstate
+mainchild.pstate
+school.state
+staff.stfstate
+staffchild.stfstate',false,false,false,'State (Postal Address)','STATE','State (Postal Address)~State~State~State (Driving License)~State~State~State~State',0,'50~50~50~50~50~50~50~50',2),
+	 (356,false,'main.phn1ty
+main.phn2ty
+mainchild.pphn1ty
+mainchild.pphn2ty
+mainchild.pphn3ty
+staff.stfphn1ty
+staff.stfphn2ty
+staff.stfphn3ty
+staffchild.stfphn1ty
+staffchild.stfphn2ty
+staffchild.stfphn3ty',false,false,false,'Phone Type','PHONE TYPE','Phone Type 1~Phone Type 2~Phone Type 1~Phone Type 2~Phone Type 3~Phone Type 1~Phone Type 2~Phone Type 3~Phone Type 1~Phone Type 2~Phone Type 3',0,'50~50~50~50~50~50~50~50~50~50',2),
+	 (357,false,'main.referedby',false,false,false,'Referred By','REFERRED BY',NULL,0,'1',3),
+	 (358,true,'main.gender',true,false,false,'APR 09 - Gender','GENDER',NULL,0,'10',3);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (359,true,'main.ethnic',true,false,false,'APR 10 - 15 - Ethnicity /Race','ETHNIC',NULL,0,'10',3),
+	 (360,true,'main.eligibilit',true,false,false,'APR 16 - Eligibility','ELIGIBILITY',NULL,0,'10',3),
+	 (361,true,'main.atrstdtest',true,false,false,'APR 17 - At Risk Reading or Math','ATRSTDTEST',NULL,0,'10',3),
+	 (362,true,'main.atrlowgpa',true,false,false,'APR 18 - At Risk - Low GPA','ATRLOWGPA',NULL,0,'10',3),
+	 (363,true,'main.atralgebra',true,false,false,'APR 19 - At Risk - Pre-Algebra or Algebra','ATRALGEBRA',NULL,0,'10',3),
+	 (364,true,'main.disconnect',true,false,false,'APR 21 - Disconnected Youth','DISCONNECT',NULL,0,'10',3),
+	 (365,true,'main.acadneed',true,false,false,'APR 22 - Other Academic Need','ACADNEED',NULL,0,'10',3),
+	 (366,true,'main.enterlevel',true,false,false,'APR 25 - Grade Level at First Service','ENTERLEVEL',NULL,0,'10',3),
+	 (367,true,'yearly.deceased',true,false,false,'APR 26 - Deceased or Incapacitated','DECEASED',NULL,0,'10',3),
+	 (368,true,'yearly.partstatus',true,false,false,'APR 27 - Participant Status','PARTSTATUS',NULL,0,'10',3);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (369,true,'yearly.partlevel',true,false,false,'APR 28 - Participation Level','PARTLEVEL',NULL,0,'10',3),
+	 (370,true,'yearly.othertrio',true,false,false,'APR 29 - Served by Other Federally Funded Program','OTHERTRIO',NULL,0,'10',3),
+	 (371,true,'yearly.gradestart',true,false,false,'APR 30 - Grade Level at starting of this fiscal year','GRADESTART',NULL,0,'10',3),
+	 (372,true,'yearly.gradelevel',true,false,false,'APR 31 - Grade Level at the beginning of the following fiscal year','GRADELEVEL',NULL,0,'10',3),
+	 (373,true,'yearly.hsgradstat',true,false,false,'APR 34 - HS Graduation Status','GRADSTATUS',NULL,0,'10',3),
+	 (374,true,'yearly.rigorous',true,false,false,'APR 36 - Rigorous Program','RIGOROUS',NULL,0,'10',3),
+	 (375,true,'yearly.schpersist',true,false,false,'APR 37 - Secondary School Retention Objective-Numerator for reporting year','SCHPERSIST',NULL,0,'10',3),
+	 (376,true,'yearly.apcourse',true,false,false,'APR 40 - Advanced Placement Course Completed','APCOURSE',NULL,0,'10',3),
+	 (377,true,'yearly.dualenroll',true,false,false,'APR 41 - Dual Enrollment','DUALENROLL',NULL,0,'10',3),
+	 (378,true,'yearly.decredenti',true,false,false,'APR 42 - Dual Enrollment Credentials Completed','DECREDENTI',NULL,0,'10',3);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (379,true,'yearly.advancemat',true,false,false,'APR 43 - Advanced Math Courses Completed ','ADVANCEMAT',NULL,0,'10',3),
+	 (380,true,'yearly.fafsa',true,false,false,'APR 44 - FAFSA completion','FAFSA',NULL,0,'10',3),
+	 (381,true,'yearly.reasonleav',true,false,false,'APR 46 - Reason for Leaving Program','REASON',NULL,0,'10',3),
+	 (382,true,'yearly.employ',true,false,false,'APR 48 - Employment','EMPLOY',NULL,0,'10',3),
+	 (383,true,'yearly.selftran',true,false,false,'APR 52 - Source of Postsecondary Education Information','SELFTRAN',NULL,0,'10',3),
+	 (384,true,'yearly.collgradel',true,false,false,'APR 56 - College Status Beginning of Next Academic Year','COLLGRADE',NULL,0,'10',3),
+	 (385,true,'yearly.certi',true,false,false,'APR 57 - Certificate/ Diploma Completed','CERTI',NULL,0,'10',3),
+	 (386,true,'yearly.adegree',true,false,false,'APR 59 - Associate Degree Attained','ADEGREE',NULL,0,'10',3),
+	 (387,true,'yearly.psenroll',true,false,false,'APR 63 - Postsecondary Enrollment Objective-for Current Reporting Year','PSENROLL',NULL,0,'10',3),
+	 (388,true,'yearly.psremediat',true,false,false,'APR 64 - Postsecondary Remediation','PSREMEDIAT',NULL,0,'10',3);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (389,true,'yearly.pscomplete',true,false,false,'APR 65 - Postsecondary Completion Objective - Numerator','PSCOMPLETE',NULL,0,'10',3),
+	 (390,true,'yearly.stemdegree',true,false,false,'APR 66 - Postsecondary STEM Degree','STEMDEGREE',NULL,0,'10',3),
+	 (391,true,'yearly.state10rla
+yearly.state10mat
+main.state10rla
+main.state10mat',true,false,false,'APR 38/39 - Met HS State Achievement Level','STATE10MET','APR 38 -  Met HS State Achievement Level-Reading/Language Arts~APR 39 - Met HS State Achievement Level-Math~Met 10th Grade State Reading Language Art Standard~Met 10th Grade State Math Standard',0,'10~10~50~50',3),
+	 (392,true,'main.lepentry
+main.leplastser',true,false,false,'APR 20 - Limited English Proficiency - at Start','LIMITEDENGPRO','APR 20 - Limited English Proficiency - at Start~Limited English Proficiency (Date of Last Service)',0,'10~50',3),
+	 (393,true,'yearly.bdegree
+main.bdegree',true,false,false,'APR 61 - Bachelor''s Degree Attained','BDEGREE','APR 61 - Bachelor''s Degree Attained~Bachelors Degree',0,'10~50',3),
+	 (394,false,'main.schoolent
+yearly.school
+main.schoolend',false,false,true,'APR 23 - School (Entry School)','SCHOOL','APR 23 - Entry School~School(Current Fiscal Year)~School (End of Project)',0,'10~50~50',3),
+	 (395,false,'main.collegeent
+yearly.college
+main.gradcoll
+main.gdoccoll',false,false,true,'APR 55 - College','COLLEGE','APR 55 - First College Attended~College~Graduate School First Attended~Doctorate College',0,'10~50~50~50',3),
+	 (396,true,'main.city
+mainchild.pcity
+eddata.city
+graduated.city
+school.city
+staff.stfcity',false,false,false,'City','CITY','City~City~City~City~City~City',0,'5~50~50~50~50~50',3),
+	 (397,true,'yearly.acadstand',true,false,false,'Academic Standing','ACADSTAND',NULL,0,'50',3),
+	 (398,true,'activity.actgid',true,false,true,'Activity Group','ACTIVITYGROUP',NULL,2,'50',3);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (399,true,NULL,true,false,false,'Activity Group Type','ACTIVITYGROUPTYPE',NULL,0,'50',3),
+	 (400,false,'yearly.advisor',false,false,false,'Advisor','ADVISOR',NULL,0,'50',3),
+	 (401,false,'asset.amake',false,false,false,'Asset Make','ASSET MAKE',NULL,0,'50',3),
+	 (402,false,'asset.amodel',false,false,false,'Asset Model','ASSET MODEL',NULL,0,'50',3),
+	 (403,false,'asset.astatus',true,false,false,'Asset Status','ASSETSTATUS',NULL,0,'50',3),
+	 (404,false,'asset.atype',false,false,false,'Asset Type','ASSET TYPE',NULL,0,'50',3),
+	 (405,true,'main.atrschool',true,false,false,'At Risk Out of School','ATRSCHOOL',NULL,0,'50',3),
+	 (408,false,'botform_submission.SUBMISSION_STATUS',true,false,false,'BOT Form Status','BOTFORMSTATUS',NULL,0,'50',3),
+	 (409,true,'main.vetschecir',true,false,false,'Circumstances of Recheduling','VETSCHECIR',NULL,0,'50',3),
+	 (410,false,'main.codes',false,false,false,'Codes','CODES',NULL,0,'50',3);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (411,true,'main.cohortyear',true,false,false,'Cohort Year','COHORTYEAR',NULL,0,'50',3),
+	 (412,true,'main.enterexam',true,false,false,'College Entrance Exam','ENTEREXAM',NULL,0,'50',3),
+	 (413,true,'yearly.collready',true,false,false,'College Ready','COLLREADY',NULL,0,'50',3),
+	 (414,true,'yearly.collegety',true,false,false,'College Type','COLLEGETYPE',NULL,0,'50',3),
+	 (415,true,NULL,true,false,false,'Compare Symbols','COMPARE',NULL,0,'50',3),
+	 (416,true,'yearly.completeyr',true,false,false,'Completion Year','COMPLETEYR',NULL,0,'50',3),
+	 (417,true,NULL,true,false,false,'Component Type','COMPONENT',NULL,0,'50',3),
+	 (418,true,NULL,true,false,false,'Component Type-APR','APRCOMPONENT',NULL,0,'50',3),
+	 (419,true,'contact.stftype',true,false,false,'Contact Staff Type','CONTACTSTAFFTYPE',NULL,0,'50',3),
+	 (420,false,'contact.conttype',true,false,false,'Contact Type','CONTACTTYPE',NULL,0,'50',3);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (421,false,'courses.courseinst',false,false,false,'Course Instructor','COURSE INSTRUCTOR',NULL,0,'50',3),
+	 (422,false,'courses.coursename',false,false,false,'Course Name','COURSE NAME',NULL,0,'50',3),
+	 (423,false,'courses.coursenum',false,true,false,'Course Number','COURSE NUMBER',NULL,0,'50',3),
+	 (424,false,'main.custom1',false,false,false,'Custom Field 1','CUSTOM1',NULL,0,'50',3),
+	 (425,false,'main.custom2',false,false,false,'Custom Field 2','CUSTOM2',NULL,0,'50',3),
+	 (426,false,'yearly.custom3',false,false,false,'Custom Field 3','CUSTOM3',NULL,0,'50',3),
+	 (427,false,'yearly.custom4',false,false,false,'Custom Field 4','CUSTOM4',NULL,0,'50',3),
+	 (428,false,'maincfields.customname',true,true,false,'Custom Field Names','CUSTOMFIELDNAME',NULL,0,'50',3),
+	 (429,true,NULL,true,true,true,'Custom Field Type','CUSTOMFIELDTYPE',NULL,0,'50',3),
+	 (430,false,'classes.days',false,false,false,'Days','DAYS',NULL,0,'50',3);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (431,true,'main.docemploy',true,false,false,'Doctorate Employment Activity','DOCEMPLOY',NULL,0,'50',3),
+	 (432,false,'main.eligtype',false,false,false,'Eligibility Type','ELIGIBILITY TYPE',NULL,0,'50',3),
+	 (433,true,'yearlychild.servalue',true,true,false,'End Status','ENDSTATUS',NULL,4,'50',3),
+	 (434,true,NULL,true,false,false,'English Instructions','ENGLISH',NULL,0,'50',3),
+	 (435,false,'main.ethnictype',false,false,false,'Ethnic Type (National Origin)','ETHNIC TYPE',NULL,0,'50',3),
+	 (436,true,'main.finaidrecd',true,false,false,'Financial Aid','FINAIDRECD',NULL,0,'50',3),
+	 (437,false,'yearly.finaidname',false,false,false,'Financial Aid Name','FINANCIAL AID NAME',NULL,0,'50',3),
+	 (438,true,'yearly.finaidreas',true,false,false,'Financial Aid Un-met Reason','FINAIDREAS',NULL,0,'50',3),
+	 (439,false,'yearly.finaidunme',false,false,false,'Financial Aid Unmet Name','FINANCIAL AID UNMET',NULL,0,'50',3),
+	 (440,true,NULL,true,false,false,'Foreign Language Instructions','FOREIGNLANGUAGE',NULL,0,'50',3);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (441,true,'eddata.contfreq',true,false,false,'Frequency of contacts between participants','CONTFREQ',NULL,0,'50',3),
+	 (442,true,'yearly.fundsource',true,false,false,'Funding Source','FUNDSOURCE',NULL,0,'50',3),
+	 (443,true,'yearly.hsgradepro',true,false,false,'Grade Progression Over Year','GRADEPRO',NULL,0,'50',3),
+	 (444,true,'yearly.gradassist',true,false,false,'Graduate Assistantships','GRADASSIST',NULL,0,'50',3),
+	 (445,true,'yearly.gradstudyl',true,false,false,'Graduate Current Year of Study','GRADSTUDYL',NULL,0,'50',3),
+	 (446,true,'main.gdegree',true,false,false,'Graduate Degree Earned','GDEGREE',NULL,0,'50',3),
+	 (447,false,'graduated.degreein',true,false,false,'Graduate Degree In','DEGREEIN',NULL,0,'50',3),
+	 (448,false,'graduated.gdedustat',true,false,false,'Graduate Educational Status','GRADUATEEDUCATIONALSTATUS',NULL,0,'50',3),
+	 (449,false,'graduated.employtype',true,false,false,'Graduate Employment Type','EMPLOYTYPE',NULL,0,'50',3),
+	 (450,true,'main.gradadm',true,false,false,'Graduate School Admissions Test','GRADADM',NULL,0,'50',3);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (451,true,'yearly.enrollobj',true,false,false,'Graduate School Enrollment Objective','ENROLLOBJ',NULL,0,'50',3),
+	 (452,true,'yearly.gpersist',true,false,false,'Graduate Student Persistence Status','GPERSIST',NULL,0,'50',3),
+	 (453,true,'main.bdegreeco',true,false,false,'Graduating Cohort Year of Bachelor''s Degree','BDEGREECO',NULL,0,'50',3),
+	 (454,true,'main.yearcogrd',true,false,false,'Graduation Cohort Year','YEARCOGRD',NULL,0,'50',3),
+	 (455,false,'main.healthname',false,false,false,'Health Name','HEALTH NAME',NULL,0,'50',3),
+	 (456,true,'yearly.vettest',true,false,false,'Improved Score on Standardized Test','VETTEST',NULL,0,'50',3),
+	 (457,false,'main.incomelev',false,false,false,'Income Level','INCOME LEVEL',NULL,0,'50',3),
+	 (458,false,'main.incomesou',false,false,false,'Income Source','INCOME SOURCE',NULL,0,'50',3),
+	 (459,true,'yearly.initiative',true,false,false,'Initiative','INITIATIVE',NULL,0,'50',3),
+	 (460,true,'yearly.mcintern',true,false,false,'Internship','INTERN',NULL,0,'50',3);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (461,false,'labservice.labserid',true,false,true,'Lab Service','LABSERVICE',NULL,0,'50',3),
+	 (462,true,'yearly.partlength',true,false,false,'Length of Project Participation','PARTLENGTH',NULL,0,'50',3),
+	 (463,true,'yearly.mcnmajor',true,false,false,'Major of Graduate Study','MCNMAJOR',NULL,0,'50',3),
+	 (464,false,'main.marrstatus',true,false,false,'Marital Status','MARITALSTATUS',NULL,0,'50',3),
+	 (465,true,NULL,true,false,false,'Mathematics Instructions/ Tutorials','MATH',NULL,0,'50',3),
+	 (466,false,'classes.meettime',false,false,false,'Meeting Time','MEETING TIME',NULL,0,'50',3),
+	 (467,false,'usermessages.msgstatus',true,false,false,'Message Priority Type','MSGSTATUS',NULL,0,'50',3),
+	 (468,false,'graduated.milirank',false,false,false,'Military Rank','MILITARY RANK',NULL,0,'50',3),
+	 (469,false,'graduated.militaryty',true,false,false,'Military Type','MILITARYTYPE',NULL,0,'50',3),
+	 (470,true,'yearlychild.servalue',true,true,false,'Old End Status-For TS and EOC (prior to 2006-07)','OLDENDSTATUS',NULL,7,'50',3);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (471,false,'mainchild.ptitle',false,false,false,'Parent/ Guardian Relationship','PARENT RELATION',NULL,0,'50',3),
+	 (472,true,'yearly.projretain',true,false,false,'Participant Retention in Project','PROJRETAIN',NULL,0,'50',3),
+	 (473,true,'yearly.endstatus',true,false,false,'Participant Status (at end of Reporting Period)','PARTSTATUSEND',NULL,0,'50',3),
+	 (474,true,'yearly.persistend',true,false,false,'Persistence Graduation Status at end of year','PERSISTEND',NULL,0,'50',3),
+	 (475,true,'yearly.persiststa',true,false,false,'Persistence Status at beginning at next year','PERSISTSTA',NULL,0,'50',3),
+	 (476,true,'yearly.pseterm',true,false,false,'Postsecondary Grading Period','PSETERM',NULL,0,'50',3),
+	 (477,true,'yearly.persistden',true,false,false,'Postsecondary Persistence Objective-Denominator','PERSISTDEN',NULL,0,'50',3),
+	 (478,true,'yearly.persistnum',true,false,false,'Postsecondary Persistence Objective-Numerator','PERSISTNUM',NULL,0,'50',3),
+	 (479,false,'lablog.visitreason',false,false,false,'Reason for Visit','VISIT REASON',NULL,0,'50',3),
+	 (480,true,'yearly.greason',true,false,false,'Reason left Graduate School','GREASON',NULL,0,'50',3);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (481,true,'yearly.noenreason',true,false,false,'Reason Not Enrolled','NOENREASON',NULL,0,'50',3),
+	 (482,true,'main.vetscherea',true,false,false,'Reason of Recheduling','VETSCHEREA',NULL,0,'50',3),
+	 (483,true,'yearly.recupdated',true,false,false,'Record Updated','RECUPDATED',NULL,0,'50',3),
+	 (484,true,'yearly.recruit',true,false,false,'Recruitment','RECRUIT',NULL,0,'50',3),
+	 (485,true,'yearly.mcresearch
+',true,false,false,'Research Activities','RESEARCH',NULL,0,'50',3),
+	 (486,true,'main.vetrevsche',true,false,false,'Revised Scheduled Completion Year','VETREVSCHE',NULL,0,'50',3),
+	 (487,false,'classes.room',false,false,false,'Room','ROOM',NULL,0,'50',3),
+	 (488,true,'main.vetsche',true,false,false,'Scheduled Completion Year','VETSCHE',NULL,0,'50',3),
+	 (489,true,'yearly.mcscholar',true,false,false,'Scholarly Activity','SCHOLAR',NULL,0,'50',3),
+	 (490,true,NULL,true,false,false,'Science Instruction/Tutorials','SCIENCE',NULL,0,'50',3);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (491,false,'staff.stfcodes',false,false,false,'Staff Codes','STAFF CODES',NULL,0,'50',3),
+	 (492,true,NULL,true,false,false,'Standing Group Type (APR Column)','STANDINGGROUPTYPE',NULL,0,'50',3),
+	 (493,true,'main.statetest',true,false,false,'State-Developed Test to Measure Academic Skills','STATETEST',NULL,0,'50',3),
+	 (494,true,'main.mcstem',true,false,false,'STEM Major','MCSTEM',NULL,0,'50',3),
+	 (495,true,'yearly.sumbridge',true,false,false,'Summer Bridge','SUMBRIDGE',NULL,0,'50',3),
+	 (496,false,NULL,false,false,true,'Teacher','TEACHER',NULL,0,'50',3),
+	 (497,true,'yearly.trackcomp',true,false,false,'Tracking Completed','TRACKCOMP',NULL,0,'50',3),
+	 (498,true,'main.track',true,false,false,'Tracking Graduate','TRACK',NULL,0,'50',3),
+	 (499,true,'yearly.transfers',true,false,false,'Transfers','TRANSFERS',NULL,0,'50',3),
+	 (500,false,'yearly.tutor',false,false,true,'Tutor','TUTOR',NULL,0,'50',3);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (501,true,'yearly.testtype',true,false,false,'Type of Standarized Tests','TESTTYPE',NULL,0,'50',3),
+	 (502,true,'eddata.summerresi',true,false,false,'UB,UBMS,VUB Summer residential Program Type','SUMMERRESI',NULL,0,'50',3),
+	 (503,true,'eddata.regional',true,false,false,'UBMS Project type','REGIONAL',NULL,0,'50',3),
+	 (504,true,'yearly.vcalllen',true,false,false,'Veteran Call to Active Duty Length','VCALLLEN',NULL,0,'50',3),
+	 (505,true,'yearly.vcall',true,false,false,'Veteran Called to Active Duty Status','VCALL',NULL,0,'50',3),
+	 (506,true,'yearly.vgradelev',true,false,false,'Veteran Educational Status (at end)','VGRADELEVEL',NULL,0,'50',3),
+	 (507,true,'main.venterlev',true,false,false,'Veteran Educational Status (Entry into Project)','VENTERLEVEL',NULL,0,'50',3),
+	 (508,true,'main.venterjob',true,false,false,'Veteran Employment Status','VENTERJOB',NULL,0,'50',3),
+	 (509,true,'main.vfinaidrec',true,false,false,'Veteran Financial Aid','VFINAIDREC',NULL,0,'50',3),
+	 (510,false,'formslog.formname',false,false,false,'Wallet Name','Wallet Name',NULL,0,'50',3);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (511,true,NULL,true,false,false,'Yearly Child Service Heading','SERHEADING',NULL,0,'50',3),
+	 (512,true,NULL,true,false,false,'Yearly Child Service Type','SERTYPE',NULL,0,'50',3),
+	 (513,true,NULL,true,false,false,'Yes-No Options','YESNO',NULL,0,'50',3),
+	 (514,false,'contactchild.activityid
+yearlychild.servalue',true,true,true,'Activity','ACTIVITY','Activity~Activity',1,'50~50',3),
+	 (515,true,'yearlychild.servalue
+contact.aprsubject',true,true,false,'APR Subject Types','APR SUBJECT','APR Subject Types~APR Subject Types',6,'50~50',3),
+	 (516,false,'botform_submission.FORM_NAME
+BOTFORM_MAINTENANCE.FORM_NAME',false,false,false,'BOT Form Name','BOT FORM NAME','BOT Form Name~BOT Form Name',0,'50~50',3),
+	 (517,true,'main.highdegree
+yearly.degree',true,false,false,'Degree/Certificate Completed','HIGHDEGREE','Degree/Certificate Completed~Degree/Certificate Undergraduate Completed',0,'50~50',3),
+	 (518,true,'yearly.enroll
+main.enterenrol',true,false,false,'Enrollment Status','ENROLL','Enrollment Status (at the end of the academic year)~Enrollment Status (in academic year first served)',0,'50~50',3),
+	 (519,false,'exam.examname
+examchild.examname',false,false,false,'Exam Name','EXAM NAME','Exam Name~Exam Name ',0,'50~50',3),
+	 (520,false,'yearly.standing
+semester.standing',true,false,true,'Grade / Standing Type','STANDING','Standing~Standing',0,'50~50',3);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (521,false,'yearly.major
+graduated.major',false,false,false,'Major','MAJOR','Major~Major',0,'50~50',3),
+	 (522,false,'main.sitelocate
+appusers.sitelocate',false,false,false,'Site Location','SITE LOCATION','Site Location~Site Location',0,'50~50',3),
+	 (523,false,'yearly.counsel
+yearly.tutor',false,true,true,'Staff','STAFF','Staff~Tutor',0,'50~50',3),
+	 (524,true,'main.staterlagr
+main.statemathg',true,false,false,'State Grade level in which student was Assessed','STATE10GRADE','Grade level when Assessed for State 10th Reading Standard~Grade level when Assessed for State 10th Math Standard',0,'50~50',3),
+	 (525,true,'main.state8rla
+main.state8math',true,false,false,'State Met 8th Grade Achievement Standard Options','STATE8MET','Met 8th Grade State Reading Language Art Standard~Met 8th Grade State Math Standard',0,'50~50',3),
+	 (526,false,'contact.stfid
+classes.stfid',true,true,true,'STFID - DO NOT USE','STFID','Stfid~Stfid',0,'50~50',3),
+	 (527,false,'classes.subject
+contact.subject',false,false,false,'Subject ( Classes/ Contacts)','SUBJECT','Subject~Subject',0,'50~50',3),
+	 (528,false,'formslog.formtype
+yearlychild.servalue',true,true,false,'Wallet Type','Wallet Type','Wallet Type Formslog ~Wallet Type Yearly Child',5,'50~50',3),
+	 (529,false,'classes.semester
+courses.semester
+semester.semester',true,true,false,'Semester Type','SEMESTER','Semester~Semester~Semester',0,'50~50~50',3),
+	 (530,false,'yearly.counsel
+graduated.counsel',false,false,true,'Counselor','COUNSELOR','Counselor~Counselor',0,'50~50~50~50',3);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (531,true,'main.gpascale
+main.msgpascale
+yearly.gpaendsc
+yearly.gpastartsc',true,false,false,'GPA Scale','GPASCALE','GPA HS Scale (Entry into Project)~GPA MS Scale(Entry into Project)~GPA Scale (at end of Reporting Period)~GPA Scale (at start of Reporting Period)',0,'50~50~50~50',3),
+	 (532,false,'staff.stfcustom1
+staff.stfcustom2
+staff.stfcustom3
+staff.stfcustom4',false,false,false,'Staff Custom Field','STAFF CUSTOM','Staff Custom 1~Staff Custom 2~ Staff Custom 3~Staff Custom 4',0,'50~50~50~50',3),
+	 (533,false,'main.state
+eddata.state
+graduated.state
+main.dlstate
+mainchild.pstate
+school.state
+staff.stfstate
+staffchild.stfstate',false,false,false,'State (Postal Address)','STATE','State (Postal Address)~State~State~State (Driving License)~State~State~State~State',0,'50~50~50~50~50~50~50~50',3),
+	 (534,false,'main.phn1ty
+main.phn2ty
+mainchild.pphn1ty
+mainchild.pphn2ty
+mainchild.pphn3ty
+staff.stfphn1ty
+staff.stfphn2ty
+staff.stfphn3ty
+staffchild.stfphn1ty
+staffchild.stfphn2ty
+staffchild.stfphn3ty',false,false,false,'Phone Type','PHONE TYPE','Phone Type 1~Phone Type 2~Phone Type 1~Phone Type 2~Phone Type 3~Phone Type 1~Phone Type 2~Phone Type 3~Phone Type 1~Phone Type 2~Phone Type 3',0,'50~50~50~50~50~50~50~50~50~50',3),
+	 (535,true,'main.gender',true,false,false,'APR 09 - Gender','GENDER',NULL,0,'10',4),
+	 (536,true,'main.ethnic',true,false,false,'APR 10 - 15 - Ethnicity /Race','ETHNIC',NULL,0,'10',4),
+	 (537,true,'main.eligibilit',true,false,false,'APR 16 - Eligibility','ELIGIBILITY',NULL,0,'10',4),
+	 (538,true,'main.atrschool',true,false,false,'APR 17 - At Risk - Out of School for Five Years','ATRSCHOOL',NULL,0,'10',4),
+	 (539,true,'main.atrstdtest',true,false,false,'APR 18 - At Risk-Low Standardized Test Scores','ATRSTDTEST',NULL,0,'10',4),
+	 (540,true,'main.acadneed',true,false,false,'APR 20 - Academic Need','ACADNEED',NULL,0,'10',4);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (541,true,'yearly.recruit',true,false,false,'APR 21 - Recruitment','RECRUIT',NULL,0,'10',4),
+	 (542,true,'main.venterlev',true,false,false,'APR 23 - Veteran Educational Status','VENTERLEVEL',NULL,0,'10',4),
+	 (543,true,'main.venterjob',true,false,false,'APR 24 - Employment Status','VENTERJOB',NULL,0,'10',4),
+	 (544,true,'yearly.deceased',true,false,false,'APR 25 - Deceased or Incapacitated','DECEASED',NULL,0,'10',4),
+	 (545,true,'yearly.partstatus',true,false,false,'APR 26 - Participant Status','PARTSTATUS',NULL,0,'10',4),
+	 (546,true,'yearly.othertrio',true,false,false,'APR 27 - Served by Other Federally Funded Program','OTHERTRIO',NULL,0,'10',4),
+	 (547,true,'yearly.vcall',true,false,false,'APR 28 - Called to Active Duty Following Enrollment','VCALL',NULL,0,'10',4),
+	 (548,true,'yearly.vettest',true,false,false,'APR 29 - Academic Improvement on Standardized Test','VETTEST',NULL,0,'10',4),
+	 (549,true,'yearly.completeyr',true,false,false,'APR 31 - VUB Program Completion Year','COMPLETEYR',NULL,0,'10',4),
+	 (550,true,'yearly.reasonleav',true,false,false,'APR 32 - Reason for Leaving Program','REASON',NULL,0,'10',4);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (551,true,'yearly.selftran',true,false,false,'APR 40 - Source of Postsecondary Education Information','SELFTRAN',NULL,0,'10',4),
+	 (552,true,'yearly.collgradel',true,false,false,'APR 41 - College Status Beginning of Next Academic Year','COLLGRADE',NULL,0,'10',4),
+	 (553,true,'yearly.psremediat',true,false,false,'APR 42 - Postsecondary Remediation','PSREMEDIAT',NULL,0,'10',4),
+	 (554,true,'yearly.certi',true,false,false,'APR 43 - Certificate/ Diploma Completed','CERTI',NULL,0,'10',4),
+	 (555,true,'yearly.adegree',true,false,false,'APR 45 - Associate Degree Attained','ADEGREE',NULL,0,'10',4),
+	 (556,true,'yearly.vcalllen',true,false,false,'APR 49 - Length of Active Duty','VCALLLEN',NULL,0,'10',4),
+	 (557,true,'yearly.bdegree
+main.bdegree',true,false,false,'APR 47 - Bachelor''s Degree Attained','BDEGREE','APR 47 - Bachelor''s Degree Attained~Bachelors Degree',0,'10~50',4),
+	 (558,false,'main.collegeent
+yearly.college
+main.gradcoll
+main.gdoccoll',false,false,true,'APR 39 - College','COLLEGE','APR 39 - College First Attended~College~Graduate School First Attended~Doctorate College',0,'10~50~50~50',4),
+	 (559,true,'yearly.acadstand',true,false,false,'Academic Standing','ACADSTAND',NULL,0,'50',4),
+	 (560,true,'activity.actgid',true,false,true,'Activity Group','ACTIVITYGROUP',NULL,2,'50',4);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (561,true,NULL,true,false,false,'Activity Group Type','ACTIVITYGROUPTYPE',NULL,0,'50',4),
+	 (562,true,'yearly.advancemat',true,false,false,'Advanced Math Course','ADVANCEMAT',NULL,0,'50',4),
+	 (563,true,'yearly.apcourse',true,false,false,'Advanced Placement Course','APCOURSE',NULL,0,'50',4),
+	 (564,false,'yearly.advisor',false,false,false,'Advisor','ADVISOR',NULL,0,'50',4),
+	 (565,false,'asset.amake',false,false,false,'Asset Make','ASSET MAKE',NULL,0,'50',4),
+	 (566,false,'asset.amodel',false,false,false,'Asset Model','ASSET MODEL',NULL,0,'50',4),
+	 (567,false,'asset.astatus',true,false,false,'Asset Status','ASSETSTATUS',NULL,0,'50',4),
+	 (568,false,'asset.atype',false,false,false,'Asset Type','ASSET TYPE',NULL,0,'50',4),
+	 (569,true,'main.atralgebra',true,false,false,'At Risk Algebra','ATRALGEBRA',NULL,0,'50',4),
+	 (570,true,'main.atrlowgpa',true,false,false,'At Risk Low GPA','ATRLOWGPA',NULL,0,'50',4);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (571,true,'main.commcoll',true,false,false,'Attended Community College','COMMCOLL',NULL,0,'50',4),
+	 (572,false,'main.birthplace',false,false,false,'Birth Place','BIRTH PLACE',NULL,0,'50',4),
+	 (573,false,'botform_submission.SUBMISSION_STATUS',true,false,false,'BOT Form Status','BOTFORMSTATUS',NULL,0,'50',4),
+	 (574,true,'main.vetschecir',true,false,false,'Circumstances of Recheduling','VETSCHECIR',NULL,0,'50',4),
+	 (575,false,'main.codes',false,false,false,'Codes','CODES',NULL,0,'50',4),
+	 (576,true,'main.cohortyear',true,false,false,'Cohort Year','COHORTYEAR',NULL,0,'50',4),
+	 (577,true,'main.enterexam',true,false,false,'College Entrance Exam','ENTEREXAM',NULL,0,'50',4),
+	 (578,true,'yearly.collready',true,false,false,'College Ready','COLLREADY',NULL,0,'50',4),
+	 (579,true,'yearly.collegety',true,false,false,'College Type','COLLEGETYPE',NULL,0,'50',4),
+	 (580,true,NULL,true,false,false,'Compare Symbols','COMPARE',NULL,0,'50',4);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (581,true,NULL,true,false,false,'Component Type','COMPONENT',NULL,0,'50',4),
+	 (582,true,NULL,true,false,false,'Component Type-APR','APRCOMPONENT',NULL,0,'50',4),
+	 (583,true,'contact.stftype',true,false,false,'Contact Staff Type','CONTACTSTAFFTYPE',NULL,0,'50',4),
+	 (584,false,'contact.conttype',true,false,false,'Contact Type','CONTACTTYPE',NULL,0,'50',4),
+	 (585,false,'courses.courseinst',false,false,false,'Course Instructor','COURSE INSTRUCTOR',NULL,0,'50',4),
+	 (586,false,'courses.coursename',false,false,false,'Course Name','COURSE NAME',NULL,0,'50',4),
+	 (587,false,'courses.coursenum',false,true,false,'Course Number','COURSE NUMBER',NULL,0,'50',4),
+	 (588,false,'main.custom1',false,false,false,'Custom Field 1','CUSTOM1',NULL,0,'50',4),
+	 (589,false,'main.custom2',false,false,false,'Custom Field 2','CUSTOM2',NULL,0,'50',4),
+	 (590,false,'yearly.custom3',false,false,false,'Custom Field 3','CUSTOM3',NULL,0,'50',4);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (591,false,'yearly.custom4',false,false,false,'Custom Field 4','CUSTOM4',NULL,0,'50',4),
+	 (592,false,'maincfields.customname',true,true,false,'Custom Field Names','CUSTOMFIELDNAME',NULL,0,'50',4),
+	 (593,true,NULL,true,true,true,'Custom Field Type','CUSTOMFIELDTYPE',NULL,0,'50',4),
+	 (594,false,'classes.days',false,false,false,'Days','DAYS',NULL,0,'50',4),
+	 (595,true,'main.disconnect',true,false,false,'Disconnected Youth','DISCONNECT',NULL,0,'50',4),
+	 (596,true,'main.docemploy',true,false,false,'Doctorate Employment Activity','DOCEMPLOY',NULL,0,'50',4),
+	 (597,true,'yearly.dualenroll',true,false,false,'Dual Enrollment','DUALENROLL',NULL,0,'50',4),
+	 (598,true,'yearly.decredenti',true,false,false,'Dual Enrollment Credentials','DECREDENTI',NULL,0,'50',4),
+	 (599,false,'main.eligtype',false,false,false,'Eligibility Type','ELIGIBILITY TYPE',NULL,0,'50',4),
+	 (600,true,'yearly.employ',true,false,false,'Employment','EMPLOY',NULL,0,'50',4);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (601,true,'yearlychild.servalue',true,true,false,'End Status','ENDSTATUS',NULL,4,'50',4),
+	 (602,true,NULL,true,false,false,'English Instructions','ENGLISH',NULL,0,'50',4),
+	 (603,false,'main.ethnictype',false,false,false,'Ethnic Type (National Origin)','ETHNIC TYPE',NULL,0,'50',4),
+	 (604,true,'yearly.fafsa',true,false,false,'FAFSA completion','FAFSA',NULL,0,'50',4),
+	 (605,true,'main.finaidrecd',true,false,false,'Financial Aid','FINAIDRECD',NULL,0,'50',4),
+	 (606,false,'yearly.finaidname',false,false,false,'Financial Aid Name','FINANCIAL AID NAME',NULL,0,'50',4),
+	 (607,true,'yearly.finaidreas',true,false,false,'Financial Aid Un-met Reason','FINAIDREAS',NULL,0,'50',4),
+	 (608,false,'yearly.finaidunme',false,false,false,'Financial Aid Unmet Name','FINANCIAL AID UNMET',NULL,0,'50',4),
+	 (609,true,NULL,true,false,false,'Foreign Language Instructions','FOREIGNLANGUAGE',NULL,0,'50',4),
+	 (610,true,'eddata.contfreq',true,false,false,'Frequency of contacts between participants','CONTFREQ',NULL,0,'50',4);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (611,true,'yearly.fundsource',true,false,false,'Funding Source','FUNDSOURCE',NULL,0,'50',4),
+	 (612,true,'yearly.gradelevel',true,false,false,'Grade Level (at end of reporting period)','GRADELEVEL',NULL,0,'50',4),
+	 (613,true,'yearly.gradestart',true,false,false,'Grade Level (at start of reporting period)','GRADESTART',NULL,0,'50',4),
+	 (614,true,'main.enterlevel',true,false,false,'Grade Level (at time of first entry into project)','ENTERLEVEL',NULL,0,'50',4),
+	 (615,true,'yearly.hsgradepro',true,false,false,'Grade Progression Over Year','GRADEPRO',NULL,0,'50',4),
+	 (616,true,'yearly.gradassist',true,false,false,'Graduate Assistantships','GRADASSIST',NULL,0,'50',4),
+	 (617,true,'yearly.gradstudyl',true,false,false,'Graduate Current Year of Study','GRADSTUDYL',NULL,0,'50',4),
+	 (618,true,'main.gdegree',true,false,false,'Graduate Degree Earned','GDEGREE',NULL,0,'50',4),
+	 (619,false,'graduated.degreein',true,false,false,'Graduate Degree In','DEGREEIN',NULL,0,'50',4),
+	 (620,false,'graduated.gdedustat',true,false,false,'Graduate Educational Status','GRADUATEEDUCATIONALSTATUS',NULL,0,'50',4);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (621,false,'graduated.employtype',true,false,false,'Graduate Employment Type','EMPLOYTYPE',NULL,0,'50',4),
+	 (622,true,'main.gradadm',true,false,false,'Graduate School Admissions Test','GRADADM',NULL,0,'50',4),
+	 (623,true,'yearly.enrollobj',true,false,false,'Graduate School Enrollment Objective','ENROLLOBJ',NULL,0,'50',4),
+	 (624,true,'yearly.gpersist',true,false,false,'Graduate Student Persistence Status','GPERSIST',NULL,0,'50',4),
+	 (625,true,'main.bdegreeco',true,false,false,'Graduating Cohort Year of Bachelor''s Degree','BDEGREECO',NULL,0,'50',4),
+	 (626,true,'main.yearcogrd',true,false,false,'Graduation Cohort Year','YEARCOGRD',NULL,0,'50',4),
+	 (627,false,'main.healthname',false,false,false,'Health Name','HEALTH NAME',NULL,0,'50',4),
+	 (628,true,'yearly.hsgradstat',true,false,false,'High School Graduation Status','GRADSTATUS',NULL,0,'50',4),
+	 (629,false,'main.incomelev',false,false,false,'Income Level','INCOME LEVEL',NULL,0,'50',4),
+	 (630,false,'main.incomesou',false,false,false,'Income Source','INCOME SOURCE',NULL,0,'50',4);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (631,true,'yearly.initiative',true,false,false,'Initiative','INITIATIVE',NULL,0,'50',4),
+	 (632,true,'yearly.mcintern',true,false,false,'Internship','INTERN',NULL,0,'50',4),
+	 (633,false,'labservice.labserid',true,false,true,'Lab Service','LABSERVICE',NULL,0,'50',4),
+	 (634,true,'yearly.partlength',true,false,false,'Length of Project Participation','PARTLENGTH',NULL,0,'50',4),
+	 (635,true,'yearly.mcnmajor',true,false,false,'Major of Graduate Study','MCNMAJOR',NULL,0,'50',4),
+	 (636,false,'main.marrstatus',true,false,false,'Marital Status','MARITALSTATUS',NULL,0,'50',4),
+	 (637,true,NULL,true,false,false,'Mathematics Instructions/ Tutorials','MATH',NULL,0,'50',4),
+	 (638,false,'classes.meettime',false,false,false,'Meeting Time','MEETING TIME',NULL,0,'50',4),
+	 (639,false,'usermessages.msgstatus',true,false,false,'Message Priority Type','MSGSTATUS',NULL,0,'50',4),
+	 (640,false,'graduated.milirank',false,false,false,'Military Rank','MILITARY RANK',NULL,0,'50',4);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (641,false,'graduated.militaryty',true,false,false,'Military Type','MILITARYTYPE',NULL,0,'50',4),
+	 (642,true,'yearlychild.servalue',true,true,false,'Old End Status-For TS and EOC (prior to 2006-07)','OLDENDSTATUS',NULL,7,'50',4),
+	 (643,false,'mainchild.ptitle',false,false,false,'Parent/ Guardian Relationship','PARENT RELATION',NULL,0,'50',4),
+	 (644,true,'yearly.projretain',true,false,false,'Participant Retention in Project','PROJRETAIN',NULL,0,'50',4),
+	 (645,true,'yearly.endstatus',true,false,false,'Participant Status (at end of Reporting Period)','PARTSTATUSEND',NULL,0,'50',4),
+	 (646,true,'yearly.partlevel',true,false,false,'Participation Level','PARTLEVEL',NULL,0,'50',4),
+	 (647,true,'yearly.persistend',true,false,false,'Persistence Graduation Status at end of year','PERSISTEND',NULL,0,'50',4),
+	 (648,true,'yearly.persiststa',true,false,false,'Persistence Status at beginning at next year','PERSISTSTA',NULL,0,'50',4),
+	 (649,true,'yearly.pscomplete',true,false,false,'Postsecondary Completion Objective','PSCOMPLETE',NULL,0,'50',4),
+	 (650,true,'yearly.psenroll',true,false,false,'Postsecondary Enrollment Objective','PSENROLL',NULL,0,'50',4);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (651,true,'yearly.pseterm',true,false,false,'Postsecondary Grading Period','PSETERM',NULL,0,'50',4),
+	 (652,true,'yearly.persistden',true,false,false,'Postsecondary Persistence Objective-Denominator','PERSISTDEN',NULL,0,'50',4),
+	 (653,true,'yearly.persistnum',true,false,false,'Postsecondary Persistence Objective-Numerator','PERSISTNUM',NULL,0,'50',4),
+	 (654,true,'yearly.stemdegree',true,false,false,'Postsecondary STEM Degree','STEMDEGREE',NULL,0,'50',4),
+	 (655,false,'lablog.visitreason',false,false,false,'Reason for Visit','VISIT REASON',NULL,0,'50',4),
+	 (656,true,'yearly.greason',true,false,false,'Reason left Graduate School','GREASON',NULL,0,'50',4),
+	 (657,true,'yearly.noenreason',true,false,false,'Reason Not Enrolled','NOENREASON',NULL,0,'50',4),
+	 (658,true,'main.vetscherea',true,false,false,'Reason of Recheduling','VETSCHEREA',NULL,0,'50',4),
+	 (659,true,'yearly.recupdated',true,false,false,'Record Updated','RECUPDATED',NULL,0,'50',4),
+	 (660,false,'main.referedby',false,false,false,'Referred By','REFERRED BY',NULL,0,'50',4);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (661,true,'yearly.mcresearch
+',true,false,false,'Research Activities','RESEARCH',NULL,0,'50',4),
+	 (662,true,'main.vetrevsche',true,false,false,'Revised Scheduled Completion Year','VETREVSCHE',NULL,0,'50',4),
+	 (663,true,'yearly.rigorous',true,false,false,'Rigorous Enrollment','RIGOROUS',NULL,0,'50',4),
+	 (664,false,'classes.room',false,false,false,'Room','ROOM',NULL,0,'50',4),
+	 (665,true,'main.vetsche',true,false,false,'Scheduled Completion Year','VETSCHE',NULL,0,'50',4),
+	 (666,true,'yearly.mcscholar',true,false,false,'Scholarly Activity','SCHOLAR',NULL,0,'50',4),
+	 (667,true,NULL,true,false,false,'Science Instruction/Tutorials','SCIENCE',NULL,0,'50',4),
+	 (668,true,'yearly.schpersist',true,false,false,'Secondary School Retention','SCHPERSIST',NULL,0,'50',4),
+	 (669,false,'staff.stfcodes',false,false,false,'Staff Codes','STAFF CODES',NULL,0,'50',4),
+	 (670,true,NULL,true,false,false,'Standing Group Type (APR Column)','STANDINGGROUPTYPE',NULL,0,'50',4);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (671,true,'main.statetest',true,false,false,'State-Developed Test to Measure Academic Skills','STATETEST',NULL,0,'50',4),
+	 (672,true,'main.mcstem',true,false,false,'STEM Major','MCSTEM',NULL,0,'50',4),
+	 (673,true,'yearly.sumbridge',true,false,false,'Summer Bridge','SUMBRIDGE',NULL,0,'50',4),
+	 (674,false,NULL,false,false,true,'Teacher','TEACHER',NULL,0,'50',4),
+	 (675,true,'yearly.trackcomp',true,false,false,'Tracking Completed','TRACKCOMP',NULL,0,'50',4),
+	 (676,true,'main.track',true,false,false,'Tracking Graduate','TRACK',NULL,0,'50',4),
+	 (677,true,'yearly.transfers',true,false,false,'Transfers','TRANSFERS',NULL,0,'50',4),
+	 (678,false,'yearly.tutor',false,false,true,'Tutor','TUTOR',NULL,0,'50',4),
+	 (679,true,'yearly.testtype',true,false,false,'Type of Standarized Tests','TESTTYPE',NULL,0,'50',4),
+	 (680,true,'eddata.summerresi',true,false,false,'UB,UBMS,VUB Summer residential Program Type','SUMMERRESI',NULL,0,'50',4);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (681,true,'eddata.regional',true,false,false,'UBMS Project type','REGIONAL',NULL,0,'50',4),
+	 (682,true,'yearly.vgradelev',true,false,false,'Veteran Educational Status (at end)','VGRADELEVEL',NULL,0,'50',4),
+	 (683,true,'main.vfinaidrec',true,false,false,'Veteran Financial Aid','VFINAIDREC',NULL,0,'50',4),
+	 (684,false,'formslog.formname',false,false,false,'Wallet Name','Wallet Name',NULL,0,'50',4),
+	 (685,true,NULL,true,false,false,'Yearly Child Service Heading','SERHEADING',NULL,0,'50',4),
+	 (686,true,NULL,true,false,false,'Yearly Child Service Type','SERTYPE',NULL,0,'50',4),
+	 (687,true,NULL,true,false,false,'Yes-No Options','YESNO',NULL,0,'50',4),
+	 (688,false,'contactchild.activityid
+yearlychild.servalue',true,true,true,'Activity','ACTIVITY','Activity~Activity',1,'50~50',4),
+	 (689,true,'yearlychild.servalue
+contact.aprsubject',true,true,false,'APR Subject Types','APR SUBJECT','APR Subject Types~APR Subject Types',6,'50~50',4),
+	 (690,false,'botform_submission.FORM_NAME
+BOTFORM_MAINTENANCE.FORM_NAME',false,false,false,'BOT Form Name','BOT FORM NAME','BOT Form Name~BOT Form Name',0,'50~50',4);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (691,true,'main.highdegree
+yearly.degree',true,false,false,'Degree/Certificate Completed','HIGHDEGREE','Degree/Certificate Completed~Degree/Certificate Undergraduate Completed',0,'50~50',4),
+	 (692,true,'yearly.enroll
+main.enterenrol',true,false,false,'Enrollment Status','ENROLL','Enrollment Status (at the end of the academic year)~Enrollment Status (in academic year first served)',0,'50~50',4),
+	 (693,false,'exam.examname
+examchild.examname',false,false,false,'Exam Name','EXAM NAME','Exam Name~Exam Name',0,'50~50',4),
+	 (694,false,'yearly.standing
+semester.standing',true,false,true,'Grade / Standing Type','STANDING','Standing~Standing',0,'50~50',4),
+	 (695,true,'main.lepentry
+main.leplastser',true,false,false,'Limited English Proficiency Status','LIMITEDENGPRO','Limited English Proficiency (Date of First Participation)~Limited English Proficiency (Date of Last Service)',0,'50~50',4),
+	 (696,false,'yearly.major
+graduated.major',false,false,false,'Major','MAJOR','Major~Major',0,'50~50',4),
+	 (697,false,'main.sitelocate
+appusers.sitelocate',false,false,false,'Site Location','SITE LOCATION','Site Location~Site Location',0,'50~50',4),
+	 (698,false,'yearly.counsel
+yearly.tutor',false,true,true,'Staff','STAFF','Staff~Tutor',0,'50~50',4),
+	 (699,true,'main.staterlagr
+main.statemathg',true,false,false,'State Grade level in which student was Assessed','STATE10GRADE','Grade level when Assessed for State 10th Reading Standard~Grade level when Assessed for State 10th Math Standard',0,'50~50',4),
+	 (700,true,'main.state8rla
+main.state8math',true,false,false,'State Met 8th Grade Achievement Standard Options','STATE8MET','Met 8th Grade State Reading Language Art Standard~Met 8th Grade State Math Standard',0,'50~50',4);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (701,false,'contact.stfid
+classes.stfid',true,true,true,'STFID - DO NOT USE','STFID','Stfid~Stfid',0,'50~50',4),
+	 (702,false,'classes.subject
+contact.subject',false,false,false,'Subject ( Classes/ Contacts)','SUBJECT','Subject~Subject',0,'50~50',4),
+	 (703,false,'formslog.formtype
+yearlychild.servalue',true,true,false,'Wallet Type','Wallet Type','Wallet Type Formslog ~Wallet Type Yearly Child',5,'50~50',4),
+	 (704,false,'main.schoolent
+yearly.school
+main.schoolend',false,false,true,'School Name/Code','SCHOOL','School (Entry into Project)~School(Current Fiscal Year)~School (End of Project)',0,'50~50~50',4),
+	 (705,false,'classes.semester
+courses.semester
+semester.semester',true,true,false,'Semester Type','SEMESTER','Semester~Semester~Semester',0,'50~50~50',4),
+	 (706,false,'yearly.counsel
+graduated.counsel',false,false,true,'Counselor','COUNSELOR','Counselor~Counselor',0,'50~50~50~50',4),
+	 (707,true,'main.gpascale
+main.msgpascale
+yearly.gpaendsc
+yearly.gpastartsc',true,false,false,'GPA Scale','GPASCALE','GPA HS Scale (Entry into Project)~GPA MS Scale(Entry into Project)~GPA Scale (at end of Reporting Period)~GPA Scale (at start of Reporting Period)',0,'50~50~50~50',4),
+	 (708,false,'staff.stfcustom1
+staff.stfcustom2
+staff.stfcustom3
+staff.stfcustom4',false,false,false,'Staff Custom Field','STAFF CUSTOM','Staff Custom 1~Staff Custom 2~ Staff Custom 3~Staff Custom 4',0,'50~50~50~50',4),
+	 (709,true,'main.state10rla
+main.state10mat
+yearly.state10rla
+yearly.state10mat',true,false,false,'State Met 10th Grade Achievement Standard Options','STATE10MET','Met 10th Grade State Reading Language Art Standard~Met 10th Grade State Math Standard~Met HS State Acad. Achievement Standard at Proficient Level—Reading/language arts~Met HS State Acad. Achievement Standard at Proficient Level—Math',0,'50~50~50~50',4),
+	 (710,true,'main.city
+mainchild.pcity
+eddata.city
+graduated.city
+school.city
+staff.stfcity',false,false,false,'City','CITY','City~City~City~City~City~City',0,'50~50~50~50~50~50',4);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (711,true,'main.state
+eddata.state
+graduated.state
+main.dlstate
+mainchild.pstate
+school.state
+staff.stfstate
+staffchild.stfstate',false,false,false,'State (Postal Address)','STATE','State (Postal Address)~State~State~State (Driving License)~State~State~State~State',0,'50~50~50~50~50~50~50~50',4),
+	 (712,false,'main.phn1ty
+main.phn2ty
+mainchild.pphn1ty
+mainchild.pphn2ty
+mainchild.pphn3ty
+staff.stfphn1ty
+staff.stfphn2ty
+staff.stfphn3ty
+staffchild.stfphn1ty
+staffchild.stfphn2ty
+staffchild.stfphn3ty',false,false,false,'Phone Type','PHONE TYPE','Phone Type 1~Phone Type 2~Phone Type 1~Phone Type 2~Phone Type 3~Phone Type 1~Phone Type 2~Phone Type 3~Phone Type 1~Phone Type 2~Phone Type 3',0,'50~50~50~50~50~50~50~50~50~50',4),
+	 (713,true,'main.gender',true,false,false,'APR 09 - Gender','GENDER',NULL,0,'10',5),
+	 (714,true,'main.ethnic',true,false,false,'APR 10 - 15 - Ethnicity /Race','ETHNIC',NULL,0,'10',5),
+	 (715,true,'main.eligibilit',true,false,false,'APR 16 - Eligibility','ELIGIBILITY',NULL,0,'10',5),
+	 (716,true,'main.atrstdtest',true,false,false,'APR 17 - At Risk Reading or Math','ATRSTDTEST',NULL,0,'10',5),
+	 (717,true,'main.atrlowgpa',true,false,false,'APR 18 - At Risk - Low GPA','ATRLOWGPA',NULL,0,'10',5),
+	 (718,true,'main.atralgebra',true,false,false,'APR 19 - At Risk - Pre-Algebra or Algebra','ATRALGEBRA',NULL,0,'10',5),
+	 (719,true,'main.disconnect',true,false,false,'APR 21 - Disconnected Youth','DISCONNECT',NULL,0,'10',5),
+	 (720,true,'main.acadneed',true,false,false,'APR 22 - Other Academic Need','ACADNEED',NULL,0,'10',5);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (721,true,'main.enterlevel',true,false,false,'APR 25 - Grade Level at First Service','ENTERLEVEL',NULL,0,'10',5),
+	 (722,true,'yearly.deceased',true,false,false,'APR 26 - Deceased or Incapacitated','DECEASED',NULL,0,'10',5),
+	 (723,true,'yearly.partstatus',true,false,false,'APR 27 - Participant Status','PARTSTATUS',NULL,0,'10',5),
+	 (724,true,'yearly.partlevel',true,false,false,'APR 28 - Participation Level','PARTLEVEL',NULL,0,'10',5),
+	 (725,true,'yearly.othertrio',true,false,false,'APR 29 - Served by Other Federally Funded Program','OTHERTRIO',NULL,0,'10',5),
+	 (726,true,'yearly.gradestart',true,false,false,'APR 30 - Grade Level at starting of this fiscal year','GRADESTART',NULL,0,'10',5),
+	 (727,true,'yearly.gradelevel',true,false,false,'APR 31 - Grade Level at the beginning of the following fiscal year','GRADELEVEL',NULL,0,'10',5),
+	 (728,true,'yearly.hsgradstat',true,false,false,'APR 34 - HS Graduation Status','GRADSTATUS',NULL,0,'10',5),
+	 (729,true,'yearly.rigorous',true,false,false,'APR 36 - Rigorous Program','RIGOROUS',NULL,0,'10',5),
+	 (730,true,'yearly.schpersist',true,false,false,'APR 37 - Secondary School Retention Objective-Numerator for reporting year','SCHPERSIST',NULL,0,'10',5);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (731,true,'yearly.apcourse',true,false,false,'APR 40 - Advanced Placement Course Completed','APCOURSE',NULL,0,'10',5),
+	 (732,true,'yearly.dualenroll',true,false,false,'APR 41 - Dual Enrollment','DUALENROLL',NULL,0,'10',5),
+	 (733,true,'yearly.decredenti',true,false,false,'APR 42 - Dual Enrollment Credentials Completed','DECREDENTI',NULL,0,'10',5),
+	 (734,true,'yearly.advancemat',true,false,false,'APR 43 - Advanced Math Courses Completed ','ADVANCEMAT',NULL,0,'10',5),
+	 (735,true,'yearly.fafsa',true,false,false,'APR 44 - FAFSA completion','FAFSA',NULL,0,'10',5),
+	 (736,true,'yearly.reasonleav',true,false,false,'APR 46 - Reason for Leaving Program','REASON',NULL,0,'10',5),
+	 (737,true,'yearly.employ',true,false,false,'APR 48 - Employment','EMPLOY',NULL,0,'10',5),
+	 (738,true,'yearly.selftran',true,false,false,'APR 52 - Source of Postsecondary Education Information','SELFTRAN',NULL,0,'10',5),
+	 (739,true,'yearly.collgradel',true,false,false,'APR 56 - College Status Beginning of Next Academic Year','COLLGRADE',NULL,0,'10',5),
+	 (740,true,'yearly.certi',true,false,false,'APR 57 - Certificate/ Diploma Completed','CERTI',NULL,0,'10',5);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (741,true,'yearly.adegree',true,false,false,'APR 59 - Associate Degree Attained','ADEGREE',NULL,0,'10',5),
+	 (742,true,'yearly.psenroll',true,false,false,'APR 63 - Postsecondary Enrollment Objective-for Current Reporting Year','PSENROLL',NULL,0,'10',5),
+	 (743,true,'yearly.psremediat',true,false,false,'APR 64 - Postsecondary Remediation','PSREMEDIAT',NULL,0,'10',5),
+	 (744,true,'yearly.pscomplete',true,false,false,'APR 65 - Postsecondary Completion Objective - Numerator','PSCOMPLETE',NULL,0,'10',5),
+	 (745,true,'yearly.stemdegree',true,false,false,'APR 66 - Postsecondary STEM Degree','STEMDEGREE',NULL,0,'10',5),
+	 (746,true,'yearly.state10rla
+yearly.state10mat
+main.state10rla
+main.state10mat',true,false,false,'APR 38/39 - Met HS State Achievement Level','STATE10MET','APR 38 -  Met HS State Achievement Level-Reading/Language Arts~APR 39 - Met HS State Achievement Level-Math~Met 10th Grade State Reading Language Art Standard~Met 10th Grade State Math Standard',0,'10~10~50~50',5),
+	 (747,true,'main.lepentry
+main.leplastser',true,false,false,'APR 20 - Limited English Proficiency - at Start','LIMITEDENGPRO','APR 20 - Limited English Proficiency - at Start~Limited English Proficiency (Date of Last Service)',0,'10~50',5),
+	 (748,true,'yearly.bdegree
+main.bdegree',true,false,false,'APR 61 - Bachelor''s Degree Attained','BDEGREE','APR 61 - Bachelor''s Degree Attained~Bachelors Degree',0,'10~50',5),
+	 (749,false,'main.schoolent
+yearly.school
+main.schoolend',false,false,true,'APR 23 - School (Entry School)','SCHOOL','APR 23 - Entry School~School(Current Fiscal Year)~School (End of Project)',0,'10~50~50',5),
+	 (750,false,'main.collegeent
+yearly.college
+main.gradcoll
+main.gdoccoll',false,false,true,'APR 55 - College','COLLEGE','APR 55 - First College Attended~College~Graduate School First Attended~Doctorate College',0,'10~50~50~50',5);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (751,true,'yearly.acadstand',true,false,false,'Academic Standing','ACADSTAND',NULL,0,'50',5),
+	 (752,true,'activity.actgid',true,false,true,'Activity Group','ACTIVITYGROUP',NULL,2,'50',5),
+	 (753,true,NULL,true,false,false,'Activity Group Type','ACTIVITYGROUPTYPE',NULL,0,'50',5),
+	 (754,false,'yearly.advisor',false,false,false,'Advisor','ADVISOR',NULL,0,'50',5),
+	 (755,false,'asset.amake',false,false,false,'Asset Make','ASSET MAKE',NULL,0,'50',5),
+	 (756,false,'asset.amodel',false,false,false,'Asset Model','ASSET MODEL',NULL,0,'50',5),
+	 (757,false,'asset.astatus',true,false,false,'Asset Status','ASSETSTATUS',NULL,0,'50',5),
+	 (758,false,'asset.atype',false,false,false,'Asset Type','ASSET TYPE',NULL,0,'50',5),
+	 (759,true,'main.atrschool',true,false,false,'At Risk Out of School','ATRSCHOOL',NULL,0,'50',5),
+	 (760,true,'main.commcoll',true,false,false,'Attended Community College','COMMCOLL',NULL,0,'50',5);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (761,false,'main.birthplace',false,false,false,'Birth Place','BIRTH PLACE',NULL,0,'50',5),
+	 (762,false,'botform_submission.SUBMISSION_STATUS',true,false,false,'BOT Form Status','BOTFORMSTATUS',NULL,0,'50',5),
+	 (763,true,'main.vetschecir',true,false,false,'Circumstances of Recheduling','VETSCHECIR',NULL,0,'50',5),
+	 (764,false,'main.codes',false,false,false,'Codes','CODES',NULL,0,'50',5),
+	 (765,true,'main.cohortyear',true,false,false,'Cohort Year','COHORTYEAR',NULL,0,'50',5),
+	 (766,true,'main.enterexam',true,false,false,'College Entrance Exam','ENTEREXAM',NULL,0,'50',5),
+	 (767,true,'yearly.collready',true,false,false,'College Ready','COLLREADY',NULL,0,'50',5),
+	 (768,true,'yearly.collegety',true,false,false,'College Type','COLLEGETYPE',NULL,0,'50',5),
+	 (769,true,NULL,true,false,false,'Compare Symbols','COMPARE',NULL,0,'50',5),
+	 (770,true,'yearly.completeyr',true,false,false,'Completion Year','COMPLETEYR',NULL,0,'50',5);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (771,true,NULL,true,false,false,'Component Type','COMPONENT',NULL,0,'50',5),
+	 (772,true,NULL,true,false,false,'Component Type-APR','APRCOMPONENT',NULL,0,'50',5),
+	 (773,true,'contact.stftype',true,false,false,'Contact Staff Type','CONTACTSTAFFTYPE',NULL,0,'50',5),
+	 (774,false,'contact.conttype',true,false,false,'Contact Type','CONTACTTYPE',NULL,0,'50',5),
+	 (775,false,'courses.courseinst',false,false,false,'Course Instructor','COURSE INSTRUCTOR',NULL,0,'50',5),
+	 (776,false,'courses.coursename',false,false,false,'Course Name','COURSE NAME',NULL,0,'50',5),
+	 (777,false,'courses.coursenum',false,true,false,'Course Number','COURSE NUMBER',NULL,0,'50',5),
+	 (778,false,'main.custom1',false,false,false,'Custom Field 1','CUSTOM1',NULL,0,'50',5),
+	 (779,false,'main.custom2',false,false,false,'Custom Field 2','CUSTOM2',NULL,0,'50',5),
+	 (780,false,'yearly.custom3',false,false,false,'Custom Field 3','CUSTOM3',NULL,0,'50',5);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (781,false,'yearly.custom4',false,false,false,'Custom Field 4','CUSTOM4',NULL,0,'50',5),
+	 (782,false,'maincfields.customname',true,true,false,'Custom Field Names','CUSTOMFIELDNAME',NULL,0,'50',5),
+	 (783,true,NULL,true,true,true,'Custom Field Type','CUSTOMFIELDTYPE',NULL,0,'50',5),
+	 (784,false,'classes.days',false,false,false,'Days','DAYS',NULL,0,'50',5),
+	 (785,true,'main.docemploy',true,false,false,'Doctorate Employment Activity','DOCEMPLOY',NULL,0,'50',5),
+	 (786,false,'main.eligtype',false,false,false,'Eligibility Type','ELIGIBILITY TYPE',NULL,0,'50',5),
+	 (787,true,'yearlychild.servalue',true,true,false,'End Status','ENDSTATUS',NULL,4,'50',5),
+	 (788,true,NULL,true,false,false,'English Instructions','ENGLISH',NULL,0,'50',5),
+	 (789,false,'main.ethnictype',false,false,false,'Ethnic Type (National Origin)','ETHNIC TYPE',NULL,0,'50',5),
+	 (790,true,'main.finaidrecd',true,false,false,'Financial Aid','FINAIDRECD',NULL,0,'50',5);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (791,false,'yearly.finaidname',false,false,false,'Financial Aid Name','FINANCIAL AID NAME',NULL,0,'50',5),
+	 (792,true,'yearly.finaidreas',true,false,false,'Financial Aid Un-met Reason','FINAIDREAS',NULL,0,'50',5),
+	 (793,false,'yearly.finaidunme',false,false,false,'Financial Aid Unmet Name','FINANCIAL AID UNMET',NULL,0,'50',5),
+	 (794,true,NULL,true,false,false,'Foreign Language Instructions','FOREIGNLANGUAGE',NULL,0,'50',5),
+	 (795,true,'eddata.contfreq',true,false,false,'Frequency of contacts between participants','CONTFREQ',NULL,0,'50',5),
+	 (796,true,'yearly.fundsource',true,false,false,'Funding Source','FUNDSOURCE',NULL,0,'50',5),
+	 (797,true,'yearly.hsgradepro',true,false,false,'Grade Progression Over Year','GRADEPRO',NULL,0,'50',5),
+	 (798,true,'yearly.gradassist',true,false,false,'Graduate Assistantships','GRADASSIST',NULL,0,'50',5),
+	 (799,true,'yearly.gradstudyl',true,false,false,'Graduate Current Year of Study','GRADSTUDYL',NULL,0,'50',5),
+	 (800,true,'main.gdegree',true,false,false,'Graduate Degree Earned','GDEGREE',NULL,0,'50',5);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (801,false,'graduated.degreein',true,false,false,'Graduate Degree In','DEGREEIN',NULL,0,'50',5),
+	 (802,false,'graduated.gdedustat',true,false,false,'Graduate Educational Status','GRADUATEEDUCATIONALSTATUS',NULL,0,'50',5),
+	 (803,false,'graduated.employtype',true,false,false,'Graduate Employment Type','EMPLOYTYPE',NULL,0,'50',5),
+	 (804,true,'main.gradadm',true,false,false,'Graduate School Admissions Test','GRADADM',NULL,0,'50',5),
+	 (805,true,'yearly.enrollobj',true,false,false,'Graduate School Enrollment Objective','ENROLLOBJ',NULL,0,'50',5),
+	 (806,true,'yearly.gpersist',true,false,false,'Graduate Student Persistence Status','GPERSIST',NULL,0,'50',5),
+	 (807,true,'main.bdegreeco',true,false,false,'Graduating Cohort Year of Bachelor''s Degree','BDEGREECO',NULL,0,'50',5),
+	 (808,true,'main.yearcogrd',true,false,false,'Graduation Cohort Year','YEARCOGRD',NULL,0,'50',5),
+	 (809,false,'main.healthname',false,false,false,'Health Name','HEALTH NAME',NULL,0,'50',5),
+	 (810,true,'yearly.vettest',true,false,false,'Improved Score on Standardized Test','VETTEST',NULL,0,'50',5);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (811,false,'main.incomelev',false,false,false,'Income Level','INCOME LEVEL',NULL,0,'50',5),
+	 (812,false,'main.incomesou',false,false,false,'Income Source','INCOME SOURCE',NULL,0,'50',5),
+	 (813,true,'yearly.initiative',true,false,false,'Initiative','INITIATIVE',NULL,0,'50',5),
+	 (814,true,'yearly.mcintern',true,false,false,'Internship','INTERN',NULL,0,'50',5),
+	 (815,false,'labservice.labserid',true,false,true,'Lab Service','LABSERVICE',NULL,0,'50',5),
+	 (816,true,'yearly.partlength',true,false,false,'Length of Project Participation','PARTLENGTH',NULL,0,'50',5),
+	 (817,true,'yearly.mcnmajor',true,false,false,'Major of Graduate Study','MCNMAJOR',NULL,0,'50',5),
+	 (818,false,'main.marrstatus',true,false,false,'Marital Status','MARITALSTATUS',NULL,0,'50',5),
+	 (819,true,NULL,true,false,false,'Mathematics Instructions/ Tutorials','MATH',NULL,0,'50',5),
+	 (820,false,'classes.meettime',false,false,false,'Meeting Time','MEETING TIME',NULL,0,'50',5);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (821,false,'usermessages.msgstatus',true,false,false,'Message Priority Type','MSGSTATUS',NULL,0,'50',5),
+	 (822,false,'graduated.milirank',false,false,false,'Military Rank','MILITARY RANK',NULL,0,'50',5),
+	 (823,false,'graduated.militaryty',true,false,false,'Military Type','MILITARYTYPE',NULL,0,'50',5),
+	 (824,true,'yearlychild.servalue',true,true,false,'Old End Status-For TS and EOC (prior to 2006-07)','OLDENDSTATUS',NULL,7,'50',5),
+	 (825,false,'mainchild.ptitle',false,false,false,'Parent/ Guardian Relationship','PARENT RELATION',NULL,0,'50',5),
+	 (826,true,'yearly.projretain',true,false,false,'Participant Retention in Project','PROJRETAIN',NULL,0,'50',5),
+	 (827,true,'yearly.endstatus',true,false,false,'Participant Status (at end of Reporting Period)','PARTSTATUSEND',NULL,0,'50',5),
+	 (828,true,'yearly.persistend',true,false,false,'Persistence Graduation Status at end of year','PERSISTEND',NULL,0,'50',5),
+	 (829,true,'yearly.persiststa',true,false,false,'Persistence Status at beginning at next year','PERSISTSTA',NULL,0,'50',5),
+	 (830,true,'yearly.pseterm',true,false,false,'Postsecondary Grading Period','PSETERM',NULL,0,'50',5);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (831,true,'yearly.persistden',true,false,false,'Postsecondary Persistence Objective-Denominator','PERSISTDEN',NULL,0,'50',5),
+	 (832,true,'yearly.persistnum',true,false,false,'Postsecondary Persistence Objective-Numerator','PERSISTNUM',NULL,0,'50',5),
+	 (833,false,'lablog.visitreason',false,false,false,'Reason for Visit','VISIT REASON',NULL,0,'50',5),
+	 (834,true,'yearly.greason',true,false,false,'Reason left Graduate School','GREASON',NULL,0,'50',5),
+	 (835,true,'yearly.noenreason',true,false,false,'Reason Not Enrolled','NOENREASON',NULL,0,'50',5),
+	 (836,true,'main.vetscherea',true,false,false,'Reason of Recheduling','VETSCHEREA',NULL,0,'50',5),
+	 (837,true,'yearly.recupdated',true,false,false,'Record Updated','RECUPDATED',NULL,0,'50',5),
+	 (838,true,'yearly.recruit',true,false,false,'Recruitment','RECRUIT',NULL,0,'50',5),
+	 (839,false,'main.referedby',false,false,false,'Referred By','REFERRED BY',NULL,0,'50',5),
+	 (840,true,'yearly.mcresearch
+',true,false,false,'Research Activities','RESEARCH',NULL,0,'50',5);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (841,true,'main.vetrevsche',true,false,false,'Revised Scheduled Completion Year','VETREVSCHE',NULL,0,'50',5),
+	 (842,false,'classes.room',false,false,false,'Room','ROOM',NULL,0,'50',5),
+	 (843,true,'main.vetsche',true,false,false,'Scheduled Completion Year','VETSCHE',NULL,0,'50',5),
+	 (844,true,'yearly.mcscholar',true,false,false,'Scholarly Activity','SCHOLAR',NULL,0,'50',5),
+	 (845,true,NULL,true,false,false,'Science Instruction/Tutorials','SCIENCE',NULL,0,'50',5),
+	 (846,false,'staff.stfcodes',false,false,false,'Staff Codes','STAFF CODES',NULL,0,'50',5),
+	 (847,true,NULL,true,false,false,'Standing Group Type (APR Column)','STANDINGGROUPTYPE',NULL,0,'50',5),
+	 (848,true,'main.statetest',true,false,false,'State-Developed Test to Measure Academic Skills','STATETEST',NULL,0,'50',5),
+	 (849,true,'main.mcstem',true,false,false,'STEM Major','MCSTEM',NULL,0,'50',5),
+	 (850,true,'yearly.sumbridge',true,false,false,'Summer Bridge','SUMBRIDGE',NULL,0,'50',5);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (851,false,NULL,false,false,true,'Teacher','TEACHER',NULL,0,'50',5),
+	 (852,true,'yearly.trackcomp',true,false,false,'Tracking Completed','TRACKCOMP',NULL,0,'50',5),
+	 (853,true,'main.track',true,false,false,'Tracking Graduate','TRACK',NULL,0,'50',5),
+	 (854,true,'yearly.transfers',true,false,false,'Transfers','TRANSFERS',NULL,0,'50',5),
+	 (855,false,'yearly.tutor',false,false,true,'Tutor','TUTOR',NULL,0,'50',5),
+	 (856,true,'yearly.testtype',true,false,false,'Type of Standarized Tests','TESTTYPE',NULL,0,'50',5),
+	 (857,true,'eddata.summerresi',true,false,false,'UB,UBMS,VUB Summer residential Program Type','SUMMERRESI',NULL,0,'50',5),
+	 (858,true,'eddata.regional',true,false,false,'UBMS Project type','REGIONAL',NULL,0,'50',5),
+	 (859,true,'yearly.vcalllen',true,false,false,'Veteran Call to Active Duty Length','VCALLLEN',NULL,0,'50',5),
+	 (860,true,'yearly.vcall',true,false,false,'Veteran Called to Active Duty Status','VCALL',NULL,0,'50',5);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (861,true,'yearly.vgradelev',true,false,false,'Veteran Educational Status (at end)','VGRADELEVEL',NULL,0,'50',5),
+	 (862,true,'main.venterlev',true,false,false,'Veteran Educational Status (Entry into Project)','VENTERLEVEL',NULL,0,'50',5),
+	 (863,true,'main.venterjob',true,false,false,'Veteran Employment Status','VENTERJOB',NULL,0,'50',5),
+	 (864,true,'main.vfinaidrec',true,false,false,'Veteran Financial Aid','VFINAIDREC',NULL,0,'50',5),
+	 (865,false,'formslog.formname',false,false,false,'Wallet Name','Wallet Name',NULL,0,'50',5),
+	 (866,true,NULL,true,false,false,'Yearly Child Service Heading','SERHEADING',NULL,0,'50',5),
+	 (867,true,NULL,true,false,false,'Yearly Child Service Type','SERTYPE',NULL,0,'50',5),
+	 (868,true,NULL,true,false,false,'Yes-No Options','YESNO',NULL,0,'50',5),
+	 (869,false,'contactchild.activityid
+yearlychild.servalue',true,true,true,'Activity','ACTIVITY','Activity~Activity',1,'50~50',5),
+	 (870,true,'yearlychild.servalue
+contact.aprsubject',true,true,false,'APR Subject Types','APR SUBJECT','APR Subject Types~APR Subject Types',6,'50~50',5);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (871,false,'botform_submission.FORM_NAME
+BOTFORM_MAINTENANCE.FORM_NAME',false,false,false,'BOT Form Name','BOT FORM NAME','BOT Form Name~BOT Form Name',0,'50~50',5),
+	 (872,true,'main.highdegree
+yearly.degree',true,false,false,'Degree/Certificate Completed','HIGHDEGREE','Degree/Certificate Completed~Degree/Certificate Undergraduate Completed',0,'50~50',5),
+	 (873,true,'yearly.enroll
+main.enterenrol',true,false,false,'Enrollment Status','ENROLL','Enrollment Status (at the end of the academic year)~Enrollment Status (in academic year first served)',0,'50~50',5),
+	 (874,false,'exam.examname
+examchild.examname',false,false,false,'Exam Name','EXAM NAME','Exam Name~Exam Name ',0,'50~50',5),
+	 (875,false,'yearly.standing
+semester.standing',true,false,true,'Grade / Standing Type','STANDING','Standing~Standing',0,'50~50',5),
+	 (876,false,'yearly.major
+graduated.major',false,false,false,'Major','MAJOR','Major~Major',0,'50~50',5),
+	 (877,false,'main.sitelocate
+appusers.sitelocate',false,false,false,'Site Location','SITE LOCATION','Site Location~Site Location',0,'50~50',5),
+	 (878,false,'yearly.counsel
+yearly.tutor',false,true,true,'Staff','STAFF','Staff~Tutor',0,'50~50',5),
+	 (879,true,'main.staterlagr
+main.statemathg',true,false,false,'State Grade level in which student was Assessed','STATE10GRADE','Grade level when Assessed for State 10th Reading Standard~Grade level when Assessed for State 10th Math Standard',0,'50~50',5),
+	 (880,true,'main.state8rla
+main.state8math',true,false,false,'State Met 8th Grade Achievement Standard Options','STATE8MET','Met 8th Grade State Reading Language Art Standard~Met 8th Grade State Math Standard',0,'50~50',5);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (881,false,'contact.stfid
+classes.stfid',true,true,true,'STFID - DO NOT USE','STFID','Stfid~Stfid',0,'50~50',5),
+	 (882,false,'classes.subject
+contact.subject',false,false,false,'Subject ( Classes/ Contacts)','SUBJECT','Subject~Subject',0,'50~50',5),
+	 (883,false,'formslog.formtype
+yearlychild.servalue',true,true,false,'Wallet Type','Wallet Type','Wallet Type Formslog ~Wallet Type Yearly Child',5,'50~50',5),
+	 (884,false,'classes.semester
+courses.semester
+semester.semester',true,true,false,'Semester Type','SEMESTER','Semester~Semester~Semester',0,'50~50~50',5),
+	 (885,false,'yearly.counsel
+graduated.counsel',false,false,true,'Counselor','COUNSELOR','Counselor~Counselor',0,'50~50~50~50',5),
+	 (886,true,'main.gpascale
+main.msgpascale
+yearly.gpaendsc
+yearly.gpastartsc',true,false,false,'GPA Scale','GPASCALE','GPA HS Scale (Entry into Project)~GPA MS Scale(Entry into Project)~GPA Scale (at end of Reporting Period)~GPA Scale (at start of Reporting Period)',0,'50~50~50~50',5),
+	 (887,false,'staff.stfcustom1
+staff.stfcustom2
+staff.stfcustom3
+staff.stfcustom4',false,false,false,'Staff Custom Field','STAFF CUSTOM','Staff Custom 1~Staff Custom 2~ Staff Custom 3~Staff Custom 4',0,'50~50~50~50',5),
+	 (888,true,'main.city
+mainchild.pcity
+eddata.city
+graduated.city
+school.city
+staff.stfcity',false,false,false,'City','CITY','City~City~City~City~City~City',0,'50~50~50~50~50~50',5),
+	 (889,false,'main.state
+eddata.state
+graduated.state
+main.dlstate
+mainchild.pstate
+school.state
+staff.stfstate
+staffchild.stfstate',false,false,false,'State (Postal Address)','STATE','State (Postal Address)~State~State~State (Driving License)~State~State~State~State',0,'50~50~50~50~50~50~50~50',5),
+	 (890,false,'main.phn1ty
+main.phn2ty
+mainchild.pphn1ty
+mainchild.pphn2ty
+mainchild.pphn3ty
+staff.stfphn1ty
+staff.stfphn2ty
+staff.stfphn3ty
+staffchild.stfphn1ty
+staffchild.stfphn2ty
+staffchild.stfphn3ty',false,false,false,'Phone Type','PHONE TYPE','Phone Type 1~Phone Type 2~Phone Type 1~Phone Type 2~Phone Type 3~Phone Type 1~Phone Type 2~Phone Type 3~Phone Type 1~Phone Type 2~Phone Type 3',0,'50~50~50~50~50~50~50~50~50~50',5);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (891,true,'main.gender',true,false,false,'APR 08 - Gender','GENDER',NULL,0,'10',6),
+	 (892,true,'main.ethnic',true,false,false,'APR 09 - 14 - Ethnicity /Race','ETHNIC',NULL,0,'10',6),
+	 (893,true,'main.eligibilit',true,false,false,'APR 15 - Eligibility','ELIGIBILITY',NULL,0,'10',6),
+	 (894,true,'main.acadneed',true,false,false,'APR 16 - Academic Need','ACADNEED',NULL,0,'10',6),
+	 (895,true,'main.enterlevel',true,false,false,'APR 19 - Entry Grade Level','ENTERLEVEL',NULL,0,'10',6),
+	 (896,true,'main.cohortyear',true,false,false,'APR 21 - Cohort Year','COHORTYEAR',NULL,0,'10',6),
+	 (897,true,'yearly.partstatus',true,false,false,'APR 22 - Participant Status','PARTSTATUS',NULL,0,'10',6),
+	 (898,true,'yearly.acadstand',true,false,false,'APR 24 - Academic Standing','ACADSTAND',NULL,0,'10',6),
+	 (899,true,'yearly.gradestart',true,false,false,'APR 26 - College Grade Level at Start','GRADESTART',NULL,0,'10',6),
+	 (900,true,'yearly.collgradel',true,false,false,'APR 27 - College Grade Level at End','COLLGRADE',NULL,0,'10',6);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (901,true,'yearly.reasonleav',true,false,false,'APR 29 - Reasons for Withdrawal','REASON',NULL,0,'10',6),
+	 (902,true,'yearly.transfers',true,false,false,'APR 30 - Transfer Status','TRANSFERS',NULL,0,'10',6),
+	 (903,true,'yearly.mcnmajor',true,false,false,'APR 33 - Field of Study Degree','MCNMAJOR',NULL,0,'10',6),
+	 (904,true,'yearly.persiststa',true,false,false,'APR 34 - Persistence Status (Beginning of Next Year)','PERSISTSTA',NULL,0,'10',6),
+	 (905,true,'yearly.deceased',true,false,false,'Deceased or Incapacitated','DECEASED',NULL,0,'10',6),
+	 (906,true,'yearly.enroll
+main.enterenrol',true,false,false,'APR 20/23 - Enrollment Status','ENROLL','APR 23 - Enrollment Status at end of year~APR 20 - Enrollment Status (year first served)',0,'10~10',6),
+	 (907,true,'yearly.degree
+main.highdegree',true,false,false,'APR 31 - Degree Completed at Institution','HIGHDEGREE','APR 31 - Undergraduate Degree/Certificate Completed~Degree/Certificate Completed',0,'10~50',6),
+	 (908,true,'activity.actgid',true,false,true,'Activity Group','ACTIVITYGROUP',NULL,2,'50',6),
+	 (909,true,NULL,true,false,false,'Activity Group Type','ACTIVITYGROUPTYPE',NULL,0,'50',6),
+	 (910,true,'yearly.advancemat',true,false,false,'Advanced Math Course','ADVANCEMAT',NULL,0,'50',6);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (911,true,'yearly.apcourse',true,false,false,'Advanced Placement Course','APCOURSE',NULL,0,'50',6),
+	 (912,false,'yearly.advisor',false,false,false,'Advisor','ADVISOR',NULL,0,'50',6),
+	 (913,false,'asset.amake',false,false,false,'Asset Make','ASSET MAKE',NULL,0,'50',6),
+	 (914,false,'asset.amodel',false,false,false,'Asset Model','ASSET MODEL',NULL,0,'50',6),
+	 (915,false,'asset.astatus',true,false,false,'Asset Status','ASSETSTATUS',NULL,0,'50',6),
+	 (916,false,'asset.atype',false,false,false,'Asset Type','ASSET TYPE',NULL,0,'50',6),
+	 (917,true,'yearly.adegree',true,false,false,'Associate Degree','ADEGREE',NULL,0,'50',6),
+	 (918,true,'main.atralgebra',true,false,false,'At Risk Algebra','ATRALGEBRA',NULL,0,'50',6),
+	 (919,true,'main.atrlowgpa',true,false,false,'At Risk Low GPA','ATRLOWGPA',NULL,0,'50',6),
+	 (920,true,'main.atrschool',true,false,false,'At Risk Out of School','ATRSCHOOL',NULL,0,'50',6);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (921,true,'main.atrstdtest',true,false,false,'At Risk Standard Test','ATRSTDTEST',NULL,0,'50',6),
+	 (922,true,'main.commcoll',true,false,false,'Attended Community College','COMMCOLL',NULL,0,'50',6),
+	 (923,false,'main.birthplace',false,false,false,'Birth Place','BIRTH PLACE',NULL,0,'50',6),
+	 (924,false,'botform_submission.SUBMISSION_STATUS',true,false,false,'BOT Form Status','BOTFORMSTATUS',NULL,0,'50',6),
+	 (925,true,'yearly.certi',true,false,false,'Certificate/ Diploma Completed','CERTI',NULL,0,'50',6),
+	 (926,true,'main.vetschecir',true,false,false,'Circumstances of Recheduling','VETSCHECIR',NULL,0,'50',6),
+	 (927,false,'main.codes',false,false,false,'Codes','CODES',NULL,0,'50',6),
+	 (928,true,'main.enterexam',true,false,false,'College Entrance Exam','ENTEREXAM',NULL,0,'50',6),
+	 (929,true,'yearly.collready',true,false,false,'College Ready','COLLREADY',NULL,0,'50',6),
+	 (930,true,'yearly.collegety',true,false,false,'College Type','COLLEGETYPE',NULL,0,'50',6);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (931,true,NULL,true,false,false,'Compare Symbols','COMPARE',NULL,0,'50',6),
+	 (932,true,'yearly.completeyr',true,false,false,'Completion Year','COMPLETEYR',NULL,0,'50',6),
+	 (933,true,NULL,true,false,false,'Component Type','COMPONENT',NULL,0,'50',6),
+	 (934,true,NULL,true,false,false,'Component Type-APR','APRCOMPONENT',NULL,0,'50',6),
+	 (935,true,'contact.stftype',true,false,false,'Contact Staff Type','CONTACTSTAFFTYPE',NULL,0,'50',6),
+	 (936,false,'contact.conttype',true,false,false,'Contact Type','CONTACTTYPE',NULL,0,'50',6),
+	 (937,false,'courses.courseinst',false,false,false,'Course Instructor','COURSE INSTRUCTOR',NULL,0,'50',6),
+	 (938,false,'courses.coursename',false,false,false,'Course Name','COURSE NAME',NULL,0,'50',6),
+	 (939,false,'courses.coursenum',false,true,false,'Course Number','COURSE NUMBER',NULL,0,'50',6),
+	 (940,false,'main.custom1',false,false,false,'Custom Field 1','CUSTOM1',NULL,0,'50',6);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (941,false,'main.custom2',false,false,false,'Custom Field 2','CUSTOM2',NULL,0,'50',6),
+	 (942,false,'yearly.custom3',false,false,false,'Custom Field 3','CUSTOM3',NULL,0,'50',6),
+	 (943,false,'yearly.custom4',false,false,false,'Custom Field 4','CUSTOM4',NULL,0,'50',6),
+	 (944,false,'maincfields.customname',true,true,false,'Custom Field Names','CUSTOMFIELDNAME',NULL,0,'50',6),
+	 (945,true,NULL,true,true,true,'Custom Field Type','CUSTOMFIELDTYPE',NULL,0,'50',6),
+	 (946,false,'classes.days',false,false,false,'Days','DAYS',NULL,0,'50',6),
+	 (947,true,'main.disconnect',true,false,false,'Disconnected Youth','DISCONNECT',NULL,0,'50',6),
+	 (948,true,'main.docemploy',true,false,false,'Doctorate Employment Activity','DOCEMPLOY',NULL,0,'50',6),
+	 (949,true,'yearly.dualenroll',true,false,false,'Dual Enrollment','DUALENROLL',NULL,0,'50',6),
+	 (950,true,'yearly.decredenti',true,false,false,'Dual Enrollment Credentials','DECREDENTI',NULL,0,'50',6);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (951,false,'main.eligtype',false,false,false,'Eligibility Type','ELIGIBILITY TYPE',NULL,0,'50',6),
+	 (952,true,'yearly.employ',true,false,false,'Employment','EMPLOY',NULL,0,'50',6),
+	 (953,true,'yearlychild.servalue',true,true,false,'End Status','ENDSTATUS',NULL,4,'50',6),
+	 (954,true,NULL,true,false,false,'English Instructions','ENGLISH',NULL,0,'50',6),
+	 (955,false,'main.ethnictype',false,false,false,'Ethnic Type (National Origin)','ETHNIC TYPE',NULL,0,'50',6),
+	 (956,true,'yearly.fafsa',true,false,false,'FAFSA completion','FAFSA',NULL,0,'50',6),
+	 (957,true,'main.finaidrecd',true,false,false,'Financial Aid','FINAIDRECD',NULL,0,'50',6),
+	 (958,false,'yearly.finaidname',false,false,false,'Financial Aid Name Description','FINANCIAL AID NAME',NULL,0,'50',6),
+	 (959,true,'yearly.finaidreas',true,false,false,'Financial Aid Un-met Reason','FINAIDREAS',NULL,0,'50',6),
+	 (960,false,'yearly.finaidunme',false,false,false,'Financial Aid Unmet Name','FINANCIAL AID UNMET',NULL,0,'50',6);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (961,true,NULL,true,false,false,'Foreign Language Instructions','FOREIGNLANGUAGE',NULL,0,'50',6),
+	 (962,true,'eddata.contfreq',true,false,false,'Frequency of contacts between participants','CONTFREQ',NULL,0,'50',6),
+	 (963,true,'yearly.fundsource',true,false,false,'Funding Source','FUNDSOURCE',NULL,0,'50',6),
+	 (964,true,'yearly.gradelevel',true,false,false,'Grade Level (at end of reporting period)','GRADELEVEL',NULL,0,'50',6),
+	 (965,true,'yearly.hsgradepro',true,false,false,'Grade Progression Over Year','GRADEPRO',NULL,0,'50',6),
+	 (966,true,'yearly.gradassist',true,false,false,'Graduate Assistantships','GRADASSIST',NULL,0,'50',6),
+	 (967,true,'yearly.gradstudyl',true,false,false,'Graduate Current Year of Study','GRADSTUDYL',NULL,0,'50',6),
+	 (968,true,'main.gdegree',true,false,false,'Graduate Degree Earned','GDEGREE',NULL,0,'50',6),
+	 (969,false,'graduated.degreein',true,false,false,'Graduate Degree In','DEGREEIN',NULL,0,'50',6),
+	 (970,false,'graduated.gdedustat',true,false,false,'Graduate Educational Status','GRADUATEEDUCATIONALSTATUS',NULL,0,'50',6);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (971,false,'graduated.employtype',true,false,false,'Graduate Employment Type','EMPLOYTYPE',NULL,0,'50',6),
+	 (972,true,'main.gradadm',true,false,false,'Graduate School Admissions Test','GRADADM',NULL,0,'50',6),
+	 (973,true,'yearly.enrollobj',true,false,false,'Graduate School Enrollment Objective','ENROLLOBJ',NULL,0,'50',6),
+	 (974,true,'yearly.gpersist',true,false,false,'Graduate Student Persistence Status','GPERSIST',NULL,0,'50',6),
+	 (975,true,'main.bdegreeco',true,false,false,'Graduating Cohort Year of Bachelor''s Degree','BDEGREECO',NULL,0,'50',6),
+	 (976,true,'main.yearcogrd',true,false,false,'Graduation Cohort Year','YEARCOGRD',NULL,0,'50',6),
+	 (977,false,'main.healthname',false,false,false,'Health Name','HEALTH NAME',NULL,0,'50',6),
+	 (978,true,'yearly.hsgradstat',true,false,false,'High School Graduation Status','GRADSTATUS',NULL,0,'50',6),
+	 (979,true,'yearly.vettest',true,false,false,'Improved Score on Standardized Test','VETTEST',NULL,0,'50',6),
+	 (980,false,'main.incomelev',false,false,false,'Income Level','INCOME LEVEL',NULL,0,'50',6);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (981,false,'main.incomesou',false,false,false,'Income Source','INCOME SOURCE',NULL,0,'50',6),
+	 (982,true,'yearly.initiative',true,false,false,'Initiative','INITIATIVE',NULL,0,'50',6),
+	 (983,true,'yearly.mcintern',true,false,false,'Internship','INTERN',NULL,0,'50',6),
+	 (984,false,'labservice.labserid',true,false,true,'Lab Service','LABSERVICE',NULL,0,'50',6),
+	 (985,true,'yearly.partlength',true,false,false,'Length of Project Participation','PARTLENGTH',NULL,0,'50',6),
+	 (986,false,'main.marrstatus',true,false,false,'Marital Status','MARITALSTATUS',NULL,0,'50',6),
+	 (987,true,NULL,true,false,false,'Mathematics Instructions/ Tutorials','MATH',NULL,0,'50',6),
+	 (988,false,'classes.meettime',false,false,false,'Meeting Time','MEETING TIME',NULL,0,'50',6),
+	 (989,false,'usermessages.msgstatus',true,false,false,'Message Priority Type','MSGSTATUS',NULL,0,'50',6),
+	 (990,false,'graduated.milirank',false,false,false,'Military Rank','MILITARY RANK',NULL,0,'50',6);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (991,false,'graduated.militaryty',true,false,false,'Military Type','MILITARYTYPE',NULL,0,'50',6),
+	 (992,true,'yearlychild.servalue',true,true,false,'Old End Status-For TS and EOC (prior to 2006-07)','OLDENDSTATUS',NULL,7,'50',6),
+	 (993,false,'mainchild.ptitle',false,false,false,'Parent/ Guardian Relationship','PARENT RELATION',NULL,0,'50',6),
+	 (994,true,'yearly.projretain',true,false,false,'Participant Retention in Project','PROJRETAIN',NULL,0,'50',6),
+	 (995,true,'yearly.endstatus',true,false,false,'Participant Status (at end of Reporting Period)','PARTSTATUSEND',NULL,0,'50',6),
+	 (996,true,'yearly.partlevel',true,false,false,'Participation Level','PARTLEVEL',NULL,0,'50',6),
+	 (997,true,'yearly.persistend',true,false,false,'Persistence Graduation Status at end of year','PERSISTEND',NULL,0,'50',6),
+	 (998,true,'yearly.pscomplete',true,false,false,'Postsecondary Completion Objective','PSCOMPLETE',NULL,0,'50',6),
+	 (999,true,'yearly.psenroll',true,false,false,'Postsecondary Enrollment Objective','PSENROLL',NULL,0,'50',6),
+	 (1000,true,'yearly.pseterm',true,false,false,'Postsecondary Grading Period','PSETERM',NULL,0,'50',6);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1001,true,'yearly.persistden',true,false,false,'Postsecondary Persistence Objective-Denominator','PERSISTDEN',NULL,0,'50',6),
+	 (1002,true,'yearly.persistnum',true,false,false,'Postsecondary Persistence Objective-Numerator','PERSISTNUM',NULL,0,'50',6),
+	 (1003,true,'yearly.psremediat',true,false,false,'Postsecondary Remediation','PSREMEDIAT',NULL,0,'50',6),
+	 (1004,true,'yearly.stemdegree',true,false,false,'Postsecondary STEM Degree','STEMDEGREE',NULL,0,'50',6),
+	 (1005,false,'lablog.visitreason',false,false,false,'Reason for Visit','VISIT REASON',NULL,0,'50',6),
+	 (1006,true,'yearly.greason',true,false,false,'Reason left Graduate School','GREASON',NULL,0,'50',6),
+	 (1007,true,'yearly.noenreason',true,false,false,'Reason Not Enrolled','NOENREASON',NULL,0,'50',6),
+	 (1008,true,'main.vetscherea',true,false,false,'Reason of Recheduling','VETSCHEREA',NULL,0,'50',6),
+	 (1009,true,'yearly.recupdated',true,false,false,'Record Updated','RECUPDATED',NULL,0,'50',6),
+	 (1010,true,'yearly.recruit',true,false,false,'Recruitment','RECRUIT',NULL,0,'50',6);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1011,false,'main.referedby',false,false,false,'Referred By','REFERRED BY',NULL,0,'50',6),
+	 (1012,true,'yearly.mcresearch
+',true,false,false,'Research Activities','RESEARCH',NULL,0,'50',6),
+	 (1013,true,'main.vetrevsche',true,false,false,'Revised Scheduled Completion Year','VETREVSCHE',NULL,0,'50',6),
+	 (1014,true,'yearly.rigorous',true,false,false,'Rigorous Enrollment','RIGOROUS',NULL,0,'50',6),
+	 (1015,false,'classes.room',false,false,false,'Room','ROOM',NULL,0,'50',6),
+	 (1016,true,'main.vetsche',true,false,false,'Scheduled Completion Year','VETSCHE',NULL,0,'50',6),
+	 (1017,true,'yearly.mcscholar',true,false,false,'Scholarly Activity','SCHOLAR',NULL,0,'50',6),
+	 (1018,true,NULL,true,false,false,'Science Instruction/Tutorials','SCIENCE',NULL,0,'50',6),
+	 (1019,true,'yearly.schpersist',true,false,false,'Secondary School Retention','SCHPERSIST',NULL,0,'50',6),
+	 (1020,true,'yearly.selftran',true,false,false,'Source of Postsecondary Education Information','SELFTRAN',NULL,0,'50',6);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1021,false,'staff.stfcodes',false,false,false,'Staff Codes','STAFF CODES',NULL,0,'50',6),
+	 (1022,true,NULL,true,false,false,'Standing Group Type (APR Column)','STANDINGGROUPTYPE',NULL,0,'50',6),
+	 (1023,true,'main.statetest',true,false,false,'State-Developed Test to Measure Academic Skills','STATETEST',NULL,0,'50',6),
+	 (1024,true,'main.mcstem',true,false,false,'STEM Major','MCSTEM',NULL,0,'50',6),
+	 (1025,true,'yearly.sumbridge',true,false,false,'Summer Bridge','SUMBRIDGE',NULL,0,'50',6),
+	 (1026,false,NULL,false,false,true,'Teacher','TEACHER',NULL,0,'50',6),
+	 (1027,true,'yearly.trackcomp',true,false,false,'Tracking Completed','TRACKCOMP',NULL,0,'50',6),
+	 (1028,true,'main.track',true,false,false,'Tracking Graduate','TRACK',NULL,0,'50',6),
+	 (1029,true,'yearly.othertrio',true,false,false,'Trio Programs','OTHERTRIO',NULL,0,'50',6),
+	 (1030,false,'yearly.tutor',false,false,true,'Tutor','TUTOR',NULL,0,'50',6);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1031,true,'yearly.testtype',true,false,false,'Type of Standarized Tests','TESTTYPE',NULL,0,'50',6),
+	 (1032,true,'eddata.summerresi',true,false,false,'UB,UBMS,VUB Summer residential Program Type','SUMMERRESI',NULL,0,'50',6),
+	 (1033,true,'eddata.regional',true,false,false,'UBMS Project type','REGIONAL',NULL,0,'50',6),
+	 (1034,true,'yearly.vcalllen',true,false,false,'Veteran Call to Active Duty Length','VCALLLEN',NULL,0,'50',6),
+	 (1035,true,'yearly.vcall',true,false,false,'Veteran Called to Active Duty Status','VCALL',NULL,0,'50',6),
+	 (1036,true,'yearly.vgradelev',true,false,false,'Veteran Educational Status (at end)','VGRADELEVEL',NULL,0,'50',6),
+	 (1037,true,'main.venterlev',true,false,false,'Veteran Educational Status (Entry into Project)','VENTERLEVEL',NULL,0,'50',6),
+	 (1038,true,'main.venterjob',true,false,false,'Veteran Employment Status','VENTERJOB',NULL,0,'50',6),
+	 (1039,true,'main.vfinaidrec',true,false,false,'Veteran Financial Aid','VFINAIDREC',NULL,0,'50',6),
+	 (1040,false,'formslog.formname',false,false,false,'Wallet Name','Wallet Name',NULL,0,'50',6);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1041,true,NULL,true,false,false,'Yearly Child Service Heading','SERHEADING',NULL,0,'50',6),
+	 (1042,true,NULL,true,false,false,'Yearly Child Service Type','SERTYPE',NULL,0,'50',6),
+	 (1043,true,NULL,true,false,false,'Yes-No Options','YESNO',NULL,0,'50',6),
+	 (1044,false,'contactchild.activityid
+yearlychild.servalue',true,true,true,'Activity','ACTIVITY','Activity~Activity',1,'50~50',6),
+	 (1045,true,'yearlychild.servalue
+contact.aprsubject',true,true,false,'APR Subject Types','APR SUBJECT','APR Subject Types~APR Subject Types',6,'50~50',6),
+	 (1046,true,'main.bdegree
+yearly.bdegree',true,false,false,'Bachelor''s Degree','BDEGREE','Bachelor''s Degree~Bachelor''s Degree Attained',0,'50~50',6),
+	 (1047,false,'botform_submission.FORM_NAME
+ BOTFORM_MAINTENANCE.FORM_NAME',false,false,false,'BOT Form Name','BOT FORM NAME','BOT Form Name~BOT Form Name',0,'50~50',6),
+	 (1048,false,'exam.examname
+examchild.examname',false,false,false,'Exam Name','EXAM NAME','Exam Name~Exam Name',0,'50~50',6),
+	 (1049,false,'yearly.standing
+semester.standing',true,false,true,'Grade / Standing Type','STANDING','Standing~Standing',0,'50~50',6),
+	 (1050,true,'main.lepentry
+main.leplastser',true,false,false,'Limited English Proficiency Status','LIMITEDENGPRO','Limited English Proficiency (Date of First Participation)~Limited English Proficiency (Date of Last Service)',0,'50~50',6);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1051,false,'yearly.major
+graduated.major',false,false,false,'Major','MAJOR','Major~Major',0,'50~50',6),
+	 (1052,false,'main.sitelocate
+appusers.sitelocate',false,false,false,'Site Location','SITE LOCATION','Site Location~Site Location',0,'50~50',6),
+	 (1053,false,'yearly.counsel
+yearly.tutor',false,true,true,'Staff','STAFF','Staff~Tutor',0,'50~50',6),
+	 (1054,true,'main.staterlagr
+main.statemathg',true,false,false,'State Grade level in which student was Assessed','STATE10GRADE','Grade level when Assessed for State 10th Reading Standard~Grade level when Assessed for State 10th Math Standard',0,'50~50',6),
+	 (1055,true,'main.state8rla
+main.state8math',true,false,false,'State Met 8th Grade Achievement Standard Options','STATE8MET','Met 8th Grade State Reading Language Art Standard~Met 8th Grade State Math Standard',0,'50~50',6),
+	 (1056,false,'contact.stfid
+classes.stfid',true,true,true,'STFID - DO NOT USE','STFID','Stfid~Stfid',0,'50~50',6),
+	 (1057,false,'classes.subject
+contact.subject',false,false,false,'Subject ( Classes/ Contacts)','SUBJECT','Subject~Subject',0,'50~50',6),
+	 (1058,false,'formslog.formtype
+yearlychild.servalue',true,true,false,'Wallet Type','Wallet Type','Wallet Type Formslog ~Wallet Type Yearly Child',5,'50~50',6),
+	 (1059,false,'main.schoolent
+yearly.school
+main.schoolend',false,false,true,'School Name/Code','SCHOOL','School (Entry into Project)~School Year(Current Fiscal Year)~School (End Of Project)',0,'50~50~50',6),
+	 (1060,false,'classes.semester
+courses.semester
+semester.semester',true,true,false,'Semester Type','SEMESTER','Semester~Semester~Semester',0,'50~50~50',6);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1061,false,'yearly.college
+main.collegeent
+main.gradcoll
+main.gdoccoll',false,false,true,'College','COLLEGE','College~College - Entry~Graduate School First Attended~Doctorate College',0,'50~50~50~50',6),
+	 (1062,false,'yearly.counsel
+graduated.counsel',false,false,true,'Counselor','COUNSELOR','Counselor~Counselor',0,'50~50~50~50',6),
+	 (1063,true,'main.gpascale
+main.msgpascale
+yearly.gpaendsc
+yearly.gpastartsc',true,false,false,'GPA Scale','GPASCALE','GPA HS Scale (Entry into Project)~GPA MS Scale(Entry into Project)~GPA Scale (at end of Reporting Period)~GPA Scale (at start of Reporting Period)',0,'50~50~50~50',6),
+	 (1064,false,'staff.stfcustom1
+staff.stfcustom2
+staff.stfcustom3
+staff.stfcustom4',false,false,false,'Staff Custom Field','STAFF CUSTOM','Staff Custom 1~Staff Custom 2~ Staff Custom 3~Staff Custom 4',0,'50~50~50~50',6),
+	 (1065,true,'main.state10rla
+main.state10mat
+yearly.state10rla
+yearly.state10mat',true,false,false,'State Met 10th Grade Achievement Standard Options','STATE10MET','Met 10th Grade State Reading Language Art Standard~Met 10th Grade State Math Standard~Met HS State Acad. Achievement Standard at Proficient Level—Reading/language arts~Met HS State Acad. Achievement Standard at Proficient Level—Math',0,'50~50~50~50',6),
+	 (1066,true,'main.city
+mainchild.pcity
+eddata.city
+graduated.city
+school.city
+staff.stfcity',false,false,false,'City Pull description','CITY','City~City~City~City~City~City',0,'50~50~50~50~50~50',6),
+	 (1067,false,'main.state
+eddata.state
+graduated.state
+main.dlstate
+mainchild.pstate
+school.state
+staff.stfstate
+staffchild.stfstate',false,false,false,'State (Postal Address)','STATE','State (Postal Address)~State~State~State (Driving License)~State~State~State~State',0,'50~50~50~50~50~50~50~50',6),
+	 (1068,false,'main.phn1ty
+main.phn2ty
+mainchild.pphn1ty
+mainchild.pphn2ty
+mainchild.pphn3ty
+staff.stfphn1ty
+staff.stfphn2ty
+staff.stfphn3ty
+staffchild.stfphn1ty
+staffchild.stfphn2ty
+staffchild.stfphn3ty',false,false,false,'Phone Type','PHONE TYPE','Phone Type 1~Phone Type 2~Phone Type 1~Phone Type 2~Phone Type 3~Phone Type 1~Phone Type 2~Phone Type 3~Phone Type 1~Phone Type 2~Phone Type 3',0,'50~50~50~50~50~50~50~50~50~50',6),
+	 (1069,true,'main.gender',true,false,false,'APR 08 - Gender','GENDER',NULL,0,'10',7),
+	 (1070,true,'main.ethnic',true,false,false,'APR 09 - 14 - Ethnicity /Race','ETHNIC',NULL,0,'10',7);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1071,true,'main.eligi1',true,false,false,'APR 15 - Eligibility-Low Income','ELIGI1',NULL,0,'10',7),
+	 (1072,true,'main.eligi2',true,false,false,'APR 16 - Eligibility-First Generation','ELIGI2',NULL,0,'10',7),
+	 (1073,true,'main.eligi3',true,false,false,'APR 17 - Eligibility-Underrepresented','ELIGI3',NULL,0,'10',7),
+	 (1074,true,'main.commcoll',true,false,false,'APR 19 - Attended Community College','COMMCOLL',NULL,0,'10',7),
+	 (1075,true,'main.enterlevel',true,false,false,'APR 21 - Entry Grade Level','ENTERLEVEL',NULL,0,'10',7),
+	 (1076,true,'yearly.partstatus',true,false,false,'APR 22 - Participant Status','PARTSTATUS',NULL,0,'10',7),
+	 (1077,true,'yearly.partlevel',true,false,false,'APR 24 - Participation Level','PARTLEVEL',NULL,0,'10',7),
+	 (1078,true,'yearly.fundsource',true,false,false,'APR 25 - Funding Source','FUNDSOURCE',NULL,0,'10',7),
+	 (1079,true,'main.mcstem',true,false,false,'APR 26 -STEM Major','MCSTEM',NULL,0,'10',7),
+	 (1080,true,'main.bdegreeco',true,false,false,'APR 29 - Bachelor''s Degree Cohort Year','BDEGREECO',NULL,0,'10',7);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1081,true,'yearly.mcresearch',true,false,false,'APR 32 - Research','RESEARCH',NULL,0,'10',7),
+	 (1082,true,'yearly.mcscholar',true,false,false,'APR 33 - Scholarly Activity','SCHOLAR',NULL,0,'10',7),
+	 (1083,true,'yearly.mcintern',true,false,false,'APR 34 - Internship','INTERN',NULL,0,'10',7),
+	 (1084,true,'main.gradadm',true,false,false,'APR 35 - Graduate School Admissions Test','GRADADM',NULL,0,'10',7),
+	 (1085,true,'yearly.enrollobj',true,false,false,'APR 38 - Graduate Enrollment Status','ENROLLOBJ',NULL,0,'10',7),
+	 (1086,true,'yearly.gpersist',true,false,false,'APR 39 - Graduation Persistence Status','GPERSIST',NULL,0,'10',7),
+	 (1087,true,'yearly.gradstudyl',true,false,false,'APR 40 - Current year of Graduate Study','GRADSTUDYL',NULL,0,'10',7),
+	 (1088,true,'yearly.gradassist',true,false,false,'APR 42 - Graduate Assistantships','GRADASSIST',NULL,0,'10',7),
+	 (1089,true,'yearly.greason',true,false,false,'APR 43 - Reason left Graduate School','GREASON',NULL,0,'10',7),
+	 (1090,true,'main.gdegree',true,false,false,'APR 44 - Highest Graduate Degree Earned','GDEGREE',NULL,0,'10',7);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1091,true,'main.docemploy',true,false,false,'APR 47 - Doctorate Employment Activity','DOCEMPLOY',NULL,0,'10',7),
+	 (1092,false,'main.gradcoll
+main.gdoccoll
+yearly.college
+main.collegeent',false,false,true,'APR 37 / 46 - College','COLLEGE','APR 37 - Graduate School First Attended~APR 46 - College where Doctorate was earned~College~College - Entry',0,'10~10~50~50',7),
+	 (1093,true,'yearly.enroll
+main.enterenrol',true,false,false,'APR 23 - College Enrollment Status','ENROLL','APR 23 - College Enrollment Status~Enrollment Status (in academic year first served)',0,'10~50',7),
+	 (1094,true,'main.bdegree
+yearly.bdegree',true,false,false,'APR 27 - Bachelor''s Degree','BDEGREE','APR 27 - Bachelor''s Degree~Bachelors Degree Attained ',0,'10~50',7),
+	 (1095,true,'main.acadneed',true,false,false,'Academic Need','ACADNEED',NULL,0,'50',7),
+	 (1096,true,'yearly.acadstand',true,false,false,'Academic Standing','ACADSTAND',NULL,0,'50',7),
+	 (1097,true,'activity.actgid',true,false,true,'Activity Group','ACTIVITYGROUP',NULL,2,'50',7),
+	 (1098,true,NULL,true,false,false,'Activity Group Type','ACTIVITYGROUPTYPE',NULL,0,'50',7),
+	 (1099,true,'yearly.advancemat',true,false,false,'Advanced Math Course','ADVANCEMAT',NULL,0,'50',7),
+	 (1100,true,'yearly.apcourse',true,false,false,'Advanced Placement Course','APCOURSE',NULL,0,'50',7);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1101,false,'yearly.advisor',false,false,false,'Advisor','ADVISOR',NULL,0,'50',7),
+	 (1102,false,'asset.amake',false,false,false,'Asset Make','ASSET MAKE',NULL,0,'50',7),
+	 (1103,false,'asset.amodel',false,false,false,'Asset Model','ASSET MODEL',NULL,0,'50',7),
+	 (1104,false,'asset.astatus',true,false,false,'Asset Status','ASSETSTATUS',NULL,0,'50',7),
+	 (1105,false,'asset.atype',false,false,false,'Asset Type','ASSET TYPE',NULL,0,'50',7),
+	 (1106,true,'yearly.adegree',true,false,false,'Associate Degree','ADEGREE',NULL,0,'50',7),
+	 (1107,true,'main.atralgebra',true,false,false,'At Risk Algebra','ATRALGEBRA',NULL,0,'50',7),
+	 (1108,true,'main.atrlowgpa',true,false,false,'At Risk Low GPA','ATRLOWGPA',NULL,0,'50',7),
+	 (1109,true,'main.atrschool',true,false,false,'At Risk Out of School','ATRSCHOOL',NULL,0,'50',7),
+	 (1110,true,'main.atrstdtest',true,false,false,'At Risk Standard Test','ATRSTDTEST',NULL,0,'50',7);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1111,false,'main.birthplace',false,false,false,'Birth Place','BIRTH PLACE',NULL,0,'50',7),
+	 (1112,false,'botform_submission.SUBMISSION_STATUS',true,false,false,'BOT Form Status','BOTFORMSTATUS',NULL,0,'50',7),
+	 (1113,true,'yearly.certi',true,false,false,'Certificate/ Diploma Completed','CERTI',NULL,0,'50',7),
+	 (1114,true,'main.vetschecir',true,false,false,'Circumstances of Recheduling','VETSCHECIR',NULL,0,'50',7),
+	 (1115,false,'main.codes',false,false,false,'Codes','CODES',NULL,0,'50',7),
+	 (1116,true,'main.cohortyear',true,false,false,'Cohort Year','COHORTYEAR',NULL,0,'50',7),
+	 (1117,true,'main.enterexam',true,false,false,'College Entrance Exam','ENTEREXAM',NULL,0,'50',7),
+	 (1118,true,'yearly.collgradel',true,false,false,'College Grade Level','COLLGRADE',NULL,0,'50',7),
+	 (1119,true,'yearly.collready',true,false,false,'College Ready','COLLREADY',NULL,0,'50',7),
+	 (1120,true,'yearly.collegety',true,false,false,'College Type','COLLEGETYPE',NULL,0,'50',7);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1121,true,NULL,true,false,false,'Compare Symbols','COMPARE',NULL,0,'50',7),
+	 (1122,true,'yearly.completeyr',true,false,false,'Completion Year','COMPLETEYR',NULL,0,'50',7),
+	 (1123,true,NULL,true,false,false,'Component Type','COMPONENT',NULL,0,'50',7),
+	 (1124,true,NULL,true,false,false,'Component Type-APR','APRCOMPONENT',NULL,0,'50',7),
+	 (1125,true,'contact.stftype',true,false,false,'Contact Staff Type','CONTACTSTAFFTYPE',NULL,0,'50',7),
+	 (1126,false,'contact.conttype',true,false,false,'Contact Type','CONTACTTYPE',NULL,0,'50',7),
+	 (1127,false,'courses.courseinst',false,false,false,'Course Instructor','COURSE INSTRUCTOR',NULL,0,'50',7),
+	 (1128,false,'courses.coursename',false,false,false,'Course Name','COURSE NAME',NULL,0,'50',7),
+	 (1129,false,'courses.coursenum',false,true,false,'Course Number','COURSE NUMBER',NULL,0,'50',7),
+	 (1130,false,'main.custom1',false,false,false,'Custom Field 1','CUSTOM1',NULL,0,'50',7);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1131,false,'main.custom2',false,false,false,'Custom Field 2','CUSTOM2',NULL,0,'50',7),
+	 (1132,false,'yearly.custom3',false,false,false,'Custom Field 3','CUSTOM3',NULL,0,'50',7),
+	 (1133,false,'yearly.custom4',false,false,false,'Custom Field 4','CUSTOM4',NULL,0,'50',7),
+	 (1134,false,'maincfields.customname',true,true,false,'Custom Field Names','CUSTOMFIELDNAME',NULL,0,'50',7),
+	 (1135,true,NULL,true,true,true,'Custom Field Type','CUSTOMFIELDTYPE',NULL,0,'50',7),
+	 (1136,false,'classes.days',false,false,false,'Days','DAYS',NULL,0,'50',7),
+	 (1137,true,'yearly.deceased',true,false,false,'Deceased or Incapacitated','DECEASED',NULL,0,'50',7),
+	 (1138,true,'main.disconnect',true,false,false,'Disconnected Youth','DISCONNECT',NULL,0,'50',7),
+	 (1139,true,'yearly.dualenroll',true,false,false,'Dual Enrollment','DUALENROLL',NULL,0,'50',7),
+	 (1140,true,'yearly.decredenti',true,false,false,'Dual Enrollment Credentials','DECREDENTI',NULL,0,'50',7);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1141,true,'main.eligibilit',true,false,false,'Eligibility','ELIGIBILITY',NULL,0,'50',7),
+	 (1142,false,'main.eligtype',false,false,false,'Eligibility Type','ELIGIBILITY TYPE',NULL,0,'50',7),
+	 (1143,true,'yearly.employ',true,false,false,'Employment','EMPLOY',NULL,0,'50',7),
+	 (1144,true,'yearlychild.servalue',true,true,false,'End Status','ENDSTATUS',NULL,4,'50',7),
+	 (1145,true,NULL,true,false,false,'English Instructions','ENGLISH',NULL,0,'50',7),
+	 (1146,false,'main.ethnictype',false,false,false,'Ethnic Type (National Origin)','ETHNIC TYPE',NULL,0,'50',7),
+	 (1147,true,'yearly.fafsa',true,false,false,'FAFSA completion','FAFSA',NULL,0,'50',7),
+	 (1148,true,'main.finaidrecd',true,false,false,'Financial Aid','FINAIDRECD',NULL,0,'50',7),
+	 (1149,false,'yearly.finaidname',false,false,false,'Financial Aid Name','FINANCIAL AID NAME',NULL,0,'50',7),
+	 (1150,true,'yearly.finaidreas',true,false,false,'Financial Aid Un-met Reason','FINAIDREAS',NULL,0,'50',7);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1151,false,'yearly.finaidunme',false,false,false,'Financial Aid Unmet Name','FINANCIAL AID UNMET',NULL,0,'50',7),
+	 (1152,true,NULL,true,false,false,'Foreign Language Instructions','FOREIGNLANGUAGE',NULL,0,'50',7),
+	 (1153,true,'eddata.contfreq',true,false,false,'Frequency of contacts between participants','CONTFREQ',NULL,0,'50',7),
+	 (1154,true,'yearly.gradelevel',true,false,false,'Grade Level (at end of reporting period)','GRADELEVEL',NULL,0,'50',7),
+	 (1155,true,'yearly.gradestart',true,false,false,'Grade Level (at start of reporting period)','GRADESTART',NULL,0,'50',7),
+	 (1156,true,'yearly.hsgradepro',true,false,false,'Grade Progression Over Year','GRADEPRO',NULL,0,'50',7),
+	 (1157,false,'graduated.degreein',true,false,false,'Graduate Degree In','DEGREEIN',NULL,0,'50',7),
+	 (1158,false,'graduated.gdedustat',true,false,false,'Graduate Educational Status','GRADUATEEDUCATIONALSTATUS',NULL,0,'50',7),
+	 (1159,false,'graduated.employtype',true,false,false,'Graduate Employment Type','EMPLOYTYPE',NULL,0,'50',7),
+	 (1160,true,'main.yearcogrd',true,false,false,'Graduation Cohort Year','YEARCOGRD',NULL,0,'50',7);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1161,false,'main.healthname',false,false,false,'Health Name','HEALTH NAME',NULL,0,'50',7),
+	 (1162,true,'yearly.hsgradstat',true,false,false,'High School Graduation Status','GRADSTATUS',NULL,0,'50',7),
+	 (1163,true,'yearly.vettest',true,false,false,'Improved Score on Standardized Test','VETTEST',NULL,0,'50',7),
+	 (1164,false,'main.incomelev',false,false,false,'Income Level','INCOME LEVEL',NULL,0,'50',7),
+	 (1165,false,'main.incomesou',false,false,false,'Income Source','INCOME SOURCE',NULL,0,'50',7),
+	 (1166,true,'yearly.initiative',true,false,false,'Initiative','INITIATIVE',NULL,0,'50',7),
+	 (1167,false,'labservice.labserid',true,false,true,'Lab Service','LABSERVICE',NULL,0,'50',7),
+	 (1168,true,'yearly.partlength',true,false,false,'Length of Project Participation','PARTLENGTH',NULL,0,'50',7),
+	 (1169,true,'yearly.mcnmajor',true,false,false,'Major of Graduate Study','MCNMAJOR',NULL,0,'50',7),
+	 (1170,false,'main.marrstatus',true,false,false,'Marital Status','MARITALSTATUS',NULL,0,'50',7);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1171,true,NULL,true,false,false,'Mathematics Instructions/ Tutorials','MATH',NULL,0,'50',7),
+	 (1172,false,'classes.meettime',false,false,false,'Meeting Time','MEETING TIME',NULL,0,'50',7),
+	 (1173,false,'usermessages.msgstatus',true,false,false,'Message Priority Type','MSGSTATUS',NULL,0,'50',7),
+	 (1174,false,'graduated.milirank',false,false,false,'Military Rank','MILITARY RANK',NULL,0,'50',7),
+	 (1175,false,'graduated.militaryty',true,false,false,'Military Type','MILITARYTYPE',NULL,0,'50',7),
+	 (1176,true,'yearlychild.servalue',true,true,false,'Old End Status-For TS and EOC (prior to 2006-07)','OLDENDSTATUS',NULL,7,'50',7),
+	 (1177,false,'mainchild.ptitle',false,false,false,'Parent/ Guardian Relationship','PARENT RELATION',NULL,0,'50',7),
+	 (1178,true,'yearly.projretain',true,false,false,'Participant Retention in Project','PROJRETAIN',NULL,0,'50',7),
+	 (1179,true,'yearly.endstatus',true,false,false,'Participant Status (at end of Reporting Period)','PARTSTATUSEND',NULL,0,'50',7),
+	 (1180,true,'yearly.persistend',true,false,false,'Persistence Graduation Status at end of year','PERSISTEND',NULL,0,'50',7);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1181,true,'yearly.persiststa',true,false,false,'Persistence Status at beginning at next year','PERSISTSTA',NULL,0,'50',7),
+	 (1182,true,'yearly.pscomplete',true,false,false,'Postsecondary Completion Objective','PSCOMPLETE',NULL,0,'50',7),
+	 (1183,true,'yearly.psenroll',true,false,false,'Postsecondary Enrollment Objective','PSENROLL',NULL,0,'50',7),
+	 (1184,true,'yearly.pseterm',true,false,false,'Postsecondary Grading Period','PSETERM',NULL,0,'50',7),
+	 (1185,true,'yearly.persistden',true,false,false,'Postsecondary Persistence Objective-Denominator','PERSISTDEN',NULL,0,'50',7),
+	 (1186,true,'yearly.persistnum',true,false,false,'Postsecondary Persistence Objective-Numerator','PERSISTNUM',NULL,0,'50',7),
+	 (1187,true,'yearly.psremediat',true,false,false,'Postsecondary Remediation','PSREMEDIAT',NULL,0,'50',7),
+	 (1188,true,'yearly.stemdegree',true,false,false,'Postsecondary STEM Degree','STEMDEGREE',NULL,0,'50',7),
+	 (1189,false,'lablog.visitreason',false,false,false,'Reason for Visit','VISIT REASON',NULL,0,'50',7),
+	 (1190,true,'yearly.reasonleav',true,false,false,'Reason for Withdrawal/Leaving Project','REASON',NULL,0,'50',7);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1191,true,'yearly.noenreason',true,false,false,'Reason Not Enrolled','NOENREASON',NULL,0,'50',7),
+	 (1192,true,'main.vetscherea',true,false,false,'Reason of Recheduling','VETSCHEREA',NULL,0,'50',7),
+	 (1193,true,'yearly.recupdated',true,false,false,'Record Updated','RECUPDATED',NULL,0,'50',7),
+	 (1194,true,'yearly.recruit',true,false,false,'Recruitment','RECRUIT',NULL,0,'50',7),
+	 (1195,false,'main.referedby',false,false,false,'Referred By','REFERRED BY',NULL,0,'50',7),
+	 (1196,true,'main.vetrevsche',true,false,false,'Revised Scheduled Completion Year','VETREVSCHE',NULL,0,'50',7),
+	 (1197,true,'yearly.rigorous',true,false,false,'Rigorous Enrollment','RIGOROUS',NULL,0,'50',7),
+	 (1198,false,'classes.room',false,false,false,'Room','ROOM',NULL,0,'50',7),
+	 (1199,true,'main.vetsche',true,false,false,'Scheduled Completion Year','VETSCHE',NULL,0,'50',7),
+	 (1200,true,NULL,true,false,false,'Science Instruction/Tutorials','SCIENCE',NULL,0,'50',7);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1201,true,'yearly.schpersist',true,false,false,'Secondary School Retention','SCHPERSIST',NULL,0,'50',7),
+	 (1202,true,'yearly.selftran',true,false,false,'Source of Postsecondary Education Information','SELFTRAN',NULL,0,'50',7),
+	 (1203,false,'staff.stfcodes',false,false,false,'Staff Codes','STAFF CODES',NULL,0,'50',7),
+	 (1204,true,NULL,true,false,false,'Standing Group Type (APR Column)','STANDINGGROUPTYPE',NULL,0,'50',7),
+	 (1205,true,'main.statetest',true,false,false,'State-Developed Test to Measure Academic Skills','STATETEST',NULL,0,'50',7),
+	 (1206,true,'yearly.sumbridge',true,false,false,'Summer Bridge','SUMBRIDGE',NULL,0,'50',7),
+	 (1207,false,NULL,false,false,true,'Teacher','TEACHER',NULL,0,'50',7),
+	 (1208,true,'yearly.trackcomp',true,false,false,'Tracking Completed','TRACKCOMP',NULL,0,'50',7),
+	 (1209,true,'main.track',true,false,false,'Tracking Graduate','TRACK',NULL,0,'50',7),
+	 (1210,true,'yearly.transfers',true,false,false,'Transfers','TRANSFERS',NULL,0,'50',7);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1211,true,'yearly.othertrio',true,false,false,'Trio Programs','OTHERTRIO',NULL,0,'50',7),
+	 (1212,false,'yearly.tutor',false,false,true,'Tutor','TUTOR',NULL,0,'50',7),
+	 (1213,true,'yearly.testtype',true,false,false,'Type of Standarized Tests','TESTTYPE',NULL,0,'50',7),
+	 (1214,true,'eddata.summerresi',true,false,false,'UB,UBMS,VUB Summer residential Program Type','SUMMERRESI',NULL,0,'50',7),
+	 (1215,true,'eddata.regional',true,false,false,'UBMS Project type','REGIONAL',NULL,0,'50',7),
+	 (1216,true,'yearly.vcalllen',true,false,false,'Veteran Call to Active Duty Length','VCALLLEN',NULL,0,'50',7),
+	 (1217,true,'yearly.vcall',true,false,false,'Veteran Called to Active Duty Status','VCALL',NULL,0,'50',7),
+	 (1218,true,'yearly.vgradelev',true,false,false,'Veteran Educational Status (at end)','VGRADELEVEL',NULL,0,'50',7),
+	 (1219,true,'main.venterlev',true,false,false,'Veteran Educational Status (Entry into Project)','VENTERLEVEL',NULL,0,'50',7),
+	 (1220,true,'main.venterjob',true,false,false,'Veteran Employment Status','VENTERJOB',NULL,0,'50',7);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1221,true,'main.vfinaidrec',true,false,false,'Veteran Financial Aid','VFINAIDREC',NULL,0,'50',7),
+	 (1222,false,'formslog.formname',false,false,false,'Wallet Name','Wallet Name',NULL,0,'50',7),
+	 (1223,true,NULL,true,false,false,'Yearly Child Service Heading','SERHEADING',NULL,0,'50',7),
+	 (1224,true,NULL,true,false,false,'Yearly Child Service Type','SERTYPE',NULL,0,'50',7),
+	 (1225,true,NULL,true,false,false,'Yes-No Options','YESNO',NULL,0,'50',7),
+	 (1226,false,'contactchild.activityid
+yearlychild.servalue',true,true,true,'Activity','ACTIVITY','Activity~Activity',1,'50~50',7),
+	 (1227,true,'yearlychild.servalue
+contact.aprsubject',true,true,false,'APR Subject Types','APR SUBJECT','APR Subject Types~APR Subject Types',6,'50~50',7),
+	 (1228,false,'botform_submission.FORM_NAMEBOTFORM_MAINTENANCE.FORM_NAME',false,false,false,'BOT Form Name','BOT FORM NAME','BOT Form Name~BOT Form Name',0,'50~50',7),
+	 (1229,true,'main.highdegree
+yearly.degree',true,false,false,'Degree/Certificate Completed','HIGHDEGREE','Degree/Certificate Completed ~Degree/Certificate Undergraduate Completed',0,'50~50',7),
+	 (1230,false,'exam.examname
+examchild.examname',false,false,false,'Exam Name','EXAM NAME','Exam Name~Exam Name',0,'50~50',7);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1231,false,'yearly.standing
+semester.standing',true,false,true,'Grade / Standing Type','STANDING','Standing~Standing',0,'50~50',7),
+	 (1232,true,'main.lepentry
+main.leplastser',true,false,false,'Limited English Proficiency Status','LIMITEDENGPRO','Limited English Proficiency (Date of First Participation)~Limited English Proficiency (Date of Last Service)',0,'50~50',7),
+	 (1233,false,'yearly.major
+graduated.major',false,false,false,'Major','MAJOR','Major~Major',0,'50~50',7),
+	 (1234,false,'main.sitelocate
+appusers.sitelocate',false,false,false,'Site Location','SITE LOCATION','Site Location~Site Location',0,'50~50',7),
+	 (1235,false,'yearly.counsel
+yearly.tutor',false,true,true,'Staff','STAFF','Staff~Tutor',0,'50~50',7),
+	 (1236,true,'main.staterlagr
+main.statemathg',true,false,false,'State Grade level in which student was Assessed','STATE10GRADE','Grade level when Assessed for State 10th Reading Standard~Grade level when Assessed for State 10th Math Standard',0,'50~50',7),
+	 (1237,true,'main.state8rla
+main.state8math',true,false,false,'State Met 8th Grade Achievement Standard Options','STATE8MET','Met 8th Grade State Reading Language Art Standard~Met 8th Grade State Math Standard',0,'50~50',7),
+	 (1238,false,'contact.stfid
+classes.stfid',true,true,true,'STFID - DO NOT USE','STFID','Stfid~Stfid',0,'50~50',7),
+	 (1239,false,'classes.subject
+contact.subject',false,false,false,'Subject ( Classes/ Contacts)','SUBJECT','Subject~Subject',0,'50~50',7),
+	 (1240,false,'formslog.formtype
+yearlychild.servalue',true,true,false,'Wallet Type','Wallet Type','Wallet Type Formslog ~Wallet Type Yearly Child',5,'50~50',7);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1241,false,'main.schoolent
+yearly.school
+main.schoolend',false,false,true,'School Name/Code','SCHOOL','School (Entry into Project)~School(Current Fiscal Year)~School (End of Project)',0,'50~50~50',7),
+	 (1242,false,'classes.semester
+courses.semester
+semester.semester',true,true,false,'Semester Type','SEMESTER','Semester~Semester~Semester',0,'50~50~50',7),
+	 (1243,false,'yearly.counsel
+graduated.counsel',false,false,true,'Counselor','COUNSELOR','Counselor~Counselor',0,'50~50~50~50',7),
+	 (1244,true,'main.gpascale
+main.msgpascale
+yearly.gpaendsc
+yearly.gpastartsc',true,false,false,'GPA Scale','GPASCALE','GPA HS Scale (Entry into Project)~GPA MS Scale(Entry into Project)~GPA Scale (at end of Reporting Period)~GPA Scale (at start of Reporting Period)',0,'50~50~50~50',7),
+	 (1245,false,'staff.stfcustom1
+staff.stfcustom2
+staff.stfcustom3
+staff.stfcustom4',false,false,false,'Staff Custom Field','STAFF CUSTOM','Staff Custom 1~Staff Custom 2~ Staff Custom 3~Staff Custom 4',0,'50~50~50~50',7),
+	 (1246,true,'main.state10rla
+main.state10mat
+yearly.state10rla
+yearly.state10mat',true,false,false,'State Met 10th Grade Achievement Standard Options','STATE10MET','Met 10th Grade State Reading Language Art Standard~Met 10th Grade State Math Standard~Met HS State Acad. Achievement Standard at Proficient Level—Reading/language arts~Met HS State Acad. Achievement Standard at Proficient Level—Math',0,'50~50~50~50',7),
+	 (1247,true,'main.city
+mainchild.pcity
+eddata.city
+graduated.city
+school.city
+staff.stfcity',false,false,false,'City','CITY','City~City~City~City~City~City',0,'50~50~50~50~50~50',7),
+	 (1248,false,'main.state
+eddata.state
+graduated.state
+main.dlstate
+mainchild.pstate
+school.state
+staff.stfstate
+staffchild.stfstate',false,false,false,'State (Postal Address)','STATE','State (Postal Address)~State~State~State (Driving License)~State~State~State~State',0,'50~50~50~50~50~50~50~50',7)
+
+,
+	 (1249,false,'main.phn1ty
+main.phn2ty
+mainchild.pphn1ty
+mainchild.pphn2ty
+mainchild.pphn3ty
+staff.stfphn1ty
+staff.stfphn2ty
+staff.stfphn3ty
+staffchild.stfphn1ty
+staffchild.stfphn2ty
+staffchild.stfphn3ty',false,false,false,'Phone Type','PHONE TYPE','Phone Type 1~Phone Type 2~Phone Type 1~Phone Type 2~Phone Type 3~Phone Type 1~Phone Type 2~Phone Type 3~Phone Type 1~Phone Type 2~Phone Type 3',0,'50~50~50~50~50~50~50~50~50~50',7),
+	 (1250,true,'main.acadneed',true,false,false,'PT8-Academic Need','ACADNEED',NULL,0,'50',8);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1251,true,'yearly.acadstand',true,false,false,'PT8-Academic Standing','ACADSTAND',NULL,0,'50',8),
+	 (1252,true,'activity.actgid',true,false,true,'PT8-Activity Group','ACTIVITYGROUP',NULL,2,'50',8),
+	 (1253,true,NULL,true,false,false,'PT8-Activity Group Type','ACTIVITYGROUPTYPE',NULL,0,'50',8),
+	 (1254,true,'yearly.advancemat',true,false,false,'PT8-Advanced Math Course','ADVANCEMAT',NULL,0,'50',8),
+	 (1255,true,'yearly.apcourse',true,false,false,'PT8-Advanced Placement Course','APCOURSE',NULL,0,'50',8),
+	 (1256,false,'yearly.advisor',false,false,false,'PT8-Advisor','ADVISOR',NULL,0,'50',8),
+	 (1257,false,'asset.amake',false,false,false,'PT8-Asset Make','ASSET MAKE',NULL,0,'50',8),
+	 (1258,false,'asset.amodel',false,false,false,'PT8-Asset Model','ASSET MODEL',NULL,0,'50',8),
+	 (1259,false,'asset.astatus',true,false,false,'PT8-Asset Status','ASSETSTATUS',NULL,0,'50',8),
+	 (1260,false,'asset.atype',false,false,false,'PT8-Asset Type','ASSET TYPE',NULL,0,'50',8);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1261,true,'yearly.adegree',true,false,false,'PT8-Associate Degree','ADEGREE',NULL,0,'50',8),
+	 (1262,true,'main.atralgebra',true,false,false,'PT8-At Risk Algebra','ATRALGEBRA',NULL,0,'50',8),
+	 (1263,true,'main.atrlowgpa',true,false,false,'PT8-At Risk Low GPA','ATRLOWGPA',NULL,0,'50',8),
+	 (1264,true,'main.atrschool',true,false,false,'PT8-At Risk Out of School','ATRSCHOOL',NULL,0,'50',8),
+	 (1265,true,'main.atrstdtest',true,false,false,'PT8-At Risk Standard Test','ATRSTDTEST',NULL,0,'50',8),
+	 (1266,true,'main.commcoll',true,false,false,'PT8-Attended Community College','COMMCOLL',NULL,0,'50',8),
+	 (1267,false,'main.birthplace',false,false,false,'PT8-Birth Place','BIRTH PLACE',NULL,0,'50',8),
+	 (1268,true,'yearly.certi',true,false,false,'PT8-Certificate/ Diploma Completed','CERTI',NULL,0,'50',8),
+	 (1269,true,'main.vetschecir',true,false,false,'PT8-Circumstances of Recheduling','VETSCHECIR',NULL,0,'50',8),
+	 (1270,false,'main.codes',false,false,false,'PT8-Codes','CODES',NULL,0,'50',8);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1271,true,'main.cohortyear',true,false,false,'PT8-Cohort Year','COHORTYEAR',NULL,0,'50',8),
+	 (1272,true,'main.enterexam',true,false,false,'PT8-College Entrance Exam','ENTEREXAM',NULL,0,'50',8),
+	 (1273,true,'yearly.collgradel',true,false,false,'PT8-College Grade Level','COLLGRADE',NULL,0,'50',8),
+	 (1274,true,'yearly.collready',true,false,false,'PT8-College Ready','COLLREADY',NULL,0,'50',8),
+	 (1275,true,'yearly.collegety',true,false,false,'PT8-College Type','COLLEGETYPE',NULL,0,'50',8),
+	 (1276,true,NULL,true,false,false,'PT8-Compare Symbols','COMPARE',NULL,0,'50',8),
+	 (1277,true,'yearly.completeyr',true,false,false,'PT8-Completion Year','COMPLETEYR',NULL,0,'50',8),
+	 (1278,true,NULL,true,false,false,'PT8-Component Type','COMPONENT',NULL,0,'50',8),
+	 (1279,true,NULL,true,false,false,'PT8-Component Type-APR','APRCOMPONENT',NULL,0,'50',8),
+	 (1280,true,'contact.stftype',true,false,false,'PT8-Contact Staff Type','CONTACTSTAFFTYPE',NULL,0,'50',8);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1281,false,'contact.conttype',true,false,false,'PT8-Contact Type','CONTACTTYPE',NULL,0,'50',8),
+	 (1282,false,'courses.courseinst',false,false,false,'PT8-Course Instructor','COURSE INSTRUCTOR',NULL,0,'50',8),
+	 (1283,false,'courses.coursename',false,false,false,'PT8-Course Name','COURSE NAME',NULL,0,'50',8),
+	 (1284,false,'courses.coursenum',false,true,false,'PT8-Course Number','COURSE NUMBER',NULL,0,'50',8),
+	 (1285,false,'main.custom1',false,true,false,'PT8-Custom Field 1','CUSTOM1',NULL,0,'50',8),
+	 (1286,false,'main.custom2',false,false,false,'PT8-Custom Field 2','CUSTOM2',NULL,0,'50',8),
+	 (1287,false,'yearly.custom3',false,false,false,'PT8-Custom Field 3','CUSTOM3',NULL,0,'50',8),
+	 (1288,false,'yearly.custom4',false,false,false,'PT8-Custom Field 4','CUSTOM4',NULL,0,'50',8),
+	 (1289,false,'maincfields.customname',true,true,false,'PT8-Custom Field Names','CUSTOMFIELDNAME',NULL,0,'50',8),
+	 (1290,true,NULL,true,true,true,'PT8-Custom Field Type','CUSTOMFIELDTYPE',NULL,0,'50',8);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1291,false,'classes.days',false,false,false,'PT8-Days','DAYS',NULL,0,'50',8),
+	 (1292,true,'yearly.deceased',true,false,false,'PT8-Deceased or Incapacitated','DECEASED',NULL,0,'50',8),
+	 (1293,true,'main.disconnect',true,false,false,'PT8-Disconnected Youth','DISCONNECT',NULL,0,'50',8),
+	 (1294,true,'main.docemploy',true,false,false,'PT8-Doctorate Employment Activity','DOCEMPLOY',NULL,0,'50',8),
+	 (1295,true,'yearly.dualenroll',true,false,false,'PT8-Dual Enrollment','DUALENROLL',NULL,0,'50',8),
+	 (1296,true,'yearly.decredenti',true,false,false,'PT8-Dual Enrollment Credentials','DECREDENTI',NULL,0,'50',8),
+	 (1297,true,'main.eligibilit',true,false,false,'PT8-Eligibility','ELIGIBILITY',NULL,0,'50',8),
+	 (1298,false,'main.eligtype',false,false,false,'PT8-Eligibility Type','ELIGIBILITY TYPE',NULL,0,'50',8),
+	 (1299,true,'yearly.employ',true,false,false,'PT8-Employment','EMPLOY',NULL,0,'50',8),
+	 (1300,true,'yearlychild.servalue',true,true,false,'PT8-End Status','ENDSTATUS',NULL,4,'50',8);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1301,true,NULL,true,false,false,'PT8-English Instructions','ENGLISH',NULL,0,'50',8),
+	 (1302,false,'main.ethnictype',false,false,false,'PT8-Ethnic Type (National Origin)','ETHNIC TYPE',NULL,0,'50',8),
+	 (1303,true,'main.ethnic',true,false,false,'PT8-Ethnicity /Race','ETHNIC',NULL,0,'50',8),
+	 (1304,true,'yearly.fafsa',true,false,false,'PT8-FAFSA completion','FAFSA',NULL,0,'50',8),
+	 (1305,true,'main.finaidrecd',true,false,false,'PT8-Financial Aid','FINAIDRECD',NULL,0,'50',8),
+	 (1306,false,'yearly.finaidname',false,false,false,'PT8-Financial Aid Name','FINANCIAL AID NAME',NULL,0,'50',8),
+	 (1307,true,'yearly.finaidreas',true,false,false,'PT8-Financial Aid Un-met Reason','FINAIDREAS',NULL,0,'50',8),
+	 (1308,false,'yearly.finaidunme',false,false,false,'PT8-Financial Aid Unmet Name','FINANCIAL AID UNMET',NULL,0,'50',8),
+	 (1309,true,NULL,true,false,false,'PT8-Foreign Language Instructions','FOREIGNLANGUAGE',NULL,0,'50',8),
+	 (1310,true,'eddata.contfreq',true,false,false,'PT8-Frequency of contacts between participants','CONTFREQ',NULL,0,'50',8);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1311,true,'yearly.fundsource',true,false,false,'PT8-Funding Source','FUNDSOURCE',NULL,0,'50',8),
+	 (1312,true,'main.gender',true,false,false,'PT8-Gender','GENDER',NULL,0,'50',8),
+	 (1313,true,'yearly.gradelevel',true,false,false,'PT8-Grade Level (at end of reporting period)','GRADELEVEL',NULL,0,'50',8),
+	 (1314,true,'yearly.gradestart',true,false,false,'PT8-Grade Level (at start of reporting period)','GRADESTART',NULL,0,'50',8),
+	 (1315,true,'main.enterlevel',true,false,false,'PT8-Grade Level (at time of first entry into project)','ENTERLEVEL',NULL,0,'50',8),
+	 (1316,true,'yearly.hsgradepro',true,false,false,'PT8-Grade Progression Over Year','GRADEPRO',NULL,0,'50',8),
+	 (1317,true,'yearly.gradassist',true,false,false,'PT8-Graduate Assistantships','GRADASSIST',NULL,0,'50',8),
+	 (1318,true,'yearly.gradstudyl',true,false,false,'PT8-Graduate Current Year of Study','GRADSTUDYL',NULL,0,'50',8),
+	 (1319,true,'main.gdegree',true,false,false,'PT8-Graduate Degree Earned','GDEGREE',NULL,0,'50',8),
+	 (1320,false,'graduated.degreein',true,false,false,'PT8-Graduate Degree In','DEGREEIN',NULL,0,'50',8);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1321,false,'graduated.gdedustat',true,false,false,'PT8-Graduate Educational Status','GRADUATEEDUCATIONALSTATUS',NULL,0,'50',8),
+	 (1322,false,'graduated.employtype',true,false,false,'PT8-Graduate Employment Type','EMPLOYTYPE',NULL,0,'50',8),
+	 (1323,true,'main.gradadm',true,false,false,'PT8-Graduate School Admissions Test','GRADADM',NULL,0,'50',8),
+	 (1324,true,'yearly.enrollobj',true,false,false,'PT8-Graduate School Enrollment Objective','ENROLLOBJ',NULL,0,'50',8),
+	 (1325,true,'yearly.gpersist',true,false,false,'PT8-Graduate Student Persistence Status','GPERSIST',NULL,0,'50',8),
+	 (1326,true,'main.bdegreeco',true,false,false,'PT8-Graduating Cohort Year of Bachelor''s Degree','BDEGREECO',NULL,0,'50',8),
+	 (1327,true,'main.yearcogrd',true,false,false,'PT8-Graduation Cohort Year','YEARCOGRD',NULL,0,'50',8),
+	 (1328,false,'main.healthname',false,false,false,'PT8-Health Name','HEALTH NAME',NULL,0,'50',8),
+	 (1329,true,'yearly.hsgradstat',true,false,false,'PT8-High School Graduation Status','GRADSTATUS',NULL,0,'50',8),
+	 (1330,true,'yearly.vettest',true,false,false,'PT8-Improved Score on Standardized Test','VETTEST',NULL,0,'50',8);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1331,false,'main.incomelev',false,false,false,'PT8-Income Level','INCOME LEVEL',NULL,0,'50',8),
+	 (1332,false,'main.incomesou',false,false,false,'PT8-Income Source','INCOME SOURCE',NULL,0,'50',8),
+	 (1333,true,'yearly.initiative',true,false,false,'PT8-Initiative','INITIATIVE',NULL,0,'50',8),
+	 (1334,true,'yearly.mcintern',true,false,false,'PT8-Internship','INTERN',NULL,0,'50',8),
+	 (1335,false,'labservice.labserid',true,false,true,'PT8-Lab Service','LABSERVICE',NULL,0,'50',8),
+	 (1336,true,'yearly.partlength',true,false,false,'PT8-Length of Project Participation','PARTLENGTH',NULL,0,'50',8),
+	 (1337,true,'yearly.mcnmajor',true,false,false,'PT8-Major of Graduate Study','MCNMAJOR',NULL,0,'50',8),
+	 (1338,false,'main.marrstatus',true,false,false,'PT8-Marital Status','MARITALSTATUS',NULL,0,'50',8),
+	 (1339,true,NULL,true,false,false,'PT8-Mathematics Instructions/ Tutorials','MATH',NULL,0,'50',8),
+	 (1340,false,'classes.meettime',false,false,false,'PT8-Meeting Time','MEETING TIME',NULL,0,'50',8);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1341,false,'usermessages.msgstatus',true,false,false,'PT8-Message Priority Type','MSGSTATUS',NULL,0,'50',8),
+	 (1342,false,'graduated.milirank',false,false,false,'PT8-Military Rank','MILITARY RANK',NULL,0,'50',8),
+	 (1343,false,'graduated.militaryty',true,false,false,'PT8-Military Type','MILITARYTYPE',NULL,0,'50',8),
+	 (1344,true,'yearlychild.servalue',true,true,false,'PT8-Old End Status-For TS and EOC (prior to 2006-07)','OLDENDSTATUS',NULL,7,'50',8),
+	 (1345,false,'mainchild.ptitle',false,false,false,'PT8-Parent/ Guardian Relationship','PARENT RELATION',NULL,0,'50',8),
+	 (1346,true,'yearly.projretain',true,false,false,'PT8-Participant Retention in Project','PROJRETAIN',NULL,0,'50',8),
+	 (1347,true,'yearly.partstatus',true,false,false,'PT8-Participant Status','PARTSTATUS',NULL,0,'50',8),
+	 (1348,true,'yearly.endstatus',true,false,false,'PT8-Participant Status (at end of Reporting Period)','PARTSTATUSEND',NULL,0,'50',8),
+	 (1349,true,'yearly.partlevel',true,false,false,'PT8-Participation Level','PARTLEVEL',NULL,0,'50',8),
+	 (1350,true,'yearly.persistend',true,false,false,'PT8-Persistence Graduation Status at end of year','PERSISTEND',NULL,0,'50',8);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1351,true,'yearly.persiststa',true,false,false,'PT8-Persistence Status at beginning at next year','PERSISTSTA',NULL,0,'50',8),
+	 (1352,true,'yearly.pscomplete',true,false,false,'PT8-Postsecondary Completion Objective','PSCOMPLETE',NULL,0,'50',8),
+	 (1353,true,'yearly.psenroll',true,false,false,'PT8-Postsecondary Enrollment Objective','PSENROLL',NULL,0,'50',8),
+	 (1354,true,'yearly.pseterm',true,false,false,'PT8-Postsecondary Grading Period','PSETERM',NULL,0,'50',8),
+	 (1355,true,'yearly.persistden',true,false,false,'PT8-Postsecondary Persistence Objective-Denominator','PERSISTDEN',NULL,0,'50',8),
+	 (1356,true,'yearly.persistnum',true,false,false,'PT8-Postsecondary Persistence Objective-Numerator','PERSISTNUM',NULL,0,'50',8),
+	 (1357,true,'yearly.psremediat',true,false,false,'PT8-Postsecondary Remediation','PSREMEDIAT',NULL,0,'50',8),
+	 (1358,true,'yearly.stemdegree',true,false,false,'PT8-Postsecondary STEM Degree','STEMDEGREE',NULL,0,'50',8),
+	 (1359,false,'lablog.visitreason',false,false,false,'PT8-Reason for Visit','VISIT REASON',NULL,0,'50',8),
+	 (1360,true,'yearly.reasonleav',true,false,false,'PT8-Reason for Withdrawal/Leaving Project','REASON',NULL,0,'50',8);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1361,true,'yearly.greason',true,false,false,'PT8-Reason left Graduate School','GREASON',NULL,0,'50',8),
+	 (1362,true,'yearly.noenreason',true,false,false,'PT8-Reason Not Enrolled','NOENREASON',NULL,0,'50',8),
+	 (1363,true,'main.vetscherea',true,false,false,'PT8-Reason of Recheduling','VETSCHEREA',NULL,0,'50',8),
+	 (1364,true,'yearly.recupdated',true,false,false,'PT8-Record Updated','RECUPDATED',NULL,0,'50',8),
+	 (1365,true,'yearly.recruit',true,false,false,'PT8-Recruitment','RECRUIT',NULL,0,'50',8),
+	 (1366,false,'main.referedby',false,false,false,'PT8-Referred By','REFERRED BY',NULL,0,'50',8),
+	 (1367,true,'yearly.mcresearch
+',true,false,false,'PT8-Research Activities','RESEARCH',NULL,0,'50',8),
+	 (1368,true,'main.vetrevsche',true,false,false,'PT8-Revised Scheduled Completion Year','VETREVSCHE',NULL,0,'50',8),
+	 (1369,true,'yearly.rigorous',true,false,false,'PT8-Rigorous Enrollment','RIGOROUS',NULL,0,'50',8),
+	 (1370,false,'classes.room',false,false,false,'PT8-Room','ROOM',NULL,0,'50',8);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1371,true,'main.vetsche',true,false,false,'PT8-Scheduled Completion Year','VETSCHE',NULL,0,'50',8),
+	 (1372,true,'yearly.mcscholar',true,false,false,'PT8-Scholarly Activity','SCHOLAR',NULL,0,'50',8),
+	 (1373,true,NULL,true,false,false,'PT8-Science Instruction/Tutorials','SCIENCE',NULL,0,'50',8),
+	 (1374,true,'yearly.schpersist',true,false,false,'PT8-Secondary School Retention','SCHPERSIST',NULL,0,'50',8),
+	 (1375,true,'yearly.selftran',true,false,false,'PT8-Source of Postsecondary Education Information','SELFTRAN',NULL,0,'50',8),
+	 (1376,false,'staff.stfcodes',false,false,false,'PT8-Staff Codes','STAFF CODES',NULL,0,'50',8),
+	 (1377,true,NULL,true,false,false,'PT8-Standing Group Type (APR Column)','STANDINGGROUPTYPE',NULL,0,'50',8),
+	 (1378,true,'main.statetest',true,false,false,'PT8-State-Developed Test to Measure Academic Skills','STATETEST',NULL,0,'50',8),
+	 (1379,true,'main.mcstem',true,false,false,'PT8-STEM Major','MCSTEM',NULL,0,'50',8),
+	 (1380,true,'yearly.sumbridge',true,false,false,'PT8-Summer Bridge','SUMBRIDGE',NULL,0,'50',8);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1381,false,NULL,false,false,true,'PT8-Teacher','TEACHER',NULL,0,'50',8),
+	 (1382,true,'yearly.trackcomp',true,false,false,'PT8-Tracking Completed','TRACKCOMP',NULL,0,'50',8),
+	 (1383,true,'main.track',true,false,false,'PT8-Tracking Graduate','TRACK',NULL,0,'50',8),
+	 (1384,true,'yearly.transfers',true,false,false,'PT8-Transfers','TRANSFERS',NULL,0,'50',8),
+	 (1385,true,'yearly.othertrio',true,false,false,'PT8-Trio Programs','OTHERTRIO',NULL,0,'50',8),
+	 (1386,false,'yearly.tutor',false,false,true,'PT8-Tutor','TUTOR',NULL,0,'50',8),
+	 (1387,true,'yearly.testtype',true,false,false,'PT8-Type of Standarized Tests','TESTTYPE',NULL,0,'50',8),
+	 (1388,true,'eddata.summerresi',true,false,false,'PT8-UB,UBMS,VUB Summer residential Program Type','SUMMERRESI',NULL,0,'50',8),
+	 (1389,true,'eddata.regional',true,false,false,'PT8-UBMS Project type','REGIONAL',NULL,0,'50',8),
+	 (1390,true,'yearly.vcalllen',true,false,false,'PT8-Veteran Call to Active Duty Length','VCALLLEN',NULL,0,'50',8);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1391,true,'yearly.vcall',true,false,false,'PT8-Veteran Called to Active Duty Status','VCALL',NULL,0,'50',8),
+	 (1392,true,'yearly.vgradelev',true,false,false,'PT8-Veteran Educational Status (at end)','VGRADELEVEL',NULL,0,'50',8),
+	 (1393,true,'main.venterlev',true,false,false,'PT8-Veteran Educational Status (Entry into Project)','VENTERLEVEL',NULL,0,'50',8),
+	 (1394,true,'main.venterjob',true,false,false,'PT8-Veteran Employment Status','VENTERJOB',NULL,0,'50',8),
+	 (1395,true,'main.vfinaidrec',true,false,false,'PT8-Veteran Financial Aid','VFINAIDREC',NULL,0,'50',8),
+	 (1396,false,'formslog.formname',false,false,false,'PT8-Wallet Name','Wallet Name',NULL,0,'50',8),
+	 (1397,true,NULL,true,false,false,'PT8-Yearly Child Service Heading','SERHEADING',NULL,0,'50',8),
+	 (1398,true,NULL,true,false,false,'PT8-Yearly Child Service Type','SERTYPE',NULL,0,'50',8),
+	 (1399,true,NULL,true,false,false,'PT8-Yes-No Options','YESNO',NULL,0,'50',8),
+	 (1400,false,'contactchild.activityid
+yearlychild.servalue',true,true,true,'PT8-Activity','ACTIVITY','B PT8-Activity~APT8-Activity',1,'50~50',8);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1401,true,'yearlychild.servalue
+contact.aprsubject',true,true,false,'PT8-APR Subject Types','APR SUBJECT','PT8-APR Subject Types~PT8-APR Subject Types',6,'50~50',8),
+	 (1402,true,'main.bdegree
+yearly.bdegree',true,false,false,'PT8-Bachelor''s Degree','BDEGREE','PT8-Bachelor''s Degree~PT8-Bachelor''s Degree Attained',0,'50~50',8),
+	 (1403,true,'main.highdegree
+yearly.degree',true,false,false,'PT8-Degree/Certificate Completed','HIGHDEGREE','PT8-Degree/Certificate Completed~PT8-Degree/Certificate Undergraduate Completed',0,'50~50',8),
+	 (1404,true,'yearly.enroll
+main.enterenrol',true,false,false,'PT8-Enrollment Status','ENROLL','PT8-Enrollment Status (at the end of the academic year)~PT8-Enrollment Status (in academic year first served)',0,'50~50',8),
+	 (1405,false,'exam.examname
+examchild.examname',false,false,false,'PT8-Exam Name','EXAM NAME','PT8-Exam Name~PT8-Exam Name',0,'50~50',8),
+	 (1406,false,'yearly.standing
+semester.standing',true,false,true,'PT8-Grade / Standing Type','STANDING','PT8-Standing~PT8-Standing',0,'50~50',8),
+	 (1407,true,'main.lepentry
+main.leplastser',true,false,false,'PT8-Limited English Proficiency Status','LIMITEDENGPRO','PT8-Limited English Proficiency (Date of First Participation)~PT8-Limited English Proficiency (Date of Last Service)',0,'50~50',8),
+	 (1408,false,'yearly.major
+graduated.major',false,false,false,'PT8-Major','MAJOR','PT8-Major~PT8-Major',0,'50~50',8),
+	 (1409,false,'main.sitelocate
+appusers.sitelocate',false,false,false,'PT8-Site Location','SITE LOCATION','PT8-Site Location~PT8-Site Location',0,'50~50',8),
+	 (1410,false,'yearly.counsel
+yearly.tutor',false,true,true,'PT8-Staff','STAFF','PT8-Staff~PT8-Tutor',0,'50~50',8);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1411,true,'main.staterlagr
+main.statemathg',true,false,false,'PT8-State Grade level in which student was Assesse','STATE10GRADE','PT8-Grade level when Assessed for State 10th Reading Standard~PT8-Grade level when Assessed for State 10th Math Standard',0,'50~50',8),
+	 (1412,true,'main.state8rla
+main.state8math',true,false,false,'PT8-State Met 8th Grade Achievement Standard Options','STATE8MET','PT8-Met 8th Grade State Reading Language Art Standard~PT8-Met 8th Grade State Math Standard',0,'50~50',8),
+	 (1413,false,'contact.stfid
+classes.stfid',true,true,true,'PT8-STFID - DO NOT USE','STFID','PT8 - Stfid~PT8 - Stfid',0,'50~50',8),
+	 (1414,false,'classes.subject
+contact.subject',false,false,false,'PT8-Subject ( Classes/ Contacts)','SUBJECT','PT8-Subject~PT8-Subject',0,'50~50',8),
+	 (1415,false,'formslog.formtype
+yearlychild.servalue',false,false,false,'PT8-Wallet Type','Wallet Type','PT8 - Wallet Type Formslog ~PT8 - Wallet Type Yearly Child',5,'50~50',8),
+	 (1416,false,'main.schoolent
+yearly.school
+main.schoolend',false,false,true,'PT8-School Name/Code','SCHOOL','PT8-School (Entry into Project)~PT8-School(Current Fiscal Year)~PT8-School (End of Project)',0,'50~50~50',8),
+	 (1417,false,'classes.semester
+courses.semester
+semester.semester',true,true,false,'PT8-Semester Type','SEMESTER','PT8-Semester~PT8-Semester~PT8-Semester',0,'50~50~50',8),
+	 (1418,false,'yearly.college
+main.collegeent
+main.gradcoll
+main.gdoccoll',false,false,true,'PT8-College','COLLEGE','PT8-College~PT8 - Entry College~PT8-Graduate School First Attended~PT8-Doctorate College',0,'50~50~50~50',8),
+	 (1419,false,'yearly.counsel
+graduated.counsel',false,false,true,'PT8-Counselor','COUNSELOR','PT8-Counselor~PT8-Counselor',0,'50~50~50~50',8),
+	 (1420,true,'main.gpascale
+main.msgpascale
+yearly.gpaendsc
+yearly.gpastartsc',true,false,false,'PT8-GPA Scale','GPASCALE','PT8-GPA HS Scale (Entry into Project)~PT8-GPA MS Scale(Entry into Project)~PT8-GPA Scale (at end of Reporting Period)~PT8-GPA Scale (at start of Reporting Period)',0,'50~50~50~50',8);
+INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
+	 (1421,false,'staff.stfcustom1
+staff.stfcustom2
+staff.stfcustom3
+staff.stfcustom4',false,false,false,'PT8-Staff Custom Field','STAFF CUSTOM','PT8-Staff Custom 1~PT8-Staff Custom 2~ PT8-Staff Custom 3~PT8-Staff Custom 4',0,'50~50~50~50',8),
+	 (1422,true,'main.state10rla
+main.state10mat
+yearly.state10rla
+yearly.state10mat',true,false,false,'PT8-State Met 10th Grade Achievement Standard Option','STATE10MET','PT8-Met 10th Grade State Reading Language Art Standard~PT8-Met 10th Grade State Math Standard~PT8-Met HS State Acad. Achievement Standard at Proficient Level—Reading/language arts~PT8-Met HS State Acad. Achievement Standard at Proficient Level—Math',0,'50~50~50~50',8),
+	 (1423,true,'main.city
+mainchild.pcity
+eddata.city
+graduated.city
+school.city
+staff.stfcity',false,false,false,'PT8-City','CITY','PT8-City~PT8-City~PT8-City~PT8-City~PT8-City~PT8-City',0,'50~50~50~50~50~50',8),
+	 (1424,false,'main.state
+eddata.state
+graduated.state
+main.dlstate
+mainchild.pstate
+school.state
+staff.stfstate
+staffchild.stfstate',false,false,false,'PT8-State (Postal Address)','STATE','PT8-State Main~PT8-State Eddata~PT8-State Graduated~PT8-State Main DL~PT8-State Mainchild~PT8-State School~PT8-State Staff~PT8-State Staffchild',0,'50~50~50~50~50~50~50~50',8),
+	 (1425,false,'main.phn1ty
+main.phn2ty
+mainchild.pphn1ty
+mainchild.pphn2ty
+mainchild.pphn3ty
+staff.stfphn1ty
+staff.stfphn2ty
+staff.stfphn3ty
+staffchild.stfphn1ty
+staffchild.stfphn2ty
+staffchild.stfphn3ty',false,false,false,'PT8-Phone Type','PHONE TYPE','PT8-Phone Type 1~PT8-Phone Type 2~PT8-Phone Type 1~PT8-Phone Type 2~PT8-Phone Type 3~PT8-Phone Type 1~PT8-Phone Type 2~PT8-Phone Type 3~PT8-Phone Type 1~PT8-Phone Type 2~PT8-Phone Type 3',0,'50~50~50~50~50~50~50~50~50~50',8);
+
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.267','SETH','No response',0,1,0,'','ACADNEED','2022-04-14 12:58:06.267'),
+	 (false,true,true,'2022-04-14 12:58:06.267','SETH','Low high school grade point average',0,1,1,'','ACADNEED','2022-04-14 12:58:06.267'),
+	 (false,false,true,'2022-04-14 12:58:06.275','SETH','Low achievement test scores',0,1,2,'','ACADNEED','2022-04-14 12:58:06.275'),
+	 (false,false,true,'2022-04-14 12:58:06.277','SETH','Low educational aspirations',0,1,3,'','ACADNEED','2022-04-14 12:58:06.277'),
+	 (false,true,true,'2022-04-14 12:58:06.277','SETH','Low high school grade point average and  low educational aspirations',0,1,4,'','ACADNEED','2022-04-14 12:58:06.277'),
+	 (false,true,true,'2022-04-14 12:58:06.277','SETH','Low high school grade point average and  low  achievement test scores',0,1,5,'','ACADNEED','2022-04-14 12:58:06.277'),
+	 (false,true,true,'2022-04-14 12:58:06.277','SETH','Low achievement test scores and low educational aspirations',0,1,6,'','ACADNEED','2022-04-14 12:58:06.277'),
+	 (false,false,true,'2022-04-14 12:58:06.277','SETH','Lack of opportunity, support, and/or guidance to take challenging college preparation courses',0,1,7,'','ACADNEED','2022-04-14 12:58:06.277'),
+	 (false,true,true,'2022-04-14 12:58:06.277','SETH','Lack of career goals and/or need for accurate information on careers',0,1,8,'','ACADNEED','2022-04-14 12:58:06.277'),
+	 (false,false,true,'2022-04-14 12:58:06.277','SETH','Limited proficiency in English',0,1,9,'','ACADNEED','2022-04-14 12:58:06.277');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.285','SETH','Lacks confidence, self  esteem, and/or social skills',0,1,10,'','ACADNEED','2022-04-14 12:58:06.285'),
+	 (false,true,true,'2022-04-14 12:58:06.285','SETH','Predominately low income community',0,1,11,'','ACADNEED','2022-04-14 12:58:06.285'),
+	 (false,true,true,'2022-04-14 12:58:06.285','SETH','Rural isolation',0,1,12,'','ACADNEED','2022-04-14 12:58:06.285'),
+	 (false,true,true,'2022-04-14 12:58:06.287','SETH','Interest in careers in math and science',0,1,13,'','ACADNEED','2022-04-14 12:58:06.287'),
+	 (false,true,true,'2022-04-14 12:58:06.287','SETH','Other',0,1,14,'','ACADNEED','2022-04-14 12:58:06.287'),
+	 (true,true,true,'2022-04-14 12:58:06.287','admin','TEST',0,1,55,'','ACADNEED','2022-04-14 12:58:06.287'),
+	 (true,true,true,'2022-04-14 12:58:06.287','admin','Not Applicable',0,1,99,'','ACADNEED','2022-04-14 12:58:06.287'),
+	 (false,true,true,'2022-04-14 12:58:06.287','SETH','Unknown',0,1,0,'','ACADSTAND','2022-04-14 12:58:06.287'),
+	 (false,true,true,'2022-04-14 12:58:06.287','SETH','Good Standing',0,1,1,'','ACADSTAND','2022-04-14 12:58:06.287'),
+	 (false,true,true,'2022-04-14 12:58:06.287','SETH','Not in good standing',0,1,2,'','ACADSTAND','2022-04-14 12:58:06.287');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.287','SETH','Not enrolled',0,1,3,'','ACADSTAND','2022-04-14 12:58:06.287'),
+	 (false,true,true,'2022-04-14 12:58:06.287','SETH','Not Applicable',0,1,9,'','ACADSTAND','2022-04-14 12:58:06.287'),
+	 (false,false,true,'2022-04-14 12:58:06.287','USER','English/ Proficiency',0,1,1,'','ACTIVITY','2022-04-14 12:58:06.287'),
+	 (false,false,true,'2022-04-14 12:58:06.287','USER','Reading',0,1,2,'','ACTIVITY','2022-04-14 12:58:06.287'),
+	 (false,false,true,'2022-04-14 12:58:06.287','USER','Writing',0,1,3,'','ACTIVITY','2022-04-14 12:58:06.287'),
+	 (false,false,true,'2022-04-14 12:58:06.287','USER','Study Skills',0,1,4,'','ACTIVITY','2022-04-14 12:58:06.287'),
+	 (false,false,true,'2022-04-14 12:58:06.287','USER','Mathematics',0,1,5,'','ACTIVITY','2022-04-14 12:58:06.287'),
+	 (false,false,true,'2022-04-14 12:58:06.287','USER','Other Tutorial',0,1,6,'','ACTIVITY','2022-04-14 12:58:06.287'),
+	 (false,false,true,'2022-04-14 12:58:06.287','USER','GED Training',0,1,7,'','ACTIVITY','2022-04-14 12:58:06.287'),
+	 (false,false,true,'2022-04-14 12:58:06.287','USER','Financial Aid Counseling',0,1,8,'','ACTIVITY','2022-04-14 12:58:06.287');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.287','USER','Other Counseling',0,1,9,'','ACTIVITY','2022-04-14 12:58:06.287'),
+	 (false,false,true,'2022-04-14 12:58:06.295','USER','Computer Aided Instructions',0,1,10,'','ACTIVITY','2022-04-14 12:58:06.295'),
+	 (false,false,true,'2022-04-14 12:58:06.295','USER','Tutorial Assistance',0,1,11,'','ACTIVITY','2022-04-14 12:58:06.295'),
+	 (false,false,true,'2022-04-14 12:58:06.297','USER','Cultural Assistance',0,1,12,'','ACTIVITY','2022-04-14 12:58:06.297'),
+	 (false,false,true,'2022-04-14 12:58:06.297','USER','Career Planning',0,1,13,'','ACTIVITY','2022-04-14 12:58:06.297'),
+	 (false,false,true,'2022-04-14 12:58:06.297','USER','College Tours',0,1,14,'','ACTIVITY','2022-04-14 12:58:06.297'),
+	 (false,false,true,'2022-04-14 12:58:06.297','USER','Admission & Financial Aid Information',0,1,15,'','ACTIVITY','2022-04-14 12:58:06.297'),
+	 (false,false,true,'2022-04-14 12:58:06.297','USER','ACT Preparation',0,1,16,'','ACTIVITY','2022-04-14 12:58:06.297'),
+	 (false,false,true,'2022-04-14 12:58:06.297','USER','ACT Registration',0,1,17,'','ACTIVITY','2022-04-14 12:58:06.297'),
+	 (false,false,true,'2022-04-14 12:58:06.297','USER','Personal Counseling',0,1,18,'','ACTIVITY','2022-04-14 12:58:06.297');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.297','USER','College Survival Skill',0,1,19,'','ACTIVITY','2022-04-14 12:58:06.297'),
+	 (false,false,true,'2022-04-14 12:58:06.297','USER','Academic Counseling',0,1,20,'','ACTIVITY','2022-04-14 12:58:06.297'),
+	 (false,false,true,'2022-04-14 12:58:06.297','USER','Goal Setting',0,1,21,'','ACTIVITY','2022-04-14 12:58:06.297'),
+	 (false,false,true,'2022-04-14 12:58:06.297','USER','Life Skills',0,1,22,'','ACTIVITY','2022-04-14 12:58:06.297'),
+	 (false,false,true,'2022-04-14 12:58:06.297','USER','Test Taking Skills',0,1,23,'','ACTIVITY','2022-04-14 12:58:06.297'),
+	 (false,false,true,'2022-04-14 12:58:06.297','USER','Self-Concept Assessment',0,1,24,'','ACTIVITY','2022-04-14 12:58:06.297'),
+	 (false,false,true,'2022-04-14 12:58:06.297','USER','Parental Involvement',0,1,25,'','ACTIVITY','2022-04-14 12:58:06.297'),
+	 (false,false,true,'2022-04-14 12:58:06.297','USER','High School Survival Skills',0,1,26,'','ACTIVITY','2022-04-14 12:58:06.297'),
+	 (false,false,true,'2022-04-14 12:58:06.297','USER','Interest Inventory Assessment',0,1,27,'','ACTIVITY','2022-04-14 12:58:06.297'),
+	 (false,false,true,'2022-04-14 12:58:06.297','USER','Self-Esteem',0,1,28,'','ACTIVITY','2022-04-14 12:58:06.297');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.297','USER','Critical Thinking',0,1,29,'','ACTIVITY','2022-04-14 12:58:06.297'),
+	 (false,false,true,'2022-04-14 12:58:06.297','USER','Decision Making',0,1,30,'','ACTIVITY','2022-04-14 12:58:06.297'),
+	 (false,false,true,'2022-04-14 12:58:06.297','SETH','Count all contacts on same day as separate sessions',0,1,1,'','ACTIVITYGROUPTYPE','2022-04-14 12:58:06.297'),
+	 (false,false,true,'2022-04-14 12:58:06.305','SETH','Count all contacts on same day as one event',0,1,2,'','ACTIVITYGROUPTYPE','2022-04-14 12:58:06.305'),
+	 (false,true,true,'2022-04-14 12:58:06.305','SETH','Mathematics Instruction',0,1,36,'admath','APR SUBJECT','2022-04-14 12:58:06.305'),
+	 (false,true,true,'2022-04-14 12:58:06.305','SETH','Mathematics Instruction Summer (may include Bridge Students)',0,1,37,'admath','APR SUBJECT','2022-04-14 12:58:06.305'),
+	 (false,true,true,'2022-04-14 12:58:06.305','SETH','Science Instruction/Tutorials Academic Year',0,1,38,'adscience','APR SUBJECT','2022-04-14 12:58:06.305'),
+	 (false,true,true,'2022-04-14 12:58:06.305','SETH','Science Instruction Summer (may include Bridge Students)',0,1,39,'adscience','APR SUBJECT','2022-04-14 12:58:06.305'),
+	 (false,false,true,'2022-04-14 12:58:06.346','MANAGER','Integer',0,1,4,'','CUSTOMFIELDTYPE','2022-04-14 12:58:06.346'),
+	 (false,true,true,'2022-04-14 12:58:06.305','SETH','Foreign Language Instruction/Tutorials Academic Year',0,1,40,'adforeignlanguage','APR SUBJECT','2022-04-14 12:58:06.305');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.307','SETH','Foreign Language Instruction Summer (may include Bridge Students)',0,1,41,'adforeignlanguage','APR SUBJECT','2022-04-14 12:58:06.307'),
+	 (false,true,true,'2022-04-14 12:58:06.307','SETH','English Instruction/Tutorials Academic Year',0,1,42,'adenglish','APR SUBJECT','2022-04-14 12:58:06.307'),
+	 (false,true,true,'2022-04-14 12:58:06.307','SETH','English Instruction Summer (may include Bridge Students)',0,1,43,'adenglish','APR SUBJECT','2022-04-14 12:58:06.307'),
+	 (false,false,true,'2022-04-14 12:58:06.307','MANAGER','In Stock',0,1,1,'','ASSETSTATUS','2022-04-14 12:58:06.307'),
+	 (false,false,true,'2022-04-14 12:58:06.307','MANAGER','Checked Out',0,1,2,'','ASSETSTATUS','2022-04-14 12:58:06.307'),
+	 (false,false,true,'2022-04-14 12:58:06.307','MANAGER','Out for Repair',0,1,3,'','ASSETSTATUS','2022-04-14 12:58:06.307'),
+	 (false,false,true,'2022-04-14 12:58:06.307','MANAGER','Damaged',0,1,4,'','ASSETSTATUS','2022-04-14 12:58:06.307'),
+	 (false,false,true,'2022-04-14 12:58:06.307','MANAGER','Lost',0,1,5,'','ASSETSTATUS','2022-04-14 12:58:06.307'),
+	 (false,false,true,'2022-04-14 12:58:06.307','MANAGER','Stolen',0,1,6,'','ASSETSTATUS','2022-04-14 12:58:06.307'),
+	 (false,false,true,'2022-04-14 12:58:06.307','MANAGER','No longer in use',0,1,7,'','ASSETSTATUS','2022-04-14 12:58:06.307');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.307','USER','Public, two-year institution',0,1,1,'','COLLEGETYPE','2022-04-14 12:58:06.307'),
+	 (false,false,true,'2022-04-14 12:58:06.307','USER','Private, non-profit, two-year institution',0,1,2,'','COLLEGETYPE','2022-04-14 12:58:06.307'),
+	 (false,false,true,'2022-04-14 12:58:06.307','USER','Public, four-year institution',0,1,3,'','COLLEGETYPE','2022-04-14 12:58:06.307'),
+	 (false,false,true,'2022-04-14 12:58:06.307','USER','Private, non-profit, four-year institution',0,1,4,'','COLLEGETYPE','2022-04-14 12:58:06.307'),
+	 (false,false,true,'2022-04-14 12:58:06.307','USER','Public or non-profit vocational/technical institution',0,1,5,'','COLLEGETYPE','2022-04-14 12:58:06.307'),
+	 (false,false,true,'2022-04-14 12:58:06.307','USER','Proprietary school',0,1,6,'','COLLEGETYPE','2022-04-14 12:58:06.307'),
+	 (false,false,true,'2022-04-14 12:58:06.307','USER','Unknown',0,1,7,'','COLLEGETYPE','2022-04-14 12:58:06.307'),
+	 (false,true,true,'2022-04-14 12:58:06.307','SETH','Unknown',0,1,0,'','COLLGRADE','2022-04-14 12:58:06.307'),
+	 (false,true,true,'2022-04-14 12:58:06.307','SETH','Accepted into postsecondary education program but not yet enrolled',0,1,1,'','COLLGRADE','2022-04-14 12:58:06.307'),
+	 (false,true,true,'2022-04-14 12:58:06.307','SETH','1st yr.,  never attended',0,1,2,'','COLLGRADE','2022-04-14 12:58:06.307');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.307','SETH','1st yr.,  attended before',0,1,3,'','COLLGRADE','2022-04-14 12:58:06.307'),
+	 (false,true,true,'2022-04-14 12:58:06.307','SETH','2nd yr./sophomore',0,1,4,'','COLLGRADE','2022-04-14 12:58:06.307'),
+	 (false,true,true,'2022-04-14 12:58:06.307','SETH','3rd yr./junior',0,1,5,'','COLLGRADE','2022-04-14 12:58:06.307'),
+	 (false,true,true,'2022-04-14 12:58:06.317','SETH','4th yr./senior',0,1,6,'','COLLGRADE','2022-04-14 12:58:06.317'),
+	 (false,true,true,'2022-04-14 12:58:06.317','SETH','5th yr./other undergraduates',0,1,7,'','COLLGRADE','2022-04-14 12:58:06.317'),
+	 (false,true,true,'2022-04-14 12:58:06.317','SETH','Graduated',0,1,8,'','COLLGRADE','2022-04-14 12:58:06.317'),
+	 (false,true,true,'2022-04-14 12:58:06.317','SETH','Enrolled in graduate degree program',0,1,9,'','COLLGRADE','2022-04-14 12:58:06.317'),
+	 (false,true,true,'2022-04-14 12:58:06.317','SETH','Not Applicable',0,1,99,'','COLLGRADE','2022-04-14 12:58:06.317'),
+	 (false,false,true,'2022-04-14 12:58:06.317','USER','Yes',0,1,1,'','COLLREADY','2022-04-14 12:58:06.317'),
+	 (false,true,true,'2022-04-14 12:58:06.325','SETH','',0,1,0,'','COMPARE','2022-04-14 12:58:06.325');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.328','SETH','< less than',0,1,1,'','COMPARE','2022-04-14 12:58:06.328'),
+	 (false,true,true,'2022-04-14 12:58:06.328','SETH','<= less than or equal to',0,1,2,'','COMPARE','2022-04-14 12:58:06.328'),
+	 (false,true,true,'2022-04-14 12:58:06.328','SETH','<> not equal to',0,1,3,'','COMPARE','2022-04-14 12:58:06.328'),
+	 (false,true,true,'2022-04-14 12:58:06.328','SETH','= equal to',0,1,4,'','COMPARE','2022-04-14 12:58:06.328'),
+	 (false,true,true,'2022-04-14 12:58:06.328','SETH','> more than',0,1,5,'','COMPARE','2022-04-14 12:58:06.328'),
+	 (false,true,true,'2022-04-14 12:58:06.336','SETH','>= more than or equal to',0,1,6,'','COMPARE','2022-04-14 12:58:06.336'),
+	 (false,true,true,'2022-04-14 12:58:06.336','SETH','Academic',0,1,1,'','COMPONENT','2022-04-14 12:58:06.336'),
+	 (false,true,true,'2022-04-14 12:58:06.338','SETH','Summer',0,1,2,'','COMPONENT','2022-04-14 12:58:06.338'),
+	 (false,true,true,'2022-04-14 12:58:06.338','SETH','Both',0,1,3,'','COMPONENT','2022-04-14 12:58:06.338'),
+	 (false,false,true,'2022-04-14 12:58:06.338','SETH','Not Applicable',0,1,9,'','COMPONENT','2022-04-14 12:58:06.338');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.338','SETH','Counselor',0,1,1,'','CONTACTSTAFFTYPE','2022-04-14 12:58:06.338'),
+	 (false,true,true,'2022-04-14 12:58:06.338','SETH','Tutor',0,1,2,'','CONTACTSTAFFTYPE','2022-04-14 12:58:06.338'),
+	 (false,true,true,'2022-04-14 12:58:06.338','SETH','Teacher',0,1,3,'','CONTACTSTAFFTYPE','2022-04-14 12:58:06.338'),
+	 (false,true,true,'2022-04-14 12:58:06.338','SETH','Staff',0,1,4,'','CONTACTSTAFFTYPE','2022-04-14 12:58:06.338'),
+	 (false,true,true,'2022-04-14 12:58:06.338','SETH','Individual',0,1,1,'','CONTACTTYPE','2022-04-14 12:58:06.338'),
+	 (false,true,true,'2022-04-14 12:58:06.338','SETH','Group',0,1,2,'','CONTACTTYPE','2022-04-14 12:58:06.338'),
+	 (false,true,true,'2022-04-14 12:58:06.338','SETH','Phone',0,1,3,'','CONTACTTYPE','2022-04-14 12:58:06.338'),
+	 (false,true,true,'2022-04-14 12:58:06.338','SETH','Mail',0,1,4,'','CONTACTTYPE','2022-04-14 12:58:06.338'),
+	 (false,false,true,'2022-04-14 12:58:06.338','SETH','Parent',0,1,5,'','CONTACTTYPE','2022-04-14 12:58:06.338'),
+	 (false,true,true,'2022-04-14 12:58:06.338','SETH','Other',0,1,6,'','CONTACTTYPE','2022-04-14 12:58:06.338');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.338','SETH','E-mail',0,1,7,'','CONTACTTYPE','2022-04-14 12:58:06.338'),
+	 (false,false,true,'2022-04-14 12:58:06.338','USER','Pets Name',0,1,1,'         0','CUSTOMFIELDNAME','2022-04-14 12:58:06.338'),
+	 (false,false,true,'2022-04-14 12:58:06.338','USER','T-shirt Size',0,1,2,'         1','CUSTOMFIELDNAME','2022-04-14 12:58:06.338'),
+	 (false,false,true,'2022-04-14 12:58:06.338','USER','Donate Blood',0,1,3,'         2','CUSTOMFIELDNAME','2022-04-14 12:58:06.338'),
+	 (false,false,true,'2022-04-14 12:58:06.338','USER','Date Inactivated',0,1,4,'         3','CUSTOMFIELDNAME','2022-04-14 12:58:06.338'),
+	 (false,false,true,'2022-04-14 12:58:06.338','USER','Number of Siblings',0,1,5,'         4','CUSTOMFIELDNAME','2022-04-14 12:58:06.338'),
+	 (false,false,true,'2022-04-14 12:58:06.346','USER','Food Allowance',0,1,6,'         5','CUSTOMFIELDNAME','2022-04-14 12:58:06.346'),
+	 (false,false,true,'2022-04-14 12:58:06.346','MANAGER','Text-Normal',0,1,0,'','CUSTOMFIELDTYPE','2022-04-14 12:58:06.346'),
+	 (false,false,true,'2022-04-14 12:58:06.346','MANAGER','Text-Quickfill',0,1,1,'','CUSTOMFIELDTYPE','2022-04-14 12:58:06.346'),
+	 (false,false,true,'2022-04-14 12:58:06.346','MANAGER','Logical',0,1,2,'','CUSTOMFIELDTYPE','2022-04-14 12:58:06.346');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.346','MANAGER','Date',0,1,3,'','CUSTOMFIELDTYPE','2022-04-14 12:58:06.346'),
+	 (false,false,true,'2022-04-14 12:58:06.346','','Numeric-2 decimals',0,1,5,'','CUSTOMFIELDTYPE','2022-04-14 12:58:06.346'),
+	 (false,false,true,'2022-04-14 12:58:06.346','SETH','Science',0,1,1,'','DEGREEIN','2022-04-14 12:58:06.346'),
+	 (false,false,true,'2022-04-14 12:58:06.348','SETH','Business',0,1,2,'','DEGREEIN','2022-04-14 12:58:06.348'),
+	 (false,false,true,'2022-04-14 12:58:06.348','SETH','Arts',0,1,3,'','DEGREEIN','2022-04-14 12:58:06.348'),
+	 (false,false,true,'2022-04-14 12:58:06.348','SETH','English',0,1,4,'','DEGREEIN','2022-04-14 12:58:06.348'),
+	 (false,true,true,'2022-04-14 12:58:06.348','SETH','No response',0,1,0,'','ELIGIBILITY','2022-04-14 12:58:06.348'),
+	 (false,true,true,'2022-04-14 12:58:06.348','SETH','Low-Income and Potential First-Generation College Students',0,1,1,'','ELIGIBILITY','2022-04-14 12:58:06.348'),
+	 (false,true,true,'2022-04-14 12:58:06.348','SETH','Low-Income only',0,1,2,'','ELIGIBILITY','2022-04-14 12:58:06.348'),
+	 (false,true,true,'2022-04-14 12:58:06.348','SETH','Potential First-Generation College Students only',0,1,3,'','ELIGIBILITY','2022-04-14 12:58:06.348');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.348','SETH','Other',0,1,4,'','ELIGIBILITY','2022-04-14 12:58:06.348'),
+	 (false,false,true,'2022-04-14 12:58:06.348','SETH','Part Time',0,1,1,'','EMPLOYTYPE','2022-04-14 12:58:06.348'),
+	 (false,false,true,'2022-04-14 12:58:06.348','SETH','Full Time',0,1,2,'','EMPLOYTYPE','2022-04-14 12:58:06.348'),
+	 (false,false,true,'2022-04-14 12:58:06.348','SETH','Unemployed',0,1,3,'','EMPLOYTYPE','2022-04-14 12:58:06.348'),
+	 (false,false,true,'2022-04-14 12:58:06.348','USER','A1. Promoted to next grade in middle or high school',0,1,1,'','ENDSTATUS','2022-04-14 12:58:06.348'),
+	 (false,false,true,'2022-04-14 12:58:06.348','USER','A2. Not promoted (including dropouts)',0,1,2,'','ENDSTATUS','2022-04-14 12:58:06.348'),
+	 (false,false,true,'2022-04-14 12:58:06.348','USER','A3. Other status for middle and non-senior HS students',0,1,3,'','ENDSTATUS','2022-04-14 12:58:06.348'),
+	 (false,false,true,'2022-04-14 12:58:06.348','USER','A4. Unknown status for middle and non-senior HS students',0,1,4,'','ENDSTATUS','2022-04-14 12:58:06.348'),
+	 (false,false,true,'2022-04-14 12:58:06.348','USER','B1. Received high school diploma',0,1,5,'','ENDSTATUS','2022-04-14 12:58:06.348'),
+	 (false,false,true,'2022-04-14 12:58:06.348','USER','B2. Received high school equivalency credentials',0,1,6,'','ENDSTATUS','2022-04-14 12:58:06.348');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.348','USER','B3. Did not graduate or receive equivalency credentials',0,1,7,'','ENDSTATUS','2022-04-14 12:58:06.348'),
+	 (false,false,true,'2022-04-14 12:58:06.348','USER','B4. Other status for HS seniors and their equivalents',0,1,8,'','ENDSTATUS','2022-04-14 12:58:06.348'),
+	 (false,false,true,'2022-04-14 12:58:06.348','USER','B5. Unknown status for HS seniors and their equivalents',0,1,9,'','ENDSTATUS','2022-04-14 12:58:06.348'),
+	 (false,false,true,'2022-04-14 12:58:06.348','USER','C. Applied for student financial aid for postsecondary education',0,1,10,'','ENDSTATUS','2022-04-14 12:58:06.348'),
+	 (false,false,true,'2022-04-14 12:58:06.348','USER','D. Applied for admission to program of postsecondary education',0,1,11,'','ENDSTATUS','2022-04-14 12:58:06.348'),
+	 (false,false,true,'2022-04-14 12:58:06.348','USER','E1. Enrolled in postsecondary education (first time enrollment or reentry)',0,1,12,'','ENDSTATUS','2022-04-14 12:58:06.348'),
+	 (false,false,true,'2022-04-14 12:58:06.348','USER','E2. Not enrolled in postsecondary education',0,1,13,'','ENDSTATUS','2022-04-14 12:58:06.348'),
+	 (false,false,true,'2022-04-14 12:58:06.348','USER','E3. Other status for college-ready participants',0,1,14,'','ENDSTATUS','2022-04-14 12:58:06.348'),
+	 (false,false,true,'2022-04-14 12:58:06.348','USER','E4. Unknown status for college-ready participants',0,1,15,'','ENDSTATUS','2022-04-14 12:58:06.348'),
+	 (false,false,true,'2022-04-14 12:58:06.348','USER','II F. Veterans Served',0,1,32,'','ENDSTATUS','2022-04-14 12:58:06.348');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.348','USER','II G. Participants with Limited English Proficiency',0,1,33,'','ENDSTATUS','2022-04-14 12:58:06.348'),
+	 (false,true,true,'2022-04-14 12:58:06.348','SETH','Not enrolled',0,1,0,'','ENGLISH','2022-04-14 12:58:06.348'),
+	 (false,true,true,'2022-04-14 12:58:06.348','SETH','Composition',0,1,1,'','ENGLISH','2022-04-14 12:58:06.348'),
+	 (false,true,true,'2022-04-14 12:58:06.348','SETH','Literature',0,1,2,'','ENGLISH','2022-04-14 12:58:06.348'),
+	 (false,true,true,'2022-04-14 12:58:06.348','SETH','Composition and Literature',0,1,3,'','ENGLISH','2022-04-14 12:58:06.348'),
+	 (false,true,true,'2022-04-14 12:58:06.356','SETH','Unknown',0,1,0,'','ENROLL','2022-04-14 12:58:06.356'),
+	 (false,true,true,'2022-04-14 12:58:06.356','SETH','Full-time',0,1,1,'','ENROLL','2022-04-14 12:58:06.356'),
+	 (false,true,true,'2022-04-14 12:58:06.356','SETH','Less than full-time',0,1,2,'','ENROLL','2022-04-14 12:58:06.356'),
+	 (false,true,true,'2022-04-14 12:58:06.356','SETH','Varied enrollment during reporting period',0,1,3,'','ENROLL','2022-04-14 12:58:06.356'),
+	 (false,true,true,'2022-04-14 12:58:06.356','SETH','Not Applicable',0,1,9,'','ENROLL','2022-04-14 12:58:06.356');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.358','SETH','Unknown',0,1,0,'','ENTEREXAM','2022-04-14 12:58:06.358'),
+	 (false,true,true,'2022-04-14 12:58:06.358','SETH','SAT',0,1,1,'','ENTEREXAM','2022-04-14 12:58:06.358'),
+	 (false,true,true,'2022-04-14 12:58:06.358','SETH','ACT',0,1,2,'','ENTEREXAM','2022-04-14 12:58:06.358'),
+	 (false,true,true,'2022-04-14 12:58:06.358','SETH','Both SAT and ACT',0,1,3,'','ENTEREXAM','2022-04-14 12:58:06.358'),
+	 (false,true,true,'2022-04-14 12:58:06.358','SETH','Other',0,1,4,'','ENTEREXAM','2022-04-14 12:58:06.358'),
+	 (false,true,true,'2022-04-14 12:58:06.358','SETH','Not Applicable',0,1,9,'','ENTEREXAM','2022-04-14 12:58:06.358'),
+	 (false,true,true,'2022-04-14 12:58:06.358','SETH','No response/Unknown',0,1,0,'','ENTERLEVEL','2022-04-14 12:58:06.358'),
+	 (false,true,true,'2022-04-14 12:58:06.358','SETH','Rising 9th grader',0,1,1,'','ENTERLEVEL','2022-04-14 12:58:06.358'),
+	 (false,true,true,'2022-04-14 12:58:06.358','SETH','9th grade',0,1,2,'','ENTERLEVEL','2022-04-14 12:58:06.358'),
+	 (false,true,true,'2022-04-14 12:58:06.358','SETH','10th grade',0,1,3,'','ENTERLEVEL','2022-04-14 12:58:06.358');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.358','SETH','11th grade',0,1,4,'','ENTERLEVEL','2022-04-14 12:58:06.358'),
+	 (false,true,true,'2022-04-14 12:58:06.358','SETH','Rising 12th grader',0,1,5,'','ENTERLEVEL','2022-04-14 12:58:06.358'),
+	 (false,true,true,'2022-04-14 12:58:06.358','SETH','6th Grade',0,1,6,'','ENTERLEVEL','2022-04-14 12:58:06.358'),
+	 (false,true,true,'2022-04-14 12:58:06.358','SETH','7th Grade',0,1,7,'','ENTERLEVEL','2022-04-14 12:58:06.358'),
+	 (false,true,true,'2022-04-14 12:58:06.358','SETH','8th Grade',0,1,8,'','ENTERLEVEL','2022-04-14 12:58:06.358'),
+	 (false,true,true,'2022-04-14 12:58:06.358','SETH','No response',0,1,0,'','ETHNIC','2022-04-14 12:58:06.358'),
+	 (false,true,true,'2022-04-14 12:58:06.378','SETH','American Indian or Alaskan Native',0,1,1,'','ETHNIC','2022-04-14 12:58:06.378'),
+	 (false,true,true,'2022-04-14 12:58:06.378','SETH','Asian',0,1,2,'','ETHNIC','2022-04-14 12:58:06.378'),
+	 (false,true,true,'2022-04-14 12:58:06.378','SETH','Black or African American',0,1,3,'','ETHNIC','2022-04-14 12:58:06.378'),
+	 (false,true,true,'2022-04-14 12:58:06.378','SETH','Hispanic or Latino',0,1,4,'','ETHNIC','2022-04-14 12:58:06.378');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.378','SETH','White',0,1,5,'','ETHNIC','2022-04-14 12:58:06.378'),
+	 (false,true,true,'2022-04-14 12:58:06.378','USER','Native Hawaiian or other Pacific Islander',0,1,6,'','ETHNIC','2022-04-14 12:58:06.378'),
+	 (false,true,true,'2022-04-14 12:58:06.378','SETH','More than one race reported',0,1,7,'','ETHNIC','2022-04-14 12:58:06.378'),
+	 (false,true,true,'2022-04-14 12:58:06.378','SETH','No response',0,1,0,'','FINAIDREAS','2022-04-14 12:58:06.378'),
+	 (false,false,true,'2022-04-14 12:58:06.378','SETH','Student refused loan',0,1,1,'','FINAIDREAS','2022-04-14 12:58:06.378'),
+	 (false,false,true,'2022-04-14 12:58:06.378','SETH','Insufficient Federal grant aid',0,1,2,'','FINAIDREAS','2022-04-14 12:58:06.378'),
+	 (false,false,true,'2022-04-14 12:58:06.378','SETH','Insufficient College Work Study aid',0,1,3,'','FINAIDREAS','2022-04-14 12:58:06.378'),
+	 (false,false,true,'2022-04-14 12:58:06.378','SETH','Insufficient institutional aid',0,1,4,'','FINAIDREAS','2022-04-14 12:58:06.378'),
+	 (false,false,true,'2022-04-14 12:58:06.378','SETH','Student failed to make adequate academic progress',0,1,5,'','FINAIDREAS','2022-04-14 12:58:06.378'),
+	 (false,false,true,'2022-04-14 12:58:06.378','SETH','Student refused College Work Study aid',0,1,6,'','FINAIDREAS','2022-04-14 12:58:06.378');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.378','SETH','Student not enrolled full-time',0,1,7,'','FINAIDREAS','2022-04-14 12:58:06.378'),
+	 (false,false,true,'2022-04-14 12:58:06.378','SETH','Student not eligible for financial aid',0,1,8,'','FINAIDREAS','2022-04-14 12:58:06.378'),
+	 (false,false,true,'2022-04-14 12:58:06.378','SETH','Insufficient loans',0,1,9,'','FINAIDREAS','2022-04-14 12:58:06.378'),
+	 (false,true,true,'2022-04-14 12:58:06.378','SETH','Unknown',0,1,0,'','FINAIDRECD','2022-04-14 12:58:06.378'),
+	 (false,true,true,'2022-04-14 12:58:06.386','SETH','Pell grant only',0,1,1,'','FINAIDRECD','2022-04-14 12:58:06.386'),
+	 (false,true,true,'2022-04-14 12:58:06.386','SETH','FFEL loan',0,1,2,'','FINAIDRECD','2022-04-14 12:58:06.386'),
+	 (false,true,true,'2022-04-14 12:58:06.386','SETH','Direct loan',0,1,3,'','FINAIDRECD','2022-04-14 12:58:06.386'),
+	 (false,true,true,'2022-04-14 12:58:06.386','SETH','College work study only',0,1,4,'','FINAIDRECD','2022-04-14 12:58:06.386'),
+	 (false,true,true,'2022-04-14 12:58:06.388','SETH','Institutional aid only',0,1,5,'','FINAIDRECD','2022-04-14 12:58:06.388'),
+	 (false,true,true,'2022-04-14 12:58:06.388','SETH','State grant only',0,1,6,'','FINAIDRECD','2022-04-14 12:58:06.388');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.388','SETH','Pell grant and FFEL loan',0,1,7,'','FINAIDRECD','2022-04-14 12:58:06.388'),
+	 (false,true,true,'2022-04-14 12:58:06.388','SETH','Pell grant and Direct loan',0,1,8,'','FINAIDRECD','2022-04-14 12:58:06.388'),
+	 (false,true,true,'2022-04-14 12:58:06.388','SETH','Multiple federal aid',0,1,9,'','FINAIDRECD','2022-04-14 12:58:06.388'),
+	 (false,true,true,'2022-04-14 12:58:06.388','SETH','Multiple federal and other aid',0,1,10,'','FINAIDRECD','2022-04-14 12:58:06.388'),
+	 (false,true,true,'2022-04-14 12:58:06.388','SETH','Non-federal, non-institutional aid',0,1,11,'','FINAIDRECD','2022-04-14 12:58:06.388'),
+	 (false,true,true,'2022-04-14 12:58:06.388','SETH','No aid awarded',0,1,12,'','FINAIDRECD','2022-04-14 12:58:06.388'),
+	 (false,true,true,'2022-04-14 12:58:06.388','SETH','No aid needed',0,1,13,'','FINAIDRECD','2022-04-14 12:58:06.388'),
+	 (false,true,true,'2022-04-14 12:58:06.388','SETH','Not Applicable',0,1,99,'','FINAIDRECD','2022-04-14 12:58:06.388'),
+	 (false,true,true,'2022-04-14 12:58:06.388','SETH','Not enrolled',0,1,0,'','FOREIGNLANGUAGE','2022-04-14 12:58:06.388'),
+	 (false,true,true,'2022-04-14 12:58:06.388','SETH','Spanish',0,1,1,'','FOREIGNLANGUAGE','2022-04-14 12:58:06.388');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.407','SETH','French',0,1,2,'','FOREIGNLANGUAGE','2022-04-14 12:58:06.407'),
+	 (false,true,true,'2022-04-14 12:58:06.407','SETH','German',0,1,3,'','FOREIGNLANGUAGE','2022-04-14 12:58:06.407'),
+	 (false,true,true,'2022-04-14 12:58:06.407','SETH','Italian',0,1,4,'','FOREIGNLANGUAGE','2022-04-14 12:58:06.407'),
+	 (false,true,true,'2022-04-14 12:58:06.407','SETH','Russian',0,1,5,'','FOREIGNLANGUAGE','2022-04-14 12:58:06.407'),
+	 (false,true,true,'2022-04-14 12:58:06.407','SETH','Japanese',0,1,6,'','FOREIGNLANGUAGE','2022-04-14 12:58:06.407'),
+	 (false,true,true,'2022-04-14 12:58:06.409','SETH','Other Foreign Language',0,1,7,'','FOREIGNLANGUAGE','2022-04-14 12:58:06.409'),
+	 (false,false,true,'2022-04-14 12:58:06.409','SETH','Financial Aid',0,1,1,'','FORM TYPE','2022-04-14 12:58:06.409'),
+	 (false,false,true,'2022-04-14 12:58:06.409','SETH','Field Trip Authorization',0,1,2,'','FORM TYPE','2022-04-14 12:58:06.409'),
+	 (false,false,true,'2022-04-14 12:58:06.409','SETH','Application Form',0,1,3,'','FORM TYPE','2022-04-14 12:58:06.409'),
+	 (false,false,true,'2022-04-14 12:58:06.409','SETH','Income Data',0,1,4,'','FORM TYPE','2022-04-14 12:58:06.409');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.409','SETH','Parent Contract Form',0,1,5,'','FORM TYPE','2022-04-14 12:58:06.409'),
+	 (false,false,true,'2022-04-14 12:58:06.409','SETH','Assessment',0,1,6,'','FORM TYPE','2022-04-14 12:58:06.409'),
+	 (false,false,true,'2022-04-14 12:58:06.409','SETH','Eligibility Form',0,1,7,'','FORM TYPE','2022-04-14 12:58:06.409'),
+	 (false,false,true,'2022-04-14 12:58:06.409','SETH','Student Contract Form',0,1,8,'','FORM TYPE','2022-04-14 12:58:06.409'),
+	 (false,false,true,'2022-04-14 12:58:06.409','SETH','Recommendation Letter',0,1,9,'','FORM TYPE','2022-04-14 12:58:06.409'),
+	 (false,true,true,'2022-04-14 12:58:06.409','SETH','No response',0,1,0,'','GENDER','2022-04-14 12:58:06.409'),
+	 (false,true,true,'2022-04-14 12:58:06.409','SETH','Male',0,1,1,'','GENDER','2022-04-14 12:58:06.409'),
+	 (false,true,true,'2022-04-14 12:58:06.409','SETH','Female',0,1,2,'','GENDER','2022-04-14 12:58:06.409'),
+	 (false,true,true,'2022-04-14 12:58:06.409','SETH','No response',0,1,0,'','GPASCALE','2022-04-14 12:58:06.409'),
+	 (false,true,true,'2022-04-14 12:58:06.409','SETH','4 point scale',0,1,1,'','GPASCALE','2022-04-14 12:58:06.409');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.409','SETH','5 point scale',0,1,2,'','GPASCALE','2022-04-14 12:58:06.409'),
+	 (false,true,true,'2022-04-14 12:58:06.409','SETH','Other',0,1,3,'','GPASCALE','2022-04-14 12:58:06.409'),
+	 (false,true,true,'2022-04-14 12:58:06.419','SETH','No response/Unknown',0,1,0,'','GRADELEVEL','2022-04-14 12:58:06.419'),
+	 (false,true,true,'2022-04-14 12:58:06.419','SETH','9th grade',0,1,1,'','GRADELEVEL','2022-04-14 12:58:06.419'),
+	 (false,true,true,'2022-04-14 12:58:06.419','SETH','10th grade',0,1,2,'','GRADELEVEL','2022-04-14 12:58:06.419'),
+	 (false,true,true,'2022-04-14 12:58:06.419','SETH','11th grade',0,1,3,'','GRADELEVEL','2022-04-14 12:58:06.419'),
+	 (false,true,true,'2022-04-14 12:58:06.419','SETH','12th grade',0,1,4,'','GRADELEVEL','2022-04-14 12:58:06.419'),
+	 (false,true,true,'2022-04-14 12:58:06.419','SETH','High school (or GED) graduate, not admitted to or enrolled in postsecondary education',0,1,5,'','GRADELEVEL','2022-04-14 12:58:06.419'),
+	 (false,true,true,'2022-04-14 12:58:06.419','SETH','High school (or GED) graduate, postsecondary enrollment status unknown',0,1,6,'','GRADELEVEL','2022-04-14 12:58:06.419'),
+	 (false,true,true,'2022-04-14 12:58:06.419','SETH','High School Dropout',0,1,7,'','GRADELEVEL','2022-04-14 12:58:06.419');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.419','SETH','Accepted for enrollment in program of postsecondary education',0,1,8,'','GRADELEVEL','2022-04-14 12:58:06.419'),
+	 (false,true,true,'2022-04-14 12:58:06.419','SETH','Enrolled in program of postsecondary education',0,1,9,'','GRADELEVEL','2022-04-14 12:58:06.419'),
+	 (false,false,true,'2022-04-14 12:58:06.419','SETH','Completed Freshman year of College',0,1,1,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.419'),
+	 (false,true,true,'2022-04-14 12:58:06.551','SETH','Family responsibilities',0,1,7,'','REASON','2022-04-14 12:58:06.551'),
+	 (false,false,true,'2022-04-14 12:58:06.419','SETH','Completed Sophomore year of college',0,1,2,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.419'),
+	 (false,false,true,'2022-04-14 12:58:06.419','SETH','Completed Junior year of college',0,1,3,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.419'),
+	 (false,false,true,'2022-04-14 12:58:06.419','SETH','Completed Senior year of college',0,1,4,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.419'),
+	 (false,false,true,'2022-04-14 12:58:06.419','SETH','Dropped Out of College, Freshman year',0,1,5,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.419'),
+	 (false,false,true,'2022-04-14 12:58:06.419','SETH','Dropped Out of College, Sophomore year',0,1,6,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.419'),
+	 (false,false,true,'2022-04-14 12:58:06.419','SETH','Dropped Out of College, Junior year',0,1,7,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.419');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.419','SETH','Dropped Out of College, Senior year',0,1,8,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.419'),
+	 (false,false,true,'2022-04-14 12:58:06.419','SETH','Postponed College',0,1,9,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.419'),
+	 (false,false,true,'2022-04-14 12:58:06.419','SETH','Enrolled in Military Branch',0,1,10,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.419'),
+	 (false,false,true,'2022-04-14 12:58:06.419','SETH','Working Full / Part Time Only',0,1,11,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.419'),
+	 (false,false,true,'2022-04-14 12:58:06.427','SETH','Graduated from College',0,1,12,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.427'),
+	 (false,false,true,'2022-04-14 12:58:06.427','SETH','Technical / Vocational School',0,1,13,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.427'),
+	 (false,true,true,'2022-04-14 12:58:06.429','SETH','Unknown',0,1,0,'','HIGHDEGREE','2022-04-14 12:58:06.429'),
+	 (false,true,true,'2022-04-14 12:58:06.429','SETH','Certificate/Diploma for occupational, educational program (less than two-year program)',0,1,1,'','HIGHDEGREE','2022-04-14 12:58:06.429'),
+	 (false,true,true,'2022-04-14 12:58:06.429','SETH','Certificate/Diploma for occupational, technical, or educational program (at least two-year program)',0,1,2,'','HIGHDEGREE','2022-04-14 12:58:06.429'),
+	 (false,true,true,'2022-04-14 12:58:06.429','SETH','Associate Degree (two years)',0,1,3,'','HIGHDEGREE','2022-04-14 12:58:06.429');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.429','SETH','1st Bachelor''s Degree',0,1,4,'','HIGHDEGREE','2022-04-14 12:58:06.429'),
+	 (false,true,true,'2022-04-14 12:58:06.429','SETH','2nd Bachelor''s Degree',0,1,5,'','HIGHDEGREE','2022-04-14 12:58:06.429'),
+	 (false,true,true,'2022-04-14 12:58:06.429','SETH','Teaching Credential Program',0,1,6,'','HIGHDEGREE','2022-04-14 12:58:06.429'),
+	 (false,true,true,'2022-04-14 12:58:06.429','SETH','Graduate or Professional Degree',0,1,7,'','HIGHDEGREE','2022-04-14 12:58:06.429'),
+	 (false,true,true,'2022-04-14 12:58:06.429','SETH','Not completed program of study',0,1,8,'','HIGHDEGREE','2022-04-14 12:58:06.429'),
+	 (false,true,true,'2022-04-14 12:58:06.429','SETH','Not applicable (not currently enrolled in postsecondary program)',0,1,9,'','HIGHDEGREE','2022-04-14 12:58:06.429'),
+	 (false,true,true,'2022-04-14 12:58:06.429','SETH','No response',0,1,0,'','MARITALSTATUS','2022-04-14 12:58:06.429'),
+	 (false,true,true,'2022-04-14 12:58:06.429','SETH','Single',0,1,1,'','MARITALSTATUS','2022-04-14 12:58:06.429'),
+	 (false,false,true,'2022-04-14 12:58:06.429','SETH','Married',0,1,2,'','MARITALSTATUS','2022-04-14 12:58:06.429'),
+	 (false,false,true,'2022-04-14 12:58:06.429','SETH','Separated',0,1,3,'','MARITALSTATUS','2022-04-14 12:58:06.429');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.429','SETH','Divorced',0,1,4,'','MARITALSTATUS','2022-04-14 12:58:06.429'),
+	 (false,false,true,'2022-04-14 12:58:06.437','SETH','Widower',0,1,5,'','MARITALSTATUS','2022-04-14 12:58:06.437'),
+	 (false,true,true,'2022-04-14 12:58:06.437','SETH','Not enrolled',0,1,0,'','MATH','2022-04-14 12:58:06.437'),
+	 (false,true,true,'2022-04-14 12:58:06.437','SETH','Pre-Algebra',0,1,1,'','MATH','2022-04-14 12:58:06.437'),
+	 (false,true,true,'2022-04-14 12:58:06.437','SETH','Algebra I',0,1,2,'','MATH','2022-04-14 12:58:06.437'),
+	 (false,true,true,'2022-04-14 12:58:06.437','SETH','Algebra II',0,1,3,'','MATH','2022-04-14 12:58:06.437'),
+	 (false,true,true,'2022-04-14 12:58:06.439','SETH','Geometry',0,1,4,'','MATH','2022-04-14 12:58:06.439'),
+	 (false,true,true,'2022-04-14 12:58:06.439','SETH','Trigonometry',0,1,5,'','MATH','2022-04-14 12:58:06.439'),
+	 (false,true,true,'2022-04-14 12:58:06.439','SETH','Pre-Calculus',0,1,6,'','MATH','2022-04-14 12:58:06.439'),
+	 (false,true,true,'2022-04-14 12:58:06.439','SETH','Calculus',0,1,7,'','MATH','2022-04-14 12:58:06.439');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.439','SETH','Integrated Math',0,1,8,'','MATH','2022-04-14 12:58:06.439'),
+	 (false,true,true,'2022-04-14 12:58:06.439','SETH','Other',0,1,9,'','MATH','2022-04-14 12:58:06.439'),
+	 (false,false,true,'2022-04-14 12:58:06.439','SETH','Navy',0,1,1,'','MILITARYTYPE','2022-04-14 12:58:06.439'),
+	 (false,false,true,'2022-04-14 12:58:06.439','SETH','Air Force',0,1,2,'','MILITARYTYPE','2022-04-14 12:58:06.439'),
+	 (false,false,true,'2022-04-14 12:58:06.439','SETH','Army',0,1,3,'','MILITARYTYPE','2022-04-14 12:58:06.439'),
+	 (false,false,true,'2022-04-14 12:58:06.439','USER','None',0,1,0,'','MSGSTATUS','2022-04-14 12:58:06.439'),
+	 (false,false,true,'2022-04-14 12:58:06.439','USER','Lowest',0,1,1,'','MSGSTATUS','2022-04-14 12:58:06.439'),
+	 (false,false,true,'2022-04-14 12:58:06.439','USER','Low',0,1,2,'','MSGSTATUS','2022-04-14 12:58:06.439'),
+	 (false,false,true,'2022-04-14 12:58:06.439','USER','Normal',0,1,3,'','MSGSTATUS','2022-04-14 12:58:06.439'),
+	 (false,false,true,'2022-04-14 12:58:06.439','USER','High',0,1,4,'','MSGSTATUS','2022-04-14 12:58:06.439');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.439','USER','Highest',0,1,5,'','MSGSTATUS','2022-04-14 12:58:06.439'),
+	 (false,false,true,'2022-04-14 12:58:06.467','USER','Promoted to next grade in middle School (TS only)',0,1,16,'','OLDENDSTATUS','2022-04-14 12:58:06.467'),
+	 (false,false,true,'2022-04-14 12:58:06.467','USER','Promoted from middle school to high school (TS Only)',0,1,17,'','OLDENDSTATUS','2022-04-14 12:58:06.467'),
+	 (false,false,true,'2022-04-14 12:58:06.467','USER','A 3 - Promoted to next grade in high school (do not include those who graduated)',0,1,18,'','OLDENDSTATUS','2022-04-14 12:58:06.467'),
+	 (false,false,true,'2022-04-14 12:58:06.467','USER','Re-entered middle school',0,1,19,'','OLDENDSTATUS','2022-04-14 12:58:06.467'),
+	 (false,false,true,'2022-04-14 12:58:06.467','USER','Re-entered high school',0,1,20,'','OLDENDSTATUS','2022-04-14 12:58:06.467'),
+	 (false,false,true,'2022-04-14 12:58:06.47','USER','A 9 - Received high school diploma',0,1,21,'','OLDENDSTATUS','2022-04-14 12:58:06.47'),
+	 (false,false,true,'2022-04-14 12:58:06.47','USER','A10 - Obtained a GED/high school equivalency degree',0,1,22,'','OLDENDSTATUS','2022-04-14 12:58:06.47'),
+	 (false,false,true,'2022-04-14 12:58:06.47','USER','B 1 - Applied for admission to program of postsecondary education',0,1,23,'','OLDENDSTATUS','2022-04-14 12:58:06.47'),
+	 (false,false,true,'2022-04-14 12:58:06.47','USER','B 2 - Applied for student financial aid for postsecondary education',0,1,24,'','OLDENDSTATUS','2022-04-14 12:58:06.47');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.47','USER','C 1 - Enrolled in ( or admitted to) a program of postsecondary education (first-time enrollment in postsecondary education)',0,1,25,'','OLDENDSTATUS','2022-04-14 12:58:06.47'),
+	 (false,false,true,'2022-04-14 12:58:06.47','USER','Re-enrolled in (or re-admitted to ) a program of postsecondary education (include transfer participants)',0,1,26,'','OLDENDSTATUS','2022-04-14 12:58:06.47'),
+	 (false,false,true,'2022-04-14 12:58:06.47','USER','A 6 - Dropped out of middle school (TS only)',0,1,27,'','OLDENDSTATUS','2022-04-14 12:58:06.47'),
+	 (false,false,true,'2022-04-14 12:58:06.47','USER','A 7 - Dropped out of high school',0,1,28,'','OLDENDSTATUS','2022-04-14 12:58:06.47'),
+	 (false,false,true,'2022-04-14 12:58:06.47','USER','Did not continue in program of postsecondary education (EOC only)',0,1,29,'','OLDENDSTATUS','2022-04-14 12:58:06.47'),
+	 (false,false,true,'2022-04-14 12:58:06.47','USER','Other (e.g. death) - for Secondary School Students',0,1,30,'','OLDENDSTATUS','2022-04-14 12:58:06.47'),
+	 (false,false,true,'2022-04-14 12:58:06.47','USER','Unknown Participant Status at End of Reporting Period- for Secondary School Students',0,1,31,'','OLDENDSTATUS','2022-04-14 12:58:06.47'),
+	 (false,false,true,'2022-04-14 12:58:06.47','USER','Veterans Served',0,1,32,'','OLDENDSTATUS','2022-04-14 12:58:06.47'),
+	 (false,false,true,'2022-04-14 12:58:06.47','USER','Participants of Limited English Proficiency',0,1,33,'','OLDENDSTATUS','2022-04-14 12:58:06.47'),
+	 (false,false,true,'2022-04-14 12:58:06.47','USER','Retained in current grade in middle school (TS only)',0,1,101,'','OLDENDSTATUS','2022-04-14 12:58:06.47');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.47','USER','Retained in current grade in high school',0,1,102,'','OLDENDSTATUS','2022-04-14 12:58:06.47'),
+	 (false,false,true,'2022-04-14 12:58:06.47','USER','Re-entered secondary school/ enrolled in GED or other high school equivalency program',0,1,103,'','OLDENDSTATUS','2022-04-14 12:58:06.47'),
+	 (false,false,true,'2022-04-14 12:58:06.47','USER','Continued in or completed a program of postsecondary education (EOC only)',0,1,104,'','OLDENDSTATUS','2022-04-14 12:58:06.47'),
+	 (false,false,true,'2022-04-14 12:58:06.47','USER','High school graduate not enrolled in program of postsecondary education',0,1,105,'','OLDENDSTATUS','2022-04-14 12:58:06.47'),
+	 (false,false,true,'2022-04-14 12:58:06.47','USER','Withdrew from postsecondary education',0,1,106,'','OLDENDSTATUS','2022-04-14 12:58:06.47'),
+	 (false,false,true,'2022-04-14 12:58:06.47','USER','Other (e.g. death) - for Postsecondary Students',0,1,107,'','OLDENDSTATUS','2022-04-14 12:58:06.47'),
+	 (false,false,true,'2022-04-14 12:58:06.47','USER','Unknown Participant Status at End of Reporting Period- for Postsecondary Students',0,1,108,'','OLDENDSTATUS','2022-04-14 12:58:06.47'),
+	 (false,true,true,'2022-04-14 12:58:06.538','SETH','Unknown',0,1,0,'','PARTLENGTH','2022-04-14 12:58:06.538'),
+	 (false,true,true,'2022-04-14 12:58:06.54','SETH','0-3 months',0,1,1,'','PARTLENGTH','2022-04-14 12:58:06.54'),
+	 (false,true,true,'2022-04-14 12:58:06.54','SETH','4-6 months',0,1,2,'','PARTLENGTH','2022-04-14 12:58:06.54');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.54','SETH','7-9 months',0,1,3,'','PARTLENGTH','2022-04-14 12:58:06.54'),
+	 (false,true,true,'2022-04-14 12:58:06.54','SETH','10-12 months',0,1,4,'','PARTLENGTH','2022-04-14 12:58:06.54'),
+	 (false,true,true,'2022-04-14 12:58:06.54','SETH','More than 12 months',0,1,5,'','PARTLENGTH','2022-04-14 12:58:06.54'),
+	 (false,true,true,'2022-04-14 12:58:06.54','SETH','Still participating at end of reporting period',0,1,6,'','PARTLENGTH','2022-04-14 12:58:06.54'),
+	 (false,true,true,'2022-04-14 12:58:06.54','SETH','No response/Unknown',0,1,0,'','PARTLEVEL','2022-04-14 12:58:06.54'),
+	 (false,true,true,'2022-04-14 12:58:06.54','SETH','Participated in academic year and summer components',0,1,1,'','PARTLEVEL','2022-04-14 12:58:06.54'),
+	 (false,true,true,'2022-04-14 12:58:06.54','SETH','Participated in academic year and summer bridge',0,1,2,'','PARTLEVEL','2022-04-14 12:58:06.54'),
+	 (false,true,true,'2022-04-14 12:58:06.54','SETH','Participated in academic year component only',0,1,3,'','PARTLEVEL','2022-04-14 12:58:06.54'),
+	 (false,true,true,'2022-04-14 12:58:06.54','SETH','Participated in summer component only',0,1,4,'','PARTLEVEL','2022-04-14 12:58:06.54'),
+	 (false,true,true,'2022-04-14 12:58:06.54','SETH','Participated in summer bridge only',0,1,5,'','PARTLEVEL','2022-04-14 12:58:06.54');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.54','SETH','Prior year participant who received limited follow-up services during reporting period',0,1,6,'','PARTLEVEL','2022-04-14 12:58:06.54'),
+	 (false,true,true,'2022-04-14 12:58:06.54','SETH','Prior year participant who received no project services during the reporting period',0,1,7,'','PARTLEVEL','2022-04-14 12:58:06.54'),
+	 (false,true,true,'2022-04-14 12:58:06.54','SETH','No response',0,1,0,'','PARTSTATUS','2022-04-14 12:58:06.54'),
+	 (false,true,true,'2022-04-14 12:58:06.54','SETH','New participant',0,1,1,'','PARTSTATUS','2022-04-14 12:58:06.54'),
+	 (false,true,true,'2022-04-14 12:58:06.54','SETH','Continuing participant',0,1,2,'','PARTSTATUS','2022-04-14 12:58:06.54'),
+	 (false,true,true,'2022-04-14 12:58:06.54','SETH','No response',0,1,0,'','PARTSTATUSEND','2022-04-14 12:58:06.54'),
+	 (false,false,true,'2022-04-14 12:58:06.54','SETH','Academic dismissal',0,1,1,'','PARTSTATUSEND','2022-04-14 12:58:06.54'),
+	 (false,false,true,'2022-04-14 12:58:06.54','SETH','Dismissal for non-academic reasons',0,1,2,'','PARTSTATUSEND','2022-04-14 12:58:06.54'),
+	 (false,false,true,'2022-04-14 12:58:06.54','SETH','Withdrew for financial reasons',0,1,3,'','PARTSTATUSEND','2022-04-14 12:58:06.54'),
+	 (false,false,true,'2022-04-14 12:58:06.54','SETH','Withdrew for health reasons',0,1,4,'','PARTSTATUSEND','2022-04-14 12:58:06.54');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.54','SETH','Withdrew for academic reasons',0,1,5,'','PARTSTATUSEND','2022-04-14 12:58:06.54'),
+	 (false,false,true,'2022-04-14 12:58:06.54','SETH','withdrew for personal reasons',0,1,6,'','PARTSTATUSEND','2022-04-14 12:58:06.54'),
+	 (false,false,true,'2022-04-14 12:58:06.54','SETH','Transferred',0,1,7,'','PARTSTATUSEND','2022-04-14 12:58:06.54'),
+	 (false,false,true,'2022-04-14 12:58:06.54','SETH','Graduated',0,1,8,'','PARTSTATUSEND','2022-04-14 12:58:06.54'),
+	 (false,false,true,'2022-04-14 12:58:06.54','SETH','Graduated & Transferred',0,1,9,'','PARTSTATUSEND','2022-04-14 12:58:06.54'),
+	 (false,false,true,'2022-04-14 12:58:06.54','SETH','Enrolled in graduate degree programs',0,1,10,'','PARTSTATUSEND','2022-04-14 12:58:06.54'),
+	 (false,false,true,'2022-04-14 12:58:06.54','SETH','Continuing Student',0,1,11,'','PARTSTATUSEND','2022-04-14 12:58:06.54'),
+	 (false,true,true,'2022-04-14 12:58:06.54','SETH','Unknown',0,1,0,'','PSETERM','2022-04-14 12:58:06.54'),
+	 (false,true,true,'2022-04-14 12:58:06.54','SETH','Quarter system',0,1,1,'','PSETERM','2022-04-14 12:58:06.54'),
+	 (false,true,true,'2022-04-14 12:58:06.54','SETH','Semester system',0,1,2,'','PSETERM','2022-04-14 12:58:06.54');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.548','SETH','Other',0,1,3,'','PSETERM','2022-04-14 12:58:06.548'),
+	 (false,true,true,'2022-04-14 12:58:06.548','SETH','Not Applicable',0,1,9,'','PSETERM','2022-04-14 12:58:06.548'),
+	 (false,true,true,'2022-04-14 12:58:06.548','SETH','Unknown',0,1,0,'','REASON','2022-04-14 12:58:06.548'),
+	 (false,true,true,'2022-04-14 12:58:06.548','SETH','Need or desire for employment',0,1,1,'','REASON','2022-04-14 12:58:06.548'),
+	 (false,true,true,'2022-04-14 12:58:06.548','SETH','Moved out of target area',0,1,2,'','REASON','2022-04-14 12:58:06.548'),
+	 (false,true,true,'2022-04-14 12:58:06.548','SETH','Dropped out of high school',0,1,3,'','REASON','2022-04-14 12:58:06.548'),
+	 (false,true,true,'2022-04-14 12:58:06.548','SETH','Other extra curricular activities',0,1,4,'','REASON','2022-04-14 12:58:06.548'),
+	 (false,true,true,'2022-04-14 12:58:06.551','SETH','Participating in another academic program',0,1,5,'','REASON','2022-04-14 12:58:06.551'),
+	 (false,true,true,'2022-04-14 12:58:06.551','SETH','No Longer interested in the program',0,1,6,'','REASON','2022-04-14 12:58:06.551'),
+	 (false,true,true,'2022-04-14 12:58:06.561','SETH','Graduated from high school',0,1,8,'','REASON','2022-04-14 12:58:06.561');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.561','SETH','Other',0,1,9,'','REASON','2022-04-14 12:58:06.561'),
+	 (false,true,true,'2022-04-14 12:58:06.561','SETH','Not Applicable',0,1,99,'','REASON','2022-04-14 12:58:06.561'),
+	 (false,true,true,'2022-04-14 12:58:06.561','SETH','Referral/participant in a regular UB project',0,1,1,'','RECRUIT','2022-04-14 12:58:06.561'),
+	 (false,true,true,'2022-04-14 12:58:06.561','SETH','Referral/participant in another TRIO project (i.e.,TS)',0,1,2,'','RECRUIT','2022-04-14 12:58:06.561'),
+	 (false,true,true,'2022-04-14 12:58:06.561','SETH','Referral/participant in other non-TRIO program',0,1,3,'','RECRUIT','2022-04-14 12:58:06.561'),
+	 (false,true,true,'2022-04-14 12:58:06.561','SETH','Participant only in UBM/S program',0,1,4,'','RECRUIT','2022-04-14 12:58:06.561'),
+	 (false,true,true,'2022-04-14 12:58:06.561','SETH','Not enrolled',0,1,0,'','SCIENCE','2022-04-14 12:58:06.561'),
+	 (false,true,true,'2022-04-14 12:58:06.561','SETH','Introductory Science/Earth Science',0,1,1,'','SCIENCE','2022-04-14 12:58:06.561'),
+	 (false,true,true,'2022-04-14 12:58:06.561','SETH','Biology',0,1,2,'','SCIENCE','2022-04-14 12:58:06.561'),
+	 (false,true,true,'2022-04-14 12:58:06.561','SETH','Chemistry',0,1,3,'','SCIENCE','2022-04-14 12:58:06.561');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.561','SETH','Physics',0,1,4,'','SCIENCE','2022-04-14 12:58:06.561'),
+	 (false,true,true,'2022-04-14 12:58:06.561','SETH','Integrated Science',0,1,5,'','SCIENCE','2022-04-14 12:58:06.561'),
+	 (false,true,true,'2022-04-14 12:58:06.569','SETH','Other',0,1,6,'','SCIENCE','2022-04-14 12:58:06.569'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Unknown',0,1,0,'','SELFTRAN','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Reported from an official transcript',0,1,1,'','SELFTRAN','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Institutional data but not an official transcript',0,1,2,'','SELFTRAN','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Self-reported by participant',0,1,3,'','SELFTRAN','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Self-reported and transcript',0,1,4,'','SELFTRAN','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Not enrolled in program of postsecondary education',0,1,9,'','SELFTRAN','2022-04-14 12:58:06.571'),
+	 (false,false,true,'2022-04-14 12:58:06.571','SETH','Spring',0,1,1,'','SEMESTER','2022-04-14 12:58:06.571');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.571','SETH','Summer',0,1,2,'','SEMESTER','2022-04-14 12:58:06.571'),
+	 (false,false,true,'2022-04-14 12:58:06.571','SETH','Fall',0,1,3,'','SEMESTER','2022-04-14 12:58:06.571'),
+	 (false,false,true,'2022-04-14 12:58:06.571','SETH','Winter',0,1,4,'','SEMESTER','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Component',0,1,1,'','SERHEADING','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','',0,1,2,'','SERHEADING','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','',0,1,3,'','SERHEADING','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','',0,1,4,'','SERHEADING','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','',0,1,5,'','SERHEADING','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Instructions',0,1,6,'','SERHEADING','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Activities',0,1,1,'','SERTYPE','2022-04-14 12:58:06.571');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Activity Group',0,1,2,'','SERTYPE','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Veteran Group',0,1,3,'','SERTYPE','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','End Status',0,1,4,'','SERTYPE','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Form Type',0,1,5,'','SERTYPE','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','APR Subject',0,1,6,'','SERTYPE','2022-04-14 12:58:06.571'),
+	 (false,false,true,'2022-04-14 12:58:06.571','USER','Postsecondary Dropout',0,1,2,'','STANDING','2022-04-14 12:58:06.571'),
+	 (false,false,true,'2022-04-14 12:58:06.571','USER',' 6th grade',0,1,6,'','STANDING','2022-04-14 12:58:06.571'),
+	 (false,false,true,'2022-04-14 12:58:06.571','USER',' 7th grade',0,1,7,'','STANDING','2022-04-14 12:58:06.571'),
+	 (false,false,true,'2022-04-14 12:58:06.571','USER',' 8th grade',0,1,8,'','STANDING','2022-04-14 12:58:06.571'),
+	 (false,false,true,'2022-04-14 12:58:06.571','USER',' 9th grade',0,1,9,'','STANDING','2022-04-14 12:58:06.571');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.571','USER','10th grade',0,1,10,'','STANDING','2022-04-14 12:58:06.571'),
+	 (false,false,true,'2022-04-14 12:58:06.571','USER','11th grade',0,1,11,'','STANDING','2022-04-14 12:58:06.571'),
+	 (false,false,true,'2022-04-14 12:58:06.571','USER','12th grade',0,1,12,'','STANDING','2022-04-14 12:58:06.571'),
+	 (false,false,true,'2022-04-14 12:58:06.571','USER','Adult w/o HS Cred',0,1,108,'','STANDING','2022-04-14 12:58:06.571'),
+	 (false,false,true,'2022-04-14 12:58:06.571','USER','Potential Postsecondary Transfer',0,1,109,'','STANDING','2022-04-14 12:58:06.571'),
+	 (false,false,true,'2022-04-14 12:58:06.571','USER','HS/GED Grad not enrolled in PSE',0,1,110,'','STANDING','2022-04-14 12:58:06.571'),
+	 (false,false,true,'2022-04-14 12:58:06.571','USER','School-age student in alternative edu.',0,1,121,'','STANDING','2022-04-14 12:58:06.571'),
+	 (false,false,true,'2022-04-14 12:58:06.571','USER','Other participant not older than 18 yrs',0,1,122,'','STANDING','2022-04-14 12:58:06.571'),
+	 (false,false,true,'2022-04-14 12:58:06.571','USER','Unknown status-School-age student',0,1,123,'','STANDING','2022-04-14 12:58:06.571'),
+	 (false,false,true,'2022-04-14 12:58:06.571','USER','Other Adult w/o HS Cred',0,1,124,'','STANDING','2022-04-14 12:58:06.571');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.571','USER','Other participant 19 yrs or older',0,1,125,'','STANDING','2022-04-14 12:58:06.571'),
+	 (false,false,true,'2022-04-14 12:58:06.571','USER','Unknown status-19 or older participant',0,1,126,'','STANDING','2022-04-14 12:58:06.571'),
+	 (false,false,true,'2022-04-14 12:58:06.571','SETH','APR Column #1',0,1,1,'','STANDINGGROUPTYPE','2022-04-14 12:58:06.571'),
+	 (false,false,true,'2022-04-14 12:58:06.571','SETH','APR Column #2',0,1,2,'','STANDINGGROUPTYPE','2022-04-14 12:58:06.571'),
+	 (false,false,true,'2022-04-14 12:58:06.571','SETH','APR Column #3',0,1,3,'','STANDINGGROUPTYPE','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','No response/Unknown',0,1,0,'','TESTTYPE','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Comprehensive Test of Basic Skills (CTBS)',0,1,1,'','TESTTYPE','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Stanford Achievement Test',0,1,2,'','TESTTYPE','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','California Achievement Test (CAT)',0,1,3,'','TESTTYPE','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Iowa Achievement Test',0,1,4,'','TESTTYPE','2022-04-14 12:58:06.571');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Texas Assessment of Academic Skills (TAAS)',0,1,5,'','TESTTYPE','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Nelson Denny',0,1,6,'','TESTTYPE','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','ARIO Assessment Tools',0,1,7,'','TESTTYPE','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Other',0,1,8,'','TESTTYPE','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Not Applicable',0,1,99,'','TESTTYPE','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','No response',0,1,0,'','VENTERJOB','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Unemployed',0,1,1,'','VENTERJOB','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Employed part time',0,1,2,'','VENTERJOB','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Employed full time',0,1,3,'','VENTERJOB','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Retired',0,1,4,'','VENTERJOB','2022-04-14 12:58:06.571');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Unknown',0,1,0,'','VENTERLEVEL','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','High School Dropout',0,1,1,'','VENTERLEVEL','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','High School Graduate',0,1,2,'','VENTERLEVEL','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','GED/High School Equivalency Graduate',0,1,3,'','VENTERLEVEL','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','High School Graduate with Some College',0,1,4,'','VENTERLEVEL','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','GED/High School Equivalency with Some College',0,1,5,'','VENTERLEVEL','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Unknown',0,1,0,'','VFINAIDREC','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Pell grant only',0,1,1,'','VFINAIDREC','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','FFEL loan',0,1,2,'','VFINAIDREC','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Direct loan',0,1,3,'','VFINAIDREC','2022-04-14 12:58:06.571');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','College work study only',0,1,4,'','VFINAIDREC','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Institutional aid only',0,1,5,'','VFINAIDREC','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','State grant only',0,1,6,'','VFINAIDREC','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Pell grant and FFEL loan',0,1,7,'','VFINAIDREC','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Pell grant and Direct loan',0,1,8,'','VFINAIDREC','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Multiple federal aid',0,1,9,'','VFINAIDREC','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Multiple federal and other aid',0,1,10,'','VFINAIDREC','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.571','SETH','Montgomery G.I. scholarship',0,1,11,'','VFINAIDREC','2022-04-14 12:58:06.571'),
+	 (false,true,true,'2022-04-14 12:58:06.579','SETH','Veterans Benefits',0,1,12,'','VFINAIDREC','2022-04-14 12:58:06.579'),
+	 (false,true,true,'2022-04-14 12:58:06.579','SETH','No aid awarded',0,1,13,'','VFINAIDREC','2022-04-14 12:58:06.579');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.579','SETH','No aid needed',0,1,14,'','VFINAIDREC','2022-04-14 12:58:06.579'),
+	 (false,true,true,'2022-04-14 12:58:06.579','SETH','Not Applicable',0,1,99,'','VFINAIDREC','2022-04-14 12:58:06.579'),
+	 (false,true,true,'2022-04-14 12:58:06.579','SETH','Unknown',0,1,0,'','VGRADELEVEL','2022-04-14 12:58:06.579'),
+	 (false,true,true,'2022-04-14 12:58:06.579','SETH','High School Dropout',0,1,1,'','VGRADELEVEL','2022-04-14 12:58:06.579'),
+	 (false,true,true,'2022-04-14 12:58:06.579','SETH','High School Graduate',0,1,2,'','VGRADELEVEL','2022-04-14 12:58:06.579'),
+	 (false,true,true,'2022-04-14 12:58:06.579','SETH','Obtained high school equivalency degree',0,1,3,'','VGRADELEVEL','2022-04-14 12:58:06.579'),
+	 (false,true,true,'2022-04-14 12:58:06.579','SETH','Obtained high school equivalency degree and accepted for enrollment in program of postsecondary education',0,1,4,'','VGRADELEVEL','2022-04-14 12:58:06.579'),
+	 (false,true,true,'2022-04-14 12:58:06.579','SETH','Accepted for enrollment in program of postsecondary education',0,1,5,'','VGRADELEVEL','2022-04-14 12:58:06.579'),
+	 (false,true,true,'2022-04-14 12:58:06.579','SETH','Obtained high school equivalency degree and enrolled in program of postsecondary education',0,1,6,'','VGRADELEVEL','2022-04-14 12:58:06.579'),
+	 (false,true,true,'2022-04-14 12:58:06.579','SETH','Enrolled in program of postsecondary education',0,1,7,'','VGRADELEVEL','2022-04-14 12:58:06.579');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.579','SETH','Completed project but did not enroll in program of postsecondary education',0,1,8,'','VGRADELEVEL','2022-04-14 12:58:06.579'),
+	 (false,true,true,'2022-04-14 12:58:06.579','SETH','Did not complete project',0,1,9,'','VGRADELEVEL','2022-04-14 12:58:06.579'),
+	 (false,true,true,'2022-04-14 12:58:06.581','SETH','No response',0,1,0,'','YESNO','2022-04-14 12:58:06.581'),
+	 (false,true,true,'2022-04-14 12:58:06.581','SETH','Yes',0,1,1,'','YESNO','2022-04-14 12:58:06.581'),
+	 (false,true,true,'2022-04-14 12:58:06.581','SETH','No',0,1,2,'','YESNO','2022-04-14 12:58:06.581'),
+	 (false,true,true,'2022-04-14 12:58:06.581','SETH','Not Applicable',0,1,9,'','YESNO','2022-04-14 12:58:06.581'),
+	 (false,true,true,'2022-04-14 12:58:06.581','SETH','No response',0,2,0,'','ACADNEED','2022-04-14 12:58:06.581'),
+	 (false,true,true,'2022-04-14 12:58:06.581','SETH','Low high school grade point average',0,2,1,'','ACADNEED','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','SETH','Low achievement test scores',0,2,2,'','ACADNEED','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','SETH','Low educational aspirations',0,2,3,'','ACADNEED','2022-04-14 12:58:06.581');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.581','SETH','Low high school grade point average and  low educational aspirations',0,2,4,'','ACADNEED','2022-04-14 12:58:06.581'),
+	 (false,true,true,'2022-04-14 12:58:06.581','SETH','Low high school grade point average and  low  achievement test scores',0,2,5,'','ACADNEED','2022-04-14 12:58:06.581'),
+	 (false,true,true,'2022-04-14 12:58:06.581','SETH','Low achievement test scores and low educational aspirations',0,2,6,'','ACADNEED','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','SETH','Lack of opportunity, support, and/or guidance to take challenging college preparation courses',0,2,7,'','ACADNEED','2022-04-14 12:58:06.581'),
+	 (false,true,true,'2022-04-14 12:58:06.581','SETH','Lack of career goals and/or need for accurate information on careers',0,2,8,'','ACADNEED','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','SETH','Limited proficiency in English',0,2,9,'','ACADNEED','2022-04-14 12:58:06.581'),
+	 (false,true,true,'2022-04-14 12:58:06.581','SETH','Lacks confidence, self  esteem, and/or social skills',0,2,10,'','ACADNEED','2022-04-14 12:58:06.581'),
+	 (false,true,true,'2022-04-14 12:58:06.581','SETH','Predominately low income community',0,2,11,'','ACADNEED','2022-04-14 12:58:06.581'),
+	 (false,true,true,'2022-04-14 12:58:06.581','SETH','Rural isolation',0,2,12,'','ACADNEED','2022-04-14 12:58:06.581'),
+	 (false,true,true,'2022-04-14 12:58:06.581','SETH','Interest in careers in math and science',0,2,13,'','ACADNEED','2022-04-14 12:58:06.581');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.581','SETH','Other',0,2,14,'','ACADNEED','2022-04-14 12:58:06.581'),
+	 (false,true,true,'2022-04-14 12:58:06.581','SETH','Not Applicable',0,2,99,'','ACADNEED','2022-04-14 12:58:06.581'),
+	 (false,true,true,'2022-04-14 12:58:06.581','SETH','Unknown',0,2,0,'','ACADSTAND','2022-04-14 12:58:06.581'),
+	 (false,true,true,'2022-04-14 12:58:06.581','SETH','Good Standing',0,2,1,'','ACADSTAND','2022-04-14 12:58:06.581'),
+	 (false,true,true,'2022-04-14 12:58:06.581','SETH','Not in good standing',0,2,2,'','ACADSTAND','2022-04-14 12:58:06.581'),
+	 (false,true,true,'2022-04-14 12:58:06.581','SETH','Not enrolled',0,2,3,'','ACADSTAND','2022-04-14 12:58:06.581'),
+	 (false,true,true,'2022-04-14 12:58:06.581','SETH','Not Applicable',0,2,9,'','ACADSTAND','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','English/ Proficiency',0,2,1,'','ACTIVITY','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','Reading',0,2,2,'','ACTIVITY','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','Writing',0,2,3,'','ACTIVITY','2022-04-14 12:58:06.581');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','Study Skills',0,2,4,'','ACTIVITY','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','Mathematics',0,2,5,'','ACTIVITY','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','Other Tutorial',0,2,6,'','ACTIVITY','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','GED Training',0,2,7,'','ACTIVITY','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','Financial Aid Counseling',0,2,8,'','ACTIVITY','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','Other Counseling',0,2,9,'','ACTIVITY','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','Computer Aided Instructions',0,2,10,'','ACTIVITY','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','Tutorial Assistance',0,2,11,'','ACTIVITY','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','Cultural Assistance',0,2,12,'','ACTIVITY','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','Career Planning',0,2,13,'','ACTIVITY','2022-04-14 12:58:06.581');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','College Tours',0,2,14,'','ACTIVITY','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','Admission & Financial Aid Information',0,2,15,'','ACTIVITY','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','ACT Preparation',0,2,16,'','ACTIVITY','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','ACT Registration',0,2,17,'','ACTIVITY','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','Personal Counseling',0,2,18,'','ACTIVITY','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','College Survival Skill',0,2,19,'','ACTIVITY','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','Academic Counseling',0,2,20,'','ACTIVITY','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','Goal Setting',0,2,21,'','ACTIVITY','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','Life Skills',0,2,22,'','ACTIVITY','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','Test Taking Skills',0,2,23,'','ACTIVITY','2022-04-14 12:58:06.581');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','Self-Concept Assessment',0,2,24,'','ACTIVITY','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','Parental Involvement',0,2,25,'','ACTIVITY','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','High School Survival Skills',0,2,26,'','ACTIVITY','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','Interest Inventory Assessment',0,2,27,'','ACTIVITY','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','Self-Esteem',0,2,28,'','ACTIVITY','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','Critical Thinking',0,2,29,'','ACTIVITY','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','Decision Making',0,2,30,'','ACTIVITY','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','SETH','Count all contacts on same day as separate sessions',0,2,1,'','ACTIVITYGROUPTYPE','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','SETH','Count all contacts on same day as one event',0,2,2,'','ACTIVITYGROUPTYPE','2022-04-14 12:58:06.581'),
+	 (false,true,true,'2022-04-14 12:58:06.581','SETH','Mathematics Instruction',0,2,36,'admath','APR SUBJECT','2022-04-14 12:58:06.581');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.581','SETH','Mathematics Instruction Summer (may include Bridge Students)',0,2,37,'admath','APR SUBJECT','2022-04-14 12:58:06.581'),
+	 (false,true,true,'2022-04-14 12:58:06.581','SETH','Science Instruction/Tutorials Academic Year',0,2,38,'adscience','APR SUBJECT','2022-04-14 12:58:06.581'),
+	 (false,true,true,'2022-04-14 12:58:06.581','SETH','Science Instruction Summer (may include Bridge Students)',0,2,39,'adscience','APR SUBJECT','2022-04-14 12:58:06.581'),
+	 (false,true,true,'2022-04-14 12:58:06.581','SETH','Foreign Language Instruction/Tutorials Academic Year',0,2,40,'adforeignlanguage','APR SUBJECT','2022-04-14 12:58:06.581'),
+	 (false,true,true,'2022-04-14 12:58:06.581','SETH','Foreign Language Instruction Summer (may include Bridge Students)',0,2,41,'adforeignlanguage','APR SUBJECT','2022-04-14 12:58:06.581'),
+	 (false,true,true,'2022-04-14 12:58:06.581','SETH','English Instruction/Tutorials Academic Year',0,2,42,'adenglish','APR SUBJECT','2022-04-14 12:58:06.581'),
+	 (false,true,true,'2022-04-14 12:58:06.581','SETH','English Instruction Summer (may include Bridge Students)',0,2,43,'adenglish','APR SUBJECT','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','In Stock',0,2,1,'','ASSETSTATUS','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','Checked Out',0,2,2,'','ASSETSTATUS','2022-04-14 12:58:06.581'),
+	 (false,false,true,'2022-04-14 12:58:06.581','MANAGER','Out for Repair',0,2,3,'','ASSETSTATUS','2022-04-14 12:58:06.581');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.589','MANAGER','Damaged',0,2,4,'','ASSETSTATUS','2022-04-14 12:58:06.589'),
+	 (false,false,true,'2022-04-14 12:58:06.589','MANAGER','Lost',0,2,5,'','ASSETSTATUS','2022-04-14 12:58:06.589'),
+	 (false,false,true,'2022-04-14 12:58:06.589','MANAGER','Stolen',0,2,6,'','ASSETSTATUS','2022-04-14 12:58:06.589'),
+	 (false,false,true,'2022-04-14 12:58:06.589','MANAGER','No longer in use',0,2,7,'','ASSETSTATUS','2022-04-14 12:58:06.589'),
+	 (false,false,true,'2022-04-14 12:58:06.589','MANAGER','Public, two-year institution',0,2,1,'','COLLEGETYPE','2022-04-14 12:58:06.589'),
+	 (false,false,true,'2022-04-14 12:58:06.589','MANAGER','Private, non-profit, two-year institution',0,2,2,'','COLLEGETYPE','2022-04-14 12:58:06.589'),
+	 (false,false,true,'2022-04-14 12:58:06.589','MANAGER','Public, four-year institution',0,2,3,'','COLLEGETYPE','2022-04-14 12:58:06.589'),
+	 (false,false,true,'2022-04-14 12:58:06.589','MANAGER','Private, non-profit, four-year institution',0,2,4,'','COLLEGETYPE','2022-04-14 12:58:06.589'),
+	 (false,false,true,'2022-04-14 12:58:06.589','MANAGER','Public or non-profit vocational/technical institution',0,2,5,'','COLLEGETYPE','2022-04-14 12:58:06.589'),
+	 (false,false,true,'2022-04-14 12:58:06.589','MANAGER','Proprietary school',0,2,6,'','COLLEGETYPE','2022-04-14 12:58:06.589');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.589','MANAGER','Unknown',0,2,7,'','COLLEGETYPE','2022-04-14 12:58:06.589'),
+	 (false,true,true,'2022-04-14 12:58:06.589','SETH','Unknown',0,2,0,'','COLLGRADE','2022-04-14 12:58:06.589'),
+	 (false,true,true,'2022-04-14 12:58:06.589','SETH','Accepted into postsecondary education program but not yet enrolled',0,2,1,'','COLLGRADE','2022-04-14 12:58:06.589'),
+	 (false,true,true,'2022-04-14 12:58:06.589','SETH','1st yr.,  never attended',0,2,2,'','COLLGRADE','2022-04-14 12:58:06.589'),
+	 (false,true,true,'2022-04-14 12:58:06.589','SETH','1st yr.,  attended before',0,2,3,'','COLLGRADE','2022-04-14 12:58:06.589'),
+	 (false,true,true,'2022-04-14 12:58:06.589','SETH','2nd yr./sophomore',0,2,4,'','COLLGRADE','2022-04-14 12:58:06.589'),
+	 (false,true,true,'2022-04-14 12:58:06.589','SETH','3rd yr./junior',0,2,5,'','COLLGRADE','2022-04-14 12:58:06.589'),
+	 (false,true,true,'2022-04-14 12:58:06.589','SETH','4th yr./senior',0,2,6,'','COLLGRADE','2022-04-14 12:58:06.589'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','5th yr./other undergraduates',0,2,7,'','COLLGRADE','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','Graduated',0,2,8,'','COLLGRADE','2022-04-14 12:58:06.591');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','Enrolled in graduate degree program',0,2,9,'','COLLGRADE','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','Not Applicable',0,2,99,'','COLLGRADE','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','USER','Yes',0,2,1,'','COLLREADY','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','',0,2,0,'','COMPARE','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','< less than',0,2,1,'','COMPARE','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','<= less than or equal to',0,2,2,'','COMPARE','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','<> not equal to',0,2,3,'','COMPARE','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','= equal to',0,2,4,'','COMPARE','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','> more than',0,2,5,'','COMPARE','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','>= more than or equal to',0,2,6,'','COMPARE','2022-04-14 12:58:06.591');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','Academic',0,2,1,'','COMPONENT','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','Summer',0,2,2,'','COMPONENT','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','Both',0,2,3,'','COMPONENT','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','SETH','Not Applicable',0,2,9,'','COMPONENT','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','Counselor',0,2,1,'','CONTACTSTAFFTYPE','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','Tutor',0,2,2,'','CONTACTSTAFFTYPE','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','Teacher',0,2,3,'','CONTACTSTAFFTYPE','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','Staff',0,2,4,'','CONTACTSTAFFTYPE','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','Individual',0,2,1,'','CONTACTTYPE','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','Group',0,2,2,'','CONTACTTYPE','2022-04-14 12:58:06.591');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','Phone',0,2,3,'','CONTACTTYPE','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','Mail',0,2,4,'','CONTACTTYPE','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','SETH','Parent',0,2,5,'','CONTACTTYPE','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','Other',0,2,6,'','CONTACTTYPE','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','E-mail',0,2,7,'','CONTACTTYPE','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','MANAGER','Pets Name',0,2,1,'         0','CUSTOMFIELDNAME','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','MANAGER','T-shirt Size',0,2,2,'         1','CUSTOMFIELDNAME','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','MANAGER','Donate Blood',0,2,3,'         2','CUSTOMFIELDNAME','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','MANAGER','Date Inactivated',0,2,4,'         3','CUSTOMFIELDNAME','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','MANAGER','Number of Siblings',0,2,5,'         4','CUSTOMFIELDNAME','2022-04-14 12:58:06.591');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.591','MANAGER','Food Allowance',0,2,6,'         5','CUSTOMFIELDNAME','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','MANAGER','Text-Normal',0,2,0,'','CUSTOMFIELDTYPE','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','MANAGER','Text-Quickfill',0,2,1,'','CUSTOMFIELDTYPE','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','MANAGER','Logical',0,2,2,'','CUSTOMFIELDTYPE','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','MANAGER','Date',0,2,3,'','CUSTOMFIELDTYPE','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','MANAGER','Integer',0,2,4,'','CUSTOMFIELDTYPE','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','','Numeric-2 decimals',0,2,5,'','CUSTOMFIELDTYPE','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','SETH','Science',0,2,1,'','DEGREEIN','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','SETH','Business',0,2,2,'','DEGREEIN','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','SETH','Arts',0,2,3,'','DEGREEIN','2022-04-14 12:58:06.591');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.591','SETH','English',0,2,4,'','DEGREEIN','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','No response',0,2,0,'','ELIGIBILITY','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','Low-Income and Potential First-Generation College Students',0,2,1,'','ELIGIBILITY','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','Low-Income only',0,2,2,'','ELIGIBILITY','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','Potential First-Generation College Students only',0,2,3,'','ELIGIBILITY','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','SETH','Other',0,2,4,'','ELIGIBILITY','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','SETH','Part Time',0,2,1,'','EMPLOYTYPE','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','SETH','Full Time',0,2,2,'','EMPLOYTYPE','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','SETH','Unemployed',0,2,3,'','EMPLOYTYPE','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','MANAGER','A1. Enrolled in a continuing education program',0,2,1,'','ENDSTATUS','2022-04-14 12:58:06.591');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.591','MANAGER','A2. Not enrolled in a continuing education program',0,2,2,'','ENDSTATUS','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','MANAGER','A3. Other Status for HS Dropout/ Adults without HS/GED',0,2,3,'','ENDSTATUS','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','MANAGER','A4. Unknown Status for HS Dropout/ Adults without HS/GED',0,2,4,'','ENDSTATUS','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','MANAGER','B. Applied for student financial aid for postsecondary education',0,2,5,'','ENDSTATUS','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','MANAGER','C. Applied for admission to program of postsecondary education',0,2,6,'','ENDSTATUS','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','MANAGER','D1. Enrolled in postsecondary education (first time enrollment or reentry)',0,2,7,'','ENDSTATUS','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','MANAGER','D2. Not enrolled in postsecondary education',0,2,8,'','ENDSTATUS','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','MANAGER','D3. Other status for college-ready participants',0,2,9,'','ENDSTATUS','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','MANAGER','D4. Unknown status for college-ready participants',0,2,10,'','ENDSTATUS','2022-04-14 12:58:06.591'),
+	 (false,false,true,'2022-04-14 12:58:06.591','MANAGER','II F. Veterans Served',0,2,32,'','ENDSTATUS','2022-04-14 12:58:06.591');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.591','MANAGER','II G. Participants with Limited English Proficiency',0,2,33,'','ENDSTATUS','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','Not enrolled',0,2,0,'','ENGLISH','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','Composition',0,2,1,'','ENGLISH','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','Literature',0,2,2,'','ENGLISH','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','Composition and Literature',0,2,3,'','ENGLISH','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','Unknown',0,2,0,'','ENROLL','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','Full-time',0,2,1,'','ENROLL','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','Less than full-time',0,2,2,'','ENROLL','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','Varied enrollment during reporting period',0,2,3,'','ENROLL','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.591','SETH','Not Applicable',0,2,9,'','ENROLL','2022-04-14 12:58:06.591');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.591','SETH','Unknown',0,2,0,'','ENTEREXAM','2022-04-14 12:58:06.591'),
+	 (false,true,true,'2022-04-14 12:58:06.742','SETH','SAT',0,2,1,'','ENTEREXAM','2022-04-14 12:58:06.742'),
+	 (false,true,true,'2022-04-14 12:58:06.75','SETH','ACT',0,2,2,'','ENTEREXAM','2022-04-14 12:58:06.75'),
+	 (false,true,true,'2022-04-14 12:58:06.75','SETH','Both SAT and ACT',0,2,3,'','ENTEREXAM','2022-04-14 12:58:06.75'),
+	 (false,true,true,'2022-04-14 12:58:06.75','SETH','Other',0,2,4,'','ENTEREXAM','2022-04-14 12:58:06.75'),
+	 (false,true,true,'2022-04-14 12:58:06.75','SETH','Not Applicable',0,2,9,'','ENTEREXAM','2022-04-14 12:58:06.75'),
+	 (false,true,true,'2022-04-14 12:58:06.75','SETH','No response/Unknown',0,2,0,'','ENTERLEVEL','2022-04-14 12:58:06.75'),
+	 (false,true,true,'2022-04-14 12:58:06.75','SETH','Rising 9th grader',0,2,1,'','ENTERLEVEL','2022-04-14 12:58:06.75'),
+	 (false,true,true,'2022-04-14 12:58:06.75','SETH','9th grade',0,2,2,'','ENTERLEVEL','2022-04-14 12:58:06.75'),
+	 (false,true,true,'2022-04-14 12:58:06.75','SETH','10th grade',0,2,3,'','ENTERLEVEL','2022-04-14 12:58:06.75');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.75','SETH','11th grade',0,2,4,'','ENTERLEVEL','2022-04-14 12:58:06.75'),
+	 (false,true,true,'2022-04-14 12:58:06.75','SETH','Rising 12th grader',0,2,5,'','ENTERLEVEL','2022-04-14 12:58:06.75'),
+	 (false,true,true,'2022-04-14 12:58:06.75','SETH','6th Grade',0,2,6,'','ENTERLEVEL','2022-04-14 12:58:06.75'),
+	 (false,true,true,'2022-04-14 12:58:06.75','SETH','7th Grade',0,2,7,'','ENTERLEVEL','2022-04-14 12:58:06.75'),
+	 (false,true,true,'2022-04-14 12:58:06.75','SETH','8th Grade',0,2,8,'','ENTERLEVEL','2022-04-14 12:58:06.75'),
+	 (false,true,true,'2022-04-14 12:58:06.75','SETH','No response',0,2,0,'','ETHNIC','2022-04-14 12:58:06.75'),
+	 (false,true,true,'2022-04-14 12:58:06.75','SETH','American Indian or Alaskan Native',0,2,1,'','ETHNIC','2022-04-14 12:58:06.75'),
+	 (false,true,true,'2022-04-14 12:58:06.75','SETH','Asian',0,2,2,'','ETHNIC','2022-04-14 12:58:06.75'),
+	 (false,true,true,'2022-04-14 12:58:06.75','SETH','Black or African American',0,2,3,'','ETHNIC','2022-04-14 12:58:06.75'),
+	 (false,true,true,'2022-04-14 12:58:06.75','SETH','Hispanic or Latino',0,2,4,'','ETHNIC','2022-04-14 12:58:06.75');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.752','SETH','White',0,2,5,'','ETHNIC','2022-04-14 12:58:06.752'),
+	 (false,true,true,'2022-04-14 12:58:06.752','USER','Native Hawaiian or other Pacific Islander',0,2,6,'','ETHNIC','2022-04-14 12:58:06.752'),
+	 (false,true,true,'2022-04-14 12:58:06.752','SETH','More than one race reported',0,2,7,'','ETHNIC','2022-04-14 12:58:06.752'),
+	 (false,true,true,'2022-04-14 12:58:06.752','SETH','No response',0,2,0,'','FINAIDREAS','2022-04-14 12:58:06.752'),
+	 (false,false,true,'2022-04-14 12:58:06.752','SETH','Student refused loan',0,2,1,'','FINAIDREAS','2022-04-14 12:58:06.752'),
+	 (false,false,true,'2022-04-14 12:58:06.752','SETH','Insufficient Federal grant aid',0,2,2,'','FINAIDREAS','2022-04-14 12:58:06.752'),
+	 (false,false,true,'2022-04-14 12:58:06.752','SETH','Insufficient College Work Study aid',0,2,3,'','FINAIDREAS','2022-04-14 12:58:06.752'),
+	 (false,false,true,'2022-04-14 12:58:06.752','SETH','Insufficient institutional aid',0,2,4,'','FINAIDREAS','2022-04-14 12:58:06.752'),
+	 (false,false,true,'2022-04-14 12:58:06.752','SETH','Student failed to make adequate academic progress',0,2,5,'','FINAIDREAS','2022-04-14 12:58:06.752'),
+	 (false,false,true,'2022-04-14 12:58:06.752','SETH','Student refused College Work Study aid',0,2,6,'','FINAIDREAS','2022-04-14 12:58:06.752');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.752','SETH','Student not enrolled full-time',0,2,7,'','FINAIDREAS','2022-04-14 12:58:06.752'),
+	 (false,false,true,'2022-04-14 12:58:06.752','SETH','Student not eligible for financial aid',0,2,8,'','FINAIDREAS','2022-04-14 12:58:06.752'),
+	 (false,false,true,'2022-04-14 12:58:06.752','SETH','Insufficient loans',0,2,9,'','FINAIDREAS','2022-04-14 12:58:06.752'),
+	 (false,true,true,'2022-04-14 12:58:06.76','SETH','Unknown',0,2,0,'','FINAIDRECD','2022-04-14 12:58:06.76'),
+	 (false,true,true,'2022-04-14 12:58:06.76','SETH','Pell grant only',0,2,1,'','FINAIDRECD','2022-04-14 12:58:06.76'),
+	 (false,true,true,'2022-04-14 12:58:06.76','SETH','FFEL loan',0,2,2,'','FINAIDRECD','2022-04-14 12:58:06.76'),
+	 (false,true,true,'2022-04-14 12:58:06.76','SETH','Direct loan',0,2,3,'','FINAIDRECD','2022-04-14 12:58:06.76'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','College work study only',0,2,4,'','FINAIDRECD','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','Institutional aid only',0,2,5,'','FINAIDRECD','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','State grant only',0,2,6,'','FINAIDRECD','2022-04-14 12:58:06.763');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','Pell grant and FFEL loan',0,2,7,'','FINAIDRECD','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','Pell grant and Direct loan',0,2,8,'','FINAIDRECD','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','Multiple federal aid',0,2,9,'','FINAIDRECD','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','Multiple federal and other aid',0,2,10,'','FINAIDRECD','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','Non-federal, non-institutional aid',0,2,11,'','FINAIDRECD','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','No aid awarded',0,2,12,'','FINAIDRECD','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','No aid needed',0,2,13,'','FINAIDRECD','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','Not Applicable',0,2,99,'','FINAIDRECD','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','Not enrolled',0,2,0,'','FOREIGNLANGUAGE','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','Spanish',0,2,1,'','FOREIGNLANGUAGE','2022-04-14 12:58:06.763');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','French',0,2,2,'','FOREIGNLANGUAGE','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','German',0,2,3,'','FOREIGNLANGUAGE','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','Italian',0,2,4,'','FOREIGNLANGUAGE','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','Russian',0,2,5,'','FOREIGNLANGUAGE','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','Japanese',0,2,6,'','FOREIGNLANGUAGE','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','Other Foreign Language',0,2,7,'','FOREIGNLANGUAGE','2022-04-14 12:58:06.763'),
+	 (false,false,true,'2022-04-14 12:58:06.763','SETH','Financial Aid',0,2,1,'','FORM TYPE','2022-04-14 12:58:06.763'),
+	 (false,false,true,'2022-04-14 12:58:06.763','SETH','Field Trip Authorization',0,2,2,'','FORM TYPE','2022-04-14 12:58:06.763'),
+	 (false,false,true,'2022-04-14 12:58:06.763','SETH','Application Form',0,2,3,'','FORM TYPE','2022-04-14 12:58:06.763'),
+	 (false,false,true,'2022-04-14 12:58:06.763','SETH','Income Data',0,2,4,'','FORM TYPE','2022-04-14 12:58:06.763');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.763','SETH','Parent Contract Form',0,2,5,'','FORM TYPE','2022-04-14 12:58:06.763'),
+	 (false,false,true,'2022-04-14 12:58:06.763','SETH','Assessment',0,2,6,'','FORM TYPE','2022-04-14 12:58:06.763'),
+	 (false,false,true,'2022-04-14 12:58:06.763','SETH','Eligibility Form',0,2,7,'','FORM TYPE','2022-04-14 12:58:06.763'),
+	 (false,false,true,'2022-04-14 12:58:06.763','SETH','Student Contract Form',0,2,8,'','FORM TYPE','2022-04-14 12:58:06.763'),
+	 (false,false,true,'2022-04-14 12:58:06.763','SETH','Recommendation Letter',0,2,9,'','FORM TYPE','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','No response',0,2,0,'','GENDER','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','Male',0,2,1,'','GENDER','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','Female',0,2,2,'','GENDER','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','No response',0,2,0,'','GPASCALE','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','4 point scale',0,2,1,'','GPASCALE','2022-04-14 12:58:06.763');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','5 point scale',0,2,2,'','GPASCALE','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','Other',0,2,3,'','GPASCALE','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','No response/Unknown',0,2,0,'','GRADELEVEL','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','9th grade',0,2,1,'','GRADELEVEL','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','10th grade',0,2,2,'','GRADELEVEL','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','11th grade',0,2,3,'','GRADELEVEL','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','12th grade',0,2,4,'','GRADELEVEL','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','High school (or GED) graduate, not admitted to or enrolled in postsecondary education',0,2,5,'','GRADELEVEL','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','High school (or GED) graduate, postsecondary enrollment status unknown',0,2,6,'','GRADELEVEL','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','High School Dropout',0,2,7,'','GRADELEVEL','2022-04-14 12:58:06.763');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','Accepted for enrollment in program of postsecondary education',0,2,8,'','GRADELEVEL','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','Enrolled in program of postsecondary education',0,2,9,'','GRADELEVEL','2022-04-14 12:58:06.763'),
+	 (false,false,true,'2022-04-14 12:58:06.763','SETH','Completed Freshman year of College',0,2,1,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.763'),
+	 (false,false,true,'2022-04-14 12:58:06.763','SETH','Completed Sophomore year of college',0,2,2,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.763'),
+	 (false,false,true,'2022-04-14 12:58:06.763','SETH','Completed Junior year of college',0,2,3,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.763'),
+	 (false,false,true,'2022-04-14 12:58:06.763','SETH','Completed Senior year of college',0,2,4,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.763'),
+	 (false,false,true,'2022-04-14 12:58:06.763','SETH','Dropped Out of College, Freshman year',0,2,5,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.763'),
+	 (false,false,true,'2022-04-14 12:58:06.763','SETH','Dropped Out of College, Sophomore year',0,2,6,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.763'),
+	 (false,false,true,'2022-04-14 12:58:06.763','SETH','Dropped Out of College, Junior year',0,2,7,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.763'),
+	 (false,false,true,'2022-04-14 12:58:06.763','SETH','Dropped Out of College, Senior year',0,2,8,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.763');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.763','SETH','Postponed College',0,2,9,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.763'),
+	 (false,false,true,'2022-04-14 12:58:06.763','SETH','Enrolled in Military Branch',0,2,10,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.763'),
+	 (false,false,true,'2022-04-14 12:58:06.763','SETH','Working Full / Part Time Only',0,2,11,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.763'),
+	 (false,false,true,'2022-04-14 12:58:06.763','SETH','Graduated from College',0,2,12,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.763'),
+	 (false,false,true,'2022-04-14 12:58:06.763','SETH','Technical / Vocational School',0,2,13,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','Unknown',0,2,0,'','HIGHDEGREE','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','Certificate/Diploma for occupational, educational program (less than two-year program)',0,2,1,'','HIGHDEGREE','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','Certificate/Diploma for occupational, technical, or educational program (at least two-year program)',0,2,2,'','HIGHDEGREE','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','Associate Degree (two years)',0,2,3,'','HIGHDEGREE','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','1st Bachelor''s Degree',0,2,4,'','HIGHDEGREE','2022-04-14 12:58:06.763');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','2nd Bachelor''s Degree',0,2,5,'','HIGHDEGREE','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','Teaching Credential Program',0,2,6,'','HIGHDEGREE','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','Graduate or Professional Degree',0,2,7,'','HIGHDEGREE','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.821','SETH','More than 12 months',0,2,5,'','PARTLENGTH','2022-04-14 12:58:06.821'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','Not completed program of study',0,2,8,'','HIGHDEGREE','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','Not applicable (not currently enrolled in postsecondary program)',0,2,9,'','HIGHDEGREE','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.763','SETH','No response',0,2,0,'','MARITALSTATUS','2022-04-14 12:58:06.763'),
+	 (false,true,true,'2022-04-14 12:58:06.771','SETH','Single',0,2,1,'','MARITALSTATUS','2022-04-14 12:58:06.771'),
+	 (false,false,true,'2022-04-14 12:58:06.771','SETH','Married',0,2,2,'','MARITALSTATUS','2022-04-14 12:58:06.771'),
+	 (false,false,true,'2022-04-14 12:58:06.771','SETH','Separated',0,2,3,'','MARITALSTATUS','2022-04-14 12:58:06.771');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.771','SETH','Divorced',0,2,4,'','MARITALSTATUS','2022-04-14 12:58:06.771'),
+	 (false,false,true,'2022-04-14 12:58:06.771','SETH','Widower',0,2,5,'','MARITALSTATUS','2022-04-14 12:58:06.771'),
+	 (false,true,true,'2022-04-14 12:58:06.771','SETH','Not enrolled',0,2,0,'','MATH','2022-04-14 12:58:06.771'),
+	 (false,true,true,'2022-04-14 12:58:06.771','SETH','Pre-Algebra',0,2,1,'','MATH','2022-04-14 12:58:06.771'),
+	 (false,true,true,'2022-04-14 12:58:06.771','SETH','Algebra I',0,2,2,'','MATH','2022-04-14 12:58:06.771'),
+	 (false,true,true,'2022-04-14 12:58:06.771','SETH','Algebra II',0,2,3,'','MATH','2022-04-14 12:58:06.771'),
+	 (false,true,true,'2022-04-14 12:58:06.771','SETH','Geometry',0,2,4,'','MATH','2022-04-14 12:58:06.771'),
+	 (false,true,true,'2022-04-14 12:58:06.771','SETH','Trigonometry',0,2,5,'','MATH','2022-04-14 12:58:06.771'),
+	 (false,true,true,'2022-04-14 12:58:06.771','SETH','Pre-Calculus',0,2,6,'','MATH','2022-04-14 12:58:06.771'),
+	 (false,true,true,'2022-04-14 12:58:06.771','SETH','Calculus',0,2,7,'','MATH','2022-04-14 12:58:06.771');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.771','SETH','Integrated Math',0,2,8,'','MATH','2022-04-14 12:58:06.771'),
+	 (false,true,true,'2022-04-14 12:58:06.771','SETH','Other',0,2,9,'','MATH','2022-04-14 12:58:06.771'),
+	 (false,false,true,'2022-04-14 12:58:06.771','SETH','Navy',0,2,1,'','MILITARYTYPE','2022-04-14 12:58:06.771'),
+	 (false,false,true,'2022-04-14 12:58:06.771','SETH','Air Force',0,2,2,'','MILITARYTYPE','2022-04-14 12:58:06.771'),
+	 (false,false,true,'2022-04-14 12:58:06.771','SETH','Army',0,2,3,'','MILITARYTYPE','2022-04-14 12:58:06.771'),
+	 (false,false,true,'2022-04-14 12:58:06.771','MANAGER','None',0,2,0,'','MSGSTATUS','2022-04-14 12:58:06.771'),
+	 (false,false,true,'2022-04-14 12:58:06.773','MANAGER','Lowest',0,2,1,'','MSGSTATUS','2022-04-14 12:58:06.773'),
+	 (false,false,true,'2022-04-14 12:58:06.773','MANAGER','Low',0,2,2,'','MSGSTATUS','2022-04-14 12:58:06.773'),
+	 (false,false,true,'2022-04-14 12:58:06.773','MANAGER','Normal',0,2,3,'','MSGSTATUS','2022-04-14 12:58:06.773'),
+	 (false,false,true,'2022-04-14 12:58:06.773','MANAGER','High',0,2,4,'','MSGSTATUS','2022-04-14 12:58:06.773');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.773','MANAGER','Highest',0,2,5,'','MSGSTATUS','2022-04-14 12:58:06.773'),
+	 (false,false,true,'2022-04-14 12:58:06.773','USER','Promoted to next grade in middle School (TS only)',0,2,16,'','OLDENDSTATUS','2022-04-14 12:58:06.773'),
+	 (false,false,true,'2022-04-14 12:58:06.773','USER','Promoted from middle school to high school (TS Only)',0,2,17,'','OLDENDSTATUS','2022-04-14 12:58:06.773'),
+	 (false,false,true,'2022-04-14 12:58:06.773','USER','A 3 - Promoted to next grade in high school (do not include those who graduated)',0,2,18,'','OLDENDSTATUS','2022-04-14 12:58:06.773'),
+	 (false,false,true,'2022-04-14 12:58:06.773','USER','Re-entered middle school',0,2,19,'','OLDENDSTATUS','2022-04-14 12:58:06.773'),
+	 (false,false,true,'2022-04-14 12:58:06.773','USER','Re-entered high school',0,2,20,'','OLDENDSTATUS','2022-04-14 12:58:06.773'),
+	 (false,false,true,'2022-04-14 12:58:06.773','USER','A 9 - Received high school diploma',0,2,21,'','OLDENDSTATUS','2022-04-14 12:58:06.773'),
+	 (false,false,true,'2022-04-14 12:58:06.773','USER','A10 - Obtained a GED/high school equivalency degree',0,2,22,'','OLDENDSTATUS','2022-04-14 12:58:06.773'),
+	 (false,false,true,'2022-04-14 12:58:06.773','USER','B 1 - Applied for admission to program of postsecondary education',0,2,23,'','OLDENDSTATUS','2022-04-14 12:58:06.773'),
+	 (false,false,true,'2022-04-14 12:58:06.773','USER','B 2 - Applied for student financial aid for postsecondary education',0,2,24,'','OLDENDSTATUS','2022-04-14 12:58:06.773');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.773','USER','C 1 - Enrolled in ( or admitted to) a program of postsecondary education (first-time enrollment in postsecondary education)',0,2,25,'','OLDENDSTATUS','2022-04-14 12:58:06.773'),
+	 (false,false,true,'2022-04-14 12:58:06.773','USER','Re-enrolled in (or re-admitted to ) a program of postsecondary education (include transfer participants)',0,2,26,'','OLDENDSTATUS','2022-04-14 12:58:06.773'),
+	 (false,false,true,'2022-04-14 12:58:06.773','USER','A 6 - Dropped out of middle school (TS only)',0,2,27,'','OLDENDSTATUS','2022-04-14 12:58:06.773'),
+	 (false,false,true,'2022-04-14 12:58:06.773','USER','A 7 - Dropped out of high school',0,2,28,'','OLDENDSTATUS','2022-04-14 12:58:06.773'),
+	 (false,false,true,'2022-04-14 12:58:06.773','USER','Did not continue in program of postsecondary education (EOC only)',0,2,29,'','OLDENDSTATUS','2022-04-14 12:58:06.773'),
+	 (false,false,true,'2022-04-14 12:58:06.773','USER','Other (e.g. death) - for Secondary School Students',0,2,30,'','OLDENDSTATUS','2022-04-14 12:58:06.773'),
+	 (false,false,true,'2022-04-14 12:58:06.773','USER','Unknown Participant Status at End of Reporting Period- for Secondary School Students',0,2,31,'','OLDENDSTATUS','2022-04-14 12:58:06.773'),
+	 (false,false,true,'2022-04-14 12:58:06.773','USER','Veterans Served',0,2,32,'','OLDENDSTATUS','2022-04-14 12:58:06.773'),
+	 (false,false,true,'2022-04-14 12:58:06.773','USER','Participants of Limited English Proficiency',0,2,33,'','OLDENDSTATUS','2022-04-14 12:58:06.773'),
+	 (false,false,true,'2022-04-14 12:58:06.773','USER','Retained in current grade in middle school (TS only)',0,2,101,'','OLDENDSTATUS','2022-04-14 12:58:06.773');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.773','USER','Retained in current grade in high school',0,2,102,'','OLDENDSTATUS','2022-04-14 12:58:06.773'),
+	 (false,false,true,'2022-04-14 12:58:06.773','USER','Re-entered secondary school/ enrolled in GED or other high school equivalency program',0,2,103,'','OLDENDSTATUS','2022-04-14 12:58:06.773'),
+	 (false,false,true,'2022-04-14 12:58:06.773','USER','Continued in or completed a program of postsecondary education (EOC only)',0,2,104,'','OLDENDSTATUS','2022-04-14 12:58:06.773'),
+	 (false,false,true,'2022-04-14 12:58:06.773','USER','High school graduate not enrolled in program of postsecondary education',0,2,105,'','OLDENDSTATUS','2022-04-14 12:58:06.773'),
+	 (false,false,true,'2022-04-14 12:58:06.773','USER','Withdrew from postsecondary education',0,2,106,'','OLDENDSTATUS','2022-04-14 12:58:06.773'),
+	 (false,false,true,'2022-04-14 12:58:06.773','USER','Other (e.g. death) - for Postsecondary Students',0,2,107,'','OLDENDSTATUS','2022-04-14 12:58:06.773'),
+	 (false,false,true,'2022-04-14 12:58:06.773','USER','Unknown Participant Status at End of Reporting Period- for Postsecondary Students',0,2,108,'','OLDENDSTATUS','2022-04-14 12:58:06.773'),
+	 (false,true,true,'2022-04-14 12:58:06.773','SETH','Unknown',0,2,0,'','PARTLENGTH','2022-04-14 12:58:06.773'),
+	 (false,true,true,'2022-04-14 12:58:06.773','SETH','0-3 months',0,2,1,'','PARTLENGTH','2022-04-14 12:58:06.773'),
+	 (false,true,true,'2022-04-14 12:58:06.821','SETH','4-6 months',0,2,2,'','PARTLENGTH','2022-04-14 12:58:06.821');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.821','SETH','7-9 months',0,2,3,'','PARTLENGTH','2022-04-14 12:58:06.821'),
+	 (false,true,true,'2022-04-14 12:58:06.821','SETH','10-12 months',0,2,4,'','PARTLENGTH','2022-04-14 12:58:06.821'),
+	 (false,true,true,'2022-04-14 12:58:06.821','SETH','Still participating at end of reporting period',0,2,6,'','PARTLENGTH','2022-04-14 12:58:06.821'),
+	 (false,true,true,'2022-04-14 12:58:06.821','SETH','No response/Unknown',0,2,0,'','PARTLEVEL','2022-04-14 12:58:06.821'),
+	 (false,true,true,'2022-04-14 12:58:06.821','SETH','Participated in academic year and summer components',0,2,1,'','PARTLEVEL','2022-04-14 12:58:06.821'),
+	 (false,true,true,'2022-04-14 12:58:06.821','SETH','Participated in academic year and summer bridge',0,2,2,'','PARTLEVEL','2022-04-14 12:58:06.821'),
+	 (false,true,true,'2022-04-14 12:58:06.821','SETH','Participated in academic year component only',0,2,3,'','PARTLEVEL','2022-04-14 12:58:06.821'),
+	 (false,true,true,'2022-04-14 12:58:06.821','SETH','Participated in summer component only',0,2,4,'','PARTLEVEL','2022-04-14 12:58:06.821'),
+	 (false,true,true,'2022-04-14 12:58:06.823','SETH','Participated in summer bridge only',0,2,5,'','PARTLEVEL','2022-04-14 12:58:06.823'),
+	 (false,true,true,'2022-04-14 12:58:06.823','SETH','Prior year participant who received limited follow-up services during reporting period',0,2,6,'','PARTLEVEL','2022-04-14 12:58:06.823');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.823','SETH','Prior year participant who received no project services during the reporting period',0,2,7,'','PARTLEVEL','2022-04-14 12:58:06.823'),
+	 (false,true,true,'2022-04-14 12:58:06.823','SETH','No response',0,2,0,'','PARTSTATUS','2022-04-14 12:58:06.823'),
+	 (false,true,true,'2022-04-14 12:58:06.823','SETH','New participant',0,2,1,'','PARTSTATUS','2022-04-14 12:58:06.823'),
+	 (false,true,true,'2022-04-14 12:58:06.823','SETH','Continuing participant',0,2,2,'','PARTSTATUS','2022-04-14 12:58:06.823'),
+	 (false,true,true,'2022-04-14 12:58:06.823','SETH','No response',0,2,0,'','PARTSTATUSEND','2022-04-14 12:58:06.823'),
+	 (false,false,true,'2022-04-14 12:58:06.823','SETH','Academic dismissal',0,2,1,'','PARTSTATUSEND','2022-04-14 12:58:06.823'),
+	 (false,false,true,'2022-04-14 12:58:06.823','SETH','Dismissal for non-academic reasons',0,2,2,'','PARTSTATUSEND','2022-04-14 12:58:06.823'),
+	 (false,false,true,'2022-04-14 12:58:06.823','SETH','Withdrew for financial reasons',0,2,3,'','PARTSTATUSEND','2022-04-14 12:58:06.823'),
+	 (false,false,true,'2022-04-14 12:58:06.823','SETH','Withdrew for health reasons',0,2,4,'','PARTSTATUSEND','2022-04-14 12:58:06.823'),
+	 (false,false,true,'2022-04-14 12:58:06.823','SETH','Withdrew for academic reasons',0,2,5,'','PARTSTATUSEND','2022-04-14 12:58:06.823');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.823','SETH','withdrew for personal reasons',0,2,6,'','PARTSTATUSEND','2022-04-14 12:58:06.823'),
+	 (false,false,true,'2022-04-14 12:58:06.823','SETH','Transferred',0,2,7,'','PARTSTATUSEND','2022-04-14 12:58:06.823'),
+	 (false,false,true,'2022-04-14 12:58:06.823','SETH','Graduated',0,2,8,'','PARTSTATUSEND','2022-04-14 12:58:06.823'),
+	 (false,false,true,'2022-04-14 12:58:06.823','SETH','Graduated & Transferred',0,2,9,'','PARTSTATUSEND','2022-04-14 12:58:06.823'),
+	 (false,false,true,'2022-04-14 12:58:06.823','SETH','Enrolled in graduate degree programs',0,2,10,'','PARTSTATUSEND','2022-04-14 12:58:06.823'),
+	 (false,false,true,'2022-04-14 12:58:06.823','SETH','Continuing Student',0,2,11,'','PARTSTATUSEND','2022-04-14 12:58:06.823'),
+	 (false,true,true,'2022-04-14 12:58:06.823','SETH','Unknown',0,2,0,'','PSETERM','2022-04-14 12:58:06.823'),
+	 (false,true,true,'2022-04-14 12:58:06.823','SETH','Quarter system',0,2,1,'','PSETERM','2022-04-14 12:58:06.823'),
+	 (false,true,true,'2022-04-14 12:58:06.823','SETH','Semester system',0,2,2,'','PSETERM','2022-04-14 12:58:06.823'),
+	 (false,true,true,'2022-04-14 12:58:06.823','SETH','Other',0,2,3,'','PSETERM','2022-04-14 12:58:06.823');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.823','SETH','Not Applicable',0,2,9,'','PSETERM','2022-04-14 12:58:06.823'),
+	 (false,true,true,'2022-04-14 12:58:06.823','SETH','Unknown',0,2,0,'','REASON','2022-04-14 12:58:06.823'),
+	 (false,true,true,'2022-04-14 12:58:06.823','SETH','Need or desire for employment',0,2,1,'','REASON','2022-04-14 12:58:06.823'),
+	 (false,true,true,'2022-04-14 12:58:06.823','SETH','Moved out of target area',0,2,2,'','REASON','2022-04-14 12:58:06.823'),
+	 (false,true,true,'2022-04-14 12:58:06.823','SETH','Dropped out of high school',0,2,3,'','REASON','2022-04-14 12:58:06.823'),
+	 (false,true,true,'2022-04-14 12:58:06.823','SETH','Other extra curricular activities',0,2,4,'','REASON','2022-04-14 12:58:06.823'),
+	 (false,true,true,'2022-04-14 12:58:06.823','SETH','Participating in another academic program',0,2,5,'','REASON','2022-04-14 12:58:06.823'),
+	 (false,true,true,'2022-04-14 12:58:06.823','SETH','No Longer interested in the program',0,2,6,'','REASON','2022-04-14 12:58:06.823'),
+	 (false,true,true,'2022-04-14 12:58:06.823','SETH','Family responsibilities',0,2,7,'','REASON','2022-04-14 12:58:06.823'),
+	 (false,true,true,'2022-04-14 12:58:06.831','SETH','Graduated from high school',0,2,8,'','REASON','2022-04-14 12:58:06.831');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.831','SETH','Other',0,2,9,'','REASON','2022-04-14 12:58:06.831'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Not Applicable',0,2,99,'','REASON','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Referral/participant in a regular UB project',0,2,1,'','RECRUIT','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Referral/participant in another TRIO project (i.e.,TS)',0,2,2,'','RECRUIT','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Referral/participant in other non-TRIO program',0,2,3,'','RECRUIT','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Participant only in UBM/S program',0,2,4,'','RECRUIT','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Not enrolled',0,2,0,'','SCIENCE','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Introductory Science/Earth Science',0,2,1,'','SCIENCE','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Biology',0,2,2,'','SCIENCE','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Chemistry',0,2,3,'','SCIENCE','2022-04-14 12:58:06.833');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Physics',0,2,4,'','SCIENCE','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Integrated Science',0,2,5,'','SCIENCE','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Other',0,2,6,'','SCIENCE','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Unknown',0,2,0,'','SELFTRAN','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Reported from an official transcript',0,2,1,'','SELFTRAN','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Institutional data but not an official transcript',0,2,2,'','SELFTRAN','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Self-reported by participant',0,2,3,'','SELFTRAN','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Self-reported and transcript',0,2,4,'','SELFTRAN','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Not enrolled in program of postsecondary education',0,2,9,'','SELFTRAN','2022-04-14 12:58:06.833'),
+	 (false,false,true,'2022-04-14 12:58:06.833','SETH','Spring',0,2,1,'','SEMESTER','2022-04-14 12:58:06.833');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.833','SETH','Summer',0,2,2,'','SEMESTER','2022-04-14 12:58:06.833'),
+	 (false,false,true,'2022-04-14 12:58:06.833','SETH','Fall',0,2,3,'','SEMESTER','2022-04-14 12:58:06.833'),
+	 (false,false,true,'2022-04-14 12:58:06.833','SETH','Winter',0,2,4,'','SEMESTER','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Component',0,2,1,'','SERHEADING','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','',0,2,2,'','SERHEADING','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','',0,2,3,'','SERHEADING','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','',0,2,4,'','SERHEADING','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','',0,2,5,'','SERHEADING','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Instructions',0,2,6,'','SERHEADING','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Activities',0,2,1,'','SERTYPE','2022-04-14 12:58:06.833');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Activity Group',0,2,2,'','SERTYPE','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Veteran Group',0,2,3,'','SERTYPE','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','End Status',0,2,4,'','SERTYPE','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Form Type',0,2,5,'','SERTYPE','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','APR Subject',0,2,6,'','SERTYPE','2022-04-14 12:58:06.833'),
+	 (false,false,true,'2022-04-14 12:58:06.833','USER','HS Dropout',0,2,1,'','STANDING','2022-04-14 12:58:06.833'),
+	 (false,false,true,'2022-04-14 12:58:06.833','USER','Postsecondary Dropout',0,2,2,'','STANDING','2022-04-14 12:58:06.833'),
+	 (false,false,true,'2022-04-14 12:58:06.833','USER','Postsecondary student',0,2,4,'','STANDING','2022-04-14 12:58:06.833'),
+	 (false,false,true,'2022-04-14 12:58:06.833','USER',' 9th grade',0,2,9,'','STANDING','2022-04-14 12:58:06.833'),
+	 (false,false,true,'2022-04-14 12:58:06.833','USER','10th grade',0,2,10,'','STANDING','2022-04-14 12:58:06.833');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.833','USER','11th grade',0,2,11,'','STANDING','2022-04-14 12:58:06.833'),
+	 (false,false,true,'2022-04-14 12:58:06.833','USER','12th grade',0,2,12,'','STANDING','2022-04-14 12:58:06.833'),
+	 (false,false,true,'2022-04-14 12:58:06.833','USER','Adult w/o HS Cred',0,2,108,'','STANDING','2022-04-14 12:58:06.833'),
+	 (false,false,true,'2022-04-14 12:58:06.833','USER','Potential Postsecondary Transfer',0,2,109,'','STANDING','2022-04-14 12:58:06.833'),
+	 (false,false,true,'2022-04-14 12:58:06.833','USER','HS/GED Grad not enrolled in PSE',0,2,110,'','STANDING','2022-04-14 12:58:06.833'),
+	 (false,false,true,'2022-04-14 12:58:06.833','USER','Adult w/o HS Cred (enrolled in ed prog)',0,2,121,'','STANDING','2022-04-14 12:58:06.833'),
+	 (false,false,true,'2022-04-14 12:58:06.833','USER','Other participant 19 yrs or older',0,2,122,'','STANDING','2022-04-14 12:58:06.833'),
+	 (false,false,true,'2022-04-14 12:58:06.833','USER','Unknown status-19 or older participant',0,2,123,'','STANDING','2022-04-14 12:58:06.833'),
+	 (false,false,true,'2022-04-14 12:58:06.833','USER','Participants not older than 18 (enrolled in alt ed prog)',0,2,124,'','STANDING','2022-04-14 12:58:06.833'),
+	 (false,false,true,'2022-04-14 12:58:06.833','USER','Other participant 18 yrs or younger',0,2,125,'','STANDING','2022-04-14 12:58:06.833');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.833','USER','Unknown status-18 or younger participant',0,2,126,'','STANDING','2022-04-14 12:58:06.833'),
+	 (false,false,true,'2022-04-14 12:58:06.833','SETH','APR Column #1',0,2,1,'','STANDINGGROUPTYPE','2022-04-14 12:58:06.833'),
+	 (false,false,true,'2022-04-14 12:58:06.833','SETH','APR Column #2',0,2,2,'','STANDINGGROUPTYPE','2022-04-14 12:58:06.833'),
+	 (false,false,true,'2022-04-14 12:58:06.833','SETH','APR Column #3',0,2,3,'','STANDINGGROUPTYPE','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','No response/Unknown',0,2,0,'','TESTTYPE','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Comprehensive Test of Basic Skills (CTBS)',0,2,1,'','TESTTYPE','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Stanford Achievement Test',0,2,2,'','TESTTYPE','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','California Achievement Test (CAT)',0,2,3,'','TESTTYPE','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Iowa Achievement Test',0,2,4,'','TESTTYPE','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Texas Assessment of Academic Skills (TAAS)',0,2,5,'','TESTTYPE','2022-04-14 12:58:06.833');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Nelson Denny',0,2,6,'','TESTTYPE','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','ARIO Assessment Tools',0,2,7,'','TESTTYPE','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Other',0,2,8,'','TESTTYPE','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Not Applicable',0,2,99,'','TESTTYPE','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','No response',0,2,0,'','VENTERJOB','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Unemployed',0,2,1,'','VENTERJOB','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Employed part time',0,2,2,'','VENTERJOB','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Employed full time',0,2,3,'','VENTERJOB','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Retired',0,2,4,'','VENTERJOB','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','Unknown',0,2,0,'','VENTERLEVEL','2022-04-14 12:58:06.833');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.833','SETH','High School Dropout',0,2,1,'','VENTERLEVEL','2022-04-14 12:58:06.833'),
+	 (false,true,true,'2022-04-14 12:58:06.842','SETH','High School Graduate',0,2,2,'','VENTERLEVEL','2022-04-14 12:58:06.842'),
+	 (false,true,true,'2022-04-14 12:58:06.842','SETH','GED/High School Equivalency Graduate',0,2,3,'','VENTERLEVEL','2022-04-14 12:58:06.842'),
+	 (false,true,true,'2022-04-14 12:58:06.842','SETH','High School Graduate with Some College',0,2,4,'','VENTERLEVEL','2022-04-14 12:58:06.842'),
+	 (false,true,true,'2022-04-14 12:58:06.842','SETH','GED/High School Equivalency with Some College',0,2,5,'','VENTERLEVEL','2022-04-14 12:58:06.842'),
+	 (false,true,true,'2022-04-14 12:58:06.842','SETH','Unknown',0,2,0,'','VFINAIDREC','2022-04-14 12:58:06.842'),
+	 (false,true,true,'2022-04-14 12:58:06.842','SETH','Pell grant only',0,2,1,'','VFINAIDREC','2022-04-14 12:58:06.842'),
+	 (false,true,true,'2022-04-14 12:58:06.842','SETH','FFEL loan',0,2,2,'','VFINAIDREC','2022-04-14 12:58:06.842'),
+	 (false,true,true,'2022-04-14 12:58:06.842','SETH','Direct loan',0,2,3,'','VFINAIDREC','2022-04-14 12:58:06.842'),
+	 (false,true,true,'2022-04-14 12:58:06.842','SETH','College work study only',0,2,4,'','VFINAIDREC','2022-04-14 12:58:06.842');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.842','SETH','Institutional aid only',0,2,5,'','VFINAIDREC','2022-04-14 12:58:06.842'),
+	 (false,true,true,'2022-04-14 12:58:06.842','SETH','State grant only',0,2,6,'','VFINAIDREC','2022-04-14 12:58:06.842'),
+	 (false,true,true,'2022-04-14 12:58:06.842','SETH','Pell grant and FFEL loan',0,2,7,'','VFINAIDREC','2022-04-14 12:58:06.842'),
+	 (false,true,true,'2022-04-14 12:58:06.842','SETH','Pell grant and Direct loan',0,2,8,'','VFINAIDREC','2022-04-14 12:58:06.842'),
+	 (false,true,true,'2022-04-14 12:58:06.842','SETH','Multiple federal aid',0,2,9,'','VFINAIDREC','2022-04-14 12:58:06.842'),
+	 (false,true,true,'2022-04-14 12:58:06.842','SETH','Multiple federal and other aid',0,2,10,'','VFINAIDREC','2022-04-14 12:58:06.842'),
+	 (false,true,true,'2022-04-14 12:58:06.844','SETH','Montgomery G.I. scholarship',0,2,11,'','VFINAIDREC','2022-04-14 12:58:06.844'),
+	 (false,true,true,'2022-04-14 12:58:06.844','SETH','Veterans Benefits',0,2,12,'','VFINAIDREC','2022-04-14 12:58:06.844'),
+	 (false,true,true,'2022-04-14 12:58:06.844','SETH','No aid awarded',0,2,13,'','VFINAIDREC','2022-04-14 12:58:06.844'),
+	 (false,true,true,'2022-04-14 12:58:06.844','SETH','No aid needed',0,2,14,'','VFINAIDREC','2022-04-14 12:58:06.844');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.844','SETH','Not Applicable',0,2,99,'','VFINAIDREC','2022-04-14 12:58:06.844'),
+	 (false,true,true,'2022-04-14 12:58:06.844','SETH','Unknown',0,2,0,'','VGRADELEVEL','2022-04-14 12:58:06.844'),
+	 (false,true,true,'2022-04-14 12:58:06.844','SETH','High School Dropout',0,2,1,'','VGRADELEVEL','2022-04-14 12:58:06.844'),
+	 (false,true,true,'2022-04-14 12:58:06.844','SETH','High School Graduate',0,2,2,'','VGRADELEVEL','2022-04-14 12:58:06.844'),
+	 (false,true,true,'2022-04-14 12:58:06.844','SETH','Obtained high school equivalency degree',0,2,3,'','VGRADELEVEL','2022-04-14 12:58:06.844'),
+	 (false,true,true,'2022-04-14 12:58:06.844','SETH','Obtained high school equivalency degree and accepted for enrollment in program of postsecondary education',0,2,4,'','VGRADELEVEL','2022-04-14 12:58:06.844'),
+	 (false,true,true,'2022-04-14 12:58:06.844','SETH','Accepted for enrollment in program of postsecondary education',0,2,5,'','VGRADELEVEL','2022-04-14 12:58:06.844'),
+	 (false,true,true,'2022-04-14 12:58:06.844','SETH','Obtained high school equivalency degree and enrolled in program of postsecondary education',0,2,6,'','VGRADELEVEL','2022-04-14 12:58:06.844'),
+	 (false,true,true,'2022-04-14 12:58:06.844','SETH','Enrolled in program of postsecondary education',0,2,7,'','VGRADELEVEL','2022-04-14 12:58:06.844'),
+	 (false,true,true,'2022-04-14 12:58:06.844','SETH','Completed project but did not enroll in program of postsecondary education',0,2,8,'','VGRADELEVEL','2022-04-14 12:58:06.844');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.844','SETH','Did not complete project',0,2,9,'','VGRADELEVEL','2022-04-14 12:58:06.844'),
+	 (false,true,true,'2022-04-14 12:58:06.844','SETH','No response',0,2,0,'','YESNO','2022-04-14 12:58:06.844'),
+	 (false,true,true,'2022-04-14 12:58:06.844','SETH','Yes',0,2,1,'','YESNO','2022-04-14 12:58:06.844'),
+	 (false,true,true,'2022-04-14 12:58:06.844','SETH','No',0,2,2,'','YESNO','2022-04-14 12:58:06.844'),
+	 (false,true,true,'2022-04-14 12:58:06.844','SETH','Not Applicable',0,2,9,'','YESNO','2022-04-14 12:58:06.844'),
+	 (false,true,true,'2022-04-14 12:58:06.844','SETH','Unknown',0,3,0,'','ACADNEED','2022-04-14 12:58:06.844'),
+	 (false,true,true,'2022-04-14 12:58:06.844','SETH','Low grade point average',0,3,1,'','ACADNEED','2022-04-14 12:58:06.844'),
+	 (false,false,true,'2022-04-14 12:58:06.844','SETH','Low achievement test scores',0,3,2,'','ACADNEED','2022-04-14 12:58:06.844'),
+	 (false,false,true,'2022-04-14 12:58:06.844','SETH','Low educational aspirations',0,3,3,'','ACADNEED','2022-04-14 12:58:06.844'),
+	 (false,true,true,'2022-04-14 12:58:06.844','SETH','Low grade point average and low educational aspirations',0,3,4,'','ACADNEED','2022-04-14 12:58:06.844');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.844','SETH','Low grade point average and low achievement test scores',0,3,5,'','ACADNEED','2022-04-14 12:58:06.844'),
+	 (false,true,true,'2022-04-14 12:58:06.844','SETH','Low achievement test scores and low educational aspirations',0,3,6,'','ACADNEED','2022-04-14 12:58:06.844'),
+	 (false,false,true,'2022-04-14 12:58:06.844','SETH','Lack of opportunity, support, and/or guidance to take challenging college preparation courses',0,3,7,'','ACADNEED','2022-04-14 12:58:06.844'),
+	 (false,true,true,'2022-04-14 12:58:06.844','SETH','Lack of career goals and/or need for accurate information on careers',0,3,8,'','ACADNEED','2022-04-14 12:58:06.844'),
+	 (false,false,true,'2022-04-14 12:58:06.844','SETH','Limited English proficiency',0,3,9,'','ACADNEED','2022-04-14 12:58:06.844'),
+	 (false,true,true,'2022-04-14 12:58:06.844','SETH','Lacks confidence, self  esteem, and/or social skills',0,3,10,'','ACADNEED','2022-04-14 12:58:06.844'),
+	 (false,true,true,'2022-04-14 12:58:06.854','SETH','Predominately low income community',0,3,11,'','ACADNEED','2022-04-14 12:58:06.854'),
+	 (false,true,true,'2022-04-14 12:58:06.854','SETH','Rural isolation',0,3,12,'','ACADNEED','2022-04-14 12:58:06.854'),
+	 (false,true,true,'2022-04-14 12:58:06.854','SETH','Interest in careers in math and science',0,3,13,'','ACADNEED','2022-04-14 12:58:06.854'),
+	 (false,true,true,'2022-04-14 12:58:06.854','SETH','Other',0,3,14,'','ACADNEED','2022-04-14 12:58:06.854');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.854','SETH','Diagnosed learning disability',0,3,15,'','ACADNEED','2022-04-14 12:58:06.854'),
+	 (false,true,true,'2022-04-14 12:58:06.854','SETH','Unknown or no longer tracking',0,3,0,'','ACADSTAND','2022-04-14 12:58:06.854'),
+	 (false,true,true,'2022-04-14 12:58:06.854','SETH','Good Standing',0,3,1,'','ACADSTAND','2022-04-14 12:58:06.854'),
+	 (false,true,true,'2022-04-14 12:58:06.854','SETH','Not in good standing',0,3,2,'','ACADSTAND','2022-04-14 12:58:06.854'),
+	 (false,true,true,'2022-04-14 12:58:06.854','SETH','No longer used for APR reporting in current year',0,3,3,'','ACADSTAND','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','SETH','Postsecondary stop-out',0,3,7,'','ACADSTAND','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','SETH','Not applicable-not yet completed high school',0,3,8,'','ACADSTAND','2022-04-14 12:58:06.854'),
+	 (false,true,true,'2022-04-14 12:58:06.854','SETH','Not applicable-completed HS but not enrolled in postsecondary',0,3,9,'','ACADSTAND','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','SETH','Work Study Position',0,3,38,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','SETH','Employment',0,3,39,'','ACTIVITY','2022-04-14 12:58:06.854');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.854','SETH','Cultural Activities',0,3,40,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','SETH','Community Service',0,3,41,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','SETH','Instruction for Students with Limited Proficiency',0,3,42,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','SETH','Reading Instruction/Tutorials',0,3,61,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','MANAGER','Instruction for Students with Limited Proficiency',0,3,62,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','SETH','Computer Science Instruction/Tutorials',0,3,63,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','SETH','Tutoring',0,3,69,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','SETH','Supplemental Instruction',0,3,70,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','SETH','College Entrance Exam Preparation',0,3,71,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','SETH','Personal Counseling',0,3,72,'','ACTIVITY','2022-04-14 12:58:06.854');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.854','SETH','Academic Advising',0,3,73,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','SETH','Peer Counseling/ Mentoring',0,3,74,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','SETH','Professional Mentoring',0,3,75,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','SETH','Study Skills',0,3,76,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','MANAGER','Cultural Activities',0,3,77,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','SETH','Career Awareness',0,3,78,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','SETH','Campus Visitation',0,3,79,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','SETH','Assistance with College Admissions',0,3,80,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','SETH','Financial Aid Assistance',0,3,81,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','SETH','Family Activities',0,3,82,'','ACTIVITY','2022-04-14 12:58:06.854');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.854','MANAGER','Community Service',0,3,83,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','SETH','Target School Advocacy',0,3,84,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','MANAGER','Work Study Position',0,3,85,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','MANAGER','Employment',0,3,86,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','SETH','Activities with Professional Mathematicians and Scientists',0,3,88,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','SETH','Activities with Math and Science Majors',0,3,89,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','SETH','Research Activities',0,3,90,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','MANAGER','English/ Proficiency',0,3,10001,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','MANAGER','Reading',0,3,10002,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','MANAGER','Writing',0,3,10003,'','ACTIVITY','2022-04-14 12:58:06.854');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.854','MANAGER','Study Skills',0,3,10004,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','MANAGER','Mathematics',0,3,10005,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','MANAGER','Other Tutorial',0,3,10006,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','MANAGER','GED Training',0,3,10007,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','MANAGER','Financial Aid Counseling',0,3,10008,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','MANAGER','Other Counseling',0,3,10009,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','MANAGER','Computer Aided Instructions',0,3,10010,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','MANAGER','Tutorial Assistance',0,3,10011,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','MANAGER','Cultural Assistance',0,3,10012,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','MANAGER','Career Planning',0,3,10013,'','ACTIVITY','2022-04-14 12:58:06.854');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.854','MANAGER','College Tours',0,3,10014,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','MANAGER','Admission & Financial Aid Information',0,3,10015,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','MANAGER','ACT Preparation',0,3,10016,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','MANAGER','ACT Registration',0,3,10017,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','MANAGER','Personal Counseling',0,3,10018,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','MANAGER','College Survival Skill',0,3,10019,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','MANAGER','Academic Counseling',0,3,10020,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','MANAGER','Goal Setting',0,3,10021,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','MANAGER','Life Skills',0,3,10022,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.854','MANAGER','Test Taking Skills',0,3,10023,'','ACTIVITY','2022-04-14 12:58:06.854');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.854','MANAGER','Self-Concept Assessment',0,3,10024,'','ACTIVITY','2022-04-14 12:58:06.854'),
+	 (false,false,true,'2022-04-14 12:58:06.862','MANAGER','Parental Involvement',0,3,10025,'','ACTIVITY','2022-04-14 12:58:06.862'),
+	 (false,false,true,'2022-04-14 12:58:06.862','MANAGER','High School Survival Skills',0,3,10026,'','ACTIVITY','2022-04-14 12:58:06.862'),
+	 (false,false,true,'2022-04-14 12:58:06.862','MANAGER','Interest Inventory Assessment',0,3,10027,'','ACTIVITY','2022-04-14 12:58:06.862'),
+	 (false,false,true,'2022-04-14 12:58:06.862','MANAGER','Self-Esteem',0,3,10028,'','ACTIVITY','2022-04-14 12:58:06.862'),
+	 (false,false,true,'2022-04-14 12:58:06.862','MANAGER','Critical Thinking',0,3,10029,'','ACTIVITY','2022-04-14 12:58:06.862'),
+	 (false,false,true,'2022-04-14 12:58:06.862','MANAGER','Decision Making',0,3,10030,'','ACTIVITY','2022-04-14 12:58:06.862'),
+	 (false,false,true,'2022-04-14 12:58:06.862','SETH','Count all contacts on same day as separate sessions',0,3,1,'','ACTIVITYGROUPTYPE','2022-04-14 12:58:06.862'),
+	 (false,false,true,'2022-04-14 12:58:06.862','SETH','Count all contacts on same day as one event',0,3,2,'','ACTIVITYGROUPTYPE','2022-04-14 12:58:06.862'),
+	 (false,true,true,'2022-04-14 12:58:06.862','SETH','Mathematics Instruction/Tutorials Project Year',0,3,43,'admath','APR SUBJECT','2022-04-14 12:58:06.862');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.862','SETH','Mathematics Instruction Summer (may include Bridge Students)',0,3,44,'admath','APR SUBJECT','2022-04-14 12:58:06.862'),
+	 (false,true,true,'2022-04-14 12:58:06.862','SETH','Mathematics Instruction/Tutorials Academic Year',0,3,53,'admath','APR SUBJECT','2022-04-14 12:58:06.862'),
+	 (false,true,true,'2022-04-14 12:58:06.862','SETH','Mathematics Instruction Summer (may include Bridge Students)',0,3,54,'admath','APR SUBJECT','2022-04-14 12:58:06.862'),
+	 (false,true,true,'2022-04-14 12:58:06.862','SETH','Science Instruction/Tutorials Academic Year',0,3,55,'adscience','APR SUBJECT','2022-04-14 12:58:06.862'),
+	 (false,true,true,'2022-04-14 12:58:06.862','SETH','Science Instruction Summer (may include Bridge Students)',0,3,56,'adscience','APR SUBJECT','2022-04-14 12:58:06.862'),
+	 (false,true,true,'2022-04-14 12:58:06.862','SETH','Foreign Language Instruction/Tutorials Academic Year',0,3,57,'adforeignlanguage','APR SUBJECT','2022-04-14 12:58:06.862'),
+	 (false,true,true,'2022-04-14 12:58:06.862','SETH','Foreign Language Instruction Summer (may include Bridge Students)',0,3,58,'adforeignlanguage','APR SUBJECT','2022-04-14 12:58:06.862'),
+	 (false,true,true,'2022-04-14 12:58:06.862','SETH','English Instruction/Tutorials Academic Year',0,3,59,'adenglish','APR SUBJECT','2022-04-14 12:58:06.862'),
+	 (false,true,true,'2022-04-14 12:58:06.864','SETH','English Instruction Summer (may include Bridge Students)',0,3,60,'adenglish','APR SUBJECT','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','SETH','Unknown',0,3,0,'','APRCOMPONENT','2022-04-14 12:58:06.864');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.864','SETH','Yes',0,3,1,'','APRCOMPONENT','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','SETH','No',0,3,2,'','APRCOMPONENT','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','SETH','Not applicable, not offered by project',0,3,8,'','APRCOMPONENT','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','SETH','Not applicable, prior-year participant',0,3,9,'','APRCOMPONENT','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','MANAGER','In Stock',0,3,1,'','ASSETSTATUS','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','MANAGER','Checked Out',0,3,2,'','ASSETSTATUS','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','MANAGER','Out for Repair',0,3,3,'','ASSETSTATUS','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','MANAGER','Damaged',0,3,4,'','ASSETSTATUS','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','MANAGER','Lost',0,3,5,'','ASSETSTATUS','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','MANAGER','Stolen',0,3,6,'','ASSETSTATUS','2022-04-14 12:58:06.864');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.864','MANAGER','No longer in use',0,3,7,'','ASSETSTATUS','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','SETH','No response/Unknown',0,3,0,'','COHORTYEAR','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','SETH','Other (prior to 2000-01)',0,3,1,'','COHORTYEAR','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','SETH','2000-01',0,3,2,'','COHORTYEAR','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','SETH','2001-02',0,3,3,'','COHORTYEAR','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','SETH','2002-03',0,3,4,'','COHORTYEAR','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','SETH','2003-04',0,3,5,'','COHORTYEAR','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','SETH','2004-05',0,3,6,'','COHORTYEAR','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','SETH','2005-06',0,3,7,'','COHORTYEAR','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','SETH','2006-07',0,3,8,'','COHORTYEAR','2022-04-14 12:58:06.864');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.864','SETH','2007-08',0,3,9,'','COHORTYEAR','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','SETH','2008-09',0,3,10,'','COHORTYEAR','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','SETH','2009-10',0,3,11,'','COHORTYEAR','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','SETH','Public, two-year institution',0,3,1,'','COLLEGETYPE','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','SETH','Private, non-profit, two-year institution',0,3,2,'','COLLEGETYPE','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','SETH','Public, four-year institution',0,3,3,'','COLLEGETYPE','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','SETH','Private, non-profit, four-year institution',0,3,4,'','COLLEGETYPE','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','SETH','Public or non-profit vocational/technical institution',0,3,5,'','COLLEGETYPE','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','SETH','Proprietary school',0,3,6,'','COLLEGETYPE','2022-04-14 12:58:06.864'),
+	 (false,true,true,'2022-04-14 12:58:06.864','SETH','Unknown',0,3,0,'','COLLGRADE','2022-04-14 12:58:06.864');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.864','SETH','Accepted into postsecondary education program but not yet enrolled',0,3,1,'','COLLGRADE','2022-04-14 12:58:06.864'),
+	 (false,true,true,'2022-04-14 12:58:06.864','SETH','First year student in postsecondary education following completion of high school',0,3,2,'','COLLGRADE','2022-04-14 12:58:06.864'),
+	 (false,true,true,'2022-04-14 12:58:06.864','SETH','Postsecondary student continuing beyond first year',0,3,3,'','COLLGRADE','2022-04-14 12:58:06.864'),
+	 (false,true,true,'2022-04-14 12:58:06.864','SETH','Enrolled, completed a program of postsecondary education but continuing in postsecondary',0,3,4,'','COLLGRADE','2022-04-14 12:58:06.864'),
+	 (false,true,true,'2022-04-14 12:58:06.864','SETH','Not enrolled, completed a program of postsecondary education prior to beginning of academic year reported',0,3,5,'','COLLGRADE','2022-04-14 12:58:06.864'),
+	 (false,true,true,'2022-04-14 12:58:06.864','SETH','Prior to beginning of academic year reported, left program of postsecondary education without completing it',0,3,7,'','COLLGRADE','2022-04-14 12:58:06.864'),
+	 (false,true,true,'2022-04-14 12:58:06.864','SETH','Not applicable, not yet completed high school',0,3,8,'','COLLGRADE','2022-04-14 12:58:06.864'),
+	 (false,true,true,'2022-04-14 12:58:06.864','SETH','Not applicable, completed high school but has not enrolled in a program of postsecondary education',0,3,9,'','COLLGRADE','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','SETH','Yes',0,3,1,'','COLLREADY','2022-04-14 12:58:06.864'),
+	 (false,true,true,'2022-04-14 12:58:06.864','SETH','',0,3,0,'','COMPARE','2022-04-14 12:58:06.864');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.864','SETH','< less than',0,3,1,'','COMPARE','2022-04-14 12:58:06.864'),
+	 (false,true,true,'2022-04-14 12:58:06.864','SETH','<= less than or equal to',0,3,2,'','COMPARE','2022-04-14 12:58:06.864'),
+	 (false,true,true,'2022-04-14 12:58:06.864','SETH','<> not equal to',0,3,3,'','COMPARE','2022-04-14 12:58:06.864'),
+	 (false,true,true,'2022-04-14 12:58:06.864','SETH','= equal to',0,3,4,'','COMPARE','2022-04-14 12:58:06.864'),
+	 (false,true,true,'2022-04-14 12:58:06.864','SETH','> more than',0,3,5,'','COMPARE','2022-04-14 12:58:06.864'),
+	 (false,true,true,'2022-04-14 12:58:06.864','SETH','>= more than or equal to',0,3,6,'','COMPARE','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','SETH','Not enrolled    /Offered by project, but not enrolled.',0,3,0,'','COMPONENT','2022-04-14 12:58:06.864'),
+	 (false,true,true,'2022-04-14 12:58:06.864','SETH','Academic',0,3,1,'','COMPONENT','2022-04-14 12:58:06.864'),
+	 (false,true,true,'2022-04-14 12:58:06.864','SETH','Summer',0,3,2,'','COMPONENT','2022-04-14 12:58:06.864'),
+	 (false,true,true,'2022-04-14 12:58:06.864','SETH','Both',0,3,3,'','COMPONENT','2022-04-14 12:58:06.864');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.864','SETH','Not applicable, not offered by project',0,3,8,'','COMPONENT','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','SETH','Not applicable, prior-year participant',0,3,9,'','COMPONENT','2022-04-14 12:58:06.864'),
+	 (false,false,true,'2022-04-14 12:58:06.864','SETH','Unknown',0,3,99,'','COMPONENT','2022-04-14 12:58:06.864'),
+	 (false,true,true,'2022-04-14 12:58:06.864','SETH','Counselor',0,3,1,'','CONTACTSTAFFTYPE','2022-04-14 12:58:06.864'),
+	 (false,true,true,'2022-04-14 12:58:06.864','SETH','Tutor',0,3,2,'','CONTACTSTAFFTYPE','2022-04-14 12:58:06.864'),
+	 (false,true,true,'2022-04-14 12:58:06.864','SETH','Teacher',0,3,3,'','CONTACTSTAFFTYPE','2022-04-14 12:58:06.864'),
+	 (false,true,true,'2022-04-14 12:58:06.864','SETH','Staff',0,3,4,'','CONTACTSTAFFTYPE','2022-04-14 12:58:06.864'),
+	 (false,true,true,'2022-04-14 12:58:06.864','SETH','Individual',0,3,1,'','CONTACTTYPE','2022-04-14 12:58:06.864'),
+	 (false,true,true,'2022-04-14 12:58:06.864','SETH','Group',0,3,2,'','CONTACTTYPE','2022-04-14 12:58:06.864'),
+	 (false,true,true,'2022-04-14 12:58:06.864','SETH','Phone',0,3,3,'','CONTACTTYPE','2022-04-14 12:58:06.864');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.872','SETH','Mail',0,3,4,'','CONTACTTYPE','2022-04-14 12:58:06.872'),
+	 (false,false,true,'2022-04-14 12:58:06.872','SETH','Parent',0,3,5,'','CONTACTTYPE','2022-04-14 12:58:06.872'),
+	 (false,true,true,'2022-04-14 12:58:06.872','SETH','Other',0,3,6,'','CONTACTTYPE','2022-04-14 12:58:06.872'),
+	 (false,true,true,'2022-04-14 12:58:06.872','SETH','E-mail',0,3,7,'','CONTACTTYPE','2022-04-14 12:58:06.872'),
+	 (false,false,true,'2022-04-14 12:58:06.884','SETH','Weekly',0,3,1,'','CONTFREQ','2022-04-14 12:58:06.884'),
+	 (false,false,true,'2022-04-14 12:58:06.884','SETH','Twice a month',0,3,2,'','CONTFREQ','2022-04-14 12:58:06.884'),
+	 (false,false,true,'2022-04-14 12:58:06.884','SETH','Once a month',0,3,3,'','CONTFREQ','2022-04-14 12:58:06.884'),
+	 (false,false,true,'2022-04-14 12:58:06.884','SETH','Quarterly',0,3,4,'','CONTFREQ','2022-04-14 12:58:06.884'),
+	 (false,false,true,'2022-04-14 12:58:06.884','SETH','No face-to-face contact',0,3,5,'','CONTFREQ','2022-04-14 12:58:06.884'),
+	 (false,false,true,'2022-04-14 12:58:06.884','SETH','Other',0,3,6,'','CONTFREQ','2022-04-14 12:58:06.884');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.884','USER','Pets Name',0,3,1,'         0','CUSTOMFIELDNAME','2022-04-14 12:58:06.884'),
+	 (false,false,true,'2022-04-14 12:58:06.884','USER','T-shirt Size',0,3,2,'         1','CUSTOMFIELDNAME','2022-04-14 12:58:06.884'),
+	 (false,false,true,'2022-04-14 12:58:06.884','USER','Donate Blood',0,3,3,'         2','CUSTOMFIELDNAME','2022-04-14 12:58:06.884'),
+	 (false,false,true,'2022-04-14 12:58:06.884','USER','Date Inactivated',0,3,4,'         3','CUSTOMFIELDNAME','2022-04-14 12:58:06.884'),
+	 (false,false,true,'2022-04-14 12:58:06.884','USER','Number of Siblings',0,3,5,'         4','CUSTOMFIELDNAME','2022-04-14 12:58:06.884'),
+	 (false,false,true,'2022-04-14 12:58:06.884','USER','Food Allowance',0,3,6,'         5','CUSTOMFIELDNAME','2022-04-14 12:58:06.884'),
+	 (false,false,true,'2022-04-14 12:58:06.884','MANAGER','Text-Normal',0,3,0,'','CUSTOMFIELDTYPE','2022-04-14 12:58:06.884'),
+	 (false,false,true,'2022-04-14 12:58:06.884','MANAGER','Text-Quickfill',0,3,1,'','CUSTOMFIELDTYPE','2022-04-14 12:58:06.884'),
+	 (false,false,true,'2022-04-14 12:58:06.884','MANAGER','Logical',0,3,2,'','CUSTOMFIELDTYPE','2022-04-14 12:58:06.884'),
+	 (false,false,true,'2022-04-14 12:58:06.884','MANAGER','Date',0,3,3,'','CUSTOMFIELDTYPE','2022-04-14 12:58:06.884');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.884','MANAGER','Integer',0,3,4,'','CUSTOMFIELDTYPE','2022-04-14 12:58:06.884'),
+	 (false,false,true,'2022-04-14 12:58:06.884','','Numeric-2 decimals',0,3,5,'','CUSTOMFIELDTYPE','2022-04-14 12:58:06.884'),
+	 (false,false,true,'2022-04-14 12:58:06.884','SETH','Science',0,3,1,'','DEGREEIN','2022-04-14 12:58:06.884'),
+	 (false,false,true,'2022-04-14 12:58:06.884','SETH','Business',0,3,2,'','DEGREEIN','2022-04-14 12:58:06.884'),
+	 (false,false,true,'2022-04-14 12:58:06.884','SETH','Arts',0,3,3,'','DEGREEIN','2022-04-14 12:58:06.884'),
+	 (false,false,true,'2022-04-14 12:58:06.884','SETH','English',0,3,4,'','DEGREEIN','2022-04-14 12:58:06.884'),
+	 (false,true,true,'2022-04-14 12:58:06.884','SETH','Unknown',0,3,0,'','ELIGIBILITY','2022-04-14 12:58:06.884'),
+	 (false,true,true,'2022-04-14 12:58:06.884','SETH','Low-Income and First-Generation',0,3,1,'','ELIGIBILITY','2022-04-14 12:58:06.884'),
+	 (false,true,true,'2022-04-14 12:58:06.884','SETH','Low-Income only',0,3,2,'','ELIGIBILITY','2022-04-14 12:58:06.884'),
+	 (false,true,true,'2022-04-14 12:58:06.884','SETH','First-Generation only',0,3,3,'','ELIGIBILITY','2022-04-14 12:58:06.884');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.884','SETH','Other',0,3,4,'','ELIGIBILITY','2022-04-14 12:58:06.884'),
+	 (false,false,true,'2022-04-14 12:58:06.884','SETH','Part Time',0,3,1,'','EMPLOYTYPE','2022-04-14 12:58:06.884'),
+	 (false,false,true,'2022-04-14 12:58:06.884','SETH','Full Time',0,3,2,'','EMPLOYTYPE','2022-04-14 12:58:06.884'),
+	 (false,false,true,'2022-04-14 12:58:06.884','SETH','Unemployed',0,3,3,'','EMPLOYTYPE','2022-04-14 12:58:06.884'),
+	 (false,true,true,'2022-04-14 12:58:06.884','SETH','Continued in middle School (TS only)',0,3,16,'','ENDSTATUS','2022-04-14 12:58:06.884'),
+	 (false,false,true,'2022-04-14 12:58:06.892','SETH','Promoted from middle school to high school (TS Only)',0,3,17,'','ENDSTATUS','2022-04-14 12:58:06.892'),
+	 (false,false,true,'2022-04-14 12:58:06.892','SETH','Continued in high school (do not include those who graduated)',0,3,18,'','ENDSTATUS','2022-04-14 12:58:06.892'),
+	 (false,false,true,'2022-04-14 12:58:06.892','SETH','Re-entered middle school',0,3,19,'','ENDSTATUS','2022-04-14 12:58:06.892'),
+	 (false,false,true,'2022-04-14 12:58:06.892','SETH','Re-entered high school',0,3,20,'','ENDSTATUS','2022-04-14 12:58:06.892'),
+	 (false,false,true,'2022-04-14 12:58:06.892','SETH','Received high school diploma',0,3,21,'','ENDSTATUS','2022-04-14 12:58:06.892');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.892','SETH','Obtained a GED/high school equivalency degree',0,3,22,'','ENDSTATUS','2022-04-14 12:58:06.892'),
+	 (false,false,true,'2022-04-14 12:58:06.892','SETH','Applied for admission to program of postsecondary education',0,3,23,'','ENDSTATUS','2022-04-14 12:58:06.892'),
+	 (false,false,true,'2022-04-14 12:58:06.892','SETH','Applied for student financial aid for postsecondary education',0,3,24,'','ENDSTATUS','2022-04-14 12:58:06.892'),
+	 (false,false,true,'2022-04-14 12:58:06.892','SETH','Enrolled in ( or admitted to) a program of postsecondary education (first-time enrollment in postsecondary education)',0,3,25,'','ENDSTATUS','2022-04-14 12:58:06.892'),
+	 (false,false,true,'2022-04-14 12:58:06.894','SETH','Re-enrolled in (or re-admitted to ) a program of postsecondary education',0,3,26,'','ENDSTATUS','2022-04-14 12:58:06.894'),
+	 (false,false,true,'2022-04-14 12:58:06.894','SETH','Dropped out of middle school (TS only)',0,3,27,'','ENDSTATUS','2022-04-14 12:58:06.894'),
+	 (false,false,true,'2022-04-14 12:58:06.894','SETH','Dropped out of high school',0,3,28,'','ENDSTATUS','2022-04-14 12:58:06.894'),
+	 (false,false,true,'2022-04-14 12:58:06.894','SETH','Did not continue in program of postsecondary education (EOC only)',0,3,29,'','ENDSTATUS','2022-04-14 12:58:06.894'),
+	 (false,false,true,'2022-04-14 12:58:06.894','SETH','Other (i.e. military, death, illness, transfer, etc.)',0,3,30,'','ENDSTATUS','2022-04-14 12:58:06.894'),
+	 (false,false,true,'2022-04-14 12:58:06.894','SETH','Unknown Participant Status at End of Reporting Period',0,3,31,'','ENDSTATUS','2022-04-14 12:58:06.894');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.894','SETH','Veterans Served',0,3,32,'','ENDSTATUS','2022-04-14 12:58:06.894'),
+	 (false,false,true,'2022-04-14 12:58:06.894','SETH','Participants of Limited English Proficiency',0,3,33,'','ENDSTATUS','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','Not enrolled',0,3,0,'','ENGLISH','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','Composition',0,3,1,'','ENGLISH','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','Literature',0,3,2,'','ENGLISH','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','Composition and Literature',0,3,3,'','ENGLISH','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','Unknown or no longer tracking',0,3,0,'','ENROLL','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','Full-time',0,3,1,'','ENROLL','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','Less than full-time',0,3,2,'','ENROLL','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','Varied enrollment during reporting period',0,3,3,'','ENROLL','2022-04-14 12:58:06.894');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.894','SETH','Postsecondary stopout',0,3,7,'','ENROLL','2022-04-14 12:58:06.894'),
+	 (false,false,true,'2022-04-14 12:58:06.894','SETH','Not applicable-not yet completed high school',0,3,8,'','ENROLL','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','Not applicable-completed HS but not enrolled in postsecondary',0,3,9,'','ENROLL','2022-04-14 12:58:06.894'),
+	 (false,false,true,'2022-04-14 12:58:06.894','SETH','Unknown',0,3,0,'','ENROLLOBJ','2022-04-14 12:58:06.894'),
+	 (false,false,true,'2022-04-14 12:58:06.894','SETH','Participant in Next_Fiscal_Year_Short cohort who enrolled in postsecondary education by fall term Next_Fiscal_Year_Short',0,3,1,'','ENROLLOBJ','2022-04-14 12:58:06.894'),
+	 (false,false,true,'2022-04-14 12:58:06.894','SETH','Participant in Next_Fiscal_Year_Short cohort who DID NOT enroll in postsecondary education by fall term Next_Fiscal_Year_Short',0,3,2,'','ENROLLOBJ','2022-04-14 12:58:06.894'),
+	 (false,false,true,'2022-04-14 12:58:06.894','SETH','Not applicable, participant had an expected high school graduation cohort year after Next_Fiscal_Year_Short',0,3,8,'','ENROLLOBJ','2022-04-14 12:58:06.894'),
+	 (false,false,true,'2022-04-14 12:58:06.894','SETH','Not applicable, participant had an expected high school graduation cohort year prior to Next_Fiscal_Year_Short',0,3,10,'','ENROLLOBJ','2022-04-14 12:58:06.894'),
+	 (false,false,true,'2022-04-14 12:58:06.894','SETH','Unknown',0,3,0,'','ENTEREXAM','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','SAT',0,3,1,'','ENTEREXAM','2022-04-14 12:58:06.894');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','ACT',0,3,2,'','ENTEREXAM','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','Both SAT and ACT',0,3,3,'','ENTEREXAM','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','Other',0,3,4,'','ENTEREXAM','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','Not Applicable',0,3,9,'','ENTEREXAM','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','Unknown',0,3,0,'','ENTERLEVEL','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','Rising 9th-grader (summer between 8th grade and 9th grade)',0,3,8,'','ENTERLEVEL','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','9th grade (not a valid option for students first receiving service in the summer program)',0,3,9,'','ENTERLEVEL','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','10th grade',0,3,10,'','ENTERLEVEL','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','11th grade',0,3,11,'','ENTERLEVEL','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','Rising 12th-grader (summer between 11th grade and 12th grade)',0,3,12,'','ENTERLEVEL','2022-04-14 12:58:06.894');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.894','SETH','12th-grader (only for students transferring from one project to the current project as a 12th-grader)',0,3,13,'','ENTERLEVEL','2022-04-14 12:58:06.894'),
+	 (false,false,true,'2022-04-14 12:58:06.894','SETH','Other',0,3,14,'','ENTERLEVEL','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','Unknown',0,3,0,'','ETHNIC','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','American Indian/Alaskan Native',0,3,1,'','ETHNIC','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','Asian',0,3,2,'','ETHNIC','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','Black or African American',0,3,3,'','ETHNIC','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','Hispanic or Latino',0,3,4,'','ETHNIC','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','White',0,3,5,'','ETHNIC','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','Native Hawaiian or Pacific Islander',0,3,6,'','ETHNIC','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','More than one race reported',0,3,7,'','ETHNIC','2022-04-14 12:58:06.894');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','No response',0,3,0,'','FINAIDREAS','2022-04-14 12:58:06.894'),
+	 (false,false,true,'2022-04-14 12:58:06.894','SETH','Student refused loan',0,3,1,'','FINAIDREAS','2022-04-14 12:58:06.894'),
+	 (false,false,true,'2022-04-14 12:58:06.894','SETH','Insufficient Federal grant aid',0,3,2,'','FINAIDREAS','2022-04-14 12:58:06.894'),
+	 (false,false,true,'2022-04-14 12:58:06.894','SETH','Insufficient College Work Study aid',0,3,3,'','FINAIDREAS','2022-04-14 12:58:06.894'),
+	 (false,false,true,'2022-04-14 12:58:06.894','SETH','Insufficient institutional aid',0,3,4,'','FINAIDREAS','2022-04-14 12:58:06.894'),
+	 (false,false,true,'2022-04-14 12:58:06.894','SETH','Student failed to make adequate academic progress',0,3,5,'','FINAIDREAS','2022-04-14 12:58:06.894'),
+	 (false,false,true,'2022-04-14 12:58:06.894','SETH','Student refused College Work Study aid',0,3,6,'','FINAIDREAS','2022-04-14 12:58:06.894'),
+	 (false,false,true,'2022-04-14 12:58:06.894','SETH','Student not enrolled full-time',0,3,7,'','FINAIDREAS','2022-04-14 12:58:06.894'),
+	 (false,false,true,'2022-04-14 12:58:06.894','SETH','Student not eligible for financial aid',0,3,8,'','FINAIDREAS','2022-04-14 12:58:06.894'),
+	 (false,false,true,'2022-04-14 12:58:06.894','SETH','Insufficient loans',0,3,9,'','FINAIDREAS','2022-04-14 12:58:06.894');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','Unknown or no longer tracking',0,3,0,'','FINAIDRECD','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','Pell grant only',0,3,1,'','FINAIDRECD','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','FFEL loan',0,3,2,'','FINAIDRECD','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','Direct loan',0,3,3,'','FINAIDRECD','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','College work study only',0,3,4,'','FINAIDRECD','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','Institutional aid only',0,3,5,'','FINAIDRECD','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.894','SETH','State grant only',0,3,6,'','FINAIDRECD','2022-04-14 12:58:06.894'),
+	 (false,true,true,'2022-04-14 12:58:06.902','SETH','Pell grant and FFEL loan',0,3,7,'','FINAIDRECD','2022-04-14 12:58:06.902'),
+	 (false,true,true,'2022-04-14 12:58:06.902','SETH','Pell grant and Direct loan',0,3,8,'','FINAIDRECD','2022-04-14 12:58:06.902'),
+	 (false,true,true,'2022-04-14 12:58:06.902','SETH','Multiple federal aid',0,3,9,'','FINAIDRECD','2022-04-14 12:58:06.902');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.902','SETH','Multiple federal and other aid',0,3,10,'','FINAIDRECD','2022-04-14 12:58:06.902'),
+	 (false,true,true,'2022-04-14 12:58:06.902','SETH','Non-federal, non-institutional aid',0,3,11,'','FINAIDRECD','2022-04-14 12:58:06.902'),
+	 (false,true,true,'2022-04-14 12:58:06.902','SETH','No aid awarded',0,3,12,'','FINAIDRECD','2022-04-14 12:58:06.902'),
+	 (false,true,true,'2022-04-14 12:58:06.902','SETH','No aid needed',0,3,13,'','FINAIDRECD','2022-04-14 12:58:06.902'),
+	 (false,false,true,'2022-04-14 12:58:06.902','SETH','Not applicable, not yet completed high school',0,3,88,'','FINAIDRECD','2022-04-14 12:58:06.902'),
+	 (false,true,true,'2022-04-14 12:58:06.902','SETH','Not applicable, completed HS but not enrolled in postsecondary',0,3,99,'','FINAIDRECD','2022-04-14 12:58:06.902'),
+	 (false,true,true,'2022-04-14 12:58:06.902','SETH','Not enrolled',0,3,0,'','FOREIGNLANGUAGE','2022-04-14 12:58:06.902'),
+	 (false,true,true,'2022-04-14 12:58:06.902','SETH','Spanish',0,3,1,'','FOREIGNLANGUAGE','2022-04-14 12:58:06.902'),
+	 (false,true,true,'2022-04-14 12:58:06.902','SETH','French',0,3,2,'','FOREIGNLANGUAGE','2022-04-14 12:58:06.902'),
+	 (false,true,true,'2022-04-14 12:58:06.902','SETH','German',0,3,3,'','FOREIGNLANGUAGE','2022-04-14 12:58:06.902');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.902','SETH','Italian',0,3,4,'','FOREIGNLANGUAGE','2022-04-14 12:58:06.902'),
+	 (false,true,true,'2022-04-14 12:58:06.902','SETH','Russian',0,3,5,'','FOREIGNLANGUAGE','2022-04-14 12:58:06.902'),
+	 (false,true,true,'2022-04-14 12:58:06.902','SETH','Japanese',0,3,6,'','FOREIGNLANGUAGE','2022-04-14 12:58:06.902'),
+	 (false,true,true,'2022-04-14 12:58:06.902','SETH','Other Foreign Language',0,3,7,'','FOREIGNLANGUAGE','2022-04-14 12:58:06.902'),
+	 (false,false,true,'2022-04-14 12:58:06.904','SETH','Financial Aid',0,3,1,'','FORM TYPE','2022-04-14 12:58:06.904'),
+	 (false,false,true,'2022-04-14 12:58:06.904','SETH','Field Trip Authorization',0,3,2,'','FORM TYPE','2022-04-14 12:58:06.904'),
+	 (false,false,true,'2022-04-14 12:58:06.904','SETH','Application Form',0,3,3,'','FORM TYPE','2022-04-14 12:58:06.904'),
+	 (false,false,true,'2022-04-14 12:58:06.904','SETH','Income Data',0,3,4,'','FORM TYPE','2022-04-14 12:58:06.904'),
+	 (false,false,true,'2022-04-14 12:58:06.904','SETH','Parent Contract Form',0,3,5,'','FORM TYPE','2022-04-14 12:58:06.904'),
+	 (false,false,true,'2022-04-14 12:58:06.904','SETH','Assessment',0,3,6,'','FORM TYPE','2022-04-14 12:58:06.904');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.904','SETH','Eligibility Form',0,3,7,'','FORM TYPE','2022-04-14 12:58:06.904'),
+	 (false,false,true,'2022-04-14 12:58:06.904','SETH','Student Contract Form',0,3,8,'','FORM TYPE','2022-04-14 12:58:06.904'),
+	 (false,false,true,'2022-04-14 12:58:06.904','SETH','Recommendation Letter',0,3,9,'','FORM TYPE','2022-04-14 12:58:06.904'),
+	 (false,true,true,'2022-04-14 12:58:06.904','SETH','Unknown',0,3,0,'','GENDER','2022-04-14 12:58:06.904'),
+	 (false,true,true,'2022-04-14 12:58:06.904','SETH','Male',0,3,1,'','GENDER','2022-04-14 12:58:06.904'),
+	 (false,true,true,'2022-04-14 12:58:06.904','SETH','Female',0,3,2,'','GENDER','2022-04-14 12:58:06.904'),
+	 (false,true,true,'2022-04-14 12:58:06.904','SETH','Unknown',0,3,0,'','GPASCALE','2022-04-14 12:58:06.904'),
+	 (false,true,true,'2022-04-14 12:58:06.904','SETH','4 point scale or scale convertible to 4 point',0,3,1,'','GPASCALE','2022-04-14 12:58:06.904'),
+	 (false,true,true,'2022-04-14 12:58:06.904','SETH','5 point scale or scale convertible to 5 point',0,3,2,'','GPASCALE','2022-04-14 12:58:06.904'),
+	 (false,true,true,'2022-04-14 12:58:06.904','SETH','Other',0,3,3,'','GPASCALE','2022-04-14 12:58:06.904');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.904','SETH','Not applicable to rising 9th graders',0,3,9,'','GPASCALE','2022-04-14 12:58:06.904'),
+	 (false,true,true,'2022-04-14 12:58:06.904','SETH','Unknown',0,3,0,'','GRADELEVEL','2022-04-14 12:58:06.904'),
+	 (false,true,true,'2022-04-14 12:58:06.904','SETH','9th grade',0,3,9,'','GRADELEVEL','2022-04-14 12:58:06.904'),
+	 (false,true,true,'2022-04-14 12:58:06.904','SETH','10th grade',0,3,10,'','GRADELEVEL','2022-04-14 12:58:06.904'),
+	 (false,true,true,'2022-04-14 12:58:06.904','SETH','11th grade',0,3,11,'','GRADELEVEL','2022-04-14 12:58:06.904'),
+	 (false,true,true,'2022-04-14 12:58:06.904','SETH','12th grade',0,3,12,'','GRADELEVEL','2022-04-14 12:58:06.904'),
+	 (false,false,true,'2022-04-14 12:58:06.904','SETH','Enrolled in a program of postsecondary education',0,3,13,'','GRADELEVEL','2022-04-14 12:58:06.904'),
+	 (false,false,true,'2022-04-14 12:58:06.904','SETH','Other',0,3,14,'','GRADELEVEL','2022-04-14 12:58:06.904'),
+	 (false,false,true,'2022-04-14 12:58:06.904','SETH','Not applicable, not enrolled in high school or in a program of postsecondary education',0,3,99,'','GRADELEVEL','2022-04-14 12:58:06.904'),
+	 (false,false,true,'2022-04-14 12:58:06.904','SETH','Unknown',0,3,0,'','GRADEPRO','2022-04-14 12:58:06.904');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.904','SETH','Student met requirements to progress normally to next grade or graduated',0,3,1,'','GRADEPRO','2022-04-14 12:58:06.904'),
+	 (false,false,true,'2022-04-14 12:58:06.904','SETH','Student did not meet requirements to progress normally to next grade or graduate',0,3,2,'','GRADEPRO','2022-04-14 12:58:06.904'),
+	 (false,false,true,'2022-04-14 12:58:06.904','SETH','Student left secondary school without graduating',0,3,3,'','GRADEPRO','2022-04-14 12:58:06.904'),
+	 (false,false,true,'2022-04-14 12:58:06.904','SETH','Not applicable student not in high school in reporting year',0,3,9,'','GRADEPRO','2022-04-14 12:58:06.904'),
+	 (false,true,true,'2022-04-14 12:58:06.904','SETH','Unknown',0,3,0,'','GRADESTART','2022-04-14 12:58:06.904'),
+	 (false,false,true,'2022-04-14 12:58:06.904','SETH','8th Grade',0,3,8,'','GRADESTART','2022-04-14 12:58:06.904'),
+	 (false,true,true,'2022-04-14 12:58:06.904','SETH','9th grade',0,3,9,'','GRADESTART','2022-04-14 12:58:06.904'),
+	 (false,true,true,'2022-04-14 12:58:06.904','SETH','10th grade',0,3,10,'','GRADESTART','2022-04-14 12:58:06.904'),
+	 (false,true,true,'2022-04-14 12:58:06.904','SETH','11th grade',0,3,11,'','GRADESTART','2022-04-14 12:58:06.904'),
+	 (false,true,true,'2022-04-14 12:58:06.915','SETH','12th grade',0,3,12,'','GRADESTART','2022-04-14 12:58:06.915');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Other',0,3,13,'','GRADESTART','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Not applicable, not enrolled in high school',0,3,99,'','GRADESTART','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Unknown',0,3,0,'','GRADSTATUS','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Currently enrolled in high school',0,3,1,'','GRADSTATUS','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','High School Dropout',0,3,2,'','GRADSTATUS','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Received high school diploma',0,3,3,'','GRADSTATUS','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Received high school equivalency certificate (e.g., GED)',0,3,4,'','GRADSTATUS','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Other',0,3,5,'','GRADSTATUS','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Completed Freshman year of College',0,3,1,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Completed Sophomore year of college',0,3,2,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.915');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Completed Junior year of college',0,3,3,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Completed Senior year of college',0,3,4,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Dropped Out of College, Freshman year',0,3,5,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Dropped Out of College, Sophomore year',0,3,6,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Dropped Out of College, Junior year',0,3,7,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Dropped Out of College, Senior year',0,3,8,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Postponed College',0,3,9,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Enrolled in Military Branch',0,3,10,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Working Full / Part Time Only',0,3,11,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Graduated from College',0,3,12,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.915');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Technical / Vocational School',0,3,13,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:06.915'),
+	 (false,true,true,'2022-04-14 12:58:06.915','SETH','Unknown',0,3,0,'','HIGHDEGREE','2022-04-14 12:58:06.915'),
+	 (false,true,true,'2022-04-14 12:58:06.915','SETH','Certificate/Diploma for occupational, educational program (less than two-year program)',0,3,1,'','HIGHDEGREE','2022-04-14 12:58:06.915'),
+	 (false,true,true,'2022-04-14 12:58:06.915','SETH','Certificate/Diploma for occupational, technical, or educational program (at least two-year program)',0,3,2,'','HIGHDEGREE','2022-04-14 12:58:06.915'),
+	 (false,true,true,'2022-04-14 12:58:06.915','SETH','Associate Degree (two years)',0,3,3,'','HIGHDEGREE','2022-04-14 12:58:06.915'),
+	 (false,true,true,'2022-04-14 12:58:06.915','SETH','1st Bachelor''s Degree',0,3,4,'','HIGHDEGREE','2022-04-14 12:58:06.915'),
+	 (false,true,true,'2022-04-14 12:58:06.915','SETH','2nd Bachelor''s Degree',0,3,5,'','HIGHDEGREE','2022-04-14 12:58:06.915'),
+	 (false,true,true,'2022-04-14 12:58:06.915','SETH','Equivalent of Bachelor’s Degree',0,3,6,'','HIGHDEGREE','2022-04-14 12:58:06.915'),
+	 (false,true,true,'2022-04-14 12:58:06.915','SETH','Still enrolled in an undergraduate postsecondary program',0,3,7,'','HIGHDEGREE','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Left a program of postsecondary education without completing it',0,3,77,'','HIGHDEGREE','2022-04-14 12:58:06.915');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Not applicable, not yet completed high school',0,3,88,'','HIGHDEGREE','2022-04-14 12:58:06.915'),
+	 (false,true,true,'2022-04-14 12:58:06.915','SETH','Not applicable-completed HS but not enrolled in postsecondary',0,3,99,'','HIGHDEGREE','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Unknown',0,3,0,'','INITIATIVE','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Participant in 2000-02 initiative',0,3,1,'','INITIATIVE','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','No longer used for APR reporting in current year',0,3,2,'','INITIATIVE','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Participant in 2003-06 initiative',0,3,3,'','INITIATIVE','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Participant in both 2000-02 and 2003-06 initiatives',0,3,4,'','INITIATIVE','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Project had funding in 2000-02 or 2003-06 or both, but participant was not funded',0,3,5,'','INITIATIVE','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Not applicable-project did not have initiative funding',0,3,9,'','INITIATIVE','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Unknown',0,3,0,'','LIMITEDENGPRO','2022-04-14 12:58:06.915');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Yes',0,3,1,'','LIMITEDENGPRO','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','No',0,3,2,'','LIMITEDENGPRO','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Not applicable, participant is still in program',0,3,9,'','LIMITEDENGPRO','2022-04-14 12:58:06.915'),
+	 (false,true,true,'2022-04-14 12:58:06.915','SETH','No response',0,3,0,'','MARITALSTATUS','2022-04-14 12:58:06.915'),
+	 (false,true,true,'2022-04-14 12:58:06.915','SETH','Single',0,3,1,'','MARITALSTATUS','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Married',0,3,2,'','MARITALSTATUS','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Separated',0,3,3,'','MARITALSTATUS','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Divorced',0,3,4,'','MARITALSTATUS','2022-04-14 12:58:06.915'),
+	 (false,false,true,'2022-04-14 12:58:06.915','SETH','Widower',0,3,5,'','MARITALSTATUS','2022-04-14 12:58:06.915'),
+	 (false,true,true,'2022-04-14 12:58:06.915','SETH','Pre-Algebra',0,3,1,'','MATH','2022-04-14 12:58:06.915');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.915','SETH','Algebra I',0,3,2,'','MATH','2022-04-14 12:58:06.915'),
+	 (false,true,true,'2022-04-14 12:58:06.915','SETH','Algebra II',0,3,3,'','MATH','2022-04-14 12:58:06.915'),
+	 (false,true,true,'2022-04-14 12:58:06.923','SETH','Geometry',0,3,4,'','MATH','2022-04-14 12:58:06.923'),
+	 (false,true,true,'2022-04-14 12:58:06.923','SETH','Trigonometry',0,3,5,'','MATH','2022-04-14 12:58:06.923'),
+	 (false,true,true,'2022-04-14 12:58:06.923','SETH','Pre-Calculus',0,3,6,'','MATH','2022-04-14 12:58:06.923'),
+	 (false,true,true,'2022-04-14 12:58:06.923','SETH','Calculus',0,3,7,'','MATH','2022-04-14 12:58:06.923'),
+	 (false,true,true,'2022-04-14 12:58:06.923','SETH','Integrated Math',0,3,8,'','MATH','2022-04-14 12:58:06.923'),
+	 (false,true,true,'2022-04-14 12:58:06.923','SETH','Other',0,3,9,'','MATH','2022-04-14 12:58:06.923'),
+	 (false,true,true,'2022-04-14 12:58:06.923','SETH','Not enrolled in Math Instruction for reporting period',0,3,10,'','MATH','2022-04-14 12:58:06.923'),
+	 (false,false,true,'2022-04-14 12:58:06.923','SETH','Not applicable, prior-year participant',0,3,99,'','MATH','2022-04-14 12:58:06.923');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.923','SETH','Navy',0,3,1,'','MILITARYTYPE','2022-04-14 12:58:06.923'),
+	 (false,false,true,'2022-04-14 12:58:06.923','SETH','Air Force',0,3,2,'','MILITARYTYPE','2022-04-14 12:58:06.923'),
+	 (false,false,true,'2022-04-14 12:58:06.923','SETH','Army',0,3,3,'','MILITARYTYPE','2022-04-14 12:58:06.923'),
+	 (false,false,true,'2022-04-14 12:58:06.923','SETH','None',0,3,0,'','MSGSTATUS','2022-04-14 12:58:06.923'),
+	 (false,false,true,'2022-04-14 12:58:06.923','SETH','Lowest',0,3,1,'','MSGSTATUS','2022-04-14 12:58:06.923'),
+	 (false,false,true,'2022-04-14 12:58:06.923','SETH','Low',0,3,2,'','MSGSTATUS','2022-04-14 12:58:06.923'),
+	 (false,false,true,'2022-04-14 12:58:06.923','SETH','Normal',0,3,3,'','MSGSTATUS','2022-04-14 12:58:06.923'),
+	 (false,false,true,'2022-04-14 12:58:06.923','SETH','High',0,3,4,'','MSGSTATUS','2022-04-14 12:58:06.923'),
+	 (false,false,true,'2022-04-14 12:58:06.923','SETH','Highest',0,3,5,'','MSGSTATUS','2022-04-14 12:58:06.923'),
+	 (false,false,true,'2022-04-14 12:58:06.923','SETH','Unknown/ no response',0,3,0,'','NOENREASON','2022-04-14 12:58:06.923');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Applied but did not gain admission to graduate programs in the reporting year (for students with a bachelor’s degree)',0,3,1,'','NOENREASON','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Did not apply to or declined offers from graduate programs owing to financial reasons (for students with a bachelor''s degree)',0,3,2,'','NOENREASON','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Did not apply to or declined offers from graduate programs owing to health reasons (for students with a bachelor''s degree)',0,3,3,'','NOENREASON','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Did not apply to or declined offers from graduate programs owing to other reasons (for students with a bachelor''s degree',0,3,4,'','NOENREASON','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Withdrew from program (undergraduate or graduate) for academic reasons',0,3,5,'','NOENREASON','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Withdrew from program (undergraduate or graduate) for financial reasons',0,3,6,'','NOENREASON','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Withdrew from program (undergraduate or graduate) or health reasons',0,3,7,'','NOENREASON','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Withdrew from program (undergraduate or graduate) for other personal reasons',0,3,8,'','NOENREASON','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Called for military duty',0,3,9,'','NOENREASON','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Not applicable; the student was enrolled in at least one term during the academic year being reported',0,3,10,'','NOENREASON','2022-04-14 12:58:06.925');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Student deceased',0,3,11,'','NOENREASON','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Did not enroll in research doctoral program',0,3,12,'','NOENREASON','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Ph.D. attained (not previously reported)',0,3,13,'','NOENREASON','2022-04-14 12:58:06.925'),
+	 (false,true,true,'2022-04-14 12:58:06.925','SETH','Unknown',0,3,0,'','PARTLENGTH','2022-04-14 12:58:06.925'),
+	 (false,true,true,'2022-04-14 12:58:06.925','SETH','0-3 months',0,3,1,'','PARTLENGTH','2022-04-14 12:58:06.925'),
+	 (false,true,true,'2022-04-14 12:58:06.925','SETH','4-6 months',0,3,2,'','PARTLENGTH','2022-04-14 12:58:06.925'),
+	 (false,true,true,'2022-04-14 12:58:06.925','SETH','7-9 months',0,3,3,'','PARTLENGTH','2022-04-14 12:58:06.925'),
+	 (false,true,true,'2022-04-14 12:58:06.925','SETH','10-12 months',0,3,4,'','PARTLENGTH','2022-04-14 12:58:06.925'),
+	 (false,true,true,'2022-04-14 12:58:06.925','SETH','More than 12 months',0,3,5,'','PARTLENGTH','2022-04-14 12:58:06.925'),
+	 (false,true,true,'2022-04-14 12:58:06.925','SETH','Still participating at end of reporting period',0,3,6,'','PARTLENGTH','2022-04-14 12:58:06.925');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.925','SETH','Unknown',0,3,0,'','PARTLEVEL','2022-04-14 12:58:06.925'),
+	 (false,true,true,'2022-04-14 12:58:06.925','SETH','Participated in academic year and summer components',0,3,1,'','PARTLEVEL','2022-04-14 12:58:06.925'),
+	 (false,true,true,'2022-04-14 12:58:06.925','SETH','Participated in academic year and summer bridge',0,3,2,'','PARTLEVEL','2022-04-14 12:58:06.925'),
+	 (false,true,true,'2022-04-14 12:58:06.925','SETH','Participated in academic year component only',0,3,3,'','PARTLEVEL','2022-04-14 12:58:06.925'),
+	 (false,true,true,'2022-04-14 12:58:06.925','SETH','Participated in summer component only',0,3,4,'','PARTLEVEL','2022-04-14 12:58:06.925'),
+	 (false,true,true,'2022-04-14 12:58:06.925','SETH','Participated in summer bridge only',0,3,5,'','PARTLEVEL','2022-04-14 12:58:06.925'),
+	 (false,true,true,'2022-04-14 12:58:06.925','SETH','Prior-year participant',0,3,6,'','PARTLEVEL','2022-04-14 12:58:06.925'),
+	 (false,true,true,'2022-04-14 12:58:06.925','SETH','Unknown',0,3,0,'','PARTSTATUS','2022-04-14 12:58:06.925'),
+	 (false,true,true,'2022-04-14 12:58:06.925','SETH','New participant, for reporting period',0,3,1,'','PARTSTATUS','2022-04-14 12:58:06.925'),
+	 (false,true,true,'2022-04-14 12:58:06.925','SETH','Continuing participant',0,3,2,'','PARTSTATUS','2022-04-14 12:58:06.925');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.925','SETH','Reentry participant, previously served by project submitting report',0,3,3,'','PARTSTATUS','2022-04-14 12:58:06.925'),
+	 (false,true,true,'2022-04-14 12:58:06.925','SETH','Prior-year participant',0,3,4,'','PARTSTATUS','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Prior-year participant, deceased or permanently incapacitated',0,3,5,'','PARTSTATUS','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Transfer participant in reporting year (served by another UB or UBMS project in a previous reporting year)',0,3,6,'','PARTSTATUS','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','New participant served for the first time after the beginning of the Next_Fiscal_Year_Long academic year (only for projects with December 1, 2007, starts)',0,3,7,'','PARTSTATUS','2022-04-14 12:58:06.925'),
+	 (false,true,true,'2022-04-14 12:58:06.925','SETH','No response',0,3,0,'','PARTSTATUSEND','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Academic dismissal',0,3,1,'','PARTSTATUSEND','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Dismissal for non-academic reasons',0,3,2,'','PARTSTATUSEND','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Withdrew for financial reasons',0,3,3,'','PARTSTATUSEND','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Withdrew for health reasons',0,3,4,'','PARTSTATUSEND','2022-04-14 12:58:06.925');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Withdrew for academic reasons',0,3,5,'','PARTSTATUSEND','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','withdrew for personal reasons',0,3,6,'','PARTSTATUSEND','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Transferred',0,3,7,'','PARTSTATUSEND','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Graduated',0,3,8,'','PARTSTATUSEND','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Graduated & Transferred',0,3,9,'','PARTSTATUSEND','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Enrolled in graduate degree programs',0,3,10,'','PARTSTATUSEND','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Continuing Student',0,3,11,'','PARTSTATUSEND','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Unknown',0,3,0,'','PERSISTDEN','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Participant graduating HS in academic year Previous_Fiscal_Year_Long who enrolled in postsecondary education for fall term Current_Fiscal_Year_Short',0,3,1,'','PERSISTDEN','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Participants graduating HS in academic year Previous_Fiscal_Year_Long who DID NOT enroll in postsecondary education for fall term Current_Fiscal_Year_Short',0,3,2,'','PERSISTDEN','2022-04-14 12:58:06.925');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Not applicable, participant had not completed high school by end of academic year Previous_Fiscal_Year_Long',0,3,8,'','PERSISTDEN','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Not applicable, participant graduated from high school prior to Previous_Fiscal_Year_Long academic year',0,3,10,'','PERSISTDEN','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','No response/Unknown',0,3,0,'','PERSISTEND','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Received certificate/diploma from a program that is less than 2 years',0,3,1,'','PERSISTEND','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Graduated with an associate’s degree (did not transfer to a 4-year institution) OR graduated with a bachelor’s degree',0,3,2,'','PERSISTEND','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Graduated with an associate’s degree and transferred to a four-year institution',0,3,3,'','PERSISTEND','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Transferred to another institution',0,3,4,'','PERSISTEND','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Withdrew or did not return',0,3,5,'','PERSISTEND','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Deceased',0,3,6,'','PERSISTEND','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Called to military service',0,3,7,'','PERSISTEND','2022-04-14 12:58:06.925');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Still enrolled at grantee institution (no degree or certificate completed)',0,3,8,'','PERSISTEND','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Still enrolled at grantee institution (received certificate or associate’s degree and is pursuing an associate’s or bachelor’s degree)',0,3,9,'','PERSISTEND','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Completed program requirements but did not receive certificate, diploma, or degree',0,3,10,'','PERSISTEND','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Unknown',0,3,0,'','PERSISTNUM','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Participant coded 1 in field #51 who was enrolled in postsecondary education for fall term Next_Fiscal_Year_Short',0,3,1,'','PERSISTNUM','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.925','SETH','Participant coded 1 in field #51 who was not enrolled in postsecondary education for fall term Next_Fiscal_Year_Short',0,3,2,'','PERSISTNUM','2022-04-14 12:58:06.925'),
+	 (false,false,true,'2022-04-14 12:58:06.933','SETH','Not applicable, participant not coded 1 in field #51',0,3,3,'','PERSISTNUM','2022-04-14 12:58:06.933'),
+	 (false,false,true,'2022-04-14 12:58:06.933','SETH','No response/Unknown',0,3,0,'','PERSISTSTA','2022-04-14 12:58:06.933'),
+	 (false,false,true,'2022-04-14 12:58:06.933','SETH','Enrolled at grantee institution',0,3,1,'','PERSISTSTA','2022-04-14 12:58:06.933'),
+	 (false,false,true,'2022-04-14 12:58:06.933','SETH','Not enrolled at grantee institution (transferred from a 2-year to a 4-year institution)',0,3,2,'','PERSISTSTA','2022-04-14 12:58:06.933');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.933','SETH','Not enrolled at grantee institution',0,3,3,'','PERSISTSTA','2022-04-14 12:58:06.933'),
+	 (false,false,true,'2022-04-14 12:58:06.933','SETH','Unknown',0,3,0,'','PROJRETAIN','2022-04-14 12:58:06.933'),
+	 (false,false,true,'2022-04-14 12:58:06.933','SETH','9th, 10th, or 11th-grade participant in Current_Fiscal_Year_Long who continued to participate in Next_Fiscal_Year_Long in the project that is reporting',0,3,1,'','PROJRETAIN','2022-04-14 12:58:06.933'),
+	 (false,false,true,'2022-04-14 12:58:06.933','SETH','9th, 10th, or 11th-grader in Current_Fiscal_Year_Long who DID NOT continue to participate in Next_Fiscal_Year_Long in the project that is reporting',0,3,2,'','PROJRETAIN','2022-04-14 12:58:06.933'),
+	 (false,false,true,'2022-04-14 12:58:06.933','SETH','Transferred to another UB or UBMS project',0,3,3,'','PROJRETAIN','2022-04-14 12:58:06.933'),
+	 (false,false,true,'2022-04-14 12:58:06.933','SETH','Not applicable, participant served for the first time after the beginning of the Next_Fiscal_Year_Long academic year (used only by projects with December 1, 2007, start dates)',0,3,8,'','PROJRETAIN','2022-04-14 12:58:06.933'),
+	 (false,false,true,'2022-04-14 12:58:06.933','SETH','Not applicable, was not a 9th, 10th, or 11th-grade participant in the Current_Fiscal_Year_Long academic year',0,3,9,'','PROJRETAIN','2022-04-14 12:58:06.933'),
+	 (false,true,true,'2022-04-14 12:58:06.933','SETH','Unknown',0,3,0,'','PSETERM','2022-04-14 12:58:06.933'),
+	 (false,true,true,'2022-04-14 12:58:06.933','SETH','Quarter system',0,3,1,'','PSETERM','2022-04-14 12:58:06.933'),
+	 (false,true,true,'2022-04-14 12:58:06.933','SETH','Semester system',0,3,2,'','PSETERM','2022-04-14 12:58:06.933');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.933','SETH','Other',0,3,3,'','PSETERM','2022-04-14 12:58:06.933'),
+	 (false,true,true,'2022-04-14 12:58:06.933','SETH','Not Applicable',0,3,9,'','PSETERM','2022-04-14 12:58:06.933'),
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','Unknown',0,3,0,'','REASON','2022-04-14 12:58:06.935'),
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','Need or desire for employment',0,3,1,'','REASON','2022-04-14 12:58:06.935'),
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','Moved out of target area',0,3,2,'','REASON','2022-04-14 12:58:06.935'),
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','Dropped out of high school',0,3,3,'','REASON','2022-04-14 12:58:06.935'),
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','Other extra curricular activities',0,3,4,'','REASON','2022-04-14 12:58:06.935'),
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','Participating in another academic program (not UB or UBMS)',0,3,5,'','REASON','2022-04-14 12:58:06.935'),
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','No Longer interested in the program',0,3,6,'','REASON','2022-04-14 12:58:06.935'),
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','Family responsibilities',0,3,7,'','REASON','2022-04-14 12:58:06.935');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','Graduated from high school',0,3,8,'','REASON','2022-04-14 12:58:06.935'),
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','Other',0,3,9,'','REASON','2022-04-14 12:58:06.935'),
+	 (false,false,true,'2022-04-14 12:58:06.935','SETH','Obtained high school equivalency credential (GED)',0,3,10,'','REASON','2022-04-14 12:58:06.935'),
+	 (false,false,true,'2022-04-14 12:58:06.935','SETH','Deceased or permanently incapacitated',0,3,11,'','REASON','2022-04-14 12:58:06.935'),
+	 (false,false,true,'2022-04-14 12:58:06.935','SETH','Dismissed for not meeting program’s academic standards',0,3,12,'','REASON','2022-04-14 12:58:06.935'),
+	 (false,false,true,'2022-04-14 12:58:06.935','SETH','Dismissed for not meeting program’s conduct standards',0,3,13,'','REASON','2022-04-14 12:58:06.935'),
+	 (false,false,true,'2022-04-14 12:58:06.935','SETH','Transferred to another UB or UBMS project',0,3,14,'','REASON','2022-04-14 12:58:06.935'),
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','Not applicable, participant is still in program',0,3,99,'','REASON','2022-04-14 12:58:06.935'),
+	 (false,false,true,'2022-04-14 12:58:06.935','SETH','Unknown',0,3,0,'','RECRUIT','2022-04-14 12:58:06.935'),
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','Current or prior participant in a regular UB project',0,3,1,'','RECRUIT','2022-04-14 12:58:06.935');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','Current or prior participant in another TRIO project (e.g.,Talent Search)',0,3,2,'','RECRUIT','2022-04-14 12:58:06.935'),
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','Current or prior participant in another TRIO-like program',0,3,3,'','RECRUIT','2022-04-14 12:58:06.935'),
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','Participant only in UBMS program',0,3,4,'','RECRUIT','2022-04-14 12:58:06.935'),
+	 (false,false,true,'2022-04-14 12:58:06.935','SETH','Not applicable, student is a participant in regular UB program only, not UBMS',0,3,9,'','RECRUIT','2022-04-14 12:58:06.935'),
+	 (false,false,true,'2022-04-14 12:58:06.935','SETH','Regional (i.e., serves at least two states)',0,3,1,'','REGIONAL','2022-04-14 12:58:06.935'),
+	 (false,false,true,'2022-04-14 12:58:06.935','SETH','Non-regional (i.e., operates within a state or a locality)',0,3,2,'','REGIONAL','2022-04-14 12:58:06.935'),
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','Not enrolled',0,3,0,'','SCIENCE','2022-04-14 12:58:06.935'),
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','Introductory Science/Earth Science',0,3,1,'','SCIENCE','2022-04-14 12:58:06.935'),
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','Biology',0,3,2,'','SCIENCE','2022-04-14 12:58:06.935'),
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','Chemistry',0,3,3,'','SCIENCE','2022-04-14 12:58:06.935');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','Physics',0,3,4,'','SCIENCE','2022-04-14 12:58:06.935'),
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','Integrated Science',0,3,5,'','SCIENCE','2022-04-14 12:58:06.935'),
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','Other',0,3,6,'','SCIENCE','2022-04-14 12:58:06.935'),
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','Unknown',0,3,0,'','SELFTRAN','2022-04-14 12:58:06.935'),
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','Official college transcript',0,3,1,'','SELFTRAN','2022-04-14 12:58:06.935'),
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','Institutional data other than an official transcript',0,3,2,'','SELFTRAN','2022-04-14 12:58:06.935'),
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','Self-reported by participant',0,3,3,'','SELFTRAN','2022-04-14 12:58:06.935'),
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','Other third-party verification (e.g., National Student Clearinghouse)',0,3,4,'','SELFTRAN','2022-04-14 12:58:06.935'),
+	 (false,false,true,'2022-04-14 12:58:06.935','SETH','Not applicable, not yet completed high school',0,3,8,'','SELFTRAN','2022-04-14 12:58:06.935'),
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','Not applicable, completed HS but not enrolled in postsecondary',0,3,9,'','SELFTRAN','2022-04-14 12:58:06.935');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.935','SETH','Spring',0,3,1,'','SEMESTER','2022-04-14 12:58:06.935'),
+	 (false,false,true,'2022-04-14 12:58:06.935','SETH','Summer',0,3,2,'','SEMESTER','2022-04-14 12:58:06.935'),
+	 (false,false,true,'2022-04-14 12:58:06.935','SETH','Fall',0,3,3,'','SEMESTER','2022-04-14 12:58:06.935'),
+	 (false,false,true,'2022-04-14 12:58:06.935','SETH','Winter',0,3,4,'','SEMESTER','2022-04-14 12:58:06.935'),
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','Component',0,3,1,'','SERHEADING','2022-04-14 12:58:06.935'),
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','',0,3,2,'','SERHEADING','2022-04-14 12:58:06.935'),
+	 (false,true,true,'2022-04-14 12:58:06.935','SETH','',0,3,3,'','SERHEADING','2022-04-14 12:58:06.935'),
+	 (false,true,true,'2022-04-14 12:58:06.943','SETH','',0,3,4,'','SERHEADING','2022-04-14 12:58:06.943'),
+	 (false,true,true,'2022-04-14 12:58:06.943','SETH','',0,3,5,'','SERHEADING','2022-04-14 12:58:06.943'),
+	 (false,true,true,'2022-04-14 12:58:06.943','SETH','Instructions',0,3,6,'','SERHEADING','2022-04-14 12:58:06.943');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.943','SETH','Activities',0,3,1,'','SERTYPE','2022-04-14 12:58:06.943'),
+	 (false,true,true,'2022-04-14 12:58:06.943','SETH','Activity Group',0,3,2,'','SERTYPE','2022-04-14 12:58:06.943'),
+	 (false,true,true,'2022-04-14 12:58:06.943','SETH','Veteran Group',0,3,3,'','SERTYPE','2022-04-14 12:58:06.943'),
+	 (false,true,true,'2022-04-14 12:58:06.943','SETH','End Status',0,3,4,'','SERTYPE','2022-04-14 12:58:06.943'),
+	 (false,true,true,'2022-04-14 12:58:06.943','SETH','Form Type',0,3,5,'','SERTYPE','2022-04-14 12:58:06.943'),
+	 (false,true,true,'2022-04-14 12:58:06.943','SETH','APR Subject',0,3,6,'','SERTYPE','2022-04-14 12:58:06.943'),
+	 (false,false,true,'2022-04-14 12:58:06.943','SETH','8th Grade',0,3,8,'','STANDING','2022-04-14 12:58:06.943'),
+	 (false,false,true,'2022-04-14 12:58:06.943','SETH','9th grade',0,3,9,'','STANDING','2022-04-14 12:58:06.943'),
+	 (false,false,true,'2022-04-14 12:58:06.943','SETH','10th grade',0,3,10,'','STANDING','2022-04-14 12:58:06.943'),
+	 (false,false,true,'2022-04-14 12:58:06.943','SETH','11th grade',0,3,11,'','STANDING','2022-04-14 12:58:06.943');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.943','SETH','12th grade',0,3,12,'','STANDING','2022-04-14 12:58:06.943'),
+	 (false,false,true,'2022-04-14 12:58:06.943','SETH','1st year Graduate',0,3,13,'','STANDING','2022-04-14 12:58:06.943'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','2nd year Graduate',0,3,14,'','STANDING','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','3rd year Graduate',0,3,15,'','STANDING','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','4th year Graduate',0,3,16,'','STANDING','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','MANAGER','5th year Graduate/Prior Year student',0,3,17,'','STANDING','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','MANAGER','6th year Graduate/Prior Year student',0,3,18,'','STANDING','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','MANAGER','7th year Graduate/Prior Year student',0,3,19,'','STANDING','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','MANAGER','8th year Graduate/Prior Year student',0,3,20,'','STANDING','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','1st year-Prior Year Student',0,3,21,'','STANDING','2022-04-14 12:58:06.945');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','2nd year-Prior Year Student',0,3,22,'','STANDING','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','3rd year-Prior Year Student',0,3,23,'','STANDING','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','4th year-Prior Year Student',0,3,24,'','STANDING','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','APR Column #1',0,3,1,'','STANDINGGROUPTYPE','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','APR Column #2',0,3,2,'','STANDINGGROUPTYPE','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','APR Column #3',0,3,3,'','STANDINGGROUPTYPE','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','Unknown',0,3,0,'','STATE10GRADE','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','10th grade',0,3,1,'','STATE10GRADE','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','11th grade',0,3,2,'','STATE10GRADE','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','12th grade',0,3,3,'','STATE10GRADE','2022-04-14 12:58:06.945');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','Project not providing information in 2003-04 and 2004-05',0,3,8,'','STATE10GRADE','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','Not Applicable',0,3,9,'','STATE10GRADE','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','Unknown',0,3,0,'','STATE10MET','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','Yes, student met standard at the proficient level',0,3,3,'','STATE10MET','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','No, student did not meet standard at the proficient level',0,3,4,'','STATE10MET','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','N/A, student has not taken the state assessment to determine whether he or she met standard or student is in a cohort year prior to 2008',0,3,9,'','STATE10MET','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','Unknown',0,3,0,'','STATE8MET','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','Yes-student initially met standard',0,3,1,'','STATE8MET','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','No-student did not initially meet standard',0,3,2,'','STATE8MET','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','Not applicable to UBMS projects',0,3,8,'','STATE8MET','2022-04-14 12:58:06.945');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','Not applicable student did not take assessment',0,3,9,'','STATE8MET','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','Unknown',0,3,0,'','STATETEST','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','Yes-project measures student’s achievement using state-developed test',0,3,1,'','STATETEST','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','No-project does not measure student’s achievement using state-developed test',0,3,2,'','STATETEST','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','Not Applicable',0,3,9,'','STATETEST','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','No response/Unknown',0,3,0,'','SUMBRIDGE','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','Participated in summer bridge program offered by the project',0,3,1,'','SUMBRIDGE','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','Student did not participate in summer bridge program',0,3,2,'','SUMBRIDGE','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','Not applicable (project did not offer summer bridge program)',0,3,7,'','SUMBRIDGE','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','Not applicable (continuing participant)',0,3,8,'','SUMBRIDGE','2022-04-14 12:58:06.945');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','Not applicable (prior-year participant)',0,3,9,'','SUMBRIDGE','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','Yes',0,3,1,'','SUMMERRESI','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','No',0,3,2,'','SUMMERRESI','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','Some participants are residential, others commute',0,3,3,'','SUMMERRESI','2022-04-14 12:58:06.945'),
+	 (false,true,true,'2022-04-14 12:58:06.945','SETH','Unknown',0,3,0,'','TESTTYPE','2022-04-14 12:58:06.945'),
+	 (false,true,true,'2022-04-14 12:58:06.945','SETH','Comprehensive Test of Basic Skills (CTBS)',0,3,1,'','TESTTYPE','2022-04-14 12:58:06.945'),
+	 (false,true,true,'2022-04-14 12:58:06.945','SETH','Stanford Achievement Test (SAT-9 or SAT-10)',0,3,2,'','TESTTYPE','2022-04-14 12:58:06.945'),
+	 (false,true,true,'2022-04-14 12:58:06.945','SETH','Option no longer used-California Achievement Test (CAT)',0,3,3,'','TESTTYPE','2022-04-14 12:58:06.945'),
+	 (false,true,true,'2022-04-14 12:58:06.945','SETH','Iowa Test of Basic Skills',0,3,4,'','TESTTYPE','2022-04-14 12:58:06.945'),
+	 (false,true,true,'2022-04-14 12:58:06.945','SETH','Option no longer used-Texas Assessment of Academic Skills (TAAS)',0,3,5,'','TESTTYPE','2022-04-14 12:58:06.945');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.945','SETH','Nelson Denny',0,3,6,'','TESTTYPE','2022-04-14 12:58:06.945'),
+	 (false,true,true,'2022-04-14 12:58:06.945','SETH','Option no longer used-ARIO Assessment Tools',0,3,7,'','TESTTYPE','2022-04-14 12:58:06.945'),
+	 (false,true,true,'2022-04-14 12:58:06.945','SETH','Other national test',0,3,8,'','TESTTYPE','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','TerraNova',0,3,9,'','TESTTYPE','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','ACT’s PLAN',0,3,10,'','TESTTYPE','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','ACT',0,3,11,'','TESTTYPE','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','PSAT',0,3,12,'','TESTTYPE','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','SAT',0,3,13,'','TESTTYPE','2022-04-14 12:58:06.945'),
+	 (false,true,true,'2022-04-14 12:58:06.945','SETH','Not Applicable',0,3,99,'','TESTTYPE','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','No response/Unknown',0,3,0,'','TRANSFERS','2022-04-14 12:58:06.945');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','Transferred from a 2-year institution to another 2-year institution',0,3,1,'','TRANSFERS','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','Transferred from a 2-year institution to a 4-year institution',0,3,2,'','TRANSFERS','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','Transferred from a 4-year institution to another 4-year institution',0,3,3,'','TRANSFERS','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.945','SETH','Transferred from a 4-year institution to a 2-year institution',0,3,4,'','TRANSFERS','2022-04-14 12:58:06.945'),
+	 (false,false,true,'2022-04-14 12:58:06.953','SETH','Not applicable – still enrolled or graduated (participant is still enrolled at the grantee-institution, completed certificate/diploma program, graduated with an associate’s but did not transfer, or graduated with a bachelor’s degree)',0,3,8,'','TRANSFERS','2022-04-14 12:58:06.953'),
+	 (false,false,true,'2022-04-14 12:58:06.953','SETH','Not applicable -- not enrolled at grantee institution (participant withdrew, did not return, was called for military service or is deceased)',0,3,9,'','TRANSFERS','2022-04-14 12:58:06.953'),
+	 (false,false,true,'2022-04-14 12:58:06.953','SETH','Unknown or no longer tracking',0,3,0,'','VCALL','2022-04-14 12:58:06.953'),
+	 (false,false,true,'2022-04-14 12:58:06.953','SETH','Yes',0,3,1,'','VCALL','2022-04-14 12:58:06.953'),
+	 (false,false,true,'2022-04-14 12:58:06.953','SETH','No',0,3,2,'','VCALL','2022-04-14 12:58:06.953'),
+	 (false,true,true,'2022-04-14 12:58:06.953','SETH','No response',0,3,0,'','VENTERJOB','2022-04-14 12:58:06.953');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.953','SETH','Unemployed',0,3,1,'','VENTERJOB','2022-04-14 12:58:06.953'),
+	 (false,true,true,'2022-04-14 12:58:06.953','SETH','Employed part time',0,3,2,'','VENTERJOB','2022-04-14 12:58:06.953'),
+	 (false,true,true,'2022-04-14 12:58:06.953','SETH','Employed full time',0,3,3,'','VENTERJOB','2022-04-14 12:58:06.953'),
+	 (false,true,true,'2022-04-14 12:58:06.953','SETH','Retired',0,3,4,'','VENTERJOB','2022-04-14 12:58:06.953'),
+	 (false,true,true,'2022-04-14 12:58:06.953','SETH','Unknown',0,3,0,'','VENTERLEVEL','2022-04-14 12:58:06.953'),
+	 (false,true,true,'2022-04-14 12:58:06.953','SETH','High School Dropout',0,3,1,'','VENTERLEVEL','2022-04-14 12:58:06.953'),
+	 (false,true,true,'2022-04-14 12:58:06.953','SETH','High School Graduate',0,3,2,'','VENTERLEVEL','2022-04-14 12:58:06.953'),
+	 (false,true,true,'2022-04-14 12:58:06.953','SETH','GED/High School Equivalency Graduate',0,3,3,'','VENTERLEVEL','2022-04-14 12:58:06.953'),
+	 (false,true,true,'2022-04-14 12:58:06.953','SETH','High School Graduate with Some College',0,3,4,'','VENTERLEVEL','2022-04-14 12:58:06.953'),
+	 (false,true,true,'2022-04-14 12:58:06.953','SETH','GED/High School Equivalency with Some College',0,3,5,'','VENTERLEVEL','2022-04-14 12:58:06.953');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.953','SETH','Unknown',0,3,0,'','VETREVSCHE','2022-04-14 12:58:06.953'),
+	 (false,false,true,'2022-04-14 12:58:06.953','SETH','2008–09 budget year',0,3,1,'','VETREVSCHE','2022-04-14 12:58:06.953'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','2009–10 budget year',0,3,2,'','VETREVSCHE','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','2010–11 budget year',0,3,3,'','VETREVSCHE','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','2011–12 budget year',0,3,4,'','VETREVSCHE','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','Not applicable, scheduled completion year is unchanged',0,3,8,'','VETREVSCHE','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','Not applicable, prior participant',0,3,9,'','VETREVSCHE','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','Unknown',0,3,0,'','VETSCHE','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','2007-2008 budget year',0,3,1,'','VETSCHE','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','2008-2009 budget year',0,3,2,'','VETSCHE','2022-04-14 12:58:06.955');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','2009-2010 budget year',0,3,3,'','VETSCHE','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','2010-2011 budget year',0,3,4,'','VETSCHE','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','Not applicable, prior participant',0,3,9,'','VETSCHE','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','Unknown',0,3,0,'','VETSCHECIR','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','Participant has not had a hiatus in participation from one year to another and was active in the VUB program when rescheduling occurred',0,3,1,'','VETSCHECIR','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','Participant returned from active duty military service',0,3,2,'','VETSCHECIR','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','Reentry participant whose hiatus in participation from one year to another was not due to active duty',0,3,3,'','VETSCHECIR','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','Not applicable, scheduled completion year is unchanged',0,3,9,'','VETSCHECIR','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','Change in educational plan',0,3,1,'','VETSCHEREA','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','Health concerns of participant or spouse',0,3,2,'','VETSCHEREA','2022-04-14 12:58:06.955');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','Return after active duty military service',0,3,3,'','VETSCHEREA','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','Lost or gained employment',0,3,4,'','VETSCHEREA','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','Financial instability',0,3,5,'','VETSCHEREA','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','Family responsibilities',0,3,6,'','VETSCHEREA','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','Other',0,3,7,'','VETSCHEREA','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','Not applicable, scheduled completion year is unchanged',0,3,8,'','VETSCHEREA','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','Not applicable, prior participant',0,3,9,'','VETSCHEREA','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','Unknown',0,3,0,'','VETTEST','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','Yes, participant took the tests and improved',0,3,1,'','VETTEST','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','No, participant took the tests and did not improve',0,3,2,'','VETTEST','2022-04-14 12:58:06.955');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','Not applicable, posttest not yet completed',0,3,8,'','VETTEST','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','Not applicable, prior-year participant',0,3,9,'','VETTEST','2022-04-14 12:58:06.955'),
+	 (false,true,true,'2022-04-14 12:58:06.955','SETH','Unknown',0,3,0,'','VFINAIDREC','2022-04-14 12:58:06.955'),
+	 (false,true,true,'2022-04-14 12:58:06.955','SETH','Pell grant only',0,3,1,'','VFINAIDREC','2022-04-14 12:58:06.955'),
+	 (false,true,true,'2022-04-14 12:58:06.955','SETH','FFEL loan',0,3,2,'','VFINAIDREC','2022-04-14 12:58:06.955'),
+	 (false,true,true,'2022-04-14 12:58:06.955','SETH','Direct loan',0,3,3,'','VFINAIDREC','2022-04-14 12:58:06.955'),
+	 (false,true,true,'2022-04-14 12:58:06.955','SETH','College work study only',0,3,4,'','VFINAIDREC','2022-04-14 12:58:06.955'),
+	 (false,true,true,'2022-04-14 12:58:06.955','SETH','Institutional aid only',0,3,5,'','VFINAIDREC','2022-04-14 12:58:06.955'),
+	 (false,true,true,'2022-04-14 12:58:06.955','SETH','State grant only',0,3,6,'','VFINAIDREC','2022-04-14 12:58:06.955'),
+	 (false,true,true,'2022-04-14 12:58:06.955','SETH','Pell grant and FFEL loan',0,3,7,'','VFINAIDREC','2022-04-14 12:58:06.955');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.955','SETH','Pell grant and Direct loan',0,3,8,'','VFINAIDREC','2022-04-14 12:58:06.955'),
+	 (false,true,true,'2022-04-14 12:58:06.955','SETH','Multiple federal aid',0,3,9,'','VFINAIDREC','2022-04-14 12:58:06.955'),
+	 (false,true,true,'2022-04-14 12:58:06.955','SETH','Multiple federal and other aid',0,3,10,'','VFINAIDREC','2022-04-14 12:58:06.955'),
+	 (false,true,true,'2022-04-14 12:58:06.955','SETH','Montgomery G.I. scholarship',0,3,11,'','VFINAIDREC','2022-04-14 12:58:06.955'),
+	 (false,true,true,'2022-04-14 12:58:06.955','SETH','Veterans Benefits',0,3,12,'','VFINAIDREC','2022-04-14 12:58:06.955'),
+	 (false,true,true,'2022-04-14 12:58:06.955','SETH','No aid awarded',0,3,13,'','VFINAIDREC','2022-04-14 12:58:06.955'),
+	 (false,true,true,'2022-04-14 12:58:06.955','SETH','No aid needed',0,3,14,'','VFINAIDREC','2022-04-14 12:58:06.955'),
+	 (false,true,true,'2022-04-14 12:58:06.955','SETH','Not Applicable',0,3,99,'','VFINAIDREC','2022-04-14 12:58:06.955'),
+	 (false,true,true,'2022-04-14 12:58:06.955','SETH','Unknown',0,3,0,'','VGRADELEVEL','2022-04-14 12:58:06.955'),
+	 (false,true,true,'2022-04-14 12:58:06.955','SETH','High School Dropout',0,3,1,'','VGRADELEVEL','2022-04-14 12:58:06.955');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.955','SETH','High School Graduate',0,3,2,'','VGRADELEVEL','2022-04-14 12:58:06.955'),
+	 (false,true,true,'2022-04-14 12:58:06.955','SETH','Obtained high school equivalency degree',0,3,3,'','VGRADELEVEL','2022-04-14 12:58:06.955'),
+	 (false,true,true,'2022-04-14 12:58:06.955','SETH','Obtained high school equivalency degree and accepted for enrollment in program of postsecondary education',0,3,4,'','VGRADELEVEL','2022-04-14 12:58:06.955'),
+	 (false,true,true,'2022-04-14 12:58:06.955','SETH','Accepted for enrollment in program of postsecondary education',0,3,5,'','VGRADELEVEL','2022-04-14 12:58:06.955'),
+	 (false,true,true,'2022-04-14 12:58:06.955','SETH','Obtained high school equivalency degree and enrolled in program of postsecondary education',0,3,6,'','VGRADELEVEL','2022-04-14 12:58:06.955'),
+	 (false,true,true,'2022-04-14 12:58:06.955','SETH','Enrolled in program of postsecondary education',0,3,7,'','VGRADELEVEL','2022-04-14 12:58:06.955'),
+	 (false,true,true,'2022-04-14 12:58:06.955','SETH','Completed project but did not enroll in program of postsecondary education',0,3,8,'','VGRADELEVEL','2022-04-14 12:58:06.955'),
+	 (false,true,true,'2022-04-14 12:58:06.955','SETH','Did not complete project',0,3,9,'','VGRADELEVEL','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','Unknown',0,3,0,'','YEARCOGRD','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','Other (prior to 2002)',0,3,1,'','YEARCOGRD','2022-04-14 12:58:06.955');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','2002',0,3,2,'','YEARCOGRD','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','2003',0,3,3,'','YEARCOGRD','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.955','SETH','2004',0,3,4,'','YEARCOGRD','2022-04-14 12:58:06.955'),
+	 (false,false,true,'2022-04-14 12:58:06.963','SETH','2005',0,3,5,'','YEARCOGRD','2022-04-14 12:58:06.963'),
+	 (false,false,true,'2022-04-14 12:58:06.963','SETH','2006',0,3,6,'','YEARCOGRD','2022-04-14 12:58:06.963'),
+	 (false,false,true,'2022-04-14 12:58:06.963','SETH','2007',0,3,7,'','YEARCOGRD','2022-04-14 12:58:06.963'),
+	 (false,false,true,'2022-04-14 12:58:06.963','SETH','2008',0,3,8,'','YEARCOGRD','2022-04-14 12:58:06.963'),
+	 (false,false,true,'2022-04-14 12:58:06.963','SETH','2009',0,3,9,'','YEARCOGRD','2022-04-14 12:58:06.963'),
+	 (false,false,true,'2022-04-14 12:58:06.963','SETH','2010',0,3,10,'','YEARCOGRD','2022-04-14 12:58:06.963'),
+	 (false,false,true,'2022-04-14 12:58:06.963','SETH','2011',0,3,11,'','YEARCOGRD','2022-04-14 12:58:06.963');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.963','SETH','2012',0,3,12,'','YEARCOGRD','2022-04-14 12:58:06.963'),
+	 (false,false,true,'2022-04-14 12:58:06.963','SETH','2013',0,3,13,'','YEARCOGRD','2022-04-14 12:58:06.963'),
+	 (false,false,true,'2022-04-14 12:58:06.963','SETH','2014',0,3,14,'','YEARCOGRD','2022-04-14 12:58:06.963'),
+	 (false,false,true,'2022-04-14 12:58:06.963','SETH','2015',0,3,15,'','YEARCOGRD','2022-04-14 12:58:06.963'),
+	 (false,true,true,'2022-04-14 12:58:06.963','SETH','No response',0,3,0,'','YESNO','2022-04-14 12:58:06.963'),
+	 (false,true,true,'2022-04-14 12:58:06.963','SETH','Yes',0,3,1,'','YESNO','2022-04-14 12:58:06.963'),
+	 (false,true,true,'2022-04-14 12:58:06.963','SETH','No',0,3,2,'','YESNO','2022-04-14 12:58:06.963'),
+	 (false,true,true,'2022-04-14 12:58:06.963','SETH','Not Applicable',0,3,9,'','YESNO','2022-04-14 12:58:06.963'),
+	 (false,true,true,'2022-04-14 12:58:06.963','SETH','Unknown',0,4,0,'','ACADNEED','2022-04-14 12:58:06.963'),
+	 (false,true,true,'2022-04-14 12:58:06.963','SETH','Low grade point average',0,4,1,'','ACADNEED','2022-04-14 12:58:06.963');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.963','SETH','Low achievement test scores',0,4,2,'','ACADNEED','2022-04-14 12:58:06.963'),
+	 (false,false,true,'2022-04-14 12:58:06.963','SETH','Low educational aspirations',0,4,3,'','ACADNEED','2022-04-14 12:58:06.963'),
+	 (false,true,true,'2022-04-14 12:58:06.965','SETH','Low grade point average and low educational aspirations',0,4,4,'','ACADNEED','2022-04-14 12:58:06.965'),
+	 (false,true,true,'2022-04-14 12:58:06.965','SETH','Low grade point average and low achievement test scores',0,4,5,'','ACADNEED','2022-04-14 12:58:06.965'),
+	 (false,true,true,'2022-04-14 12:58:06.965','SETH','Low achievement test scores and low educational aspirations',0,4,6,'','ACADNEED','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Lack of opportunity, support, and/or guidance to take challenging college preparation courses',0,4,7,'','ACADNEED','2022-04-14 12:58:06.965'),
+	 (false,true,true,'2022-04-14 12:58:06.965','SETH','Lack of career goals and/or need for accurate information on careers',0,4,8,'','ACADNEED','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Limited English proficiency',0,4,9,'','ACADNEED','2022-04-14 12:58:06.965'),
+	 (false,true,true,'2022-04-14 12:58:06.965','SETH','Lacks confidence, self  esteem, and/or social skills',0,4,10,'','ACADNEED','2022-04-14 12:58:06.965'),
+	 (false,true,true,'2022-04-14 12:58:06.965','SETH','Predominately low income community',0,4,11,'','ACADNEED','2022-04-14 12:58:06.965');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.965','SETH','Rural isolation',0,4,12,'','ACADNEED','2022-04-14 12:58:06.965'),
+	 (false,true,true,'2022-04-14 12:58:06.965','SETH','Interest in careers in math and science',0,4,13,'','ACADNEED','2022-04-14 12:58:06.965'),
+	 (false,true,true,'2022-04-14 12:58:06.965','SETH','Other',0,4,14,'','ACADNEED','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','No secondary criterion of need',0,4,15,'','ACADNEED','2022-04-14 12:58:06.965'),
+	 (false,true,true,'2022-04-14 12:58:06.965','MANAGER','Not Applicable',0,4,99,'','ACADNEED','2022-04-14 12:58:06.965'),
+	 (false,true,true,'2022-04-14 12:58:06.965','SETH','Unknown or no longer tracking',0,4,0,'','ACADSTAND','2022-04-14 12:58:06.965'),
+	 (false,true,true,'2022-04-14 12:58:06.965','SETH','Good Standing',0,4,1,'','ACADSTAND','2022-04-14 12:58:06.965'),
+	 (false,true,true,'2022-04-14 12:58:06.965','SETH','Not in good standing',0,4,2,'','ACADSTAND','2022-04-14 12:58:06.965'),
+	 (false,true,true,'2022-04-14 12:58:06.965','SETH','On leave of absence after enrollment in a program of postsecondary education',0,4,3,'','ACADSTAND','2022-04-14 12:58:06.965'),
+	 (false,true,true,'2022-04-14 12:58:06.965','SETH','Not applicable, not yet completed educational program offered by project',0,4,8,'','ACADSTAND','2022-04-14 12:58:06.965');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.965','SETH','Not applicable, completed educational requirements for postsecondary but not enrolled in postsecondary',0,4,9,'','ACADSTAND','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','English/ Proficiency',0,4,1,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Writing',0,4,3,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Mathematics Instruction',0,4,5,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Other Tutorial',0,4,6,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Financial Aid Counseling',0,4,8,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Other Counseling',0,4,9,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Computer Aided Instructions',0,4,10,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Tutorial Assistance',0,4,11,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Cultural Assistance',0,4,12,'','ACTIVITY','2022-04-14 12:58:06.965');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Career Planning',0,4,13,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','College Tours',0,4,14,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Admission & Financial Aid Information',0,4,15,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','ACT Preparation',0,4,16,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','ACT Registration',0,4,17,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Academic Counseling',0,4,20,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Goal Setting',0,4,21,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Life Skills',0,4,22,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Test Taking Skills',0,4,23,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Self-Concept Assessment',0,4,24,'','ACTIVITY','2022-04-14 12:58:06.965');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Parental Involvement',0,4,25,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','High School Survival Skills',0,4,26,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Interest Inventory Assessment',0,4,27,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Self-Esteem',0,4,28,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Decision Making',0,4,30,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Reading Instruction/Tutorials',0,4,44,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Tutoring',0,4,51,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Supplemental Instruction',0,4,52,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','College Entrance Exam Preparation',0,4,53,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Personal Counseling',0,4,54,'','ACTIVITY','2022-04-14 12:58:06.965');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Academic Advising',0,4,55,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Peer Counseling/ Mentoring',0,4,56,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Professional Mentoring',0,4,57,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Study Skills',0,4,58,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Cultural Activities',0,4,59,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Career Awareness',0,4,60,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Campus Visitation',0,4,61,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Assistance with College Admissions',0,4,62,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Family Activities',0,4,64,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Target School Advocacy',0,4,65,'','ACTIVITY','2022-04-14 12:58:06.965');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Work Study Position',0,4,66,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Employment',0,4,67,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Activities with Professional Mathematicians and Scientists',0,4,69,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Activities with Math and Science Majors',0,4,70,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Research Activities',0,4,71,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Computer Science Instruction',0,4,72,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','College Admissions Assistance',0,4,73,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Financial Aid Assistance/ VA Benefits',0,4,74,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Science- Instruction',0,4,75,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Foreign Language- Instruction',0,4,76,'','ACTIVITY','2022-04-14 12:58:06.965');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Composition- Instruction',0,4,77,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Literature - Instruction',0,4,78,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','College Survival/Study Skills',0,4,79,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','GED/High School Equivalency Assistance',0,4,80,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Information Workshops',0,4,81,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Referral Services Basic Needs (Food, Housing)',0,4,82,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Referral Services Mental Health',0,4,83,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Referral Services Substance Abuse',0,4,84,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.965','SETH','Referral Services Physical Health',0,4,85,'','ACTIVITY','2022-04-14 12:58:06.965'),
+	 (false,false,true,'2022-04-14 12:58:06.973','SETH','Referral Services Vocational Rehabilitation',0,4,86,'','ACTIVITY','2022-04-14 12:58:06.973');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.973','SETH','Referral Services Legal',0,4,87,'','ACTIVITY','2022-04-14 12:58:06.973'),
+	 (false,false,true,'2022-04-14 12:58:06.973','SETH','Referral Services Employment',0,4,88,'','ACTIVITY','2022-04-14 12:58:06.973'),
+	 (false,false,true,'2022-04-14 12:58:06.973','SETH','Referral Services Academic (including learning disability)',0,4,89,'','ACTIVITY','2022-04-14 12:58:06.973'),
+	 (false,false,true,'2022-04-14 12:58:06.973','SETH','Referral Services Other TRIO Programs',0,4,90,'','ACTIVITY','2022-04-14 12:58:06.973'),
+	 (false,false,true,'2022-04-14 12:58:06.973','SETH','Referral Services Other',0,4,91,'','ACTIVITY','2022-04-14 12:58:06.973'),
+	 (false,false,true,'2022-04-14 12:58:06.973','SETH','Count all contacts on same day as separate sessions',0,4,1,'','ACTIVITYGROUPTYPE','2022-04-14 12:58:06.973'),
+	 (false,false,true,'2022-04-14 12:58:06.973','SETH','Count all contacts on same day as one event',0,4,2,'','ACTIVITYGROUPTYPE','2022-04-14 12:58:06.973'),
+	 (false,true,true,'2022-04-14 12:58:06.973','MANAGER','Mathematics Instruction',0,4,36,'admath','APR SUBJECT','2022-04-14 12:58:06.973'),
+	 (false,true,true,'2022-04-14 12:58:06.973','MANAGER','Mathematics Instruction Summer (may include Bridge Students)',0,4,37,'admath','APR SUBJECT','2022-04-14 12:58:06.973'),
+	 (false,true,true,'2022-04-14 12:58:06.973','MANAGER','Science Instruction/Tutorials Academic Year',0,4,38,'adscience','APR SUBJECT','2022-04-14 12:58:06.973');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.973','MANAGER','Science Instruction Summer (may include Bridge Students)',0,4,39,'adscience','APR SUBJECT','2022-04-14 12:58:06.973'),
+	 (false,true,true,'2022-04-14 12:58:06.973','MANAGER','Foreign Language Instruction/Tutorials Academic Year',0,4,40,'adforeignlanguage','APR SUBJECT','2022-04-14 12:58:06.973'),
+	 (false,true,true,'2022-04-14 12:58:06.973','MANAGER','Foreign Language Instruction Summer (may include Bridge Students)',0,4,41,'adforeignlanguage','APR SUBJECT','2022-04-14 12:58:06.973'),
+	 (false,true,true,'2022-04-14 12:58:06.973','MANAGER','English Instruction/Tutorials Academic Year',0,4,42,'adenglish','APR SUBJECT','2022-04-14 12:58:06.973'),
+	 (false,true,true,'2022-04-14 12:58:06.975','MANAGER','Mathematics Instruction',0,4,42,'admath','APR SUBJECT','2022-04-14 12:58:06.975'),
+	 (false,true,true,'2022-04-14 12:58:06.975','MANAGER','English Instruction Summer (may include Bridge Students)',0,4,43,'adenglish','APR SUBJECT','2022-04-14 12:58:06.975'),
+	 (false,true,true,'2022-04-14 12:58:06.975','MANAGER','Mathematics Instruction Summer (may include Bridge Students)',0,4,43,'admath','APR SUBJECT','2022-04-14 12:58:06.975'),
+	 (false,true,true,'2022-04-14 12:58:06.975','MANAGER','Science Instruction/Tutorials Academic Year',0,4,44,'adscience','APR SUBJECT','2022-04-14 12:58:06.975'),
+	 (false,true,true,'2022-04-14 12:58:06.975','MANAGER','Science Instruction Summer (may include Bridge Students)',0,4,45,'adscience','APR SUBJECT','2022-04-14 12:58:06.975'),
+	 (false,true,true,'2022-04-14 12:58:06.975','MANAGER','Foreign Language Instruction/Tutorials Academic Year',0,4,46,'adforeignlanguage','APR SUBJECT','2022-04-14 12:58:06.975');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.975','MANAGER','Foreign Language Instruction Summer (may include Bridge Students)',0,4,47,'adforeignlanguage','APR SUBJECT','2022-04-14 12:58:06.975'),
+	 (false,true,true,'2022-04-14 12:58:06.975','MANAGER','English Instruction/Tutorials Academic Year',0,4,48,'adenglish','APR SUBJECT','2022-04-14 12:58:06.975'),
+	 (false,true,true,'2022-04-14 12:58:06.975','MANAGER','English Instruction Summer (may include Bridge Students)',0,4,49,'adenglish','APR SUBJECT','2022-04-14 12:58:06.975'),
+	 (false,true,true,'2022-04-14 12:58:06.975','SETH','Mathematics Instruction/Tutorials Academic Year',0,4,53,'admath','APR SUBJECT','2022-04-14 12:58:06.975'),
+	 (false,true,true,'2022-04-14 12:58:06.975','SETH','Mathematics Instruction Summer (may include Bridge Students)',0,4,54,'admath','APR SUBJECT','2022-04-14 12:58:06.975'),
+	 (false,true,true,'2022-04-14 12:58:06.975','SETH','Science Instruction/Tutorials Academic Year',0,4,55,'adscience','APR SUBJECT','2022-04-14 12:58:06.975'),
+	 (false,true,true,'2022-04-14 12:58:06.975','SETH','Science Instruction Summer (may include Bridge Students)',0,4,56,'adscience','APR SUBJECT','2022-04-14 12:58:06.975'),
+	 (false,true,true,'2022-04-14 12:58:06.975','SETH','Foreign Language Instruction/Tutorials Academic Year',0,4,57,'adforeignlanguage','APR SUBJECT','2022-04-14 12:58:06.975'),
+	 (false,true,true,'2022-04-14 12:58:06.975','SETH','Foreign Language Instruction Summer (may include Bridge Students)',0,4,58,'adforeignlanguage','APR SUBJECT','2022-04-14 12:58:06.975'),
+	 (false,true,true,'2022-04-14 12:58:06.975','SETH','English Instruction/Tutorials Academic Year',0,4,59,'adenglish','APR SUBJECT','2022-04-14 12:58:06.975');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.975','SETH','English Instruction Summer (may include Bridge Students)',0,4,60,'adenglish','APR SUBJECT','2022-04-14 12:58:06.975'),
+	 (false,false,true,'2022-04-14 12:58:06.975','SETH','Unknown',0,4,0,'','APRCOMPONENT','2022-04-14 12:58:06.975'),
+	 (false,false,true,'2022-04-14 12:58:06.975','SETH','Yes',0,4,1,'','APRCOMPONENT','2022-04-14 12:58:06.975'),
+	 (false,false,true,'2022-04-14 12:58:06.975','SETH','No',0,4,2,'','APRCOMPONENT','2022-04-14 12:58:06.975'),
+	 (false,false,true,'2022-04-14 12:58:06.975','SETH','Not applicable, not offered by project',0,4,8,'','APRCOMPONENT','2022-04-14 12:58:06.975'),
+	 (false,false,true,'2022-04-14 12:58:06.975','SETH','Not applicable, prior-year participant',0,4,9,'','APRCOMPONENT','2022-04-14 12:58:06.975'),
+	 (false,false,true,'2022-04-14 12:58:06.975','MANAGER','In Stock',0,4,1,'','ASSETSTATUS','2022-04-14 12:58:06.975'),
+	 (false,false,true,'2022-04-14 12:58:06.975','MANAGER','Checked Out',0,4,2,'','ASSETSTATUS','2022-04-14 12:58:06.975'),
+	 (false,false,true,'2022-04-14 12:58:06.975','MANAGER','Out for Repair',0,4,3,'','ASSETSTATUS','2022-04-14 12:58:06.975'),
+	 (false,false,true,'2022-04-14 12:58:06.975','MANAGER','Damaged',0,4,4,'','ASSETSTATUS','2022-04-14 12:58:06.975');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.975','MANAGER','Lost',0,4,5,'','ASSETSTATUS','2022-04-14 12:58:06.975'),
+	 (false,false,true,'2022-04-14 12:58:06.975','MANAGER','Stolen',0,4,6,'','ASSETSTATUS','2022-04-14 12:58:06.975'),
+	 (false,false,true,'2022-04-14 12:58:06.975','MANAGER','No longer in use',0,4,7,'','ASSETSTATUS','2022-04-14 12:58:06.975'),
+	 (false,false,true,'2022-04-14 12:58:06.975','SETH','No response/Unknown',0,4,0,'','COHORTYEAR','2022-04-14 12:58:06.975'),
+	 (false,false,true,'2022-04-14 12:58:06.975','SETH','Other (prior to 2000-01)',0,4,1,'','COHORTYEAR','2022-04-14 12:58:06.975'),
+	 (false,false,true,'2022-04-14 12:58:06.975','SETH','2000-01',0,4,2,'','COHORTYEAR','2022-04-14 12:58:06.975'),
+	 (false,false,true,'2022-04-14 12:58:06.975','SETH','2001-02',0,4,3,'','COHORTYEAR','2022-04-14 12:58:06.975'),
+	 (false,false,true,'2022-04-14 12:58:06.975','SETH','2002-03',0,4,4,'','COHORTYEAR','2022-04-14 12:58:06.975'),
+	 (false,false,true,'2022-04-14 12:58:06.975','SETH','2003-04',0,4,5,'','COHORTYEAR','2022-04-14 12:58:06.975'),
+	 (false,false,true,'2022-04-14 12:58:06.975','SETH','2004-05',0,4,6,'','COHORTYEAR','2022-04-14 12:58:06.975');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.975','SETH','2005-06',0,4,7,'','COHORTYEAR','2022-04-14 12:58:06.975'),
+	 (false,false,true,'2022-04-14 12:58:06.975','SETH','2006-07',0,4,8,'','COHORTYEAR','2022-04-14 12:58:06.975'),
+	 (false,false,true,'2022-04-14 12:58:06.975','SETH','2007-08',0,4,9,'','COHORTYEAR','2022-04-14 12:58:06.975'),
+	 (false,false,true,'2022-04-14 12:58:06.975','SETH','2008-09',0,4,10,'','COHORTYEAR','2022-04-14 12:58:06.975'),
+	 (false,false,true,'2022-04-14 12:58:06.975','SETH','2009-10',0,4,11,'','COHORTYEAR','2022-04-14 12:58:06.975'),
+	 (false,false,true,'2022-04-14 12:58:06.975','SETH','Public, two-year institution',0,4,1,'','COLLEGETYPE','2022-04-14 12:58:06.975'),
+	 (false,false,true,'2022-04-14 12:58:06.975','SETH','Private, non-profit, two-year institution',0,4,2,'','COLLEGETYPE','2022-04-14 12:58:06.975'),
+	 (false,false,true,'2022-04-14 12:58:06.975','SETH','Public, four-year institution',0,4,3,'','COLLEGETYPE','2022-04-14 12:58:06.975'),
+	 (false,false,true,'2022-04-14 12:58:06.975','SETH','Private, non-profit, four-year institution',0,4,4,'','COLLEGETYPE','2022-04-14 12:58:06.975'),
+	 (false,false,true,'2022-04-14 12:58:06.975','SETH','Public or non-profit vocational/technical institution',0,4,5,'','COLLEGETYPE','2022-04-14 12:58:06.975');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.975','SETH','Proprietary school',0,4,6,'','COLLEGETYPE','2022-04-14 12:58:06.975'),
+	 (false,false,true,'2022-04-14 12:58:06.984','USER','Unknown',0,4,7,'','COLLEGETYPE','2022-04-14 12:58:06.984'),
+	 (false,true,true,'2022-04-14 12:58:06.984','SETH','Unknown',0,4,0,'','COLLGRADE','2022-04-14 12:58:06.984'),
+	 (false,true,true,'2022-04-14 12:58:06.984','SETH','Accepted into postsecondary education program but not yet enrolled',0,4,1,'','COLLGRADE','2022-04-14 12:58:06.984'),
+	 (false,true,true,'2022-04-14 12:58:06.984','SETH','First year student in postsecondary education',0,4,2,'','COLLGRADE','2022-04-14 12:58:06.984'),
+	 (false,true,true,'2022-04-14 12:58:06.984','SETH','Postsecondary student continuing beyond first year',0,4,3,'','COLLGRADE','2022-04-14 12:58:06.984'),
+	 (false,true,true,'2022-04-14 12:58:06.984','SETH','Enrolled, completed a program of postsecondary education but continuing in postsecondary',0,4,4,'','COLLGRADE','2022-04-14 12:58:06.984'),
+	 (false,true,true,'2022-04-14 12:58:06.984','SETH','Not enrolled, completed a program of postsecondary education prior to beginning of academic year reported',0,4,5,'','COLLGRADE','2022-04-14 12:58:06.984'),
+	 (false,true,true,'2022-04-14 12:58:06.984','SETH','Deceased or permanently incapacitated',0,4,6,'','COLLGRADE','2022-04-14 12:58:06.984'),
+	 (false,true,true,'2022-04-14 12:58:06.984','SETH','Prior to beginning of academic year reported, left a program of postsecondary education without completing it',0,4,7,'','COLLGRADE','2022-04-14 12:58:06.984');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.984','SETH','Not applicable, not completed the educational program offered by the project',0,4,8,'','COLLGRADE','2022-04-14 12:58:06.984'),
+	 (false,true,true,'2022-04-14 12:58:06.984','SETH','Not applicable, completed educational program offered by project but has not yet enrolled in program of Postsecondary education',0,4,9,'','COLLGRADE','2022-04-14 12:58:06.984'),
+	 (false,false,true,'2022-04-14 12:58:06.986','SETH','Yes',0,4,1,'','COLLREADY','2022-04-14 12:58:06.986'),
+	 (false,true,true,'2022-04-14 12:58:06.986','SETH','',0,4,0,'','COMPARE','2022-04-14 12:58:06.986'),
+	 (false,true,true,'2022-04-14 12:58:06.986','SETH','< less than',0,4,1,'','COMPARE','2022-04-14 12:58:06.986'),
+	 (false,true,true,'2022-04-14 12:58:06.986','SETH','<= less than or equal to',0,4,2,'','COMPARE','2022-04-14 12:58:06.986'),
+	 (false,true,true,'2022-04-14 12:58:06.986','SETH','<> not equal to',0,4,3,'','COMPARE','2022-04-14 12:58:06.986'),
+	 (false,true,true,'2022-04-14 12:58:06.986','SETH','= equal to',0,4,4,'','COMPARE','2022-04-14 12:58:06.986'),
+	 (false,true,true,'2022-04-14 12:58:06.986','SETH','> more than',0,4,5,'','COMPARE','2022-04-14 12:58:06.986'),
+	 (false,true,true,'2022-04-14 12:58:06.986','SETH','>= more than or equal to',0,4,6,'','COMPARE','2022-04-14 12:58:06.986');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.986','SETH','Not enrolled    /Offered by project, but not enrolled.',0,4,0,'','COMPONENT','2022-04-14 12:58:06.986'),
+	 (false,true,true,'2022-04-14 12:58:06.986','SETH','Academic',0,4,1,'','COMPONENT','2022-04-14 12:58:06.986'),
+	 (false,true,true,'2022-04-14 12:58:06.986','SETH','Summer',0,4,2,'','COMPONENT','2022-04-14 12:58:06.986'),
+	 (false,true,true,'2022-04-14 12:58:06.986','SETH','Both',0,4,3,'','COMPONENT','2022-04-14 12:58:06.986'),
+	 (false,false,true,'2022-04-14 12:58:06.986','SETH','Not applicable    (not offered by project)',0,4,9,'','COMPONENT','2022-04-14 12:58:06.986'),
+	 (false,true,true,'2022-04-14 12:58:06.986','SETH','Counselor',0,4,1,'','CONTACTSTAFFTYPE','2022-04-14 12:58:06.986'),
+	 (false,true,true,'2022-04-14 12:58:06.986','SETH','Tutor',0,4,2,'','CONTACTSTAFFTYPE','2022-04-14 12:58:06.986'),
+	 (false,true,true,'2022-04-14 12:58:06.986','SETH','Teacher',0,4,3,'','CONTACTSTAFFTYPE','2022-04-14 12:58:06.986'),
+	 (false,true,true,'2022-04-14 12:58:06.986','SETH','Staff',0,4,4,'','CONTACTSTAFFTYPE','2022-04-14 12:58:06.986'),
+	 (false,true,true,'2022-04-14 12:58:06.986','SETH','Individual',0,4,1,'','CONTACTTYPE','2022-04-14 12:58:06.986');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.986','SETH','Group',0,4,2,'','CONTACTTYPE','2022-04-14 12:58:06.986'),
+	 (false,true,true,'2022-04-14 12:58:06.986','SETH','Phone',0,4,3,'','CONTACTTYPE','2022-04-14 12:58:06.986'),
+	 (false,true,true,'2022-04-14 12:58:06.986','SETH','Mail',0,4,4,'','CONTACTTYPE','2022-04-14 12:58:06.986'),
+	 (false,false,true,'2022-04-14 12:58:06.986','SETH','Parent',0,4,5,'','CONTACTTYPE','2022-04-14 12:58:06.986'),
+	 (false,true,true,'2022-04-14 12:58:06.986','SETH','Other',0,4,6,'','CONTACTTYPE','2022-04-14 12:58:06.986'),
+	 (false,true,true,'2022-04-14 12:58:06.986','SETH','E-mail',0,4,7,'','CONTACTTYPE','2022-04-14 12:58:06.986'),
+	 (false,false,true,'2022-04-14 12:58:06.986','SETH','Weekly',0,4,1,'','CONTFREQ','2022-04-14 12:58:06.986'),
+	 (false,false,true,'2022-04-14 12:58:06.986','SETH','Twice a month',0,4,2,'','CONTFREQ','2022-04-14 12:58:06.986'),
+	 (false,false,true,'2022-04-14 12:58:06.986','SETH','Once a month',0,4,3,'','CONTFREQ','2022-04-14 12:58:06.986'),
+	 (false,false,true,'2022-04-14 12:58:06.986','SETH','Quarterly',0,4,4,'','CONTFREQ','2022-04-14 12:58:06.986');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.986','SETH','No face-to-face contact',0,4,5,'','CONTFREQ','2022-04-14 12:58:06.986'),
+	 (false,false,true,'2022-04-14 12:58:06.986','SETH','Other',0,4,6,'','CONTFREQ','2022-04-14 12:58:06.986'),
+	 (false,false,true,'2022-04-14 12:58:06.986','USER','Pets Name',0,4,1,'         0','CUSTOMFIELDNAME','2022-04-14 12:58:06.986'),
+	 (false,false,true,'2022-04-14 12:58:06.986','USER','T-shirt Size',0,4,2,'         1','CUSTOMFIELDNAME','2022-04-14 12:58:06.986'),
+	 (false,false,true,'2022-04-14 12:58:06.986','USER','Donate Blood',0,4,3,'         2','CUSTOMFIELDNAME','2022-04-14 12:58:06.986'),
+	 (false,false,true,'2022-04-14 12:58:06.986','USER','Date Inactivated',0,4,4,'         3','CUSTOMFIELDNAME','2022-04-14 12:58:06.986'),
+	 (false,false,true,'2022-04-14 12:58:06.986','USER','Number of Siblings',0,4,5,'         4','CUSTOMFIELDNAME','2022-04-14 12:58:06.986'),
+	 (false,false,true,'2022-04-14 12:58:06.986','USER','Food Allowance',0,4,6,'         5','CUSTOMFIELDNAME','2022-04-14 12:58:06.986'),
+	 (false,false,true,'2022-04-14 12:58:06.986','MANAGER','Text-Normal',0,4,0,'','CUSTOMFIELDTYPE','2022-04-14 12:58:06.986'),
+	 (false,false,true,'2022-04-14 12:58:06.986','MANAGER','Text-Quickfill',0,4,1,'','CUSTOMFIELDTYPE','2022-04-14 12:58:06.986');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.986','MANAGER','Logical',0,4,2,'','CUSTOMFIELDTYPE','2022-04-14 12:58:06.986'),
+	 (false,false,true,'2022-04-14 12:58:06.986','MANAGER','Date',0,4,3,'','CUSTOMFIELDTYPE','2022-04-14 12:58:06.986'),
+	 (false,false,true,'2022-04-14 12:58:06.986','MANAGER','Integer',0,4,4,'','CUSTOMFIELDTYPE','2022-04-14 12:58:06.986'),
+	 (false,false,true,'2022-04-14 12:58:06.986','','Numeric-2 decimals',0,4,5,'','CUSTOMFIELDTYPE','2022-04-14 12:58:06.986'),
+	 (false,false,true,'2022-04-14 12:58:06.986','SETH','Science',0,4,1,'','DEGREEIN','2022-04-14 12:58:06.986'),
+	 (false,false,true,'2022-04-14 12:58:06.986','SETH','Business',0,4,2,'','DEGREEIN','2022-04-14 12:58:06.986'),
+	 (false,false,true,'2022-04-14 12:58:06.986','SETH','Arts',0,4,3,'','DEGREEIN','2022-04-14 12:58:06.986'),
+	 (false,false,true,'2022-04-14 12:58:06.986','SETH','English',0,4,4,'','DEGREEIN','2022-04-14 12:58:06.986'),
+	 (false,true,true,'2022-04-14 12:58:06.986','SETH','Unknown',0,4,0,'','ELIGIBILITY','2022-04-14 12:58:06.986'),
+	 (false,true,true,'2022-04-14 12:58:06.986','SETH','Low-Income and First-Generation',0,4,1,'','ELIGIBILITY','2022-04-14 12:58:06.986');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.986','SETH','Low-Income only',0,4,2,'','ELIGIBILITY','2022-04-14 12:58:06.986'),
+	 (false,true,true,'2022-04-14 12:58:06.986','SETH','First-Generation only',0,4,3,'','ELIGIBILITY','2022-04-14 12:58:06.986'),
+	 (false,false,true,'2022-04-14 12:58:06.986','SETH','Part Time',0,4,1,'','EMPLOYTYPE','2022-04-14 12:58:06.986'),
+	 (false,false,true,'2022-04-14 12:58:06.986','SETH','Full Time',0,4,2,'','EMPLOYTYPE','2022-04-14 12:58:06.986'),
+	 (false,false,true,'2022-04-14 12:58:06.986','SETH','Unemployed',0,4,3,'','EMPLOYTYPE','2022-04-14 12:58:06.986'),
+	 (false,true,true,'2022-04-14 12:58:06.986','SETH','Continued in middle School (TS only)',0,4,16,'','ENDSTATUS','2022-04-14 12:58:06.986'),
+	 (false,false,true,'2022-04-14 12:58:06.986','SETH','Promoted from middle school to high school (TS Only)',0,4,17,'','ENDSTATUS','2022-04-14 12:58:06.986'),
+	 (false,false,true,'2022-04-14 12:58:06.986','SETH','Continued in high school (do not include those who graduated)',0,4,18,'','ENDSTATUS','2022-04-14 12:58:06.986'),
+	 (false,false,true,'2022-04-14 12:58:06.986','SETH','Re-entered middle school',0,4,19,'','ENDSTATUS','2022-04-14 12:58:06.986'),
+	 (false,false,true,'2022-04-14 12:58:06.986','SETH','Re-entered high school',0,4,20,'','ENDSTATUS','2022-04-14 12:58:06.986');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.994','SETH','Received high school diploma',0,4,21,'','ENDSTATUS','2022-04-14 12:58:06.994'),
+	 (false,false,true,'2022-04-14 12:58:06.994','SETH','Obtained a GED/high school equivalency degree',0,4,22,'','ENDSTATUS','2022-04-14 12:58:06.994'),
+	 (false,false,true,'2022-04-14 12:58:06.994','SETH','Applied for admission to program of postsecondary education',0,4,23,'','ENDSTATUS','2022-04-14 12:58:06.994'),
+	 (false,false,true,'2022-04-14 12:58:06.994','SETH','Applied for student financial aid for postsecondary education',0,4,24,'','ENDSTATUS','2022-04-14 12:58:06.994'),
+	 (false,false,true,'2022-04-14 12:58:06.994','SETH','Enrolled in ( or admitted to) a program of postsecondary education (first-time enrollment in postsecondary education)',0,4,25,'','ENDSTATUS','2022-04-14 12:58:06.994'),
+	 (false,false,true,'2022-04-14 12:58:06.996','SETH','Re-enrolled in (or re-admitted to ) a program of postsecondary education',0,4,26,'','ENDSTATUS','2022-04-14 12:58:06.996'),
+	 (false,false,true,'2022-04-14 12:58:06.996','SETH','Dropped out of middle school (TS only)',0,4,27,'','ENDSTATUS','2022-04-14 12:58:06.996'),
+	 (false,false,true,'2022-04-14 12:58:06.996','SETH','Dropped out of high school',0,4,28,'','ENDSTATUS','2022-04-14 12:58:06.996'),
+	 (false,false,true,'2022-04-14 12:58:06.996','SETH','Did not continue in program of postsecondary education (EOC only)',0,4,29,'','ENDSTATUS','2022-04-14 12:58:06.996'),
+	 (false,false,true,'2022-04-14 12:58:06.996','SETH','Other (i.e. military, death, illness, transfer, etc.)',0,4,30,'','ENDSTATUS','2022-04-14 12:58:06.996');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.996','SETH','Unknown Participant Status at End of Reporting Period',0,4,31,'','ENDSTATUS','2022-04-14 12:58:06.996'),
+	 (false,false,true,'2022-04-14 12:58:06.996','SETH','Veterans Served',0,4,32,'','ENDSTATUS','2022-04-14 12:58:06.996'),
+	 (false,false,true,'2022-04-14 12:58:06.996','SETH','Participants of Limited English Proficiency',0,4,33,'','ENDSTATUS','2022-04-14 12:58:06.996'),
+	 (false,false,true,'2022-04-14 12:58:06.996','USER','Retained in current grade in middle school (TS only)',0,4,101,'','ENDSTATUS','2022-04-14 12:58:06.996'),
+	 (false,false,true,'2022-04-14 12:58:06.996','USER','Retained in current grade in high school',0,4,102,'','ENDSTATUS','2022-04-14 12:58:06.996'),
+	 (false,false,true,'2022-04-14 12:58:06.996','USER','Re-entered secondary school/ enrolled in GED or other high school equivalency program',0,4,103,'','ENDSTATUS','2022-04-14 12:58:06.996'),
+	 (false,false,true,'2022-04-14 12:58:06.996','USER','Continued in or completed a program of postsecondary education (EOC only)',0,4,104,'','ENDSTATUS','2022-04-14 12:58:06.996'),
+	 (false,false,true,'2022-04-14 12:58:06.996','USER','High school graduate not enrolled in program of postsecondary education',0,4,105,'','ENDSTATUS','2022-04-14 12:58:06.996'),
+	 (false,false,true,'2022-04-14 12:58:06.996','USER','Withdrew from postsecondary education',0,4,106,'','ENDSTATUS','2022-04-14 12:58:06.996'),
+	 (false,false,true,'2022-04-14 12:58:06.996','USER','Other (e.g. death) - for Postsecondary Students',0,4,107,'','ENDSTATUS','2022-04-14 12:58:06.996');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:06.996','USER','Unknown Participant Status at End of Reporting Period- for Postsecondary Students',0,4,108,'','ENDSTATUS','2022-04-14 12:58:06.996'),
+	 (false,true,true,'2022-04-14 12:58:06.996','SETH','Not enrolled',0,4,0,'','ENGLISH','2022-04-14 12:58:06.996'),
+	 (false,true,true,'2022-04-14 12:58:06.996','SETH','Composition',0,4,1,'','ENGLISH','2022-04-14 12:58:06.996'),
+	 (false,true,true,'2022-04-14 12:58:06.996','SETH','Literature',0,4,2,'','ENGLISH','2022-04-14 12:58:06.996'),
+	 (false,true,true,'2022-04-14 12:58:06.996','SETH','Composition and Literature',0,4,3,'','ENGLISH','2022-04-14 12:58:06.996'),
+	 (false,true,true,'2022-04-14 12:58:06.996','SETH','Unknown or longer tracking',0,4,0,'','ENROLL','2022-04-14 12:58:06.996'),
+	 (false,true,true,'2022-04-14 12:58:06.996','SETH','Full-time',0,4,1,'','ENROLL','2022-04-14 12:58:06.996'),
+	 (false,true,true,'2022-04-14 12:58:06.996','SETH','Less than full-time',0,4,2,'','ENROLL','2022-04-14 12:58:06.996'),
+	 (false,true,true,'2022-04-14 12:58:06.996','SETH','Varied enrollment during reporting period',0,4,3,'','ENROLL','2022-04-14 12:58:06.996'),
+	 (false,true,true,'2022-04-14 12:58:06.996','SETH','On leave of absence after enrollment in a program of postsecondary education',0,4,4,'','ENROLL','2022-04-14 12:58:06.996');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:06.996','SETH','Not applicable, not yet completed educational program offered by project',0,4,8,'','ENROLL','2022-04-14 12:58:06.996'),
+	 (false,true,true,'2022-04-14 12:58:07.004','SETH','Not applicable, completed educational requirements for postsecondary but not enrolled in postsecondary',0,4,9,'','ENROLL','2022-04-14 12:58:07.004'),
+	 (false,false,true,'2022-04-14 12:58:07.004','SETH','Unknown',0,4,0,'','ENROLLOBJ','2022-04-14 12:58:07.004'),
+	 (false,false,true,'2022-04-14 12:58:07.004','SETH','Participant with original Current_Fiscal_Year_Long scheduled completion year who enrolled in postsecondary education by fall Next_Fiscal_Year_short',0,4,1,'','ENROLLOBJ','2022-04-14 12:58:07.004'),
+	 (false,false,true,'2022-04-14 12:58:07.004','SETH','Participant with original Current_Fiscal_Year_Long scheduled completion year who did not enroll in postsecondary education by fall Next_Fiscal_Year_Short',0,4,2,'','ENROLLOBJ','2022-04-14 12:58:07.004'),
+	 (false,false,true,'2022-04-14 12:58:07.004','SETH','Participant with original Current_Fiscal_Year_Long scheduled completion year whom the project rescheduled to a later year AND for whom option 1 or 2 was chosen for field #21',0,4,3,'','ENROLLOBJ','2022-04-14 12:58:07.004'),
+	 (false,false,true,'2022-04-14 12:58:07.004','SETH','Deceased or permanently incapacitated',0,4,6,'','ENROLLOBJ','2022-04-14 12:58:07.004'),
+	 (false,false,true,'2022-04-14 12:58:07.004','SETH','Not applicable, participant with original scheduled completion year after the Current_Fiscal_Year_Long budget period',0,4,8,'','ENROLLOBJ','2022-04-14 12:58:07.004'),
+	 (false,false,true,'2022-04-14 12:58:07.004','SETH','Not applicable, prior year participant during Current_Fiscal_Year_Long',0,4,9,'','ENROLLOBJ','2022-04-14 12:58:07.004'),
+	 (false,false,true,'2022-04-14 12:58:07.004','SETH','Not applicable, prior year participant during 2007–08',0,4,10,'','ENROLLOBJ','2022-04-14 12:58:07.004');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.004','SETH','Not applicable, current-year participant called to active duty',0,4,11,'','ENROLLOBJ','2022-04-14 12:58:07.004'),
+	 (false,false,true,'2022-04-14 12:58:07.004','SETH','Unknown',0,4,0,'','ENTEREXAM','2022-04-14 12:58:07.004'),
+	 (false,true,true,'2022-04-14 12:58:07.004','SETH','SAT',0,4,1,'','ENTEREXAM','2022-04-14 12:58:07.004'),
+	 (false,true,true,'2022-04-14 12:58:07.004','SETH','ACT',0,4,2,'','ENTEREXAM','2022-04-14 12:58:07.004'),
+	 (false,true,true,'2022-04-14 12:58:07.004','SETH','Both SAT and ACT',0,4,3,'','ENTEREXAM','2022-04-14 12:58:07.004'),
+	 (false,true,true,'2022-04-14 12:58:07.004','SETH','Other',0,4,4,'','ENTEREXAM','2022-04-14 12:58:07.004'),
+	 (false,true,true,'2022-04-14 12:58:07.004','SETH','Not Applicable',0,4,9,'','ENTEREXAM','2022-04-14 12:58:07.004'),
+	 (false,true,true,'2022-04-14 12:58:07.004','SETH','No response/Unknown',0,4,0,'','ENTERLEVEL','2022-04-14 12:58:07.004'),
+	 (false,true,true,'2022-04-14 12:58:07.006','SETH','Rising 9th grader (summer between 8th and 9th grade)',0,4,1,'','ENTERLEVEL','2022-04-14 12:58:07.006'),
+	 (false,true,true,'2022-04-14 12:58:07.006','SETH','9th grade',0,4,2,'','ENTERLEVEL','2022-04-14 12:58:07.006');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.006','SETH','10th grade',0,4,3,'','ENTERLEVEL','2022-04-14 12:58:07.006'),
+	 (false,true,true,'2022-04-14 12:58:07.006','SETH','11th grade',0,4,4,'','ENTERLEVEL','2022-04-14 12:58:07.006'),
+	 (false,true,true,'2022-04-14 12:58:07.006','SETH','Rising 12th grader (summer 11th grade and 12th grade)',0,4,5,'','ENTERLEVEL','2022-04-14 12:58:07.006'),
+	 (false,true,true,'2022-04-14 12:58:07.006','SETH','Unknown',0,4,0,'','ETHNIC','2022-04-14 12:58:07.006'),
+	 (false,true,true,'2022-04-14 12:58:07.006','SETH','American Indian/Alaskan Native',0,4,1,'','ETHNIC','2022-04-14 12:58:07.006'),
+	 (false,true,true,'2022-04-14 12:58:07.006','SETH','Asian',0,4,2,'','ETHNIC','2022-04-14 12:58:07.006'),
+	 (false,true,true,'2022-04-14 12:58:07.006','SETH','Black or African American',0,4,3,'','ETHNIC','2022-04-14 12:58:07.006'),
+	 (false,true,true,'2022-04-14 12:58:07.006','SETH','Hispanic or Latino',0,4,4,'','ETHNIC','2022-04-14 12:58:07.006'),
+	 (false,true,true,'2022-04-14 12:58:07.006','SETH','White',0,4,5,'','ETHNIC','2022-04-14 12:58:07.006'),
+	 (false,true,true,'2022-04-14 12:58:07.006','SETH','Native Hawaiian or Pacific Islander',0,4,6,'','ETHNIC','2022-04-14 12:58:07.006');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.006','SETH','More than one race reported',0,4,7,'','ETHNIC','2022-04-14 12:58:07.006'),
+	 (false,true,true,'2022-04-14 12:58:07.006','SETH','No response',0,4,0,'','FINAIDREAS','2022-04-14 12:58:07.006'),
+	 (false,false,true,'2022-04-14 12:58:07.006','SETH','Student refused loan',0,4,1,'','FINAIDREAS','2022-04-14 12:58:07.006'),
+	 (false,false,true,'2022-04-14 12:58:07.006','SETH','Insufficient Federal grant aid',0,4,2,'','FINAIDREAS','2022-04-14 12:58:07.006'),
+	 (false,false,true,'2022-04-14 12:58:07.006','SETH','Insufficient College Work Study aid',0,4,3,'','FINAIDREAS','2022-04-14 12:58:07.006'),
+	 (false,false,true,'2022-04-14 12:58:07.006','SETH','Insufficient institutional aid',0,4,4,'','FINAIDREAS','2022-04-14 12:58:07.006'),
+	 (false,false,true,'2022-04-14 12:58:07.006','SETH','Student failed to make adequate academic progress',0,4,5,'','FINAIDREAS','2022-04-14 12:58:07.006'),
+	 (false,false,true,'2022-04-14 12:58:07.006','SETH','Student refused College Work Study aid',0,4,6,'','FINAIDREAS','2022-04-14 12:58:07.006'),
+	 (false,false,true,'2022-04-14 12:58:07.006','SETH','Student not enrolled full-time',0,4,7,'','FINAIDREAS','2022-04-14 12:58:07.006'),
+	 (false,false,true,'2022-04-14 12:58:07.006','SETH','Student not eligible for financial aid',0,4,8,'','FINAIDREAS','2022-04-14 12:58:07.006');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.006','SETH','Insufficient loans',0,4,9,'','FINAIDREAS','2022-04-14 12:58:07.006'),
+	 (false,true,true,'2022-04-14 12:58:07.006','SETH','Unknown or no longer tracking',0,4,0,'','FINAIDRECD','2022-04-14 12:58:07.006'),
+	 (false,true,true,'2022-04-14 12:58:07.006','SETH','Pell grant only',0,4,1,'','FINAIDRECD','2022-04-14 12:58:07.006'),
+	 (false,true,true,'2022-04-14 12:58:07.006','SETH','FFEL loan',0,4,2,'','FINAIDRECD','2022-04-14 12:58:07.006'),
+	 (false,true,true,'2022-04-14 12:58:07.006','SETH','Direct loan',0,4,3,'','FINAIDRECD','2022-04-14 12:58:07.006'),
+	 (false,true,true,'2022-04-14 12:58:07.006','SETH','College work study only',0,4,4,'','FINAIDRECD','2022-04-14 12:58:07.006'),
+	 (false,true,true,'2022-04-14 12:58:07.006','SETH','Institutional aid only',0,4,5,'','FINAIDRECD','2022-04-14 12:58:07.006'),
+	 (false,true,true,'2022-04-14 12:58:07.006','SETH','State grant only',0,4,6,'','FINAIDRECD','2022-04-14 12:58:07.006'),
+	 (false,true,true,'2022-04-14 12:58:07.006','SETH','Pell grant and FFEL loan',0,4,7,'','FINAIDRECD','2022-04-14 12:58:07.006'),
+	 (false,true,true,'2022-04-14 12:58:07.014','SETH','Pell grant and Direct loan',0,4,8,'','FINAIDRECD','2022-04-14 12:58:07.014');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','Multiple federal aid',0,4,9,'','FINAIDRECD','2022-04-14 12:58:07.016'),
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','Multiple federal and other aid',0,4,10,'','FINAIDRECD','2022-04-14 12:58:07.016'),
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','Non-federal, non-institutional aid',0,4,11,'','FINAIDRECD','2022-04-14 12:58:07.016'),
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','No aid awarded',0,4,12,'','FINAIDRECD','2022-04-14 12:58:07.016'),
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','No aid needed',0,4,13,'','FINAIDRECD','2022-04-14 12:58:07.016'),
+	 (false,false,true,'2022-04-14 12:58:07.016','MANAGER','No aid needed',0,4,14,'','FINAIDRECD','2022-04-14 12:58:07.016'),
+	 (false,false,true,'2022-04-14 12:58:07.016','MANAGER','State Vocational Rehabilitation',0,4,15,'','FINAIDRECD','2022-04-14 12:58:07.016'),
+	 (false,false,true,'2022-04-14 12:58:07.016','SETH','Not applicable, not yet completed high school',0,4,88,'','FINAIDRECD','2022-04-14 12:58:07.016'),
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','Not applicable, completed HS but not enrolled in postsecondary',0,4,99,'','FINAIDRECD','2022-04-14 12:58:07.016'),
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','Not enrolled',0,4,0,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.016');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','Spanish',0,4,1,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.016'),
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','French',0,4,2,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.016'),
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','German',0,4,3,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.016'),
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','Italian',0,4,4,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.016'),
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','Russian',0,4,5,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.016'),
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','Japanese',0,4,6,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.016'),
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','Other Foreign Language',0,4,7,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.016'),
+	 (false,false,true,'2022-04-14 12:58:07.016','SETH','Financial Aid',0,4,1,'','FORM TYPE','2022-04-14 12:58:07.016'),
+	 (false,false,true,'2022-04-14 12:58:07.016','SETH','Field Trip Authorization',0,4,2,'','FORM TYPE','2022-04-14 12:58:07.016'),
+	 (false,false,true,'2022-04-14 12:58:07.016','SETH','Application Form',0,4,3,'','FORM TYPE','2022-04-14 12:58:07.016');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.016','SETH','Income Data',0,4,4,'','FORM TYPE','2022-04-14 12:58:07.016'),
+	 (false,false,true,'2022-04-14 12:58:07.016','SETH','Parent Contract Form',0,4,5,'','FORM TYPE','2022-04-14 12:58:07.016'),
+	 (false,false,true,'2022-04-14 12:58:07.016','SETH','Assessment',0,4,6,'','FORM TYPE','2022-04-14 12:58:07.016'),
+	 (false,false,true,'2022-04-14 12:58:07.016','SETH','Eligibility Form',0,4,7,'','FORM TYPE','2022-04-14 12:58:07.016'),
+	 (false,false,true,'2022-04-14 12:58:07.016','SETH','Student Contract Form',0,4,8,'','FORM TYPE','2022-04-14 12:58:07.016'),
+	 (false,false,true,'2022-04-14 12:58:07.016','SETH','Recommendation Letter',0,4,9,'','FORM TYPE','2022-04-14 12:58:07.016'),
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','Unknown',0,4,0,'','GENDER','2022-04-14 12:58:07.016'),
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','Male',0,4,1,'','GENDER','2022-04-14 12:58:07.016'),
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','Female',0,4,2,'','GENDER','2022-04-14 12:58:07.016'),
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','Unknown',0,4,0,'','GPASCALE','2022-04-14 12:58:07.016');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','4 point scale or scale convertible to 4 point',0,4,1,'','GPASCALE','2022-04-14 12:58:07.016'),
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','5 point scale or scale convertible to 5 point',0,4,2,'','GPASCALE','2022-04-14 12:58:07.016'),
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','Other',0,4,3,'','GPASCALE','2022-04-14 12:58:07.016'),
+	 (false,false,true,'2022-04-14 12:58:07.016','SETH','Not applicable to rising 9th graders',0,4,9,'','GPASCALE','2022-04-14 12:58:07.016'),
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','Unknown',0,4,0,'','GRADELEVEL','2022-04-14 12:58:07.016'),
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','9th grade',0,4,1,'','GRADELEVEL','2022-04-14 12:58:07.016'),
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','10th grade',0,4,2,'','GRADELEVEL','2022-04-14 12:58:07.016'),
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','11th grade',0,4,3,'','GRADELEVEL','2022-04-14 12:58:07.016'),
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','12th grade',0,4,4,'','GRADELEVEL','2022-04-14 12:58:07.016'),
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','High school (or GED) recipient, not admitted to or enrolled in postsecondary education',0,4,5,'','GRADELEVEL','2022-04-14 12:58:07.016');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','High school (or GED) recipient, postsecondary enrollment status unknown',0,4,6,'','GRADELEVEL','2022-04-14 12:58:07.016'),
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','High School Dropout',0,4,7,'','GRADELEVEL','2022-04-14 12:58:07.016'),
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','Accepted for enrollment in program of postsecondary education',0,4,8,'','GRADELEVEL','2022-04-14 12:58:07.016'),
+	 (false,true,true,'2022-04-14 12:58:07.016','SETH','Enrolled in program of postsecondary education',0,4,9,'','GRADELEVEL','2022-04-14 12:58:07.016'),
+	 (false,false,true,'2022-04-14 12:58:07.016','SETH','Graduated from a program of postsecondary education',0,4,10,'','GRADELEVEL','2022-04-14 12:58:07.016'),
+	 (false,false,true,'2022-04-14 12:58:07.016','SETH','Enrolled in GED program',0,4,11,'','GRADELEVEL','2022-04-14 12:58:07.016'),
+	 (false,false,true,'2022-04-14 12:58:07.016','SETH','Stopped out of a program of postsecondary education',0,4,12,'','GRADELEVEL','2022-04-14 12:58:07.016'),
+	 (false,false,true,'2022-04-14 12:58:07.024','SETH','Unknown',0,4,0,'','GRADEPRO','2022-04-14 12:58:07.024'),
+	 (false,false,true,'2022-04-14 12:58:07.024','SETH','Student met requirements to progress normally to next grade or graduated',0,4,1,'','GRADEPRO','2022-04-14 12:58:07.024'),
+	 (false,false,true,'2022-04-14 12:58:07.024','SETH','Student did not meet requirements to progress normally to next grade or graduate',0,4,2,'','GRADEPRO','2022-04-14 12:58:07.024');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.024','SETH','Student left secondary school without graduating',0,4,3,'','GRADEPRO','2022-04-14 12:58:07.024'),
+	 (false,false,true,'2022-04-14 12:58:07.024','SETH','Not applicable student not in high school in reporting year',0,4,9,'','GRADEPRO','2022-04-14 12:58:07.024'),
+	 (false,true,true,'2022-04-14 12:58:07.024','SETH','Unknown',0,4,0,'','GRADESTART','2022-04-14 12:58:07.024'),
+	 (false,true,true,'2022-04-14 12:58:07.026','SETH','9th grade',0,4,1,'','GRADESTART','2022-04-14 12:58:07.026'),
+	 (false,true,true,'2022-04-14 12:58:07.026','SETH','10th grade',0,4,2,'','GRADESTART','2022-04-14 12:58:07.026'),
+	 (false,true,true,'2022-04-14 12:58:07.026','SETH','11th grade',0,4,3,'','GRADESTART','2022-04-14 12:58:07.026'),
+	 (false,true,true,'2022-04-14 12:58:07.026','SETH','12th grade',0,4,4,'','GRADESTART','2022-04-14 12:58:07.026'),
+	 (false,true,true,'2022-04-14 12:58:07.026','SETH','High school (or GED) recipient, not admitted to or enrolled in postsecondary education',0,4,5,'','GRADESTART','2022-04-14 12:58:07.026'),
+	 (false,true,true,'2022-04-14 12:58:07.026','SETH','High school (or GED) recipient, postsecondary enrollment status unknown',0,4,6,'','GRADESTART','2022-04-14 12:58:07.026'),
+	 (false,true,true,'2022-04-14 12:58:07.026','SETH','High School Dropout',0,4,7,'','GRADESTART','2022-04-14 12:58:07.026');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.026','SETH','Accepted for enrollment in program of postsecondary education',0,4,8,'','GRADESTART','2022-04-14 12:58:07.026'),
+	 (false,true,true,'2022-04-14 12:58:07.026','SETH','Enrolled in program of postsecondary education',0,4,9,'','GRADESTART','2022-04-14 12:58:07.026'),
+	 (false,false,true,'2022-04-14 12:58:07.026','SETH','Graduated from a program of postsecondary education',0,4,10,'','GRADESTART','2022-04-14 12:58:07.026'),
+	 (false,false,true,'2022-04-14 12:58:07.026','SETH','Enrolled in GED program',0,4,11,'','GRADESTART','2022-04-14 12:58:07.026'),
+	 (false,false,true,'2022-04-14 12:58:07.026','SETH','8th Grade',0,4,12,'','GRADESTART','2022-04-14 12:58:07.026'),
+	 (false,false,true,'2022-04-14 12:58:07.026','SETH','Stopped out of a program of postsecondary education',0,4,13,'','GRADESTART','2022-04-14 12:58:07.026'),
+	 (false,false,true,'2022-04-14 12:58:07.026','SETH','Unknown or no longer tracking',0,4,0,'','GRADSTATUS','2022-04-14 12:58:07.026'),
+	 (false,false,true,'2022-04-14 12:58:07.026','SETH','Currently enrolled in high school',0,4,1,'','GRADSTATUS','2022-04-14 12:58:07.026'),
+	 (false,false,true,'2022-04-14 12:58:07.026','SETH','High School Dropout',0,4,2,'','GRADSTATUS','2022-04-14 12:58:07.026'),
+	 (false,false,true,'2022-04-14 12:58:07.026','SETH','High school diploma',0,4,3,'','GRADSTATUS','2022-04-14 12:58:07.026');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.026','SETH','GED',0,4,4,'','GRADSTATUS','2022-04-14 12:58:07.026'),
+	 (false,false,true,'2022-04-14 12:58:07.026','SETH','Certificate of high school completion',0,4,5,'','GRADSTATUS','2022-04-14 12:58:07.026'),
+	 (false,false,true,'2022-04-14 12:58:07.026','SETH','Completed Freshman year of College',0,4,1,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.026'),
+	 (false,false,true,'2022-04-14 12:58:07.026','SETH','Completed Sophomore year of college',0,4,2,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.026'),
+	 (false,false,true,'2022-04-14 12:58:07.026','SETH','Completed Junior year of college',0,4,3,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.026'),
+	 (false,false,true,'2022-04-14 12:58:07.026','SETH','Completed Senior year of college',0,4,4,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.026'),
+	 (false,false,true,'2022-04-14 12:58:07.026','SETH','Dropped Out of College, Freshman year',0,4,5,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.026'),
+	 (false,false,true,'2022-04-14 12:58:07.026','SETH','Dropped Out of College, Sophomore year',0,4,6,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.026'),
+	 (false,false,true,'2022-04-14 12:58:07.026','SETH','Dropped Out of College, Junior year',0,4,7,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.026'),
+	 (false,false,true,'2022-04-14 12:58:07.026','SETH','Dropped Out of College, Senior year',0,4,8,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.026');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.026','SETH','Postponed College',0,4,9,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.026'),
+	 (false,false,true,'2022-04-14 12:58:07.026','SETH','Enrolled in Military Branch',0,4,10,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.026'),
+	 (false,false,true,'2022-04-14 12:58:07.026','SETH','Working Full / Part Time Only',0,4,11,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.026'),
+	 (false,false,true,'2022-04-14 12:58:07.026','SETH','Graduated from College',0,4,12,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.026'),
+	 (false,false,true,'2022-04-14 12:58:07.026','SETH','Technical / Vocational School',0,4,13,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.026'),
+	 (false,true,true,'2022-04-14 12:58:07.034','SETH','Unknown',0,4,0,'','HIGHDEGREE','2022-04-14 12:58:07.034'),
+	 (false,true,true,'2022-04-14 12:58:07.034','SETH','Certificate/Diploma for occupational, educational program (less than two-year program)',0,4,1,'','HIGHDEGREE','2022-04-14 12:58:07.034'),
+	 (false,true,true,'2022-04-14 12:58:07.034','SETH','Certificate/Diploma for occupational, technical, or educational program (at least two-year program)',0,4,2,'','HIGHDEGREE','2022-04-14 12:58:07.034'),
+	 (false,true,true,'2022-04-14 12:58:07.034','SETH','Associate Degree (two years)',0,4,3,'','HIGHDEGREE','2022-04-14 12:58:07.034'),
+	 (false,true,true,'2022-04-14 12:58:07.034','SETH','1st Bachelor''s Degree',0,4,4,'','HIGHDEGREE','2022-04-14 12:58:07.034');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.034','SETH','2nd Bachelor''s Degree',0,4,5,'','HIGHDEGREE','2022-04-14 12:58:07.034'),
+	 (false,true,true,'2022-04-14 12:58:07.034','SETH','Equivalent of Bachelor''s Degree',0,4,6,'','HIGHDEGREE','2022-04-14 12:58:07.034'),
+	 (false,true,true,'2022-04-14 12:58:07.034','SETH','Still enrolled in an undergraduate postsecondary program',0,4,7,'','HIGHDEGREE','2022-04-14 12:58:07.034'),
+	 (false,false,true,'2022-04-14 12:58:07.034','SETH','Not applicable, deceased or permanently incapacitated',0,4,66,'','HIGHDEGREE','2022-04-14 12:58:07.034'),
+	 (false,false,true,'2022-04-14 12:58:07.034','SETH','Left a program of postsecondary education without completing it',0,4,77,'','HIGHDEGREE','2022-04-14 12:58:07.034'),
+	 (false,true,true,'2022-04-14 12:58:07.034','SETH','Not applicable, not yet completed educational program offered by project',0,4,88,'','HIGHDEGREE','2022-04-14 12:58:07.034'),
+	 (false,true,true,'2022-04-14 12:58:07.036','SETH','Not applicable, completed educational program offered by project but has not yet enrolled in program of Postsecondary education',0,4,99,'','HIGHDEGREE','2022-04-14 12:58:07.036'),
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','Unknown',0,4,0,'','INITIATIVE','2022-04-14 12:58:07.036'),
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','Participant in 2000-02 initiative',0,4,1,'','INITIATIVE','2022-04-14 12:58:07.036'),
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','No longer used for APR reporting in current year',0,4,2,'','INITIATIVE','2022-04-14 12:58:07.036');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','Participant in 2003-06 initiative',0,4,3,'','INITIATIVE','2022-04-14 12:58:07.036'),
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','Participant in both 2000-02 and 2003-06 initiatives',0,4,4,'','INITIATIVE','2022-04-14 12:58:07.036'),
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','Project had funding in 2000-02 or 2003-06 or both, but participant was not funded',0,4,5,'','INITIATIVE','2022-04-14 12:58:07.036'),
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','Not applicable-project did not have initiative funding',0,4,9,'','INITIATIVE','2022-04-14 12:58:07.036'),
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','Unknown',0,4,0,'','LIMITEDENGPRO','2022-04-14 12:58:07.036'),
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','Yes',0,4,1,'','LIMITEDENGPRO','2022-04-14 12:58:07.036'),
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','No',0,4,2,'','LIMITEDENGPRO','2022-04-14 12:58:07.036'),
+	 (false,false,true,'2022-04-14 12:58:07.036','MANAGER','Not applicable, participant is still in program',0,4,9,'','LIMITEDENGPRO','2022-04-14 12:58:07.036'),
+	 (false,true,true,'2022-04-14 12:58:07.036','SETH','No response',0,4,0,'','MARITALSTATUS','2022-04-14 12:58:07.036'),
+	 (false,true,true,'2022-04-14 12:58:07.036','SETH','Single',0,4,1,'','MARITALSTATUS','2022-04-14 12:58:07.036');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','Married',0,4,2,'','MARITALSTATUS','2022-04-14 12:58:07.036'),
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','Separated',0,4,3,'','MARITALSTATUS','2022-04-14 12:58:07.036'),
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','Divorced',0,4,4,'','MARITALSTATUS','2022-04-14 12:58:07.036'),
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','Widower',0,4,5,'','MARITALSTATUS','2022-04-14 12:58:07.036'),
+	 (false,true,true,'2022-04-14 12:58:07.036','SETH','Not enrolled',0,4,0,'','MATH','2022-04-14 12:58:07.036'),
+	 (false,true,true,'2022-04-14 12:58:07.036','SETH','Pre-Algebra',0,4,1,'','MATH','2022-04-14 12:58:07.036'),
+	 (false,true,true,'2022-04-14 12:58:07.036','SETH','Algebra I',0,4,2,'','MATH','2022-04-14 12:58:07.036'),
+	 (false,true,true,'2022-04-14 12:58:07.036','SETH','Algebra II',0,4,3,'','MATH','2022-04-14 12:58:07.036'),
+	 (false,true,true,'2022-04-14 12:58:07.036','SETH','Geometry',0,4,4,'','MATH','2022-04-14 12:58:07.036'),
+	 (false,true,true,'2022-04-14 12:58:07.036','SETH','Trigonometry',0,4,5,'','MATH','2022-04-14 12:58:07.036');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.036','SETH','Pre-Calculus',0,4,6,'','MATH','2022-04-14 12:58:07.036'),
+	 (false,true,true,'2022-04-14 12:58:07.036','SETH','Calculus',0,4,7,'','MATH','2022-04-14 12:58:07.036'),
+	 (false,true,true,'2022-04-14 12:58:07.036','SETH','Integrated Math',0,4,8,'','MATH','2022-04-14 12:58:07.036'),
+	 (false,true,true,'2022-04-14 12:58:07.036','SETH','Other',0,4,9,'','MATH','2022-04-14 12:58:07.036'),
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','Navy',0,4,1,'','MILITARYTYPE','2022-04-14 12:58:07.036'),
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','Air Force',0,4,2,'','MILITARYTYPE','2022-04-14 12:58:07.036'),
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','Army',0,4,3,'','MILITARYTYPE','2022-04-14 12:58:07.036'),
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','None',0,4,0,'','MSGSTATUS','2022-04-14 12:58:07.036'),
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','Lowest',0,4,1,'','MSGSTATUS','2022-04-14 12:58:07.036'),
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','Low',0,4,2,'','MSGSTATUS','2022-04-14 12:58:07.036');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','Normal',0,4,3,'','MSGSTATUS','2022-04-14 12:58:07.036'),
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','High',0,4,4,'','MSGSTATUS','2022-04-14 12:58:07.036'),
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','Highest',0,4,5,'','MSGSTATUS','2022-04-14 12:58:07.036'),
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','Unknown/ no response',0,4,0,'','NOENREASON','2022-04-14 12:58:07.036'),
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','Applied but did not gain admission to graduate programs in the reporting year (for students with a bachelor’s degree)',0,4,1,'','NOENREASON','2022-04-14 12:58:07.036'),
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','Did not apply to or declined offers from graduate programs owing to financial reasons (for students with a bachelor''s degree)',0,4,2,'','NOENREASON','2022-04-14 12:58:07.036'),
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','Did not apply to or declined offers from graduate programs owing to health reasons (for students with a bachelor''s degree)',0,4,3,'','NOENREASON','2022-04-14 12:58:07.036'),
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','Did not apply to or declined offers from graduate programs owing to other reasons (for students with a bachelor''s degree',0,4,4,'','NOENREASON','2022-04-14 12:58:07.036'),
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','Withdrew from program (undergraduate or graduate) for academic reasons',0,4,5,'','NOENREASON','2022-04-14 12:58:07.036'),
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','Withdrew from program (undergraduate or graduate) for financial reasons',0,4,6,'','NOENREASON','2022-04-14 12:58:07.036');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.036','SETH','Withdrew from program (undergraduate or graduate) or health reasons',0,4,7,'','NOENREASON','2022-04-14 12:58:07.036'),
+	 (false,false,true,'2022-04-14 12:58:07.044','SETH','Withdrew from program (undergraduate or graduate) for other personal reasons',0,4,8,'','NOENREASON','2022-04-14 12:58:07.044'),
+	 (false,false,true,'2022-04-14 12:58:07.044','SETH','Called for military duty',0,4,9,'','NOENREASON','2022-04-14 12:58:07.044'),
+	 (false,false,true,'2022-04-14 12:58:07.044','SETH','Not applicable; the student was enrolled in at least one term during the academic year being reported',0,4,10,'','NOENREASON','2022-04-14 12:58:07.044'),
+	 (false,false,true,'2022-04-14 12:58:07.044','SETH','Student deceased',0,4,11,'','NOENREASON','2022-04-14 12:58:07.044'),
+	 (false,false,true,'2022-04-14 12:58:07.044','SETH','Did not enroll in research doctoral program',0,4,12,'','NOENREASON','2022-04-14 12:58:07.044'),
+	 (false,false,true,'2022-04-14 12:58:07.046','SETH','Ph.D. attained (not previously reported)',0,4,13,'','NOENREASON','2022-04-14 12:58:07.046'),
+	 (false,true,true,'2022-04-14 12:58:07.046','SETH','Unknown',0,4,0,'','PARTLENGTH','2022-04-14 12:58:07.046'),
+	 (false,true,true,'2022-04-14 12:58:07.046','SETH','0-3 months',0,4,1,'','PARTLENGTH','2022-04-14 12:58:07.046'),
+	 (false,true,true,'2022-04-14 12:58:07.046','SETH','4-6 months',0,4,2,'','PARTLENGTH','2022-04-14 12:58:07.046');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.046','SETH','7-9 months',0,4,3,'','PARTLENGTH','2022-04-14 12:58:07.046'),
+	 (false,true,true,'2022-04-14 12:58:07.046','SETH','10-12 months',0,4,4,'','PARTLENGTH','2022-04-14 12:58:07.046'),
+	 (false,true,true,'2022-04-14 12:58:07.046','SETH','More than 12 months',0,4,5,'','PARTLENGTH','2022-04-14 12:58:07.046'),
+	 (false,true,true,'2022-04-14 12:58:07.046','SETH','Still participating at end of reporting period',0,4,6,'','PARTLENGTH','2022-04-14 12:58:07.046'),
+	 (false,true,true,'2022-04-14 12:58:07.046','SETH','Unknown',0,4,0,'','PARTLEVEL','2022-04-14 12:58:07.046'),
+	 (false,true,true,'2022-04-14 12:58:07.046','SETH','Participated in academic year and summer components',0,4,1,'','PARTLEVEL','2022-04-14 12:58:07.046'),
+	 (false,true,true,'2022-04-14 12:58:07.046','SETH','Participated in academic year and summer bridge',0,4,2,'','PARTLEVEL','2022-04-14 12:58:07.046'),
+	 (false,true,true,'2022-04-14 12:58:07.046','SETH','Participated in academic year component only',0,4,3,'','PARTLEVEL','2022-04-14 12:58:07.046'),
+	 (false,true,true,'2022-04-14 12:58:07.046','SETH','Participated in summer component only',0,4,4,'','PARTLEVEL','2022-04-14 12:58:07.046'),
+	 (false,true,true,'2022-04-14 12:58:07.046','SETH','Participated in summer bridge only',0,4,5,'','PARTLEVEL','2022-04-14 12:58:07.046');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.046','SETH','Prior year participant who received limited follow-up services during reporting period',0,4,6,'','PARTLEVEL','2022-04-14 12:58:07.046'),
+	 (false,true,true,'2022-04-14 12:58:07.046','SETH','No longer used for APR reporting in current year',0,4,7,'','PARTLEVEL','2022-04-14 12:58:07.046'),
+	 (false,false,true,'2022-04-14 12:58:07.046','SETH','Not applicable–prior-year participant who received no project services during the reporting period',0,4,9,'','PARTLEVEL','2022-04-14 12:58:07.046'),
+	 (false,true,true,'2022-04-14 12:58:07.046','SETH','Unknown',0,4,0,'','PARTSTATUS','2022-04-14 12:58:07.046'),
+	 (false,true,true,'2022-04-14 12:58:07.046','SETH','New participant (for reporting period)',0,4,1,'','PARTSTATUS','2022-04-14 12:58:07.046'),
+	 (false,true,true,'2022-04-14 12:58:07.046','SETH','Continuing participant',0,4,2,'','PARTSTATUS','2022-04-14 12:58:07.046'),
+	 (false,true,true,'2022-04-14 12:58:07.046','SETH','Re-entry participant',0,4,3,'','PARTSTATUS','2022-04-14 12:58:07.046'),
+	 (false,true,true,'2022-04-14 12:58:07.046','SETH','Prior-year participant',0,4,4,'','PARTSTATUS','2022-04-14 12:58:07.046'),
+	 (false,false,true,'2022-04-14 12:58:07.046','SETH','Prior-year participant, deceased or permanently incapacitated',0,4,5,'','PARTSTATUS','2022-04-14 12:58:07.046'),
+	 (false,true,true,'2022-04-14 12:58:07.046','SETH','Unknown',0,4,0,'','PARTSTATUSEND','2022-04-14 12:58:07.046');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.046','SETH','Completed VUB project',0,4,1,'','PARTSTATUSEND','2022-04-14 12:58:07.046'),
+	 (false,true,true,'2022-04-14 12:58:07.046','SETH','Did not complete VUB project; no longer participating',0,4,2,'','PARTSTATUSEND','2022-04-14 12:58:07.046'),
+	 (false,true,true,'2022-04-14 12:58:07.046','SETH','Still participating at end of reporting period',0,4,3,'','PARTSTATUSEND','2022-04-14 12:58:07.046'),
+	 (false,false,true,'2022-04-14 12:58:07.046','MANAGER','Withdrew for health reasons',0,4,4,'','PARTSTATUSEND','2022-04-14 12:58:07.046'),
+	 (false,false,true,'2022-04-14 12:58:07.046','MANAGER','Withdrew for academic reasons',0,4,5,'','PARTSTATUSEND','2022-04-14 12:58:07.046'),
+	 (false,false,true,'2022-04-14 12:58:07.067','MANAGER','withdrew for personal reasons',0,4,6,'','PARTSTATUSEND','2022-04-14 12:58:07.067'),
+	 (false,false,true,'2022-04-14 12:58:07.067','MANAGER','Transferred',0,4,7,'','PARTSTATUSEND','2022-04-14 12:58:07.067'),
+	 (false,false,true,'2022-04-14 12:58:07.067','MANAGER','Graduated',0,4,8,'','PARTSTATUSEND','2022-04-14 12:58:07.067'),
+	 (false,false,true,'2022-04-14 12:58:07.067','MANAGER','Graduated & Transferred',0,4,9,'','PARTSTATUSEND','2022-04-14 12:58:07.067'),
+	 (false,false,true,'2022-04-14 12:58:07.067','MANAGER','Enrolled in graduate degree programs',0,4,10,'','PARTSTATUSEND','2022-04-14 12:58:07.067');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.067','MANAGER','Continuing Student',0,4,11,'','PARTSTATUSEND','2022-04-14 12:58:07.067'),
+	 (false,false,true,'2022-04-14 12:58:07.067','SETH','Unknown',0,4,0,'','PERSISTDEN','2022-04-14 12:58:07.067'),
+	 (false,false,true,'2022-04-14 12:58:07.067','SETH','Student enrolled in postsecondary education for at least some part of Current_Fiscal_Year_Long and for the first time since participating in VUB',0,4,1,'','PERSISTDEN','2022-04-14 12:58:07.067'),
+	 (false,false,true,'2022-04-14 12:58:07.067','SETH','Not applicable, all other participants',0,4,2,'','PERSISTDEN','2022-04-14 12:58:07.067'),
+	 (false,false,true,'2022-04-14 12:58:07.067','SETH','No response/Unknown',0,4,0,'','PERSISTEND','2022-04-14 12:58:07.067'),
+	 (false,false,true,'2022-04-14 12:58:07.067','SETH','Received certificate/diploma from a program that is less than 2 years',0,4,1,'','PERSISTEND','2022-04-14 12:58:07.067'),
+	 (false,false,true,'2022-04-14 12:58:07.067','SETH','Graduated with an associate’s degree (did not transfer to a 4-year institution) OR graduated with a bachelor’s degree',0,4,2,'','PERSISTEND','2022-04-14 12:58:07.067'),
+	 (false,false,true,'2022-04-14 12:58:07.075','SETH','Graduated with an associate’s degree and transferred to a four-year institution',0,4,3,'','PERSISTEND','2022-04-14 12:58:07.075'),
+	 (false,false,true,'2022-04-14 12:58:07.075','SETH','Transferred to another institution',0,4,4,'','PERSISTEND','2022-04-14 12:58:07.075'),
+	 (false,false,true,'2022-04-14 12:58:07.075','SETH','Withdrew or did not return',0,4,5,'','PERSISTEND','2022-04-14 12:58:07.075');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.075','SETH','Deceased',0,4,6,'','PERSISTEND','2022-04-14 12:58:07.075'),
+	 (false,false,true,'2022-04-14 12:58:07.075','SETH','Called to military service',0,4,7,'','PERSISTEND','2022-04-14 12:58:07.075'),
+	 (false,false,true,'2022-04-14 12:58:07.075','SETH','Still enrolled at grantee institution (no degree or certificate completed)',0,4,8,'','PERSISTEND','2022-04-14 12:58:07.075'),
+	 (false,false,true,'2022-04-14 12:58:07.075','SETH','Still enrolled at grantee institution (received certificate or associate’s degree and is pursuing an associate’s or bachelor’s degree)',0,4,9,'','PERSISTEND','2022-04-14 12:58:07.075'),
+	 (false,false,true,'2022-04-14 12:58:07.075','SETH','Completed program requirements but did not receive certificate, diploma, or degree',0,4,10,'','PERSISTEND','2022-04-14 12:58:07.075'),
+	 (false,false,true,'2022-04-14 12:58:07.075','SETH','Unknown',0,4,0,'','PERSISTNUM','2022-04-14 12:58:07.075'),
+	 (false,false,true,'2022-04-14 12:58:07.075','SETH','Participant coded 1 in field #38 who enrolled in postsecondary education for the fall term Next_Fiscal_Year_Short',0,4,1,'','PERSISTNUM','2022-04-14 12:58:07.075'),
+	 (false,false,true,'2022-04-14 12:58:07.075','SETH','Participant coded 1 in field #38 who did not enroll in postsecondary education for the fall term Next_Fiscal_Year_Short',0,4,2,'','PERSISTNUM','2022-04-14 12:58:07.075'),
+	 (false,false,true,'2022-04-14 12:58:07.075','SETH','Not applicable, participant not coded 1 in field #38',0,4,3,'','PERSISTNUM','2022-04-14 12:58:07.075'),
+	 (false,false,true,'2022-04-14 12:58:07.075','SETH','No response/Unknown',0,4,0,'','PERSISTSTA','2022-04-14 12:58:07.075');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.075','SETH','Enrolled at grantee institution',0,4,1,'','PERSISTSTA','2022-04-14 12:58:07.075'),
+	 (false,false,true,'2022-04-14 12:58:07.075','SETH','Not enrolled at grantee institution (transferred from a 2-year to a 4-year institution)',0,4,2,'','PERSISTSTA','2022-04-14 12:58:07.075'),
+	 (false,false,true,'2022-04-14 12:58:07.075','SETH','Not enrolled at grantee institution',0,4,3,'','PERSISTSTA','2022-04-14 12:58:07.075'),
+	 (false,false,true,'2022-04-14 12:58:07.075','SETH','Unknown',0,4,0,'','PROJRETAIN','2022-04-14 12:58:07.075'),
+	 (false,false,true,'2022-04-14 12:58:07.077','SETH','9th, 10th, or 11th-grade participant in 2007-08 who continued to participate in 2008-09 in the project that is reporting',0,4,1,'','PROJRETAIN','2022-04-14 12:58:07.077'),
+	 (false,false,true,'2022-04-14 12:58:07.077','SETH','9th, 10th, or 11th-grader in 2007-08 who DID NOT continue to participate in 2008-09 in the project that is reporting',0,4,2,'','PROJRETAIN','2022-04-14 12:58:07.077'),
+	 (false,false,true,'2022-04-14 12:58:07.077','SETH','Transferred to another UB or UBMS project',0,4,3,'','PROJRETAIN','2022-04-14 12:58:07.077'),
+	 (false,false,true,'2022-04-14 12:58:07.077','SETH','Not applicable, participant served for the first time after the beginning of the 2008–09 academic year (used only by projects with December 1, 2007, start dates)',0,4,8,'','PROJRETAIN','2022-04-14 12:58:07.077'),
+	 (false,false,true,'2022-04-14 12:58:07.077','SETH','Not applicable, was not a 9th, 10th, or 11th-grade participant in the 2007-08 academic year',0,4,9,'','PROJRETAIN','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Unknown',0,4,0,'','PSETERM','2022-04-14 12:58:07.077');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Quarter system',0,4,1,'','PSETERM','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Semester system',0,4,2,'','PSETERM','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Other',0,4,3,'','PSETERM','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Not Applicable',0,4,9,'','PSETERM','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Did not complete program for unknown reasons',0,4,0,'','REASON','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Successfully completed program',0,4,1,'','REASON','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Did not complete program due to current need or desire for employment',0,4,2,'','REASON','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Did not complete program, moved out of projects service area',0,4,3,'','REASON','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Did not complete program, no longer intereste',0,4,4,'','REASON','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Did not complete program due to difficulties with academics',0,4,5,'','REASON','2022-04-14 12:58:07.077');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Did not complete program due to family responsibilities',0,4,6,'','REASON','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Did not complete program, left after call to active duty',0,4,7,'','REASON','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Did not complete program due to medical reasons',0,4,8,'','REASON','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Did not complete program due to death or permanently incapacity of participant',0,4,9,'','REASON','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Did not complete program due to other reasons',0,4,10,'','REASON','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Not applicable, participant is still in program',0,4,88,'','REASON','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Not applicable, participant is still in program',0,4,99,'','REASON','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Unknown',0,4,0,'','RECRUIT','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Referral from community agency',0,4,1,'','RECRUIT','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Referral from veterans agency (e.g., Vet Admin, veterans center)',0,4,2,'','RECRUIT','2022-04-14 12:58:07.077');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Advertisement',0,4,3,'','RECRUIT','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Projects Web Site',0,4,4,'','RECRUIT','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Referral from educational institution',0,4,5,'','RECRUIT','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Word of mouth/walk-in',0,4,6,'','RECRUIT','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Referral from another TRIO project ( e.g. TS, SSS, EOC or other VUB projects)',0,4,7,'','RECRUIT','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Referral from non-TRIO program',0,4,8,'','RECRUIT','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Other',0,4,10,'','RECRUIT','2022-04-14 12:58:07.077'),
+	 (false,false,true,'2022-04-14 12:58:07.077','SETH','Regional (i.e., serves at least two states)',0,4,1,'','REGIONAL','2022-04-14 12:58:07.077'),
+	 (false,false,true,'2022-04-14 12:58:07.077','SETH','Non-regional (i.e., operates within a state or a locality)',0,4,2,'','REGIONAL','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Not enrolled',0,4,0,'','SCIENCE','2022-04-14 12:58:07.077');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Introductory Science/Earth Science',0,4,1,'','SCIENCE','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Biology',0,4,2,'','SCIENCE','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Chemistry',0,4,3,'','SCIENCE','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Physics',0,4,4,'','SCIENCE','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Integrated Science',0,4,5,'','SCIENCE','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Other',0,4,6,'','SCIENCE','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Unknown',0,4,0,'','SELFTRAN','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Official college transcript',0,4,1,'','SELFTRAN','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Institutional data but not an official transcript',0,4,2,'','SELFTRAN','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Self-reported by participant',0,4,3,'','SELFTRAN','2022-04-14 12:58:07.077');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Other third-party verification, e.g., National Student Clearinghouse',0,4,4,'','SELFTRAN','2022-04-14 12:58:07.077'),
+	 (false,false,true,'2022-04-14 12:58:07.077','SETH','Not applicable, deceased or permanently incapacitated',0,4,6,'','SELFTRAN','2022-04-14 12:58:07.077'),
+	 (false,false,true,'2022-04-14 12:58:07.077','SETH','Not applicable, not yet completed the educational program offered by the project',0,4,8,'','SELFTRAN','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Not applicable, completed educational requirements for postsecondary education but has not yet enrolled in such a program',0,4,9,'','SELFTRAN','2022-04-14 12:58:07.077'),
+	 (false,false,true,'2022-04-14 12:58:07.077','SETH','Spring',0,4,1,'','SEMESTER','2022-04-14 12:58:07.077'),
+	 (false,false,true,'2022-04-14 12:58:07.077','SETH','Summer',0,4,2,'','SEMESTER','2022-04-14 12:58:07.077'),
+	 (false,false,true,'2022-04-14 12:58:07.077','SETH','Fall',0,4,3,'','SEMESTER','2022-04-14 12:58:07.077'),
+	 (false,false,true,'2022-04-14 12:58:07.077','SETH','Winter',0,4,4,'','SEMESTER','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Component',0,4,1,'','SERHEADING','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','',0,4,2,'','SERHEADING','2022-04-14 12:58:07.077');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','',0,4,3,'','SERHEADING','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','',0,4,4,'','SERHEADING','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','',0,4,5,'','SERHEADING','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Instructions',0,4,6,'','SERHEADING','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Activities',0,4,1,'','SERTYPE','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Activity Group',0,4,2,'','SERTYPE','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Veteran Group',0,4,3,'','SERTYPE','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','End Status',0,4,4,'','SERTYPE','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','Form Type',0,4,5,'','SERTYPE','2022-04-14 12:58:07.077'),
+	 (false,true,true,'2022-04-14 12:58:07.077','SETH','APR Subject',0,4,6,'','SERTYPE','2022-04-14 12:58:07.077');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.077','SETH','HS Dropout',0,4,1,'','STANDING','2022-04-14 12:58:07.077'),
+	 (false,false,true,'2022-04-14 12:58:07.077','SETH','College Dropout',0,4,2,'','STANDING','2022-04-14 12:58:07.077'),
+	 (false,false,true,'2022-04-14 12:58:07.077','SETH','Out of School',0,4,3,'','STANDING','2022-04-14 12:58:07.077'),
+	 (false,false,true,'2022-04-14 12:58:07.077','SETH','Night School',0,4,4,'','STANDING','2022-04-14 12:58:07.077'),
+	 (false,false,true,'2022-04-14 12:58:07.077','SETH','6th Grade',0,4,6,'','STANDING','2022-04-14 12:58:07.077'),
+	 (false,false,true,'2022-04-14 12:58:07.077','SETH','7th Grade',0,4,7,'','STANDING','2022-04-14 12:58:07.077'),
+	 (false,false,true,'2022-04-14 12:58:07.077','SETH','8th Grade',0,4,8,'','STANDING','2022-04-14 12:58:07.077'),
+	 (false,false,true,'2022-04-14 12:58:07.077','SETH','9th grade',0,4,9,'','STANDING','2022-04-14 12:58:07.077'),
+	 (false,false,true,'2022-04-14 12:58:07.077','SETH','10th grade',0,4,10,'','STANDING','2022-04-14 12:58:07.077'),
+	 (false,false,true,'2022-04-14 12:58:07.077','SETH','11th grade',0,4,11,'','STANDING','2022-04-14 12:58:07.077');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.077','SETH','12th grade',0,4,12,'','STANDING','2022-04-14 12:58:07.077'),
+	 (false,false,true,'2022-04-14 12:58:07.077','SETH','1st year Graduate',0,4,13,'','STANDING','2022-04-14 12:58:07.077'),
+	 (false,false,true,'2022-04-14 12:58:07.077','SETH','2nd year Graduate',0,4,14,'','STANDING','2022-04-14 12:58:07.077'),
+	 (false,false,true,'2022-04-14 12:58:07.077','SETH','3rd year Graduate',0,4,15,'','STANDING','2022-04-14 12:58:07.077'),
+	 (false,false,true,'2022-04-14 12:58:07.085','SETH','4th year Graduate',0,4,16,'','STANDING','2022-04-14 12:58:07.085'),
+	 (false,false,true,'2022-04-14 12:58:07.085','SETH','1st year-Prior Year Student',0,4,21,'','STANDING','2022-04-14 12:58:07.085'),
+	 (false,false,true,'2022-04-14 12:58:07.085','SETH','2nd year-Prior Year Student',0,4,22,'','STANDING','2022-04-14 12:58:07.085'),
+	 (false,false,true,'2022-04-14 12:58:07.085','SETH','3rd year-Prior Year Student',0,4,23,'','STANDING','2022-04-14 12:58:07.085'),
+	 (false,false,true,'2022-04-14 12:58:07.085','SETH','4th year-Prior Year Student',0,4,24,'','STANDING','2022-04-14 12:58:07.085'),
+	 (false,false,true,'2022-04-14 12:58:07.085','MANAGER','Adult w/o HS Cred',0,4,108,'','STANDING','2022-04-14 12:58:07.085');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.085','MANAGER','Postsecondary Transfer',0,4,109,'','STANDING','2022-04-14 12:58:07.085'),
+	 (false,false,true,'2022-04-14 12:58:07.085','MANAGER','HS/GED Grad',0,4,110,'','STANDING','2022-04-14 12:58:07.085'),
+	 (false,false,true,'2022-04-14 12:58:07.085','SETH','APR Column #1',0,4,1,'','STANDINGGROUPTYPE','2022-04-14 12:58:07.085'),
+	 (false,false,true,'2022-04-14 12:58:07.085','SETH','APR Column #2',0,4,2,'','STANDINGGROUPTYPE','2022-04-14 12:58:07.085'),
+	 (false,false,true,'2022-04-14 12:58:07.085','SETH','APR Column #3',0,4,3,'','STANDINGGROUPTYPE','2022-04-14 12:58:07.085'),
+	 (false,false,true,'2022-04-14 12:58:07.085','SETH','Unknown',0,4,0,'','STATE10GRADE','2022-04-14 12:58:07.085'),
+	 (false,false,true,'2022-04-14 12:58:07.085','SETH','10th grade',0,4,1,'','STATE10GRADE','2022-04-14 12:58:07.085'),
+	 (false,false,true,'2022-04-14 12:58:07.085','SETH','11th grade',0,4,2,'','STATE10GRADE','2022-04-14 12:58:07.085'),
+	 (false,false,true,'2022-04-14 12:58:07.085','SETH','12th grade',0,4,3,'','STATE10GRADE','2022-04-14 12:58:07.085'),
+	 (false,false,true,'2022-04-14 12:58:07.085','SETH','Project not providing information in 2003-04 and 2004-05',0,4,8,'','STATE10GRADE','2022-04-14 12:58:07.085');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.087','SETH','Not Applicable',0,4,9,'','STATE10GRADE','2022-04-14 12:58:07.087'),
+	 (false,false,true,'2022-04-14 12:58:07.087','SETH','Unknown',0,4,0,'','STATE10MET','2022-04-14 12:58:07.087'),
+	 (false,false,true,'2022-04-14 12:58:07.087','SETH','Yes-student met standard',0,4,1,'','STATE10MET','2022-04-14 12:58:07.087'),
+	 (false,false,true,'2022-04-14 12:58:07.087','SETH','No-student did not meet standard',0,4,2,'','STATE10MET','2022-04-14 12:58:07.087'),
+	 (false,false,true,'2022-04-14 12:58:07.087','SETH','Project not providing information in 2003-04 and 2004-05',0,4,8,'','STATE10MET','2022-04-14 12:58:07.087'),
+	 (false,false,true,'2022-04-14 12:58:07.087','SETH','Not applicable student did not take assessment',0,4,9,'','STATE10MET','2022-04-14 12:58:07.087'),
+	 (false,false,true,'2022-04-14 12:58:07.087','SETH','Unknown',0,4,0,'','STATE8MET','2022-04-14 12:58:07.087'),
+	 (false,false,true,'2022-04-14 12:58:07.087','SETH','Yes-student initially met standard',0,4,1,'','STATE8MET','2022-04-14 12:58:07.087'),
+	 (false,false,true,'2022-04-14 12:58:07.087','SETH','No-student did not initially meet standard',0,4,2,'','STATE8MET','2022-04-14 12:58:07.087'),
+	 (false,false,true,'2022-04-14 12:58:07.087','SETH','Not applicable to UBMS projects',0,4,8,'','STATE8MET','2022-04-14 12:58:07.087');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.087','SETH','Not applicable student did not take assessment',0,4,9,'','STATE8MET','2022-04-14 12:58:07.087'),
+	 (false,false,true,'2022-04-14 12:58:07.087','SETH','Unknown',0,4,0,'','STATETEST','2022-04-14 12:58:07.087'),
+	 (false,false,true,'2022-04-14 12:58:07.087','SETH','Yes-project measures student’s achievement using state-developed test',0,4,1,'','STATETEST','2022-04-14 12:58:07.087'),
+	 (false,false,true,'2022-04-14 12:58:07.087','SETH','No-project does not measure student’s achievement using state-developed test',0,4,2,'','STATETEST','2022-04-14 12:58:07.087'),
+	 (false,false,true,'2022-04-14 12:58:07.087','SETH','Not Applicable',0,4,9,'','STATETEST','2022-04-14 12:58:07.087'),
+	 (false,false,true,'2022-04-14 12:58:07.087','SETH','No response/Unknown',0,4,0,'','SUMBRIDGE','2022-04-14 12:58:07.087'),
+	 (false,false,true,'2022-04-14 12:58:07.087','SETH','Participated in summer bridge program offered by the project',0,4,1,'','SUMBRIDGE','2022-04-14 12:58:07.087'),
+	 (false,false,true,'2022-04-14 12:58:07.087','SETH','Student did not participate in summer bridge program',0,4,2,'','SUMBRIDGE','2022-04-14 12:58:07.087'),
+	 (false,false,true,'2022-04-14 12:58:07.087','SETH','Not applicable (project did not offer summer bridge program)',0,4,7,'','SUMBRIDGE','2022-04-14 12:58:07.087'),
+	 (false,false,true,'2022-04-14 12:58:07.087','SETH','Not applicable (continuing participant)',0,4,8,'','SUMBRIDGE','2022-04-14 12:58:07.087');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.087','SETH','Not applicable (prior-year participant)',0,4,9,'','SUMBRIDGE','2022-04-14 12:58:07.087'),
+	 (false,false,true,'2022-04-14 12:58:07.087','SETH','Yes',0,4,1,'','SUMMERRESI','2022-04-14 12:58:07.087'),
+	 (false,false,true,'2022-04-14 12:58:07.087','SETH','No',0,4,2,'','SUMMERRESI','2022-04-14 12:58:07.087'),
+	 (false,false,true,'2022-04-14 12:58:07.087','SETH','Some participants are residential, others commute',0,4,3,'','SUMMERRESI','2022-04-14 12:58:07.087'),
+	 (false,true,true,'2022-04-14 12:58:07.087','SETH','Unknown',0,4,0,'','TESTTYPE','2022-04-14 12:58:07.087'),
+	 (false,true,true,'2022-04-14 12:58:07.087','SETH','Comprehensive Test of Basic Skills (CTBS)',0,4,1,'','TESTTYPE','2022-04-14 12:58:07.087'),
+	 (false,true,true,'2022-04-14 12:58:07.087','SETH','Stanford Achievement Test (SAT-9 or SAT-10)',0,4,2,'','TESTTYPE','2022-04-14 12:58:07.087'),
+	 (false,true,true,'2022-04-14 12:58:07.087','SETH','Option no longer used-California Achievement Test (CAT)',0,4,3,'','TESTTYPE','2022-04-14 12:58:07.087'),
+	 (false,true,true,'2022-04-14 12:58:07.097','SETH','Iowa Test of Basic Skills',0,4,4,'','TESTTYPE','2022-04-14 12:58:07.097'),
+	 (false,true,true,'2022-04-14 12:58:07.097','SETH','Option no longer used-Texas Assessment of Academic Skills (TAAS)',0,4,5,'','TESTTYPE','2022-04-14 12:58:07.097');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.097','SETH','Nelson Denny',0,4,6,'','TESTTYPE','2022-04-14 12:58:07.097'),
+	 (false,true,true,'2022-04-14 12:58:07.097','SETH','Option no longer used-ARIO Assessment Tools',0,4,7,'','TESTTYPE','2022-04-14 12:58:07.097'),
+	 (false,true,true,'2022-04-14 12:58:07.097','SETH','Other national test',0,4,8,'','TESTTYPE','2022-04-14 12:58:07.097'),
+	 (false,false,true,'2022-04-14 12:58:07.097','SETH','TerraNova',0,4,9,'','TESTTYPE','2022-04-14 12:58:07.097'),
+	 (false,false,true,'2022-04-14 12:58:07.097','SETH','ACT’s PLAN',0,4,10,'','TESTTYPE','2022-04-14 12:58:07.097'),
+	 (false,false,true,'2022-04-14 12:58:07.097','SETH','ACT',0,4,11,'','TESTTYPE','2022-04-14 12:58:07.097'),
+	 (false,false,true,'2022-04-14 12:58:07.097','SETH','PSAT',0,4,12,'','TESTTYPE','2022-04-14 12:58:07.097'),
+	 (false,false,true,'2022-04-14 12:58:07.097','SETH','SAT',0,4,13,'','TESTTYPE','2022-04-14 12:58:07.097'),
+	 (false,true,true,'2022-04-14 12:58:07.097','SETH','Not Applicable',0,4,99,'','TESTTYPE','2022-04-14 12:58:07.097'),
+	 (false,false,true,'2022-04-14 12:58:07.097','SETH','No response/Unknown',0,4,0,'','TRANSFERS','2022-04-14 12:58:07.097');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.097','SETH','Transferred from a 2-year institution to another 2-year institution',0,4,1,'','TRANSFERS','2022-04-14 12:58:07.097'),
+	 (false,false,true,'2022-04-14 12:58:07.097','SETH','Transferred from a 2-year institution to a 4-year institution',0,4,2,'','TRANSFERS','2022-04-14 12:58:07.097'),
+	 (false,false,true,'2022-04-14 12:58:07.097','SETH','Transferred from a 4-year institution to another 4-year institution',0,4,3,'','TRANSFERS','2022-04-14 12:58:07.097'),
+	 (false,false,true,'2022-04-14 12:58:07.097','SETH','Transferred from a 4-year institution to a 2-year institution',0,4,4,'','TRANSFERS','2022-04-14 12:58:07.097'),
+	 (false,false,true,'2022-04-14 12:58:07.097','SETH','Not applicable – still enrolled or graduated (participant is still enrolled at the grantee-institution, completed certificate/diploma program, graduated with an associate’s but did not transfer, or graduated with a bachelor’s degree)',0,4,8,'','TRANSFERS','2022-04-14 12:58:07.097'),
+	 (false,false,true,'2022-04-14 12:58:07.097','SETH','Not applicable -- not enrolled at grantee institution (participant withdrew, did not return, was called for military service or is deceased)',0,4,9,'','TRANSFERS','2022-04-14 12:58:07.097'),
+	 (false,false,true,'2022-04-14 12:58:07.097','SETH','Unknown',0,4,0,'','VCALL','2022-04-14 12:58:07.097'),
+	 (false,false,true,'2022-04-14 12:58:07.097','SETH','Yes, current participant',0,4,1,'','VCALL','2022-04-14 12:58:07.097'),
+	 (false,false,true,'2022-04-14 12:58:07.097','SETH','Yes, prior participant',0,4,2,'','VCALL','2022-04-14 12:58:07.097'),
+	 (false,false,true,'2022-04-14 12:58:07.105','SETH','No',0,4,3,'','VCALL','2022-04-14 12:58:07.105');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.105','SETH','Unknown',0,4,0,'','VENTERJOB','2022-04-14 12:58:07.105'),
+	 (false,true,true,'2022-04-14 12:58:07.105','SETH','Unemployed',0,4,1,'','VENTERJOB','2022-04-14 12:58:07.105'),
+	 (false,true,true,'2022-04-14 12:58:07.105','SETH','Employed part time',0,4,2,'','VENTERJOB','2022-04-14 12:58:07.105'),
+	 (false,true,true,'2022-04-14 12:58:07.105','SETH','Employed full time',0,4,3,'','VENTERJOB','2022-04-14 12:58:07.105'),
+	 (false,true,true,'2022-04-14 12:58:07.105','SETH','Retired',0,4,4,'','VENTERJOB','2022-04-14 12:58:07.105'),
+	 (false,true,true,'2022-04-14 12:58:07.105','SETH','Unknown',0,4,0,'','VENTERLEVEL','2022-04-14 12:58:07.105'),
+	 (false,true,true,'2022-04-14 12:58:07.105','SETH','High School Dropout',0,4,1,'','VENTERLEVEL','2022-04-14 12:58:07.105'),
+	 (false,true,true,'2022-04-14 12:58:07.105','SETH','High School Graduate',0,4,2,'','VENTERLEVEL','2022-04-14 12:58:07.105'),
+	 (false,true,true,'2022-04-14 12:58:07.105','SETH','GED/High School Equivalency Credential Recipient',0,4,3,'','VENTERLEVEL','2022-04-14 12:58:07.105'),
+	 (false,true,true,'2022-04-14 12:58:07.105','SETH','High School Graduate with Some College',0,4,4,'','VENTERLEVEL','2022-04-14 12:58:07.105');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.105','SETH','GED/High School Equivalency with Some College',0,4,5,'','VENTERLEVEL','2022-04-14 12:58:07.105'),
+	 (false,false,true,'2022-04-14 12:58:07.105','SETH','Unknown',0,4,0,'','VETREVSCHE','2022-04-14 12:58:07.105'),
+	 (false,false,true,'2022-04-14 12:58:07.105','SETH','2008–09 budget year',0,4,1,'','VETREVSCHE','2022-04-14 12:58:07.105'),
+	 (false,false,true,'2022-04-14 12:58:07.105','SETH','2009–10 budget year',0,4,2,'','VETREVSCHE','2022-04-14 12:58:07.105'),
+	 (false,false,true,'2022-04-14 12:58:07.105','SETH','2010–11 budget year',0,4,3,'','VETREVSCHE','2022-04-14 12:58:07.105'),
+	 (false,false,true,'2022-04-14 12:58:07.107','SETH','2011–12 budget year',0,4,4,'','VETREVSCHE','2022-04-14 12:58:07.107'),
+	 (false,false,true,'2022-04-14 12:58:07.107','SETH','2012-13 budget year',0,4,5,'','VETREVSCHE','2022-04-14 12:58:07.107'),
+	 (false,false,true,'2022-04-14 12:58:07.107','SETH','2013-14 budget year',0,4,6,'','VETREVSCHE','2022-04-14 12:58:07.107'),
+	 (false,false,true,'2022-04-14 12:58:07.107','SETH','Not applicable, scheduled completion year is unchanged',0,4,8,'','VETREVSCHE','2022-04-14 12:58:07.107'),
+	 (false,false,true,'2022-04-14 12:58:07.107','SETH','Not applicable, prior participant',0,4,9,'','VETREVSCHE','2022-04-14 12:58:07.107');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.107','SETH','Unknown',0,4,0,'','VETSCHE','2022-04-14 12:58:07.107'),
+	 (false,false,true,'2022-04-14 12:58:07.107','SETH','2007–08 budget year',0,4,1,'','VETSCHE','2022-04-14 12:58:07.107'),
+	 (false,false,true,'2022-04-14 12:58:07.107','SETH','2008–09 budget year',0,4,2,'','VETSCHE','2022-04-14 12:58:07.107'),
+	 (false,false,true,'2022-04-14 12:58:07.107','SETH','2009–10 budget year',0,4,3,'','VETSCHE','2022-04-14 12:58:07.107'),
+	 (false,false,true,'2022-04-14 12:58:07.107','SETH','2010–11 budget year',0,4,4,'','VETSCHE','2022-04-14 12:58:07.107'),
+	 (false,false,true,'2022-04-14 12:58:07.107','','2011-12 budget year',0,4,5,'','VETSCHE','2022-04-14 12:58:07.107'),
+	 (false,false,true,'2022-04-14 12:58:07.107','SETH','2012-13 budget year',0,4,6,'','VETSCHE','2022-04-14 12:58:07.107'),
+	 (false,false,true,'2022-04-14 12:58:07.107','SETH','Not applicable, prior participant',0,4,9,'','VETSCHE','2022-04-14 12:58:07.107'),
+	 (false,false,true,'2022-04-14 12:58:07.107','SETH','Unknown',0,4,0,'','VETSCHECIR','2022-04-14 12:58:07.107'),
+	 (false,false,true,'2022-04-14 12:58:07.107','SETH','Participant has not had a hiatus in participation from one year to another and was active in the VUB program when rescheduling occurred',0,4,1,'','VETSCHECIR','2022-04-14 12:58:07.107');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.107','SETH','Participant returned from active duty military service',0,4,2,'','VETSCHECIR','2022-04-14 12:58:07.107'),
+	 (false,false,true,'2022-04-14 12:58:07.127','SETH','2011',0,4,11,'','YEARCOGRD','2022-04-14 12:58:07.127'),
+	 (false,false,true,'2022-04-14 12:58:07.107','SETH','Reentry participant whose hiatus in participation from one year to another was not due to active duty',0,4,3,'','VETSCHECIR','2022-04-14 12:58:07.107'),
+	 (false,false,true,'2022-04-14 12:58:07.107','SETH','Not applicable, scheduled completion year is unchanged',0,4,8,'','VETSCHECIR','2022-04-14 12:58:07.107'),
+	 (false,false,true,'2022-04-14 12:58:07.107','SETH','Not applicable, prior participant',0,4,9,'','VETSCHECIR','2022-04-14 12:58:07.107'),
+	 (false,false,true,'2022-04-14 12:58:07.107','SETH','Unknown',0,4,0,'','VETSCHEREA','2022-04-14 12:58:07.107'),
+	 (false,false,true,'2022-04-14 12:58:07.107','SETH','Change in educational plan',0,4,1,'','VETSCHEREA','2022-04-14 12:58:07.107'),
+	 (false,false,true,'2022-04-14 12:58:07.115','SETH','Health concerns of participant or spouse',0,4,2,'','VETSCHEREA','2022-04-14 12:58:07.115'),
+	 (false,false,true,'2022-04-14 12:58:07.115','SETH','Return after active duty military service',0,4,3,'','VETSCHEREA','2022-04-14 12:58:07.115'),
+	 (false,false,true,'2022-04-14 12:58:07.115','SETH','Lost or gained employment',0,4,4,'','VETSCHEREA','2022-04-14 12:58:07.115');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.115','SETH','Financial instability',0,4,5,'','VETSCHEREA','2022-04-14 12:58:07.115'),
+	 (false,false,true,'2022-04-14 12:58:07.115','SETH','Family responsibilities',0,4,6,'','VETSCHEREA','2022-04-14 12:58:07.115'),
+	 (false,false,true,'2022-04-14 12:58:07.115','SETH','Other',0,4,7,'','VETSCHEREA','2022-04-14 12:58:07.115'),
+	 (false,false,true,'2022-04-14 12:58:07.115','SETH','Not applicable, scheduled completion year is unchanged',0,4,8,'','VETSCHEREA','2022-04-14 12:58:07.115'),
+	 (false,false,true,'2022-04-14 12:58:07.117','SETH','Not applicable, prior participant',0,4,9,'','VETSCHEREA','2022-04-14 12:58:07.117'),
+	 (false,false,true,'2022-04-14 12:58:07.117','SETH','Unknown',0,4,0,'','VETTEST','2022-04-14 12:58:07.117'),
+	 (false,false,true,'2022-04-14 12:58:07.117','SETH','Yes, participant took the tests and improved',0,4,1,'','VETTEST','2022-04-14 12:58:07.117'),
+	 (false,false,true,'2022-04-14 12:58:07.117','SETH','No, participant took the tests and did not improve',0,4,2,'','VETTEST','2022-04-14 12:58:07.117'),
+	 (false,false,true,'2022-04-14 12:58:07.117','SETH','Not applicable, posttest not yet completed as of the end of budget period',0,4,8,'','VETTEST','2022-04-14 12:58:07.117'),
+	 (false,false,true,'2022-04-14 12:58:07.117','SETH','Not applicable, prior-year participant',0,4,9,'','VETTEST','2022-04-14 12:58:07.117');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.117','SETH','Unknown',0,4,0,'','VFINAIDREC','2022-04-14 12:58:07.117'),
+	 (false,true,true,'2022-04-14 12:58:07.117','SETH','Pell grant only',0,4,1,'','VFINAIDREC','2022-04-14 12:58:07.117'),
+	 (false,true,true,'2022-04-14 12:58:07.117','SETH','FFEL loan',0,4,2,'','VFINAIDREC','2022-04-14 12:58:07.117'),
+	 (false,true,true,'2022-04-14 12:58:07.117','SETH','Direct loan',0,4,3,'','VFINAIDREC','2022-04-14 12:58:07.117'),
+	 (false,true,true,'2022-04-14 12:58:07.117','SETH','College work study only',0,4,4,'','VFINAIDREC','2022-04-14 12:58:07.117'),
+	 (false,true,true,'2022-04-14 12:58:07.117','SETH','Institutional aid only',0,4,5,'','VFINAIDREC','2022-04-14 12:58:07.117'),
+	 (false,true,true,'2022-04-14 12:58:07.117','SETH','State grant only',0,4,6,'','VFINAIDREC','2022-04-14 12:58:07.117'),
+	 (false,true,true,'2022-04-14 12:58:07.117','SETH','Pell grant and FFEL loan',0,4,7,'','VFINAIDREC','2022-04-14 12:58:07.117'),
+	 (false,true,true,'2022-04-14 12:58:07.117','SETH','Pell grant and Direct loan',0,4,8,'','VFINAIDREC','2022-04-14 12:58:07.117'),
+	 (false,true,true,'2022-04-14 12:58:07.117','SETH','Multiple federal aid',0,4,9,'','VFINAIDREC','2022-04-14 12:58:07.117');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.117','SETH','Multiple federal and other aid',0,4,10,'','VFINAIDREC','2022-04-14 12:58:07.117'),
+	 (false,true,true,'2022-04-14 12:58:07.117','SETH','Montgomery G.I. scholarship',0,4,11,'','VFINAIDREC','2022-04-14 12:58:07.117'),
+	 (false,true,true,'2022-04-14 12:58:07.117','SETH','Veterans Benefits',0,4,12,'','VFINAIDREC','2022-04-14 12:58:07.117'),
+	 (false,true,true,'2022-04-14 12:58:07.117','SETH','No aid awarded',0,4,13,'','VFINAIDREC','2022-04-14 12:58:07.117'),
+	 (false,true,true,'2022-04-14 12:58:07.117','SETH','No aid needed',0,4,14,'','VFINAIDREC','2022-04-14 12:58:07.117'),
+	 (false,false,true,'2022-04-14 12:58:07.117','MANAGER','State Vocational Rehabilitation',0,4,15,'','VFINAIDREC','2022-04-14 12:58:07.117'),
+	 (false,false,true,'2022-04-14 12:58:07.117','MANAGER','Not applicable, not yet completed educational program offered by project',0,4,88,'','VFINAIDREC','2022-04-14 12:58:07.117'),
+	 (false,true,true,'2022-04-14 12:58:07.117','SETH','Not Applicable',0,4,99,'','VFINAIDREC','2022-04-14 12:58:07.117'),
+	 (false,true,true,'2022-04-14 12:58:07.117','SETH','Unknown',0,4,0,'','VGRADELEVEL','2022-04-14 12:58:07.117'),
+	 (false,true,true,'2022-04-14 12:58:07.117','SETH','High School Dropout',0,4,1,'','VGRADELEVEL','2022-04-14 12:58:07.117');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.125','SETH','High School Graduate',0,4,2,'','VGRADELEVEL','2022-04-14 12:58:07.125'),
+	 (false,true,true,'2022-04-14 12:58:07.125','SETH','Obtained high school equivalency degree',0,4,3,'','VGRADELEVEL','2022-04-14 12:58:07.125'),
+	 (false,true,true,'2022-04-14 12:58:07.125','SETH','Obtained high school equivalency degree and accepted in postsecondary',0,4,4,'','VGRADELEVEL','2022-04-14 12:58:07.125'),
+	 (false,true,true,'2022-04-14 12:58:07.125','SETH','Accepted for enrollment in postsecondary',0,4,5,'','VGRADELEVEL','2022-04-14 12:58:07.125'),
+	 (false,true,true,'2022-04-14 12:58:07.125','SETH','Obtained high school equivalency degree and enrolled in program of postsecondary education',0,4,6,'','VGRADELEVEL','2022-04-14 12:58:07.125'),
+	 (false,true,true,'2022-04-14 12:58:07.125','SETH','Enrolled in program of postsecondary education',0,4,7,'','VGRADELEVEL','2022-04-14 12:58:07.125'),
+	 (false,true,true,'2022-04-14 12:58:07.125','SETH','No longer used',0,4,8,'','VGRADELEVEL','2022-04-14 12:58:07.125'),
+	 (false,true,true,'2022-04-14 12:58:07.125','SETH','No longer used',0,4,9,'','VGRADELEVEL','2022-04-14 12:58:07.125'),
+	 (false,true,true,'2022-04-14 12:58:07.125','SETH','On leave of absence after enrollment in postsecondary',0,4,10,'','VGRADELEVEL','2022-04-14 12:58:07.125'),
+	 (false,true,true,'2022-04-14 12:58:07.125','SETH','Graduated from postsecondary',0,4,11,'','VGRADELEVEL','2022-04-14 12:58:07.125');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.125','SETH','Other',0,4,12,'','VGRADELEVEL','2022-04-14 12:58:07.125'),
+	 (false,false,true,'2022-04-14 12:58:07.125','SETH','Unknown',0,4,0,'','YEARCOGRD','2022-04-14 12:58:07.125'),
+	 (false,false,true,'2022-04-14 12:58:07.125','SETH','Other (prior to 2002)',0,4,1,'','YEARCOGRD','2022-04-14 12:58:07.125'),
+	 (false,false,true,'2022-04-14 12:58:07.125','SETH','2002',0,4,2,'','YEARCOGRD','2022-04-14 12:58:07.125'),
+	 (false,false,true,'2022-04-14 12:58:07.125','SETH','2003',0,4,3,'','YEARCOGRD','2022-04-14 12:58:07.125'),
+	 (false,false,true,'2022-04-14 12:58:07.125','SETH','2004',0,4,4,'','YEARCOGRD','2022-04-14 12:58:07.125'),
+	 (false,false,true,'2022-04-14 12:58:07.125','SETH','2005',0,4,5,'','YEARCOGRD','2022-04-14 12:58:07.125'),
+	 (false,false,true,'2022-04-14 12:58:07.125','SETH','2006',0,4,6,'','YEARCOGRD','2022-04-14 12:58:07.125'),
+	 (false,false,true,'2022-04-14 12:58:07.125','SETH','2007',0,4,7,'','YEARCOGRD','2022-04-14 12:58:07.125'),
+	 (false,false,true,'2022-04-14 12:58:07.127','SETH','2008',0,4,8,'','YEARCOGRD','2022-04-14 12:58:07.127');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.127','SETH','2009',0,4,9,'','YEARCOGRD','2022-04-14 12:58:07.127'),
+	 (false,false,true,'2022-04-14 12:58:07.127','SETH','2010',0,4,10,'','YEARCOGRD','2022-04-14 12:58:07.127'),
+	 (false,false,true,'2022-04-14 12:58:07.127','SETH','2012',0,4,12,'','YEARCOGRD','2022-04-14 12:58:07.127'),
+	 (false,false,true,'2022-04-14 12:58:07.127','SETH','2013',0,4,13,'','YEARCOGRD','2022-04-14 12:58:07.127'),
+	 (false,false,true,'2022-04-14 12:58:07.127','SETH','2014',0,4,14,'','YEARCOGRD','2022-04-14 12:58:07.127'),
+	 (false,false,true,'2022-04-14 12:58:07.127','SETH','2015',0,4,15,'','YEARCOGRD','2022-04-14 12:58:07.127'),
+	 (false,true,true,'2022-04-14 12:58:07.127','SETH','Unknown',0,4,0,'','YESNO','2022-04-14 12:58:07.127'),
+	 (false,true,true,'2022-04-14 12:58:07.127','SETH','Yes',0,4,1,'','YESNO','2022-04-14 12:58:07.127'),
+	 (false,true,true,'2022-04-14 12:58:07.127','SETH','No',0,4,2,'','YESNO','2022-04-14 12:58:07.127'),
+	 (false,true,true,'2022-04-14 12:58:07.127','SETH','Unknown',0,5,0,'','ACADNEED','2022-04-14 12:58:07.127');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.127','SETH','Low grade point average',0,5,1,'','ACADNEED','2022-04-14 12:58:07.127'),
+	 (false,false,true,'2022-04-14 12:58:07.127','SETH','Low achievement test scores',0,5,2,'','ACADNEED','2022-04-14 12:58:07.127'),
+	 (false,false,true,'2022-04-14 12:58:07.127','SETH','Low educational aspirations',0,5,3,'','ACADNEED','2022-04-14 12:58:07.127'),
+	 (false,true,true,'2022-04-14 12:58:07.127','SETH','Low grade point average and low educational aspirations',0,5,4,'','ACADNEED','2022-04-14 12:58:07.127'),
+	 (false,true,true,'2022-04-14 12:58:07.127','SETH','Low grade point average and low achievement test scores',0,5,5,'','ACADNEED','2022-04-14 12:58:07.127'),
+	 (false,true,true,'2022-04-14 12:58:07.127','SETH','Low achievement test scores and low educational aspirations',0,5,6,'','ACADNEED','2022-04-14 12:58:07.127'),
+	 (false,false,true,'2022-04-14 12:58:07.127','SETH','Lack of opportunity, support, and/or guidance to take challenging college preparation courses',0,5,7,'','ACADNEED','2022-04-14 12:58:07.127'),
+	 (false,true,true,'2022-04-14 12:58:07.127','SETH','Lack of career goals and/or need for accurate information on careers',0,5,8,'','ACADNEED','2022-04-14 12:58:07.127'),
+	 (false,false,true,'2022-04-14 12:58:07.127','SETH','Limited English proficiency',0,5,9,'','ACADNEED','2022-04-14 12:58:07.127'),
+	 (false,true,true,'2022-04-14 12:58:07.127','SETH','Lacks confidence, self  esteem, and/or social skills',0,5,10,'','ACADNEED','2022-04-14 12:58:07.127');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.127','SETH','Predominately low income community',0,5,11,'','ACADNEED','2022-04-14 12:58:07.127'),
+	 (false,true,true,'2022-04-14 12:58:07.127','SETH','Rural isolation',0,5,12,'','ACADNEED','2022-04-14 12:58:07.127'),
+	 (false,true,true,'2022-04-14 12:58:07.127','SETH','Interest in careers in math and science',0,5,13,'','ACADNEED','2022-04-14 12:58:07.127'),
+	 (false,true,true,'2022-04-14 12:58:07.127','SETH','Other',0,5,14,'','ACADNEED','2022-04-14 12:58:07.127'),
+	 (false,false,true,'2022-04-14 12:58:07.127','SETH','Diagnosed learning disability',0,5,15,'','ACADNEED','2022-04-14 12:58:07.127'),
+	 (false,true,true,'2022-04-14 12:58:07.127','SETH','Unknown or no longer tracking',0,5,0,'','ACADSTAND','2022-04-14 12:58:07.127'),
+	 (false,true,true,'2022-04-14 12:58:07.127','SETH','Good Standing',0,5,1,'','ACADSTAND','2022-04-14 12:58:07.127'),
+	 (false,true,true,'2022-04-14 12:58:07.127','SETH','Not in good standing',0,5,2,'','ACADSTAND','2022-04-14 12:58:07.127'),
+	 (false,true,true,'2022-04-14 12:58:07.127','SETH','No longer used for APR reporting in current year',0,5,3,'','ACADSTAND','2022-04-14 12:58:07.127'),
+	 (false,false,true,'2022-04-14 12:58:07.135','SETH','Postsecondary stop-out',0,5,7,'','ACADSTAND','2022-04-14 12:58:07.135');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.135','SETH','Not applicable-not yet completed high school',0,5,8,'','ACADSTAND','2022-04-14 12:58:07.135'),
+	 (false,true,true,'2022-04-14 12:58:07.135','SETH','Not applicable-completed HS but not enrolled in postsecondary',0,5,9,'','ACADSTAND','2022-04-14 12:58:07.135'),
+	 (false,false,true,'2022-04-14 12:58:07.135','SETH','Work Study Position',0,5,38,'','ACTIVITY','2022-04-14 12:58:07.135'),
+	 (false,false,true,'2022-04-14 12:58:07.135','SETH','Employment',0,5,39,'','ACTIVITY','2022-04-14 12:58:07.135'),
+	 (false,false,true,'2022-04-14 12:58:07.135','SETH','Cultural Activities',0,5,40,'','ACTIVITY','2022-04-14 12:58:07.135'),
+	 (false,false,true,'2022-04-14 12:58:07.135','SETH','Community Service',0,5,41,'','ACTIVITY','2022-04-14 12:58:07.135'),
+	 (false,false,true,'2022-04-14 12:58:07.135','SETH','Instruction for Students with Limited Proficiency',0,5,42,'','ACTIVITY','2022-04-14 12:58:07.135'),
+	 (false,false,true,'2022-04-14 12:58:07.135','SETH','Reading Instruction/Tutorials',0,5,61,'','ACTIVITY','2022-04-14 12:58:07.135'),
+	 (false,false,true,'2022-04-14 12:58:07.135','MANAGER','Instruction for Students with Limited Proficiency',0,5,62,'','ACTIVITY','2022-04-14 12:58:07.135'),
+	 (false,false,true,'2022-04-14 12:58:07.135','SETH','Computer Science Instruction/Tutorials',0,5,63,'','ACTIVITY','2022-04-14 12:58:07.135');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.135','SETH','Tutoring',0,5,69,'','ACTIVITY','2022-04-14 12:58:07.135'),
+	 (false,false,true,'2022-04-14 12:58:07.135','SETH','Supplemental Instruction',0,5,70,'','ACTIVITY','2022-04-14 12:58:07.135'),
+	 (false,false,true,'2022-04-14 12:58:07.135','SETH','College Entrance Exam Preparation',0,5,71,'','ACTIVITY','2022-04-14 12:58:07.135'),
+	 (false,false,true,'2022-04-14 12:58:07.135','SETH','Personal Counseling',0,5,72,'','ACTIVITY','2022-04-14 12:58:07.135'),
+	 (false,false,true,'2022-04-14 12:58:07.135','SETH','Academic Advising',0,5,73,'','ACTIVITY','2022-04-14 12:58:07.135'),
+	 (false,false,true,'2022-04-14 12:58:07.135','SETH','Peer Counseling/ Mentoring',0,5,74,'','ACTIVITY','2022-04-14 12:58:07.135'),
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','Professional Mentoring',0,5,75,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','Study Skills',0,5,76,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Cultural Activities',0,5,77,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','Career Awareness',0,5,78,'','ACTIVITY','2022-04-14 12:58:07.137');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','Campus Visitation',0,5,79,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','Assistance with College Admissions',0,5,80,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','Financial Aid Assistance',0,5,81,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','Family Activities',0,5,82,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Community Service',0,5,83,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','Target School Advocacy',0,5,84,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Work Study Position',0,5,85,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Employment',0,5,86,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','Activities with Professional Mathematicians and Scientists',0,5,88,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','Activities with Math and Science Majors',0,5,89,'','ACTIVITY','2022-04-14 12:58:07.137');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','Research Activities',0,5,90,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','English/ Proficiency',0,5,10001,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Reading',0,5,10002,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Writing',0,5,10003,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Study Skills',0,5,10004,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Mathematics',0,5,10005,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Other Tutorial',0,5,10006,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','GED Training',0,5,10007,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Financial Aid Counseling',0,5,10008,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Other Counseling',0,5,10009,'','ACTIVITY','2022-04-14 12:58:07.137');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Computer Aided Instructions',0,5,10010,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Tutorial Assistance',0,5,10011,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Cultural Assistance',0,5,10012,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Career Planning',0,5,10013,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','College Tours',0,5,10014,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Admission & Financial Aid Information',0,5,10015,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','ACT Preparation',0,5,10016,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','ACT Registration',0,5,10017,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Personal Counseling',0,5,10018,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','College Survival Skill',0,5,10019,'','ACTIVITY','2022-04-14 12:58:07.137');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Academic Counseling',0,5,10020,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Goal Setting',0,5,10021,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Life Skills',0,5,10022,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Test Taking Skills',0,5,10023,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Self-Concept Assessment',0,5,10024,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Parental Involvement',0,5,10025,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','High School Survival Skills',0,5,10026,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Interest Inventory Assessment',0,5,10027,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Self-Esteem',0,5,10028,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Critical Thinking',0,5,10029,'','ACTIVITY','2022-04-14 12:58:07.137');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Decision Making',0,5,10030,'','ACTIVITY','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','Count all contacts on same day as separate sessions',0,5,1,'','ACTIVITYGROUPTYPE','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','Count all contacts on same day as one event',0,5,2,'','ACTIVITYGROUPTYPE','2022-04-14 12:58:07.137'),
+	 (false,true,true,'2022-04-14 12:58:07.137','SETH','Mathematics Instruction/Tutorials Project Year',0,5,43,'admath','APR SUBJECT','2022-04-14 12:58:07.137'),
+	 (false,true,true,'2022-04-14 12:58:07.137','SETH','Mathematics Instruction Summer (may include Bridge Students)',0,5,44,'admath','APR SUBJECT','2022-04-14 12:58:07.137'),
+	 (false,true,true,'2022-04-14 12:58:07.137','SETH','Mathematics Instruction/Tutorials Academic Year',0,5,53,'admath','APR SUBJECT','2022-04-14 12:58:07.137'),
+	 (false,true,true,'2022-04-14 12:58:07.137','SETH','Mathematics Instruction Summer (may include Bridge Students)',0,5,54,'admath','APR SUBJECT','2022-04-14 12:58:07.137'),
+	 (false,true,true,'2022-04-14 12:58:07.137','SETH','Science Instruction/Tutorials Academic Year',0,5,55,'adscience','APR SUBJECT','2022-04-14 12:58:07.137'),
+	 (false,true,true,'2022-04-14 12:58:07.137','SETH','Science Instruction Summer (may include Bridge Students)',0,5,56,'adscience','APR SUBJECT','2022-04-14 12:58:07.137'),
+	 (false,true,true,'2022-04-14 12:58:07.137','SETH','Foreign Language Instruction/Tutorials Academic Year',0,5,57,'adforeignlanguage','APR SUBJECT','2022-04-14 12:58:07.137');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.137','SETH','Foreign Language Instruction Summer (may include Bridge Students)',0,5,58,'adforeignlanguage','APR SUBJECT','2022-04-14 12:58:07.137'),
+	 (false,true,true,'2022-04-14 12:58:07.137','SETH','English Instruction/Tutorials Academic Year',0,5,59,'adenglish','APR SUBJECT','2022-04-14 12:58:07.137'),
+	 (false,true,true,'2022-04-14 12:58:07.137','SETH','English Instruction Summer (may include Bridge Students)',0,5,60,'adenglish','APR SUBJECT','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','Unknown',0,5,0,'','APRCOMPONENT','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','Yes',0,5,1,'','APRCOMPONENT','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','No',0,5,2,'','APRCOMPONENT','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','Not applicable, not offered by project',0,5,8,'','APRCOMPONENT','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','Not applicable, prior-year participant',0,5,9,'','APRCOMPONENT','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','In Stock',0,5,1,'','ASSETSTATUS','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Checked Out',0,5,2,'','ASSETSTATUS','2022-04-14 12:58:07.137');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Out for Repair',0,5,3,'','ASSETSTATUS','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Damaged',0,5,4,'','ASSETSTATUS','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Lost',0,5,5,'','ASSETSTATUS','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','Stolen',0,5,6,'','ASSETSTATUS','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','MANAGER','No longer in use',0,5,7,'','ASSETSTATUS','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','No response/Unknown',0,5,0,'','COHORTYEAR','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','Other (prior to 2000-01)',0,5,1,'','COHORTYEAR','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','2000-01',0,5,2,'','COHORTYEAR','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','2001-02',0,5,3,'','COHORTYEAR','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','2002-03',0,5,4,'','COHORTYEAR','2022-04-14 12:58:07.137');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','2003-04',0,5,5,'','COHORTYEAR','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','2004-05',0,5,6,'','COHORTYEAR','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','2005-06',0,5,7,'','COHORTYEAR','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','2006-07',0,5,8,'','COHORTYEAR','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','2007-08',0,5,9,'','COHORTYEAR','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','2008-09',0,5,10,'','COHORTYEAR','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','2009-10',0,5,11,'','COHORTYEAR','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','Public, two-year institution',0,5,1,'','COLLEGETYPE','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.137','SETH','Private, non-profit, two-year institution',0,5,2,'','COLLEGETYPE','2022-04-14 12:58:07.137'),
+	 (false,false,true,'2022-04-14 12:58:07.146','SETH','Public, four-year institution',0,5,3,'','COLLEGETYPE','2022-04-14 12:58:07.146');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.146','SETH','Private, non-profit, four-year institution',0,5,4,'','COLLEGETYPE','2022-04-14 12:58:07.146'),
+	 (false,false,true,'2022-04-14 12:58:07.146','SETH','Public or non-profit vocational/technical institution',0,5,5,'','COLLEGETYPE','2022-04-14 12:58:07.146'),
+	 (false,false,true,'2022-04-14 12:58:07.146','SETH','Proprietary school',0,5,6,'','COLLEGETYPE','2022-04-14 12:58:07.146'),
+	 (false,true,true,'2022-04-14 12:58:07.146','SETH','Unknown',0,5,0,'','COLLGRADE','2022-04-14 12:58:07.146'),
+	 (false,true,true,'2022-04-14 12:58:07.146','SETH','Accepted into postsecondary education program but not yet enrolled',0,5,1,'','COLLGRADE','2022-04-14 12:58:07.146'),
+	 (false,true,true,'2022-04-14 12:58:07.146','SETH','First year student in postsecondary education following completion of high school',0,5,2,'','COLLGRADE','2022-04-14 12:58:07.146'),
+	 (false,true,true,'2022-04-14 12:58:07.146','SETH','Postsecondary student continuing beyond first year',0,5,3,'','COLLGRADE','2022-04-14 12:58:07.146'),
+	 (false,true,true,'2022-04-14 12:58:07.146','SETH','Enrolled, completed a program of postsecondary education but continuing in postsecondary',0,5,4,'','COLLGRADE','2022-04-14 12:58:07.146'),
+	 (false,true,true,'2022-04-14 12:58:07.146','SETH','Not enrolled, completed a program of postsecondary education prior to beginning of academic year reported',0,5,5,'','COLLGRADE','2022-04-14 12:58:07.146'),
+	 (false,true,true,'2022-04-14 12:58:07.146','SETH','Prior to beginning of academic year reported, left program of postsecondary education without completing it',0,5,7,'','COLLGRADE','2022-04-14 12:58:07.146');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.146','SETH','Not applicable, not yet completed high school',0,5,8,'','COLLGRADE','2022-04-14 12:58:07.146'),
+	 (false,true,true,'2022-04-14 12:58:07.146','SETH','Not applicable, completed high school but has not enrolled in a program of postsecondary education',0,5,9,'','COLLGRADE','2022-04-14 12:58:07.146'),
+	 (false,false,true,'2022-04-14 12:58:07.146','SETH','Yes',0,5,1,'','COLLREADY','2022-04-14 12:58:07.146'),
+	 (false,true,true,'2022-04-14 12:58:07.146','SETH','',0,5,0,'','COMPARE','2022-04-14 12:58:07.146'),
+	 (false,true,true,'2022-04-14 12:58:07.146','SETH','< less than',0,5,1,'','COMPARE','2022-04-14 12:58:07.146'),
+	 (false,true,true,'2022-04-14 12:58:07.146','SETH','<= less than or equal to',0,5,2,'','COMPARE','2022-04-14 12:58:07.146'),
+	 (false,true,true,'2022-04-14 12:58:07.146','SETH','<> not equal to',0,5,3,'','COMPARE','2022-04-14 12:58:07.146'),
+	 (false,true,true,'2022-04-14 12:58:07.146','SETH','= equal to',0,5,4,'','COMPARE','2022-04-14 12:58:07.146'),
+	 (false,true,true,'2022-04-14 12:58:07.148','SETH','> more than',0,5,5,'','COMPARE','2022-04-14 12:58:07.148'),
+	 (false,true,true,'2022-04-14 12:58:07.148','SETH','>= more than or equal to',0,5,6,'','COMPARE','2022-04-14 12:58:07.148');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.148','SETH','Not enrolled    /Offered by project, but not enrolled.',0,5,0,'','COMPONENT','2022-04-14 12:58:07.148'),
+	 (false,true,true,'2022-04-14 12:58:07.148','SETH','Academic',0,5,1,'','COMPONENT','2022-04-14 12:58:07.148'),
+	 (false,true,true,'2022-04-14 12:58:07.148','SETH','Summer',0,5,2,'','COMPONENT','2022-04-14 12:58:07.148'),
+	 (false,true,true,'2022-04-14 12:58:07.148','SETH','Both',0,5,3,'','COMPONENT','2022-04-14 12:58:07.148'),
+	 (false,false,true,'2022-04-14 12:58:07.148','SETH','Not applicable, not offered by project',0,5,8,'','COMPONENT','2022-04-14 12:58:07.148'),
+	 (false,false,true,'2022-04-14 12:58:07.148','SETH','Not applicable, prior-year participant',0,5,9,'','COMPONENT','2022-04-14 12:58:07.148'),
+	 (false,false,true,'2022-04-14 12:58:07.148','SETH','Unknown',0,5,99,'','COMPONENT','2022-04-14 12:58:07.148'),
+	 (false,true,true,'2022-04-14 12:58:07.148','SETH','Counselor',0,5,1,'','CONTACTSTAFFTYPE','2022-04-14 12:58:07.148'),
+	 (false,true,true,'2022-04-14 12:58:07.148','SETH','Tutor',0,5,2,'','CONTACTSTAFFTYPE','2022-04-14 12:58:07.148'),
+	 (false,true,true,'2022-04-14 12:58:07.148','SETH','Teacher',0,5,3,'','CONTACTSTAFFTYPE','2022-04-14 12:58:07.148');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.148','SETH','Staff',0,5,4,'','CONTACTSTAFFTYPE','2022-04-14 12:58:07.148'),
+	 (false,true,true,'2022-04-14 12:58:07.148','SETH','Individual',0,5,1,'','CONTACTTYPE','2022-04-14 12:58:07.148'),
+	 (false,true,true,'2022-04-14 12:58:07.148','SETH','Group',0,5,2,'','CONTACTTYPE','2022-04-14 12:58:07.148'),
+	 (false,true,true,'2022-04-14 12:58:07.148','SETH','Phone',0,5,3,'','CONTACTTYPE','2022-04-14 12:58:07.148'),
+	 (false,true,true,'2022-04-14 12:58:07.148','SETH','Mail',0,5,4,'','CONTACTTYPE','2022-04-14 12:58:07.148'),
+	 (false,false,true,'2022-04-14 12:58:07.148','SETH','Parent',0,5,5,'','CONTACTTYPE','2022-04-14 12:58:07.148'),
+	 (false,true,true,'2022-04-14 12:58:07.148','SETH','Other',0,5,6,'','CONTACTTYPE','2022-04-14 12:58:07.148'),
+	 (false,true,true,'2022-04-14 12:58:07.148','SETH','E-mail',0,5,7,'','CONTACTTYPE','2022-04-14 12:58:07.148'),
+	 (false,false,true,'2022-04-14 12:58:07.148','SETH','Weekly',0,5,1,'','CONTFREQ','2022-04-14 12:58:07.148'),
+	 (false,false,true,'2022-04-14 12:58:07.148','SETH','Twice a month',0,5,2,'','CONTFREQ','2022-04-14 12:58:07.148');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.148','SETH','Once a month',0,5,3,'','CONTFREQ','2022-04-14 12:58:07.148'),
+	 (false,false,true,'2022-04-14 12:58:07.148','SETH','Quarterly',0,5,4,'','CONTFREQ','2022-04-14 12:58:07.148'),
+	 (false,false,true,'2022-04-14 12:58:07.148','SETH','No face-to-face contact',0,5,5,'','CONTFREQ','2022-04-14 12:58:07.148'),
+	 (false,false,true,'2022-04-14 12:58:07.148','SETH','Other',0,5,6,'','CONTFREQ','2022-04-14 12:58:07.148'),
+	 (false,false,true,'2022-04-14 12:58:07.148','USER','Pets Name',0,5,1,'         0','CUSTOMFIELDNAME','2022-04-14 12:58:07.148'),
+	 (false,false,true,'2022-04-14 12:58:07.148','USER','T-shirt Size',0,5,2,'         1','CUSTOMFIELDNAME','2022-04-14 12:58:07.148'),
+	 (false,false,true,'2022-04-14 12:58:07.148','USER','Donate Blood',0,5,3,'         2','CUSTOMFIELDNAME','2022-04-14 12:58:07.148'),
+	 (false,false,true,'2022-04-14 12:58:07.148','USER','Date Inactivated',0,5,4,'         3','CUSTOMFIELDNAME','2022-04-14 12:58:07.148'),
+	 (false,false,true,'2022-04-14 12:58:07.148','USER','Number of Siblings',0,5,5,'         4','CUSTOMFIELDNAME','2022-04-14 12:58:07.148'),
+	 (false,false,true,'2022-04-14 12:58:07.148','USER','Food Allowance',0,5,6,'         5','CUSTOMFIELDNAME','2022-04-14 12:58:07.148');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.148','MANAGER','Text-Normal',0,5,0,'','CUSTOMFIELDTYPE','2022-04-14 12:58:07.148'),
+	 (false,false,true,'2022-04-14 12:58:07.148','MANAGER','Text-Quickfill',0,5,1,'','CUSTOMFIELDTYPE','2022-04-14 12:58:07.148'),
+	 (false,false,true,'2022-04-14 12:58:07.148','MANAGER','Logical',0,5,2,'','CUSTOMFIELDTYPE','2022-04-14 12:58:07.148'),
+	 (false,false,true,'2022-04-14 12:58:07.148','MANAGER','Date',0,5,3,'','CUSTOMFIELDTYPE','2022-04-14 12:58:07.148'),
+	 (false,false,true,'2022-04-14 12:58:07.148','MANAGER','Integer',0,5,4,'','CUSTOMFIELDTYPE','2022-04-14 12:58:07.148'),
+	 (false,false,true,'2022-04-14 12:58:07.148','','Numeric-2 decimals',0,5,5,'','CUSTOMFIELDTYPE','2022-04-14 12:58:07.148'),
+	 (false,false,true,'2022-04-14 12:58:07.148','SETH','Science',0,5,1,'','DEGREEIN','2022-04-14 12:58:07.148'),
+	 (false,false,true,'2022-04-14 12:58:07.148','SETH','Business',0,5,2,'','DEGREEIN','2022-04-14 12:58:07.148'),
+	 (false,false,true,'2022-04-14 12:58:07.148','SETH','Arts',0,5,3,'','DEGREEIN','2022-04-14 12:58:07.148'),
+	 (false,false,true,'2022-04-14 12:58:07.148','SETH','English',0,5,4,'','DEGREEIN','2022-04-14 12:58:07.148');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.148','SETH','Unknown',0,5,0,'','ELIGIBILITY','2022-04-14 12:58:07.148'),
+	 (false,true,true,'2022-04-14 12:58:07.148','SETH','Low-Income and First-Generation',0,5,1,'','ELIGIBILITY','2022-04-14 12:58:07.148'),
+	 (false,true,true,'2022-04-14 12:58:07.148','SETH','Low-Income only',0,5,2,'','ELIGIBILITY','2022-04-14 12:58:07.148'),
+	 (false,true,true,'2022-04-14 12:58:07.148','SETH','First-Generation only',0,5,3,'','ELIGIBILITY','2022-04-14 12:58:07.148'),
+	 (false,false,true,'2022-04-14 12:58:07.148','SETH','Other',0,5,4,'','ELIGIBILITY','2022-04-14 12:58:07.148'),
+	 (false,false,true,'2022-04-14 12:58:07.148','SETH','Part Time',0,5,1,'','EMPLOYTYPE','2022-04-14 12:58:07.148'),
+	 (false,false,true,'2022-04-14 12:58:07.156','SETH','Full Time',0,5,2,'','EMPLOYTYPE','2022-04-14 12:58:07.156'),
+	 (false,false,true,'2022-04-14 12:58:07.156','SETH','Unemployed',0,5,3,'','EMPLOYTYPE','2022-04-14 12:58:07.156'),
+	 (false,true,true,'2022-04-14 12:58:07.156','SETH','Continued in middle School (TS only)',0,5,16,'','ENDSTATUS','2022-04-14 12:58:07.156'),
+	 (false,false,true,'2022-04-14 12:58:07.156','SETH','Promoted from middle school to high school (TS Only)',0,5,17,'','ENDSTATUS','2022-04-14 12:58:07.156');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.156','SETH','Continued in high school (do not include those who graduated)',0,5,18,'','ENDSTATUS','2022-04-14 12:58:07.156'),
+	 (false,false,true,'2022-04-14 12:58:07.156','SETH','Re-entered middle school',0,5,19,'','ENDSTATUS','2022-04-14 12:58:07.156'),
+	 (false,false,true,'2022-04-14 12:58:07.156','SETH','Re-entered high school',0,5,20,'','ENDSTATUS','2022-04-14 12:58:07.156'),
+	 (false,false,true,'2022-04-14 12:58:07.156','SETH','Received high school diploma',0,5,21,'','ENDSTATUS','2022-04-14 12:58:07.156'),
+	 (false,false,true,'2022-04-14 12:58:07.156','SETH','Obtained a GED/high school equivalency degree',0,5,22,'','ENDSTATUS','2022-04-14 12:58:07.156'),
+	 (false,false,true,'2022-04-14 12:58:07.156','SETH','Applied for admission to program of postsecondary education',0,5,23,'','ENDSTATUS','2022-04-14 12:58:07.156'),
+	 (false,false,true,'2022-04-14 12:58:07.156','SETH','Applied for student financial aid for postsecondary education',0,5,24,'','ENDSTATUS','2022-04-14 12:58:07.156'),
+	 (false,false,true,'2022-04-14 12:58:07.156','SETH','Enrolled in ( or admitted to) a program of postsecondary education (first-time enrollment in postsecondary education)',0,5,25,'','ENDSTATUS','2022-04-14 12:58:07.156'),
+	 (false,false,true,'2022-04-14 12:58:07.156','SETH','Re-enrolled in (or re-admitted to ) a program of postsecondary education',0,5,26,'','ENDSTATUS','2022-04-14 12:58:07.156'),
+	 (false,false,true,'2022-04-14 12:58:07.158','SETH','Dropped out of middle school (TS only)',0,5,27,'','ENDSTATUS','2022-04-14 12:58:07.158');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.158','SETH','Dropped out of high school',0,5,28,'','ENDSTATUS','2022-04-14 12:58:07.158'),
+	 (false,false,true,'2022-04-14 12:58:07.158','SETH','Did not continue in program of postsecondary education (EOC only)',0,5,29,'','ENDSTATUS','2022-04-14 12:58:07.158'),
+	 (false,false,true,'2022-04-14 12:58:07.158','SETH','Other (i.e. military, death, illness, transfer, etc.)',0,5,30,'','ENDSTATUS','2022-04-14 12:58:07.158'),
+	 (false,false,true,'2022-04-14 12:58:07.158','SETH','Unknown Participant Status at End of Reporting Period',0,5,31,'','ENDSTATUS','2022-04-14 12:58:07.158'),
+	 (false,false,true,'2022-04-14 12:58:07.158','SETH','Veterans Served',0,5,32,'','ENDSTATUS','2022-04-14 12:58:07.158'),
+	 (false,false,true,'2022-04-14 12:58:07.158','SETH','Participants of Limited English Proficiency',0,5,33,'','ENDSTATUS','2022-04-14 12:58:07.158'),
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','Not enrolled',0,5,0,'','ENGLISH','2022-04-14 12:58:07.158'),
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','Composition',0,5,1,'','ENGLISH','2022-04-14 12:58:07.158'),
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','Literature',0,5,2,'','ENGLISH','2022-04-14 12:58:07.158'),
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','Composition and Literature',0,5,3,'','ENGLISH','2022-04-14 12:58:07.158');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','Unknown or no longer tracking',0,5,0,'','ENROLL','2022-04-14 12:58:07.158'),
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','Full-time',0,5,1,'','ENROLL','2022-04-14 12:58:07.158'),
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','Less than full-time',0,5,2,'','ENROLL','2022-04-14 12:58:07.158'),
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','Varied enrollment during reporting period',0,5,3,'','ENROLL','2022-04-14 12:58:07.158'),
+	 (false,false,true,'2022-04-14 12:58:07.158','SETH','Postsecondary stopout',0,5,7,'','ENROLL','2022-04-14 12:58:07.158'),
+	 (false,false,true,'2022-04-14 12:58:07.158','SETH','Not applicable-not yet completed high school',0,5,8,'','ENROLL','2022-04-14 12:58:07.158'),
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','Not applicable-completed HS but not enrolled in postsecondary',0,5,9,'','ENROLL','2022-04-14 12:58:07.158'),
+	 (false,false,true,'2022-04-14 12:58:07.158','SETH','Unknown',0,5,0,'','ENROLLOBJ','2022-04-14 12:58:07.158'),
+	 (false,false,true,'2022-04-14 12:58:07.158','SETH','Participant in Next_Fiscal_Year_Short cohort who enrolled in postsecondary education by fall term Next_Fiscal_Year_Short',0,5,1,'','ENROLLOBJ','2022-04-14 12:58:07.158'),
+	 (false,false,true,'2022-04-14 12:58:07.158','SETH','Participant in Next_Fiscal_Year_Short cohort who DID NOT enroll in postsecondary education by fall term Next_Fiscal_Year_Short',0,5,2,'','ENROLLOBJ','2022-04-14 12:58:07.158');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.158','SETH','Not applicable, participant had an expected high school graduation cohort year after Next_Fiscal_Year_Short',0,5,8,'','ENROLLOBJ','2022-04-14 12:58:07.158'),
+	 (false,false,true,'2022-04-14 12:58:07.158','SETH','Not applicable, participant had an expected high school graduation cohort year prior to Next_Fiscal_Year_Short',0,5,10,'','ENROLLOBJ','2022-04-14 12:58:07.158'),
+	 (false,false,true,'2022-04-14 12:58:07.158','SETH','Unknown',0,5,0,'','ENTEREXAM','2022-04-14 12:58:07.158'),
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','SAT',0,5,1,'','ENTEREXAM','2022-04-14 12:58:07.158'),
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','ACT',0,5,2,'','ENTEREXAM','2022-04-14 12:58:07.158'),
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','Both SAT and ACT',0,5,3,'','ENTEREXAM','2022-04-14 12:58:07.158'),
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','Other',0,5,4,'','ENTEREXAM','2022-04-14 12:58:07.158'),
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','Not Applicable',0,5,9,'','ENTEREXAM','2022-04-14 12:58:07.158'),
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','Unknown',0,5,0,'','ENTERLEVEL','2022-04-14 12:58:07.158'),
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','Rising 9th-grader (summer between 8th grade and 9th grade)',0,5,8,'','ENTERLEVEL','2022-04-14 12:58:07.158');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','9th grade (not a valid option for students first receiving service in the summer program)',0,5,9,'','ENTERLEVEL','2022-04-14 12:58:07.158'),
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','10th grade',0,5,10,'','ENTERLEVEL','2022-04-14 12:58:07.158'),
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','11th grade',0,5,11,'','ENTERLEVEL','2022-04-14 12:58:07.158'),
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','Rising 12th-grader (summer between 11th grade and 12th grade)',0,5,12,'','ENTERLEVEL','2022-04-14 12:58:07.158'),
+	 (false,false,true,'2022-04-14 12:58:07.158','SETH','12th-grader (only for students transferring from one project to the current project as a 12th-grader)',0,5,13,'','ENTERLEVEL','2022-04-14 12:58:07.158'),
+	 (false,false,true,'2022-04-14 12:58:07.158','SETH','Other',0,5,14,'','ENTERLEVEL','2022-04-14 12:58:07.158'),
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','Unknown',0,5,0,'','ETHNIC','2022-04-14 12:58:07.158'),
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','American Indian/Alaskan Native',0,5,1,'','ETHNIC','2022-04-14 12:58:07.158'),
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','Asian',0,5,2,'','ETHNIC','2022-04-14 12:58:07.158'),
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','Black or African American',0,5,3,'','ETHNIC','2022-04-14 12:58:07.158');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','Hispanic or Latino',0,5,4,'','ETHNIC','2022-04-14 12:58:07.158'),
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','White',0,5,5,'','ETHNIC','2022-04-14 12:58:07.158'),
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','Native Hawaiian or Pacific Islander',0,5,6,'','ETHNIC','2022-04-14 12:58:07.158'),
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','More than one race reported',0,5,7,'','ETHNIC','2022-04-14 12:58:07.158'),
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','No response',0,5,0,'','FINAIDREAS','2022-04-14 12:58:07.158'),
+	 (false,false,true,'2022-04-14 12:58:07.158','SETH','Student refused loan',0,5,1,'','FINAIDREAS','2022-04-14 12:58:07.158'),
+	 (false,false,true,'2022-04-14 12:58:07.158','SETH','Insufficient Federal grant aid',0,5,2,'','FINAIDREAS','2022-04-14 12:58:07.158'),
+	 (false,false,true,'2022-04-14 12:58:07.158','SETH','Insufficient College Work Study aid',0,5,3,'','FINAIDREAS','2022-04-14 12:58:07.158'),
+	 (false,false,true,'2022-04-14 12:58:07.158','SETH','Insufficient institutional aid',0,5,4,'','FINAIDREAS','2022-04-14 12:58:07.158'),
+	 (false,false,true,'2022-04-14 12:58:07.158','SETH','Student failed to make adequate academic progress',0,5,5,'','FINAIDREAS','2022-04-14 12:58:07.158');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.158','SETH','Student refused College Work Study aid',0,5,6,'','FINAIDREAS','2022-04-14 12:58:07.158'),
+	 (false,false,true,'2022-04-14 12:58:07.158','SETH','Student not enrolled full-time',0,5,7,'','FINAIDREAS','2022-04-14 12:58:07.158'),
+	 (false,false,true,'2022-04-14 12:58:07.158','SETH','Student not eligible for financial aid',0,5,8,'','FINAIDREAS','2022-04-14 12:58:07.158'),
+	 (false,false,true,'2022-04-14 12:58:07.158','SETH','Insufficient loans',0,5,9,'','FINAIDREAS','2022-04-14 12:58:07.158'),
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','Unknown or no longer tracking',0,5,0,'','FINAIDRECD','2022-04-14 12:58:07.158'),
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','Pell grant only',0,5,1,'','FINAIDRECD','2022-04-14 12:58:07.158'),
+	 (false,true,true,'2022-04-14 12:58:07.158','SETH','FFEL loan',0,5,2,'','FINAIDRECD','2022-04-14 12:58:07.158'),
+	 (false,true,true,'2022-04-14 12:58:07.166','SETH','Direct loan',0,5,3,'','FINAIDRECD','2022-04-14 12:58:07.166'),
+	 (false,true,true,'2022-04-14 12:58:07.166','SETH','College work study only',0,5,4,'','FINAIDRECD','2022-04-14 12:58:07.166'),
+	 (false,true,true,'2022-04-14 12:58:07.166','SETH','Institutional aid only',0,5,5,'','FINAIDRECD','2022-04-14 12:58:07.166');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.166','SETH','State grant only',0,5,6,'','FINAIDRECD','2022-04-14 12:58:07.166'),
+	 (false,true,true,'2022-04-14 12:58:07.166','SETH','Pell grant and FFEL loan',0,5,7,'','FINAIDRECD','2022-04-14 12:58:07.166'),
+	 (false,true,true,'2022-04-14 12:58:07.166','SETH','Pell grant and Direct loan',0,5,8,'','FINAIDRECD','2022-04-14 12:58:07.166'),
+	 (false,true,true,'2022-04-14 12:58:07.166','SETH','Multiple federal aid',0,5,9,'','FINAIDRECD','2022-04-14 12:58:07.166'),
+	 (false,true,true,'2022-04-14 12:58:07.166','SETH','Multiple federal and other aid',0,5,10,'','FINAIDRECD','2022-04-14 12:58:07.166'),
+	 (false,true,true,'2022-04-14 12:58:07.166','SETH','Non-federal, non-institutional aid',0,5,11,'','FINAIDRECD','2022-04-14 12:58:07.166'),
+	 (false,true,true,'2022-04-14 12:58:07.166','SETH','No aid awarded',0,5,12,'','FINAIDRECD','2022-04-14 12:58:07.166'),
+	 (false,true,true,'2022-04-14 12:58:07.166','SETH','No aid needed',0,5,13,'','FINAIDRECD','2022-04-14 12:58:07.166'),
+	 (false,false,true,'2022-04-14 12:58:07.166','SETH','Not applicable, not yet completed high school',0,5,88,'','FINAIDRECD','2022-04-14 12:58:07.166'),
+	 (false,true,true,'2022-04-14 12:58:07.166','SETH','Not applicable, completed HS but not enrolled in postsecondary',0,5,99,'','FINAIDRECD','2022-04-14 12:58:07.166');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.166','SETH','Not enrolled',0,5,0,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.166'),
+	 (false,true,true,'2022-04-14 12:58:07.166','SETH','Spanish',0,5,1,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.166'),
+	 (false,true,true,'2022-04-14 12:58:07.168','SETH','French',0,5,2,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.168'),
+	 (false,true,true,'2022-04-14 12:58:07.168','SETH','German',0,5,3,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.168'),
+	 (false,true,true,'2022-04-14 12:58:07.168','SETH','Italian',0,5,4,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.168'),
+	 (false,true,true,'2022-04-14 12:58:07.168','SETH','Russian',0,5,5,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.168'),
+	 (false,true,true,'2022-04-14 12:58:07.168','SETH','Japanese',0,5,6,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.168'),
+	 (false,true,true,'2022-04-14 12:58:07.168','SETH','Other Foreign Language',0,5,7,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Financial Aid',0,5,1,'','FORM TYPE','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Field Trip Authorization',0,5,2,'','FORM TYPE','2022-04-14 12:58:07.168');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Application Form',0,5,3,'','FORM TYPE','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Income Data',0,5,4,'','FORM TYPE','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Parent Contract Form',0,5,5,'','FORM TYPE','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Assessment',0,5,6,'','FORM TYPE','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Eligibility Form',0,5,7,'','FORM TYPE','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Student Contract Form',0,5,8,'','FORM TYPE','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Recommendation Letter',0,5,9,'','FORM TYPE','2022-04-14 12:58:07.168'),
+	 (false,true,true,'2022-04-14 12:58:07.168','SETH','Unknown',0,5,0,'','GENDER','2022-04-14 12:58:07.168'),
+	 (false,true,true,'2022-04-14 12:58:07.168','SETH','Male',0,5,1,'','GENDER','2022-04-14 12:58:07.168'),
+	 (false,true,true,'2022-04-14 12:58:07.168','SETH','Female',0,5,2,'','GENDER','2022-04-14 12:58:07.168');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.168','SETH','Unknown',0,5,0,'','GPASCALE','2022-04-14 12:58:07.168'),
+	 (false,true,true,'2022-04-14 12:58:07.168','SETH','4 point scale or scale convertible to 4 point',0,5,1,'','GPASCALE','2022-04-14 12:58:07.168'),
+	 (false,true,true,'2022-04-14 12:58:07.168','SETH','5 point scale or scale convertible to 5 point',0,5,2,'','GPASCALE','2022-04-14 12:58:07.168'),
+	 (false,true,true,'2022-04-14 12:58:07.168','SETH','Other',0,5,3,'','GPASCALE','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Not applicable to rising 9th graders',0,5,9,'','GPASCALE','2022-04-14 12:58:07.168'),
+	 (false,true,true,'2022-04-14 12:58:07.168','SETH','Unknown',0,5,0,'','GRADELEVEL','2022-04-14 12:58:07.168'),
+	 (false,true,true,'2022-04-14 12:58:07.168','SETH','9th grade',0,5,9,'','GRADELEVEL','2022-04-14 12:58:07.168'),
+	 (false,true,true,'2022-04-14 12:58:07.168','SETH','10th grade',0,5,10,'','GRADELEVEL','2022-04-14 12:58:07.168'),
+	 (false,true,true,'2022-04-14 12:58:07.168','SETH','11th grade',0,5,11,'','GRADELEVEL','2022-04-14 12:58:07.168'),
+	 (false,true,true,'2022-04-14 12:58:07.168','SETH','12th grade',0,5,12,'','GRADELEVEL','2022-04-14 12:58:07.168');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Enrolled in a program of postsecondary education',0,5,13,'','GRADELEVEL','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Other',0,5,14,'','GRADELEVEL','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Not applicable, not enrolled in high school or in a program of postsecondary education',0,5,99,'','GRADELEVEL','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Unknown',0,5,0,'','GRADEPRO','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Student met requirements to progress normally to next grade or graduated',0,5,1,'','GRADEPRO','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Student did not meet requirements to progress normally to next grade or graduate',0,5,2,'','GRADEPRO','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Student left secondary school without graduating',0,5,3,'','GRADEPRO','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Not applicable student not in high school in reporting year',0,5,9,'','GRADEPRO','2022-04-14 12:58:07.168'),
+	 (false,true,true,'2022-04-14 12:58:07.168','SETH','Unknown',0,5,0,'','GRADESTART','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','8th Grade',0,5,8,'','GRADESTART','2022-04-14 12:58:07.168');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.168','SETH','9th grade',0,5,9,'','GRADESTART','2022-04-14 12:58:07.168'),
+	 (false,true,true,'2022-04-14 12:58:07.168','SETH','10th grade',0,5,10,'','GRADESTART','2022-04-14 12:58:07.168'),
+	 (false,true,true,'2022-04-14 12:58:07.168','SETH','11th grade',0,5,11,'','GRADESTART','2022-04-14 12:58:07.168'),
+	 (false,true,true,'2022-04-14 12:58:07.168','SETH','12th grade',0,5,12,'','GRADESTART','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Other',0,5,13,'','GRADESTART','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Not applicable, not enrolled in high school',0,5,99,'','GRADESTART','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Unknown',0,5,0,'','GRADSTATUS','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Currently enrolled in high school',0,5,1,'','GRADSTATUS','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','High School Dropout',0,5,2,'','GRADSTATUS','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Received high school diploma',0,5,3,'','GRADSTATUS','2022-04-14 12:58:07.168');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Received high school equivalency certificate (e.g., GED)',0,5,4,'','GRADSTATUS','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Other',0,5,5,'','GRADSTATUS','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Completed Freshman year of College',0,5,1,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Completed Sophomore year of college',0,5,2,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Completed Junior year of college',0,5,3,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Completed Senior year of college',0,5,4,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Dropped Out of College, Freshman year',0,5,5,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Dropped Out of College, Sophomore year',0,5,6,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Dropped Out of College, Junior year',0,5,7,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Dropped Out of College, Senior year',0,5,8,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.168');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.168','SETH','Postponed College',0,5,9,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.168'),
+	 (false,false,true,'2022-04-14 12:58:07.176','SETH','Enrolled in Military Branch',0,5,10,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.176'),
+	 (false,false,true,'2022-04-14 12:58:07.176','SETH','Working Full / Part Time Only',0,5,11,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.176'),
+	 (false,false,true,'2022-04-14 12:58:07.176','SETH','Graduated from College',0,5,12,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.176'),
+	 (false,false,true,'2022-04-14 12:58:07.176','SETH','Technical / Vocational School',0,5,13,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.176'),
+	 (false,true,true,'2022-04-14 12:58:07.176','SETH','Unknown',0,5,0,'','HIGHDEGREE','2022-04-14 12:58:07.176'),
+	 (false,true,true,'2022-04-14 12:58:07.176','SETH','Certificate/Diploma for occupational, educational program (less than two-year program)',0,5,1,'','HIGHDEGREE','2022-04-14 12:58:07.176'),
+	 (false,true,true,'2022-04-14 12:58:07.176','SETH','Certificate/Diploma for occupational, technical, or educational program (at least two-year program)',0,5,2,'','HIGHDEGREE','2022-04-14 12:58:07.176'),
+	 (false,true,true,'2022-04-14 12:58:07.176','SETH','Associate Degree (two years)',0,5,3,'','HIGHDEGREE','2022-04-14 12:58:07.176'),
+	 (false,true,true,'2022-04-14 12:58:07.176','SETH','1st Bachelor''s Degree',0,5,4,'','HIGHDEGREE','2022-04-14 12:58:07.176');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.176','SETH','2nd Bachelor''s Degree',0,5,5,'','HIGHDEGREE','2022-04-14 12:58:07.176'),
+	 (false,true,true,'2022-04-14 12:58:07.176','SETH','Equivalent of Bachelor’s Degree',0,5,6,'','HIGHDEGREE','2022-04-14 12:58:07.176'),
+	 (false,true,true,'2022-04-14 12:58:07.176','SETH','Still enrolled in an undergraduate postsecondary program',0,5,7,'','HIGHDEGREE','2022-04-14 12:58:07.176'),
+	 (false,false,true,'2022-04-14 12:58:07.176','SETH','Left a program of postsecondary education without completing it',0,5,77,'','HIGHDEGREE','2022-04-14 12:58:07.176'),
+	 (false,false,true,'2022-04-14 12:58:07.176','SETH','Not applicable, not yet completed high school',0,5,88,'','HIGHDEGREE','2022-04-14 12:58:07.176'),
+	 (false,true,true,'2022-04-14 12:58:07.176','SETH','Not applicable-completed HS but not enrolled in postsecondary',0,5,99,'','HIGHDEGREE','2022-04-14 12:58:07.176'),
+	 (false,false,true,'2022-04-14 12:58:07.176','SETH','Unknown',0,5,0,'','INITIATIVE','2022-04-14 12:58:07.176'),
+	 (false,false,true,'2022-04-14 12:58:07.176','SETH','Participant in 2000-02 initiative',0,5,1,'','INITIATIVE','2022-04-14 12:58:07.176'),
+	 (false,false,true,'2022-04-14 12:58:07.176','SETH','No longer used for APR reporting in current year',0,5,2,'','INITIATIVE','2022-04-14 12:58:07.176'),
+	 (false,false,true,'2022-04-14 12:58:07.176','SETH','Participant in 2003-06 initiative',0,5,3,'','INITIATIVE','2022-04-14 12:58:07.176');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.176','SETH','Participant in both 2000-02 and 2003-06 initiatives',0,5,4,'','INITIATIVE','2022-04-14 12:58:07.176'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Project had funding in 2000-02 or 2003-06 or both, but participant was not funded',0,5,5,'','INITIATIVE','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Not applicable-project did not have initiative funding',0,5,9,'','INITIATIVE','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Unknown',0,5,0,'','LIMITEDENGPRO','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Yes',0,5,1,'','LIMITEDENGPRO','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','No',0,5,2,'','LIMITEDENGPRO','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Not applicable, participant is still in program',0,5,9,'','LIMITEDENGPRO','2022-04-14 12:58:07.178'),
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','No response',0,5,0,'','MARITALSTATUS','2022-04-14 12:58:07.178'),
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','Single',0,5,1,'','MARITALSTATUS','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Married',0,5,2,'','MARITALSTATUS','2022-04-14 12:58:07.178');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Separated',0,5,3,'','MARITALSTATUS','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Divorced',0,5,4,'','MARITALSTATUS','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Widower',0,5,5,'','MARITALSTATUS','2022-04-14 12:58:07.178'),
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','Pre-Algebra',0,5,1,'','MATH','2022-04-14 12:58:07.178'),
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','Algebra I',0,5,2,'','MATH','2022-04-14 12:58:07.178'),
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','Algebra II',0,5,3,'','MATH','2022-04-14 12:58:07.178'),
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','Geometry',0,5,4,'','MATH','2022-04-14 12:58:07.178'),
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','Trigonometry',0,5,5,'','MATH','2022-04-14 12:58:07.178'),
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','Pre-Calculus',0,5,6,'','MATH','2022-04-14 12:58:07.178'),
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','Calculus',0,5,7,'','MATH','2022-04-14 12:58:07.178');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','Integrated Math',0,5,8,'','MATH','2022-04-14 12:58:07.178'),
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','Other',0,5,9,'','MATH','2022-04-14 12:58:07.178'),
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','Not enrolled in Math Instruction for reporting period',0,5,10,'','MATH','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Not applicable, prior-year participant',0,5,99,'','MATH','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Navy',0,5,1,'','MILITARYTYPE','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Air Force',0,5,2,'','MILITARYTYPE','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Army',0,5,3,'','MILITARYTYPE','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','None',0,5,0,'','MSGSTATUS','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Lowest',0,5,1,'','MSGSTATUS','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Low',0,5,2,'','MSGSTATUS','2022-04-14 12:58:07.178');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Normal',0,5,3,'','MSGSTATUS','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','High',0,5,4,'','MSGSTATUS','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Highest',0,5,5,'','MSGSTATUS','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Unknown/ no response',0,5,0,'','NOENREASON','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Applied but did not gain admission to graduate programs in the reporting year (for students with a bachelor’s degree)',0,5,1,'','NOENREASON','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Did not apply to or declined offers from graduate programs owing to financial reasons (for students with a bachelor''s degree)',0,5,2,'','NOENREASON','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Did not apply to or declined offers from graduate programs owing to health reasons (for students with a bachelor''s degree)',0,5,3,'','NOENREASON','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Did not apply to or declined offers from graduate programs owing to other reasons (for students with a bachelor''s degree',0,5,4,'','NOENREASON','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Withdrew from program (undergraduate or graduate) for academic reasons',0,5,5,'','NOENREASON','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Withdrew from program (undergraduate or graduate) for financial reasons',0,5,6,'','NOENREASON','2022-04-14 12:58:07.178');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Withdrew from program (undergraduate or graduate) or health reasons',0,5,7,'','NOENREASON','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Withdrew from program (undergraduate or graduate) for other personal reasons',0,5,8,'','NOENREASON','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Called for military duty',0,5,9,'','NOENREASON','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Not applicable; the student was enrolled in at least one term during the academic year being reported',0,5,10,'','NOENREASON','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Student deceased',0,5,11,'','NOENREASON','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Did not enroll in research doctoral program',0,5,12,'','NOENREASON','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Ph.D. attained (not previously reported)',0,5,13,'','NOENREASON','2022-04-14 12:58:07.178'),
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','Unknown',0,5,0,'','PARTLENGTH','2022-04-14 12:58:07.178'),
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','0-3 months',0,5,1,'','PARTLENGTH','2022-04-14 12:58:07.178'),
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','4-6 months',0,5,2,'','PARTLENGTH','2022-04-14 12:58:07.178');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','7-9 months',0,5,3,'','PARTLENGTH','2022-04-14 12:58:07.178'),
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','10-12 months',0,5,4,'','PARTLENGTH','2022-04-14 12:58:07.178'),
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','More than 12 months',0,5,5,'','PARTLENGTH','2022-04-14 12:58:07.178'),
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','Still participating at end of reporting period',0,5,6,'','PARTLENGTH','2022-04-14 12:58:07.178'),
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','Unknown',0,5,0,'','PARTLEVEL','2022-04-14 12:58:07.178'),
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','Participated in academic year and summer components',0,5,1,'','PARTLEVEL','2022-04-14 12:58:07.178'),
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','Participated in academic year and summer bridge',0,5,2,'','PARTLEVEL','2022-04-14 12:58:07.178'),
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','Participated in academic year component only',0,5,3,'','PARTLEVEL','2022-04-14 12:58:07.178'),
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','Participated in summer component only',0,5,4,'','PARTLEVEL','2022-04-14 12:58:07.178'),
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','Participated in summer bridge only',0,5,5,'','PARTLEVEL','2022-04-14 12:58:07.178');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','Prior-year participant',0,5,6,'','PARTLEVEL','2022-04-14 12:58:07.178'),
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','Unknown',0,5,0,'','PARTSTATUS','2022-04-14 12:58:07.178'),
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','New participant, for reporting period',0,5,1,'','PARTSTATUS','2022-04-14 12:58:07.178'),
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','Continuing participant',0,5,2,'','PARTSTATUS','2022-04-14 12:58:07.178'),
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','Reentry participant, previously served by project submitting report',0,5,3,'','PARTSTATUS','2022-04-14 12:58:07.178'),
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','Prior-year participant',0,5,4,'','PARTSTATUS','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Prior-year participant, deceased or permanently incapacitated',0,5,5,'','PARTSTATUS','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Transfer participant in reporting year (served by another UB or UBMS project in a previous reporting year)',0,5,6,'','PARTSTATUS','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','New participant served for the first time after the beginning of the Next_Fiscal_Year_Long academic year (only for projects with December 1, 2007, starts)',0,5,7,'','PARTSTATUS','2022-04-14 12:58:07.178'),
+	 (false,true,true,'2022-04-14 12:58:07.178','SETH','No response',0,5,0,'','PARTSTATUSEND','2022-04-14 12:58:07.178');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.178','SETH','Academic dismissal',0,5,1,'','PARTSTATUSEND','2022-04-14 12:58:07.178'),
+	 (false,false,true,'2022-04-14 12:58:07.186','SETH','Dismissal for non-academic reasons',0,5,2,'','PARTSTATUSEND','2022-04-14 12:58:07.186'),
+	 (false,false,true,'2022-04-14 12:58:07.186','SETH','Withdrew for financial reasons',0,5,3,'','PARTSTATUSEND','2022-04-14 12:58:07.186'),
+	 (false,false,true,'2022-04-14 12:58:07.186','SETH','Withdrew for health reasons',0,5,4,'','PARTSTATUSEND','2022-04-14 12:58:07.186'),
+	 (false,false,true,'2022-04-14 12:58:07.186','SETH','Withdrew for academic reasons',0,5,5,'','PARTSTATUSEND','2022-04-14 12:58:07.186'),
+	 (false,false,true,'2022-04-14 12:58:07.186','SETH','withdrew for personal reasons',0,5,6,'','PARTSTATUSEND','2022-04-14 12:58:07.186'),
+	 (false,false,true,'2022-04-14 12:58:07.186','SETH','Transferred',0,5,7,'','PARTSTATUSEND','2022-04-14 12:58:07.186'),
+	 (false,false,true,'2022-04-14 12:58:07.186','SETH','Graduated',0,5,8,'','PARTSTATUSEND','2022-04-14 12:58:07.186'),
+	 (false,false,true,'2022-04-14 12:58:07.186','SETH','Graduated & Transferred',0,5,9,'','PARTSTATUSEND','2022-04-14 12:58:07.186'),
+	 (false,false,true,'2022-04-14 12:58:07.186','SETH','Enrolled in graduate degree programs',0,5,10,'','PARTSTATUSEND','2022-04-14 12:58:07.186');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.186','SETH','Continuing Student',0,5,11,'','PARTSTATUSEND','2022-04-14 12:58:07.186'),
+	 (false,false,true,'2022-04-14 12:58:07.186','SETH','Unknown',0,5,0,'','PERSISTDEN','2022-04-14 12:58:07.186'),
+	 (false,false,true,'2022-04-14 12:58:07.186','SETH','Participant graduating HS in academic year Previous_Fiscal_Year_Long who enrolled in postsecondary education for fall term Current_Fiscal_Year_Short',0,5,1,'','PERSISTDEN','2022-04-14 12:58:07.186'),
+	 (false,false,true,'2022-04-14 12:58:07.186','SETH','Participants graduating HS in academic year Previous_Fiscal_Year_Long who DID NOT enroll in postsecondary education for fall term Current_Fiscal_Year_Short',0,5,2,'','PERSISTDEN','2022-04-14 12:58:07.186'),
+	 (false,false,true,'2022-04-14 12:58:07.186','SETH','Not applicable, participant had not completed high school by end of academic year Previous_Fiscal_Year_Long',0,5,8,'','PERSISTDEN','2022-04-14 12:58:07.186'),
+	 (false,false,true,'2022-04-14 12:58:07.186','SETH','Not applicable, participant graduated from high school prior to Previous_Fiscal_Year_Long academic year',0,5,10,'','PERSISTDEN','2022-04-14 12:58:07.186'),
+	 (false,false,true,'2022-04-14 12:58:07.186','SETH','No response/Unknown',0,5,0,'','PERSISTEND','2022-04-14 12:58:07.186'),
+	 (false,false,true,'2022-04-14 12:58:07.186','SETH','Received certificate/diploma from a program that is less than 2 years',0,5,1,'','PERSISTEND','2022-04-14 12:58:07.186'),
+	 (false,false,true,'2022-04-14 12:58:07.186','SETH','Graduated with an associate’s degree (did not transfer to a 4-year institution) OR graduated with a bachelor’s degree',0,5,2,'','PERSISTEND','2022-04-14 12:58:07.186'),
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','Graduated with an associate’s degree and transferred to a four-year institution',0,5,3,'','PERSISTEND','2022-04-14 12:58:07.188');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','Transferred to another institution',0,5,4,'','PERSISTEND','2022-04-14 12:58:07.188'),
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','Withdrew or did not return',0,5,5,'','PERSISTEND','2022-04-14 12:58:07.188'),
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','Deceased',0,5,6,'','PERSISTEND','2022-04-14 12:58:07.188'),
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','Called to military service',0,5,7,'','PERSISTEND','2022-04-14 12:58:07.188'),
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','Still enrolled at grantee institution (no degree or certificate completed)',0,5,8,'','PERSISTEND','2022-04-14 12:58:07.188'),
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','Still enrolled at grantee institution (received certificate or associate’s degree and is pursuing an associate’s or bachelor’s degree)',0,5,9,'','PERSISTEND','2022-04-14 12:58:07.188'),
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','Completed program requirements but did not receive certificate, diploma, or degree',0,5,10,'','PERSISTEND','2022-04-14 12:58:07.188'),
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','Unknown',0,5,0,'','PERSISTNUM','2022-04-14 12:58:07.188'),
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','Participant coded 1 in field #51 who was enrolled in postsecondary education for fall term Next_Fiscal_Year_Short',0,5,1,'','PERSISTNUM','2022-04-14 12:58:07.188'),
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','Participant coded 1 in field #51 who was not enrolled in postsecondary education for fall term Next_Fiscal_Year_Short',0,5,2,'','PERSISTNUM','2022-04-14 12:58:07.188');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','Not applicable, participant not coded 1 in field #51',0,5,3,'','PERSISTNUM','2022-04-14 12:58:07.188'),
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','No response/Unknown',0,5,0,'','PERSISTSTA','2022-04-14 12:58:07.188'),
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','Enrolled at grantee institution',0,5,1,'','PERSISTSTA','2022-04-14 12:58:07.188'),
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','Not enrolled at grantee institution (transferred from a 2-year to a 4-year institution)',0,5,2,'','PERSISTSTA','2022-04-14 12:58:07.188'),
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','Not enrolled at grantee institution',0,5,3,'','PERSISTSTA','2022-04-14 12:58:07.188'),
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','Unknown',0,5,0,'','PROJRETAIN','2022-04-14 12:58:07.188'),
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','9th, 10th, or 11th-grade participant in Current_Fiscal_Year_Long who continued to participate in Next_Fiscal_Year_Long in the project that is reporting',0,5,1,'','PROJRETAIN','2022-04-14 12:58:07.188'),
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','9th, 10th, or 11th-grader in Current_Fiscal_Year_Long who DID NOT continue to participate in Next_Fiscal_Year_Long in the project that is reporting',0,5,2,'','PROJRETAIN','2022-04-14 12:58:07.188'),
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','Transferred to another UB or UBMS project',0,5,3,'','PROJRETAIN','2022-04-14 12:58:07.188'),
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','Not applicable, participant served for the first time after the beginning of the Next_Fiscal_Year_Long academic year (used only by projects with December 1, 2007, start dates)',0,5,8,'','PROJRETAIN','2022-04-14 12:58:07.188');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','Not applicable, was not a 9th, 10th, or 11th-grade participant in the Current_Fiscal_Year_Long academic year',0,5,9,'','PROJRETAIN','2022-04-14 12:58:07.188'),
+	 (false,true,true,'2022-04-14 12:58:07.188','SETH','Unknown',0,5,0,'','PSETERM','2022-04-14 12:58:07.188'),
+	 (false,true,true,'2022-04-14 12:58:07.188','SETH','Quarter system',0,5,1,'','PSETERM','2022-04-14 12:58:07.188'),
+	 (false,true,true,'2022-04-14 12:58:07.188','SETH','Semester system',0,5,2,'','PSETERM','2022-04-14 12:58:07.188'),
+	 (false,true,true,'2022-04-14 12:58:07.188','SETH','Other',0,5,3,'','PSETERM','2022-04-14 12:58:07.188'),
+	 (false,true,true,'2022-04-14 12:58:07.188','SETH','Not Applicable',0,5,9,'','PSETERM','2022-04-14 12:58:07.188'),
+	 (false,true,true,'2022-04-14 12:58:07.188','SETH','Unknown',0,5,0,'','REASON','2022-04-14 12:58:07.188'),
+	 (false,true,true,'2022-04-14 12:58:07.188','SETH','Need or desire for employment',0,5,1,'','REASON','2022-04-14 12:58:07.188'),
+	 (false,true,true,'2022-04-14 12:58:07.188','SETH','Moved out of target area',0,5,2,'','REASON','2022-04-14 12:58:07.188'),
+	 (false,true,true,'2022-04-14 12:58:07.188','SETH','Dropped out of high school',0,5,3,'','REASON','2022-04-14 12:58:07.188');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.188','SETH','Other extra curricular activities',0,5,4,'','REASON','2022-04-14 12:58:07.188'),
+	 (false,true,true,'2022-04-14 12:58:07.188','SETH','Participating in another academic program (not UB or UBMS)',0,5,5,'','REASON','2022-04-14 12:58:07.188'),
+	 (false,true,true,'2022-04-14 12:58:07.188','SETH','No Longer interested in the program',0,5,6,'','REASON','2022-04-14 12:58:07.188'),
+	 (false,true,true,'2022-04-14 12:58:07.188','SETH','Family responsibilities',0,5,7,'','REASON','2022-04-14 12:58:07.188'),
+	 (false,true,true,'2022-04-14 12:58:07.188','SETH','Graduated from high school',0,5,8,'','REASON','2022-04-14 12:58:07.188'),
+	 (false,true,true,'2022-04-14 12:58:07.188','SETH','Other',0,5,9,'','REASON','2022-04-14 12:58:07.188'),
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','Obtained high school equivalency credential (GED)',0,5,10,'','REASON','2022-04-14 12:58:07.188'),
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','Deceased or permanently incapacitated',0,5,11,'','REASON','2022-04-14 12:58:07.188'),
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','Dismissed for not meeting program’s academic standards',0,5,12,'','REASON','2022-04-14 12:58:07.188'),
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','Dismissed for not meeting program’s conduct standards',0,5,13,'','REASON','2022-04-14 12:58:07.188');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','Transferred to another UB or UBMS project',0,5,14,'','REASON','2022-04-14 12:58:07.188'),
+	 (false,true,true,'2022-04-14 12:58:07.188','SETH','Not applicable, participant is still in program',0,5,99,'','REASON','2022-04-14 12:58:07.188'),
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','Unknown',0,5,0,'','RECRUIT','2022-04-14 12:58:07.188'),
+	 (false,true,true,'2022-04-14 12:58:07.188','SETH','Current or prior participant in a regular UB project',0,5,1,'','RECRUIT','2022-04-14 12:58:07.188'),
+	 (false,true,true,'2022-04-14 12:58:07.188','SETH','Current or prior participant in another TRIO project (e.g.,Talent Search)',0,5,2,'','RECRUIT','2022-04-14 12:58:07.188'),
+	 (false,true,true,'2022-04-14 12:58:07.188','SETH','Current or prior participant in another TRIO-like program',0,5,3,'','RECRUIT','2022-04-14 12:58:07.188'),
+	 (false,true,true,'2022-04-14 12:58:07.188','SETH','Participant only in UBMS program',0,5,4,'','RECRUIT','2022-04-14 12:58:07.188'),
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','Not applicable, student is a participant in regular UB program only, not UBMS',0,5,9,'','RECRUIT','2022-04-14 12:58:07.188'),
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','Regional (i.e., serves at least two states)',0,5,1,'','REGIONAL','2022-04-14 12:58:07.188'),
+	 (false,false,true,'2022-04-14 12:58:07.188','SETH','Non-regional (i.e., operates within a state or a locality)',0,5,2,'','REGIONAL','2022-04-14 12:58:07.188');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.188','SETH','Not enrolled',0,5,0,'','SCIENCE','2022-04-14 12:58:07.188'),
+	 (false,true,true,'2022-04-14 12:58:07.196','SETH','Introductory Science/Earth Science',0,5,1,'','SCIENCE','2022-04-14 12:58:07.196'),
+	 (false,true,true,'2022-04-14 12:58:07.196','SETH','Biology',0,5,2,'','SCIENCE','2022-04-14 12:58:07.196'),
+	 (false,true,true,'2022-04-14 12:58:07.196','SETH','Chemistry',0,5,3,'','SCIENCE','2022-04-14 12:58:07.196'),
+	 (false,true,true,'2022-04-14 12:58:07.196','SETH','Physics',0,5,4,'','SCIENCE','2022-04-14 12:58:07.196'),
+	 (false,true,true,'2022-04-14 12:58:07.196','SETH','Integrated Science',0,5,5,'','SCIENCE','2022-04-14 12:58:07.196'),
+	 (false,true,true,'2022-04-14 12:58:07.198','SETH','Other',0,5,6,'','SCIENCE','2022-04-14 12:58:07.198'),
+	 (false,true,true,'2022-04-14 12:58:07.198','SETH','Unknown',0,5,0,'','SELFTRAN','2022-04-14 12:58:07.198'),
+	 (false,true,true,'2022-04-14 12:58:07.198','SETH','Official college transcript',0,5,1,'','SELFTRAN','2022-04-14 12:58:07.198'),
+	 (false,true,true,'2022-04-14 12:58:07.198','SETH','Institutional data other than an official transcript',0,5,2,'','SELFTRAN','2022-04-14 12:58:07.198');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.198','SETH','Self-reported by participant',0,5,3,'','SELFTRAN','2022-04-14 12:58:07.198'),
+	 (false,true,true,'2022-04-14 12:58:07.198','SETH','Other third-party verification (e.g., National Student Clearinghouse)',0,5,4,'','SELFTRAN','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','Not applicable, not yet completed high school',0,5,8,'','SELFTRAN','2022-04-14 12:58:07.198'),
+	 (false,true,true,'2022-04-14 12:58:07.198','SETH','Not applicable, completed HS but not enrolled in postsecondary',0,5,9,'','SELFTRAN','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','Spring',0,5,1,'','SEMESTER','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','Summer',0,5,2,'','SEMESTER','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','Fall',0,5,3,'','SEMESTER','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','Winter',0,5,4,'','SEMESTER','2022-04-14 12:58:07.198'),
+	 (false,true,true,'2022-04-14 12:58:07.198','SETH','Component',0,5,1,'','SERHEADING','2022-04-14 12:58:07.198'),
+	 (false,true,true,'2022-04-14 12:58:07.198','SETH','',0,5,2,'','SERHEADING','2022-04-14 12:58:07.198');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.198','SETH','',0,5,3,'','SERHEADING','2022-04-14 12:58:07.198'),
+	 (false,true,true,'2022-04-14 12:58:07.198','SETH','',0,5,4,'','SERHEADING','2022-04-14 12:58:07.198'),
+	 (false,true,true,'2022-04-14 12:58:07.198','SETH','',0,5,5,'','SERHEADING','2022-04-14 12:58:07.198'),
+	 (false,true,true,'2022-04-14 12:58:07.198','SETH','Instructions',0,5,6,'','SERHEADING','2022-04-14 12:58:07.198'),
+	 (false,true,true,'2022-04-14 12:58:07.198','SETH','Activities',0,5,1,'','SERTYPE','2022-04-14 12:58:07.198'),
+	 (false,true,true,'2022-04-14 12:58:07.198','SETH','Activity Group',0,5,2,'','SERTYPE','2022-04-14 12:58:07.198'),
+	 (false,true,true,'2022-04-14 12:58:07.198','SETH','Veteran Group',0,5,3,'','SERTYPE','2022-04-14 12:58:07.198'),
+	 (false,true,true,'2022-04-14 12:58:07.198','SETH','End Status',0,5,4,'','SERTYPE','2022-04-14 12:58:07.198'),
+	 (false,true,true,'2022-04-14 12:58:07.198','SETH','Form Type',0,5,5,'','SERTYPE','2022-04-14 12:58:07.198'),
+	 (false,true,true,'2022-04-14 12:58:07.198','SETH','APR Subject',0,5,6,'','SERTYPE','2022-04-14 12:58:07.198');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','8th Grade',0,5,8,'','STANDING','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','9th grade',0,5,9,'','STANDING','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','10th grade',0,5,10,'','STANDING','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','11th grade',0,5,11,'','STANDING','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','12th grade',0,5,12,'','STANDING','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','1st year Graduate',0,5,13,'','STANDING','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','2nd year Graduate',0,5,14,'','STANDING','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','3rd year Graduate',0,5,15,'','STANDING','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','4th year Graduate',0,5,16,'','STANDING','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','MANAGER','5th year Graduate/Prior Year student',0,5,17,'','STANDING','2022-04-14 12:58:07.198');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.198','MANAGER','6th year Graduate/Prior Year student',0,5,18,'','STANDING','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','MANAGER','7th year Graduate/Prior Year student',0,5,19,'','STANDING','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','MANAGER','8th year Graduate/Prior Year student',0,5,20,'','STANDING','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','1st year-Prior Year Student',0,5,21,'','STANDING','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','2nd year-Prior Year Student',0,5,22,'','STANDING','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','3rd year-Prior Year Student',0,5,23,'','STANDING','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','4th year-Prior Year Student',0,5,24,'','STANDING','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','APR Column #1',0,5,1,'','STANDINGGROUPTYPE','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','APR Column #2',0,5,2,'','STANDINGGROUPTYPE','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','APR Column #3',0,5,3,'','STANDINGGROUPTYPE','2022-04-14 12:58:07.198');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','Unknown',0,5,0,'','STATE10GRADE','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','10th grade',0,5,1,'','STATE10GRADE','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','11th grade',0,5,2,'','STATE10GRADE','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','12th grade',0,5,3,'','STATE10GRADE','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','Project not providing information in 2003-04 and 2004-05',0,5,8,'','STATE10GRADE','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','Not Applicable',0,5,9,'','STATE10GRADE','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','Unknown',0,5,0,'','STATE10MET','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','Yes, student met standard at the proficient level',0,5,3,'','STATE10MET','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','No, student did not meet standard at the proficient level',0,5,4,'','STATE10MET','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','N/A, student has not taken the state assessment to determine whether he or she met standard or student is in a cohort year prior to 2008',0,5,9,'','STATE10MET','2022-04-14 12:58:07.198');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','Unknown',0,5,0,'','STATE8MET','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','Yes-student initially met standard',0,5,1,'','STATE8MET','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','No-student did not initially meet standard',0,5,2,'','STATE8MET','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','Not applicable to UBMS projects',0,5,8,'','STATE8MET','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','Not applicable student did not take assessment',0,5,9,'','STATE8MET','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','Unknown',0,5,0,'','STATETEST','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','Yes-project measures student’s achievement using state-developed test',0,5,1,'','STATETEST','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','No-project does not measure student’s achievement using state-developed test',0,5,2,'','STATETEST','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','Not Applicable',0,5,9,'','STATETEST','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','No response/Unknown',0,5,0,'','SUMBRIDGE','2022-04-14 12:58:07.198');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','Participated in summer bridge program offered by the project',0,5,1,'','SUMBRIDGE','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','Student did not participate in summer bridge program',0,5,2,'','SUMBRIDGE','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','Not applicable (project did not offer summer bridge program)',0,5,7,'','SUMBRIDGE','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','Not applicable (continuing participant)',0,5,8,'','SUMBRIDGE','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','Not applicable (prior-year participant)',0,5,9,'','SUMBRIDGE','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','Yes',0,5,1,'','SUMMERRESI','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','No',0,5,2,'','SUMMERRESI','2022-04-14 12:58:07.198'),
+	 (false,false,true,'2022-04-14 12:58:07.198','SETH','Some participants are residential, others commute',0,5,3,'','SUMMERRESI','2022-04-14 12:58:07.198'),
+	 (false,true,true,'2022-04-14 12:58:07.206','SETH','Unknown',0,5,0,'','TESTTYPE','2022-04-14 12:58:07.206'),
+	 (false,true,true,'2022-04-14 12:58:07.206','SETH','Comprehensive Test of Basic Skills (CTBS)',0,5,1,'','TESTTYPE','2022-04-14 12:58:07.206');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.206','SETH','Stanford Achievement Test (SAT-9 or SAT-10)',0,5,2,'','TESTTYPE','2022-04-14 12:58:07.206'),
+	 (false,true,true,'2022-04-14 12:58:07.206','SETH','Option no longer used-California Achievement Test (CAT)',0,5,3,'','TESTTYPE','2022-04-14 12:58:07.206'),
+	 (false,true,true,'2022-04-14 12:58:07.206','SETH','Iowa Test of Basic Skills',0,5,4,'','TESTTYPE','2022-04-14 12:58:07.206'),
+	 (false,true,true,'2022-04-14 12:58:07.206','SETH','Option no longer used-Texas Assessment of Academic Skills (TAAS)',0,5,5,'','TESTTYPE','2022-04-14 12:58:07.206'),
+	 (false,true,true,'2022-04-14 12:58:07.206','SETH','Nelson Denny',0,5,6,'','TESTTYPE','2022-04-14 12:58:07.206'),
+	 (false,true,true,'2022-04-14 12:58:07.208','SETH','Option no longer used-ARIO Assessment Tools',0,5,7,'','TESTTYPE','2022-04-14 12:58:07.208'),
+	 (false,true,true,'2022-04-14 12:58:07.208','SETH','Other national test',0,5,8,'','TESTTYPE','2022-04-14 12:58:07.208'),
+	 (false,false,true,'2022-04-14 12:58:07.208','SETH','TerraNova',0,5,9,'','TESTTYPE','2022-04-14 12:58:07.208'),
+	 (false,false,true,'2022-04-14 12:58:07.208','SETH','ACT’s PLAN',0,5,10,'','TESTTYPE','2022-04-14 12:58:07.208'),
+	 (false,false,true,'2022-04-14 12:58:07.208','SETH','ACT',0,5,11,'','TESTTYPE','2022-04-14 12:58:07.208');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.208','SETH','PSAT',0,5,12,'','TESTTYPE','2022-04-14 12:58:07.208'),
+	 (false,false,true,'2022-04-14 12:58:07.208','SETH','SAT',0,5,13,'','TESTTYPE','2022-04-14 12:58:07.208'),
+	 (false,true,true,'2022-04-14 12:58:07.208','SETH','Not Applicable',0,5,99,'','TESTTYPE','2022-04-14 12:58:07.208'),
+	 (false,false,true,'2022-04-14 12:58:07.208','SETH','No response/Unknown',0,5,0,'','TRANSFERS','2022-04-14 12:58:07.208'),
+	 (false,false,true,'2022-04-14 12:58:07.208','SETH','Transferred from a 2-year institution to another 2-year institution',0,5,1,'','TRANSFERS','2022-04-14 12:58:07.208'),
+	 (false,false,true,'2022-04-14 12:58:07.208','SETH','Transferred from a 2-year institution to a 4-year institution',0,5,2,'','TRANSFERS','2022-04-14 12:58:07.208'),
+	 (false,false,true,'2022-04-14 12:58:07.208','SETH','Transferred from a 4-year institution to another 4-year institution',0,5,3,'','TRANSFERS','2022-04-14 12:58:07.208'),
+	 (false,false,true,'2022-04-14 12:58:07.208','SETH','Transferred from a 4-year institution to a 2-year institution',0,5,4,'','TRANSFERS','2022-04-14 12:58:07.208'),
+	 (false,false,true,'2022-04-14 12:58:07.208','SETH','Not applicable – still enrolled or graduated (participant is still enrolled at the grantee-institution, completed certificate/diploma program, graduated with an associate’s but did not transfer, or graduated with a bachelor’s degree)',0,5,8,'','TRANSFERS','2022-04-14 12:58:07.208'),
+	 (false,false,true,'2022-04-14 12:58:07.208','SETH','Not applicable -- not enrolled at grantee institution (participant withdrew, did not return, was called for military service or is deceased)',0,5,9,'','TRANSFERS','2022-04-14 12:58:07.208');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.208','SETH','Unknown or no longer tracking',0,5,0,'','VCALL','2022-04-14 12:58:07.208'),
+	 (false,false,true,'2022-04-14 12:58:07.208','SETH','Yes',0,5,1,'','VCALL','2022-04-14 12:58:07.208'),
+	 (false,false,true,'2022-04-14 12:58:07.208','SETH','No',0,5,2,'','VCALL','2022-04-14 12:58:07.208'),
+	 (false,true,true,'2022-04-14 12:58:07.208','SETH','No response',0,5,0,'','VENTERJOB','2022-04-14 12:58:07.208'),
+	 (false,true,true,'2022-04-14 12:58:07.208','SETH','Unemployed',0,5,1,'','VENTERJOB','2022-04-14 12:58:07.208'),
+	 (false,true,true,'2022-04-14 12:58:07.208','SETH','Employed part time',0,5,2,'','VENTERJOB','2022-04-14 12:58:07.208'),
+	 (false,true,true,'2022-04-14 12:58:07.208','SETH','Employed full time',0,5,3,'','VENTERJOB','2022-04-14 12:58:07.208'),
+	 (false,true,true,'2022-04-14 12:58:07.208','SETH','Retired',0,5,4,'','VENTERJOB','2022-04-14 12:58:07.208'),
+	 (false,true,true,'2022-04-14 12:58:07.208','SETH','Unknown',0,5,0,'','VENTERLEVEL','2022-04-14 12:58:07.208'),
+	 (false,true,true,'2022-04-14 12:58:07.208','SETH','High School Dropout',0,5,1,'','VENTERLEVEL','2022-04-14 12:58:07.208');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.208','SETH','High School Graduate',0,5,2,'','VENTERLEVEL','2022-04-14 12:58:07.208'),
+	 (false,true,true,'2022-04-14 12:58:07.208','SETH','GED/High School Equivalency Graduate',0,5,3,'','VENTERLEVEL','2022-04-14 12:58:07.208'),
+	 (false,true,true,'2022-04-14 12:58:07.208','SETH','High School Graduate with Some College',0,5,4,'','VENTERLEVEL','2022-04-14 12:58:07.208'),
+	 (false,true,true,'2022-04-14 12:58:07.208','SETH','GED/High School Equivalency with Some College',0,5,5,'','VENTERLEVEL','2022-04-14 12:58:07.208'),
+	 (false,false,true,'2022-04-14 12:58:07.208','SETH','Unknown',0,5,0,'','VETREVSCHE','2022-04-14 12:58:07.208'),
+	 (false,false,true,'2022-04-14 12:58:07.208','SETH','2008–09 budget year',0,5,1,'','VETREVSCHE','2022-04-14 12:58:07.208'),
+	 (false,false,true,'2022-04-14 12:58:07.208','SETH','2009–10 budget year',0,5,2,'','VETREVSCHE','2022-04-14 12:58:07.208'),
+	 (false,false,true,'2022-04-14 12:58:07.216','SETH','2010–11 budget year',0,5,3,'','VETREVSCHE','2022-04-14 12:58:07.216'),
+	 (false,false,true,'2022-04-14 12:58:07.216','SETH','2011–12 budget year',0,5,4,'','VETREVSCHE','2022-04-14 12:58:07.216'),
+	 (false,false,true,'2022-04-14 12:58:07.216','SETH','Not applicable, scheduled completion year is unchanged',0,5,8,'','VETREVSCHE','2022-04-14 12:58:07.216');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','Not applicable, prior participant',0,5,9,'','VETREVSCHE','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','Unknown',0,5,0,'','VETSCHE','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','2007-2008 budget year',0,5,1,'','VETSCHE','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','2008-2009 budget year',0,5,2,'','VETSCHE','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','2009-2010 budget year',0,5,3,'','VETSCHE','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','2010-2011 budget year',0,5,4,'','VETSCHE','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','Not applicable, prior participant',0,5,9,'','VETSCHE','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','Unknown',0,5,0,'','VETSCHECIR','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','Participant has not had a hiatus in participation from one year to another and was active in the VUB program when rescheduling occurred',0,5,1,'','VETSCHECIR','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','Participant returned from active duty military service',0,5,2,'','VETSCHECIR','2022-04-14 12:58:07.218');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','Reentry participant whose hiatus in participation from one year to another was not due to active duty',0,5,3,'','VETSCHECIR','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','Not applicable, scheduled completion year is unchanged',0,5,9,'','VETSCHECIR','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','Change in educational plan',0,5,1,'','VETSCHEREA','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','Health concerns of participant or spouse',0,5,2,'','VETSCHEREA','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','Return after active duty military service',0,5,3,'','VETSCHEREA','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','Lost or gained employment',0,5,4,'','VETSCHEREA','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','Financial instability',0,5,5,'','VETSCHEREA','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','Family responsibilities',0,5,6,'','VETSCHEREA','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','Other',0,5,7,'','VETSCHEREA','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','Not applicable, scheduled completion year is unchanged',0,5,8,'','VETSCHEREA','2022-04-14 12:58:07.218');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','Not applicable, prior participant',0,5,9,'','VETSCHEREA','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','Unknown',0,5,0,'','VETTEST','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','Yes, participant took the tests and improved',0,5,1,'','VETTEST','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','No, participant took the tests and did not improve',0,5,2,'','VETTEST','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','Not applicable, posttest not yet completed',0,5,8,'','VETTEST','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','Not applicable, prior-year participant',0,5,9,'','VETTEST','2022-04-14 12:58:07.218'),
+	 (false,true,true,'2022-04-14 12:58:07.218','SETH','Unknown',0,5,0,'','VFINAIDREC','2022-04-14 12:58:07.218'),
+	 (false,true,true,'2022-04-14 12:58:07.218','SETH','Pell grant only',0,5,1,'','VFINAIDREC','2022-04-14 12:58:07.218'),
+	 (false,true,true,'2022-04-14 12:58:07.218','SETH','FFEL loan',0,5,2,'','VFINAIDREC','2022-04-14 12:58:07.218'),
+	 (false,true,true,'2022-04-14 12:58:07.218','SETH','Direct loan',0,5,3,'','VFINAIDREC','2022-04-14 12:58:07.218');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.218','SETH','College work study only',0,5,4,'','VFINAIDREC','2022-04-14 12:58:07.218'),
+	 (false,true,true,'2022-04-14 12:58:07.218','SETH','Institutional aid only',0,5,5,'','VFINAIDREC','2022-04-14 12:58:07.218'),
+	 (false,true,true,'2022-04-14 12:58:07.218','SETH','State grant only',0,5,6,'','VFINAIDREC','2022-04-14 12:58:07.218'),
+	 (false,true,true,'2022-04-14 12:58:07.218','SETH','Pell grant and FFEL loan',0,5,7,'','VFINAIDREC','2022-04-14 12:58:07.218'),
+	 (false,true,true,'2022-04-14 12:58:07.218','SETH','Pell grant and Direct loan',0,5,8,'','VFINAIDREC','2022-04-14 12:58:07.218'),
+	 (false,true,true,'2022-04-14 12:58:07.218','SETH','Multiple federal aid',0,5,9,'','VFINAIDREC','2022-04-14 12:58:07.218'),
+	 (false,true,true,'2022-04-14 12:58:07.218','SETH','Multiple federal and other aid',0,5,10,'','VFINAIDREC','2022-04-14 12:58:07.218'),
+	 (false,true,true,'2022-04-14 12:58:07.218','SETH','Montgomery G.I. scholarship',0,5,11,'','VFINAIDREC','2022-04-14 12:58:07.218'),
+	 (false,true,true,'2022-04-14 12:58:07.218','SETH','Veterans Benefits',0,5,12,'','VFINAIDREC','2022-04-14 12:58:07.218'),
+	 (false,true,true,'2022-04-14 12:58:07.218','SETH','No aid awarded',0,5,13,'','VFINAIDREC','2022-04-14 12:58:07.218');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.218','SETH','No aid needed',0,5,14,'','VFINAIDREC','2022-04-14 12:58:07.218'),
+	 (false,true,true,'2022-04-14 12:58:07.218','SETH','Not Applicable',0,5,99,'','VFINAIDREC','2022-04-14 12:58:07.218'),
+	 (false,true,true,'2022-04-14 12:58:07.218','SETH','Unknown',0,5,0,'','VGRADELEVEL','2022-04-14 12:58:07.218'),
+	 (false,true,true,'2022-04-14 12:58:07.218','SETH','High School Dropout',0,5,1,'','VGRADELEVEL','2022-04-14 12:58:07.218'),
+	 (false,true,true,'2022-04-14 12:58:07.218','SETH','High School Graduate',0,5,2,'','VGRADELEVEL','2022-04-14 12:58:07.218'),
+	 (false,true,true,'2022-04-14 12:58:07.218','SETH','Obtained high school equivalency degree',0,5,3,'','VGRADELEVEL','2022-04-14 12:58:07.218'),
+	 (false,true,true,'2022-04-14 12:58:07.218','SETH','Obtained high school equivalency degree and accepted for enrollment in program of postsecondary education',0,5,4,'','VGRADELEVEL','2022-04-14 12:58:07.218'),
+	 (false,true,true,'2022-04-14 12:58:07.218','SETH','Accepted for enrollment in program of postsecondary education',0,5,5,'','VGRADELEVEL','2022-04-14 12:58:07.218'),
+	 (false,true,true,'2022-04-14 12:58:07.218','SETH','Obtained high school equivalency degree and enrolled in program of postsecondary education',0,5,6,'','VGRADELEVEL','2022-04-14 12:58:07.218'),
+	 (false,true,true,'2022-04-14 12:58:07.218','SETH','Enrolled in program of postsecondary education',0,5,7,'','VGRADELEVEL','2022-04-14 12:58:07.218');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.218','SETH','Completed project but did not enroll in program of postsecondary education',0,5,8,'','VGRADELEVEL','2022-04-14 12:58:07.218'),
+	 (false,true,true,'2022-04-14 12:58:07.218','SETH','Did not complete project',0,5,9,'','VGRADELEVEL','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','Unknown',0,5,0,'','YEARCOGRD','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','Other (prior to 2002)',0,5,1,'','YEARCOGRD','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','2002',0,5,2,'','YEARCOGRD','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','2003',0,5,3,'','YEARCOGRD','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','2004',0,5,4,'','YEARCOGRD','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','2005',0,5,5,'','YEARCOGRD','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','2006',0,5,6,'','YEARCOGRD','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','2007',0,5,7,'','YEARCOGRD','2022-04-14 12:58:07.218');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','2008',0,5,8,'','YEARCOGRD','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','2009',0,5,9,'','YEARCOGRD','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.218','SETH','2010',0,5,10,'','YEARCOGRD','2022-04-14 12:58:07.218'),
+	 (false,false,true,'2022-04-14 12:58:07.226','SETH','2011',0,5,11,'','YEARCOGRD','2022-04-14 12:58:07.226'),
+	 (false,false,true,'2022-04-14 12:58:07.226','SETH','2012',0,5,12,'','YEARCOGRD','2022-04-14 12:58:07.226'),
+	 (false,false,true,'2022-04-14 12:58:07.226','SETH','2013',0,5,13,'','YEARCOGRD','2022-04-14 12:58:07.226'),
+	 (false,false,true,'2022-04-14 12:58:07.226','SETH','2014',0,5,14,'','YEARCOGRD','2022-04-14 12:58:07.226'),
+	 (false,false,true,'2022-04-14 12:58:07.226','SETH','2015',0,5,15,'','YEARCOGRD','2022-04-14 12:58:07.226'),
+	 (false,true,true,'2022-04-14 12:58:07.226','SETH','No response',0,5,0,'','YESNO','2022-04-14 12:58:07.226'),
+	 (false,true,true,'2022-04-14 12:58:07.226','SETH','Yes',0,5,1,'','YESNO','2022-04-14 12:58:07.226');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.226','SETH','No',0,5,2,'','YESNO','2022-04-14 12:58:07.226'),
+	 (false,true,true,'2022-04-14 12:58:07.226','SETH','Not Applicable',0,5,9,'','YESNO','2022-04-14 12:58:07.226'),
+	 (false,true,true,'2022-04-14 12:58:07.226','SETH','No response/Unknown',0,6,0,'','ACADNEED','2022-04-14 12:58:07.226'),
+	 (false,true,true,'2022-04-14 12:58:07.226','SETH','Low high school grades',0,6,1,'','ACADNEED','2022-04-14 12:58:07.226'),
+	 (false,false,true,'2022-04-14 12:58:07.226','SETH','Low admission test scores',0,6,2,'','ACADNEED','2022-04-14 12:58:07.226'),
+	 (false,false,true,'2022-04-14 12:58:07.226','SETH','No longer used',0,6,3,'','ACADNEED','2022-04-14 12:58:07.226'),
+	 (false,true,true,'2022-04-14 12:58:07.226','SETH','No longer used',0,6,4,'','ACADNEED','2022-04-14 12:58:07.226'),
+	 (false,true,true,'2022-04-14 12:58:07.226','SETH','Predictive indicator',0,6,5,'','ACADNEED','2022-04-14 12:58:07.226'),
+	 (false,true,true,'2022-04-14 12:58:07.226','SETH','Diagnostic tests',0,6,6,'','ACADNEED','2022-04-14 12:58:07.226'),
+	 (false,false,true,'2022-04-14 12:58:07.226','SETH','Low college grades',0,6,7,'','ACADNEED','2022-04-14 12:58:07.226');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.228','SETH','High school equivalency',0,6,8,'','ACADNEED','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','SETH','Failing grades',0,6,9,'','ACADNEED','2022-04-14 12:58:07.228'),
+	 (false,true,true,'2022-04-14 12:58:07.228','SETH','Out of the academic pipeline for 5 or more years',0,6,10,'','ACADNEED','2022-04-14 12:58:07.228'),
+	 (false,true,true,'2022-04-14 12:58:07.228','SETH','Other',0,6,11,'','ACADNEED','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','SETH','Limited English proficiency',0,6,12,'','ACADNEED','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','SETH','Lack of educational and/or career goals',0,6,13,'','ACADNEED','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','SETH','Lack of academic preparedness for college level course work',0,6,14,'','ACADNEED','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','SETH','Need for academic support to raise grade(s) in required course(s)/academic major',0,6,15,'','ACADNEED','2022-04-14 12:58:07.228'),
+	 (false,true,true,'2022-04-14 12:58:07.228','SETH','No response/Unknown',0,6,0,'','ACADSTAND','2022-04-14 12:58:07.228'),
+	 (false,true,true,'2022-04-14 12:58:07.228','SETH','In Good Standing',0,6,1,'','ACADSTAND','2022-04-14 12:58:07.228');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.228','SETH','Not in good standing',0,6,2,'','ACADSTAND','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','SETH','Not applicable (prior-year participant)',0,6,9,'','ACADSTAND','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Reading (Credit)',0,6,1,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Writing (Credit)',0,6,2,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Study Skills (Credit)',0,6,3,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Mathematics (Credit)',0,6,4,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','English (Credit)',0,6,5,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','English Proficiency (Credit)',0,6,6,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Other (Specify) (Credit)',0,6,7,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Reading (Support)',0,6,8,'','ACTIVITY','2022-04-14 12:58:07.228');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Writing (Support)',0,6,9,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Study Skills (Support)',0,6,10,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Mathematics (Support)',0,6,11,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','English (Support)',0,6,12,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','English Proficiency (Support)',0,6,13,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Other (Specify)  (Support)',0,6,14,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Peer Tutoring (one to one)',0,6,15,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Peer Tutoring (group)',0,6,16,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Professional Tutoring (one to one)',0,6,17,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Professional Tutoring (group)',0,6,18,'','ACTIVITY','2022-04-14 12:58:07.228');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Supplemental Instruction',0,6,19,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Assisted Labs',0,6,20,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Computer Aided Instruction',0,6,21,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Study Skills Classes/Workshops',0,6,22,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Orientation Classes/Workshops',0,6,23,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Other (specify) (Academic Support)',0,6,24,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Personal Counseling',0,6,25,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Academic Advising',0,6,26,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Financial Aid Counseling',0,6,27,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Career Counseling',0,6,28,'','ACTIVITY','2022-04-14 12:58:07.228');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Transfer Counseling',0,6,29,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Graduate School Counseling',0,6,30,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Professional Mentoring',0,6,31,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Peer Counseling/Mentoring',0,6,32,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Other (specify) (Counseling & Mentoring)',0,6,33,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Cultural Activities',0,6,34,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Campus Visitations',0,6,35,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Information Workshops',0,6,36,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Time Organizing',0,6,37,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Test Taking Skills',0,6,38,'','ACTIVITY','2022-04-14 12:58:07.228');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Self-Concept Assess',0,6,39,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Goal Setting for the students',0,6,40,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Self-Esteem',0,6,41,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Decision Making',0,6,42,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Career Planning',0,6,43,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Field Trips',0,6,44,'','ACTIVITY','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','SETH','Count all contacts on same day as separate sessions',0,6,1,'','ACTIVITYGROUPTYPE','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','SETH','Count all contacts on same day as one event',0,6,2,'','ACTIVITYGROUPTYPE','2022-04-14 12:58:07.228'),
+	 (false,true,true,'2022-04-14 12:58:07.228','SETH','Mathematics Instruction',0,6,36,'admath','APR SUBJECT','2022-04-14 12:58:07.228'),
+	 (false,true,true,'2022-04-14 12:58:07.228','SETH','Mathematics Instruction Summer (may include Bridge Students)',0,6,37,'admath','APR SUBJECT','2022-04-14 12:58:07.228');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.228','SETH','Science Instruction/Tutorials Academic Year',0,6,38,'adscience','APR SUBJECT','2022-04-14 12:58:07.228'),
+	 (false,true,true,'2022-04-14 12:58:07.228','SETH','Science Instruction Summer (may include Bridge Students)',0,6,39,'adscience','APR SUBJECT','2022-04-14 12:58:07.228'),
+	 (false,true,true,'2022-04-14 12:58:07.228','SETH','Foreign Language Instruction/Tutorials Academic Year',0,6,40,'adforeignlanguage','APR SUBJECT','2022-04-14 12:58:07.228'),
+	 (false,true,true,'2022-04-14 12:58:07.228','SETH','Foreign Language Instruction Summer (may include Bridge Students)',0,6,41,'adforeignlanguage','APR SUBJECT','2022-04-14 12:58:07.228'),
+	 (false,true,true,'2022-04-14 12:58:07.228','SETH','English Instruction/Tutorials Academic Year',0,6,42,'adenglish','APR SUBJECT','2022-04-14 12:58:07.228'),
+	 (false,true,true,'2022-04-14 12:58:07.228','SETH','English Instruction Summer (may include Bridge Students)',0,6,43,'adenglish','APR SUBJECT','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','In Stock',0,6,1,'','ASSETSTATUS','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Checked Out',0,6,2,'','ASSETSTATUS','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Out for Repair',0,6,3,'','ASSETSTATUS','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Damaged',0,6,4,'','ASSETSTATUS','2022-04-14 12:58:07.228');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Lost',0,6,5,'','ASSETSTATUS','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','Stolen',0,6,6,'','ASSETSTATUS','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','MANAGER','No longer in use',0,6,7,'','ASSETSTATUS','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','SETH','No response/Unknown',0,6,0,'','COHORTYEAR','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','SETH','Other (prior to 2000-01)',0,6,1,'','COHORTYEAR','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','SETH','2000-01',0,6,2,'','COHORTYEAR','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','SETH','2001-02',0,6,3,'','COHORTYEAR','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','SETH','2002-03',0,6,4,'','COHORTYEAR','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','SETH','2003-04',0,6,5,'','COHORTYEAR','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','SETH','2004-05',0,6,6,'','COHORTYEAR','2022-04-14 12:58:07.228');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.228','SETH','2005-06',0,6,7,'','COHORTYEAR','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','SETH','2006-07',0,6,8,'','COHORTYEAR','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','SETH','2007-08',0,6,9,'','COHORTYEAR','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','SETH','2008-09',0,6,10,'','COHORTYEAR','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','SETH','2009-10',0,6,11,'','COHORTYEAR','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.228','SETH','2010-11',0,6,12,'','COHORTYEAR','2022-04-14 12:58:07.228'),
+	 (false,false,true,'2022-04-14 12:58:07.237','SETH','2011-12',0,6,13,'','COHORTYEAR','2022-04-14 12:58:07.237'),
+	 (false,false,true,'2022-04-14 12:58:07.237','SETH','2012-13',0,6,14,'','COHORTYEAR','2022-04-14 12:58:07.237'),
+	 (false,false,true,'2022-04-14 12:58:07.237','SETH','Public, two-year institution',0,6,1,'','COLLEGETYPE','2022-04-14 12:58:07.237'),
+	 (false,false,true,'2022-04-14 12:58:07.237','SETH','Private, non-profit, two-year institution',0,6,2,'','COLLEGETYPE','2022-04-14 12:58:07.237');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.237','SETH','Public, four-year institution',0,6,3,'','COLLEGETYPE','2022-04-14 12:58:07.237'),
+	 (false,false,true,'2022-04-14 12:58:07.237','SETH','Private, non-profit, four-year institution',0,6,4,'','COLLEGETYPE','2022-04-14 12:58:07.237'),
+	 (false,false,true,'2022-04-14 12:58:07.237','SETH','Public or non-profit vocational/technical institution',0,6,5,'','COLLEGETYPE','2022-04-14 12:58:07.237'),
+	 (false,false,true,'2022-04-14 12:58:07.237','SETH','Proprietary school',0,6,6,'','COLLEGETYPE','2022-04-14 12:58:07.237'),
+	 (false,true,true,'2022-04-14 12:58:07.237','SETH','No response/Unknown',0,6,0,'','COLLGRADE','2022-04-14 12:58:07.237'),
+	 (false,true,true,'2022-04-14 12:58:07.237','SETH','No longer used',0,6,1,'','COLLGRADE','2022-04-14 12:58:07.237'),
+	 (false,true,true,'2022-04-14 12:58:07.237','SETH','1st yr',0,6,2,'','COLLGRADE','2022-04-14 12:58:07.237'),
+	 (false,true,true,'2022-04-14 12:58:07.237','SETH','2nd yr./sophomore',0,6,3,'','COLLGRADE','2022-04-14 12:58:07.237'),
+	 (false,true,true,'2022-04-14 12:58:07.237','SETH','3rd yr./junior',0,6,4,'','COLLGRADE','2022-04-14 12:58:07.237'),
+	 (false,true,true,'2022-04-14 12:58:07.237','SETH','4th yr./senior',0,6,5,'','COLLGRADE','2022-04-14 12:58:07.237');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.237','SETH','5th yr./other undergraduate',0,6,6,'','COLLGRADE','2022-04-14 12:58:07.237'),
+	 (false,true,true,'2022-04-14 12:58:07.239','SETH','No longer used',0,6,7,'','COLLGRADE','2022-04-14 12:58:07.239'),
+	 (false,true,true,'2022-04-14 12:58:07.239','SETH','No longer used',0,6,8,'','COLLGRADE','2022-04-14 12:58:07.239'),
+	 (false,true,true,'2022-04-14 12:58:07.239','SETH','No longer used',0,6,9,'','COLLGRADE','2022-04-14 12:58:07.239'),
+	 (false,false,true,'2022-04-14 12:58:07.239','SETH','No longer used',0,6,10,'','COLLGRADE','2022-04-14 12:58:07.239'),
+	 (false,false,true,'2022-04-14 12:58:07.239','SETH','No longer used',0,6,11,'','COLLGRADE','2022-04-14 12:58:07.239'),
+	 (false,false,true,'2022-04-14 12:58:07.239','SETH','No longer used',0,6,12,'','COLLGRADE','2022-04-14 12:58:07.239'),
+	 (false,false,true,'2022-04-14 12:58:07.239','SETH','Continuing graduate/professional student',0,6,13,'','COLLGRADE','2022-04-14 12:58:07.239'),
+	 (false,false,true,'2022-04-14 12:58:07.239','SETH','Dual degree program',0,6,14,'','COLLGRADE','2022-04-14 12:58:07.239'),
+	 (false,false,true,'2022-04-14 12:58:07.239','','Not applicable (New participant-summer session only)',0,6,15,'','COLLGRADE','2022-04-14 12:58:07.239');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.239','SETH','Not applicable (prior-year participant no longer enrolled)',0,6,99,'','COLLGRADE','2022-04-14 12:58:07.239'),
+	 (false,true,true,'2022-04-14 12:58:07.239','SETH','',0,6,0,'','COMPARE','2022-04-14 12:58:07.239'),
+	 (false,true,true,'2022-04-14 12:58:07.239','SETH','< less than',0,6,1,'','COMPARE','2022-04-14 12:58:07.239'),
+	 (false,true,true,'2022-04-14 12:58:07.239','SETH','<= less than or equal to',0,6,2,'','COMPARE','2022-04-14 12:58:07.239'),
+	 (false,true,true,'2022-04-14 12:58:07.239','SETH','<> not equal to',0,6,3,'','COMPARE','2022-04-14 12:58:07.239'),
+	 (false,true,true,'2022-04-14 12:58:07.239','SETH','= equal to',0,6,4,'','COMPARE','2022-04-14 12:58:07.239'),
+	 (false,true,true,'2022-04-14 12:58:07.239','SETH','> more than',0,6,5,'','COMPARE','2022-04-14 12:58:07.239'),
+	 (false,true,true,'2022-04-14 12:58:07.239','SETH','>= more than or equal to',0,6,6,'','COMPARE','2022-04-14 12:58:07.239'),
+	 (false,true,true,'2022-04-14 12:58:07.239','SETH','Academic',0,6,1,'','COMPONENT','2022-04-14 12:58:07.239'),
+	 (false,true,true,'2022-04-14 12:58:07.239','SETH','Summer',0,6,2,'','COMPONENT','2022-04-14 12:58:07.239');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.247','SETH','Both',0,6,3,'','COMPONENT','2022-04-14 12:58:07.247'),
+	 (false,false,true,'2022-04-14 12:58:07.247','SETH','Not Applicable',0,6,9,'','COMPONENT','2022-04-14 12:58:07.247'),
+	 (false,true,true,'2022-04-14 12:58:07.247','SETH','Counselor',0,6,1,'','CONTACTSTAFFTYPE','2022-04-14 12:58:07.247'),
+	 (false,true,true,'2022-04-14 12:58:07.247','SETH','Tutor',0,6,2,'','CONTACTSTAFFTYPE','2022-04-14 12:58:07.247'),
+	 (false,true,true,'2022-04-14 12:58:07.247','SETH','Teacher',0,6,3,'','CONTACTSTAFFTYPE','2022-04-14 12:58:07.247'),
+	 (false,true,true,'2022-04-14 12:58:07.247','SETH','Staff',0,6,4,'','CONTACTSTAFFTYPE','2022-04-14 12:58:07.247'),
+	 (false,true,true,'2022-04-14 12:58:07.247','SETH','Individual',0,6,1,'','CONTACTTYPE','2022-04-14 12:58:07.247'),
+	 (false,true,true,'2022-04-14 12:58:07.247','SETH','Group',0,6,2,'','CONTACTTYPE','2022-04-14 12:58:07.247'),
+	 (false,true,true,'2022-04-14 12:58:07.247','SETH','Phone',0,6,3,'','CONTACTTYPE','2022-04-14 12:58:07.247'),
+	 (false,true,true,'2022-04-14 12:58:07.247','SETH','Mail',0,6,4,'','CONTACTTYPE','2022-04-14 12:58:07.247');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.247','SETH','Parent',0,6,5,'','CONTACTTYPE','2022-04-14 12:58:07.247'),
+	 (false,true,true,'2022-04-14 12:58:07.247','SETH','Other',0,6,6,'','CONTACTTYPE','2022-04-14 12:58:07.247'),
+	 (false,true,true,'2022-04-14 12:58:07.247','SETH','E-mail',0,6,7,'','CONTACTTYPE','2022-04-14 12:58:07.247'),
+	 (false,false,true,'2022-04-14 12:58:07.247','','Pets Name',0,6,1,'         0','CUSTOMFIELDNAME','2022-04-14 12:58:07.247'),
+	 (false,false,true,'2022-04-14 12:58:07.249','','T-shirt Size',0,6,2,'         1','CUSTOMFIELDNAME','2022-04-14 12:58:07.249'),
+	 (false,false,true,'2022-04-14 12:58:07.249','','Donate Blood',0,6,3,'         2','CUSTOMFIELDNAME','2022-04-14 12:58:07.249'),
+	 (false,false,true,'2022-04-14 12:58:07.249','','Date Inactivated',0,6,4,'         3','CUSTOMFIELDNAME','2022-04-14 12:58:07.249'),
+	 (false,false,true,'2022-04-14 12:58:07.249','','Number of Siblings',0,6,5,'         4','CUSTOMFIELDNAME','2022-04-14 12:58:07.249'),
+	 (false,false,true,'2022-04-14 12:58:07.249','','Food Allowance',0,6,6,'         5','CUSTOMFIELDNAME','2022-04-14 12:58:07.249'),
+	 (false,false,true,'2022-04-14 12:58:07.249','MANAGER','Text-Normal',0,6,0,'','CUSTOMFIELDTYPE','2022-04-14 12:58:07.249');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.249','MANAGER','Text-Quickfill',0,6,1,'','CUSTOMFIELDTYPE','2022-04-14 12:58:07.249'),
+	 (false,false,true,'2022-04-14 12:58:07.249','MANAGER','Logical',0,6,2,'','CUSTOMFIELDTYPE','2022-04-14 12:58:07.249'),
+	 (false,false,true,'2022-04-14 12:58:07.249','MANAGER','Date',0,6,3,'','CUSTOMFIELDTYPE','2022-04-14 12:58:07.249'),
+	 (false,false,true,'2022-04-14 12:58:07.249','MANAGER','Integer',0,6,4,'','CUSTOMFIELDTYPE','2022-04-14 12:58:07.249'),
+	 (false,false,true,'2022-04-14 12:58:07.249','MANAGER','Numeric-2 decimals',0,6,5,'','CUSTOMFIELDTYPE','2022-04-14 12:58:07.249'),
+	 (false,false,true,'2022-04-14 12:58:07.249','SETH','Science',0,6,1,'','DEGREEIN','2022-04-14 12:58:07.249'),
+	 (false,false,true,'2022-04-14 12:58:07.249','SETH','Business',0,6,2,'','DEGREEIN','2022-04-14 12:58:07.249'),
+	 (false,false,true,'2022-04-14 12:58:07.249','SETH','Arts',0,6,3,'','DEGREEIN','2022-04-14 12:58:07.249'),
+	 (false,false,true,'2022-04-14 12:58:07.249','SETH','English',0,6,4,'','DEGREEIN','2022-04-14 12:58:07.249'),
+	 (false,true,true,'2022-04-14 12:58:07.249','SETH','No response/Unknown',0,6,0,'','ELIGIBILITY','2022-04-14 12:58:07.249');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.249','SETH','Low-Income and First-Generation College Students',0,6,1,'','ELIGIBILITY','2022-04-14 12:58:07.249'),
+	 (false,true,true,'2022-04-14 12:58:07.249','SETH','Low-Income only',0,6,2,'','ELIGIBILITY','2022-04-14 12:58:07.249'),
+	 (false,true,true,'2022-04-14 12:58:07.249','SETH','First-Generation only',0,6,3,'','ELIGIBILITY','2022-04-14 12:58:07.249'),
+	 (false,false,true,'2022-04-14 12:58:07.249','SETH','Disabled only',0,6,4,'','ELIGIBILITY','2022-04-14 12:58:07.249'),
+	 (false,false,true,'2022-04-14 12:58:07.249','SETH','Disabled and Low-Income',0,6,5,'','ELIGIBILITY','2022-04-14 12:58:07.249'),
+	 (false,false,true,'2022-04-14 12:58:07.249','SETH','Part Time',0,6,1,'','EMPLOYTYPE','2022-04-14 12:58:07.249'),
+	 (false,false,true,'2022-04-14 12:58:07.249','SETH','Full Time',0,6,2,'','EMPLOYTYPE','2022-04-14 12:58:07.249'),
+	 (false,false,true,'2022-04-14 12:58:07.249','SETH','Unemployed',0,6,3,'','EMPLOYTYPE','2022-04-14 12:58:07.249'),
+	 (false,false,true,'2022-04-14 12:58:07.249','SETH','No response',0,6,0,'','ENDSTATUS','2022-04-14 12:58:07.249'),
+	 (false,false,true,'2022-04-14 12:58:07.249','SETH','Academic dismissal',0,6,1,'','ENDSTATUS','2022-04-14 12:58:07.249');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.249','SETH','Dismissal for non-academic reasons',0,6,2,'','ENDSTATUS','2022-04-14 12:58:07.249'),
+	 (false,false,true,'2022-04-14 12:58:07.249','SETH','Withdrew for financial reasons',0,6,3,'','ENDSTATUS','2022-04-14 12:58:07.249'),
+	 (false,false,true,'2022-04-14 12:58:07.249','SETH','Withdrew for health reasons',0,6,4,'','ENDSTATUS','2022-04-14 12:58:07.249'),
+	 (false,false,true,'2022-04-14 12:58:07.249','SETH','Withdrew for academic reasons',0,6,5,'','ENDSTATUS','2022-04-14 12:58:07.249'),
+	 (false,false,true,'2022-04-14 12:58:07.249','SETH','withdrew for personal reasons',0,6,6,'','ENDSTATUS','2022-04-14 12:58:07.249'),
+	 (false,false,true,'2022-04-14 12:58:07.257','SETH','Transferred',0,6,7,'','ENDSTATUS','2022-04-14 12:58:07.257'),
+	 (false,false,true,'2022-04-14 12:58:07.257','SETH','Graduated',0,6,8,'','ENDSTATUS','2022-04-14 12:58:07.257'),
+	 (false,false,true,'2022-04-14 12:58:07.257','SETH','Graduated and Transferred',0,6,9,'','ENDSTATUS','2022-04-14 12:58:07.257'),
+	 (false,false,true,'2022-04-14 12:58:07.257','SETH','Enrolled in graduate degree programs',0,6,10,'','ENDSTATUS','2022-04-14 12:58:07.257'),
+	 (false,false,true,'2022-04-14 12:58:07.257','SETH','Continuing Student',0,6,11,'','ENDSTATUS','2022-04-14 12:58:07.257');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.257','SETH','Not enrolled',0,6,0,'','ENGLISH','2022-04-14 12:58:07.257'),
+	 (false,true,true,'2022-04-14 12:58:07.257','SETH','Composition',0,6,1,'','ENGLISH','2022-04-14 12:58:07.257'),
+	 (false,true,true,'2022-04-14 12:58:07.257','SETH','Literature',0,6,2,'','ENGLISH','2022-04-14 12:58:07.257'),
+	 (false,true,true,'2022-04-14 12:58:07.257','SETH','Composition and Literature',0,6,3,'','ENGLISH','2022-04-14 12:58:07.257'),
+	 (false,true,true,'2022-04-14 12:58:07.257','SETH','No response/Unknown',0,6,0,'','ENROLL','2022-04-14 12:58:07.257'),
+	 (false,true,true,'2022-04-14 12:58:07.257','SETH','Full-time (at least 24 credit hours or 36 clock hours in an academic year)',0,6,1,'','ENROLL','2022-04-14 12:58:07.257'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','3/4 time (at least 18 credits hours or 27 clock hours in an academic year)',0,6,2,'','ENROLL','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','1/2 time (at least 12 credit hours or 18 clock hours in an academic year)',0,6,3,'','ENROLL','2022-04-14 12:58:07.259'),
+	 (false,false,true,'2022-04-14 12:58:07.259','SETH','Less than 1/2 time (fewer than 12 credit hours or less than 18 clock hours in an academic year)',0,6,4,'','ENROLL','2022-04-14 12:58:07.259'),
+	 (false,false,true,'2022-04-14 12:58:07.259','SETH','No longer used',0,6,5,'','ENROLL','2022-04-14 12:58:07.259');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.259','SETH','No longer used',0,6,6,'','ENROLL','2022-04-14 12:58:07.259'),
+	 (false,false,true,'2022-04-14 12:58:07.259','SETH','Not applicable (prior year participant no longer enrolled)',0,6,9,'','ENROLL','2022-04-14 12:58:07.259'),
+	 (false,false,true,'2022-04-14 12:58:07.259','','Not Applocable (New participants-summer session only)',0,6,10,'','ENROLL','2022-04-14 12:58:07.259'),
+	 (false,false,true,'2022-04-14 12:58:07.259','SETH','Unknown',0,6,0,'','ENTEREXAM','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','SAT',0,6,1,'','ENTEREXAM','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','ACT',0,6,2,'','ENTEREXAM','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','Both SAT and ACT',0,6,3,'','ENTEREXAM','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','Other',0,6,4,'','ENTEREXAM','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','Not Applicable',0,6,9,'','ENTEREXAM','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','No response/Unknown',0,6,0,'','ENTERLEVEL','2022-04-14 12:58:07.259');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','1st yr., never attended',0,6,1,'','ENTERLEVEL','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','1st yr., attended before',0,6,2,'','ENTERLEVEL','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','2nd yr./sophomore',0,6,3,'','ENTERLEVEL','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','3rd yr./junior',0,6,4,'','ENTERLEVEL','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','4th yr./senior',0,6,5,'','ENTERLEVEL','2022-04-14 12:58:07.259'),
+	 (false,false,true,'2022-04-14 12:58:07.259','SETH','5th yr./other undergraduate',0,6,6,'','ENTERLEVEL','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','No response/Unknown',0,6,0,'','ETHNIC','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','American Indian or Alaskan Native',0,6,1,'','ETHNIC','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','Asian',0,6,2,'','ETHNIC','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','Black or African American',0,6,3,'','ETHNIC','2022-04-14 12:58:07.259');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','Hispanic or Latino',0,6,4,'','ETHNIC','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','White',0,6,5,'','ETHNIC','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','Native Hawaiian or other Pacific Islander',0,6,6,'','ETHNIC','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','More than one race reported',0,6,7,'','ETHNIC','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','No response',0,6,0,'','FINAIDREAS','2022-04-14 12:58:07.259'),
+	 (false,false,true,'2022-04-14 12:58:07.259','SETH','Student refused loan',0,6,1,'','FINAIDREAS','2022-04-14 12:58:07.259'),
+	 (false,false,true,'2022-04-14 12:58:07.259','SETH','Insufficient Federal grant aid',0,6,2,'','FINAIDREAS','2022-04-14 12:58:07.259'),
+	 (false,false,true,'2022-04-14 12:58:07.259','SETH','Insufficient College Work Study aid',0,6,3,'','FINAIDREAS','2022-04-14 12:58:07.259'),
+	 (false,false,true,'2022-04-14 12:58:07.259','SETH','Insufficient institutional aid',0,6,4,'','FINAIDREAS','2022-04-14 12:58:07.259'),
+	 (false,false,true,'2022-04-14 12:58:07.259','SETH','Student failed to make adequate academic progress',0,6,5,'','FINAIDREAS','2022-04-14 12:58:07.259');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.259','SETH','Student refused College Work Study aid',0,6,6,'','FINAIDREAS','2022-04-14 12:58:07.259'),
+	 (false,false,true,'2022-04-14 12:58:07.259','SETH','Student not enrolled full-time',0,6,7,'','FINAIDREAS','2022-04-14 12:58:07.259'),
+	 (false,false,true,'2022-04-14 12:58:07.259','SETH','Student not eligible for financial aid',0,6,8,'','FINAIDREAS','2022-04-14 12:58:07.259'),
+	 (false,false,true,'2022-04-14 12:58:07.259','SETH','Insufficient loans',0,6,9,'','FINAIDREAS','2022-04-14 12:58:07.259'),
+	 (false,false,true,'2022-04-14 12:58:07.259','SETH','Student did not apply',0,6,10,'','FINAIDREAS','2022-04-14 12:58:07.259'),
+	 (false,false,true,'2022-04-14 12:58:07.259','SETH','Student applied too late',0,6,11,'','FINAIDREAS','2022-04-14 12:58:07.259'),
+	 (false,false,true,'2022-04-14 12:58:07.259','SETH','Student defaulted on Federal student loans',0,6,12,'','FINAIDREAS','2022-04-14 12:58:07.259'),
+	 (false,false,true,'2022-04-14 12:58:07.259','SETH','Student withdrew',0,6,13,'','FINAIDREAS','2022-04-14 12:58:07.259'),
+	 (false,false,true,'2022-04-14 12:58:07.259','SETH','Student failed to provide requested information',0,6,14,'','FINAIDREAS','2022-04-14 12:58:07.259'),
+	 (false,false,true,'2022-04-14 12:58:07.259','SETH','Other',0,6,15,'','FINAIDREAS','2022-04-14 12:58:07.259');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.259','SETH','Not Applicable',0,6,16,'','FINAIDREAS','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','Unknown',0,6,0,'','FINAIDRECD','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','Pell grant only',0,6,1,'','FINAIDRECD','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','FFEL loan',0,6,2,'','FINAIDRECD','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','Direct loan',0,6,3,'','FINAIDRECD','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','College work study only',0,6,4,'','FINAIDRECD','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','Institutional aid only',0,6,5,'','FINAIDRECD','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','State grant only',0,6,6,'','FINAIDRECD','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','Pell grant and FFEL loan',0,6,7,'','FINAIDRECD','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','Pell grant and Direct loan',0,6,8,'','FINAIDRECD','2022-04-14 12:58:07.259');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','Multiple federal aid',0,6,9,'','FINAIDRECD','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','Multiple federal and other aid',0,6,10,'','FINAIDRECD','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','Non-federal, non-institutional aid',0,6,11,'','FINAIDRECD','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','No aid awarded',0,6,12,'','FINAIDRECD','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','No aid needed',0,6,13,'','FINAIDRECD','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','Not Applicable',0,6,99,'','FINAIDRECD','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','Not enrolled',0,6,0,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','Spanish',0,6,1,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','French',0,6,2,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','German',0,6,3,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.259');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','Italian',0,6,4,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','Russian',0,6,5,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','Japanese',0,6,6,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.259'),
+	 (false,true,true,'2022-04-14 12:58:07.259','SETH','Other Foreign Language',0,6,7,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.259'),
+	 (false,false,true,'2022-04-14 12:58:07.259','SETH','Financial Aid',0,6,1,'','FORM TYPE','2022-04-14 12:58:07.259'),
+	 (false,false,true,'2022-04-14 12:58:07.259','SETH','Field Trip Authorization',0,6,2,'','FORM TYPE','2022-04-14 12:58:07.259'),
+	 (false,false,true,'2022-04-14 12:58:07.259','SETH','Application Form',0,6,3,'','FORM TYPE','2022-04-14 12:58:07.259'),
+	 (false,false,true,'2022-04-14 12:58:07.259','SETH','Income Data',0,6,4,'','FORM TYPE','2022-04-14 12:58:07.259'),
+	 (false,false,true,'2022-04-14 12:58:07.259','SETH','Parent Contract Form',0,6,5,'','FORM TYPE','2022-04-14 12:58:07.259'),
+	 (false,false,true,'2022-04-14 12:58:07.259','SETH','Assessment',0,6,6,'','FORM TYPE','2022-04-14 12:58:07.259');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.259','SETH','Eligibility Form',0,6,7,'','FORM TYPE','2022-04-14 12:58:07.259'),
+	 (false,false,true,'2022-04-14 12:58:07.259','SETH','Student Contract Form',0,6,8,'','FORM TYPE','2022-04-14 12:58:07.259'),
+	 (false,false,true,'2022-04-14 12:58:07.267','SETH','Recommendation Letter',0,6,9,'','FORM TYPE','2022-04-14 12:58:07.267'),
+	 (false,true,true,'2022-04-14 12:58:07.267','SETH','No response/Unknown',0,6,0,'','GENDER','2022-04-14 12:58:07.267'),
+	 (false,true,true,'2022-04-14 12:58:07.267','SETH','Male',0,6,1,'','GENDER','2022-04-14 12:58:07.267'),
+	 (false,true,true,'2022-04-14 12:58:07.267','SETH','Female',0,6,2,'','GENDER','2022-04-14 12:58:07.267'),
+	 (false,false,true,'2022-04-14 12:58:07.267','SETH','No response/Unknown',0,6,0,'','GPASCALE','2022-04-14 12:58:07.267'),
+	 (false,true,true,'2022-04-14 12:58:07.267','SETH','4 point scale',0,6,1,'','GPASCALE','2022-04-14 12:58:07.267'),
+	 (false,true,true,'2022-04-14 12:58:07.267','SETH','5 point scale',0,6,2,'','GPASCALE','2022-04-14 12:58:07.267'),
+	 (false,false,true,'2022-04-14 12:58:07.267','SETH','Other',0,6,3,'','GPASCALE','2022-04-14 12:58:07.267');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.267','SETH','No response',0,6,0,'','GRADELEVEL','2022-04-14 12:58:07.267'),
+	 (false,true,true,'2022-04-14 12:58:07.267','SETH','1st yr., never attended',0,6,1,'','GRADELEVEL','2022-04-14 12:58:07.267'),
+	 (false,true,true,'2022-04-14 12:58:07.267','SETH','1st yr., attended before',0,6,2,'','GRADELEVEL','2022-04-14 12:58:07.267'),
+	 (false,true,true,'2022-04-14 12:58:07.267','SETH','2nd yr./sophomore',0,6,3,'','GRADELEVEL','2022-04-14 12:58:07.267'),
+	 (false,true,true,'2022-04-14 12:58:07.267','SETH','3rd yr./junior',0,6,4,'','GRADELEVEL','2022-04-14 12:58:07.267'),
+	 (false,true,true,'2022-04-14 12:58:07.267','SETH','4th yr./senior',0,6,5,'','GRADELEVEL','2022-04-14 12:58:07.267'),
+	 (false,true,true,'2022-04-14 12:58:07.267','SETH','5th yr./other undergraduate',0,6,6,'','GRADELEVEL','2022-04-14 12:58:07.267'),
+	 (false,false,true,'2022-04-14 12:58:07.267','SETH','Graduated with Associates degree',0,6,7,'','GRADELEVEL','2022-04-14 12:58:07.267'),
+	 (false,false,true,'2022-04-14 12:58:07.267','SETH','Graduated with Bachelor''s Degree',0,6,8,'','GRADELEVEL','2022-04-14 12:58:07.267'),
+	 (false,true,true,'2022-04-14 12:58:07.267','SETH','1st yr. graduate/ professional',0,6,9,'','GRADELEVEL','2022-04-14 12:58:07.267');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.267','SETH','2nd yr. graduate/ professional',0,6,10,'','GRADELEVEL','2022-04-14 12:58:07.267'),
+	 (false,true,true,'2022-04-14 12:58:07.267','SETH','3rd yr. graduate/ professional',0,6,11,'','GRADELEVEL','2022-04-14 12:58:07.267'),
+	 (false,false,true,'2022-04-14 12:58:07.267','SETH','Beyond 3rd yr. graduate/professional',0,6,12,'','GRADELEVEL','2022-04-14 12:58:07.267'),
+	 (false,false,true,'2022-04-14 12:58:07.267','SETH','Completed Freshman year of College',0,6,1,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.267'),
+	 (false,false,true,'2022-04-14 12:58:07.269','SETH','Completed Sophomore year of college',0,6,2,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.269'),
+	 (false,false,true,'2022-04-14 12:58:07.269','SETH','Completed Junior year of college',0,6,3,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.269'),
+	 (false,false,true,'2022-04-14 12:58:07.269','SETH','Completed Senior year of college',0,6,4,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.269'),
+	 (false,false,true,'2022-04-14 12:58:07.269','SETH','Dropped Out of College, Freshman year',0,6,5,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.269'),
+	 (false,false,true,'2022-04-14 12:58:07.269','SETH','Dropped Out of College, Sophomore year',0,6,6,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.269'),
+	 (false,false,true,'2022-04-14 12:58:07.269','SETH','Dropped Out of College, Junior year',0,6,7,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.269');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.269','SETH','Dropped Out of College, Senior year',0,6,8,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.269'),
+	 (false,false,true,'2022-04-14 12:58:07.269','SETH','Postponed College',0,6,9,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.269'),
+	 (false,false,true,'2022-04-14 12:58:07.269','SETH','Enrolled in Military Branch',0,6,10,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.269'),
+	 (false,false,true,'2022-04-14 12:58:07.269','SETH','Working Full / Part Time Only',0,6,11,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.269'),
+	 (false,false,true,'2022-04-14 12:58:07.269','SETH','Graduated from College',0,6,12,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.269'),
+	 (false,false,true,'2022-04-14 12:58:07.269','SETH','Technical / Vocational School',0,6,13,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.269'),
+	 (false,true,true,'2022-04-14 12:58:07.269','SETH','No response/Unknown',0,6,0,'','HIGHDEGREE','2022-04-14 12:58:07.269'),
+	 (false,true,true,'2022-04-14 12:58:07.269','SETH','Certificate/Diploma for occupational, educational program (less than two-year program)',0,6,1,'','HIGHDEGREE','2022-04-14 12:58:07.269'),
+	 (false,true,true,'2022-04-14 12:58:07.269','SETH','Certificate/Diploma for occupational, technical, or educational program (at least two-year program)',0,6,2,'','HIGHDEGREE','2022-04-14 12:58:07.269'),
+	 (false,true,true,'2022-04-14 12:58:07.269','SETH','Associate Degree (two years)',0,6,3,'','HIGHDEGREE','2022-04-14 12:58:07.269');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.269','SETH','1st Bachelor''s Degree',0,6,4,'','HIGHDEGREE','2022-04-14 12:58:07.269'),
+	 (false,true,true,'2022-04-14 12:58:07.269','SETH','2nd Bachelor''s Degree',0,6,5,'','HIGHDEGREE','2022-04-14 12:58:07.269'),
+	 (false,true,true,'2022-04-14 12:58:07.269','SETH','Equivalent of Bachelor’s Degree',0,6,6,'','HIGHDEGREE','2022-04-14 12:58:07.269'),
+	 (false,true,true,'2022-04-14 12:58:07.269','MANAGER','No longer used',0,6,7,'','HIGHDEGREE','2022-04-14 12:58:07.269'),
+	 (false,true,true,'2022-04-14 12:58:07.269','SETH','Still enrolled at grantee institution but not yet completed degree/certificate',0,6,8,'','HIGHDEGREE','2022-04-14 12:58:07.269'),
+	 (false,false,true,'2022-04-14 12:58:07.269','SETH','Not enrolled ((withdrew from institution prior to obtaining degree/certificate, did not return to institution or transfer without degree including transfer from 2yr to 4yr)',0,6,9,'','HIGHDEGREE','2022-04-14 12:58:07.269'),
+	 (false,true,true,'2022-04-14 12:58:07.269','SETH','No response',0,6,0,'','MARITALSTATUS','2022-04-14 12:58:07.269'),
+	 (false,true,true,'2022-04-14 12:58:07.269','SETH','Single',0,6,1,'','MARITALSTATUS','2022-04-14 12:58:07.269'),
+	 (false,false,true,'2022-04-14 12:58:07.269','SETH','Married',0,6,2,'','MARITALSTATUS','2022-04-14 12:58:07.269'),
+	 (false,false,true,'2022-04-14 12:58:07.269','SETH','Separated',0,6,3,'','MARITALSTATUS','2022-04-14 12:58:07.269');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.269','SETH','Divorced',0,6,4,'','MARITALSTATUS','2022-04-14 12:58:07.269'),
+	 (false,false,true,'2022-04-14 12:58:07.269','SETH','Widower',0,6,5,'','MARITALSTATUS','2022-04-14 12:58:07.269'),
+	 (false,true,true,'2022-04-14 12:58:07.269','SETH','Not enrolled',0,6,0,'','MATH','2022-04-14 12:58:07.269'),
+	 (false,true,true,'2022-04-14 12:58:07.269','SETH','Pre-Algebra',0,6,1,'','MATH','2022-04-14 12:58:07.269'),
+	 (false,true,true,'2022-04-14 12:58:07.269','SETH','Algebra I',0,6,2,'','MATH','2022-04-14 12:58:07.269'),
+	 (false,true,true,'2022-04-14 12:58:07.269','SETH','Algebra II',0,6,3,'','MATH','2022-04-14 12:58:07.269'),
+	 (false,true,true,'2022-04-14 12:58:07.269','SETH','Geometry',0,6,4,'','MATH','2022-04-14 12:58:07.269'),
+	 (false,true,true,'2022-04-14 12:58:07.269','SETH','Trigonometry',0,6,5,'','MATH','2022-04-14 12:58:07.269'),
+	 (false,true,true,'2022-04-14 12:58:07.269','SETH','Pre-Calculus',0,6,6,'','MATH','2022-04-14 12:58:07.269'),
+	 (false,true,true,'2022-04-14 12:58:07.269','SETH','Calculus',0,6,7,'','MATH','2022-04-14 12:58:07.269');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.269','SETH','Integrated Math',0,6,8,'','MATH','2022-04-14 12:58:07.269'),
+	 (false,true,true,'2022-04-14 12:58:07.269','SETH','Other',0,6,9,'','MATH','2022-04-14 12:58:07.269'),
+	 (false,false,true,'2022-04-14 12:58:07.269','SETH','Navy',0,6,1,'','MILITARYTYPE','2022-04-14 12:58:07.269'),
+	 (false,false,true,'2022-04-14 12:58:07.269','SETH','Air Force',0,6,2,'','MILITARYTYPE','2022-04-14 12:58:07.269'),
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','Army',0,6,3,'','MILITARYTYPE','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.289','USER','None',0,6,0,'','MSGSTATUS','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','Lowest',0,6,1,'','MSGSTATUS','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','Low',0,6,2,'','MSGSTATUS','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','Normal',0,6,3,'','MSGSTATUS','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','High',0,6,4,'','MSGSTATUS','2022-04-14 12:58:07.289');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','Highest',0,6,5,'','MSGSTATUS','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','Unknown/ no response',0,6,0,'','NOENREASON','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','Applied but did not gain admission to graduate programs in the reporting year (for students with a bachelor’s degree)',0,6,1,'','NOENREASON','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','Did not apply to or declined offers from graduate programs owing to financial reasons (for students with a bachelor''s degree)',0,6,2,'','NOENREASON','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','Did not apply to or declined offers from graduate programs owing to health reasons (for students with a bachelor''s degree)',0,6,3,'','NOENREASON','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','Did not apply to or declined offers from graduate programs owing to other reasons (for students with a bachelor''s degree',0,6,4,'','NOENREASON','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','Withdrew from program (undergraduate or graduate) for academic reasons',0,6,5,'','NOENREASON','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','Withdrew from program (undergraduate or graduate) for financial reasons',0,6,6,'','NOENREASON','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','Withdrew from program (undergraduate or graduate) or health reasons',0,6,7,'','NOENREASON','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','Withdrew from program (undergraduate or graduate) for other personal reasons',0,6,8,'','NOENREASON','2022-04-14 12:58:07.289');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','Called for military duty',0,6,9,'','NOENREASON','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','Not applicable; the student was enrolled in at least one term during the academic year being reported',0,6,10,'','NOENREASON','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','Student deceased',0,6,11,'','NOENREASON','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','Did not enroll in research doctoral program',0,6,12,'','NOENREASON','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','Ph.D. attained (not previously reported)',0,6,13,'','NOENREASON','2022-04-14 12:58:07.289'),
+	 (false,true,true,'2022-04-14 12:58:07.289','SETH','Unknown',0,6,0,'','PARTLENGTH','2022-04-14 12:58:07.289'),
+	 (false,true,true,'2022-04-14 12:58:07.289','SETH','0-3 months',0,6,1,'','PARTLENGTH','2022-04-14 12:58:07.289'),
+	 (false,true,true,'2022-04-14 12:58:07.289','SETH','4-6 months',0,6,2,'','PARTLENGTH','2022-04-14 12:58:07.289'),
+	 (false,true,true,'2022-04-14 12:58:07.289','SETH','7-9 months',0,6,3,'','PARTLENGTH','2022-04-14 12:58:07.289'),
+	 (false,true,true,'2022-04-14 12:58:07.289','SETH','10-12 months',0,6,4,'','PARTLENGTH','2022-04-14 12:58:07.289');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.289','SETH','More than 12 months',0,6,5,'','PARTLENGTH','2022-04-14 12:58:07.289'),
+	 (false,true,true,'2022-04-14 12:58:07.289','SETH','Still participating at end of reporting period',0,6,6,'','PARTLENGTH','2022-04-14 12:58:07.289'),
+	 (false,true,true,'2022-04-14 12:58:07.289','SETH','No response/Unknown',0,6,0,'','PARTLEVEL','2022-04-14 12:58:07.289'),
+	 (false,true,true,'2022-04-14 12:58:07.289','SETH','Participated in academic year and summer components',0,6,1,'','PARTLEVEL','2022-04-14 12:58:07.289'),
+	 (false,true,true,'2022-04-14 12:58:07.289','SETH','Participated in academic year and summer bridge',0,6,2,'','PARTLEVEL','2022-04-14 12:58:07.289'),
+	 (false,true,true,'2022-04-14 12:58:07.289','SETH','Participated in academic year component only',0,6,3,'','PARTLEVEL','2022-04-14 12:58:07.289'),
+	 (false,true,true,'2022-04-14 12:58:07.289','SETH','Participated in summer component only',0,6,4,'','PARTLEVEL','2022-04-14 12:58:07.289'),
+	 (false,true,true,'2022-04-14 12:58:07.289','SETH','Participated in summer bridge only',0,6,5,'','PARTLEVEL','2022-04-14 12:58:07.289'),
+	 (false,true,true,'2022-04-14 12:58:07.289','SETH','Prior year participant who received limited follow-up services during reporting period',0,6,6,'','PARTLEVEL','2022-04-14 12:58:07.289'),
+	 (false,true,true,'2022-04-14 12:58:07.289','SETH','Prior year participant who received no project services during the reporting period',0,6,7,'','PARTLEVEL','2022-04-14 12:58:07.289');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.289','SETH','No response/Unknown',0,6,0,'','PARTSTATUS','2022-04-14 12:58:07.289'),
+	 (false,true,true,'2022-04-14 12:58:07.289','SETH','New participant (for this reporting period is part of current cohort)',0,6,1,'','PARTSTATUS','2022-04-14 12:58:07.289'),
+	 (false,true,true,'2022-04-14 12:58:07.289','SETH','Continuing participant',0,6,2,'','PARTSTATUS','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','Prior Year Participant (still enrolled, not receiving services)',0,6,3,'','PARTSTATUS','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','Prior Year Participant (no longer enrolled at grantee institution)',0,6,4,'','PARTSTATUS','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','New participant (summer session only, part of next cohort)',0,6,5,'','PARTSTATUS','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','Reentry participant (received project services)',0,6,6,'','PARTSTATUS','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','Reentry participant (enrolled but did not receive project services)',0,6,7,'','PARTSTATUS','2022-04-14 12:58:07.289'),
+	 (false,true,true,'2022-04-14 12:58:07.289','SETH','No response',0,6,0,'','PARTSTATUSEND','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','Academic dismissal',0,6,1,'','PARTSTATUSEND','2022-04-14 12:58:07.289');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','Dismissal for non-academic reasons',0,6,2,'','PARTSTATUSEND','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','Withdrew for financial reasons',0,6,3,'','PARTSTATUSEND','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','Withdrew for health reasons',0,6,4,'','PARTSTATUSEND','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','Withdrew for academic reasons',0,6,5,'','PARTSTATUSEND','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','withdrew for personal reasons',0,6,6,'','PARTSTATUSEND','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','Transferred to another institution',0,6,7,'','PARTSTATUSEND','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.289','SETH','Transferred from 2 year to 4 year institution',0,6,8,'','PARTSTATUSEND','2022-04-14 12:58:07.289'),
+	 (false,false,true,'2022-04-14 12:58:07.297','SETH','Graduated with Associates degree',0,6,9,'','PARTSTATUSEND','2022-04-14 12:58:07.297'),
+	 (false,false,true,'2022-04-14 12:58:07.297','SETH','Graduated with Associates degree and transferred to 4 year institution',0,6,10,'','PARTSTATUSEND','2022-04-14 12:58:07.297'),
+	 (false,false,true,'2022-04-14 12:58:07.297','SETH','Graduated with Bachelors degree',0,6,11,'','PARTSTATUSEND','2022-04-14 12:58:07.297');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.297','SETH','Enrolled in graduate degree program',0,6,12,'','PARTSTATUSEND','2022-04-14 12:58:07.297'),
+	 (false,false,true,'2022-04-14 12:58:07.299','SETH','Continuing Student',0,6,13,'','PARTSTATUSEND','2022-04-14 12:58:07.299'),
+	 (false,false,true,'2022-04-14 12:58:07.299','SETH','No response/Unknown',0,6,0,'','PERSISTEND','2022-04-14 12:58:07.299'),
+	 (false,false,true,'2022-04-14 12:58:07.299','SETH','Received certificate/diploma',0,6,1,'','PERSISTEND','2022-04-14 12:58:07.299'),
+	 (false,false,true,'2022-04-14 12:58:07.299','SETH','Graduated with an associate’s degree (did not transfer to a 4-year institution) OR graduated with a bachelor’s degree',0,6,2,'','PERSISTEND','2022-04-14 12:58:07.299'),
+	 (false,false,true,'2022-04-14 12:58:07.299','SETH','Graduated with an associate’s degree and/or transferred to a four-year institution',0,6,3,'','PERSISTEND','2022-04-14 12:58:07.299'),
+	 (false,false,true,'2022-04-14 12:58:07.299','SETH','Transferred to another institution',0,6,4,'','PERSISTEND','2022-04-14 12:58:07.299'),
+	 (false,false,true,'2022-04-14 12:58:07.299','SETH','Withdrew or did not return',0,6,5,'','PERSISTEND','2022-04-14 12:58:07.299'),
+	 (false,false,true,'2022-04-14 12:58:07.299','SETH','Deceased',0,6,6,'','PERSISTEND','2022-04-14 12:58:07.299'),
+	 (false,false,true,'2022-04-14 12:58:07.299','SETH','Called to military service',0,6,7,'','PERSISTEND','2022-04-14 12:58:07.299');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.299','SETH','Still enrolled at grantee institution (no degree or certificate completed)',0,6,8,'','PERSISTEND','2022-04-14 12:58:07.299'),
+	 (false,false,true,'2022-04-14 12:58:07.299','SETH','Still enrolled at grantee institution (received certificate or associate’s degree and is pursuing an associate’s or bachelor’s degree)',0,6,9,'','PERSISTEND','2022-04-14 12:58:07.299'),
+	 (false,false,true,'2022-04-14 12:58:07.299','SETH','Completed program requirements but did not receive certificate, diploma, or degree',0,6,10,'','PERSISTEND','2022-04-14 12:58:07.299'),
+	 (false,false,true,'2022-04-14 12:58:07.299','SETH','No response/Unknown',0,6,0,'','PERSISTSTA','2022-04-14 12:58:07.299'),
+	 (false,false,true,'2022-04-14 12:58:07.299','SETH','Enrolled at grantee institution',0,6,1,'','PERSISTSTA','2022-04-14 12:58:07.299'),
+	 (false,false,true,'2022-04-14 12:58:07.299','SETH','Not enrolled at grantee institution (graduated with associates degree & transfer to a 4yr OR transferred from a 2yr to a 4yr institution without receiving degree)',0,6,2,'','PERSISTSTA','2022-04-14 12:58:07.299'),
+	 (false,false,true,'2022-04-14 12:58:07.299','SETH','Not enrolled at grantee institution',0,6,3,'','PERSISTSTA','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Unknown',0,6,0,'','PSETERM','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Quarter system',0,6,1,'','PSETERM','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Semester system',0,6,2,'','PSETERM','2022-04-14 12:58:07.299');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Other',0,6,3,'','PSETERM','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Not Applicable',0,6,9,'','PSETERM','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','No response/Unknown',0,6,0,'','REASON','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Academic dismissal',0,6,1,'','REASON','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Dismissal for non-academic reasons',0,6,2,'','REASON','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Withdrew/Did not return for financial reasons',0,6,3,'','REASON','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Withdrew/Did not return for health reasons',0,6,4,'','REASON','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Withdrew/Did not return for academic reasons',0,6,5,'','REASON','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Withdrew/Did not return for personal reasons',0,6,6,'','REASON','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Not applicable (called for military service or deceased)',0,6,7,'','REASON','2022-04-14 12:58:07.299');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Not applicable (student still enrolled, completed certificate program, graduated or transferred)',0,6,8,'','REASON','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Referral/participant in a regular UB project',0,6,1,'','RECRUIT','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Referral/participant in another TRIO project (i.e.,TS)',0,6,2,'','RECRUIT','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Referral/participant in other non-TRIO program',0,6,3,'','RECRUIT','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Participant only in UBM/S program',0,6,4,'','RECRUIT','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Not enrolled',0,6,0,'','SCIENCE','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Introductory Science/Earth Science',0,6,1,'','SCIENCE','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Biology',0,6,2,'','SCIENCE','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Chemistry',0,6,3,'','SCIENCE','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Physics',0,6,4,'','SCIENCE','2022-04-14 12:58:07.299');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Integrated Science',0,6,5,'','SCIENCE','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Other',0,6,6,'','SCIENCE','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Unknown',0,6,0,'','SELFTRAN','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Reported from an official transcript',0,6,1,'','SELFTRAN','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Institutional data but not an official transcript',0,6,2,'','SELFTRAN','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Self-reported by participant',0,6,3,'','SELFTRAN','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Self-reported and transcript',0,6,4,'','SELFTRAN','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Not enrolled in program of postsecondary education',0,6,9,'','SELFTRAN','2022-04-14 12:58:07.299'),
+	 (false,false,true,'2022-04-14 12:58:07.299','SETH','Spring',0,6,1,'','SEMESTER','2022-04-14 12:58:07.299'),
+	 (false,false,true,'2022-04-14 12:58:07.299','SETH','Summer',0,6,2,'','SEMESTER','2022-04-14 12:58:07.299');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.299','SETH','Fall',0,6,3,'','SEMESTER','2022-04-14 12:58:07.299'),
+	 (false,false,true,'2022-04-14 12:58:07.299','SETH','Winter',0,6,4,'','SEMESTER','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','Component',0,6,1,'','SERHEADING','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','',0,6,2,'','SERHEADING','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.299','SETH','',0,6,3,'','SERHEADING','2022-04-14 12:58:07.299'),
+	 (false,true,true,'2022-04-14 12:58:07.307','SETH','',0,6,4,'','SERHEADING','2022-04-14 12:58:07.307'),
+	 (false,true,true,'2022-04-14 12:58:07.307','SETH','',0,6,5,'','SERHEADING','2022-04-14 12:58:07.307'),
+	 (false,true,true,'2022-04-14 12:58:07.307','SETH','Instructions',0,6,6,'','SERHEADING','2022-04-14 12:58:07.307'),
+	 (false,true,true,'2022-04-14 12:58:07.307','SETH','Activities',0,6,1,'','SERTYPE','2022-04-14 12:58:07.307'),
+	 (false,true,true,'2022-04-14 12:58:07.307','SETH','Activity Group',0,6,2,'','SERTYPE','2022-04-14 12:58:07.307');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.307','SETH','Veteran Group',0,6,3,'','SERTYPE','2022-04-14 12:58:07.307'),
+	 (false,true,true,'2022-04-14 12:58:07.307','SETH','End Status',0,6,4,'','SERTYPE','2022-04-14 12:58:07.307'),
+	 (false,true,true,'2022-04-14 12:58:07.307','SETH','Form Type',0,6,5,'','SERTYPE','2022-04-14 12:58:07.307'),
+	 (false,true,true,'2022-04-14 12:58:07.309','SETH','APR Subject',0,6,6,'','SERTYPE','2022-04-14 12:58:07.309'),
+	 (false,false,true,'2022-04-14 12:58:07.309','USER','Freshman',0,6,1,'','STANDING','2022-04-14 12:58:07.309'),
+	 (false,false,true,'2022-04-14 12:58:07.309','USER','Sophomore',0,6,2,'','STANDING','2022-04-14 12:58:07.309'),
+	 (false,false,true,'2022-04-14 12:58:07.309','USER','Junior',0,6,3,'','STANDING','2022-04-14 12:58:07.309'),
+	 (false,false,true,'2022-04-14 12:58:07.309','USER','Senior',0,6,4,'','STANDING','2022-04-14 12:58:07.309'),
+	 (false,false,true,'2022-04-14 12:58:07.309','SETH','APR Column #1',0,6,1,'','STANDINGGROUPTYPE','2022-04-14 12:58:07.309'),
+	 (false,false,true,'2022-04-14 12:58:07.309','SETH','APR Column #2',0,6,2,'','STANDINGGROUPTYPE','2022-04-14 12:58:07.309');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.309','SETH','APR Column #3',0,6,3,'','STANDINGGROUPTYPE','2022-04-14 12:58:07.309'),
+	 (false,false,true,'2022-04-14 12:58:07.309','SETH','No response/Unknown',0,6,0,'','SUMBRIDGE','2022-04-14 12:58:07.309'),
+	 (false,false,true,'2022-04-14 12:58:07.309','SETH','Participated in summer bridge program offered by the project',0,6,1,'','SUMBRIDGE','2022-04-14 12:58:07.309'),
+	 (false,false,true,'2022-04-14 12:58:07.309','SETH','Student did not participate in summer bridge program',0,6,2,'','SUMBRIDGE','2022-04-14 12:58:07.309'),
+	 (false,false,true,'2022-04-14 12:58:07.309','SETH','Not applicable (project did not offer summer bridge program)',0,6,7,'','SUMBRIDGE','2022-04-14 12:58:07.309'),
+	 (false,false,true,'2022-04-14 12:58:07.309','SETH','Not applicable (continuing participant)',0,6,8,'','SUMBRIDGE','2022-04-14 12:58:07.309'),
+	 (false,false,true,'2022-04-14 12:58:07.309','SETH','Not applicable (all prior-year participant or reentry not receiving services)',0,6,9,'','SUMBRIDGE','2022-04-14 12:58:07.309'),
+	 (false,true,true,'2022-04-14 12:58:07.309','SETH','No response/Unknown',0,6,0,'','TESTTYPE','2022-04-14 12:58:07.309'),
+	 (false,true,true,'2022-04-14 12:58:07.309','SETH','Comprehensive Test of Basic Skills (CTBS)',0,6,1,'','TESTTYPE','2022-04-14 12:58:07.309'),
+	 (false,true,true,'2022-04-14 12:58:07.309','SETH','Stanford Achievement Test',0,6,2,'','TESTTYPE','2022-04-14 12:58:07.309');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.309','SETH','California Achievement Test (CAT)',0,6,3,'','TESTTYPE','2022-04-14 12:58:07.309'),
+	 (false,true,true,'2022-04-14 12:58:07.309','SETH','Iowa Achievement Test',0,6,4,'','TESTTYPE','2022-04-14 12:58:07.309'),
+	 (false,true,true,'2022-04-14 12:58:07.309','SETH','Texas Assessment of Academic Skills (TAAS)',0,6,5,'','TESTTYPE','2022-04-14 12:58:07.309'),
+	 (false,true,true,'2022-04-14 12:58:07.309','SETH','Nelson Denny',0,6,6,'','TESTTYPE','2022-04-14 12:58:07.309'),
+	 (false,true,true,'2022-04-14 12:58:07.309','SETH','ARIO Assessment Tools',0,6,7,'','TESTTYPE','2022-04-14 12:58:07.309'),
+	 (false,true,true,'2022-04-14 12:58:07.309','SETH','Other',0,6,8,'','TESTTYPE','2022-04-14 12:58:07.309'),
+	 (false,true,true,'2022-04-14 12:58:07.309','SETH','Not Applicable',0,6,99,'','TESTTYPE','2022-04-14 12:58:07.309'),
+	 (false,false,true,'2022-04-14 12:58:07.309','SETH','No response/Unknown',0,6,0,'','TRANSFERS','2022-04-14 12:58:07.309'),
+	 (false,false,true,'2022-04-14 12:58:07.309','SETH','Transferred from a 2-year institution to another 2-year institution',0,6,1,'','TRANSFERS','2022-04-14 12:58:07.309'),
+	 (false,false,true,'2022-04-14 12:58:07.309','SETH','Transferred from a 2-year institution to a 4-year institution',0,6,2,'','TRANSFERS','2022-04-14 12:58:07.309');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.309','SETH','Transferred from a 4-year institution to another 4-year institution',0,6,3,'','TRANSFERS','2022-04-14 12:58:07.309'),
+	 (false,false,true,'2022-04-14 12:58:07.309','SETH','Transferred from a 4-year institution to a 2-year institution',0,6,4,'','TRANSFERS','2022-04-14 12:58:07.309'),
+	 (false,false,true,'2022-04-14 12:58:07.309','SETH','Not applicable – still enrolled or graduated (participant is still enrolled at the grantee-institution, completed certificate/diploma program, graduated with an associate’s but did not transfer, or graduated with a bachelor’s degree)',0,6,8,'','TRANSFERS','2022-04-14 12:58:07.309'),
+	 (false,false,true,'2022-04-14 12:58:07.309','SETH','Not applicable -- not enrolled at grantee institution (participant withdrew, did not return, was called for military service or is deceased)',0,6,9,'','TRANSFERS','2022-04-14 12:58:07.309'),
+	 (false,true,true,'2022-04-14 12:58:07.309','SETH','No response',0,6,0,'','VENTERJOB','2022-04-14 12:58:07.309'),
+	 (false,true,true,'2022-04-14 12:58:07.309','SETH','Unemployed',0,6,1,'','VENTERJOB','2022-04-14 12:58:07.309'),
+	 (false,true,true,'2022-04-14 12:58:07.318','SETH','Employed part time',0,6,2,'','VENTERJOB','2022-04-14 12:58:07.318'),
+	 (false,true,true,'2022-04-14 12:58:07.318','SETH','Employed full time',0,6,3,'','VENTERJOB','2022-04-14 12:58:07.318'),
+	 (false,true,true,'2022-04-14 12:58:07.318','SETH','Retired',0,6,4,'','VENTERJOB','2022-04-14 12:58:07.318'),
+	 (false,true,true,'2022-04-14 12:58:07.318','SETH','Unknown',0,6,0,'','VENTERLEVEL','2022-04-14 12:58:07.318');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.318','SETH','High School Dropout',0,6,1,'','VENTERLEVEL','2022-04-14 12:58:07.318'),
+	 (false,true,true,'2022-04-14 12:58:07.318','SETH','High School Graduate',0,6,2,'','VENTERLEVEL','2022-04-14 12:58:07.318'),
+	 (false,true,true,'2022-04-14 12:58:07.318','SETH','GED/High School Equivalency Graduate',0,6,3,'','VENTERLEVEL','2022-04-14 12:58:07.318'),
+	 (false,true,true,'2022-04-14 12:58:07.318','SETH','High School Graduate with Some College',0,6,4,'','VENTERLEVEL','2022-04-14 12:58:07.318'),
+	 (false,true,true,'2022-04-14 12:58:07.318','SETH','GED/High School Equivalency with Some College',0,6,5,'','VENTERLEVEL','2022-04-14 12:58:07.318'),
+	 (false,true,true,'2022-04-14 12:58:07.318','SETH','Unknown',0,6,0,'','VFINAIDREC','2022-04-14 12:58:07.318'),
+	 (false,true,true,'2022-04-14 12:58:07.318','SETH','Pell grant only',0,6,1,'','VFINAIDREC','2022-04-14 12:58:07.318'),
+	 (false,true,true,'2022-04-14 12:58:07.318','SETH','FFEL loan',0,6,2,'','VFINAIDREC','2022-04-14 12:58:07.318'),
+	 (false,true,true,'2022-04-14 12:58:07.318','SETH','Direct loan',0,6,3,'','VFINAIDREC','2022-04-14 12:58:07.318'),
+	 (false,true,true,'2022-04-14 12:58:07.318','SETH','College work study only',0,6,4,'','VFINAIDREC','2022-04-14 12:58:07.318');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.318','SETH','Institutional aid only',0,6,5,'','VFINAIDREC','2022-04-14 12:58:07.318'),
+	 (false,true,true,'2022-04-14 12:58:07.318','SETH','State grant only',0,6,6,'','VFINAIDREC','2022-04-14 12:58:07.318'),
+	 (false,true,true,'2022-04-14 12:58:07.318','SETH','Pell grant and FFEL loan',0,6,7,'','VFINAIDREC','2022-04-14 12:58:07.318'),
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','Pell grant and Direct loan',0,6,8,'','VFINAIDREC','2022-04-14 12:58:07.32'),
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','Multiple federal aid',0,6,9,'','VFINAIDREC','2022-04-14 12:58:07.32'),
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','Multiple federal and other aid',0,6,10,'','VFINAIDREC','2022-04-14 12:58:07.32'),
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','Montgomery G.I. scholarship',0,6,11,'','VFINAIDREC','2022-04-14 12:58:07.32'),
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','Veterans Benefits',0,6,12,'','VFINAIDREC','2022-04-14 12:58:07.32'),
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','No aid awarded',0,6,13,'','VFINAIDREC','2022-04-14 12:58:07.32'),
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','No aid needed',0,6,14,'','VFINAIDREC','2022-04-14 12:58:07.32');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','Not Applicable',0,6,99,'','VFINAIDREC','2022-04-14 12:58:07.32'),
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','Unknown',0,6,0,'','VGRADELEVEL','2022-04-14 12:58:07.32'),
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','High School Dropout',0,6,1,'','VGRADELEVEL','2022-04-14 12:58:07.32'),
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','High School Graduate',0,6,2,'','VGRADELEVEL','2022-04-14 12:58:07.32'),
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','Obtained high school equivalency degree',0,6,3,'','VGRADELEVEL','2022-04-14 12:58:07.32'),
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','Obtained high school equivalency degree and accepted for enrollment in program of postsecondary education',0,6,4,'','VGRADELEVEL','2022-04-14 12:58:07.32'),
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','Accepted for enrollment in program of postsecondary education',0,6,5,'','VGRADELEVEL','2022-04-14 12:58:07.32'),
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','Obtained high school equivalency degree and enrolled in program of postsecondary education',0,6,6,'','VGRADELEVEL','2022-04-14 12:58:07.32'),
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','Enrolled in program of postsecondary education',0,6,7,'','VGRADELEVEL','2022-04-14 12:58:07.32'),
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','Completed project but did not enroll in program of postsecondary education',0,6,8,'','VGRADELEVEL','2022-04-14 12:58:07.32');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','Did not complete project',0,6,9,'','VGRADELEVEL','2022-04-14 12:58:07.32'),
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','No response',0,6,0,'','YESNO','2022-04-14 12:58:07.32'),
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','Yes',0,6,1,'','YESNO','2022-04-14 12:58:07.32'),
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','No',0,6,2,'','YESNO','2022-04-14 12:58:07.32'),
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','Not Applicable',0,6,9,'','YESNO','2022-04-14 12:58:07.32'),
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','No response',0,7,0,'','ACADNEED','2022-04-14 12:58:07.32'),
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','High School GPA',0,7,1,'','ACADNEED','2022-04-14 12:58:07.32'),
+	 (false,false,true,'2022-04-14 12:58:07.32','SETH','SAT scores, verbal',0,7,2,'','ACADNEED','2022-04-14 12:58:07.32'),
+	 (false,false,true,'2022-04-14 12:58:07.32','SETH','SAT scores, math',0,7,3,'','ACADNEED','2022-04-14 12:58:07.32'),
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','ACT scores',0,7,4,'','ACADNEED','2022-04-14 12:58:07.32');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','Predictive indicator',0,7,5,'','ACADNEED','2022-04-14 12:58:07.32'),
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','Diagnostic tests',0,7,6,'','ACADNEED','2022-04-14 12:58:07.32'),
+	 (false,false,true,'2022-04-14 12:58:07.32','SETH','College GPA',0,7,7,'','ACADNEED','2022-04-14 12:58:07.32'),
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','High school equivalency',0,7,8,'','ACADNEED','2022-04-14 12:58:07.32'),
+	 (false,false,true,'2022-04-14 12:58:07.32','SETH','Failing grades',0,7,9,'','ACADNEED','2022-04-14 12:58:07.32'),
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','Out of the academic pipeline for 5 or more years',0,7,10,'','ACADNEED','2022-04-14 12:58:07.32'),
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','Multiple',0,7,11,'','ACADNEED','2022-04-14 12:58:07.32'),
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','Other',0,7,12,'','ACADNEED','2022-04-14 12:58:07.32'),
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','No response',0,7,0,'','ACADSTAND','2022-04-14 12:58:07.32'),
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','In Good Standing',0,7,1,'','ACADSTAND','2022-04-14 12:58:07.32');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.32','SETH','Not in good standing',0,7,2,'','ACADSTAND','2022-04-14 12:58:07.32'),
+	 (false,false,true,'2022-04-14 12:58:07.32','MANAGER','Research',0,7,26,'','ACTIVITY','2022-04-14 12:58:07.32'),
+	 (false,false,true,'2022-04-14 12:58:07.32','MANAGER','McNair stipend Internships',0,7,27,'','ACTIVITY','2022-04-14 12:58:07.32'),
+	 (false,false,true,'2022-04-14 12:58:07.32','MANAGER','Seminars',0,7,28,'','ACTIVITY','2022-04-14 12:58:07.32'),
+	 (false,false,true,'2022-04-14 12:58:07.32','MANAGER','Tutorial Assistance',0,7,29,'','ACTIVITY','2022-04-14 12:58:07.32'),
+	 (false,false,true,'2022-04-14 12:58:07.32','MANAGER','Academic Counseling',0,7,30,'','ACTIVITY','2022-04-14 12:58:07.32'),
+	 (false,false,true,'2022-04-14 12:58:07.32','MANAGER','Financial Aid Assistance',0,7,31,'','ACTIVITY','2022-04-14 12:58:07.32'),
+	 (false,false,true,'2022-04-14 12:58:07.32','MANAGER','Admission Assistance',0,7,32,'','ACTIVITY','2022-04-14 12:58:07.32'),
+	 (false,false,true,'2022-04-14 12:58:07.32','MANAGER','Mentoring',0,7,33,'','ACTIVITY','2022-04-14 12:58:07.32'),
+	 (false,false,true,'2022-04-14 12:58:07.32','MANAGER','Cultural & Academic Enrichment Activity',0,7,34,'','ACTIVITY','2022-04-14 12:58:07.32');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.32','MANAGER','Conferences',0,7,35,'','ACTIVITY','2022-04-14 12:58:07.32'),
+	 (false,false,true,'2022-04-14 12:58:07.32','MANAGER','Presentations',0,7,36,'','ACTIVITY','2022-04-14 12:58:07.32'),
+	 (false,false,true,'2022-04-14 12:58:07.32','MANAGER','Graduate or Transfer School Counseling',0,7,37,'','ACTIVITY','2022-04-14 12:58:07.32'),
+	 (false,false,true,'2022-04-14 12:58:07.32','MANAGER','Test Taking Skills',0,7,38,'','ACTIVITY','2022-04-14 12:58:07.32'),
+	 (false,false,true,'2022-04-14 12:58:07.32','MANAGER','Teaching related experiences',0,7,39,'','ACTIVITY','2022-04-14 12:58:07.32'),
+	 (false,false,true,'2022-04-14 12:58:07.32','MANAGER','Personal Counseling',0,7,10008,'','ACTIVITY','2022-04-14 12:58:07.32'),
+	 (false,false,true,'2022-04-14 12:58:07.32','MANAGER','Peer Counseling',0,7,10009,'','ACTIVITY','2022-04-14 12:58:07.32'),
+	 (false,false,true,'2022-04-14 12:58:07.32','MANAGER','Financial Aid Counseling and Assistance',0,7,10010,'','ACTIVITY','2022-04-14 12:58:07.32'),
+	 (false,false,true,'2022-04-14 12:58:07.32','MANAGER','Career Counseling',0,7,10011,'','ACTIVITY','2022-04-14 12:58:07.32'),
+	 (false,false,true,'2022-04-14 12:58:07.32','MANAGER','Tutorial Assistance',0,7,10013,'','ACTIVITY','2022-04-14 12:58:07.32');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.32','MANAGER','Self-Concept Assess',0,7,10016,'','ACTIVITY','2022-04-14 12:58:07.32'),
+	 (false,false,true,'2022-04-14 12:58:07.32','MANAGER','Computer Aided Instruction',0,7,10017,'','ACTIVITY','2022-04-14 12:58:07.32'),
+	 (false,false,true,'2022-04-14 12:58:07.32','MANAGER','Goal Setting',0,7,10018,'','ACTIVITY','2022-04-14 12:58:07.32'),
+	 (false,false,true,'2022-04-14 12:58:07.328','MANAGER','Self-Esteem',0,7,10019,'','ACTIVITY','2022-04-14 12:58:07.328'),
+	 (false,false,true,'2022-04-14 12:58:07.328','MANAGER','Decision Making',0,7,10020,'','ACTIVITY','2022-04-14 12:58:07.328'),
+	 (false,false,true,'2022-04-14 12:58:07.328','MANAGER','Career Planning',0,7,10021,'','ACTIVITY','2022-04-14 12:58:07.328'),
+	 (false,false,true,'2022-04-14 12:58:07.328','MANAGER','Time Organizing',0,7,10022,'','ACTIVITY','2022-04-14 12:58:07.328'),
+	 (false,false,true,'2022-04-14 12:58:07.328','SETH','Count all contacts on same day as separate sessions',0,7,1,'','ACTIVITYGROUPTYPE','2022-04-14 12:58:07.328'),
+	 (false,false,true,'2022-04-14 12:58:07.328','SETH','Count all contacts on same day as one event',0,7,2,'','ACTIVITYGROUPTYPE','2022-04-14 12:58:07.328'),
+	 (false,true,true,'2022-04-14 12:58:07.328','SETH','Mathematics Instruction',0,7,10036,'admath','APR SUBJECT','2022-04-14 12:58:07.328');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.328','SETH','Mathematics Instruction Summer (may include Bridge Students)',0,7,10037,'admath','APR SUBJECT','2022-04-14 12:58:07.328'),
+	 (false,true,true,'2022-04-14 12:58:07.328','SETH','Science Instruction/Tutorials Academic Year',0,7,10038,'adscience','APR SUBJECT','2022-04-14 12:58:07.328'),
+	 (false,true,true,'2022-04-14 12:58:07.328','SETH','Science Instruction Summer (may include Bridge Students)',0,7,10039,'adscience','APR SUBJECT','2022-04-14 12:58:07.328'),
+	 (false,true,true,'2022-04-14 12:58:07.328','SETH','Foreign Language Instruction/Tutorials Academic Year',0,7,10040,'adforeignlanguage','APR SUBJECT','2022-04-14 12:58:07.328'),
+	 (false,true,true,'2022-04-14 12:58:07.328','SETH','Foreign Language Instruction Summer (may include Bridge Students)',0,7,10041,'adforeignlanguage','APR SUBJECT','2022-04-14 12:58:07.328'),
+	 (false,true,true,'2022-04-14 12:58:07.328','SETH','English Instruction/Tutorials Academic Year',0,7,10042,'adenglish','APR SUBJECT','2022-04-14 12:58:07.328'),
+	 (false,true,true,'2022-04-14 12:58:07.328','SETH','English Instruction Summer (may include Bridge Students)',0,7,10043,'adenglish','APR SUBJECT','2022-04-14 12:58:07.328'),
+	 (false,false,true,'2022-04-14 12:58:07.33','SETH','Yes',0,7,1,'','APRCOMPONENT','2022-04-14 12:58:07.33'),
+	 (false,false,true,'2022-04-14 12:58:07.33','SETH','No',0,7,2,'','APRCOMPONENT','2022-04-14 12:58:07.33'),
+	 (false,false,true,'2022-04-14 12:58:07.33','MANAGER','In Stock',0,7,1,'','ASSETSTATUS','2022-04-14 12:58:07.33');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.33','MANAGER','Checked Out',0,7,2,'','ASSETSTATUS','2022-04-14 12:58:07.33'),
+	 (false,false,true,'2022-04-14 12:58:07.33','MANAGER','Out for Repair',0,7,3,'','ASSETSTATUS','2022-04-14 12:58:07.33'),
+	 (false,false,true,'2022-04-14 12:58:07.33','MANAGER','Damaged',0,7,4,'','ASSETSTATUS','2022-04-14 12:58:07.33'),
+	 (false,false,true,'2022-04-14 12:58:07.33','MANAGER','Lost',0,7,5,'','ASSETSTATUS','2022-04-14 12:58:07.33'),
+	 (false,false,true,'2022-04-14 12:58:07.33','MANAGER','Stolen',0,7,6,'','ASSETSTATUS','2022-04-14 12:58:07.33'),
+	 (false,false,true,'2022-04-14 12:58:07.33','MANAGER','No longer in use',0,7,7,'','ASSETSTATUS','2022-04-14 12:58:07.33'),
+	 (false,false,true,'2022-04-14 12:58:07.33','SETH','No response/Unknown',0,7,0,'','COHORTYEAR','2022-04-14 12:58:07.33'),
+	 (false,false,true,'2022-04-14 12:58:07.33','SETH','Other (prior to 2000-01)',0,7,1,'','COHORTYEAR','2022-04-14 12:58:07.33'),
+	 (false,false,true,'2022-04-14 12:58:07.33','SETH','2000-01',0,7,2,'','COHORTYEAR','2022-04-14 12:58:07.33'),
+	 (false,false,true,'2022-04-14 12:58:07.33','SETH','2001-02',0,7,3,'','COHORTYEAR','2022-04-14 12:58:07.33');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.33','SETH','2002-03',0,7,4,'','COHORTYEAR','2022-04-14 12:58:07.33'),
+	 (false,false,true,'2022-04-14 12:58:07.33','SETH','2003-04',0,7,5,'','COHORTYEAR','2022-04-14 12:58:07.33'),
+	 (false,false,true,'2022-04-14 12:58:07.33','SETH','2004-05',0,7,6,'','COHORTYEAR','2022-04-14 12:58:07.33'),
+	 (false,false,true,'2022-04-14 12:58:07.33','SETH','2005-06',0,7,7,'','COHORTYEAR','2022-04-14 12:58:07.33'),
+	 (false,false,true,'2022-04-14 12:58:07.33','SETH','2006-07',0,7,8,'','COHORTYEAR','2022-04-14 12:58:07.33'),
+	 (false,false,true,'2022-04-14 12:58:07.33','SETH','2007-08',0,7,9,'','COHORTYEAR','2022-04-14 12:58:07.33'),
+	 (false,false,true,'2022-04-14 12:58:07.33','SETH','2008-09',0,7,10,'','COHORTYEAR','2022-04-14 12:58:07.33'),
+	 (false,false,true,'2022-04-14 12:58:07.33','SETH','2009-10',0,7,11,'','COHORTYEAR','2022-04-14 12:58:07.33'),
+	 (false,false,true,'2022-04-14 12:58:07.33','SETH','Public, two-year institution',0,7,1,'','COLLEGETYPE','2022-04-14 12:58:07.33'),
+	 (false,false,true,'2022-04-14 12:58:07.33','SETH','Private, non-profit, two-year institution',0,7,2,'','COLLEGETYPE','2022-04-14 12:58:07.33');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.33','SETH','Public, four-year institution',0,7,3,'','COLLEGETYPE','2022-04-14 12:58:07.33'),
+	 (false,false,true,'2022-04-14 12:58:07.33','SETH','Private, non-profit, four-year institution',0,7,4,'','COLLEGETYPE','2022-04-14 12:58:07.33'),
+	 (false,false,true,'2022-04-14 12:58:07.33','SETH','Public or non-profit vocational/technical institution',0,7,5,'','COLLEGETYPE','2022-04-14 12:58:07.33'),
+	 (false,false,true,'2022-04-14 12:58:07.33','SETH','Proprietary school',0,7,6,'','COLLEGETYPE','2022-04-14 12:58:07.33'),
+	 (false,false,true,'2022-04-14 12:58:07.33','MANAGER','Unknown',0,7,7,'','COLLEGETYPE','2022-04-14 12:58:07.33'),
+	 (false,true,true,'2022-04-14 12:58:07.33','SETH','Unknown/ no response',0,7,0,'','COLLGRADE','2022-04-14 12:58:07.33'),
+	 (false,true,true,'2022-04-14 12:58:07.33','SETH','1st yr., never attended',0,7,1,'','COLLGRADE','2022-04-14 12:58:07.33'),
+	 (false,true,true,'2022-04-14 12:58:07.33','SETH','1st yr., attended before',0,7,2,'','COLLGRADE','2022-04-14 12:58:07.33'),
+	 (false,true,true,'2022-04-14 12:58:07.33','SETH','2nd yr./sophomore',0,7,3,'','COLLGRADE','2022-04-14 12:58:07.33'),
+	 (false,true,true,'2022-04-14 12:58:07.33','SETH','3rd yr./junior',0,7,4,'','COLLGRADE','2022-04-14 12:58:07.33');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.33','SETH','4th yr./senior',0,7,5,'','COLLGRADE','2022-04-14 12:58:07.33'),
+	 (false,true,true,'2022-04-14 12:58:07.33','SETH','5th yr./or above undergraduate',0,7,6,'','COLLGRADE','2022-04-14 12:58:07.33'),
+	 (false,true,true,'2022-04-14 12:58:07.33','SETH','1st yr. graduate/ professional (received services as undergraduate)',0,7,7,'','COLLGRADE','2022-04-14 12:58:07.33'),
+	 (false,true,true,'2022-04-14 12:58:07.33','SETH','1st yr. graduate/ professional',0,7,8,'','COLLGRADE','2022-04-14 12:58:07.33'),
+	 (false,true,true,'2022-04-14 12:58:07.33','SETH','2nd yr. graduate/ professional',0,7,9,'','COLLGRADE','2022-04-14 12:58:07.33'),
+	 (false,true,true,'2022-04-14 12:58:07.33','SETH','3rd yr. graduate/ professional',0,7,10,'','COLLGRADE','2022-04-14 12:58:07.33'),
+	 (false,false,true,'2022-04-14 12:58:07.33','SETH','Beyond 3rd yr. graduate/professional',0,7,11,'','COLLGRADE','2022-04-14 12:58:07.33'),
+	 (false,false,true,'2022-04-14 12:58:07.33','SETH','Not currently enrolled in a postsecondary or graduate degree program',0,7,12,'','COLLGRADE','2022-04-14 12:58:07.33'),
+	 (false,false,true,'2022-04-14 12:58:07.33','SETH','Other',0,7,13,'','COLLGRADE','2022-04-14 12:58:07.33'),
+	 (false,false,true,'2022-04-14 12:58:07.33','MANAGER','Yes',0,7,1,'','COLLREADY','2022-04-14 12:58:07.33');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.33','SETH','',0,7,0,'','COMPARE','2022-04-14 12:58:07.33'),
+	 (false,true,true,'2022-04-14 12:58:07.33','SETH','< less than',0,7,1,'','COMPARE','2022-04-14 12:58:07.33'),
+	 (false,true,true,'2022-04-14 12:58:07.33','SETH','<= less than or equal to',0,7,2,'','COMPARE','2022-04-14 12:58:07.33'),
+	 (false,true,true,'2022-04-14 12:58:07.33','SETH','<> not equal to',0,7,3,'','COMPARE','2022-04-14 12:58:07.33'),
+	 (false,true,true,'2022-04-14 12:58:07.33','SETH','= equal to',0,7,4,'','COMPARE','2022-04-14 12:58:07.33'),
+	 (false,true,true,'2022-04-14 12:58:07.33','SETH','> more than',0,7,5,'','COMPARE','2022-04-14 12:58:07.33'),
+	 (false,true,true,'2022-04-14 12:58:07.33','SETH','>= more than or equal to',0,7,6,'','COMPARE','2022-04-14 12:58:07.33'),
+	 (false,true,true,'2022-04-14 12:58:07.33','SETH','Academic',0,7,1,'','COMPONENT','2022-04-14 12:58:07.33'),
+	 (false,true,true,'2022-04-14 12:58:07.33','SETH','Summer',0,7,2,'','COMPONENT','2022-04-14 12:58:07.33'),
+	 (false,true,true,'2022-04-14 12:58:07.33','SETH','Both',0,7,3,'','COMPONENT','2022-04-14 12:58:07.33');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.33','SETH','Not Applicable',0,7,9,'','COMPONENT','2022-04-14 12:58:07.33'),
+	 (false,true,true,'2022-04-14 12:58:07.33','SETH','Counselor',0,7,1,'','CONTACTSTAFFTYPE','2022-04-14 12:58:07.33'),
+	 (false,true,true,'2022-04-14 12:58:07.33','SETH','Tutor',0,7,2,'','CONTACTSTAFFTYPE','2022-04-14 12:58:07.33'),
+	 (false,true,true,'2022-04-14 12:58:07.33','SETH','Teacher',0,7,3,'','CONTACTSTAFFTYPE','2022-04-14 12:58:07.33'),
+	 (false,true,true,'2022-04-14 12:58:07.33','SETH','Staff',0,7,4,'','CONTACTSTAFFTYPE','2022-04-14 12:58:07.33'),
+	 (false,true,true,'2022-04-14 12:58:07.33','SETH','Individual',0,7,1,'','CONTACTTYPE','2022-04-14 12:58:07.33'),
+	 (false,true,true,'2022-04-14 12:58:07.33','SETH','Group',0,7,2,'','CONTACTTYPE','2022-04-14 12:58:07.33'),
+	 (false,true,true,'2022-04-14 12:58:07.33','SETH','Phone',0,7,3,'','CONTACTTYPE','2022-04-14 12:58:07.33'),
+	 (false,true,true,'2022-04-14 12:58:07.33','SETH','Mail',0,7,4,'','CONTACTTYPE','2022-04-14 12:58:07.33'),
+	 (false,false,true,'2022-04-14 12:58:07.33','SETH','Parent',0,7,5,'','CONTACTTYPE','2022-04-14 12:58:07.33');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.338','SETH','Other',0,7,6,'','CONTACTTYPE','2022-04-14 12:58:07.338'),
+	 (false,true,true,'2022-04-14 12:58:07.338','SETH','E-mail',0,7,7,'','CONTACTTYPE','2022-04-14 12:58:07.338'),
+	 (false,false,true,'2022-04-14 12:58:07.34','SETH','Weekly',0,7,1,'','CONTFREQ','2022-04-14 12:58:07.34'),
+	 (false,false,true,'2022-04-14 12:58:07.34','SETH','Twice a month',0,7,2,'','CONTFREQ','2022-04-14 12:58:07.34'),
+	 (false,false,true,'2022-04-14 12:58:07.34','SETH','Once a month',0,7,3,'','CONTFREQ','2022-04-14 12:58:07.34'),
+	 (false,false,true,'2022-04-14 12:58:07.34','SETH','Quarterly',0,7,4,'','CONTFREQ','2022-04-14 12:58:07.34'),
+	 (false,false,true,'2022-04-14 12:58:07.348','SETH','No face-to-face contact',0,7,5,'','CONTFREQ','2022-04-14 12:58:07.348'),
+	 (false,false,true,'2022-04-14 12:58:07.348','SETH','Other',0,7,6,'','CONTFREQ','2022-04-14 12:58:07.348'),
+	 (false,false,true,'2022-04-14 12:58:07.348','USER','Pets Name',0,7,1,'         0','CUSTOMFIELDNAME','2022-04-14 12:58:07.348'),
+	 (false,false,true,'2022-04-14 12:58:07.348','USER','T-shirt Size',0,7,2,'         1','CUSTOMFIELDNAME','2022-04-14 12:58:07.348');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.348','USER','Donate Blood',0,7,3,'         2','CUSTOMFIELDNAME','2022-04-14 12:58:07.348'),
+	 (false,false,true,'2022-04-14 12:58:07.348','USER','Date Inactivated',0,7,4,'         3','CUSTOMFIELDNAME','2022-04-14 12:58:07.348'),
+	 (false,false,true,'2022-04-14 12:58:07.348','USER','Number of Siblings',0,7,5,'         4','CUSTOMFIELDNAME','2022-04-14 12:58:07.348'),
+	 (false,false,true,'2022-04-14 12:58:07.35','USER','Food Allowance',0,7,6,'         5','CUSTOMFIELDNAME','2022-04-14 12:58:07.35'),
+	 (false,false,true,'2022-04-14 12:58:07.35','MANAGER','Text-Normal',0,7,0,'','CUSTOMFIELDTYPE','2022-04-14 12:58:07.35'),
+	 (false,false,true,'2022-04-14 12:58:07.35','MANAGER','Text-Quickfill',0,7,1,'','CUSTOMFIELDTYPE','2022-04-14 12:58:07.35'),
+	 (false,false,true,'2022-04-14 12:58:07.35','MANAGER','Logical',0,7,2,'','CUSTOMFIELDTYPE','2022-04-14 12:58:07.35'),
+	 (false,false,true,'2022-04-14 12:58:07.35','MANAGER','Date',0,7,3,'','CUSTOMFIELDTYPE','2022-04-14 12:58:07.35'),
+	 (false,false,true,'2022-04-14 12:58:07.35','MANAGER','Integer',0,7,4,'','CUSTOMFIELDTYPE','2022-04-14 12:58:07.35'),
+	 (false,false,true,'2022-04-14 12:58:07.35','','Numeric-2 decimals',0,7,5,'','CUSTOMFIELDTYPE','2022-04-14 12:58:07.35');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.35','SETH','Science',0,7,1,'','DEGREEIN','2022-04-14 12:58:07.35'),
+	 (false,false,true,'2022-04-14 12:58:07.35','SETH','Business',0,7,2,'','DEGREEIN','2022-04-14 12:58:07.35'),
+	 (false,false,true,'2022-04-14 12:58:07.35','SETH','Arts',0,7,3,'','DEGREEIN','2022-04-14 12:58:07.35'),
+	 (false,false,true,'2022-04-14 12:58:07.35','SETH','English',0,7,4,'','DEGREEIN','2022-04-14 12:58:07.35'),
+	 (false,true,true,'2022-04-14 12:58:07.35','SETH','Unknown/ no response',0,7,0,'','ELIGIBILITY','2022-04-14 12:58:07.35'),
+	 (false,true,true,'2022-04-14 12:58:07.35','SETH','Low-Income and First Generation',0,7,1,'','ELIGIBILITY','2022-04-14 12:58:07.35'),
+	 (false,true,true,'2022-04-14 12:58:07.35','SETH','Under-represented Only',0,7,2,'','ELIGIBILITY','2022-04-14 12:58:07.35'),
+	 (false,false,true,'2022-04-14 12:58:07.35','SETH','Part Time',0,7,1,'','EMPLOYTYPE','2022-04-14 12:58:07.35'),
+	 (false,false,true,'2022-04-14 12:58:07.35','SETH','Full Time',0,7,2,'','EMPLOYTYPE','2022-04-14 12:58:07.35'),
+	 (false,false,true,'2022-04-14 12:58:07.35','SETH','Unemployed',0,7,3,'','EMPLOYTYPE','2022-04-14 12:58:07.35');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.35','SETH','No response',0,7,0,'','ENDSTATUS','2022-04-14 12:58:07.35'),
+	 (false,false,true,'2022-04-14 12:58:07.35','SETH','Graduated from Program',0,7,1,'','ENDSTATUS','2022-04-14 12:58:07.35'),
+	 (false,false,true,'2022-04-14 12:58:07.35','SETH','Withdrew for academic reasons',0,7,2,'','ENDSTATUS','2022-04-14 12:58:07.35'),
+	 (false,false,true,'2022-04-14 12:58:07.35','SETH','Withdrew for health reasons',0,7,3,'','ENDSTATUS','2022-04-14 12:58:07.35'),
+	 (false,false,true,'2022-04-14 12:58:07.35','SETH','Withdrew for financial reasons',0,7,4,'','ENDSTATUS','2022-04-14 12:58:07.35'),
+	 (false,false,true,'2022-04-14 12:58:07.35','SETH','withdrew for personal reasons',0,7,5,'','ENDSTATUS','2022-04-14 12:58:07.35'),
+	 (false,false,true,'2022-04-14 12:58:07.35','SETH','Unable to track',0,7,6,'','ENDSTATUS','2022-04-14 12:58:07.35'),
+	 (false,false,true,'2022-04-14 12:58:07.35','SETH','Continuing Student',0,7,7,'','ENDSTATUS','2022-04-14 12:58:07.35'),
+	 (false,false,true,'2022-04-14 12:58:07.35','MANAGER','Promoted to next grade in middle School (TS only)',0,7,16,'','ENDSTATUS','2022-04-14 12:58:07.35'),
+	 (false,false,true,'2022-04-14 12:58:07.35','MANAGER','Promoted from middle school to high school (TS Only)',0,7,17,'','ENDSTATUS','2022-04-14 12:58:07.35');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.35','MANAGER','Re-enrolled in (or re-admitted to ) a program of postsecondary education (include transfer participants)',0,7,26,'','ENDSTATUS','2022-04-14 12:58:07.35'),
+	 (false,false,true,'2022-04-14 12:58:07.35','MANAGER','Other (e.g. death) - for Secondary School Students',0,7,30,'','ENDSTATUS','2022-04-14 12:58:07.35'),
+	 (false,false,true,'2022-04-14 12:58:07.35','MANAGER','Unknown Participant Status at End of Reporting Period- for Secondary School Students',0,7,31,'','ENDSTATUS','2022-04-14 12:58:07.35'),
+	 (false,false,true,'2022-04-14 12:58:07.358','MANAGER','Retained in current grade in middle school (TS only)',0,7,101,'','ENDSTATUS','2022-04-14 12:58:07.358'),
+	 (false,false,true,'2022-04-14 12:58:07.358','MANAGER','Retained in current grade in high school',0,7,102,'','ENDSTATUS','2022-04-14 12:58:07.358'),
+	 (false,false,true,'2022-04-14 12:58:07.36','MANAGER','Re-entered secondary school/ enrolled in GED or other high school equivalency program',0,7,103,'','ENDSTATUS','2022-04-14 12:58:07.36'),
+	 (false,false,true,'2022-04-14 12:58:07.36','MANAGER','Continued in or completed a program of postsecondary education (EOC only)',0,7,104,'','ENDSTATUS','2022-04-14 12:58:07.36'),
+	 (false,false,true,'2022-04-14 12:58:07.36','MANAGER','High school graduate not enrolled in program of postsecondary education',0,7,105,'','ENDSTATUS','2022-04-14 12:58:07.36'),
+	 (false,false,true,'2022-04-14 12:58:07.36','MANAGER','Withdrew from postsecondary education',0,7,106,'','ENDSTATUS','2022-04-14 12:58:07.36'),
+	 (false,false,true,'2022-04-14 12:58:07.36','MANAGER','Other (e.g. death) - for Postsecondary Students',0,7,107,'','ENDSTATUS','2022-04-14 12:58:07.36');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.36','MANAGER','Unknown Participant Status at End of Reporting Period- for Postsecondary Students',0,7,108,'','ENDSTATUS','2022-04-14 12:58:07.36'),
+	 (false,true,true,'2022-04-14 12:58:07.36','SETH','Not enrolled',0,7,0,'','ENGLISH','2022-04-14 12:58:07.36'),
+	 (false,true,true,'2022-04-14 12:58:07.36','SETH','Composition',0,7,1,'','ENGLISH','2022-04-14 12:58:07.36'),
+	 (false,true,true,'2022-04-14 12:58:07.36','SETH','Literature',0,7,2,'','ENGLISH','2022-04-14 12:58:07.36'),
+	 (false,true,true,'2022-04-14 12:58:07.36','SETH','Composition and Literature',0,7,3,'','ENGLISH','2022-04-14 12:58:07.36'),
+	 (false,true,true,'2022-04-14 12:58:07.36','SETH','Unknown/ no response',0,7,0,'','ENROLL','2022-04-14 12:58:07.36'),
+	 (false,true,true,'2022-04-14 12:58:07.36','SETH','Enrolled',0,7,1,'','ENROLL','2022-04-14 12:58:07.36'),
+	 (false,true,true,'2022-04-14 12:58:07.36','SETH','Not enrolled',0,7,2,'','ENROLL','2022-04-14 12:58:07.36'),
+	 (false,false,true,'2022-04-14 12:58:07.36','MANAGER','Unknown/no response',0,7,0,'','ENROLLOBJ','2022-04-14 12:58:07.36'),
+	 (false,false,true,'2022-04-14 12:58:07.36','','Enrolled in a post baccalaureate degree program',0,7,1,'','ENROLLOBJ','2022-04-14 12:58:07.36');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.36','','Did not enroll in a post baccalaureate degree program',0,7,2,'','ENROLLOBJ','2022-04-14 12:58:07.36'),
+	 (false,false,true,'2022-04-14 12:58:07.36','','Other (for students who did not receive a bachelor’s degree or equivalent)',0,7,3,'','ENROLLOBJ','2022-04-14 12:58:07.36'),
+	 (false,false,true,'2022-04-14 12:58:07.36','SETH','Unknown',0,7,0,'','ENTEREXAM','2022-04-14 12:58:07.36'),
+	 (false,true,true,'2022-04-14 12:58:07.36','SETH','SAT',0,7,1,'','ENTEREXAM','2022-04-14 12:58:07.36'),
+	 (false,true,true,'2022-04-14 12:58:07.36','SETH','ACT',0,7,2,'','ENTEREXAM','2022-04-14 12:58:07.36'),
+	 (false,true,true,'2022-04-14 12:58:07.36','SETH','Both SAT and ACT',0,7,3,'','ENTEREXAM','2022-04-14 12:58:07.36'),
+	 (false,true,true,'2022-04-14 12:58:07.36','SETH','Other',0,7,4,'','ENTEREXAM','2022-04-14 12:58:07.36'),
+	 (false,true,true,'2022-04-14 12:58:07.36','SETH','Not Applicable',0,7,9,'','ENTEREXAM','2022-04-14 12:58:07.36'),
+	 (false,true,true,'2022-04-14 12:58:07.36','SETH','Unknown/ no response',0,7,0,'','ENTERLEVEL','2022-04-14 12:58:07.36'),
+	 (false,true,true,'2022-04-14 12:58:07.368','SETH','1st yr., never attended',0,7,1,'','ENTERLEVEL','2022-04-14 12:58:07.368');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.368','SETH','1st yr., attended before',0,7,2,'','ENTERLEVEL','2022-04-14 12:58:07.368'),
+	 (false,true,true,'2022-04-14 12:58:07.368','SETH','2nd yr./sophomore',0,7,3,'','ENTERLEVEL','2022-04-14 12:58:07.368'),
+	 (false,true,true,'2022-04-14 12:58:07.368','SETH','3rd yr./junior',0,7,4,'','ENTERLEVEL','2022-04-14 12:58:07.368'),
+	 (false,true,true,'2022-04-14 12:58:07.368','SETH','4th yr./senior',0,7,5,'','ENTERLEVEL','2022-04-14 12:58:07.368'),
+	 (false,false,true,'2022-04-14 12:58:07.368','SETH','5th yr. or higher undergraduate',0,7,6,'','ENTERLEVEL','2022-04-14 12:58:07.368'),
+	 (false,false,true,'2022-04-14 12:58:07.368','SETH','graduate program (any year level)',0,7,7,'','ENTERLEVEL','2022-04-14 12:58:07.368'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','Unknown/ no response',0,7,0,'','ETHNIC','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','American Indian or Alaskan Native',0,7,1,'','ETHNIC','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','Asian',0,7,2,'','ETHNIC','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','Black or African American',0,7,3,'','ETHNIC','2022-04-14 12:58:07.37');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','Hispanic or Latino',0,7,4,'','ETHNIC','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','White',0,7,5,'','ETHNIC','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','Native Hawaiian or other Pacific Islander',0,7,6,'','ETHNIC','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','More than one race reported',0,7,7,'','ETHNIC','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','No response',0,7,0,'','FINAIDREAS','2022-04-14 12:58:07.37'),
+	 (false,false,true,'2022-04-14 12:58:07.37','SETH','Student refused loan',0,7,1,'','FINAIDREAS','2022-04-14 12:58:07.37'),
+	 (false,false,true,'2022-04-14 12:58:07.37','SETH','Insufficient Federal grant aid',0,7,2,'','FINAIDREAS','2022-04-14 12:58:07.37'),
+	 (false,false,true,'2022-04-14 12:58:07.37','SETH','Insufficient College Work Study aid',0,7,3,'','FINAIDREAS','2022-04-14 12:58:07.37'),
+	 (false,false,true,'2022-04-14 12:58:07.37','SETH','Insufficient institutional aid',0,7,4,'','FINAIDREAS','2022-04-14 12:58:07.37'),
+	 (false,false,true,'2022-04-14 12:58:07.37','SETH','Student failed to make adequate academic progress',0,7,5,'','FINAIDREAS','2022-04-14 12:58:07.37');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.37','SETH','Student refused College Work Study aid',0,7,6,'','FINAIDREAS','2022-04-14 12:58:07.37'),
+	 (false,false,true,'2022-04-14 12:58:07.37','SETH','Student not enrolled full-time',0,7,7,'','FINAIDREAS','2022-04-14 12:58:07.37'),
+	 (false,false,true,'2022-04-14 12:58:07.37','SETH','Student not eligible for financial aid',0,7,8,'','FINAIDREAS','2022-04-14 12:58:07.37'),
+	 (false,false,true,'2022-04-14 12:58:07.37','SETH','Insufficient loans',0,7,9,'','FINAIDREAS','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','Unknown',0,7,0,'','FINAIDRECD','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','Pell grant only',0,7,1,'','FINAIDRECD','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','FFEL loan',0,7,2,'','FINAIDRECD','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','Direct loan',0,7,3,'','FINAIDRECD','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','College work study only',0,7,4,'','FINAIDRECD','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','Institutional aid only',0,7,5,'','FINAIDRECD','2022-04-14 12:58:07.37');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','State grant only',0,7,6,'','FINAIDRECD','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','Pell grant and FFEL loan',0,7,7,'','FINAIDRECD','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','Pell grant and Direct loan',0,7,8,'','FINAIDRECD','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','Multiple federal aid',0,7,9,'','FINAIDRECD','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','Multiple federal and other aid',0,7,10,'','FINAIDRECD','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','Non-federal, non-institutional aid',0,7,11,'','FINAIDRECD','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','No aid awarded',0,7,12,'','FINAIDRECD','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','No aid needed',0,7,13,'','FINAIDRECD','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','Not Applicable',0,7,99,'','FINAIDRECD','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','Not enrolled',0,7,0,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.37');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','Spanish',0,7,1,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','French',0,7,2,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','German',0,7,3,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','Italian',0,7,4,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','Russian',0,7,5,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','Japanese',0,7,6,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','Other Foreign Language',0,7,7,'','FOREIGNLANGUAGE','2022-04-14 12:58:07.37'),
+	 (false,false,true,'2022-04-14 12:58:07.37','SETH','Financial Aid',0,7,1,'','FORM TYPE','2022-04-14 12:58:07.37'),
+	 (false,false,true,'2022-04-14 12:58:07.37','SETH','Field Trip Authorization',0,7,2,'','FORM TYPE','2022-04-14 12:58:07.37'),
+	 (false,false,true,'2022-04-14 12:58:07.37','SETH','Application Form',0,7,3,'','FORM TYPE','2022-04-14 12:58:07.37');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.37','SETH','Income Data',0,7,4,'','FORM TYPE','2022-04-14 12:58:07.37'),
+	 (false,false,true,'2022-04-14 12:58:07.37','SETH','Parent Contract Form',0,7,5,'','FORM TYPE','2022-04-14 12:58:07.37'),
+	 (false,false,true,'2022-04-14 12:58:07.37','SETH','Assessment',0,7,6,'','FORM TYPE','2022-04-14 12:58:07.37'),
+	 (false,false,true,'2022-04-14 12:58:07.37','SETH','Eligibility Form',0,7,7,'','FORM TYPE','2022-04-14 12:58:07.37'),
+	 (false,false,true,'2022-04-14 12:58:07.37','SETH','Student Contract Form',0,7,8,'','FORM TYPE','2022-04-14 12:58:07.37'),
+	 (false,false,true,'2022-04-14 12:58:07.37','SETH','Recommendation Letter',0,7,9,'','FORM TYPE','2022-04-14 12:58:07.37'),
+	 (false,false,true,'2022-04-14 12:58:07.37','SETH','Unknown/ no response',0,7,0,'','FUNDSOURCE','2022-04-14 12:58:07.37'),
+	 (false,false,true,'2022-04-14 12:58:07.37','SETH','Federal funds',0,7,1,'','FUNDSOURCE','2022-04-14 12:58:07.37'),
+	 (false,false,true,'2022-04-14 12:58:07.37','SETH','Non-federal funds',0,7,2,'','FUNDSOURCE','2022-04-14 12:58:07.37'),
+	 (false,false,true,'2022-04-14 12:58:07.37','SETH','Partially supported with non-federal funds',0,7,3,'','FUNDSOURCE','2022-04-14 12:58:07.37');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.37','SETH','Prior Year Participant',0,7,9,'','FUNDSOURCE','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','Unknown',0,7,0,'','GENDER','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','Male',0,7,1,'','GENDER','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','Female',0,7,2,'','GENDER','2022-04-14 12:58:07.37'),
+	 (false,false,true,'2022-04-14 12:58:07.37','SETH','Unknown/ no response',0,7,0,'','GPASCALE','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','4 point scale',0,7,1,'','GPASCALE','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','5 point scale',0,7,2,'','GPASCALE','2022-04-14 12:58:07.37'),
+	 (false,false,true,'2022-04-14 12:58:07.37','SETH','Other',0,7,3,'','GPASCALE','2022-04-14 12:58:07.37'),
+	 (false,false,true,'2022-04-14 12:58:07.37','SETH','Not applicable, participant has not received bachelor''s degree',0,7,9,'','GPASCALE','2022-04-14 12:58:07.37'),
+	 (false,true,true,'2022-04-14 12:58:07.37','SETH','No response',0,7,0,'','GRADELEVEL','2022-04-14 12:58:07.37');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.378','SETH','1st yr., never attended',0,7,1,'','GRADELEVEL','2022-04-14 12:58:07.378'),
+	 (false,true,true,'2022-04-14 12:58:07.378','SETH','1st yr., attended before',0,7,2,'','GRADELEVEL','2022-04-14 12:58:07.378'),
+	 (false,true,true,'2022-04-14 12:58:07.378','SETH','2nd yr./sophomore',0,7,3,'','GRADELEVEL','2022-04-14 12:58:07.378'),
+	 (false,true,true,'2022-04-14 12:58:07.378','SETH','3rd yr./junior',0,7,4,'','GRADELEVEL','2022-04-14 12:58:07.378'),
+	 (false,true,true,'2022-04-14 12:58:07.378','SETH','4th yr./senior',0,7,5,'','GRADELEVEL','2022-04-14 12:58:07.378'),
+	 (false,true,true,'2022-04-14 12:58:07.378','SETH','5th yr./other undergraduate',0,7,6,'','GRADELEVEL','2022-04-14 12:58:07.378'),
+	 (false,false,true,'2022-04-14 12:58:07.378','SETH','Unknown',0,7,0,'','GRADEPRO','2022-04-14 12:58:07.378'),
+	 (false,false,true,'2022-04-14 12:58:07.378','SETH','Student met requirements to progress normally to next grade or graduated',0,7,1,'','GRADEPRO','2022-04-14 12:58:07.378'),
+	 (false,false,true,'2022-04-14 12:58:07.378','SETH','Student did not meet requirements to progress normally to next grade or graduate',0,7,2,'','GRADEPRO','2022-04-14 12:58:07.378'),
+	 (false,false,true,'2022-04-14 12:58:07.378','SETH','Student left secondary school without graduating',0,7,3,'','GRADEPRO','2022-04-14 12:58:07.378');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.378','SETH','Not applicable student not in high school in reporting year',0,7,9,'','GRADEPRO','2022-04-14 12:58:07.378'),
+	 (false,true,true,'2022-04-14 12:58:07.378','SETH','Unknown',0,7,0,'','GRADESTART','2022-04-14 12:58:07.378'),
+	 (false,true,true,'2022-04-14 12:58:07.378','SETH','9th grade',0,7,1,'','GRADESTART','2022-04-14 12:58:07.378'),
+	 (false,true,true,'2022-04-14 12:58:07.378','SETH','10th grade',0,7,2,'','GRADESTART','2022-04-14 12:58:07.378'),
+	 (false,true,true,'2022-04-14 12:58:07.378','SETH','11th grade',0,7,3,'','GRADESTART','2022-04-14 12:58:07.378'),
+	 (false,true,true,'2022-04-14 12:58:07.378','SETH','12th grade',0,7,4,'','GRADESTART','2022-04-14 12:58:07.378'),
+	 (false,true,true,'2022-04-14 12:58:07.378','SETH','High school (or GED) recipient, not admitted to or enrolled in postsecondary education',0,7,5,'','GRADESTART','2022-04-14 12:58:07.378'),
+	 (false,true,true,'2022-04-14 12:58:07.378','SETH','High school (or GED) recipient, postsecondary enrollment status unknown',0,7,6,'','GRADESTART','2022-04-14 12:58:07.378'),
+	 (false,true,true,'2022-04-14 12:58:07.378','SETH','High School Dropout',0,7,7,'','GRADESTART','2022-04-14 12:58:07.378'),
+	 (false,true,true,'2022-04-14 12:58:07.378','SETH','Accepted for enrollment in program of postsecondary education',0,7,8,'','GRADESTART','2022-04-14 12:58:07.378');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.378','SETH','Enrolled in program of postsecondary education',0,7,9,'','GRADESTART','2022-04-14 12:58:07.378'),
+	 (false,false,true,'2022-04-14 12:58:07.38','SETH','Graduated from a program of postsecondary education',0,7,10,'','GRADESTART','2022-04-14 12:58:07.38'),
+	 (false,false,true,'2022-04-14 12:58:07.38','SETH','Enrolled in GED program',0,7,11,'','GRADESTART','2022-04-14 12:58:07.38'),
+	 (false,false,true,'2022-04-14 12:58:07.38','SETH','8th Grade',0,7,12,'','GRADESTART','2022-04-14 12:58:07.38'),
+	 (false,false,true,'2022-04-14 12:58:07.38','SETH','Stopped out of a program of postsecondary education',0,7,13,'','GRADESTART','2022-04-14 12:58:07.38'),
+	 (false,false,true,'2022-04-14 12:58:07.38','SETH','Unknown or no longer tracking',0,7,0,'','GRADSTATUS','2022-04-14 12:58:07.38'),
+	 (false,false,true,'2022-04-14 12:58:07.38','SETH','Currently enrolled in high school',0,7,1,'','GRADSTATUS','2022-04-14 12:58:07.38'),
+	 (false,false,true,'2022-04-14 12:58:07.38','SETH','High School Dropout',0,7,2,'','GRADSTATUS','2022-04-14 12:58:07.38'),
+	 (false,false,true,'2022-04-14 12:58:07.38','SETH','High school diploma',0,7,3,'','GRADSTATUS','2022-04-14 12:58:07.38'),
+	 (false,false,true,'2022-04-14 12:58:07.38','SETH','GED',0,7,4,'','GRADSTATUS','2022-04-14 12:58:07.38');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.38','SETH','Certificate of high school completion',0,7,5,'','GRADSTATUS','2022-04-14 12:58:07.38'),
+	 (false,false,true,'2022-04-14 12:58:07.38','SETH','Completed Freshman year of College',0,7,1,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.38'),
+	 (false,false,true,'2022-04-14 12:58:07.38','SETH','Completed Sophomore year of college',0,7,2,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.38'),
+	 (false,false,true,'2022-04-14 12:58:07.38','SETH','Completed Junior year of college',0,7,3,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.38'),
+	 (false,false,true,'2022-04-14 12:58:07.38','SETH','Completed Senior year of college',0,7,4,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.38'),
+	 (false,false,true,'2022-04-14 12:58:07.38','SETH','Dropped Out of College, Freshman year',0,7,5,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.38'),
+	 (false,false,true,'2022-04-14 12:58:07.38','SETH','Dropped Out of College, Sophomore year',0,7,6,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.38'),
+	 (false,false,true,'2022-04-14 12:58:07.38','SETH','Dropped Out of College, Junior year',0,7,7,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.38'),
+	 (false,false,true,'2022-04-14 12:58:07.38','SETH','Dropped Out of College, Senior year',0,7,8,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.38'),
+	 (false,false,true,'2022-04-14 12:58:07.38','SETH','Postponed College',0,7,9,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.38');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.38','SETH','Enrolled in Military Branch',0,7,10,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.38'),
+	 (false,false,true,'2022-04-14 12:58:07.38','SETH','Working Full / Part Time Only',0,7,11,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.38'),
+	 (false,false,true,'2022-04-14 12:58:07.38','SETH','Graduated from College',0,7,12,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.38'),
+	 (false,false,true,'2022-04-14 12:58:07.38','SETH','Technical / Vocational School',0,7,13,'','GRADUATEEDUCATIONALSTATUS','2022-04-14 12:58:07.38'),
+	 (false,true,true,'2022-04-14 12:58:07.38','SETH','Unknown/ no response',0,7,0,'','HIGHDEGREE','2022-04-14 12:58:07.38'),
+	 (false,true,true,'2022-04-14 12:58:07.38','SETH','Bachelor''s Degree',0,7,1,'','HIGHDEGREE','2022-04-14 12:58:07.38'),
+	 (false,true,true,'2022-04-14 12:58:07.38','SETH','Master''s Degree',0,7,2,'','HIGHDEGREE','2022-04-14 12:58:07.38'),
+	 (false,true,true,'2022-04-14 12:58:07.38','SETH','Doctoral Degree (Ph.D.)',0,7,3,'','HIGHDEGREE','2022-04-14 12:58:07.38'),
+	 (false,true,true,'2022-04-14 12:58:07.38','SETH','Other Terminal Degree ( Ed.D)',0,7,4,'','HIGHDEGREE','2022-04-14 12:58:07.38'),
+	 (false,true,true,'2022-04-14 12:58:07.389','SETH','First-professional Degree (Law, Medicine, Dentistry, Optometry, Veterinary medicine, etc.)',0,7,5,'','HIGHDEGREE','2022-04-14 12:58:07.389');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.389','SETH','No Bachelor''s degree earned',0,7,6,'','HIGHDEGREE','2022-04-14 12:58:07.389'),
+	 (false,false,true,'2022-04-14 12:58:07.389','SETH','Unknown',0,7,0,'','INITIATIVE','2022-04-14 12:58:07.389'),
+	 (false,false,true,'2022-04-14 12:58:07.389','SETH','Participant in 2000-02 initiative',0,7,1,'','INITIATIVE','2022-04-14 12:58:07.389'),
+	 (false,false,true,'2022-04-14 12:58:07.389','SETH','No longer used for APR reporting in current year',0,7,2,'','INITIATIVE','2022-04-14 12:58:07.389'),
+	 (false,false,true,'2022-04-14 12:58:07.389','SETH','Participant in 2003-06 initiative',0,7,3,'','INITIATIVE','2022-04-14 12:58:07.389'),
+	 (false,false,true,'2022-04-14 12:58:07.389','SETH','Participant in both 2000-02 and 2003-06 initiatives',0,7,4,'','INITIATIVE','2022-04-14 12:58:07.389'),
+	 (false,false,true,'2022-04-14 12:58:07.389','SETH','Project had funding in 2000-02 or 2003-06 or both, but participant was not funded',0,7,5,'','INITIATIVE','2022-04-14 12:58:07.389'),
+	 (false,false,true,'2022-04-14 12:58:07.391','SETH','Not applicable-project did not have initiative funding',0,7,9,'','INITIATIVE','2022-04-14 12:58:07.391'),
+	 (false,false,true,'2022-04-14 12:58:07.391','SETH','Unknown',0,7,0,'','LIMITEDENGPRO','2022-04-14 12:58:07.391'),
+	 (false,false,true,'2022-04-14 12:58:07.391','SETH','Yes',0,7,1,'','LIMITEDENGPRO','2022-04-14 12:58:07.391');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.391','SETH','No',0,7,2,'','LIMITEDENGPRO','2022-04-14 12:58:07.391'),
+	 (false,false,true,'2022-04-14 12:58:07.391','SETH','Not applicable, participant is still in program',0,7,9,'','LIMITEDENGPRO','2022-04-14 12:58:07.391'),
+	 (false,true,true,'2022-04-14 12:58:07.391','SETH','No response',0,7,0,'','MARITALSTATUS','2022-04-14 12:58:07.391'),
+	 (false,true,true,'2022-04-14 12:58:07.391','SETH','Single',0,7,1,'','MARITALSTATUS','2022-04-14 12:58:07.391'),
+	 (false,false,true,'2022-04-14 12:58:07.391','SETH','Married',0,7,2,'','MARITALSTATUS','2022-04-14 12:58:07.391'),
+	 (false,false,true,'2022-04-14 12:58:07.391','SETH','Separated',0,7,3,'','MARITALSTATUS','2022-04-14 12:58:07.391'),
+	 (false,false,true,'2022-04-14 12:58:07.391','SETH','Divorced',0,7,4,'','MARITALSTATUS','2022-04-14 12:58:07.391'),
+	 (false,false,true,'2022-04-14 12:58:07.391','SETH','Widower',0,7,5,'','MARITALSTATUS','2022-04-14 12:58:07.391'),
+	 (false,true,true,'2022-04-14 12:58:07.391','SETH','Not enrolled',0,7,0,'','MATH','2022-04-14 12:58:07.391'),
+	 (false,true,true,'2022-04-14 12:58:07.391','SETH','Pre-Algebra',0,7,1,'','MATH','2022-04-14 12:58:07.391');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.391','SETH','Algebra I',0,7,2,'','MATH','2022-04-14 12:58:07.391'),
+	 (false,true,true,'2022-04-14 12:58:07.391','SETH','Algebra II',0,7,3,'','MATH','2022-04-14 12:58:07.391'),
+	 (false,true,true,'2022-04-14 12:58:07.391','SETH','Geometry',0,7,4,'','MATH','2022-04-14 12:58:07.391'),
+	 (false,true,true,'2022-04-14 12:58:07.391','SETH','Trigonometry',0,7,5,'','MATH','2022-04-14 12:58:07.391'),
+	 (false,true,true,'2022-04-14 12:58:07.391','SETH','Pre-Calculus',0,7,6,'','MATH','2022-04-14 12:58:07.391'),
+	 (false,true,true,'2022-04-14 12:58:07.391','SETH','Calculus',0,7,7,'','MATH','2022-04-14 12:58:07.391'),
+	 (false,true,true,'2022-04-14 12:58:07.391','SETH','Integrated Math',0,7,8,'','MATH','2022-04-14 12:58:07.391'),
+	 (false,true,true,'2022-04-14 12:58:07.391','SETH','Other',0,7,9,'','MATH','2022-04-14 12:58:07.391'),
+	 (false,false,true,'2022-04-14 12:58:07.391','SETH','Unknown/ no response',0,7,0,'','MCNMAJOR','2022-04-14 12:58:07.391'),
+	 (false,false,true,'2022-04-14 12:58:07.391','SETH','Physical sciences',0,7,1,'','MCNMAJOR','2022-04-14 12:58:07.391');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.391','SETH','Engineering',0,7,2,'','MCNMAJOR','2022-04-14 12:58:07.391'),
+	 (false,false,true,'2022-04-14 12:58:07.391','SETH','Life sciences',0,7,3,'','MCNMAJOR','2022-04-14 12:58:07.391'),
+	 (false,false,true,'2022-04-14 12:58:07.391','SETH','Health sciences',0,7,4,'','MCNMAJOR','2022-04-14 12:58:07.391'),
+	 (false,false,true,'2022-04-14 12:58:07.391','SETH','Social sciences',0,7,5,'','MCNMAJOR','2022-04-14 12:58:07.391'),
+	 (false,false,true,'2022-04-14 12:58:07.391','SETH','Humanities',0,7,6,'','MCNMAJOR','2022-04-14 12:58:07.391'),
+	 (false,false,true,'2022-04-14 12:58:07.391','SETH','Education',0,7,7,'','MCNMAJOR','2022-04-14 12:58:07.391'),
+	 (false,false,true,'2022-04-14 12:58:07.391','SETH','Business administration',0,7,8,'','MCNMAJOR','2022-04-14 12:58:07.391'),
+	 (false,false,true,'2022-04-14 12:58:07.391','SETH','Medicine',0,7,9,'','MCNMAJOR','2022-04-14 12:58:07.391'),
+	 (false,false,true,'2022-04-14 12:58:07.391','SETH','Law',0,7,10,'','MCNMAJOR','2022-04-14 12:58:07.391'),
+	 (false,false,true,'2022-04-14 12:58:07.391','SETH','Other professional fields',0,7,11,'','MCNMAJOR','2022-04-14 12:58:07.391');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.391','SETH','Other',0,7,12,'','MCNMAJOR','2022-04-14 12:58:07.391'),
+	 (false,false,true,'2022-04-14 12:58:07.391','SETH','Not applicable, participant is still in undergraduate program.',0,7,13,'','MCNMAJOR','2022-04-14 12:58:07.391'),
+	 (false,false,true,'2022-04-14 12:58:07.391','SETH','Navy',0,7,1,'','MILITARYTYPE','2022-04-14 12:58:07.391'),
+	 (false,false,true,'2022-04-14 12:58:07.391','SETH','Air Force',0,7,2,'','MILITARYTYPE','2022-04-14 12:58:07.391'),
+	 (false,false,true,'2022-04-14 12:58:07.391','SETH','Army',0,7,3,'','MILITARYTYPE','2022-04-14 12:58:07.391'),
+	 (false,false,true,'2022-04-14 12:58:07.391','MANAGER','None',0,7,0,'','MSGSTATUS','2022-04-14 12:58:07.391'),
+	 (false,false,true,'2022-04-14 12:58:07.391','MANAGER','Lowest',0,7,1,'','MSGSTATUS','2022-04-14 12:58:07.391'),
+	 (false,false,true,'2022-04-14 12:58:07.391','MANAGER','Low',0,7,2,'','MSGSTATUS','2022-04-14 12:58:07.391'),
+	 (false,false,true,'2022-04-14 12:58:07.391','MANAGER','Normal',0,7,3,'','MSGSTATUS','2022-04-14 12:58:07.391'),
+	 (false,false,true,'2022-04-14 12:58:07.399','MANAGER','High',0,7,4,'','MSGSTATUS','2022-04-14 12:58:07.399');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.399','MANAGER','Highest',0,7,5,'','MSGSTATUS','2022-04-14 12:58:07.399'),
+	 (false,false,true,'2022-04-14 12:58:07.399','SETH','Unknown/ no response',0,7,0,'','NOENREASON','2022-04-14 12:58:07.399'),
+	 (false,false,true,'2022-04-14 12:58:07.399','SETH','Applied but did not gain admission to graduate programs in the reporting year (for students with a bachelor’s degree)',0,7,1,'','NOENREASON','2022-04-14 12:58:07.399'),
+	 (false,false,true,'2022-04-14 12:58:07.399','SETH','Did not apply to or declined offers from graduate programs owing to financial reasons (for students with a bachelor''s degree)',0,7,2,'','NOENREASON','2022-04-14 12:58:07.399'),
+	 (false,false,true,'2022-04-14 12:58:07.399','SETH','Did not apply to or declined offers from graduate programs owing to health reasons (for students with a bachelor''s degree)',0,7,3,'','NOENREASON','2022-04-14 12:58:07.399'),
+	 (false,false,true,'2022-04-14 12:58:07.399','SETH','Did not apply to or declined offers from graduate programs owing to other reasons (for students with a bachelor''s degree',0,7,4,'','NOENREASON','2022-04-14 12:58:07.399'),
+	 (false,false,true,'2022-04-14 12:58:07.399','SETH','Withdrew from program (undergraduate or graduate) for academic reasons',0,7,5,'','NOENREASON','2022-04-14 12:58:07.399'),
+	 (false,false,true,'2022-04-14 12:58:07.399','SETH','Withdrew from program (undergraduate or graduate) for financial reasons',0,7,6,'','NOENREASON','2022-04-14 12:58:07.399'),
+	 (false,false,true,'2022-04-14 12:58:07.399','SETH','Withdrew from program (undergraduate or graduate) or health reasons',0,7,7,'','NOENREASON','2022-04-14 12:58:07.399'),
+	 (false,false,true,'2022-04-14 12:58:07.399','SETH','Withdrew from program (undergraduate or graduate) for other personal reasons',0,7,8,'','NOENREASON','2022-04-14 12:58:07.399');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.399','SETH','Called for military duty',0,7,9,'','NOENREASON','2022-04-14 12:58:07.399'),
+	 (false,false,true,'2022-04-14 12:58:07.399','SETH','Not applicable; the student was enrolled in at least one term during the academic year being reported',0,7,10,'','NOENREASON','2022-04-14 12:58:07.399'),
+	 (false,false,true,'2022-04-14 12:58:07.399','SETH','Student deceased',0,7,11,'','NOENREASON','2022-04-14 12:58:07.399'),
+	 (false,false,true,'2022-04-14 12:58:07.399','SETH','Did not enroll in research doctoral program',0,7,12,'','NOENREASON','2022-04-14 12:58:07.399'),
+	 (false,false,true,'2022-04-14 12:58:07.399','SETH','Ph.D. attained (not previously reported)',0,7,13,'','NOENREASON','2022-04-14 12:58:07.399'),
+	 (false,true,true,'2022-04-14 12:58:07.399','SETH','Unknown',0,7,0,'','PARTLENGTH','2022-04-14 12:58:07.399'),
+	 (false,true,true,'2022-04-14 12:58:07.401','SETH','0-3 months',0,7,1,'','PARTLENGTH','2022-04-14 12:58:07.401'),
+	 (false,true,true,'2022-04-14 12:58:07.401','SETH','4-6 months',0,7,2,'','PARTLENGTH','2022-04-14 12:58:07.401'),
+	 (false,true,true,'2022-04-14 12:58:07.401','SETH','7-9 months',0,7,3,'','PARTLENGTH','2022-04-14 12:58:07.401'),
+	 (false,true,true,'2022-04-14 12:58:07.401','SETH','10-12 months',0,7,4,'','PARTLENGTH','2022-04-14 12:58:07.401');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.401','SETH','More than 12 months',0,7,5,'','PARTLENGTH','2022-04-14 12:58:07.401'),
+	 (false,true,true,'2022-04-14 12:58:07.401','SETH','Still participating at end of reporting period',0,7,6,'','PARTLENGTH','2022-04-14 12:58:07.401'),
+	 (false,true,true,'2022-04-14 12:58:07.401','SETH','Unknown/ no response',0,7,0,'','PARTLEVEL','2022-04-14 12:58:07.401'),
+	 (false,true,true,'2022-04-14 12:58:07.401','SETH','Full academic year (both semesters or three quarters)',0,7,1,'','PARTLEVEL','2022-04-14 12:58:07.401'),
+	 (false,true,true,'2022-04-14 12:58:07.401','SETH','Part of academic year (one semester or two quarters)',0,7,2,'','PARTLEVEL','2022-04-14 12:58:07.401'),
+	 (false,true,true,'2022-04-14 12:58:07.401','SETH','Summer only',0,7,3,'','PARTLEVEL','2022-04-14 12:58:07.401'),
+	 (false,true,true,'2022-04-14 12:58:07.401','SETH','Full academic year and summer',0,7,4,'','PARTLEVEL','2022-04-14 12:58:07.401'),
+	 (false,true,true,'2022-04-14 12:58:07.401','SETH','Part of academic year and summer',0,7,5,'','PARTLEVEL','2022-04-14 12:58:07.401'),
+	 (false,false,true,'2022-04-14 12:58:07.401','SETH','Prior Year Participant',0,7,9,'','PARTLEVEL','2022-04-14 12:58:07.401'),
+	 (false,true,true,'2022-04-14 12:58:07.401','SETH','Unknown/ no response',0,7,0,'','PARTSTATUS','2022-04-14 12:58:07.401');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.401','SETH','New participant',0,7,1,'','PARTSTATUS','2022-04-14 12:58:07.401'),
+	 (false,true,true,'2022-04-14 12:58:07.401','SETH','Continuing participant',0,7,2,'','PARTSTATUS','2022-04-14 12:58:07.401'),
+	 (false,false,true,'2022-04-14 12:58:07.401','SETH','Prior Year Participant',0,7,3,'','PARTSTATUS','2022-04-14 12:58:07.401'),
+	 (false,true,true,'2022-04-14 12:58:07.401','SETH','No response',0,7,0,'','PARTSTATUSEND','2022-04-14 12:58:07.401'),
+	 (false,false,true,'2022-04-14 12:58:07.409','SETH','Enrolled in Undergraduate Degree Program',0,7,1,'','PARTSTATUSEND','2022-04-14 12:58:07.409'),
+	 (false,false,true,'2022-04-14 12:58:07.409','SETH','Dismissed or Withdrew from Undergraduate Program',0,7,2,'','PARTSTATUSEND','2022-04-14 12:58:07.409'),
+	 (false,false,true,'2022-04-14 12:58:07.409','SETH','Graduated from an Undergraduate Degree Program',0,7,3,'','PARTSTATUSEND','2022-04-14 12:58:07.409'),
+	 (false,false,true,'2022-04-14 12:58:07.409','SETH','Graduated from Undergraduate Program and Accepted into a Graduate Degree Program',0,7,4,'','PARTSTATUSEND','2022-04-14 12:58:07.409'),
+	 (false,false,true,'2022-04-14 12:58:07.409','SETH','Enrolled in graduate degree program',0,7,5,'','PARTSTATUSEND','2022-04-14 12:58:07.409'),
+	 (false,false,true,'2022-04-14 12:58:07.409','SETH','Dismissed or Withdrew from Graduate Degree Program',0,7,6,'','PARTSTATUSEND','2022-04-14 12:58:07.409');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.409','SETH','Graduated from a Graduate Program',0,7,7,'','PARTSTATUSEND','2022-04-14 12:58:07.409'),
+	 (false,false,true,'2022-04-14 12:58:07.409','SETH','No response/Unknown',0,7,0,'','PERSISTEND','2022-04-14 12:58:07.409'),
+	 (false,false,true,'2022-04-14 12:58:07.409','SETH','Received certificate/diploma from a program that is less than 2 years',0,7,1,'','PERSISTEND','2022-04-14 12:58:07.409'),
+	 (false,false,true,'2022-04-14 12:58:07.409','SETH','Graduated with an associate’s degree (did not transfer to a 4-year institution) OR graduated with a bachelor’s degree',0,7,2,'','PERSISTEND','2022-04-14 12:58:07.409'),
+	 (false,false,true,'2022-04-14 12:58:07.409','SETH','Graduated with an associate’s degree and transferred to a four-year institution',0,7,3,'','PERSISTEND','2022-04-14 12:58:07.409'),
+	 (false,false,true,'2022-04-14 12:58:07.409','SETH','Transferred to another institution',0,7,4,'','PERSISTEND','2022-04-14 12:58:07.409'),
+	 (false,false,true,'2022-04-14 12:58:07.409','SETH','Withdrew or did not return',0,7,5,'','PERSISTEND','2022-04-14 12:58:07.409'),
+	 (false,false,true,'2022-04-14 12:58:07.409','SETH','Deceased',0,7,6,'','PERSISTEND','2022-04-14 12:58:07.409'),
+	 (false,false,true,'2022-04-14 12:58:07.409','SETH','Called to military service',0,7,7,'','PERSISTEND','2022-04-14 12:58:07.409'),
+	 (false,false,true,'2022-04-14 12:58:07.409','SETH','Still enrolled at grantee institution (no degree or certificate completed)',0,7,8,'','PERSISTEND','2022-04-14 12:58:07.409');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.411','SETH','Still enrolled at grantee institution (received certificate or associate’s degree and is pursuing an associate’s or bachelor’s degree)',0,7,9,'','PERSISTEND','2022-04-14 12:58:07.411'),
+	 (false,false,true,'2022-04-14 12:58:07.411','SETH','Completed program requirements but did not receive certificate, diploma, or degree',0,7,10,'','PERSISTEND','2022-04-14 12:58:07.411'),
+	 (false,false,true,'2022-04-14 12:58:07.411','SETH','No response/Unknown',0,7,0,'','PERSISTSTA','2022-04-14 12:58:07.411'),
+	 (false,false,true,'2022-04-14 12:58:07.411','SETH','Enrolled at grantee institution',0,7,1,'','PERSISTSTA','2022-04-14 12:58:07.411'),
+	 (false,false,true,'2022-04-14 12:58:07.411','SETH','Not enrolled at grantee institution (transferred from a 2-year to a 4-year institution)',0,7,2,'','PERSISTSTA','2022-04-14 12:58:07.411'),
+	 (false,false,true,'2022-04-14 12:58:07.411','SETH','Not enrolled at grantee institution',0,7,3,'','PERSISTSTA','2022-04-14 12:58:07.411'),
+	 (false,true,true,'2022-04-14 12:58:07.411','SETH','Unknown',0,7,0,'','PSETERM','2022-04-14 12:58:07.411'),
+	 (false,true,true,'2022-04-14 12:58:07.411','SETH','Quarter system',0,7,1,'','PSETERM','2022-04-14 12:58:07.411'),
+	 (false,true,true,'2022-04-14 12:58:07.411','SETH','Semester system',0,7,2,'','PSETERM','2022-04-14 12:58:07.411'),
+	 (false,true,true,'2022-04-14 12:58:07.411','SETH','Other',0,7,3,'','PSETERM','2022-04-14 12:58:07.411');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.411','SETH','Not Applicable',0,7,9,'','PSETERM','2022-04-14 12:58:07.411'),
+	 (false,true,true,'2022-04-14 12:58:07.411','SETH','Unknown',0,7,0,'','REASON','2022-04-14 12:58:07.411'),
+	 (false,true,true,'2022-04-14 12:58:07.411','SETH','Dismissed for academic reasons',0,7,1,'','REASON','2022-04-14 12:58:07.411'),
+	 (false,true,true,'2022-04-14 12:58:07.411','SETH','Dismissed for other than academic reasons',0,7,2,'','REASON','2022-04-14 12:58:07.411'),
+	 (false,true,true,'2022-04-14 12:58:07.411','SETH','Withdrew for financial reasons',0,7,3,'','REASON','2022-04-14 12:58:07.411'),
+	 (false,true,true,'2022-04-14 12:58:07.411','SETH','Withdrew for health reasons',0,7,4,'','REASON','2022-04-14 12:58:07.411'),
+	 (false,true,true,'2022-04-14 12:58:07.411','SETH','Withdrew for academic reasons',0,7,5,'','REASON','2022-04-14 12:58:07.411'),
+	 (false,true,true,'2022-04-14 12:58:07.411','SETH','Withdrew for other personal reasons',0,7,6,'','REASON','2022-04-14 12:58:07.411'),
+	 (false,true,true,'2022-04-14 12:58:07.411','SETH','Transferred to another institution',0,7,7,'','REASON','2022-04-14 12:58:07.411'),
+	 (false,true,true,'2022-04-14 12:58:07.411','SETH','Graduated from institution',0,7,8,'','REASON','2022-04-14 12:58:07.411');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.411','SETH','Transferred to 4-year',0,7,9,'','REASON','2022-04-14 12:58:07.411'),
+	 (false,false,true,'2022-04-14 12:58:07.411','SETH','Transferred prior to graduation',0,7,10,'','REASON','2022-04-14 12:58:07.411'),
+	 (false,false,true,'2022-04-14 12:58:07.411','SETH','No longer enrolled at the host institution',0,7,11,'','REASON','2022-04-14 12:58:07.411'),
+	 (false,false,true,'2022-04-14 12:58:07.411','SETH','Dropped Project, but still in school',0,7,12,'','REASON','2022-04-14 12:58:07.411'),
+	 (false,false,true,'2022-04-14 12:58:07.411','SETH','Graduated & Transferred',0,7,13,'','REASON','2022-04-14 12:58:07.411'),
+	 (false,true,true,'2022-04-14 12:58:07.411','SETH','Referral/participant in a regular UB project',0,7,1,'','RECRUIT','2022-04-14 12:58:07.411'),
+	 (false,true,true,'2022-04-14 12:58:07.411','SETH','Referral/participant in another TRIO project (i.e.,TS)',0,7,2,'','RECRUIT','2022-04-14 12:58:07.411'),
+	 (false,true,true,'2022-04-14 12:58:07.411','SETH','Referral/participant in other non-TRIO program',0,7,3,'','RECRUIT','2022-04-14 12:58:07.411'),
+	 (false,true,true,'2022-04-14 12:58:07.411','SETH','Participant only in UBM/S program',0,7,4,'','RECRUIT','2022-04-14 12:58:07.411'),
+	 (false,false,true,'2022-04-14 12:58:07.411','','New, Continuing, or Prior-year participants still in contact',0,7,1,'','RECUPDATED','2022-04-14 12:58:07.411');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.411','','Prior-yr participants out of contact/not enrolled 5 consecutive yrs. or more',0,7,2,'','RECUPDATED','2022-04-14 12:58:07.411'),
+	 (false,false,true,'2022-04-14 12:58:07.411','','Prior-yr participants out of contact/not enrolled less than 5 yrs.',0,7,3,'','RECUPDATED','2022-04-14 12:58:07.411'),
+	 (false,false,true,'2022-04-14 12:58:07.411','MANAGER','Unknown/no response',0,7,0,'','RESEARCH','2022-04-14 12:58:07.411'),
+	 (false,false,true,'2022-04-14 12:58:07.411','','Participated in research but did not complete all of the components of the research activity',0,7,1,'','RESEARCH','2022-04-14 12:58:07.411'),
+	 (false,false,true,'2022-04-14 12:58:07.411','','Did not participate in Research',0,7,2,'','RESEARCH','2022-04-14 12:58:07.411'),
+	 (false,false,true,'2022-04-14 12:58:07.411','','Completed all of the components of the Research activity',0,7,3,'','RESEARCH','2022-04-14 12:58:07.411'),
+	 (false,false,true,'2022-04-14 12:58:07.411','','Prior Year Participant',0,7,9,'','RESEARCH','2022-04-14 12:58:07.411'),
+	 (false,true,true,'2022-04-14 12:58:07.411','SETH','Not enrolled',0,7,0,'','SCIENCE','2022-04-14 12:58:07.411'),
+	 (false,true,true,'2022-04-14 12:58:07.411','SETH','Introductory Science/Earth Science',0,7,1,'','SCIENCE','2022-04-14 12:58:07.411'),
+	 (false,true,true,'2022-04-14 12:58:07.411','SETH','Biology',0,7,2,'','SCIENCE','2022-04-14 12:58:07.411');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.411','SETH','Chemistry',0,7,3,'','SCIENCE','2022-04-14 12:58:07.411'),
+	 (false,true,true,'2022-04-14 12:58:07.411','SETH','Physics',0,7,4,'','SCIENCE','2022-04-14 12:58:07.411'),
+	 (false,true,true,'2022-04-14 12:58:07.411','SETH','Integrated Science',0,7,5,'','SCIENCE','2022-04-14 12:58:07.411'),
+	 (false,true,true,'2022-04-14 12:58:07.411','SETH','Other',0,7,6,'','SCIENCE','2022-04-14 12:58:07.411'),
+	 (false,true,true,'2022-04-14 12:58:07.411','SETH','Unknown',0,7,0,'','SELFTRAN','2022-04-14 12:58:07.411'),
+	 (false,true,true,'2022-04-14 12:58:07.419','SETH','Reported from an official transcript',0,7,1,'','SELFTRAN','2022-04-14 12:58:07.419'),
+	 (false,true,true,'2022-04-14 12:58:07.419','SETH','Institutional data but not an official transcript',0,7,2,'','SELFTRAN','2022-04-14 12:58:07.419'),
+	 (false,true,true,'2022-04-14 12:58:07.419','SETH','Self-reported by participant',0,7,3,'','SELFTRAN','2022-04-14 12:58:07.419'),
+	 (false,true,true,'2022-04-14 12:58:07.419','SETH','Self-reported and transcript',0,7,4,'','SELFTRAN','2022-04-14 12:58:07.419'),
+	 (false,true,true,'2022-04-14 12:58:07.419','SETH','Not enrolled in program of postsecondary education',0,7,9,'','SELFTRAN','2022-04-14 12:58:07.419');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.419','SETH','Spring',0,7,1,'','SEMESTER','2022-04-14 12:58:07.419'),
+	 (false,false,true,'2022-04-14 12:58:07.421','SETH','Summer',0,7,2,'','SEMESTER','2022-04-14 12:58:07.421'),
+	 (false,false,true,'2022-04-14 12:58:07.421','SETH','Fall',0,7,3,'','SEMESTER','2022-04-14 12:58:07.421'),
+	 (false,false,true,'2022-04-14 12:58:07.421','SETH','Winter',0,7,4,'','SEMESTER','2022-04-14 12:58:07.421'),
+	 (false,true,true,'2022-04-14 12:58:07.421','SETH','Component',0,7,1,'','SERHEADING','2022-04-14 12:58:07.421'),
+	 (false,true,true,'2022-04-14 12:58:07.421','SETH','',0,7,2,'','SERHEADING','2022-04-14 12:58:07.421'),
+	 (false,true,true,'2022-04-14 12:58:07.421','SETH','',0,7,3,'','SERHEADING','2022-04-14 12:58:07.421'),
+	 (false,true,true,'2022-04-14 12:58:07.421','SETH','',0,7,4,'','SERHEADING','2022-04-14 12:58:07.421'),
+	 (false,true,true,'2022-04-14 12:58:07.421','SETH','',0,7,5,'','SERHEADING','2022-04-14 12:58:07.421'),
+	 (false,true,true,'2022-04-14 12:58:07.421','SETH','Instructions',0,7,6,'','SERHEADING','2022-04-14 12:58:07.421');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.421','SETH','Activities',0,7,1,'','SERTYPE','2022-04-14 12:58:07.421'),
+	 (false,true,true,'2022-04-14 12:58:07.421','SETH','Activity Group',0,7,2,'','SERTYPE','2022-04-14 12:58:07.421'),
+	 (false,true,true,'2022-04-14 12:58:07.421','SETH','Veteran Group',0,7,3,'','SERTYPE','2022-04-14 12:58:07.421'),
+	 (false,true,true,'2022-04-14 12:58:07.421','SETH','End Status',0,7,4,'','SERTYPE','2022-04-14 12:58:07.421'),
+	 (false,true,true,'2022-04-14 12:58:07.421','SETH','Form Type',0,7,5,'','SERTYPE','2022-04-14 12:58:07.421'),
+	 (false,true,true,'2022-04-14 12:58:07.421','SETH','APR Subject',0,7,6,'','SERTYPE','2022-04-14 12:58:07.421'),
+	 (false,false,true,'2022-04-14 12:58:07.421','MANAGER','Freshman',0,7,1,'','STANDING','2022-04-14 12:58:07.421'),
+	 (false,false,true,'2022-04-14 12:58:07.421','MANAGER','Sophomore',0,7,2,'','STANDING','2022-04-14 12:58:07.421'),
+	 (false,false,true,'2022-04-14 12:58:07.421','MANAGER','Junior',0,7,3,'','STANDING','2022-04-14 12:58:07.421'),
+	 (false,false,true,'2022-04-14 12:58:07.421','MANAGER','Senior',0,7,4,'','STANDING','2022-04-14 12:58:07.421');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.421','MANAGER','Post-Bachelor',0,7,5,'','STANDING','2022-04-14 12:58:07.421'),
+	 (false,false,true,'2022-04-14 12:58:07.421','SETH','APR Column #1',0,7,1,'','STANDINGGROUPTYPE','2022-04-14 12:58:07.421'),
+	 (false,false,true,'2022-04-14 12:58:07.421','SETH','APR Column #2',0,7,2,'','STANDINGGROUPTYPE','2022-04-14 12:58:07.421'),
+	 (false,false,true,'2022-04-14 12:58:07.421','SETH','APR Column #3',0,7,3,'','STANDINGGROUPTYPE','2022-04-14 12:58:07.421'),
+	 (false,false,true,'2022-04-14 12:58:07.421','SETH','Unknown',0,7,0,'','STATE10GRADE','2022-04-14 12:58:07.421'),
+	 (false,false,true,'2022-04-14 12:58:07.421','SETH','10th grade',0,7,1,'','STATE10GRADE','2022-04-14 12:58:07.421'),
+	 (false,false,true,'2022-04-14 12:58:07.429','SETH','11th grade',0,7,2,'','STATE10GRADE','2022-04-14 12:58:07.429'),
+	 (false,false,true,'2022-04-14 12:58:07.429','SETH','12th grade',0,7,3,'','STATE10GRADE','2022-04-14 12:58:07.429'),
+	 (false,false,true,'2022-04-14 12:58:07.429','SETH','Project not providing information in 2003-04 and 2004-05',0,7,8,'','STATE10GRADE','2022-04-14 12:58:07.429'),
+	 (false,false,true,'2022-04-14 12:58:07.429','SETH','Not Applicable',0,7,9,'','STATE10GRADE','2022-04-14 12:58:07.429');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.429','SETH','Unknown',0,7,0,'','STATE10MET','2022-04-14 12:58:07.429'),
+	 (false,false,true,'2022-04-14 12:58:07.429','SETH','Yes-student met standard',0,7,1,'','STATE10MET','2022-04-14 12:58:07.429'),
+	 (false,false,true,'2022-04-14 12:58:07.431','SETH','No-student did not meet standard',0,7,2,'','STATE10MET','2022-04-14 12:58:07.431'),
+	 (false,false,true,'2022-04-14 12:58:07.431','SETH','Project not providing information in 2003-04 and 2004-05',0,7,8,'','STATE10MET','2022-04-14 12:58:07.431'),
+	 (false,false,true,'2022-04-14 12:58:07.431','SETH','Not applicable student did not take assessment',0,7,9,'','STATE10MET','2022-04-14 12:58:07.431'),
+	 (false,false,true,'2022-04-14 12:58:07.431','SETH','Unknown',0,7,0,'','STATE8MET','2022-04-14 12:58:07.431'),
+	 (false,false,true,'2022-04-14 12:58:07.431','SETH','Yes-student initially met standard',0,7,1,'','STATE8MET','2022-04-14 12:58:07.431'),
+	 (false,false,true,'2022-04-14 12:58:07.431','SETH','No-student did not initially meet standard',0,7,2,'','STATE8MET','2022-04-14 12:58:07.431'),
+	 (false,false,true,'2022-04-14 12:58:07.431','SETH','Not applicable to UBMS projects',0,7,8,'','STATE8MET','2022-04-14 12:58:07.431'),
+	 (false,false,true,'2022-04-14 12:58:07.431','SETH','Not applicable student did not take assessment',0,7,9,'','STATE8MET','2022-04-14 12:58:07.431');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.431','SETH','Unknown',0,7,0,'','STATETEST','2022-04-14 12:58:07.431'),
+	 (false,false,true,'2022-04-14 12:58:07.431','SETH','Yes-project measures student’s achievement using state-developed test',0,7,1,'','STATETEST','2022-04-14 12:58:07.431'),
+	 (false,false,true,'2022-04-14 12:58:07.431','SETH','No-project does not measure student’s achievement using state-developed test',0,7,2,'','STATETEST','2022-04-14 12:58:07.431'),
+	 (false,false,true,'2022-04-14 12:58:07.431','SETH','Not Applicable',0,7,9,'','STATETEST','2022-04-14 12:58:07.431'),
+	 (false,false,true,'2022-04-14 12:58:07.431','SETH','No response/Unknown',0,7,0,'','SUMBRIDGE','2022-04-14 12:58:07.431'),
+	 (false,false,true,'2022-04-14 12:58:07.431','SETH','Participated in summer bridge program offered by the project',0,7,1,'','SUMBRIDGE','2022-04-14 12:58:07.431'),
+	 (false,false,true,'2022-04-14 12:58:07.431','SETH','Student did not participate in summer bridge program',0,7,2,'','SUMBRIDGE','2022-04-14 12:58:07.431'),
+	 (false,false,true,'2022-04-14 12:58:07.431','SETH','Not applicable (project did not offer summer bridge program)',0,7,7,'','SUMBRIDGE','2022-04-14 12:58:07.431'),
+	 (false,false,true,'2022-04-14 12:58:07.431','SETH','Not applicable (continuing participant)',0,7,8,'','SUMBRIDGE','2022-04-14 12:58:07.431'),
+	 (false,false,true,'2022-04-14 12:58:07.431','SETH','Not applicable (prior-year participant)',0,7,9,'','SUMBRIDGE','2022-04-14 12:58:07.431');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.431','SETH','Yes',0,7,1,'','SUMMERRESI','2022-04-14 12:58:07.431'),
+	 (false,false,true,'2022-04-14 12:58:07.431','SETH','No',0,7,2,'','SUMMERRESI','2022-04-14 12:58:07.431'),
+	 (false,false,true,'2022-04-14 12:58:07.431','SETH','Some participants are residential, others commute',0,7,3,'','SUMMERRESI','2022-04-14 12:58:07.431'),
+	 (false,true,true,'2022-04-14 12:58:07.431','SETH','No response/Unknown',0,7,0,'','TESTTYPE','2022-04-14 12:58:07.431'),
+	 (false,true,true,'2022-04-14 12:58:07.441','SETH','Comprehensive Test of Basic Skills (CTBS)',0,7,1,'','TESTTYPE','2022-04-14 12:58:07.441'),
+	 (false,true,true,'2022-04-14 12:58:07.441','SETH','Stanford Achievement Test',0,7,2,'','TESTTYPE','2022-04-14 12:58:07.441'),
+	 (false,true,true,'2022-04-14 12:58:07.441','SETH','California Achievement Test (CAT)',0,7,3,'','TESTTYPE','2022-04-14 12:58:07.441'),
+	 (false,true,true,'2022-04-14 12:58:07.441','SETH','Iowa Achievement Test',0,7,4,'','TESTTYPE','2022-04-14 12:58:07.441'),
+	 (false,true,true,'2022-04-14 12:58:07.441','SETH','Texas Assessment of Academic Skills (TAAS)',0,7,5,'','TESTTYPE','2022-04-14 12:58:07.441'),
+	 (false,true,true,'2022-04-14 12:58:07.441','SETH','Nelson Denny',0,7,6,'','TESTTYPE','2022-04-14 12:58:07.441');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.441','SETH','ARIO Assessment Tools',0,7,7,'','TESTTYPE','2022-04-14 12:58:07.441'),
+	 (false,true,true,'2022-04-14 12:58:07.441','SETH','Other',0,7,8,'','TESTTYPE','2022-04-14 12:58:07.441'),
+	 (false,true,true,'2022-04-14 12:58:07.441','SETH','Not Applicable',0,7,99,'','TESTTYPE','2022-04-14 12:58:07.441'),
+	 (false,false,true,'2022-04-14 12:58:07.441','SETH','Unknown/ no response',0,7,0,'','TRACKCOMP','2022-04-14 12:58:07.441'),
+	 (false,false,true,'2022-04-14 12:58:07.441','SETH','Yes, the student has graduated with a research or professional doctorate.',0,7,1,'','TRACKCOMP','2022-04-14 12:58:07.441'),
+	 (false,false,true,'2022-04-14 12:58:07.441','SETH','Yes, student has received research doctorate in previous year but is being reported for the first time.',0,7,2,'','TRACKCOMP','2022-04-14 12:58:07.441'),
+	 (false,false,true,'2022-04-14 12:58:07.441','SETH','Yes, the student has not been enrolled in graduate or undergraduate program for five years or more.',0,7,3,'','TRACKCOMP','2022-04-14 12:58:07.441'),
+	 (false,false,true,'2022-04-14 12:58:07.441','SETH','Yes, the student has been out of contact for five or more consecutive years',0,7,4,'','TRACKCOMP','2022-04-14 12:58:07.441'),
+	 (false,false,true,'2022-04-14 12:58:07.441','SETH','No, tracking is not completed',0,7,5,'','TRACKCOMP','2022-04-14 12:58:07.441'),
+	 (false,false,true,'2022-04-14 12:58:07.441','SETH','No response/Unknown',0,7,0,'','TRANSFERS','2022-04-14 12:58:07.441');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,false,true,'2022-04-14 12:58:07.441','SETH','Transferred from a 2-year institution to another 2-year institution',0,7,1,'','TRANSFERS','2022-04-14 12:58:07.441'),
+	 (false,false,true,'2022-04-14 12:58:07.451','SETH','Transferred from a 2-year institution to a 4-year institution',0,7,2,'','TRANSFERS','2022-04-14 12:58:07.451'),
+	 (false,false,true,'2022-04-14 12:58:07.451','SETH','Transferred from a 4-year institution to another 4-year institution',0,7,3,'','TRANSFERS','2022-04-14 12:58:07.451'),
+	 (false,false,true,'2022-04-14 12:58:07.451','SETH','Transferred from a 4-year institution to a 2-year institution',0,7,4,'','TRANSFERS','2022-04-14 12:58:07.451'),
+	 (false,false,true,'2022-04-14 12:58:07.451','SETH','Not applicable – still enrolled or graduated (participant is still enrolled at the grantee-institution, completed certificate/diploma program, graduated with an associate’s but did not transfer, or graduated with a bachelor’s degree)',0,7,8,'','TRANSFERS','2022-04-14 12:58:07.451'),
+	 (false,false,true,'2022-04-14 12:58:07.451','SETH','Not applicable -- not enrolled at grantee institution (participant withdrew, did not return, was called for military service or is deceased)',0,7,9,'','TRANSFERS','2022-04-14 12:58:07.451'),
+	 (false,false,true,'2022-04-14 12:58:07.451','SETH','Unknown or no longer tracking',0,7,0,'','VCALL','2022-04-14 12:58:07.451'),
+	 (false,false,true,'2022-04-14 12:58:07.451','SETH','Yes',0,7,1,'','VCALL','2022-04-14 12:58:07.451'),
+	 (false,false,true,'2022-04-14 12:58:07.451','SETH','No',0,7,2,'','VCALL','2022-04-14 12:58:07.451'),
+	 (false,true,true,'2022-04-14 12:58:07.451','SETH','No response',0,7,0,'','VENTERJOB','2022-04-14 12:58:07.451');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.451','SETH','Unemployed',0,7,1,'','VENTERJOB','2022-04-14 12:58:07.451'),
+	 (false,true,true,'2022-04-14 12:58:07.451','SETH','Employed part time',0,7,2,'','VENTERJOB','2022-04-14 12:58:07.451'),
+	 (false,true,true,'2022-04-14 12:58:07.451','SETH','Employed full time',0,7,3,'','VENTERJOB','2022-04-14 12:58:07.451'),
+	 (false,true,true,'2022-04-14 12:58:07.451','SETH','Retired',0,7,4,'','VENTERJOB','2022-04-14 12:58:07.451'),
+	 (false,true,true,'2022-04-14 12:58:07.451','SETH','Unknown',0,7,0,'','VENTERLEVEL','2022-04-14 12:58:07.451'),
+	 (false,true,true,'2022-04-14 12:58:07.451','SETH','High School Dropout',0,7,1,'','VENTERLEVEL','2022-04-14 12:58:07.451'),
+	 (false,true,true,'2022-04-14 12:58:07.451','SETH','High School Graduate',0,7,2,'','VENTERLEVEL','2022-04-14 12:58:07.451'),
+	 (false,true,true,'2022-04-14 12:58:07.451','SETH','GED/High School Equivalency Graduate',0,7,3,'','VENTERLEVEL','2022-04-14 12:58:07.451'),
+	 (false,true,true,'2022-04-14 12:58:07.451','SETH','High School Graduate with Some College',0,7,4,'','VENTERLEVEL','2022-04-14 12:58:07.451'),
+	 (false,true,true,'2022-04-14 12:58:07.451','SETH','GED/High School Equivalency with Some College',0,7,5,'','VENTERLEVEL','2022-04-14 12:58:07.451');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.451','SETH','Unknown',0,7,0,'','VFINAIDREC','2022-04-14 12:58:07.451'),
+	 (false,true,true,'2022-04-14 12:58:07.451','SETH','Pell grant only',0,7,1,'','VFINAIDREC','2022-04-14 12:58:07.451'),
+	 (false,true,true,'2022-04-14 12:58:07.451','SETH','FFEL loan',0,7,2,'','VFINAIDREC','2022-04-14 12:58:07.451'),
+	 (false,true,true,'2022-04-14 12:58:07.451','SETH','Direct loan',0,7,3,'','VFINAIDREC','2022-04-14 12:58:07.451'),
+	 (false,true,true,'2022-04-14 12:58:07.451','SETH','College work study only',0,7,4,'','VFINAIDREC','2022-04-14 12:58:07.451'),
+	 (false,true,true,'2022-04-14 12:58:07.461','SETH','Institutional aid only',0,7,5,'','VFINAIDREC','2022-04-14 12:58:07.461'),
+	 (false,true,true,'2022-04-14 12:58:07.461','SETH','State grant only',0,7,6,'','VFINAIDREC','2022-04-14 12:58:07.461'),
+	 (false,true,true,'2022-04-14 12:58:07.461','SETH','Pell grant and FFEL loan',0,7,7,'','VFINAIDREC','2022-04-14 12:58:07.461'),
+	 (false,true,true,'2022-04-14 12:58:07.461','SETH','Pell grant and Direct loan',0,7,8,'','VFINAIDREC','2022-04-14 12:58:07.461'),
+	 (false,true,true,'2022-04-14 12:58:07.461','SETH','Multiple federal aid',0,7,9,'','VFINAIDREC','2022-04-14 12:58:07.461');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.461','SETH','Multiple federal and other aid',0,7,10,'','VFINAIDREC','2022-04-14 12:58:07.461'),
+	 (false,true,true,'2022-04-14 12:58:07.461','SETH','Montgomery G.I. scholarship',0,7,11,'','VFINAIDREC','2022-04-14 12:58:07.461'),
+	 (false,true,true,'2022-04-14 12:58:07.461','SETH','Veterans Benefits',0,7,12,'','VFINAIDREC','2022-04-14 12:58:07.461'),
+	 (false,true,true,'2022-04-14 12:58:07.461','SETH','No aid awarded',0,7,13,'','VFINAIDREC','2022-04-14 12:58:07.461'),
+	 (false,true,true,'2022-04-14 12:58:07.461','SETH','No aid needed',0,7,14,'','VFINAIDREC','2022-04-14 12:58:07.461'),
+	 (false,true,true,'2022-04-14 12:58:07.461','SETH','Not Applicable',0,7,99,'','VFINAIDREC','2022-04-14 12:58:07.461'),
+	 (false,true,true,'2022-04-14 12:58:07.461','SETH','Unknown',0,7,0,'','VGRADELEVEL','2022-04-14 12:58:07.461'),
+	 (false,true,true,'2022-04-14 12:58:07.461','SETH','High School Dropout',0,7,1,'','VGRADELEVEL','2022-04-14 12:58:07.461'),
+	 (false,true,true,'2022-04-14 12:58:07.461','SETH','High School Graduate',0,7,2,'','VGRADELEVEL','2022-04-14 12:58:07.461'),
+	 (false,true,true,'2022-04-14 12:58:07.461','SETH','Obtained high school equivalency degree',0,7,3,'','VGRADELEVEL','2022-04-14 12:58:07.461');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+	 (false,true,true,'2022-04-14 12:58:07.461','SETH','Obtained high school equivalency degree and accepted for enrollment in program of postsecondary education',0,7,4,'','VGRADELEVEL','2022-04-14 12:58:07.461'),
+	 (false,true,true,'2022-04-14 12:58:07.461','SETH','Accepted for enrollment in program of postsecondary education',0,7,5,'','VGRADELEVEL','2022-04-14 12:58:07.461'),
+	 (false,true,true,'2022-04-14 12:58:07.461','SETH','Obtained high school equivalency degree and enrolled in program of postsecondary education',0,7,6,'','VGRADELEVEL','2022-04-14 12:58:07.461'),
+	 (false,true,true,'2022-04-14 12:58:07.461','SETH','Enrolled in program of postsecondary education',0,7,7,'','VGRADELEVEL','2022-04-14 12:58:07.461'),
+	 (false,true,true,'2022-04-14 12:58:07.47','SETH','Completed project but did not enroll in program of postsecondary education',0,7,8,'','VGRADELEVEL','2022-04-14 12:58:07.47'),
+	 (false,true,true,'2022-04-14 12:58:07.47','SETH','Did not complete project',0,7,9,'','VGRADELEVEL','2022-04-14 12:58:07.47'),
+	 (false,true,true,'2022-04-14 12:58:07.47','SETH','Unknown/ no response',0,7,0,'','YESNO','2022-04-14 12:58:07.47'),
+	 (false,true,true,'2022-04-14 12:58:07.47','SETH','Yes',0,7,1,'','YESNO','2022-04-14 12:58:07.47'),
+	 (false,true,true,'2022-04-14 12:58:07.47','SETH','No',0,7,2,'','YESNO','2022-04-14 12:58:07.47'),
+	 (false,true,true,'2022-04-14 12:58:07.47','admin','Not Applicable',0,7,9,'','YESNO','2022-04-14 12:58:07.47');
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+    (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-1',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-2',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-3',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-4',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-5',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-6',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-7',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-8',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-9',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-10',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'NA',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'244',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'123456',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'78987',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'A',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'234',0,7,1,'','CODES','2022-04-14 12:58:07.47' );
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+    (false,true,false,'2022-04-14 12:58:07.47',user,'Richmond',0,7,0,'','CITY','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Fulshear',0,7,1,'','CITY','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Cypress',0,7,1,'','CITY','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'HOUSTON',0,7,1,'','CITY','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'CAMBRIA',0,7,0,' HGT','CITY','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Brockton',0,7,1,'','CITY','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Chelsea',0,7,1,'','CITY','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Norton',0,7,1,'','CITY','2022-04-14 12:58:07.47' ),
+      (false,true,false,'2022-04-14 12:58:07.47',user,'Raynham',0,7,0,'','CITY','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Avon',0,7,1,'','CITY','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Hollywood',0,7,1,'','CITY','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Encinitas',0,7,1,'','CITY','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Sugarland',0,7,0,'','CITY','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Greenspoint',0,7,1,'','CITY','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Spring',0,7,1,'','CITY','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Dallas',0,7,1,'','CITY','2022-04-14 12:58:07.47' ),
+      (false,true,false,'2022-04-14 12:58:07.47',user,'San Antonio',0,7,0,'','CITY','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Katy',0,7,1,'','CITY','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'HOUSTIN',0,7,1,'','CITY','2022-04-14 12:58:07.47' )  ;
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+    (false,true,false,'2022-04-14 12:58:07.47',user,'AL',0,7,0,'','STATE','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'TX',0,7,1,'','STATE','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'KS',0,7,1,'','STATE','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'IL',0,7,1,'','STATE','2022-04-14 12:58:07.47' );
+INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+    (false,true,false,'2022-04-14 12:58:07.47',user,'test 3',0,7,1,'','LABSERVICE','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'test 2',0,7,1,'','LABSERVICE','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'field Trip',0,7,1,'','LABSERVICE','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Computer Tutoring',0,7,1,'','LABSERVICE','2022-04-14 12:58:07.47' ),
+      (false,true,false,'2022-04-14 12:58:07.47',user,'Business Tutoring',0,7,1,'','LABSERVICE','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'English/ Proficiency',0,7,1,'','LABSERVICE','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'test-4',0,7,1,'','LABSERVICE','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'test-1',0,7,1,'','LABSERVICE','2022-04-14 12:58:07.47' );
+
+
