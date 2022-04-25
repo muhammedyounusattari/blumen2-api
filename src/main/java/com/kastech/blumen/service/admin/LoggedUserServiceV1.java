@@ -359,4 +359,22 @@ public class LoggedUserServiceV1 {
         }
         return successMap;
     }
+
+    public Map<String,Object> validateEmailAndOrgCode(String email, String orgCode) {
+      LOGGER.info("call made to validateEmailAndOrgCode");
+//      String nonSSo =   loggedUserRepository.findByUserAndOrgCode(email,orgCode);
+      Map<String,Object> map = new HashMap<>();
+      Optional<LoggedUser> loggedUsers = loggedUserRepository.findByEmailAndOrgCode(email,orgCode);
+      if(loggedUsers.isEmpty()){
+          LOGGER.error("Not a valid user ");
+          map.put("status",400);
+          map.put("message", "Invalid orgCode/Email");
+          return map;
+      }
+      LoggedUser loggedUser = loggedUsers.get();
+      map.put("isFirstTime",loggedUser.getFirstTime());
+      map.put("isSSOEnabled", null);
+      map.put("status", 200);
+      return map;
+    }
 }

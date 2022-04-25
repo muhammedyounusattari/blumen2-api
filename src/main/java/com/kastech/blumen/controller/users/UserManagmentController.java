@@ -240,10 +240,12 @@ public class UserManagmentController {
     }
 
     ///should support unauthenticated access
-    @GetMapping(path = "/ssoConfig")
+    @GetMapping(path = "/ssoConfig", produces = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
-    public  ResponseEntity<String> getSsoConfig(@RequestParam("email") String email, @RequestParam("orgType") String orgCode) {
-        return  ResponseEntity.ok(usersRepository.findByUserAndOrgCode(email, orgCode));
+    public  ResponseEntity<?> getSsoConfig(@RequestParam("email") String email, @RequestParam("orgCode") String orgCode) {
+       LOGGER.info("call made to getSSOConfig, with email {} and orgCode {}", email, orgCode);
+       Map<String,Object> resultMap = loggedUserServiceV1.validateEmailAndOrgCode(email,orgCode);
+       return ResponseEntity.ok(resultMap);
     }
 
     private ResponseEntity<?> success(Object t, Integer status ){

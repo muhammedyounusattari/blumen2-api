@@ -169,6 +169,7 @@ public class OrganizationController {
         LOGGER.info("Call made to createUser with payload {}", loggedUser);
         CustomUserDetails customUserDetails = SecurityUtil.getUserDetails();
         loggedUser.setEditedBy(customUserDetails.getUsername());
+        loggedUser.setFirstTime(Boolean.TRUE);
         try {
             if(null != loggedUser.getId()) {
                 Map<String, Object> map = new HashMap<>();
