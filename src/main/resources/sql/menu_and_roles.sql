@@ -1,3 +1,7 @@
+delete from blumen2.menu_display_roles;
+delete from blumen2.menus;
+delete from blumen2.display_roles;
+
 INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (1,'My Home',null);
 INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (2,'Home',1);
 INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (3,'Change My Password',2);
@@ -284,3 +288,20 @@ INSERT INTO blumen2.display_roles (role_id,role_name) VALUES (5,'Teacher');
 INSERT INTO blumen2.display_roles (role_id,role_name) VALUES (6,'Student Worker');
 INSERT INTO blumen2.display_roles (role_id,role_name) VALUES (7,'Staff');
 INSERT INTO blumen2.display_roles (role_id,role_name) VALUES (8,'Super Admin');
+
+INSERT INTO blumen2.menu_display_roles (menu_id,role_id)
+SELECT menus_id, 1 from blumen2.menus; -- admin menus
+INSERT INTO blumen2.menu_display_roles (menu_id,role_id)
+SELECT menus_id, 2 from blumen2.menus;
+INSERT INTO blumen2.menu_display_roles (menu_id,role_id)
+SELECT menus_id, 3 from blumen2.menus;
+INSERT INTO blumen2.menu_display_roles (menu_id,role_id)
+SELECT menus_id, 4 from blumen2.menus; -- admin menus
+INSERT INTO blumen2.menu_display_roles (menu_id,role_id)
+SELECT menus_id, 5 from blumen2.menus; -- admin menus
+INSERT INTO blumen2.menu_display_roles (menu_id,role_id)
+SELECT menus_id, 6 from blumen2.menus; -- admin menus
+INSERT INTO blumen2.menu_display_roles (menu_id,role_id)
+SELECT menus_id, 7 from blumen2.menus; -- admin menus
+INSERT INTO blumen2.menu_display_roles (menu_id,role_id)
+SELECT menus_id, 8 from blumen2.menus; -- admin menus

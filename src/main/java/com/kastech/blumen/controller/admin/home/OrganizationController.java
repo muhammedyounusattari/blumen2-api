@@ -189,6 +189,28 @@ public class OrganizationController {
 
     }
 
+    @ResponseBody
+    @PostMapping(path = "/updateUser/v1",
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAnyAuthority('User Names and Password_Y', 'Super Admin')")
+    public ResponseEntity<?> updateUser( @RequestBody LoggedUser loggedUser) {
+        LOGGER.info("Call made to updateUser with payload {}", loggedUser);
+        CustomUserDetails customUserDetails = SecurityUtil.getUserDetails();
+        loggedUser.setEditedBy(customUserDetails.getUsername());
+        try {
+            loggedUser = loggedUserServiceV1.updateUser(loggedUser);
+            return success("User is updated successfully", 200);
+        } catch (Exception e) {
+            LOGGER.error("problem occurred while updating user");
+            e.printStackTrace();
+            Map<String, Object> map = new HashMap<>();
+            map.put("message", "problem in updating a user for orgId "+loggedUser.getOrgId());
+            map.put("status", "400");
+            return new ResponseEntity(map, null, HttpStatus.OK);
+        }
+
+    }
 
     private ResponseEntity<?> success(Object t, Integer status) {
         return new ResponseEntity(t, null, HttpStatus.valueOf(status));

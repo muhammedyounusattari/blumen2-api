@@ -5,6 +5,7 @@ import com.kastech.blumen.model.admin.home.Organization;
 import com.kastech.blumen.model.keycloak.*;
 import com.kastech.blumen.repository.admin.LoggedUserRepository;
 import com.kastech.blumen.repository.admin.home.OrganizationRepository;
+import com.kastech.blumen.repository.roles.RolesRepository;
 import com.kastech.blumen.service.superadmin.OrganizationService;
 import com.kastech.blumen.utility.CommonUtil;
 import com.kastech.blumen.utility.DateUtil;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class LoggedUserServiceV1 {
@@ -30,6 +32,9 @@ public class LoggedUserServiceV1 {
 
     @Autowired
     OrganizationRepository organizationRepository;
+
+    @Autowired
+    RolesRepository rolesRepository;
 
     @Autowired
     private EmailService sendMailService;
@@ -88,10 +93,12 @@ public class LoggedUserServiceV1 {
             loggedUser.setOrgCode(loggedUser.getOrgCode());
         }
 
+        List<Roles> roles = rolesRepository.findByOrgIdAndRole(loggedUser.getOrgId(), loggedUser.getRoleName());
+        loggedUser.setRoles((roles.stream().collect(Collectors.toSet())));
+
         loggedUser = loggedUserRepository.save(loggedUser);
         Organization organization = new Organization();
         organization.setOrgId(loggedUser.getOrgId());
-        organization.setOrgOrganizationType(loggedUser.getOrgCode());
         organizationService.batchUpdateForOrgAdmin(loggedUser, organization);
 
         //send email service
@@ -106,6 +113,52 @@ public class LoggedUserServiceV1 {
 
         sendMailService.sendMail(loggedUser.getEmail(),"Usercreated password link","Congratulation your account with orgCode "+loggedUser.getOrgCode()+" and email "+loggedUser.getEmail()+" and password set link "+loggedUser.getTempLink());
 
+        return loggedUser;
+    }
+
+    public LoggedUser updateUser(LoggedUser loggedUser) throws Exception {
+        //only Admin can create users with in organization/// add role to method
+        Optional<LoggedUser> users = loggedUserRepository.findById(loggedUser.getId());
+        LoggedUser existingUser = null;
+        if(users.isEmpty()) {
+            LOGGER.error("UserId {} not found in database", loggedUser.getId());
+            throw new UsernameNotFoundException("Username not found");
+        } else {
+            existingUser = users.get();
+            if (existingUser.getOrgId() != loggedUser.getOrgId()) {
+                LOGGER.error("Organization of user, {} can't be changed", existingUser.getOrgId());
+                throw new UsernameNotFoundException("Username not found");
+            }
+        }
+
+        existingUser.setUsername(loggedUser.getUsername());
+        existingUser.setActive(loggedUser.getActive());
+        existingUser.setFirstName(loggedUser.getFirstName());
+        existingUser.setLastName(loggedUser.getLastName());
+        existingUser.setAddress1(loggedUser.getAddress1());
+        existingUser.setAddress2(loggedUser.getAddress2());
+        existingUser.setCity(loggedUser.getCity());
+        existingUser.setState(loggedUser.getState());
+        existingUser.setZipcode(loggedUser.getZipcode());
+        existingUser.setMobile(loggedUser.getMobile());
+        existingUser.setPhone1(loggedUser.getPhone1());
+        existingUser.setPhone2(loggedUser.getPhone2());
+        existingUser.setFax(loggedUser.getFax());
+        existingUser.setEmail(loggedUser.getEmail());
+        existingUser.setNotes(loggedUser.getNotes());
+        existingUser.setSiteLocation(loggedUser.getSiteLocation());
+        existingUser.setEditedDate(new Date());
+        existingUser.setEditedBy(SecurityUtil.getEmail());
+
+        //future
+        // existingUser.setBolt(loggedUser.getBolt());
+
+        if(!loggedUser.getRoleName().equalsIgnoreCase(existingUser.getRoleName())) {
+            List<Roles> roles = rolesRepository.findByOrgIdAndRole(loggedUser.getOrgId(), loggedUser.getRoleName());
+            existingUser.setRoles((roles.stream().collect(Collectors.toSet())));
+        }
+        existingUser.setRoleName(loggedUser.getRoleName());
+        loggedUser = loggedUserRepository.save(existingUser);
         return loggedUser;
     }
 
@@ -263,55 +316,6 @@ public class LoggedUserServiceV1 {
         }
 
     }
-
- /*   public void changePassword(String token, UserSecurityInfo userSecurityInfo, String realmId, String id) {
-        {
-            String password = userSecurityInfo.getPassword();
-            KeycloakConfigurationValues keycloakConfigurationValues = loadValues(realmId);
-            String keycloakUserInfoUrl = "/admin/realms/realm-to-be-replaced/users/user-id-to-be-replaced/reset-password";
-            keycloakUserInfoUrl = keycloakConfigurationValues.getAuthServerUrl() + keycloakUserInfoUrl;
-            keycloakUserInfoUrl = keycloakUserInfoUrl.replace("user-id-to-be-replaced", id);
-            keycloakUserInfoUrl = keycloakUserInfoUrl.replace("realm-to-be-replaced", realmId);
-
-            //Build the Credentials object to pass it to the keycloak.
-            Credentials.CredentialsBuilder credentialsBuilder = new Credentials.CredentialsBuilder();
-            Credentials credentials = credentialsBuilder.type("password")
-                    .value(password)
-                    .temporary(false)
-                    .buildCredentials();
-
-            MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-            headers.add("Authorization", "Bearer "+token);
-            headers.add("Content-Type", "application/json");
-            HttpEntity<Credentials> request = new HttpEntity<>(credentials, headers);
-            restTemplate.put(keycloakUserInfoUrl, request);
-
-            //Update the User Security Info with the new security question and answers
-
-            UserSecurityInfoId userSecurityInfoId = new UserSecurityInfoId(id, realmId);
-            Optional<UserSecurityInfo> optionalUserSecurityInfo = userSecurityInfoServiceV1.findUserSecurityInfoById(userSecurityInfoId);
-            if (optionalUserSecurityInfo.isPresent()) {
-                UserSecurityInfo userSecurityInfoToBeUpdated = optionalUserSecurityInfo.get();
-                userSecurityInfoToBeUpdated.setSecurityQuestion1(userSecurityInfo.getSecurityQuestion1());
-                userSecurityInfoToBeUpdated.setSecurityAnswer1(userSecurityInfo.getSecurityAnswer1());
-                userSecurityInfoToBeUpdated.setSecurityQuestion2(userSecurityInfo.getSecurityQuestion2());
-                userSecurityInfoToBeUpdated.setSecurityAnswer2(userSecurityInfo.getSecurityAnswer2());
-                userSecurityInfoToBeUpdated.setPassword(userSecurityInfo.getPassword());
-                userSecurityInfoServiceV1.updateUserSecurityInfo(userSecurityInfoToBeUpdated);
-            }
-
-
-            //Update the metadata to convey that the password is now changed permanently.
-            Optional<UserMetaData> optionalUserMetaData = null;
-            UserMetaDataId userMetaDataId = new UserMetaDataId(id, realmId);
-            optionalUserMetaData = userMetaDataServiceV1.findUserMetaDataById(userMetaDataId);
-            if (optionalUserMetaData.isPresent()) {
-                UserMetaData userMetaData = optionalUserMetaData.get();
-                userMetaData.setTemporary(false);
-            }
-
-        }
-} */
 
     public Map<String,String> changePassword(Map<String, String> requestPaylaod) {
         String email = SecurityUtil.getEmail();

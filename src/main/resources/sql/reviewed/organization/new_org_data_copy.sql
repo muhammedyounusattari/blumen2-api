@@ -19,9 +19,9 @@ delete from blumen2.roles where org_id=:org_id;
 INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column)
  select deleted,inoriginal,is_numeric,current_timestamp,user,longpullna,:org_id,projtype,pullid,pullname,pulltype,current_timestamp  from blumen2.pull_down_master where organizationid=0;
 
---copy roles  from org0
+--copy roles  from org0 (don't copy non-defaults or super admin role for other orgs)
 insert into blumen2.roles(name,code,is_default,org_id)
-select name,code,is_default,:org_id  from  blumen2.roles where org_id=0;
+select name,code,is_default,:org_id  from  blumen2.roles where org_id=0 and is_default=true;
 
 --copy privileges  from org0
 insert into blumen2.privileges(name,org_id, access_type,parent_code, code, role_code)
@@ -30,4 +30,4 @@ select name, :org_id, access_type,parent_code, code, role_code  from  blumen2.pr
 --copy privileges_id, role_id into  from org0
 insert into blumen2.roles_privileges
 select role_id, privilege_id from blumen2.privileges p, blumen2.roles r
-where p.org_id=:org_id and r.org_id=:org_id  and p.role_code = r.code;
+where p.org_id=:org_id and r.org_id=:org_id  and p.role_code = r.code and r.is_default=true;

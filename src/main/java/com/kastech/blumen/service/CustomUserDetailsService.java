@@ -71,18 +71,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         Collection<GrantedAuthority> grantedAuthoritySet = getAuthorities(loggedUser);
 
-        /** Here rolese will sit **/
-        /*for (int i=0; i<userAccount.getRoles().size();i++)
-        {
-            JSONObject jsonObject = new JSONObject(userAccount.getRoles().get(i));
-            String role = jsonObject.getString("role");
-            gas.add(new SimpleGrantedAuthority(role));
-        } */
         return new CustomUserDetails(grantedAuthoritySet, loggedUser.getEmail(), loggedUser.getFirstName(), null, loggedUser.getUsername(),
                 Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, loggedUser.getScope(), loggedUser.getOrgCode(),
                 loggedUser.getOrgId(), loggedUser.getId(), loggedUser.getRoleName());
-        //return new CustomUserDetails(grantedAuthoritySet,loggedUser.getUsername(),loggedUser.getFirstName()+" "+loggedUser.getLastName(), loggedUser.getPassword(), loggedUser.getUsername(), Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, true, loggedUser.getScope(), loggedUser.getOrgType());
-        //new CustomUserDetails(superAdmin.getEmail(),superAdmin.getFirstName()+" "+superAdmin.getLastName(),superAdmin.getEmail(),superAdmin.getPassword(),Boolean.TRUE,null);
 
     }
 
@@ -93,21 +84,19 @@ public class CustomUserDetailsService implements UserDetailsService {
     *  privilge-name_R - readonly privilege
     */
     private Collection<GrantedAuthority> getAuthorities(LoggedUser loggedUser) {
-
         final Set<Roles> userRoles = loggedUser.getRoles();
         final Set<Privileges> privileges = Sets.newHashSet();
         for (final Roles roleOfUser : userRoles) {
             privileges.addAll(roleOfUser.getPrivileges());
         }
-        final  String[] roleStringsArray = Arrays.stream(privileges.toArray()).
+        List<String> roleStringsList = Arrays.stream(privileges.toArray()).
                 map(a -> ((Privileges)a).getName() + "_"+ ((Privileges)a).getAccessType()).
-                collect(Collectors.toUnmodifiableList()).stream().toArray(String[]::new);
-        final List<GrantedAuthority> auths = AuthorityUtils.createAuthorityList(roleStringsArray);
-        if (auths.isEmpty() && isSuperAdmin(loggedUser))  {
-            return AuthorityUtils.createAuthorityList(SUPER_ADMIN);
+                collect(Collectors.toUnmodifiableList()).stream().collect(Collectors.toList());
+        if (isSuperAdmin(loggedUser))  {
+            roleStringsList.add(SUPER_ADMIN);
         }
-
-
+        final List<GrantedAuthority> auths = AuthorityUtils.createAuthorityList(
+                roleStringsList.stream().toArray(String[]::new));
         return auths;
     }
 

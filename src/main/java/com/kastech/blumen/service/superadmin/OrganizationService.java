@@ -49,8 +49,6 @@ public class OrganizationService {
     @Value("${new.org.data.copy}")
     private String newOrgDataCopyUrl;
 
-    @Value("${users.roles}")
-    private String usersRolesUrl;
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
@@ -74,7 +72,6 @@ public class OrganizationService {
     public void batchUpdateForOrgAdmin(LoggedUser loggedUser, Organization organization) throws Exception {
         try {
         insertOrganizationUsers(loggedUser,organization);
-        insertUserRoles(loggedUser,organization);
         insertConfigSettings(loggedUser,organization);
 
         } catch (Exception e) {
@@ -99,14 +96,6 @@ public class OrganizationService {
 
     }
 
-    private void insertUserRoles(LoggedUser user, Organization organization)throws IOException {
-        LOG.info("Inside insertUserRoles() with parameter {}, {} ", organization, user);
-        Map<String, Object> map = new HashMap<>();
-        map.put("orgId", organization.getOrgId());
-        map.put("roleName", user.getRoleName());
-        map.put("userId", user.getId());
-        namedParameterJdbcTemplate.update(readFile(usersRolesUrl), map);
-    }
 
     private void insertConfigSettings(LoggedUser user, Organization organization)throws IOException {
         LOG.info("Inside insertUserRoles() with parameter {}, {} ", organization, user);
