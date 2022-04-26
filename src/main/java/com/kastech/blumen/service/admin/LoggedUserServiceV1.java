@@ -95,6 +95,7 @@ public class LoggedUserServiceV1 {
 
         List<Roles> roles = rolesRepository.findByOrgIdAndRole(loggedUser.getOrgId(), loggedUser.getRoleName());
         loggedUser.setRoles((roles.stream().collect(Collectors.toSet())));
+        loggedUser.setLastLogin(DateUtil.setDates(0));
 
         loggedUser = loggedUserRepository.save(loggedUser);
         Organization organization = new Organization();
@@ -376,5 +377,23 @@ public class LoggedUserServiceV1 {
       map.put("isSSOEnabled", null);
       map.put("status", 200);
       return map;
+    }
+
+    public Map<String,Object> logoutUser() {
+        String email = SecurityUtil.getEmail();
+        String orgCode = SecurityUtil.getUserOrgCode();
+        Map<String,Object> payload = new HashMap<>();
+        Optional<LoggedUser> loggedUsers = loggedUserRepository.findByEmailAndOrgCode(email,orgCode);
+        if(!loggedUsers.isEmpty()){
+          LoggedUser  loggedUserDb = loggedUsers.get();
+          loggedUserDb.setLastLogout(DateUtil.setDates(0));
+          loggedUserRepository.save(loggedUserDb);
+          payload.put("message", "user logout successfully");
+          payload.put("status", 200);
+        } else {
+            payload.put("message", "user is already loggedout");
+            payload.put("status", 400);
+        }
+        return payload;
     }
 }

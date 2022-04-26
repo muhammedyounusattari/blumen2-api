@@ -108,6 +108,9 @@ public class LoggedUser implements Serializable {
     @Column(nullable = true)
     private Date lastLogin;
 
+    @Column(nullable = true)
+    private Date lastLogout;
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",schema = "blumen2",
@@ -130,7 +133,7 @@ public class LoggedUser implements Serializable {
     public LoggedUser() {
     }
 
-    public LoggedUser(Long id, String orgCode, Long orgId, String username, String email, String password, String roleName, String firstName, String lastName, String scope, String address1, String address2, String city, String state, String zipcode, String mobile, String phone1, String phone2, String fax, String notes, String siteLocation, Boolean active, String createdBy, String editedBy, String securityQuestion1, String securityAnswer1, String securityQuestion2, String securityAnswer2, BOLT bolt, int ita, int exp, Date issueDate, Date expiryDate, @Nullable Integer wrongAttempt, @Nullable Boolean firstTime, @Nullable String tempLink, Date createdDate, Date editedDate, Date lastLogin, Set<Roles> roles, @Nullable String hashedCode, @Nullable Date linkExpiryDate, Set<Organization> organizationSet ) {
+    public LoggedUser(Long id, String orgCode, Long orgId, String username, String email, String password, String roleName, String firstName, String lastName, String scope, String address1, String address2, String city, String state, String zipcode, String mobile, String phone1, String phone2, String fax, String notes, String siteLocation, Boolean active, String createdBy, String editedBy, String securityQuestion1, String securityAnswer1, String securityQuestion2, String securityAnswer2, BOLT bolt, int ita, int exp, Date issueDate, Date expiryDate, @Nullable Integer wrongAttempt, @Nullable Boolean firstTime, @Nullable String tempLink, Date createdDate, Date editedDate, Date lastLogin, Set<Roles> roles, @Nullable String hashedCode, @Nullable Date linkExpiryDate, Set<Organization> organizationSet,@Nullable Date lastLogout ) {
         this.id = id;
         this.orgCode = orgCode;
         this.orgId = orgId;
@@ -174,6 +177,7 @@ public class LoggedUser implements Serializable {
         this.hashedCode = hashedCode;
         this.linkExpiryDate = linkExpiryDate;
         this.organizationSet = organizationSet;
+        this.lastLogout = lastLogout;
     }
 
     public Long getId() {
@@ -525,6 +529,14 @@ public class LoggedUser implements Serializable {
         this.organizationSet = organizationSet;
     }
 
+    public Date getLastLogout() {
+        return lastLogout;
+    }
+
+    public void setLastLogout(Date lastLogout) {
+        this.lastLogout = lastLogout;
+    }
+
     @Override
     public String toString() {
         return "LoggedUser{" +
@@ -533,9 +545,46 @@ public class LoggedUser implements Serializable {
                 ", orgId=" + orgId +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
                 ", roleName='" + roleName + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", scope='" + scope + '\'' +
+                ", address1='" + address1 + '\'' +
+                ", address2='" + address2 + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zipcode='" + zipcode + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", phone1='" + phone1 + '\'' +
+                ", phone2='" + phone2 + '\'' +
+                ", fax='" + fax + '\'' +
+                ", notes='" + notes + '\'' +
+                ", siteLocation='" + siteLocation + '\'' +
+                ", active=" + active +
+                ", createdBy='" + createdBy + '\'' +
+                ", editedBy='" + editedBy + '\'' +
+                ", securityQuestion1='" + securityQuestion1 + '\'' +
+                ", securityAnswer1='" + securityAnswer1 + '\'' +
+                ", securityQuestion2='" + securityQuestion2 + '\'' +
+                ", securityAnswer2='" + securityAnswer2 + '\'' +
+                ", bolt=" + bolt +
+                ", ita=" + ita +
+                ", exp=" + exp +
+                ", issueDate=" + issueDate +
+                ", expiryDate=" + expiryDate +
+                ", wrongAttempt=" + wrongAttempt +
+                ", firstTime=" + firstTime +
+                ", tempLink='" + tempLink + '\'' +
+                ", createdDate=" + createdDate +
+                ", editedDate=" + editedDate +
+                ", lastLogin=" + lastLogin +
+                ", lastLogout=" + lastLogout +
+                ", roles=" + roles +
+                ", organizationSet=" + organizationSet +
+                ", hashedCode='" + hashedCode + '\'' +
+                ", linkExpiryDate=" + linkExpiryDate +
                 '}';
     }
 }
+//    emailVerified,enabled,sendEmail

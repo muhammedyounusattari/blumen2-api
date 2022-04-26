@@ -11,6 +11,7 @@ import com.kastech.blumen.repository.staff.StaffRepository;
 import com.kastech.blumen.service.staff.StaffServiceV1;
 import com.kastech.blumen.utility.SecurityUtil;
 import com.kastech.blumen.validator.staff.StaffValidator;
+import com.microsoft.azure.storage.blob.ContainerURL;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -134,7 +135,7 @@ public class StaffController {
     @PostMapping(value = RestURIConstant.FILE_UPLOAD, consumes = "multipart/form-data")
     @PreAuthorize("hasAnyAuthority('Staff Data Filter/ Entry_Y')")
     public ResponseEntity<?> uploadFileMulti(@PathVariable(name = "staffId", required = true) Long staffId,
-                                             @RequestParam("uploadfile") MultipartFile file) {
+                                             @RequestParam("uploadfile") MultipartFile file, ContainerURL containerURL) {
         if(file.isEmpty()){
             LOGGER.error("file tried to upload is empty {}", file);
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -143,7 +144,7 @@ public class StaffController {
         Map<String, Long> resultMap = new HashMap<>();
         try {
             //TODO - replace system upload with
-           staffId = staffServiceV1.uplaodFile(file,staffId);
+           staffId = staffServiceV1.uplaodFile(file,staffId, containerURL);
            resultMap.put("staffId", staffId);
         } catch ( IOException e) {
             return  new ResponseEntity<>(new Response(500, "failure"), null, HttpStatus.BAD_REQUEST);

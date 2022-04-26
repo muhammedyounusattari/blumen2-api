@@ -6,7 +6,7 @@ public class RestURIConstant {
 
     //AUTHENTICATE
     public static final String LOGIN ="/authenticate";
-
+    public static final String LOGOUT = "/logout/v1";
     //Forgot password
     public static final String FORGOT_PASSWORD="/forgotPassword/v1";
 

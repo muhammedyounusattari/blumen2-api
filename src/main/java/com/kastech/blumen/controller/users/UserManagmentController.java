@@ -173,6 +173,21 @@ public class UserManagmentController {
         return new ResponseEntity(statusMap,null, HttpStatus.OK);
     }
 
+    @GetMapping(path = RestURIConstant.LOGOUT, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> logout(){
+        Map<String, Object> payload = new HashMap<>();
+        try {
+            LOGGER.info("Request made to logout ");
+            payload = loggedUserServiceV1.logoutUser();
+            return new ResponseEntity<>(payload,null, HttpStatus.OK);
+
+        } catch (Exception e) {
+            LOGGER.info("Exception occured while request made to logout {}", e);
+            payload.put("message", "Exception occured while request made to logout");
+            payload.put("status", 400);
+            return new ResponseEntity<>(payload,null, HttpStatus.BAD_REQUEST);
+        }
+    }
 
 
     @PostMapping(path = RestURIConstant.LOGIN, consumes = {MediaType.APPLICATION_JSON_VALUE},
