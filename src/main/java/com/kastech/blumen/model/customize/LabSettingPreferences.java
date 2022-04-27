@@ -1,7 +1,16 @@
 package com.kastech.blumen.model.customize;
 
+import javax.persistence.*;
+import java.util.Date;
+
+@Entity
+@Table(name = "labsetting_preferences", schema = "blumen2")
 public class LabSettingPreferences {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="labsetting_pref_list_seq_gen")
+    @SequenceGenerator(name="labsetting_pref_list_seq_gen", sequenceName="LAB_SETTING_PREF_LIST_SEQ")
+    private Long id;
     private String lapSearchPriority;
     private String labFiscalYear;
     private String labComponents;
@@ -22,10 +31,25 @@ public class LabSettingPreferences {
     private String labForcedTimeSpent;
     private boolean labAcknowledgement;
 
+    private Date createdDate;
+
+    private long createdBy;
+
+    private Date modifiedDate;
+
+    private long modifiedBy;
+
+    private Date deletedDate;
+
+    private long deletedBy;
+
+    private long orgId;
+
     public LabSettingPreferences() {
     }
 
-    public LabSettingPreferences(String lapSearchPriority, String labFiscalYear, String labComponents, boolean labHideStudentList, boolean labHideCheckOutList, String labWaitWindowTime, boolean labAutomaticallyCheckInCheckOut, boolean labServicesVisibile, boolean labServicerRequired, String labDefaultService, boolean labStudentsCanChooseMultipleService, boolean labReasonForVisitOptionVisible, boolean labStaffMemberOptionVisible, String labMaxCheckoutTime, String labForcedTimeSpent, boolean labAcknowledgement) {
+    public LabSettingPreferences(Long id, String lapSearchPriority, String labFiscalYear, String labComponents, boolean labHideStudentList, boolean labHideCheckOutList, String labWaitWindowTime, boolean labAutomaticallyCheckInCheckOut, boolean labServicesVisibile, boolean labServicerRequired, String labDefaultService, boolean labStudentsCanChooseMultipleService, boolean labReasonForVisitOptionVisible, boolean labStaffMemberOptionVisible, String labMaxCheckoutTime, String labForcedTimeSpent, boolean labAcknowledgement, Date createdDate, long createdBy, Date modifiedDate, long modifiedBy, Date deletedDate, long deletedBy, long orgId) {
+        this.id = id;
         this.lapSearchPriority = lapSearchPriority;
         this.labFiscalYear = labFiscalYear;
         this.labComponents = labComponents;
@@ -42,6 +66,21 @@ public class LabSettingPreferences {
         this.labMaxCheckoutTime = labMaxCheckoutTime;
         this.labForcedTimeSpent = labForcedTimeSpent;
         this.labAcknowledgement = labAcknowledgement;
+        this.createdDate = createdDate;
+        this.createdBy = createdBy;
+        this.modifiedDate = modifiedDate;
+        this.modifiedBy = modifiedBy;
+        this.deletedDate = deletedDate;
+        this.deletedBy = deletedBy;
+        this.orgId = orgId;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getLapSearchPriority() {
@@ -164,7 +203,7 @@ public class LabSettingPreferences {
         this.labForcedTimeSpent = labForcedTimeSpent;
     }
 
-    public boolean getLabAcknowledgement() {
+    public boolean isLabAcknowledgement() {
         return labAcknowledgement;
     }
 
@@ -172,10 +211,39 @@ public class LabSettingPreferences {
         this.labAcknowledgement = labAcknowledgement;
     }
 
+    public Date getCreatedDate() {return createdDate;}
+
+    public void setCreatedDate(Date createdDate) {this.createdDate = createdDate;}
+
+    public long getCreatedBy() {return createdBy;}
+
+    public void setCreatedBy(long createdBy) {this.createdBy = createdBy;}
+
+    public Date getModifiedDate() {return modifiedDate;}
+
+    public void setModifiedDate(Date modifiedDate) {this.modifiedDate = modifiedDate;}
+
+    public long getModifiedBy() {return modifiedBy;}
+
+    public void setModifiedBy(long modifiedBy) {this.modifiedBy = modifiedBy;}
+
+    public Date getDeletedDate() {return deletedDate;}
+
+    public void setDeletedDate(Date deletedDate) {this.deletedDate = deletedDate;}
+
+    public long getDeletedBy() {return deletedBy;}
+
+    public void setDeletedBy(long deletedBy) {this.deletedBy = deletedBy;}
+
+    public long getOrgId() {return orgId;}
+
+    public void setOrgId(long orgId) {this.orgId = orgId;}
+
     @Override
     public String toString() {
         return "LabSettingPreferences{" +
-                "lapSearchPriority='" + lapSearchPriority + '\'' +
+                "id=" + id +
+                ", lapSearchPriority='" + lapSearchPriority + '\'' +
                 ", labFiscalYear='" + labFiscalYear + '\'' +
                 ", labComponents='" + labComponents + '\'' +
                 ", labHideStudentList=" + labHideStudentList +
@@ -190,7 +258,14 @@ public class LabSettingPreferences {
                 ", labStaffMemberOptionVisible=" + labStaffMemberOptionVisible +
                 ", labMaxCheckoutTime='" + labMaxCheckoutTime + '\'' +
                 ", labForcedTimeSpent='" + labForcedTimeSpent + '\'' +
-                ", labAcknowledgement='" + labAcknowledgement + '\'' +
+                ", labAcknowledgement=" + labAcknowledgement +
+                ", createdDate=" + createdDate +
+                ", createdBy=" + createdBy +
+                ", modifiedDate=" + modifiedDate +
+                ", modifiedBy=" + modifiedBy +
+                ", deletedDate=" + deletedDate +
+                ", deletedBy=" + deletedBy +
+                ", orgId=" + orgId +
                 '}';
     }
 }

@@ -1,7 +1,20 @@
 package com.kastech.blumen.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "annual_performance" ,schema = "blumen2")
 public class AnnualPerformance {
 
+	@Id
+	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="annual_performance_seq_gen")
+    @SequenceGenerator(name="annual_performance_seq_gen", sequenceName="ANNUAL_PERFORMANCE_SEQ")
+	private Long id;
 	private String projectDirector;
 	private String institutionName;
 	private String reportingPeriodFrom;
@@ -44,6 +57,18 @@ public class AnnualPerformance {
 		this.fundedToServe = fundedToServe;
 		this.fundToServeRatioThreshould = fundToServeRatioThreshould;
 		this.fundToServeRatioThreshouldTo = fundToServeRatioThreshouldTo;
+	}
+	
+	public AnnualPerformance() {
+		super();
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getProjectDirector() {

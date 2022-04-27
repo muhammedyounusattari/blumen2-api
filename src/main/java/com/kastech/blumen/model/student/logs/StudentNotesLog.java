@@ -1,8 +1,16 @@
 package com.kastech.blumen.model.student.logs;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "student_notes_log" ,schema = "blumen2")
 public class StudentNotesLog {
 
-    private String ssno;
+    @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="student_notes_log_seq_gen")
+    @SequenceGenerator(name="student_notes_log_seq_gen", sequenceName="STUDENT_NOTES_LOG_SEQ")
+    private Long id;
+    private String studentssno;
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -19,8 +27,9 @@ public class StudentNotesLog {
     public StudentNotesLog() {
     }
 
-    public StudentNotesLog(String ssno, String firstName, String lastName, String phoneNumber, String notesDate, String notes, String fiscalYear, boolean active, boolean served, boolean reported, String councelor, String school, String standing) {
-        this.ssno = ssno;
+    public StudentNotesLog(Long id, String studentssno, String firstName, String lastName, String phoneNumber, String notesDate, String notes, String fiscalYear, boolean active, boolean served, boolean reported, String councelor, String school, String standing) {
+        this.id = id;
+        this.studentssno = studentssno;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
@@ -35,12 +44,20 @@ public class StudentNotesLog {
         this.standing = standing;
     }
 
-    public String getSsno() {
-        return ssno;
+    public Long getId() {
+        return id;
     }
 
-    public void setSsno(String ssno) {
-        this.ssno = ssno;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getStudentssno() {
+        return studentssno;
+    }
+
+    public void setStudentssno(String studentssno) {
+        this.studentssno = studentssno;
     }
 
     public String getFirstName() {
@@ -142,7 +159,8 @@ public class StudentNotesLog {
     @Override
     public String toString() {
         return "StudentNotesLog{" +
-                "ssno='" + ssno + '\'' +
+                "id=" + id +
+                ", studentssno='" + studentssno + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
@@ -156,5 +174,24 @@ public class StudentNotesLog {
                 ", school='" + school + '\'' +
                 ", standing='" + standing + '\'' +
                 '}';
+    }
+
+    public StudentNotesLog updateWith(StudentNotesLog item) {
+        return new StudentNotesLog(
+                item.id,
+                item.studentssno,
+                item.firstName,
+                item.lastName,
+                item.phoneNumber,
+                item.notesDate,
+                item.notes,
+                item.fiscalYear,
+                item.active,
+                item.served,
+                item.reported,
+                item.councelor,
+                item.school,
+                item.standing
+        );
     }
 }

@@ -1,39 +1,61 @@
 package com.kastech.blumen.controller.student.contacts;
 
-import java.util.Collection;
-
+import com.kastech.blumen.model.Response;
+import com.kastech.blumen.model.admin.TutorContact;
+import com.kastech.blumen.model.student.Student;
+import com.kastech.blumen.model.student.contacts.StudentCounselorContact;
+import com.kastech.blumen.model.student.contacts.StudentLabContact;
+import com.kastech.blumen.repository.student.StudentRepository;
+import com.kastech.blumen.repository.student.contacts.StudentLabContactRepository;
+import com.kastech.blumen.service.student.contacts.StudentLabContactService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.kastech.blumen.model.student.contacts.StudentLabContact;
-import com.kastech.blumen.service.student.contacts.StudentLabContactService;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/blumen-api/admin")
 public class StudentLabContactController {
 
 	@Autowired
+	private StudentLabContactRepository studentLabContactRepository;
+
+	@Autowired
 	private StudentLabContactService labContactService;
 
 	private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
+	@Autowired
+	private StudentRepository studentRepository;
+
 	@ResponseBody
-	@GetMapping(path = "/getLabContacts/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<Collection<StudentLabContact>> getLabContactList() {
-		LOGGER.info("call received for getLabContactList under StudentLabContactController");
-		return ResponseEntity.ok(labContactService.getLabContactList());
+	@GetMapping(path = "/getStudentLabContact/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public List<Student> getStudentLabContact() {
+		List<Student> list = new ArrayList<>();
+		Iterable<Student> items = studentRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
+		items.forEach(list::add);
+		return list;
 	}
 
 	@ResponseBody
+	@GetMapping(path = "/getLabContacts/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public List<StudentLabContact> getLabContactList() {
+		LOGGER.info("call received for getLabContactList under StudentLabContactController");
+		List<StudentLabContact> list = new ArrayList<>();
+		Iterable<StudentLabContact> items = studentLabContactRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
+		items.forEach(list::add);
+		return list;
+	}
+
+/*	@ResponseBody
 	@GetMapping(path = "/getLabContactsByNormalFilter/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<Collection<StudentLabContact>> getLabContactsByNormalFilter(
 			@RequestParam("checkInFrom") String checkInFrom, @RequestParam("checkInTo") String checkInTo,
@@ -71,13 +93,30 @@ public class StudentLabContactController {
 		LOGGER.info("call received for getLabContactsByMoreFilter under StudentLabContactController");
 		return ResponseEntity.ok(labContactService.getLabContactsByMoreFilter(zipCode, major, siteLocation,
 				incomeSource, entryCollege, cohortYear));
+	}*/
+
+	@ResponseBody
+	@DeleteMapping(path = "/deleteLabContact/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<String> postSystemPreferenceData(@RequestBody StudentLabContact studentLabContact) {
+		LOGGER.info("Inside postSystemPreferenceData");
+		studentLabContactRepository.deleteById(studentLabContact.getId());
+		return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
 	}
 
 	@ResponseBody
-	@PostMapping(path = "/deleteLabContact/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<String> postSystemPreferenceData(@RequestParam("labContactId") String labContactId) {
-		LOGGER.info("Inside postSystemPreferenceData");
-		return ResponseEntity.ok(labContactService.deleteLabContact(labContactId));
+	@PostMapping(path = "/addStudentLabContactList/v1",
+			consumes = {MediaType.APPLICATION_JSON_VALUE},
+			produces = {MediaType.APPLICATION_JSON_VALUE})
+	public StudentLabContact addToStudentLabContactList(@RequestBody StudentLabContact studentLabContact) {
+		return studentLabContactRepository.save(studentLabContact);
+	}
+
+	@ResponseBody
+	@PutMapping(path = "/updateStudentLabContactList/v1",
+			consumes = {MediaType.APPLICATION_JSON_VALUE},
+			produces = {MediaType.APPLICATION_JSON_VALUE})
+	public StudentLabContact editStudentLabContactList(@RequestBody StudentLabContact studentLabContact) {
+		return studentLabContactRepository.save(studentLabContact);
 	}
 
 }

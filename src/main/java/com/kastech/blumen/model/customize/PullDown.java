@@ -1,36 +1,77 @@
 package com.kastech.blumen.model.customize;
 
+import javax.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "pulldown" ,schema = "blumen2")
 public class PullDown {
-
-    private int id;
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private long id;
     private String name;
     private String selectionType;
-    private String active;
+    private int active;
     private String apr;
-    private List<String> orgType;
-    private String orgId;
+    @Column(columnDefinition="BOOLEAN DEFAULT false")
+    private boolean editable;
 
+    @OneToMany(mappedBy = "pulldownId")
+    private List<PullDownItem> pullDownItems;
+
+    @Column(nullable = false)
+    private Long orgId;
+    
+    @Column(nullable  = false)
+    private String code;
 
     public PullDown() {
     }
 
-    public PullDown(int id, String name, String selectionType, String active, String apr, List<String> orgType, String orgId) {
+    public PullDown(long id, String name, String selectionType, int active, String apr,  Long orgId, String code) {
         this.id = id;
         this.name = name;
         this.selectionType = selectionType;
         this.active = active;
         this.apr = apr;
-        this.orgType = orgType;
         this.orgId = orgId;
+        this.code = code;
     }
+    
+    public void addPullDownItems(List<PullDownItem> pullDownItemList) {
+    	if(pullDownItems==null)
+    		pullDownItems = new ArrayList<PullDownItem>();
+    	pullDownItems.addAll(pullDownItemList);
+    }
+    
+    public void deletePullDownItems(List<PullDownItem> pullDownItemList) {
+    	if(pullDownItems!=null)
+    		pullDownItems.removeAll(pullDownItemList);
+    }
+    
+    public boolean isEditable() {
+		return editable;
+	}
 
-    public int getId() {
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -50,11 +91,11 @@ public class PullDown {
         this.selectionType = selectionType;
     }
 
-    public String getActive() {
+    public int getActive() {
         return active;
     }
 
-    public void setActive(String active) {
+    public void setActive(int active) {
         this.active = active;
     }
 
@@ -66,19 +107,19 @@ public class PullDown {
         this.apr = apr;
     }
 
-    public List<String> getOrgType() {
-        return orgType;
+    public List<PullDownItem> getpullDownItems() {
+        return pullDownItems;
     }
 
-    public void setOrgType(List<String> orgType) {
-        this.orgType = orgType;
+    public void setpullDownItems(List<PullDownItem> pullDownItems) {
+        this.pullDownItems = pullDownItems;
     }
 
-    public String getOrgId() {
+    public Long getOrgId() {
         return orgId;
     }
 
-    public void setOrgId(String orgId) {
+    public void setOrgId(Long orgId) {
         this.orgId = orgId;
     }
 
@@ -90,8 +131,9 @@ public class PullDown {
                 ", selectionType='" + selectionType + '\'' +
                 ", active='" + active + '\'' +
                 ", apr='" + apr + '\'' +
-                ", orgType=" + orgType +
+                ", pullDownItems=" + pullDownItems +
                 ", orgId='" + orgId + '\'' +
                 '}';
     }
+
 }

@@ -1,7 +1,15 @@
 package com.kastech.blumen.model.student.logs;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "text_messages" ,schema = "blumen2")
 public class StudentTextMessagesLog {
 
+	@Id
+	private Long id;
     private String ssno;
     private String firstName;
     private String lastName;
@@ -41,7 +49,15 @@ public class StudentTextMessagesLog {
         this.standing = standing;
     }
 
-    public String getSsno() {
+    public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getSsno() {
         return ssno;
     }
 

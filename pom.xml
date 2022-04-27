@@ -21,10 +21,24 @@
         <websphere.mq.version>7.5.0.5</websphere.mq.version>
         <micrometer.version>1.1.4</micrometer.version>
         <springdoc.version>1.2.21</springdoc.version>
+        <keycloak.version>15.1.0</keycloak.version>
+        <poi.version>5.0.0</poi.version>
         <sonar.exclusions>**/model/**/*.java, **/*ScopeSecurity.java, **/*Properties*, **/*Mapping*, **/*constants/*,
             **/pom.xml, xsd/**/*, **/*.xsd, test/**/*, **/Application.java, **/*VO.java, **/*VO.groovy, **/*Test.groovy
         </sonar.exclusions>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.keycloak.bom</groupId>
+                <artifactId>keycloak-adapter-bom</artifactId>
+                <version>${keycloak.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
 
@@ -184,18 +198,18 @@
             <version>3.1.0-b030</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
+        <!-- <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jdbc</artifactId>
             <version>${spring.version}</version>
-        </dependency>
-       <!--  <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.16</version>
         </dependency> -->
+        <!--  <dependency>
+             <groupId>mysql</groupId>
+             <artifactId>mysql-connector-java</artifactId>
+             <version>8.0.16</version>
+         </dependency> -->
 
-<!-- postgresql dependency-->
+        <!-- postgresql dependency-->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -210,10 +224,91 @@
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
+            <artifactId>spring-boot-starter-security</artifactId>
             <version>${spring.version}</version>
         </dependency>
 
+        <!--  <dependency>
+             <groupId>org.springframework.boot</groupId>
+             <artifactId>spring-boot-starter-jdbc</artifactId>
+             <version>${spring.version}</version>
+         </dependency> -->
+
+        <!--Swagger -->
+        <!--   <dependency>
+              <groupId>io.springfox</groupId>
+              <artifactId>springfox-swagger2</artifactId>
+              <version>2.9.2</version>
+          </dependency>
+
+          <dependency>
+              <groupId>io.springfox</groupId>
+              <artifactId>springfox-swagger-ui</artifactId>
+              <version>2.9.2</version>
+          </dependency> -->
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-spring-boot-starter</artifactId>
+            <version>${keycloak.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-admin-client</artifactId>
+            <version>${keycloak.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>${poi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${poi.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.sendgrid/sendgrid-java -->
+        <dependency>
+            <groupId>com.sendgrid</groupId>
+            <artifactId>sendgrid-java</artifactId>
+            <version>4.9.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+            <version>2.5.6</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.microsoft.azure/azure-storage-spring-boot-starter -->
+        <dependency>
+            <groupId>com.microsoft.azure</groupId>
+            <artifactId>azure-storage-spring-boot-starter</artifactId>
+            <version>2.2.5</version>
+        </dependency>
+
+
+
+        <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.4</version>
+        </dependency>
     </dependencies>
 
     <profiles>
@@ -231,105 +326,116 @@
     </profiles>
 
     <build>
-    <!-- FinalName enforces that ALL java artifacts will be named app.jar
-             This is so all of our build scripts will be the same.
-             -->
-    <finalName>app</finalName>
-    <plugins>
-    <plugin>
-        <!-- This plugin forces a fat-jar build -->
-        <!-- We need to force a fat jar build because we are using UHG parent pom -->
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <version>${spring.version}</version>
-        <configuration>
-            <mainClass>com.optum.c360.Application</mainClass>
-        </configuration>
-        <executions>
-            <execution>
-                <goals>
-                    <goal>repackage</goal>
-                </goals>
-            </execution>
-        </executions>
-    </plugin>
+        <!-- FinalName enforces that ALL java artifacts will be named app.jar
+                 This is so all of our build scripts will be the same.
+                 -->
+        <finalName>app</finalName>
+        <plugins>
+            <plugin>
+                <!-- This plugin forces a fat-jar build -->
+                <!-- We need to force a fat jar build because we are using  parent pom -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.version}</version>
+                <configuration>
+                    <mainClass>com.kastech.blumen.Application</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 
 
-    <!-- Needed for compiling groovy classes -->
+            <!-- Needed for compiling groovy classes -->
 
-    <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.1</version>
-        <configuration>
-            <source>11</source>
-            <target>11</target>
-            <!--                    <release>11</release>-->
-            <compilerId>groovy-eclipse-compiler</compilerId>
-            <compilerArgument>-XDignore.symbol.file</compilerArgument>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                    <!--                    <release>11</release>-->
+                    <compilerId>groovy-eclipse-compiler</compilerId>
+                    <compilerArgument>-XDignore.symbol.file</compilerArgument>
 
-        </configuration>
-        <dependencies>
-            <dependency>
-                <groupId>org.codehaus.groovy</groupId>
-                <artifactId>groovy-eclipse-compiler</artifactId>
-                <version>3.6.0-01</version>
-            </dependency>
-            <!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-eclipse-batch -->
-            <dependency>
-                <groupId>org.codehaus.groovy</groupId>
-                <artifactId>groovy-eclipse-batch</artifactId>
-                <version>2.5.8-02</version>
-            </dependency>
-        </dependencies>
-    </plugin>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy-eclipse-compiler</artifactId>
+                        <version>3.6.0-01</version>
+                    </dependency>
+                    <!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-eclipse-batch -->
+                    <dependency>
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy-eclipse-batch</artifactId>
+                        <version>2.5.8-02</version>
+                    </dependency>
+                    <!--            <dependency>-->
+                    <!--                <groupId>org.hibernate</groupId>-->
+                    <!--                <artifactId>hibernate-core</artifactId>-->
+                    <!--                <version>4.1.4.Final</version>-->
+                    <!--            </dependency>-->
+                    <!--            <dependency>-->
+                    <!--                <groupId>org.hibernate</groupId>-->
+                    <!--                <artifactId>hibernate-entitymanager</artifactId>-->
+                    <!--                <version>5.2.3.Final</version>-->
+                    <!--            </dependency>-->
+                </dependencies>
 
-    <!-- This is being used to compile the test module -->
-    <!-- Using gmavenplus so we can use groovy version 2.4 -->
+            </plugin>
 
-    <plugin>
-        <groupId>org.codehaus.gmavenplus</groupId>
-        <artifactId>gmavenplus-plugin</artifactId>
-        <version>1.6</version>
-        <executions>
-            <execution>
-                <goals>
-                    <goal>compile</goal>
-                    <goal>compileTests</goal>
-                </goals>
-            </execution>
-        </executions>
-    </plugin>
+            <!-- This is being used to compile the test module -->
+            <!-- Using gmavenplus so we can use groovy version 2.4 -->
 
-    <!-- This is for sonar jenkins build so the build deps can be accessed -->
+            <plugin>
+                <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>compileTests</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 
-    <plugin>
-        <groupId>org.sonarsource.scanner.maven</groupId>
-        <artifactId>sonar-maven-plugin</artifactId>
-        <version>3.7.0.1746</version>
-    </plugin>
+            <!-- This is for sonar jenkins build so the build deps can be accessed -->
 
-    <plugin>
-        <groupId>org.jacoco</groupId>
-        <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.8.5</version>
-        <executions>
-            <execution>
-                <goals>
-                    <goal>prepare-agent</goal>
-                </goals>
-            </execution>
-            <execution>
-                <id>report</id>
-                <phase>prepare-package</phase>
-                <goals>
-                    <goal>report</goal>
-                </goals>
-            </execution>
-        </executions>
-    </plugin>
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.7.0.1746</version>
+            </plugin>
 
-    </plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.5</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
 
     </build>
 </project>

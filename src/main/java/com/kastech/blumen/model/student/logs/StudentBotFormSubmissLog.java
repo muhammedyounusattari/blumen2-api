@@ -1,8 +1,15 @@
 package com.kastech.blumen.model.student.logs;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "student_botform_submisslog", schema = "blumen2")
 public class StudentBotFormSubmissLog {
 
-    private String submissionId;
+    @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="student_botform_submisslog_list_seq_gen")
+    @SequenceGenerator(name="student_botform_submisslog_list_seq_gen", sequenceName="STUDENT_BOTFORM_SUBLOG_LIST_SEQ")
+    private Long submissionId;
     private String botFormName;
     private String submissionDate;
     private String name;
@@ -14,7 +21,7 @@ public class StudentBotFormSubmissLog {
     public StudentBotFormSubmissLog() {
     }
 
-    public StudentBotFormSubmissLog(String submissionId, String botFormName, String submissionDate, String name, String email, String status, String archive, String preview) {
+    public StudentBotFormSubmissLog(Long submissionId, String botFormName, String submissionDate, String name, String email, String status, String archive, String preview) {
         this.submissionId = submissionId;
         this.botFormName = botFormName;
         this.submissionDate = submissionDate;
@@ -25,11 +32,11 @@ public class StudentBotFormSubmissLog {
         this.preview = preview;
     }
 
-    public String getSubmissionId() {
+    public Long getSubmissionId() {
         return submissionId;
     }
 
-    public void setSubmissionId(String submissionId) {
+    public void setSubmissionId(Long submissionId) {
         this.submissionId = submissionId;
     }
 
@@ -101,5 +108,18 @@ public class StudentBotFormSubmissLog {
                 ", archive='" + archive + '\'' +
                 ", preview='" + preview + '\'' +
                 '}';
+    }
+
+    public StudentBotFormSubmissLog updateWith(StudentBotFormSubmissLog item) {
+        return new StudentBotFormSubmissLog(
+                this.submissionId,
+                item.botFormName,
+                item.submissionDate,
+                item.name,
+                item.email,
+                item.status,
+                item.archive,
+                item.preview
+        );
     }
 }

@@ -1,26 +1,55 @@
 package com.kastech.blumen.model;
 
-public class ConfigSettings {
+import javax.persistence.*;
+import java.io.Serializable;
 
-	private Integer configID;
+@Entity
+@Table(name = "config_setting" ,schema = "blumen2")
+public class ConfigSettings implements Serializable {
+
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	private Long id;
+
+	@Column(nullable = false)
+	private Integer configId;
+
 	private String configType;
 	private String configValue; 
 	private String description;
-	
-	public ConfigSettings(Integer configID, String configType, String configValue, String description) {
-		super();
-		this.configID = configID;
+
+	@Column(nullable = false)
+	private Long orgId;
+
+	@Column(nullable = false)
+	private Long userId;
+
+	public ConfigSettings() {}
+
+	public ConfigSettings(Long id, Integer configId, String configType, String configValue, String description, Long orgId, Long userId) {
+		this.id = id;
+		this.configId = configId;
 		this.configType = configType;
 		this.configValue = configValue;
 		this.description = description;
+		this.orgId = orgId;
+		this.userId = userId;
 	}
 
-	public Integer getConfigID() {
-		return configID;
+	public Long getId() {
+		return id;
 	}
 
-	public void setConfigID(Integer configID) {
-		this.configID = configID;
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Integer getConfigId() {
+		return configId;
+	}
+
+	public void setConfigId(Integer configId) {
+		this.configId = configId;
 	}
 
 	public String getConfigType() {
@@ -47,12 +76,32 @@ public class ConfigSettings {
 		this.description = description;
 	}
 
+	public Long getOrgId() {
+		return orgId;
+	}
+
+	public void setOrgId(Long orgId) {
+		this.orgId = orgId;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
 	@Override
 	public String toString() {
-		return "ConfigSettings [configID=" + configID + ", configType=" + configType + ", configValue=" + configValue
-				+ ", description=" + description + "]";
+		return "ConfigSettings{" +
+				"id=" + id +
+				", configId=" + configId +
+				", configType='" + configType + '\'' +
+				", configValue='" + configValue + '\'' +
+				", description='" + description + '\'' +
+				", orgId=" + orgId +
+				", userId=" + userId +
+				'}';
 	}
-	
-	
-	
 }

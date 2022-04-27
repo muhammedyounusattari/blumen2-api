@@ -1,8 +1,16 @@
 package com.kastech.blumen.model.student.contacts;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "student_disp_staff_rem_contacts", schema = "blumen2")
 public class StudentDispStaffContReminder {
 
-    private String ssno;
+    @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="student_disp_staff_rem_contacts_list_seq_gen")
+    @SequenceGenerator(name="student_disp_staff_rem_contacts_list_seq_gen", sequenceName="STUDENT_DISP_STAFF_REM_CONTACT_LIST_SEQ")
+    private Long id;
+    private Long ssno;
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -19,10 +27,13 @@ public class StudentDispStaffContReminder {
     private String school;
     private String standing;
 
+    private transient boolean isReminder;
+
     public StudentDispStaffContReminder() {
     }
 
-    public StudentDispStaffContReminder(String ssno, String firstName, String lastName, String phoneNumber, String contactDate, String staff, String contactTime, String recontactDate, String fiscalYear, boolean active, boolean served, boolean reported, String councelor, String school, String standing) {
+    public StudentDispStaffContReminder(Long id, Long ssno, String firstName, String lastName, String phoneNumber, String contactDate, String staff, String contactTime, String recontactDate, String fiscalYear, boolean active, boolean served, boolean reported, String councelor, String school, String standing, boolean isReminder) {
+        this.id = id;
         this.ssno = ssno;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -38,13 +49,14 @@ public class StudentDispStaffContReminder {
         this.councelor = councelor;
         this.school = school;
         this.standing = standing;
+        this.isReminder = isReminder;
     }
 
-    public String getSsno() {
+    public Long getSsno() {
         return ssno;
     }
 
-    public void setSsno(String ssno) {
+    public void setSsno(Long ssno) {
         this.ssno = ssno;
     }
 
@@ -94,14 +106,6 @@ public class StudentDispStaffContReminder {
 
     public void setContactTime(String contactTime) {
         this.contactTime = contactTime;
-    }
-
-    public String getRecontactDate() {
-        return recontactDate;
-    }
-
-    public void setRecontactDate(String recontactDate) {
-        this.recontactDate = recontactDate;
     }
 
     public String getFiscalYear() {
@@ -160,17 +164,43 @@ public class StudentDispStaffContReminder {
         this.standing = standing;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
+    public boolean isReminder() {
+        return isReminder;
+    }
+
+    public void setReminder(boolean reminder) {
+        isReminder = reminder;
+    }
+
+    public String getRecontactDate() {
+        return recontactDate;
+    }
+
+    public void setRecontactDate(String recontactDate) {
+        this.recontactDate = recontactDate;
+    }
+
     @Override
     public String toString() {
         return "StudentDispStaffContReminder{" +
-                "ssno='" + ssno + '\'' +
+                "id=" + id +
+                ", ssno=" + ssno +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", contactDate='" + contactDate + '\'' +
                 ", staff='" + staff + '\'' +
                 ", contactTime='" + contactTime + '\'' +
-                ", recontactDate='" + recontactDate + '\'' +
+                ", recontactDate=" + recontactDate +
                 ", fiscalYear='" + fiscalYear + '\'' +
                 ", active=" + active +
                 ", served=" + served +
@@ -178,6 +208,30 @@ public class StudentDispStaffContReminder {
                 ", councelor='" + councelor + '\'' +
                 ", school='" + school + '\'' +
                 ", standing='" + standing + '\'' +
+                ", isReminder=" + isReminder +
                 '}';
+    }
+
+    public StudentDispStaffContReminder updateWith(StudentDispStaffContReminder item) {
+        return new StudentDispStaffContReminder(
+                this.id,
+                item.ssno,
+                item.firstName,
+                item.lastName,
+                item.phoneNumber,
+                item.contactDate,
+                item.staff,
+                item.contactTime,
+                item.recontactDate,
+                item.fiscalYear,
+                item.active,
+                item.served,
+                item.reported,
+                item.councelor,
+                item.school,
+                item.standing,
+                item.isReminder
+
+        );
     }
 }

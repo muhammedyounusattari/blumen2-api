@@ -1,9 +1,24 @@
 package com.kastech.blumen.model.counselor;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
 import com.kastech.blumen.model.Address;
 
+@Entity
+@Table(name = "counselor" ,schema = "blumen2")
 public class Counselor {
 
+	@Id
+	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="counselor_seq_gen")
+    @SequenceGenerator(name="counselor_seq_gen", sequenceName="COUNSELOR_SEQ")
+	private Long id;
     private String staffName;
     private String staffId;
     private String staffTitle;
@@ -31,6 +46,7 @@ public class Counselor {
     private String staffNotes;
     private String staffPicture;
 
+    @OneToOne(cascade = {CascadeType.ALL})
     private Address address;
 
     public Counselor() {
@@ -61,7 +77,15 @@ public class Counselor {
         this.address = address;
     }
 
-    public String getStaffName() {
+    public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getStaffName() {
         return staffName;
     }
 

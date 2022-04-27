@@ -2,13 +2,24 @@ package com.kastech.blumen.utility;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kastech.blumen.exception.ServiceLayerException;
+import com.kastech.blumen.model.StudentProfile;
+import com.kastech.blumen.model.admin.systemtools.TimeClockManager;
 import com.kastech.blumen.model.counselor.Counselor;
 import com.kastech.blumen.model.customize.*;
+import com.kastech.blumen.model.keycloak.LoggedUser;
+import com.kastech.blumen.model.keycloak.UserMetaData;
+import com.kastech.blumen.model.keycloak.UserSecurityInfo;
 import com.kastech.blumen.model.staff.Staff;
 import com.kastech.blumen.model.student.contacts.*;
+import com.kastech.blumen.model.student.dataentry.AddressNotes;
+import com.kastech.blumen.model.student.dataentry.GraduatedInformation;
+import com.kastech.blumen.model.student.home.StudentData;
 import com.kastech.blumen.model.student.logs.*;
 import com.kastech.blumen.model.teacher.Teacher;
 import com.kastech.blumen.model.tutor.Tutor;
+import com.kastech.blumen.model.utilities.generatesimilar.AttendanceLog;
+import com.kastech.blumen.model.utilities.quickedit.CoursesInformation;
+import com.kastech.blumen.model.utilities.quickedit.Semester;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -273,6 +284,45 @@ public class CommonUtil {
         return studentAttendanceLog;
     }
 
+    public static LoggedUser convertJsonStringToPojoForLoggedUser(String object)  {
+        LoggedUser loggedUser = null;
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(NON_NULL);
+        try {
+            loggedUser = mapper.readValue(object, LoggedUser.class);
+        } catch (Exception e) {
+            LOGGER.error("Error parsing {} json string to object ", object.getClass(), e);
+            throw new ServiceLayerException("Unable to parse json string to object");
+        }
+        return loggedUser;
+    }
+
+    public static UserMetaData convertJsonStringToPojoForUserMetaData(String object)  {
+        UserMetaData userMetaData = null;
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(NON_NULL);
+        try {
+            userMetaData = mapper.readValue(object, UserMetaData.class);
+        } catch (Exception e) {
+            LOGGER.error("Error parsing {} json string to object ", object.getClass(), e);
+            throw new ServiceLayerException("Unable to parse json string to object");
+        }
+        return userMetaData;
+    }
+
+    public static UserSecurityInfo convertJsonStringToPojoForUserSecurityInfo(String object)  {
+        UserSecurityInfo userSecurityInfo = null;
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(NON_NULL);
+        try {
+            userSecurityInfo = mapper.readValue(object, UserSecurityInfo.class);
+        } catch (Exception e) {
+            LOGGER.error("Error parsing {} json string to object ", object.getClass(), e);
+            throw new ServiceLayerException("Unable to parse json string to object");
+        }
+        return userSecurityInfo;
+    }
+
     public static StudentDispCouContRemin convertJsonStringToPojoForStudentDispCouContRemin(String object)  {
         StudentDispCouContRemin studentDispCouContRemin = null;
         ObjectMapper mapper = new ObjectMapper();
@@ -390,7 +440,109 @@ public class CommonUtil {
         return customFieldsNameType;
     }
 
+    public static StudentProfile convertJsonStringToPojoForStudentProfile(String object)  {
+        StudentProfile studentProfile = null;
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(NON_NULL);
+        try {
+            studentProfile = mapper.readValue(object, StudentProfile.class);
+        } catch (Exception e) {
+            LOGGER.error("Error parsing {} json string to object ", object.getClass(), e);
+            throw new ServiceLayerException("Unable to parse json string to object");
+        }
+        return studentProfile;
+    }
+
+    public static TimeClockManager convertJsonStringToPojoForTimeClockManager(String object)  {
+        TimeClockManager timeClockManager = null;
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(NON_NULL);
+        try {
+            timeClockManager = mapper.readValue(object, TimeClockManager.class);
+        } catch (Exception e) {
+            LOGGER.error("Error parsing {} json string to object ", object.getClass(), e);
+            throw new ServiceLayerException("Unable to parse json string to object");
+        }
+        return timeClockManager;
+    }
+
+    public static AttendanceLog convertJsonStringToPojoForAttendanceLog(String object)  {
+        AttendanceLog attendanceLog = null;
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(NON_NULL);
+        try {
+            attendanceLog = mapper.readValue(object, AttendanceLog.class);
+        } catch (Exception e) {
+            LOGGER.error("Error parsing {} json string to object ", object.getClass(), e);
+            throw new ServiceLayerException("Unable to parse json string to object");
+        }
+        return attendanceLog;
+    }
+
+    public static CoursesInformation convertJsonStringToPojoForCoursesInformation(String object)  {
+        CoursesInformation coursesInformation = null;
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(NON_NULL);
+        try {
+            coursesInformation = mapper.readValue(object, CoursesInformation.class);
+        } catch (Exception e) {
+            LOGGER.error("Error parsing {} json string to object ", object.getClass(), e);
+            throw new ServiceLayerException("Unable to parse json string to object");
+        }
+        return coursesInformation;
+    }
 
 
+    public static GraduatedInformation convertJsonStringToPojoForGraduatedInformation(String object)  {
+        GraduatedInformation graduatedInformation = null;
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(NON_NULL);
+        try {
+            graduatedInformation = mapper.readValue(object, GraduatedInformation.class);
+        } catch (Exception e) {
+            LOGGER.error("Error parsing {} json string to object ", object.getClass(), e);
+            throw new ServiceLayerException("Unable to parse json string to object");
+        }
+        return graduatedInformation;
+    }
+
+    public static AddressNotes convertJsonStringToPojoForAddressNotes(String object)  {
+        AddressNotes addressNotes = null;
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(NON_NULL);
+        try {
+            addressNotes = mapper.readValue(object, AddressNotes.class);
+        } catch (Exception e) {
+            LOGGER.error("Error parsing {} json string to object ", object.getClass(), e);
+            throw new ServiceLayerException("Unable to parse json string to object");
+        }
+        return addressNotes;
+    }
+
+    public static Semester convertJsonStringToPojoForSemester(String object)  {
+        Semester semester = null;
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(NON_NULL);
+        try {
+            semester = mapper.readValue(object, Semester.class);
+        } catch (Exception e) {
+            LOGGER.error("Error parsing {} json string to object ", object.getClass(), e);
+            throw new ServiceLayerException("Unable to parse json string to object");
+        }
+        return semester;
+    }
+
+    public static StudentData convertJsonStringToPojoForStudent(String object)  {
+        StudentData student = null;
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(NON_NULL);
+        try {
+            student = mapper.readValue(object, StudentData.class);
+        } catch (Exception e) {
+            LOGGER.error("Error parsing {} json string to object ", object.getClass(), e);
+            throw new ServiceLayerException("Unable to parse json string to object");
+        }
+        return student;
+    }
 
 }

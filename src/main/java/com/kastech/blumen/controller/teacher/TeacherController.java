@@ -1,5 +1,6 @@
 package com.kastech.blumen.controller.teacher;
 
+import com.google.gson.Gson;
 import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.teacher.Teacher;
 import com.kastech.blumen.repository.teacher.TeacherRepository;
@@ -8,6 +9,7 @@ import com.kastech.blumen.validator.teacher.TeacherValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +25,8 @@ public class TeacherController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TeacherController.class);
 
-    TeacherRepository collegeSchoolRepository;
+    @Autowired
+    TeacherRepository teacherRepository;
 
     @Autowired
     TeacherServiceV1 teacherServiceV1;
@@ -38,28 +41,33 @@ public class TeacherController {
     @GetMapping(path = "/getTeacherList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Collection<Teacher>> getTeacherList() {
-
-        return ResponseEntity.ok(teacherMap.values());
+    	
+        return ResponseEntity.ok(teacherRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
     }
 
-    @ResponseBody
-    @PostMapping(path = "/teacherList/v1",
-            consumes = {MediaType.APPLICATION_JSON_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> addToTeacherList(@RequestBody String reqBody) {
-        Teacher teacher = teacherServiceV1.doService(reqBody);
-        teacherMap.put(teacher.getStaffId(),teacher);
-        return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
-    }
+	@ResponseBody
+	@PostMapping(path = "/teacherList/v1", 
+			consumes = { MediaType.APPLICATION_JSON_VALUE }, 
+			produces = { MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<String> addToTeacherList(@RequestBody Teacher teacher) {
+
+		teacher = teacherRepository.save(teacher);
+		if (teacher != null)
+			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+
+		return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
+	}
 
     @ResponseBody
     @PutMapping(path = "/updateTeacherList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> editTeacherList(@RequestBody String reqBody) {
-        Teacher teacher = teacherServiceV1.doService(reqBody);
-        teacherMap.put(teacher.getStaffId(),teacher);
-        return new ResponseEntity(new Response(200,"success"), null, HttpStatus.OK);
+    public ResponseEntity<String> editTeacherList(@RequestBody Teacher teacher) {
+        teacher = teacherRepository.save(teacher);
+		if (teacher != null)
+			return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
+
+		return new ResponseEntity(new Response(200, "Failed"), null, HttpStatus.OK);
     }
 
 
@@ -67,21 +75,19 @@ public class TeacherController {
     @PutMapping(path = "/filter/teacherlist/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> filterTeacherList(@RequestBody String reqBody) {
-        Teacher teacher = teacherServiceV1.doService(reqBody);
-        return ResponseEntity.status(HttpStatus.OK).body("filter pull down list");
+    public ResponseEntity<String> filterTeacherList(@RequestBody Teacher teacher) {
+        return ResponseEntity.status(HttpStatus.OK).body(new Gson().toJson(teacherRepository.findById(teacher.getId())));
     }
 
 
     @ResponseBody
-    @PutMapping(path = "/deleteTeacherList/v1",
+    @DeleteMapping(path = "/deleteTeacherList/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Collection<Teacher>> deleteTeacherList(@RequestBody String reqBody) {
+    public ResponseEntity<Collection<Teacher>> deleteTeacherList(@RequestBody Teacher teacher) {
 
-        Teacher teacher = teacherServiceV1.doService(reqBody);
-        teacherMap.remove(teacher.getStaffId());
+        teacherRepository.delete(teacher);
 
-        return ResponseEntity.status(HttpStatus.OK).body(teacherMap.values());
+        return new ResponseEntity(new Response(200, "success"), null, HttpStatus.OK);
     }
 }

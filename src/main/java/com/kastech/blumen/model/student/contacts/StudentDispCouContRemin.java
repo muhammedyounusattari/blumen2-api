@@ -1,7 +1,15 @@
 package com.kastech.blumen.model.student.contacts;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "counselor_contact_reminder" ,schema = "blumen2")
 public class StudentDispCouContRemin {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="counselor_contact_reminder_list_seq_gen")
+    @SequenceGenerator(name="counselor_contact_reminder_list_seq_gen", sequenceName="COUNSELOR_CONTACT_REMINDER_LIST_SEQ")
+	private Long id;
     private String ssno;
     private String firstName;
     private String lastName;
@@ -17,11 +25,13 @@ public class StudentDispCouContRemin {
     private String councelor;
     private String school;
     private String standing;
+    private transient boolean isReminder;
 
     public StudentDispCouContRemin() {
     }
 
-    public StudentDispCouContRemin(String ssno, String firstName, String lastName, String phoneNumber, String contactDate, String contactTime, String recontactDate, String fiscalYear, boolean active, boolean served, boolean reported, String councelor, String school, String standing) {
+    public StudentDispCouContRemin(Long id, String ssno, String firstName, String lastName, String phoneNumber, String contactDate, String contactTime, String recontactDate, String fiscalYear, boolean active, boolean served, boolean reported, String councelor, String school, String standing, boolean isReminder) {
+        this.id = id;
         this.ssno = ssno;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -36,6 +46,15 @@ public class StudentDispCouContRemin {
         this.councelor = councelor;
         this.school = school;
         this.standing = standing;
+        this.isReminder = isReminder;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getSsno() {
@@ -150,16 +169,25 @@ public class StudentDispCouContRemin {
         this.standing = standing;
     }
 
+    public boolean isReminder() {
+        return isReminder;
+    }
+
+    public void setReminder(boolean reminder) {
+        isReminder = reminder;
+    }
+
     @Override
     public String toString() {
         return "StudentDispCouContRemin{" +
-                "ssno='" + ssno + '\'' +
+                "id=" + id +
+                ", ssno='" + ssno + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", contactDate='" + contactDate + '\'' +
                 ", contactTime='" + contactTime + '\'' +
-                ", recontactDate='" + recontactDate + '\'' +
+                ", recontactDate=" + recontactDate +
                 ", fiscalYear='" + fiscalYear + '\'' +
                 ", active=" + active +
                 ", served=" + served +
@@ -167,6 +195,7 @@ public class StudentDispCouContRemin {
                 ", councelor='" + councelor + '\'' +
                 ", school='" + school + '\'' +
                 ", standing='" + standing + '\'' +
+                ", isReminder=" + isReminder +
                 '}';
     }
 }
