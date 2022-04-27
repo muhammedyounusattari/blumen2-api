@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -19,7 +18,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Collection;
 
 import static com.kastech.blumen.constants.SecurityConstants.*;
 
@@ -43,15 +41,13 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
         String orgCode = null;
         UserDetails userDetails = null;
         if(!StringUtils.isBlank(requestTokenHeader) && requestTokenHeader.startsWith(TOKEN_PREFIX)){
-
-
             jwtToken = requestTokenHeader.substring(7);
             email = this.jwtUtil.extractUsername(jwtToken);
             orgCode = this.jwtUtil.extractKeyFromToken(jwtToken, "orgCode");
 
             if(!(StringUtils.isBlank(email) || StringUtils.isBlank(orgCode))) {
-                userDetails = this.customUserDetailsService.loadUserByEmailAndOrganization(email, orgCode);
-                if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                userDetails = this.customUserDetailsService.loadUserByEmailAndOrganization(email, orgCode,SecurityContextHolder.getContext().getAuthentication());
+                if (SecurityContextHolder.getContext().getAuthentication() == null) {
                     UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                     usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);

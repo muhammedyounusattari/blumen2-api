@@ -1,5 +1,8 @@
 package com.kastech.blumen.controller.admin.home;
 
+import com.kastech.blumen.exception.DataModificationException;
+import com.kastech.blumen.exception.DataNotFoundException;
+import com.kastech.blumen.exception.InputValidationException;
 import com.kastech.blumen.model.CustomUserDetails;
 import com.kastech.blumen.model.admin.home.OrgInfo;
 import com.kastech.blumen.model.admin.home.Organization;
@@ -21,6 +24,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
+
+import static com.kastech.blumen.constants.ErrorMessageConstants.*;
 
 @RestController
 @RequestMapping("/api/blumen-api/admin/home")
@@ -109,32 +114,21 @@ public class OrganizationController {
     @PostMapping(path = "/addOrganization/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    //@PreAuthorize("hasAnyAuthority('Super Admin')")
+    @PreAuthorize("hasAnyAuthority('Super Admin')")
     public ResponseEntity<String> addOrganization(@RequestBody Organization organization) {
-        try {
-            LOGGER.info("call made to add organization with payload {}", organization);
-            Map<String, Object> map = new HashMap<>();
-            if(null != organization.getOrgId()) {
-                map.put("message", "Org Id should be empty string while adding organization");
-                map.put("status", "400");
-                return new ResponseEntity(map, null, HttpStatus.OK);
-            }
-            if (null != organization.getOrgId() &&  organization.getOrgId() == 0L) {
-                map.put("message", "Organization 0 needs manual DB setup ");
-                map.put("status", "400");
-                return new ResponseEntity(map, null, HttpStatus.OK);
-            }
-            map.put("body", organizationService.createOrganization(organization).getOrgId());
-            map.put("status", "200");
-            return new ResponseEntity(map, null, HttpStatus.OK);
-        } catch (Exception e) {
-            LOGGER.error("Execption while onBoarding organization");
-            e.printStackTrace();
-            Map<String, Object> map = new HashMap<>();
-            map.put("message", e.getMessage());
-            map.put("status", "400");
-            return new ResponseEntity(map, null, HttpStatus.OK);
+
+        LOGGER.info("call made to add organization with payload {}", organization);
+        if(null != organization.getOrgId()) {
+            throw new InputValidationException(NEW_ORGANIZATION_NOTNULL);
         }
+        if (null != organization.getOrgId() &&  organization.getOrgId() == 0L) {
+            throw new DataNotFoundException(ORGANIZATION_0_SETUP);
+        }
+        Map<String, Object> map = new HashMap<>();
+        map.put("body", organizationService.createOrganization(organization).getOrgId());
+        map.put("status", "200");
+        return new ResponseEntity(map, null, HttpStatus.OK);
+
     }
 
     @ResponseBody
@@ -143,18 +137,11 @@ public class OrganizationController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     @PreAuthorize("hasAnyAuthority('Super Admin')")
     public ResponseEntity<String> updateOrganization(@RequestBody Organization organization) {
-        Organization organizationObj = organizationRepository.save(organization);
-        if (null != organizationObj) {
-            Map<String, Object> map = new HashMap<>();
-            map.put("body", organizationObj);
-            map.put("status", "200");
-            return new ResponseEntity(map, null, HttpStatus.OK);
-        } else {
-            Map<String, Object> map = new HashMap<>();
-            map.put("body", organizationObj);
-            map.put("status", "400");
-            return new ResponseEntity(map, null, HttpStatus.OK);
-        }
+        Organization organizationObj = organizationService.updateOrganization(organization);
+        Map<String, Object> map = new HashMap<>();
+        map.put("body", organizationObj);
+        map.put("status", "200");
+        return new ResponseEntity(map, null, HttpStatus.OK);
     }
 
     @ResponseBody
@@ -170,23 +157,11 @@ public class OrganizationController {
         CustomUserDetails customUserDetails = SecurityUtil.getUserDetails();
         loggedUser.setEditedBy(customUserDetails.getUsername());
         loggedUser.setFirstTime(Boolean.TRUE);
-        try {
-            if(null != loggedUser.getId()) {
-                Map<String, Object> map = new HashMap<>();
-                map.put("message", "User Id Id should be empty string while adding User");
-                map.put("status", "400");
-                return new ResponseEntity(map, null, HttpStatus.OK);
-            }
-            loggedUser = loggedUserServiceV1.createUser(loggedUser);
-            return success("Your orgCode "+ loggedUser.getOrgCode()+" email "+loggedUser.getEmail()+" tempLink "+loggedUser.getTempLink(), 200);
-        } catch (Exception e) {
-            LOGGER.error("problem occurred while creating user");
-            e.printStackTrace();
-            Map<String, Object> map = new HashMap<>();
-            map.put("message", "problem in creating a user for orgId "+loggedUser.getOrgId());
-            map.put("status", "400");
-            return new ResponseEntity(map, null, HttpStatus.OK);
+        if(null != loggedUser.getId()) {
+            throw new InputValidationException("User Id Id should be empty string while adding User");
         }
+        loggedUser = loggedUserServiceV1.createUser(loggedUser);
+        return success("Your orgCode "+ loggedUser.getOrgCode()+" email "+loggedUser.getEmail()+" tempLink "+loggedUser.getTempLink(), 200);
 
     }
 
@@ -199,17 +174,20 @@ public class OrganizationController {
         LOGGER.info("Call made to updateUser with payload {}", loggedUser);
         CustomUserDetails customUserDetails = SecurityUtil.getUserDetails();
         loggedUser.setEditedBy(customUserDetails.getUsername());
-        try {
-            loggedUser = loggedUserServiceV1.updateUser(loggedUser);
-            return success("User is updated successfully", 200);
-        } catch (Exception e) {
-            LOGGER.error("problem occurred while updating user");
-            e.printStackTrace();
-            Map<String, Object> map = new HashMap<>();
-            map.put("message", "problem in updating a user for orgId "+loggedUser.getOrgId());
-            map.put("status", "400");
-            return new ResponseEntity(map, null, HttpStatus.OK);
-        }
+        loggedUserServiceV1.updateUser(loggedUser);
+        return success("User updated successfully", 200);
+//
+//        try {
+//            loggedUser = loggedUserServiceV1.updateUser(loggedUser);
+//            return success("User is updated successfully", 200);
+//        } catch (Exception e) {
+//            LOGGER.error("problem occurred while updating user");
+//            e.printStackTrace();
+//            Map<String, Object> map = new HashMap<>();
+//            map.put("message", "problem in updating a user for orgId "+loggedUser.getOrgId());
+//            map.put("status", "400");
+//            return new ResponseEntity(map, null, HttpStatus.OK);
+//        }
 
     }
 

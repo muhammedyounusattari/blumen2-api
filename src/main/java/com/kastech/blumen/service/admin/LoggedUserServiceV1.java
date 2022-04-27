@@ -1,5 +1,8 @@
 package com.kastech.blumen.service.admin;
 
+import com.kastech.blumen.constants.ErrorMessageConstants;
+import com.kastech.blumen.exception.DataModificationException;
+import com.kastech.blumen.exception.DataNotFoundException;
 import com.kastech.blumen.mail.EmailService;
 import com.kastech.blumen.model.admin.home.Organization;
 import com.kastech.blumen.model.keycloak.*;
@@ -20,6 +23,8 @@ import org.springframework.util.StringUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static com.kastech.blumen.constants.ErrorMessageConstants.*;
 
 @Service
 public class LoggedUserServiceV1 {
@@ -79,7 +84,7 @@ public class LoggedUserServiceV1 {
         return loggedUsers;
     }
 
-    public LoggedUser createUser(LoggedUser loggedUser) throws Exception {
+    public LoggedUser createUser(LoggedUser loggedUser) {
         //only Admin can create users with in organization/// add role to method
 
         Long orgIdOfUserLoggedIn = SecurityUtil.getUserOrgId();
@@ -94,15 +99,32 @@ public class LoggedUserServiceV1 {
         }
 
         List<Roles> roles = rolesRepository.findByOrgIdAndRole(loggedUser.getOrgId(), loggedUser.getRoleName());
+        if (roles.isEmpty() || roles.get(0).getPrivileges().isEmpty()) {
+            LOGGER.error("Organization {} don't have role {} or privileges for new user", loggedUser.getOrgId(), loggedUser.getRoleName());
+            throw new DataNotFoundException(ErrorMessageConstants.ORGANIZATION_ROLE_SETUP_MISSING);
+        }
         loggedUser.setRoles((roles.stream().collect(Collectors.toSet())));
         loggedUser.setLastLogin(DateUtil.setDates(0));
 
-        loggedUser = loggedUserRepository.save(loggedUser);
+        try {
+            loggedUser = loggedUserRepository.save(loggedUser);
+        } catch(Exception e) {
+            LOGGER.error("Saving User failed for user {}", loggedUser, e);
+            throw new DataModificationException(ErrorMessageConstants.USER_CREATE_FAILED);
+        }
+
         Organization organization = new Organization();
         organization.setOrgId(loggedUser.getOrgId());
-        organizationService.batchUpdateForOrgAdmin(loggedUser, organization);
+
+        try {
+            organizationService.batchUpdateForOrgAdmin(loggedUser, organization);
+        } catch(Exception e) {
+            LOGGER.error("Configuring User config with org failed user {}", loggedUser, e);
+            throw new DataNotFoundException(ErrorMessageConstants.USER_COPY_CONFIG_FAILED);
+        }
 
         //send email service
+
         String uuid = UUID.randomUUID().toString();
         loggedUser.setHashedCode(uuid);
         loggedUser.setCreatedDate(new Date());
@@ -111,24 +133,23 @@ public class LoggedUserServiceV1 {
         //set expiry of link to 1 day
         loggedUser.setLinkExpiryDate(DateUtil.setDates(1));
         loggedUserRepository.save(loggedUser);
-
         sendMailService.sendMail(loggedUser.getEmail(),"Usercreated password link","Congratulation your account with orgCode "+loggedUser.getOrgCode()+" and email "+loggedUser.getEmail()+" and password set link "+loggedUser.getTempLink());
 
         return loggedUser;
     }
 
-    public LoggedUser updateUser(LoggedUser loggedUser) throws Exception {
+    public LoggedUser updateUser(LoggedUser loggedUser) {
         //only Admin can create users with in organization/// add role to method
         Optional<LoggedUser> users = loggedUserRepository.findById(loggedUser.getId());
         LoggedUser existingUser = null;
         if(users.isEmpty()) {
             LOGGER.error("UserId {} not found in database", loggedUser.getId());
-            throw new UsernameNotFoundException("Username not found");
+            throw new UsernameNotFoundException("UserId not found");
         } else {
             existingUser = users.get();
             if (existingUser.getOrgId() != loggedUser.getOrgId()) {
-                LOGGER.error("Organization of user, {} can't be changed", existingUser.getOrgId());
-                throw new UsernameNotFoundException("Username not found");
+                LOGGER.error("Organization of user - {} can't be changed", existingUser.getOrgId());
+                throw new DataModificationException(ORG_USER_MOVE_NOT_ALLWOED);
             }
         }
 
@@ -156,10 +177,19 @@ public class LoggedUserServiceV1 {
 
         if(!loggedUser.getRoleName().equalsIgnoreCase(existingUser.getRoleName())) {
             List<Roles> roles = rolesRepository.findByOrgIdAndRole(loggedUser.getOrgId(), loggedUser.getRoleName());
+            if (roles.isEmpty() || roles.get(0).getPrivileges().isEmpty()) {
+                LOGGER.error("Organization {} don't have role {} or its privileges", loggedUser.getOrgId(), loggedUser.getRoleName());
+                throw new DataNotFoundException(ORGANIZATION_ROLE_SETUP_MISSING);
+            }
             existingUser.setRoles((roles.stream().collect(Collectors.toSet())));
         }
         existingUser.setRoleName(loggedUser.getRoleName());
-        loggedUser = loggedUserRepository.save(existingUser);
+
+        try {
+            loggedUser = loggedUserRepository.save(existingUser);
+        } catch (Exception e) {
+            throw new DataModificationException(USER_UPDATE_FAILED);
+        }
         return loggedUser;
     }
 
@@ -260,7 +290,7 @@ public class LoggedUserServiceV1 {
 
     public Map<String, String> checkCredentials(String orgCode, String email, String securityAnswer1, String securityAnswer2) {
         Map<String, String> statusMap = new HashMap<>();
-        LOGGER.info("Call made to checkCredentials of ", this.getClass());
+        LOGGER.info("Call made to checkCredentials of {}", this.getClass());
         try {
             Optional<LoggedUser> loggedUserFound = loggedUserRepository.findByEmailAndOrgCode(email, orgCode);
             if (!loggedUserFound.isEmpty()) {
@@ -367,10 +397,8 @@ public class LoggedUserServiceV1 {
       Map<String,Object> map = new HashMap<>();
       Optional<LoggedUser> loggedUsers = loggedUserRepository.findByEmailAndOrgCode(email,orgCode);
       if(loggedUsers.isEmpty()){
-          LOGGER.error("Not a valid user ");
-          map.put("status",400);
-          map.put("message", "Invalid orgCode/Email");
-          return map;
+          LOGGER.error("Not a valid email or orgid ");
+          throw new DataNotFoundException(ErrorMessageConstants.INVALID_ORGCODE_EMAIL_ID);
       }
       LoggedUser loggedUser = loggedUsers.get();
       map.put("isFirstTime",loggedUser.getFirstTime());

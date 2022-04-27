@@ -1,11 +1,14 @@
 package com.kastech.blumen.controller.users;
 
 import com.kastech.blumen.config.CustomAuthenticationProvider;
+import com.kastech.blumen.constants.ErrorMessageConstants;
 import com.kastech.blumen.constants.RestURIConstant;
+import com.kastech.blumen.exception.DataNotFoundException;
 import com.kastech.blumen.model.CustomUserDetails;
 import com.kastech.blumen.model.JWTRequest;
 import com.kastech.blumen.model.JWTResponse;
 import com.kastech.blumen.model.admin.home.Organization;
+import com.kastech.blumen.model.keycloak.LoggedUser;
 import com.kastech.blumen.repository.admin.LoggedUserRepository;
 import com.kastech.blumen.repository.admin.home.OrganizationRepository;
 import com.kastech.blumen.service.CustomUserDetailsService;
@@ -25,10 +28,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+
+import static com.kastech.blumen.constants.SecurityConstants.EXPIRATION_TIME;
 
 @RestController
 @RequestMapping(value = RestURIConstant.ROOT)
@@ -210,18 +212,21 @@ public class UserManagmentController {
             } else {
                 //for super admin
                 //as we don't have any record for superAdmin in organization table
-                //TODO need to come up to some approach, to insert record for superAdmin in organization table
-                organization.setOrgId(0l);
-                organization.setOrgCode("COMPANSOL");
-                organization.setOrgName("COMPANSOL");
+                throw new DataNotFoundException(ErrorMessageConstants.INVALID_ORGANIZATION_SETUP);
             }
 
-            jwtResponse = new JWTResponse(token, this.jwtUtil.extractKeyFromToken(token,"ita"), this.jwtUtil.extractKeyFromToken(token,"exp"), 200,organization.getOrgName(),organization.getOrgId(),organization.getOrgProgramType(),organization.getOrgCode(), customUserDetails.getRoleName());
+            jwtResponse = new JWTResponse(token, this.jwtUtil.extractKeyFromToken(token,"iat"), this.jwtUtil.extractKeyFromToken(token,"exp"), 200,organization.getOrgName(),organization.getOrgId(),organization.getOrgProgramType(),organization.getOrgCode(), customUserDetails.getRoleName());
+            LoggedUser loggedUser = usersRepository.findById(customUserDetails.getUserId()).get();
+            loggedUser.setIssueDate(new Date());
+            loggedUser.setExpiryDate(new Date(System.currentTimeMillis() + EXPIRATION_TIME));
+            usersRepository.save(loggedUser);
 
         } catch (UsernameNotFoundException e) {
             LOGGER.error("Exception occured due to bad credentials");
             e.printStackTrace();
             return success(e.getMessage(),403);
+        } catch (DataNotFoundException e) {
+            throw  e;
         } catch (Exception e) {
             LOGGER.error("Problem occurred while authenticating a user");
             e.printStackTrace();
@@ -257,7 +262,7 @@ public class UserManagmentController {
     ///should support unauthenticated access
     @GetMapping(path = "/ssoConfig", produces = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
-    public  ResponseEntity<?> getSsoConfig(@RequestParam("email") String email, @RequestParam("orgCode") String orgCode) {
+    public  ResponseEntity<Map<String,Object>> getSsoConfig(@RequestParam("email") String email, @RequestParam("orgCode") String orgCode) {
        LOGGER.info("call made to getSSOConfig, with email {} and orgCode {}", email, orgCode);
        Map<String,Object> resultMap = loggedUserServiceV1.validateEmailAndOrgCode(email,orgCode);
        return ResponseEntity.ok(resultMap);

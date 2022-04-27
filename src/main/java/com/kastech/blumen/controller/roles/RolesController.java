@@ -1,5 +1,6 @@
 package com.kastech.blumen.controller.roles;
 
+import com.kastech.blumen.exception.DataNotFoundException;
 import com.kastech.blumen.model.keycloak.DisplayRoles;
 import com.kastech.blumen.model.keycloak.Roles;
 import com.kastech.blumen.model.roles.Role;
@@ -66,7 +67,17 @@ public class RolesController {
             }
         }
 
+        if (roleNames.isEmpty()) {
+            LOGGER.error("Roles s not configured for logged user {}", SecurityUtil.getEmail());
+            throw new DataNotFoundException("Role is not configured for logged user!!");
+        }
+
         List<DisplayRoles> displayRoles = displayRoleRepository.findByRoleName(roleNames);
+        if (displayRoles.isEmpty()) {
+            LOGGER.error("Menus are missing for user {} with Roles {}", SecurityUtil.getEmail(), roleNames);
+            throw new DataNotFoundException("Roles missing for logged user!!");
+        }
+
         List<String> menusToDisplay = displayRoles.get(0).getMenus().stream().map(m -> m.getName()).collect(Collectors.toList());
         return ResponseEntity.accepted().body(menusToDisplay);
     }

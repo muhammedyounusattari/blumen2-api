@@ -1,11 +1,14 @@
 package com.kastech.blumen.service.roles;
 
+import com.kastech.blumen.exception.DataModificationException;
+import com.kastech.blumen.exception.DataNotFoundException;
 import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.keycloak.Privileges;
 import com.kastech.blumen.model.keycloak.Roles;
 import com.kastech.blumen.model.roles.Privilege;
 import com.kastech.blumen.model.roles.Role;
 import com.kastech.blumen.repository.roles.RolesRepository;
+import com.kastech.blumen.utility.SecurityUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.Optional;
+
+import static com.kastech.blumen.constants.ErrorMessageConstants.*;
 
 
 @Service
@@ -34,7 +39,7 @@ public class RolesService {
         return roles.stream().map(r -> new Role(r)).collect(Collectors.toList());
     }
 
-    //Privileges from JPA don't have node list kind of structure so need needs to create new Privilege class
+    //Privileges from JPA don't have node list kind of structure so  needs to create new Privilege class
     //send back map of role_name+_+role_code, privileges in tree structure.
     public List<Role> getRolesByOrgIdV2(Long orgId, String role) {
         LOGGER.info("call made to getRolesByOrgId for orgId {}, roleName {} ", orgId, role);
@@ -45,6 +50,12 @@ public class RolesService {
         } else {
             rolesFromDB = repository.findByOrgId(orgId);
         }
+
+        if (rolesFromDB.isEmpty()) {
+            LOGGER.error("Role {} not configured for org {}",role, orgId);
+            throw new DataNotFoundException("Role is not configured for logged user!!");
+        }
+
 
         List<Role> rolesResponseList = new ArrayList<>();
         for (Roles r : rolesFromDB) {
@@ -94,23 +105,40 @@ public class RolesService {
     public  ResponseEntity<String>  deleteRole(Long roleId) {
         LOGGER.info("call made to deleteRole for orgId {} ", roleId);
         Optional<Roles> role = repository.findById(roleId);
-        //repository.deleteById(roleId);
+        if (role.isEmpty()) {
+            LOGGER.error(" Role Id {} not found", roleId);
+            throw new DataNotFoundException(ROLE_NOT_FOUND);
+        }
         //role.setDeletedBy(SecurityUtil.getUserId());
         //role.setDeletedDate(new Date());
-        repository.delete(role.get());
-        int statusCode = 200;
-        String message = "success";
-        return new ResponseEntity(new Response(statusCode, message), null, HttpStatus.OK);
+        try {
+            repository.delete(role.get());
+        } catch (Exception e) {
+            LOGGER.error("Delete of Role {} is not successful", role.get(), e);
+            throw new DataModificationException(ROLE_DELETE_FAILED);
+        }
+
+        return new ResponseEntity(new Response(200, "Role deleted Successfully"), null, HttpStatus.OK);
     }
 
     public Roles updateRole(Roles roles) {
-        LOGGER.info("call made to updateRole for orgId {}, roleCode ", roles.getOrgId(), roles.getCode());
-        return repository.save(roles);
+        LOGGER.info("call made to updateRole for orgId {}, roleCode {} ", roles.getOrgId(), roles.getCode());
+        try {
+            Roles  updatedRoles= repository.save(roles);
+            return updatedRoles;
+        } catch (Exception e) {
+            LOGGER.error("Update Role {} is not successful", roles, e);
+            throw new DataModificationException(ROLE_UPDATE_FAILED);
+        }
     }
 
     public Roles addRole(Long orgId, String newRoleCode, String newRoleName,
                         String copyRoleName, boolean isDefault) {
-        Roles role = repository.findByOrgIdAndRole(orgId, copyRoleName).get(0);
+        List<Roles> role = repository.findByOrgIdAndRole(orgId, copyRoleName);
+        if (role.isEmpty()) {
+            LOGGER.error(" Role  {} not found for Org {}", copyRoleName, orgId);
+            throw new DataNotFoundException(ROLE_NOT_FOUND);
+        }
         Roles newRole = new Roles();
         newRole.setDefault(isDefault);
         newRole.setName(newRoleName);
@@ -118,7 +146,7 @@ public class RolesService {
         newRole.setOrgId(orgId);
         newRole.setCopyRoleName(copyRoleName);
         //newRole Id should be null
-        newRole.setPrivileges(role.getPrivileges().stream().map(p -> {
+        newRole.setPrivileges(role.get(0).getPrivileges().stream().map(p -> {
             Privileges pp = new Privileges();
             pp.setAccessType(p.getAccessType());
             pp.setCode(p.getCode());
@@ -128,9 +156,20 @@ public class RolesService {
             pp.setParentCode(p.getParentCode());
             return pp;
         }).collect(Collectors.toSet()));
-        return repository.save(newRole);
 
+        if (newRole.getPrivileges().isEmpty()) {
+            LOGGER.error(" Role  {} with for Org {} don't have privileges configured", copyRoleName, orgId);
+            throw new DataNotFoundException(ORGANIZATION_ROLE_SETUP_MISSING);
+        }
 
+        Roles returnRole = null;
+        try {
+            returnRole = repository.save(newRole);
+        } catch (Exception e) {
+            LOGGER.error("Add Role {} is not successful", role, e);
+            throw new DataModificationException(ROLE_ADD_FAILED);
+        }
+        return returnRole;
     }
 
 }

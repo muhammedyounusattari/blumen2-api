@@ -44,7 +44,7 @@ public class PullTypeController {
     @GetMapping (path = "/getMultiPullTypesList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Map<String,List<PullType>>> getMultiPullTypesList(@RequestParam(value = "pullType",required = true) String pullType
-            , @RequestParam(value = "programType",required = false) Long programType) {
+      , @RequestParam(value = "programType",required = false) Long programType) {
         PullTypeMultiSearchRequest pullTypeSearchRequest = new PullTypeMultiSearchRequest();
         pullTypeSearchRequest.setPullType(pullType);
         pullTypeSearchRequest.setProgramType(programType);
@@ -72,7 +72,7 @@ public class PullTypeController {
 
         try {
             // get your file as InputStream
-            iis = new InputStreamResource(new ByteArrayInputStream(pullTypeServiceV1.downloadPullType(pullTypeSearchRequest).toByteArray()));
+             iis = new InputStreamResource(new ByteArrayInputStream(pullTypeServiceV1.downloadPullType(pullTypeSearchRequest).toByteArray()));
 
         } catch (IOException ex) {
             LOGGER.error(ex.toString(),ex);

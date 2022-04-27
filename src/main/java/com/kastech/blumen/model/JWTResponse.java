@@ -3,7 +3,7 @@ package com.kastech.blumen.model;
 public class JWTResponse {
 
     private String access_token;
-    private String ita;
+    private String iat;
     private String exp;
     private Integer status;
     private String orgName;
@@ -12,9 +12,9 @@ public class JWTResponse {
     private String orgCode;
     private String roleName;
 
-    public JWTResponse(String access_token, String ita, String exp, Integer status, String orgName, Long orgId, String programType, String orgCode, String roleName) {
+    public JWTResponse(String access_token, String iat, String exp, Integer status, String orgName, Long orgId, String programType, String orgCode, String roleName) {
         this.access_token = access_token;
-        this.ita = ita;
+        this.iat = iat;
         this.exp = exp;
         this.status = status;
         this.orgName = orgName;
@@ -32,12 +32,12 @@ public class JWTResponse {
         this.access_token = access_token;
     }
 
-    public String getIta() {
-        return ita;
+    public String getIat() {
+        return iat;
     }
 
-    public void setIta(String ita) {
-        this.ita = ita;
+    public void setIat(String iat) {
+        this.iat = iat;
     }
 
     public Integer getStatus() {

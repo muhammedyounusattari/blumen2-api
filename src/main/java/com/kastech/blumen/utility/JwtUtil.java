@@ -57,22 +57,9 @@ public class JwtUtil {
 
 
     private String createToken(Authentication authentication, Map<String, Object> claims, CustomUserDetails user) {
-
-
-     /*   final Set<Roles> rolesOfUser = user.getRoles();
-        final Set<Privileges> privileges = Sets.newHashSet();
-        for (final Role roleOfUser : rolesOfUser) {
-            privileges.addAll(roleOfUser.getPrivileges());
-        }
-        final Function<Object, String> toStringFunction = Functions.toStringFunction();
-        final Collection<String> rolesToString = Collections2.transform(privileges, toStringFunction);
-        final String[] roleStringsAsArray = rolesToString.toArray(new String[rolesToString.size()]);
-        final List<GrantedAuthority> auths = AuthorityUtils.createAuthorityList(roleStringsAsArray); */
-
         String authorities = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
-
         return
         Jwts.builder()
                 .setIssuer(user.getUsername())
@@ -85,18 +72,7 @@ public class JwtUtil {
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY).compact();
-
-/*        return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
-                .signWith(SignatureAlgorithm.HS256, SECRET_KEY).compact();*/
     }
-
-  /*  private String createToken(Map<String, Object> claims, String subject) {
-
-        return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
-                .signWith(SignatureAlgorithm.HS256, SECRET_KEY).compact();
-    } */
 
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
