@@ -587,4 +587,3 @@ public class LoggedUser implements Serializable {
                 '}';
     }
 }
-//    emailVerified,enabled,sendEmail

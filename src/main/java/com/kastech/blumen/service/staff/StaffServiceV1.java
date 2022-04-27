@@ -5,9 +5,6 @@ import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.staff.Staff;
 import com.kastech.blumen.repository.staff.StaffRepository;
 import com.kastech.blumen.utility.CommonUtil;
-import com.microsoft.azure.storage.blob.ContainerURL;
-import com.microsoft.azure.storage.blob.models.BlockBlobUploadResponse;
-import io.reactivex.Flowable;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,23 +50,18 @@ public class StaffServiceV1 {
         return "";
     }
 
-    public Long uplaodFile(MultipartFile file, Long staffId, ContainerURL containerURL) throws IOException {
+    public Long uplaodFile(MultipartFile file, Long staffId) throws IOException {
         LOGGER.info("File upload is {} and staffId {} ", file, staffId);
         if(staffId == 0){
             staffId = 9999999l;
         }
-
         //TODO- Need to check why build is failing due to this code
-        byte bytes[] = file.getBytes();
-        BlockBlobUploadResponse blockBlobUploadResponse= containerURL.createBlockBlobURL("blumen2").upload(Flowable.just(ByteBuffer.wrap(bytes)),bytes.length,null,null,null, null).blockingGet();
-        String result = blockBlobUploadResponse.toString();
-        LOGGER.info("result of response {}", result);
         //code create staffId
      /*   if(staffRepository.findById(staffId).isEmpty()){
             Staff staff = new Staff();
             staffId =  staffRepository.save(staff).getId();
         } */
-   /*    String classPath =  "";//this.getClass().getClassLoader().getName();
+       String classPath =  "";//this.getClass().getClassLoader().getName();
         String extention = FilenameUtils.getExtension(file.getOriginalFilename());
         String filePath = "C:\\Users\\default.DESKTOP-9B0VHF3\\kastech\\blumen_2.0\\src\\main\\resources\\images\\"+staffId+"\\"+staffId+"." + extention;
 
@@ -83,7 +74,7 @@ public class StaffServiceV1 {
         } catch (IOException e) {
             e.printStackTrace();
             throw new IOException();
-        } */
+        }
         return staffId;
     }
 
