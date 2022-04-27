@@ -7,6 +7,9 @@ import com.kastech.blumen.service.home.PullTypeServiceV1;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -41,7 +44,7 @@ public class PullTypeController {
     @GetMapping (path = "/getMultiPullTypesList/v1",
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Map<String,List<PullType>>> getMultiPullTypesList(@RequestParam(value = "pullType",required = true) String pullType
-      , @RequestParam(value = "programType",required = false) Long programType) {
+            , @RequestParam(value = "programType",required = false) Long programType) {
         PullTypeMultiSearchRequest pullTypeSearchRequest = new PullTypeMultiSearchRequest();
         pullTypeSearchRequest.setPullType(pullType);
         pullTypeSearchRequest.setProgramType(programType);
@@ -58,26 +61,26 @@ public class PullTypeController {
 
 
     @RequestMapping (path = "/downloadPullType/v1",method = RequestMethod.GET)
-    public void downloadPullType(@RequestParam(value = "pullType",required = false) String pullType,@RequestParam(value = "description",required = false) String
-            description,@RequestParam(value = "programType",required = false) Long programType,
-                                                           HttpServletResponse response) {
+    public ResponseEntity<Resource> downloadPullType(@RequestParam(value = "pullType",required = false) String pullType, @RequestParam(value = "description",required = false) String
+            description, @RequestParam(value = "programType",required = false) Long programType,
+                                                     HttpServletResponse response) {
         PullTypeSearchRequest pullTypeSearchRequest = new PullTypeSearchRequest();
         pullTypeSearchRequest.setPullType(pullType);
         pullTypeSearchRequest.setDescription(description);
         pullTypeSearchRequest.setProgramType(programType);
-        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-        response.setHeader("Content-Disposition", String.format("inline; filename=\"PullType.xlsx\""));
+        InputStreamResource iis =null;
 
         try {
             // get your file as InputStream
-            InputStream iis = new ByteArrayInputStream(pullTypeServiceV1.downloadPullType(pullTypeSearchRequest).toByteArray());
+            iis = new InputStreamResource(new ByteArrayInputStream(pullTypeServiceV1.downloadPullType(pullTypeSearchRequest).toByteArray()));
 
-            // copy it to response's OutputStream
-            org.apache.commons.io.IOUtils.copy(iis, response.getOutputStream());
-            response.flushBuffer();
         } catch (IOException ex) {
             LOGGER.error(ex.toString(),ex);
         }
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION,String.format("attachment; filename=PullType.xlsx"))
+                .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
+                .body(iis);
 
     }
 }
