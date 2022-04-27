@@ -1,4 +1,4 @@
-# blumen-api
+# blumen2-api
 blumen-api initial project
 
 
