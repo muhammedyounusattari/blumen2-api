@@ -96,7 +96,7 @@ public class OrganizationService {
             throw new DataNotFoundException(INVALID_ORGANIZATION_ID);
         } else {
             existingOrg = organizationDB.get();
-            if (existingOrg.getOrgCode().equals(organization.getOrgCode())) {
+            if (!existingOrg.getOrgCode().equals(organization.getOrgCode())) {
                 LOG.error("Organization Code {} of Org Id {} can't be changed", existingOrg.getOrgCode(), existingOrg.getOrgId());
                 throw new DataModificationException(ORG_CODE_CHANGE_NOT_ALLOWED);
             }
