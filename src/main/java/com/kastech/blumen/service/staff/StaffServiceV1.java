@@ -1,10 +1,17 @@
 package com.kastech.blumen.service.staff;
 
+import com.azure.storage.blob.BlobClient;
+import com.azure.storage.blob.BlobContainerClient;
+import com.azure.storage.blob.BlobContainerClientBuilder;
 import com.kastech.blumen.model.Address;
 import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.staff.Staff;
 import com.kastech.blumen.repository.staff.StaffRepository;
+import com.kastech.blumen.service.upload.UploadFileService;
 import com.kastech.blumen.utility.CommonUtil;
+
+import com.kastech.blumen.utility.DateUtil;
+import com.kastech.blumen.utility.SecurityUtil;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,8 +28,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class StaffServiceV1 {
@@ -30,8 +39,14 @@ public class StaffServiceV1 {
     @Autowired
     StaffRepository staffRepository;
 
+    @Autowired
+    UploadFileService uploadFileService;
+
     @Value("classpath:images")
     Resource resourceFile;
+
+
+
     private static final Logger LOGGER = LoggerFactory.getLogger(StaffServiceV1.class);
 
     public Staff doService(String reqBody){
@@ -50,32 +65,29 @@ public class StaffServiceV1 {
         return "";
     }
 
-    public Long uplaodFile(MultipartFile file, Long staffId) throws IOException {
+    public Staff uplaodFile(MultipartFile file, Long staffId) throws IOException {
         LOGGER.info("File upload is {} and staffId {} ", file, staffId);
-        if(staffId == 0){
-            staffId = 9999999l;
-        }
-        //TODO- Need to check why build is failing due to this code
+
+        //for staff file upload ==> Staff_orgId_userId_staff_Id.extension;
+        String fileName = "staff"+"_"+SecurityUtil.getUserOrgId()+"_"+SecurityUtil.getUserId()+"_"+staffId+"."+FilenameUtils.getExtension(file.getOriginalFilename());
+        fileName = uploadFileService.uploadFile(fileName,file);
+
+        Staff staff = new Staff();
+        Optional<Staff> staffs = staffRepository.findById(staffId);
         //code create staffId
-     /*   if(staffRepository.findById(staffId).isEmpty()){
-            Staff staff = new Staff();
-            staffId =  staffRepository.save(staff).getId();
-        } */
-       String classPath =  "";//this.getClass().getClassLoader().getName();
-        String extention = FilenameUtils.getExtension(file.getOriginalFilename());
-        String filePath = "C:\\Users\\default.DESKTOP-9B0VHF3\\kastech\\blumen_2.0\\src\\main\\resources\\images\\"+staffId+"\\"+staffId+"." + extention;
-
-
-        File newFile  =new File(filePath);
-        try {
-            if (newFile.exists() || newFile.mkdirs()) {
-                file.transferTo(newFile);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new IOException();
+        if(staffs.isEmpty()){
+            staff.setId(staffId);
+            staff =  staffRepository.save(staff);
+        } else {
+            staff = staffs.get();
         }
-        return staffId;
+        staff.setStaffPicture(fileName);
+        staff.setCreatedBy(SecurityUtil.getUserId());
+        staff.setCreatedDate(DateUtil.setDates(0));
+        staff.setOrgId(SecurityUtil.getUserOrgId());
+        staffId =  staffRepository.save(staff).getId();
+
+        return staff;
     }
 
     public byte[] getFile(String staffId) throws IOException {

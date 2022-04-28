@@ -424,4 +424,32 @@ public class LoggedUserServiceV1 {
         }
         return payload;
     }
+
+    public void generateCode() {
+       LOGGER.info("call made to generateCode {}", this.getClass());
+       Integer authCode = new Random().nextInt(999999);
+        Optional<LoggedUser> loggedUsers = loggedUserRepository.findByEmailAndOrgCode(SecurityUtil.getEmail(), SecurityUtil.getUserOrgCode());
+        if(!loggedUsers.isEmpty()) {
+            LoggedUser loggedUserDb = loggedUsers.get();
+            loggedUserDb.setAuthCode(authCode);
+            loggedUserDb.setModifiedBy(SecurityUtil.getUserId());
+            loggedUserRepository.save(loggedUserDb);
+            sendMailService.sendMail(loggedUserDb.getEmail(),"Auth Code from blumen2", "Your authcode is "+authCode);
+        }
+        LOGGER.info("Code generated successfully {}", authCode);
+    }
+
+    public void validateMFACode(Integer authCode) {
+        LOGGER.info("call made to validateMFACode {}", this.getClass());
+        Optional<LoggedUser> loggedUsers = loggedUserRepository.findByEmailAndOrgCode(SecurityUtil.getEmail(), SecurityUtil.getUserOrgCode());
+        if(!loggedUsers.isEmpty()) {
+            LoggedUser loggedUserDb = loggedUsers.get();
+            Integer authCodeDB = loggedUserDb.getAuthCode();
+            if(authCodeDB!=null && authCode.equals(authCodeDB)){
+                loggedUserDb.setAuthCode(null);
+                loggedUserDb.setModifiedBy(SecurityUtil.getUserId());
+                loggedUserRepository.save(loggedUserDb);
+            }
+        }
+    }
 }

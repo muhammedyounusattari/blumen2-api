@@ -2,36 +2,24 @@ package com.kastech.blumen.controller.staff;
 
 import com.google.gson.Gson;
 import com.kastech.blumen.constants.RestURIConstant;
-import com.kastech.blumen.model.Address;
 import com.kastech.blumen.model.Response;
-import com.kastech.blumen.model.customize.GradingGroupList;
-import com.kastech.blumen.model.customize.GradingList;
 import com.kastech.blumen.model.staff.Staff;
 import com.kastech.blumen.repository.staff.StaffRepository;
 import com.kastech.blumen.service.staff.StaffServiceV1;
 import com.kastech.blumen.utility.SecurityUtil;
 import com.kastech.blumen.validator.staff.StaffValidator;
-import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
-import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/api/blumen-api/staff")
@@ -140,18 +128,21 @@ public class StaffController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        Map<String, Long> resultMap = new HashMap<>();
+
+        Map<String, Staff> resultMap = new HashMap<>();
+        Staff staff = null;
         try {
-            //TODO - replace system upload with
-           staffId = staffServiceV1.uplaodFile(file,staffId);
-           resultMap.put("staffId", staffId);
+           staff = staffServiceV1.uplaodFile(file,staffId);
+           resultMap.put("body", staff);
         } catch ( IOException e) {
+           LOGGER.error("Problem in uploading image to storage {}", e);
             return  new ResponseEntity<>(new Response(500, "failure"), null, HttpStatus.BAD_REQUEST);
         } catch(Exception e){
+            LOGGER.error("Problem in uploading image to storage {}", e);
             return  new ResponseEntity<>(new Response(500, "failure"), null, HttpStatus.BAD_REQUEST);
         }
 
-        return new ResponseEntity(staffId, HttpStatus.OK);
+        return new ResponseEntity(resultMap, HttpStatus.OK);
     }
 
 

@@ -130,10 +130,16 @@ public class LoggedUser implements Serializable {
     @Nullable
     private Date linkExpiryDate;
 
+    @Nullable
+    private Integer authCode;
+
+    @Nullable
+    private Long modifiedBy;
+
     public LoggedUser() {
     }
 
-    public LoggedUser(Long id, String orgCode, Long orgId, String username, String email, String password, String roleName, String firstName, String lastName, String scope, String address1, String address2, String city, String state, String zipcode, String mobile, String phone1, String phone2, String fax, String notes, String siteLocation, Boolean active, String createdBy, String editedBy, String securityQuestion1, String securityAnswer1, String securityQuestion2, String securityAnswer2, BOLT bolt, int ita, int exp, Date issueDate, Date expiryDate, @Nullable Integer wrongAttempt, @Nullable Boolean firstTime, @Nullable String tempLink, Date createdDate, Date editedDate, Date lastLogin, Set<Roles> roles, @Nullable String hashedCode, @Nullable Date linkExpiryDate, Set<Organization> organizationSet,@Nullable Date lastLogout ) {
+    public LoggedUser(Long id, String orgCode, Long orgId, String username, String email, String password, String roleName, String firstName, String lastName, String scope, String address1, String address2, String city, String state, String zipcode, String mobile, String phone1, String phone2, String fax, String notes, String siteLocation, Boolean active, String createdBy, String editedBy, String securityQuestion1, String securityAnswer1, String securityQuestion2, String securityAnswer2, BOLT bolt, int ita, int exp, Date issueDate, Date expiryDate, @Nullable Integer wrongAttempt, @Nullable Boolean firstTime, @Nullable String tempLink, Date createdDate, Date editedDate, Date lastLogin, Set<Roles> roles, @Nullable String hashedCode, @Nullable Date linkExpiryDate, Set<Organization> organizationSet,@Nullable Date lastLogout, @Nullable Integer authCode,@Nullable Long modifiedBy ) {
         this.id = id;
         this.orgCode = orgCode;
         this.orgId = orgId;
@@ -178,6 +184,8 @@ public class LoggedUser implements Serializable {
         this.linkExpiryDate = linkExpiryDate;
         this.organizationSet = organizationSet;
         this.lastLogout = lastLogout;
+        this.authCode = authCode;
+        this.modifiedBy = modifiedBy;
     }
 
     public Long getId() {
@@ -537,6 +545,24 @@ public class LoggedUser implements Serializable {
         this.lastLogout = lastLogout;
     }
 
+    @Nullable
+    public Integer getAuthCode() {
+        return authCode;
+    }
+
+    public void setAuthCode(@Nullable Integer authCode) {
+        this.authCode = authCode;
+    }
+
+    @Nullable
+    public Long getModifiedBy() {
+        return modifiedBy;
+    }
+
+    public void setModifiedBy(@Nullable Long modifiedBy) {
+        this.modifiedBy = modifiedBy;
+    }
+
     @Override
     public String toString() {
         return "LoggedUser{" +
@@ -587,3 +613,4 @@ public class LoggedUser implements Serializable {
                 '}';
     }
 }
+//    emailVerified,enabled,sendEmail

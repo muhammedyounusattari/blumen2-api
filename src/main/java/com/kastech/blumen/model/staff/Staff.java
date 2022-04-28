@@ -13,8 +13,7 @@ import com.kastech.blumen.model.student.Student;
 public class Staff {
 
 	@Id
-	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="staff_seq_gen")
-    @SequenceGenerator(name="staff_seq_gen", sequenceName="STAFF_SEQ")
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;
 
   /*  @OneToOne(cascade = {CascadeType.ALL})

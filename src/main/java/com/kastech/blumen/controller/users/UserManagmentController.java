@@ -4,6 +4,7 @@ import com.kastech.blumen.config.CustomAuthenticationProvider;
 import com.kastech.blumen.constants.ErrorMessageConstants;
 import com.kastech.blumen.constants.RestURIConstant;
 import com.kastech.blumen.exception.DataNotFoundException;
+import com.kastech.blumen.exception.InputValidationException;
 import com.kastech.blumen.model.CustomUserDetails;
 import com.kastech.blumen.model.JWTRequest;
 import com.kastech.blumen.model.JWTResponse;
@@ -192,7 +193,7 @@ public class UserManagmentController {
     }
 
 
-    @PostMapping(path = RestURIConstant.LOGIN, consumes = {MediaType.APPLICATION_JSON_VALUE},
+    @PostMapping(path = RestURIConstant.AUTHENTICATE, consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> authenticate(@RequestBody JWTRequest jwtRequest) throws Exception {
         Authentication authentication = null;
@@ -210,12 +211,12 @@ public class UserManagmentController {
             if(!organizations.isEmpty()){
                 organization = organizations.get();
             } else {
-                //for super admin
-                //as we don't have any record for superAdmin in organization table
                 throw new DataNotFoundException(ErrorMessageConstants.INVALID_ORGANIZATION_SETUP);
             }
+            String maskEmail = customUserDetails.getEmail();
+              maskEmail = maskEmail.charAt(0) + "*****" + maskEmail.charAt(maskEmail.length() - 1)+"@"+maskEmail.split("@")[1];
 
-            jwtResponse = new JWTResponse(token, this.jwtUtil.extractKeyFromToken(token,"iat"), this.jwtUtil.extractKeyFromToken(token,"exp"), 200,organization.getOrgName(),organization.getOrgId(),organization.getOrgProgramType(),organization.getOrgCode(), customUserDetails.getRoleName());
+            jwtResponse = new JWTResponse(token, this.jwtUtil.extractKeyFromToken(token,"iat"), this.jwtUtil.extractKeyFromToken(token,"exp"), 200,organization.getOrgName(),organization.getOrgId(),organization.getOrgProgramType(),organization.getOrgCode(), customUserDetails.getRoleName(), organization.getOrgTwoFactor(),maskEmail);
             LoggedUser loggedUser = usersRepository.findById(customUserDetails.getUserId()).get();
             loggedUser.setIssueDate(new Date());
             loggedUser.setExpiryDate(new Date(System.currentTimeMillis() + EXPIRATION_TIME));
@@ -266,6 +267,34 @@ public class UserManagmentController {
        LOGGER.info("call made to getSSOConfig, with email {} and orgCode {}", email, orgCode);
        Map<String,Object> resultMap = loggedUserServiceV1.validateEmailAndOrgCode(email,orgCode);
        return ResponseEntity.ok(resultMap);
+    }
+
+    @GetMapping(path= RestURIConstant.GENERATE_CODE, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> generateMFACode(){
+        LOGGER.info("call made to generateMFACode ");
+        try {
+            loggedUserServiceV1.generateCode();
+            return success("Code sent to an email", 200);
+        } catch (Exception e) {
+            LOGGER.info("Exception occured while generating authCode {} ", e);
+            throw new InputValidationException("Problem in generating authCode "+e.getMessage());
+        }
+    }
+
+    @PostMapping(path = RestURIConstant.VALIDATE_CODE, produces =  {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> validateMFACode(@RequestBody Map<String,Integer> requestPaylaod) {
+       Integer authCode =  requestPaylaod.get("authCode");
+       LOGGER.info("call made to validateCode for authCode {}", authCode);
+       if(authCode != null){
+           try {
+               loggedUserServiceV1.validateMFACode(authCode);
+               return success("Validate successfully", 200);
+           } catch(Exception e) {
+               throw new InputValidationException("authCode is invalid");
+           }
+       }
+       LOGGER.info("authCode is missing ");
+       return failure ("AuthCode is required ", 404);
     }
 
     private ResponseEntity<?> success(Object t, Integer status ){
