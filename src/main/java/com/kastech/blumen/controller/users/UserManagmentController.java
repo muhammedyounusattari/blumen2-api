@@ -80,12 +80,12 @@ public class UserManagmentController {
         return null;
     }
 
-    @GetMapping(value = "/resetPassword/v1/{user}")
-    public ResponseEntity<?> resetUserPassword(@PathVariable(value="user", required = true) String user) {
+    @GetMapping(value = "/resetPassword/v1/{user}/{orgCode}")
+    public ResponseEntity<?> resetUserPassword(@PathVariable(value="user", required = true) String user,@PathVariable(value="orgCode", required = true) String orgCode) {
         String sentMail = "";
         try {
-            LOGGER.info("call made for /resetPassword for user {}", user);
-            sentMail =  loggedUserServiceV1.resetPasswordForUser(user, SecurityUtil.getUserOrgCode());
+            LOGGER.info("call made for /resetPassword for user {} and ", user, orgCode);
+            sentMail =  loggedUserServiceV1.resetPasswordForUser(user, orgCode);
         } catch (UsernameNotFoundException e){
             LOGGER.error("User with email {} not found ", user);
             return failure("User with email "+user+ " not found", 404);
@@ -265,9 +265,9 @@ public class UserManagmentController {
     @GetMapping(path = "/ssoConfig", produces = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
     public  ResponseEntity<Map<String,Object>> getSsoConfig(@RequestParam("email") String email, @RequestParam("orgCode") String orgCode) {
-        LOGGER.info("call made to getSSOConfig, with email {} and orgCode {}", email, orgCode);
-        Map<String,Object> resultMap = loggedUserServiceV1.validateEmailAndOrgCode(email,orgCode);
-        return ResponseEntity.ok(resultMap);
+       LOGGER.info("call made to getSSOConfig, with email {} and orgCode {}", email, orgCode);
+       Map<String,Object> resultMap = loggedUserServiceV1.validateEmailAndOrgCode(email,orgCode);
+       return ResponseEntity.ok(resultMap);
     }
 
     @GetMapping(path= RestURIConstant.GENERATE_CODE, produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -284,18 +284,18 @@ public class UserManagmentController {
 
     @PostMapping(path = RestURIConstant.VALIDATE_CODE, produces =  {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> validateMFACode(@RequestBody Map<String,Integer> requestPaylaod) {
-        Integer authCode =  requestPaylaod.get("authCode");
-        LOGGER.info("call made to validateCode for authCode {}", authCode);
-        if(authCode != null){
-            try {
-                loggedUserServiceV1.validateMFACode(authCode);
-                return success("Validate successfully", 200);
-            } catch(Exception e) {
-                throw new InputValidationException("authCode is invalid");
-            }
-        }
-        LOGGER.info("authCode is missing ");
-        return failure ("AuthCode is required ", 404);
+       Integer authCode =  requestPaylaod.get("authCode");
+       LOGGER.info("call made to validateCode for authCode {}", authCode);
+       if(authCode != null){
+           try {
+               loggedUserServiceV1.validateMFACode(authCode);
+               return success("Validate successfully", 200);
+           } catch(Exception e) {
+               throw new InputValidationException("authCode is invalid");
+           }
+       }
+       LOGGER.info("authCode is missing ");
+       return failure ("AuthCode is required ", 404);
     }
 
     private ResponseEntity<?> success(Object t, Integer status ){
