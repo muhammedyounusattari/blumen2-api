@@ -44,8 +44,7 @@ public class RestControllerExceptionHandler {
 
     @ExceptionHandler({ AccessDeniedException.class })
     public ResponseEntity<Object> handleAccessDeniedException(
-            Exception ex, WebRequest request) {
-        return new ResponseEntity<Object>(
-                "Access Denied", new HttpHeaders(), HttpStatus.FORBIDDEN);
+            AccessDeniedException ex, WebRequest request) {
+        return new ResponseEntity<>(new ErrorResponse(403, ex.getMessage()),new HttpHeaders(),HttpStatus.FORBIDDEN);
     }
 }

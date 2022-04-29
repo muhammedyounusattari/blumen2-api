@@ -1,6 +1,5 @@
 package com.kastech.blumen.controller.admin.home;
 
-import com.kastech.blumen.exception.DataModificationException;
 import com.kastech.blumen.exception.DataNotFoundException;
 import com.kastech.blumen.exception.InputValidationException;
 import com.kastech.blumen.model.CustomUserDetails;
@@ -148,7 +147,7 @@ public class OrganizationController {
     @PostMapping(path = "/createUser/v1",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-   // @PreAuthorize("hasAnyAuthority('User Names and Password_Y', 'Super Admin')")
+    @PreAuthorize("hasAnyAuthority('User Names and Password_Y', 'Super Admin')")
     /**
      * Need to check with chandra regarding access to method
      */
@@ -176,19 +175,6 @@ public class OrganizationController {
         loggedUser.setEditedBy(customUserDetails.getUsername());
         loggedUserServiceV1.updateUser(loggedUser);
         return success("User updated successfully", 200);
-//
-//        try {
-//            loggedUser = loggedUserServiceV1.updateUser(loggedUser);
-//            return success("User is updated successfully", 200);
-//        } catch (Exception e) {
-//            LOGGER.error("problem occurred while updating user");
-//            e.printStackTrace();
-//            Map<String, Object> map = new HashMap<>();
-//            map.put("message", "problem in updating a user for orgId "+loggedUser.getOrgId());
-//            map.put("status", "400");
-//            return new ResponseEntity(map, null, HttpStatus.OK);
-//        }
-
     }
 
     private ResponseEntity<?> success(Object t, Integer status) {

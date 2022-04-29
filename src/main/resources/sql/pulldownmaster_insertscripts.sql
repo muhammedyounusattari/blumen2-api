@@ -4530,55 +4530,103 @@ INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,l
 	 (false,true,true,'2022-04-14 12:58:07.47','SETH','Yes',0,7,1,'','YESNO','2022-04-14 12:58:07.47'),
 	 (false,true,true,'2022-04-14 12:58:07.47','SETH','No',0,7,2,'','YESNO','2022-04-14 12:58:07.47'),
 	 (false,true,true,'2022-04-14 12:58:07.47','admin','Not Applicable',0,7,9,'','YESNO','2022-04-14 12:58:07.47');
+
+delete from  blumen2.pull_down_master where organizationid=0 and pulltype in ('STATE','CODES','CITY','LABSERVICE','SITE LOCATION');
 INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
-    (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-1',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
+    (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-1',0,7,0,'','CODES','2022-04-14 12:58:07.47' ),
      (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-2',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-3',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-4',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-5',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-6',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-7',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-8',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-9',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-10',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'NA',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'244',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'123456',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'78987',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'A',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'234',0,7,1,'','CODES','2022-04-14 12:58:07.47' );
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-3',0,7,2,'','CODES','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-4',0,7,3,'','CODES','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-5',0,7,4,'','CODES','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-6',0,7,5,'','CODES','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-7',0,7,6,'','CODES','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-8',0,7,7,'','CODES','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-9',0,7,8,'','CODES','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-10',0,7,9,'','CODES','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'NA',0,7,10,'','CODES','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'244',0,7,11,'','CODES','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'123456',0,12,1,'','CODES','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'78987',0,7,13,'','CODES','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'A',0,7,14,'','CODES','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'234',0,7,15,'','CODES','2022-04-14 12:58:07.47' );
 INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
     (false,true,false,'2022-04-14 12:58:07.47',user,'Richmond',0,7,0,'','CITY','2022-04-14 12:58:07.47' ),
      (false,true,false,'2022-04-14 12:58:07.47',user,'Fulshear',0,7,1,'','CITY','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'Cypress',0,7,1,'','CITY','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'HOUSTON',0,7,1,'','CITY','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'CAMBRIA',0,7,0,' HGT','CITY','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'Brockton',0,7,1,'','CITY','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'Chelsea',0,7,1,'','CITY','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'Norton',0,7,1,'','CITY','2022-04-14 12:58:07.47' ),
-      (false,true,false,'2022-04-14 12:58:07.47',user,'Raynham',0,7,0,'','CITY','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'Avon',0,7,1,'','CITY','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'Hollywood',0,7,1,'','CITY','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'Encinitas',0,7,1,'','CITY','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'Sugarland',0,7,0,'','CITY','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'Greenspoint',0,7,1,'','CITY','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'Spring',0,7,1,'','CITY','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'Dallas',0,7,1,'','CITY','2022-04-14 12:58:07.47' ),
-      (false,true,false,'2022-04-14 12:58:07.47',user,'San Antonio',0,7,0,'','CITY','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'Katy',0,7,1,'','CITY','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'HOUSTIN',0,7,1,'','CITY','2022-04-14 12:58:07.47' )  ;
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Cypress',0,7,2,'','CITY','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'HOUSTON',0,7,3,'','CITY','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'CAMBRIA',0,7,4,' HGT','CITY','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Brockton',0,7,5,'','CITY','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Chelsea',0,7,6,'','CITY','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Norton',0,7,7,'','CITY','2022-04-14 12:58:07.47' ),
+      (false,true,false,'2022-04-14 12:58:07.47',user,'Raynham',0,7,8,'','CITY','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Avon',0,7,9,'','CITY','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Hollywood',0,7,10,'','CITY','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Encinitas',0,7,11,'','CITY','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Sugarland',0,7,12,'','CITY','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Greenspoint',0,7,13,'','CITY','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Spring',0,7,14,'','CITY','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Dallas',0,7,15,'','CITY','2022-04-14 12:58:07.47' ),
+      (false,true,false,'2022-04-14 12:58:07.47',user,'San Antonio',0,7,16,'','CITY','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Katy',0,7,17,'','CITY','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'HOUSTIN',0,7,18,'','CITY','2022-04-14 12:58:07.47' )  ;
 INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
     (false,true,false,'2022-04-14 12:58:07.47',user,'AL',0,7,0,'','STATE','2022-04-14 12:58:07.47' ),
      (false,true,false,'2022-04-14 12:58:07.47',user,'TX',0,7,1,'','STATE','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'KS',0,7,1,'','STATE','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'IL',0,7,1,'','STATE','2022-04-14 12:58:07.47' );
+     (false,true,false,'2022-04-14 12:58:07.47',user,'KS',0,7,2,'','STATE','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'IL',0,7,3,'','STATE','2022-04-14 12:58:07.47' );
 INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
-    (false,true,false,'2022-04-14 12:58:07.47',user,'test 3',0,7,1,'','LABSERVICE','2022-04-14 12:58:07.47' ),
+    (false,true,false,'2022-04-14 12:58:07.47',user,'test 3',0,7,0,'','LABSERVICE','2022-04-14 12:58:07.47' ),
      (false,true,false,'2022-04-14 12:58:07.47',user,'test 2',0,7,1,'','LABSERVICE','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'field Trip',0,7,1,'','LABSERVICE','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'Computer Tutoring',0,7,1,'','LABSERVICE','2022-04-14 12:58:07.47' ),
-      (false,true,false,'2022-04-14 12:58:07.47',user,'Business Tutoring',0,7,1,'','LABSERVICE','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'English/ Proficiency',0,7,1,'','LABSERVICE','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'test-4',0,7,1,'','LABSERVICE','2022-04-14 12:58:07.47' ),
-     (false,true,false,'2022-04-14 12:58:07.47',user,'test-1',0,7,1,'','LABSERVICE','2022-04-14 12:58:07.47' );
+     (false,true,false,'2022-04-14 12:58:07.47',user,'field Trip',0,7,2,'','LABSERVICE','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'Computer Tutoring',0,7,3,'','LABSERVICE','2022-04-14 12:58:07.47' ),
+      (false,true,false,'2022-04-14 12:58:07.47',user,'Business Tutoring',0,7,4,'','LABSERVICE','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'English/ Proficiency',0,7,5,'','LABSERVICE','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'test-4',0,7,6,'','LABSERVICE','2022-04-14 12:58:07.47' ),
+     (false,true,false,'2022-04-14 12:58:07.47',user,'test-1',0,7,7,'','LABSERVICE','2022-04-14 12:58:07.47' );
+
+INSERT INTO blumen2.pull_down_master (deleted, inoriginal, is_numeric, lastmodify, lastuser, longpullna, organizationid,
+                                      projtype, pullid, pullname, pulltype, timestamp_column)
+VALUES (false, true, false, '2022-04-14 12:58:07.47', user, 'Southwest-Houston', 0, 7, 0, '', 'SITE LOCATION', '2022-04-14 12:58:07.47'),
+       (false, true, false, '2022-04-14 12:58:07.47', user, 'Northwest-Houston', 0, 7, 1, '', 'SITE LOCATION', '2022-04-14 12:58:07.47'),
+       (false, true, false, '2022-04-14 12:58:07.47', user, 'North-Houston', 0, 7, 2, '', 'SITE LOCATION', '2022-04-14 12:58:07.47');
+
+INSERT INTO blumen2.pull_down_master
+(deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column)
+select deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid, 1,pullid,pullname,pulltype,timestamp_column
+from blumen2.pull_down_master where organizationid=0
+                                and pulltype in ('STATE','CODES','CITY','LABSERVICE','SITE LOCATION');
+INSERT INTO blumen2.pull_down_master
+(deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column)
+select deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid, 2,pullid,pullname,pulltype,timestamp_column
+from blumen2.pull_down_master where organizationid=0
+                                and pulltype in ('STATE','CODES','CITY','LABSERVICE','SITE LOCATION');
+
+
+INSERT INTO blumen2.pull_down_master
+(deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column)
+select deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid, 3,pullid,pullname,pulltype,timestamp_column
+from blumen2.pull_down_master where organizationid=0
+                                and pulltype in ('STATE','CODES','CITY','LABSERVICE','SITE LOCATION');
+
+
+INSERT INTO blumen2.pull_down_master
+(deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column)
+select deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid, 4,pullid,pullname,pulltype,timestamp_column
+from blumen2.pull_down_master where organizationid=0
+                                and pulltype in ('STATE','CODES','CITY','LABSERVICE','SITE LOCATION');
+
+
+INSERT INTO blumen2.pull_down_master
+(deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column)
+select deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid, 5,pullid,pullname,pulltype,timestamp_column
+from blumen2.pull_down_master where organizationid=0
+                                and pulltype in ('STATE','CODES','CITY','LABSERVICE','SITE LOCATION');
+
+
+INSERT INTO blumen2.pull_down_master
+(deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column)
+select deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid, 6,pullid,pullname,pulltype,timestamp_column
+from blumen2.pull_down_master where organizationid=0
+                                and pulltype in ('STATE','CODES','CITY','LABSERVICE','SITE LOCATION');
+
 

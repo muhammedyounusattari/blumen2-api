@@ -152,39 +152,43 @@ public class LoggedUserServiceV1 {
                 throw new DataModificationException(ORG_USER_MOVE_NOT_ALLWOED);
             }
         }
+        if(loggedUser.getActive()) {
+            existingUser.setUsername(loggedUser.getUsername());
+            existingUser.setActive(loggedUser.getActive());
+            existingUser.setFirstName(loggedUser.getFirstName());
+            existingUser.setLastName(loggedUser.getLastName());
+            existingUser.setAddress1(loggedUser.getAddress1());
+            existingUser.setAddress2(loggedUser.getAddress2());
+            existingUser.setCity(loggedUser.getCity());
+            existingUser.setState(loggedUser.getState());
+            existingUser.setZipcode(loggedUser.getZipcode());
+            existingUser.setMobile(loggedUser.getMobile());
+            existingUser.setPhone1(loggedUser.getPhone1());
+            existingUser.setPhone2(loggedUser.getPhone2());
+            existingUser.setFax(loggedUser.getFax());
+            existingUser.setEmail(loggedUser.getEmail());
+            existingUser.setNotes(loggedUser.getNotes());
+            existingUser.setSiteLocation(loggedUser.getSiteLocation());
+            existingUser.setEditedDate(new Date());
+            existingUser.setEditedBy(SecurityUtil.getEmail());
 
-        existingUser.setUsername(loggedUser.getUsername());
-        existingUser.setActive(loggedUser.getActive());
-        existingUser.setFirstName(loggedUser.getFirstName());
-        existingUser.setLastName(loggedUser.getLastName());
-        existingUser.setAddress1(loggedUser.getAddress1());
-        existingUser.setAddress2(loggedUser.getAddress2());
-        existingUser.setCity(loggedUser.getCity());
-        existingUser.setState(loggedUser.getState());
-        existingUser.setZipcode(loggedUser.getZipcode());
-        existingUser.setMobile(loggedUser.getMobile());
-        existingUser.setPhone1(loggedUser.getPhone1());
-        existingUser.setPhone2(loggedUser.getPhone2());
-        existingUser.setFax(loggedUser.getFax());
-        existingUser.setEmail(loggedUser.getEmail());
-        existingUser.setNotes(loggedUser.getNotes());
-        existingUser.setSiteLocation(loggedUser.getSiteLocation());
-        existingUser.setEditedDate(new Date());
-        existingUser.setEditedBy(SecurityUtil.getEmail());
+            //future
+            // existingUser.setBolt(loggedUser.getBolt());
 
-        //future
-        // existingUser.setBolt(loggedUser.getBolt());
-
-        if(!loggedUser.getRoleName().equalsIgnoreCase(existingUser.getRoleName())) {
-            List<Roles> roles = rolesRepository.findByOrgIdAndRole(loggedUser.getOrgId(), loggedUser.getRoleName());
-            if (roles.isEmpty() || roles.get(0).getPrivileges().isEmpty()) {
-                LOGGER.error("Organization {} don't have role {} or its privileges", loggedUser.getOrgId(), loggedUser.getRoleName());
-                throw new DataNotFoundException(ORGANIZATION_ROLE_SETUP_MISSING);
+            if (!loggedUser.getRoleName().equalsIgnoreCase(existingUser.getRoleName())) {
+                List<Roles> roles = rolesRepository.findByOrgIdAndRole(loggedUser.getOrgId(), loggedUser.getRoleName());
+                if (roles.isEmpty() || roles.get(0).getPrivileges().isEmpty()) {
+                    LOGGER.error("Organization {} don't have role {} or its privileges", loggedUser.getOrgId(), loggedUser.getRoleName());
+                    throw new DataNotFoundException(ORGANIZATION_ROLE_SETUP_MISSING);
+                }
+                existingUser.setRoles((roles.stream().collect(Collectors.toSet())));
             }
-            existingUser.setRoles((roles.stream().collect(Collectors.toSet())));
+            existingUser.setRoleName(loggedUser.getRoleName());
+        } else { //delete User meaning deactivate
+            existingUser.setActive(loggedUser.getActive());
+            existingUser.setEditedDate(new Date());
+            existingUser.setEditedBy(SecurityUtil.getEmail());
         }
-        existingUser.setRoleName(loggedUser.getRoleName());
-
         try {
             loggedUser = loggedUserRepository.save(existingUser);
         } catch (Exception e) {
@@ -368,12 +372,12 @@ public class LoggedUserServiceV1 {
 
         //check if password exist
         if(!StringUtils.isEmpty(password)){
-         loggedUsers =   loggedUserRepository.findByUserDetails(email, password,orgCode);
-         if(loggedUsers.isEmpty()){
-             successMap.put("message", "Current Password is Invalid");
-             successMap.put("status", "400");
-             return successMap;
-         }
+            loggedUsers =   loggedUserRepository.findByUserDetails(email, password,orgCode);
+            if(loggedUsers.isEmpty()){
+                successMap.put("message", "Current Password is Invalid");
+                successMap.put("status", "400");
+                return successMap;
+            }
         }
 
         if(!(StringUtils.isEmpty(confPassword) || StringUtils.isEmpty(securityQuestion1) || StringUtils.isEmpty(securityQuestion2) ||  StringUtils.isEmpty(securityAnswer1 ) || StringUtils.isEmpty(securityAnswer2))){
@@ -392,19 +396,19 @@ public class LoggedUserServiceV1 {
     }
 
     public Map<String,Object> validateEmailAndOrgCode(String email, String orgCode) {
-      LOGGER.info("call made to validateEmailAndOrgCode");
+        LOGGER.info("call made to validateEmailAndOrgCode");
 //      String nonSSo =   loggedUserRepository.findByUserAndOrgCode(email,orgCode);
-      Map<String,Object> map = new HashMap<>();
-      Optional<LoggedUser> loggedUsers = loggedUserRepository.findByEmailAndOrgCode(email,orgCode);
-      if(loggedUsers.isEmpty()){
-          LOGGER.error("Not a valid email or orgid ");
-          throw new DataNotFoundException(ErrorMessageConstants.INVALID_ORGCODE_EMAIL_ID);
-      }
-      LoggedUser loggedUser = loggedUsers.get();
-      map.put("isFirstTime",loggedUser.getFirstTime());
-      map.put("isSSOEnabled", null);
-      map.put("status", 200);
-      return map;
+        Map<String,Object> map = new HashMap<>();
+        Optional<LoggedUser> loggedUsers = loggedUserRepository.findByEmailAndOrgCode(email,orgCode);
+        if(loggedUsers.isEmpty()){
+            LOGGER.error("Not a valid email or orgid ");
+            throw new DataNotFoundException(ErrorMessageConstants.INVALID_ORGCODE_EMAIL_ID);
+        }
+        LoggedUser loggedUser = loggedUsers.get();
+        map.put("isFirstTime",loggedUser.getFirstTime());
+        map.put("isSSOEnabled", null);
+        map.put("status", 200);
+        return map;
     }
 
     public Map<String,Object> logoutUser() {
@@ -413,11 +417,11 @@ public class LoggedUserServiceV1 {
         Map<String,Object> payload = new HashMap<>();
         Optional<LoggedUser> loggedUsers = loggedUserRepository.findByEmailAndOrgCode(email,orgCode);
         if(!loggedUsers.isEmpty()){
-          LoggedUser  loggedUserDb = loggedUsers.get();
-          loggedUserDb.setLastLogout(DateUtil.setDates(0));
-          loggedUserRepository.save(loggedUserDb);
-          payload.put("message", "user logout successfully");
-          payload.put("status", 200);
+            LoggedUser  loggedUserDb = loggedUsers.get();
+            loggedUserDb.setLastLogout(DateUtil.setDates(0));
+            loggedUserRepository.save(loggedUserDb);
+            payload.put("message", "user logout successfully");
+            payload.put("status", 200);
         } else {
             payload.put("message", "user is already loggedout");
             payload.put("status", 400);

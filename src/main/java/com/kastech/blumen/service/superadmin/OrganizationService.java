@@ -138,6 +138,7 @@ public class OrganizationService {
         existingOrg.setOrgGoodTill(organization.getOrgGoodTill());
         existingOrg.setOrgExpiryTime(organization.getOrgExpiryTime());
         existingOrg.setOrgDaysToExpire(organization.getOrgDaysToExpire());
+        //users doesn't set so we don't delete users from org users table b
 
         try {
             organization = organizationRepository.save(existingOrg);
