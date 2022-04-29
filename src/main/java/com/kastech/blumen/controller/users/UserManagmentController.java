@@ -214,7 +214,8 @@ public class UserManagmentController {
                 throw new DataNotFoundException(ErrorMessageConstants.INVALID_ORGANIZATION_SETUP);
             }
             String maskEmail = customUserDetails.getEmail();
-              maskEmail = maskEmail.charAt(0) + "*****" + maskEmail.charAt(maskEmail.length() - 1)+"@"+maskEmail.split("@")[1];
+            String emailSplit[] = maskEmail.split("@");
+            maskEmail = maskEmail.charAt(0) + "*****" + emailSplit[0].charAt(emailSplit[0].length() - 1)+"@"+emailSplit[1];
 
             jwtResponse = new JWTResponse(token, this.jwtUtil.extractKeyFromToken(token,"iat"), this.jwtUtil.extractKeyFromToken(token,"exp"), 200,organization.getOrgName(),organization.getOrgId(),organization.getOrgProgramType(),organization.getOrgCode(), customUserDetails.getRoleName(), organization.getOrgTwoFactor(),maskEmail);
             LoggedUser loggedUser = usersRepository.findById(customUserDetails.getUserId()).get();
@@ -264,9 +265,9 @@ public class UserManagmentController {
     @GetMapping(path = "/ssoConfig", produces = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
     public  ResponseEntity<Map<String,Object>> getSsoConfig(@RequestParam("email") String email, @RequestParam("orgCode") String orgCode) {
-       LOGGER.info("call made to getSSOConfig, with email {} and orgCode {}", email, orgCode);
-       Map<String,Object> resultMap = loggedUserServiceV1.validateEmailAndOrgCode(email,orgCode);
-       return ResponseEntity.ok(resultMap);
+        LOGGER.info("call made to getSSOConfig, with email {} and orgCode {}", email, orgCode);
+        Map<String,Object> resultMap = loggedUserServiceV1.validateEmailAndOrgCode(email,orgCode);
+        return ResponseEntity.ok(resultMap);
     }
 
     @GetMapping(path= RestURIConstant.GENERATE_CODE, produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -283,18 +284,18 @@ public class UserManagmentController {
 
     @PostMapping(path = RestURIConstant.VALIDATE_CODE, produces =  {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> validateMFACode(@RequestBody Map<String,Integer> requestPaylaod) {
-       Integer authCode =  requestPaylaod.get("authCode");
-       LOGGER.info("call made to validateCode for authCode {}", authCode);
-       if(authCode != null){
-           try {
-               loggedUserServiceV1.validateMFACode(authCode);
-               return success("Validate successfully", 200);
-           } catch(Exception e) {
-               throw new InputValidationException("authCode is invalid");
-           }
-       }
-       LOGGER.info("authCode is missing ");
-       return failure ("AuthCode is required ", 404);
+        Integer authCode =  requestPaylaod.get("authCode");
+        LOGGER.info("call made to validateCode for authCode {}", authCode);
+        if(authCode != null){
+            try {
+                loggedUserServiceV1.validateMFACode(authCode);
+                return success("Validate successfully", 200);
+            } catch(Exception e) {
+                throw new InputValidationException("authCode is invalid");
+            }
+        }
+        LOGGER.info("authCode is missing ");
+        return failure ("AuthCode is required ", 404);
     }
 
     private ResponseEntity<?> success(Object t, Integer status ){
