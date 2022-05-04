@@ -84,7 +84,6 @@ public class LoggedUser implements Serializable {
 
     private int exp;
 
-    @JsonIgnore
     private Date issueDate;
 
     @JsonIgnore

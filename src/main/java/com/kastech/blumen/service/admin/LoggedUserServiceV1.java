@@ -429,6 +429,24 @@ public class LoggedUserServiceV1 {
         return payload;
     }
 
+    public Map<String,Object> forceLoggedOutUser(long userId) {
+        Map<String,Object> payload = new HashMap<>();
+        Optional<LoggedUser> loggedUsers = loggedUserRepository.findById(userId);
+        if(!loggedUsers.isEmpty()){
+            LoggedUser  loggedUserDb = loggedUsers.get();
+            loggedUserDb.setLastLogout(DateUtil.setDates(0));
+            loggedUserDb.setEditedDate(new Date());
+            loggedUserRepository.save(loggedUserDb);
+            payload.put("message", "user logout successfully");
+            payload.put("status", 200);
+        } else {
+            payload.put("message", "user is already loggedout");
+            payload.put("status", 400);
+        }
+        return payload;
+    }
+
+
     public void generateCode() {
        LOGGER.info("call made to generateCode {}", this.getClass());
        Integer authCode = new Random().nextInt(999999);
