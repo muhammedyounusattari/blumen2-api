@@ -361,34 +361,57 @@ public class LoggedUserServiceV1 {
         String securityQuestion2 = requestPaylaod.get("securityQuestion2");
         String securityAnswer1 = requestPaylaod.get("securityAnswer1");
         String securityAnswer2 = requestPaylaod.get("securityAnswer2");
-        List<LoggedUser> loggedUsers = null;
+        List<LoggedUser> loggedUserList = null;
+        LoggedUser user = null;
         //Basic validation
         Map<String,String> successMap = new HashMap<>();
-        if(StringUtils.isEmpty(password)){
-            successMap.put("message", "Password missing");
-            successMap.put("status", "400");
-            return successMap;
-        }
+
 
         //check if password exist
         if(!StringUtils.isEmpty(password)){
-            loggedUsers =   loggedUserRepository.findByUserDetails(email, password,orgCode);
-            if(loggedUsers.isEmpty()){
+            loggedUserList =   loggedUserRepository.findByUserDetails(email, password,orgCode);
+            if(loggedUserList.isEmpty()){
                 successMap.put("message", "Current Password is Invalid");
+                successMap.put("status", "400");
+                return successMap;
+            }
+            user = loggedUserList.get(0);
+        } else if  (!(StringUtils.isEmpty(securityQuestion1) || StringUtils.isEmpty(securityQuestion2) ||  StringUtils.isEmpty(securityAnswer1 ) || StringUtils.isEmpty(securityAnswer2))){
+            Optional<LoggedUser> loggedUsers = loggedUserRepository.findByEmailAndOrgCode(email, orgCode);
+            if(loggedUsers.isEmpty()){
+                successMap.put("message", "Logged-In User Not Found");
+                successMap.put("status", "400");
+                return successMap;
+            }
+            user = loggedUsers.get();
+        } else {
+            if(StringUtils.isEmpty(password)){
+                successMap.put("message", "Password missing");
+                successMap.put("status", "400");
+                return successMap;
+            }  else {
+                successMap.put("message", "Security Question/Answers missing");
                 successMap.put("status", "400");
                 return successMap;
             }
         }
 
-        if(!(StringUtils.isEmpty(confPassword) || StringUtils.isEmpty(securityQuestion1) || StringUtils.isEmpty(securityQuestion2) ||  StringUtils.isEmpty(securityAnswer1 ) || StringUtils.isEmpty(securityAnswer2))){
-            LoggedUser loggedUser = loggedUsers.get(0);
-            loggedUser.setPassword(confPassword);
+        if(!StringUtils.isEmpty(confPassword)){
+            LoggedUser loggedUser = user;
+            user.setPassword(confPassword);
+            loggedUserRepository.save(loggedUser);
+            successMap.put("message", "Password updated successfully");
+            successMap.put("status", "200");
+            return successMap;
+        } else if (!(StringUtils.isEmpty(securityQuestion1) || StringUtils.isEmpty(securityQuestion2) ||  StringUtils.isEmpty(securityAnswer1 ) || StringUtils.isEmpty(securityAnswer2))){
+            LoggedUser loggedUser = user;
             loggedUser.setSecurityQuestion1(securityQuestion1);
             loggedUser.setSecurityQuestion2(securityQuestion2);
             loggedUser.setSecurityAnswer1(securityAnswer1);
             loggedUser.setSecurityAnswer2(securityAnswer2);
+            loggedUser.setFirstTime(false);
             loggedUserRepository.save(loggedUser);
-            successMap.put("message", "Password updated successfully");
+            successMap.put("message", "Security Questions Updated successfully");
             successMap.put("status", "200");
             return successMap;
         }
@@ -448,8 +471,8 @@ public class LoggedUserServiceV1 {
 
 
     public void generateCode() {
-       LOGGER.info("call made to generateCode {}", this.getClass());
-       Integer authCode = new Random().nextInt(999999);
+        LOGGER.info("call made to generateCode {}", this.getClass());
+        Integer authCode = new Random().nextInt(999999);
         Optional<LoggedUser> loggedUsers = loggedUserRepository.findByEmailAndOrgCode(SecurityUtil.getEmail(), SecurityUtil.getUserOrgCode());
         if(!loggedUsers.isEmpty()) {
             LoggedUser loggedUserDb = loggedUsers.get();
