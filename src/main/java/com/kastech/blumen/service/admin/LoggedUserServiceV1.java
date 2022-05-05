@@ -247,8 +247,9 @@ public class LoggedUserServiceV1 {
                 return statusMap;
             }
 
-            loggedUser.setExpiryDate(DateUtil.setDates(-1));
+            loggedUser.setLinkExpiryDate(DateUtil.setDates(-1));
             loggedUser.setPassword(updatePassword);
+            loggedUser.setHashedCode("");
             loggedUserRepository.save(loggedUser);
             statusMap.put("message", "Password Updated successfully");
             statusMap.put("status", "200");
@@ -471,8 +472,8 @@ public class LoggedUserServiceV1 {
 
 
     public void generateCode() {
-        LOGGER.info("call made to generateCode {}", this.getClass());
-        Integer authCode = new Random().nextInt(999999);
+       LOGGER.info("call made to generateCode {}", this.getClass());
+       Integer authCode = new Random().nextInt(999999);
         Optional<LoggedUser> loggedUsers = loggedUserRepository.findByEmailAndOrgCode(SecurityUtil.getEmail(), SecurityUtil.getUserOrgCode());
         if(!loggedUsers.isEmpty()) {
             LoggedUser loggedUserDb = loggedUsers.get();
