@@ -122,7 +122,7 @@ public class StaffController {
     @PostMapping(value = RestURIConstant.FILE_UPLOAD, consumes = "multipart/form-data")
     @PreAuthorize("hasAnyAuthority('Staff Data Filter/ Entry_Y')")
     public ResponseEntity<?> uploadFileMulti(@PathVariable(name = "staffId", required = true) Long staffId,
-                                             @RequestParam("uploadfile") MultipartFile file) {
+                                             @RequestParam(name = "file",required = true) MultipartFile file) {
         if(file.isEmpty()){
             LOGGER.error("file tried to upload is empty {}", file);
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

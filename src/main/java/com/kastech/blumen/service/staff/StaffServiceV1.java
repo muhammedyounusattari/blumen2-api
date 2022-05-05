@@ -32,6 +32,7 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Component
 public class StaffServiceV1 {
@@ -69,7 +70,7 @@ public class StaffServiceV1 {
         LOGGER.info("File upload is {} and staffId {} ", file, staffId);
 
         //for staff file upload ==> Staff_orgId_userId_staff_Id.extension;
-        String fileName = "staff"+"_"+SecurityUtil.getUserOrgId()+"_"+SecurityUtil.getUserId()+"_"+staffId+"."+FilenameUtils.getExtension(file.getOriginalFilename());
+        String fileName = "staff"+"_"+SecurityUtil.getUserOrgId()+"_"+SecurityUtil.getUserId()+"_"+staffId+"_"+new Random().nextInt(999999)+"."+FilenameUtils.getExtension(file.getOriginalFilename());
         fileName = uploadFileService.uploadFile(fileName,file);
 
         Staff staff = new Staff();

@@ -5,6 +5,7 @@ import com.kastech.blumen.model.Configurations.OrganizationType;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "mega_dataOrgTypeFields" ,schema = "blumen2")
@@ -31,6 +32,10 @@ public class MegaDataOrgTypeFields implements Serializable {
 
     @Transient
     private long megaMaintenanceDataId;
+
+    private String lastModifiedBy;
+
+    private Timestamp lastModifiedDate;
 
     public long getId() {
         return id;
@@ -94,5 +99,21 @@ public class MegaDataOrgTypeFields implements Serializable {
 
     public void setMegaMaintenanceDataId(long megaMaintenanceDataId) {
         this.megaMaintenanceDataId = megaMaintenanceDataId;
+    }
+
+    public String getLastModifiedBy() {
+        return lastModifiedBy;
+    }
+
+    public void setLastModifiedBy(String lastModifiedBy) {
+        this.lastModifiedBy = lastModifiedBy;
+    }
+
+    public Timestamp getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Timestamp lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
     }
 }
