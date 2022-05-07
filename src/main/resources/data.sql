@@ -1696,20 +1696,31 @@ INSERT INTO blumen2.display_roles (role_id,role_name) VALUES (8,'Super Admin');
 
 INSERT INTO blumen2.menu_display_roles (menu_id,role_id)
 SELECT menus_id, 1 from blumen2.menus; -- admin menus
+
+
 INSERT INTO blumen2.menu_display_roles (menu_id,role_id)
-SELECT menus_id, 2 from blumen2.menus;
+SELECT menus_id, 2 from blumen2.menus; -- manager
+
 INSERT INTO blumen2.menu_display_roles (menu_id,role_id)
-SELECT menus_id, 3 from blumen2.menus;
+SELECT menus_id, 3 from blumen2.menus; --counselor
+
 INSERT INTO blumen2.menu_display_roles (menu_id,role_id)
-SELECT menus_id, 4 from blumen2.menus; -- admin menus
+SELECT menus_id, 4 from blumen2.menus; -- tutor menus
+DELETE FROM  blumen2.menu_display_roles where role_id=4 and menus_id=57;
+
 INSERT INTO blumen2.menu_display_roles (menu_id,role_id)
-SELECT menus_id, 5 from blumen2.menus; -- admin menus
+SELECT menus_id, 5 from blumen2.menus; -- teacher menus
+
 INSERT INTO blumen2.menu_display_roles (menu_id,role_id)
-SELECT menus_id, 6 from blumen2.menus; -- admin menus
+SELECT menus_id, 6 from blumen2.menus; -- student worker menus
+DELETE FROM  blumen2.menu_display_roles where role_id=6 and menus_id=57;
+
+
 INSERT INTO blumen2.menu_display_roles (menu_id,role_id)
-SELECT menus_id, 7 from blumen2.menus; -- admin menus
+SELECT menus_id, 7 from blumen2.menus; -- staff menus
+
 INSERT INTO blumen2.menu_display_roles (menu_id,role_id)
-SELECT menus_id, 8 from blumen2.menus; -- admin menus
+SELECT menus_id, 8 from blumen2.menus; -- Super Admin menus
 
 INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
 	 (1,true,'main.gender',true,false,false,'APR II D - Gender','GENDER',NULL,0,'-1',1),

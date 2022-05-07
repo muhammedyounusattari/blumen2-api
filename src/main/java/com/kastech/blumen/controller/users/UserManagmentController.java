@@ -208,17 +208,27 @@ public class UserManagmentController {
             token = this.jwtUtil.generateToken(authentication, customUserDetails);
             Optional<Organization> organizations = organizationRepository.findByOrgId(customUserDetails.getOrgId());
             Organization organization = new Organization();
+            LoggedUser loggedUser = null;
             if(!organizations.isEmpty()){
                 organization = organizations.get();
+                loggedUser = usersRepository.findById(customUserDetails.getUserId()).get();
             } else {
                 throw new DataNotFoundException(ErrorMessageConstants.INVALID_ORGANIZATION_SETUP);
+            }
+
+            if (!organization.getOrgActive()) {
+                throw new DataNotFoundException(ErrorMessageConstants.ORGANIZATION_INACTIVE);
+            } else if(!loggedUser.getActive()) { // || loggedUser.getWrongAttempt() > 3)
+                throw new DataNotFoundException(ErrorMessageConstants.USER_INACTIVE);
             }
             String maskEmail = customUserDetails.getEmail();
             String emailSplit[] = maskEmail.split("@");
             maskEmail = maskEmail.charAt(0) + "*****" + emailSplit[0].charAt(emailSplit[0].length() - 1)+"@"+emailSplit[1];
 
-            jwtResponse = new JWTResponse(token, this.jwtUtil.extractKeyFromToken(token,"iat"), this.jwtUtil.extractKeyFromToken(token,"exp"), 200,organization.getOrgName(),organization.getOrgId(),organization.getOrgProgramType(),organization.getOrgCode(), customUserDetails.getRoleName(), organization.getOrgTwoFactor(),maskEmail);
-            LoggedUser loggedUser = usersRepository.findById(customUserDetails.getUserId()).get();
+            jwtResponse = new JWTResponse(token, this.jwtUtil.extractKeyFromToken(token,"iat"), this.jwtUtil.extractKeyFromToken(token,"exp"), 200,
+                    organization.getOrgName(),organization.getOrgId(),organization.getOrgProgramType(),
+                    organization.getOrgCode(), customUserDetails.getRoleName(),
+                    organization.getOrgTwoFactor(),maskEmail, organization.getOrgSiteLocation());
             loggedUser.setIssueDate(new Date());
             loggedUser.setExpiryDate(new Date(System.currentTimeMillis() + EXPIRATION_TIME));
             usersRepository.save(loggedUser);

@@ -14,8 +14,11 @@ public class JWTResponse {
     private Boolean twoFactorEnabled;
     private String maskedEmail;
 
+    private Boolean orgSiteLocation;
 
-    public JWTResponse(String access_token, String iat, String exp, Integer status, String orgName, Long orgId, String programType, String orgCode, String roleName, Boolean twoFactorEnabled, String maskedEmail) {
+    public JWTResponse(String access_token, String iat, String exp, Integer status, String orgName,
+                       Long orgId, String programType, String orgCode, String roleName, Boolean twoFactorEnabled,
+                       String maskedEmail, Boolean orgSiteLocation) {
         this.access_token = access_token;
         this.iat = iat;
         this.exp = exp;
@@ -27,6 +30,7 @@ public class JWTResponse {
         this.roleName = roleName;
         this.twoFactorEnabled = twoFactorEnabled;
         this.maskedEmail =maskedEmail;
+
     }
 
     public String getAccess_token() {
@@ -115,5 +119,13 @@ public class JWTResponse {
 
     public void setMaskedEmail(String maskedEmail) {
         this.maskedEmail = maskedEmail;
+    }
+
+    public Boolean getOrgSiteLocation() {
+        return orgSiteLocation;
+    }
+
+    public void setOrgSiteLocation(Boolean orgSiteLocation) {
+        this.orgSiteLocation = orgSiteLocation;
     }
 }

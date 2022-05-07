@@ -57,6 +57,7 @@ public class Organization implements Serializable {
     private String orgNavigateToUser;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OrderBy("email")
     @JoinTable(
             name = "Organization_users",schema = "blumen2",
             joinColumns = @JoinColumn(name = "org_id"),

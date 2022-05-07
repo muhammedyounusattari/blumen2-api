@@ -43,10 +43,28 @@ public class LoggedUserServiceV1 {
 
     @Autowired
     private EmailService sendMailService;
-    //SendMailService sendMailService;
 
-    @Value("${blumen2.url}")
+    @Value("${blumen2.url.forgot.password}")
     private String blumenUrl;
+
+    @Value("${email.create.user.tile}")
+    private String createUserTitle;
+
+    @Value("${email.create.user.body}")
+    private String createUserBody;
+
+    @Value("${email.forgot.password.title}")
+    private String forgotPasswordTitle;
+
+    @Value("${email.forgot.password.body}")
+    private String forgotPasswordBody;
+
+    @Value("${email.reset.password.title}")
+    private String resetPasswordTitle;
+
+    @Value("${email.reset.password.body}")
+    private String resetPasswordBody;
+
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LoggedUserServiceV1.class);
 
@@ -128,12 +146,13 @@ public class LoggedUserServiceV1 {
         String uuid = UUID.randomUUID().toString();
         loggedUser.setHashedCode(uuid);
         loggedUser.setCreatedDate(new Date());
-        String tempLink = blumenUrl + "reset-password/#" + uuid;
+        String tempLink = blumenUrl + uuid;
         loggedUser.setTempLink(tempLink);
         //set expiry of link to 1 day
         loggedUser.setLinkExpiryDate(DateUtil.setDates(1));
         loggedUserRepository.save(loggedUser);
-        sendMailService.sendMail(loggedUser.getEmail(),"Usercreated password link","Congratulation your account with orgCode "+loggedUser.getOrgCode()+" and email "+loggedUser.getEmail()+" and password set link "+loggedUser.getTempLink());
+        createUserBody = createUserBody.replace("{0}", tempLink).replace("{1}", loggedUser.getOrgCode()).replace("{2}", loggedUser.getEmail());
+        sendMailService.sendMail(loggedUser.getEmail(),createUserTitle,createUserBody);
 
         return loggedUser;
     }
@@ -214,17 +233,15 @@ public class LoggedUserServiceV1 {
         String uuid = UUID.randomUUID().toString();
         loggedUser.setHashedCode(uuid);
         loggedUser.setCreatedDate(new Date());
-        String tempLink = blumenUrl + "reset-password/#" + uuid;
+        String tempLink = blumenUrl + uuid;
         loggedUser.setTempLink(tempLink);
         //set expiry of link to 1 day
         loggedUser.setLinkExpiryDate(DateUtil.setDates(1));
         loggedUserRepository.save(loggedUser);
-        String subject = "Reset your password";
-        String content = "<h1>Please click on below link to reset password</h1> <h3>" + tempLink + "</h3>";
+        resetPasswordBody = resetPasswordBody.replace("{0}", tempLink);
+        sendMailService.sendMail(loggedUser.getEmail(), resetPasswordTitle, resetPasswordBody);
+        return resetPasswordBody;
 
-        sendMailService.sendMail(loggedUser.getEmail(), subject, content);
-        return content;
-        //check if the user exist in database or not
     }
 
 
@@ -328,14 +345,12 @@ public class LoggedUserServiceV1 {
                 if (maskEmail != null) {
                     maskEmail = maskEmail.charAt(0) + "*****" + maskEmail.charAt(maskEmail.length() - 1);
                 }
-                String tempLink = blumenUrl + "reset-password/#" + loggedUser.getHashedCode();
+                String tempLink = blumenUrl + loggedUser.getHashedCode();
                 loggedUser.setTempLink(tempLink);
                 loggedUserRepository.save(loggedUser);
+                forgotPasswordBody = forgotPasswordBody.replace("{0}", tempLink);
 
-                String subject = "Reset your password";
-                String content = "<h1>Please click on below link to reset password</h1> <h3>" + tempLink + "</h3>";
-
-                sendMailService.sendMail(loggedUser.getEmail(), subject, content);
+                sendMailService.sendMail(loggedUser.getEmail(), forgotPasswordTitle, forgotPasswordBody);
                 statusMap.put("message", "Email has been sent to your registered mail id " + maskEmail + " and link is " + tempLink);
                 statusMap.put("status", "200");
                 return statusMap;
@@ -345,7 +360,7 @@ public class LoggedUserServiceV1 {
                 return statusMap;
             }
         } catch (Exception e) {
-            LOGGER.error("Exception occured while we tried to forgot password {}", e.getMessage());
+            LOGGER.error("Exception occurred while we tried to forgot password {}", e.getMessage());
             statusMap.put("message", "Exception occured while we tried to forgot password " + e.getMessage());
             statusMap.put("status", "500");
             return statusMap;

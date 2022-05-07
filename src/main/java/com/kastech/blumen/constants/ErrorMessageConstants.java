@@ -9,6 +9,8 @@ public class ErrorMessageConstants {
     public static final String INVALID_ORGANIZATION_ID = "ORGANIZATION ID IS INVALID";
     public static final String INVALID_ORGCODE_EMAIL_ID = "Invalid OrgCode/Email";
     public static final String INVALID_ORGANIZATION_SETUP = "Organization not configured properly";
+    public static final String ORGANIZATION_INACTIVE = "Organization is not active";
+    public static final String USER_INACTIVE = "User is not active";
     public static final String NEW_ORGANIZATION_NOTNULL = "Organization Id should be null";
     public static final String ORGANIZATION_0_SETUP = "Organization 0 can be created backend only";
     public static final String ORGANIZATION_ROLE_SETUP_MISSING = "Organization's role & privileges configured wrong";

@@ -32,6 +32,7 @@ public class Roles implements Serializable {
     private String copyRoleName;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OrderBy("parent_code, code")
     @JoinTable(
             name = "roles_privileges",schema = "blumen2",
             joinColumns = @JoinColumn(name = "role_id"),
