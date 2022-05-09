@@ -83,4 +83,13 @@ public class PullTypeController {
                 .body(iis);
 
     }
+
+
+    @ResponseBody
+    @GetMapping (path = "/getPullTypesListByOrgId/v1",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<PullType>> getPullTypesListByOrgId(@RequestParam(value = "pullType",required = false) Long orgId) {
+
+        return new ResponseEntity<>(pullTypeServiceV1.findPullTypesList(orgId),HttpStatus.OK);
+    }
 }

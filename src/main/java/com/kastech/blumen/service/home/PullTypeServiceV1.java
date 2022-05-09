@@ -5,9 +5,9 @@ import com.kastech.blumen.exception.ServiceLayerException;
 import com.kastech.blumen.model.admin.home.PullType;
 import com.kastech.blumen.model.admin.home.PullTypeMultiSearchRequest;
 import com.kastech.blumen.model.admin.home.PullTypeSearchRequest;
-import com.kastech.blumen.repository.admin.home.OrganizationRepository;
 import com.kastech.blumen.repository.admin.home.PullTypeRepository;
 import com.kastech.blumen.repository.student.configurations.OrganizationTypeRepository;
+import com.kastech.blumen.service.customize.PullDownMasterServiceV1;
 import com.kastech.blumen.utility.ExcelUtil;
 import org.apache.poi.ss.usermodel.*;
 import org.slf4j.Logger;
@@ -56,6 +56,10 @@ public class PullTypeServiceV1 {
     @Autowired
     private OrganizationTypeRepository organizationTypeRepository;
 
+    @Autowired
+    private PullDownMasterServiceV1 pullDownMasterServiceV1;
+
+
     public List<PullType> findPullTypesList(PullTypeSearchRequest pullTypeSearchRequest) {
         return pullTypeRepository.findByPullDescStartsWithIgnoreCaseAndPullTypeStartsWithIgnoreCaseAndProjType
                 (pullTypeSearchRequest.getDescription() != null ? pullTypeSearchRequest.getDescription() + "%" : "%",
@@ -66,7 +70,7 @@ public class PullTypeServiceV1 {
         if(pullType.getProjType() != null){
             boolean isPresent = organizationTypeRepository.findById(pullType.getProjType()).isPresent();
             if(!isPresent){
-                throw  new ServiceLayerException(ErrorMessageConstants.INVALID_PULL_TYPE);
+                throw  new ServiceLayerException(ErrorMessageConstants.INVALID_PROJ_TYPE);
             }
         }
         return pullTypeRepository.save(pullType);
@@ -105,4 +109,10 @@ public class PullTypeServiceV1 {
         return pullTypeMap;
     }
 
+    public List<PullType> findPullTypesList(Long orgId) {
+    Long programType =pullDownMasterServiceV1.findOrganizationType(orgId);
+        return pullTypeRepository.findByPullDescStartsWithIgnoreCaseAndPullTypeStartsWithIgnoreCaseAndProjType
+                ( "%",
+                        "%", programType);
+    }
 }

@@ -8378,4 +8378,28 @@ INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,l
      from blumen2.pull_down_master where organizationid=0
                                      and pulltype in ('STATE','CODES','CITY','LABSERVICE','SITE LOCATION');
 
+INSERT INTO blumen2.organization_type
+(id, descriptions, org_type)
+VALUES(8, 'ProjectType8', 'ProjectType8');
+INSERT INTO blumen2.organization_type
+(id, descriptions, org_type)
+VALUES(1, 'TS_DEMO', 'TS');
+INSERT INTO blumen2.organization_type
+(id, descriptions, org_type)
+VALUES(2, 'EOC_DEMO', 'EOC');
+INSERT INTO blumen2.organization_type
+(id, descriptions, org_type)
+VALUES(3, 'UB_DEMO', 'UB');
+INSERT INTO blumen2.organization_type
+(id, descriptions, org_type)
+VALUES(4, 'VUB_DEMO', 'VUB');
+INSERT INTO blumen2.organization_type
+(id, descriptions, org_type)
+VALUES(5, 'UBMS_DEMO', 'UBMS');
+INSERT INTO blumen2.organization_type
+(id, descriptions, org_type)
+VALUES(6, 'SSSDEMO_K1', 'SSSDEMO');
+INSERT INTO blumen2.organization_type
+(id, descriptions, org_type)
+VALUES(7, 'MCN_DEMO', 'MCN');
 

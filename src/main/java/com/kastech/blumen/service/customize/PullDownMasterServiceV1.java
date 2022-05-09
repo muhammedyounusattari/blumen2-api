@@ -64,7 +64,8 @@ public class PullDownMasterServiceV1 {
         pullDownMaster.setLastmodify(new Date());
         pullDownMaster.setTimestamp_column(new Date());
         pullDownMaster.setLastuser(pullDownMasterCreateRequest.getUserName());
-
+        //pullDownMaster.setLongpullna(pullDownMasterCreateRequest.getPullname());
+        //pullDownMaster.setPullname(null);
         return pullDownMasterRepository.save(pullDownMaster);
     }
 
@@ -129,6 +130,8 @@ public class PullDownMasterServiceV1 {
          if(! user.isPresent()){
              errorMessages.add(ErrorMessageConstants.INVALID_USER_NAME);
          }
+
+
         return errorMessages;
     }
 
@@ -139,6 +142,10 @@ public class PullDownMasterServiceV1 {
         List<PullType> pullTypeList = pullTypeRepository.findByPullType(pullDownMaster.getPulltype());
 
         Optional<Organization> organization = organizationRepository.findById(pullDownMaster.getOrganizationid());
+
+        List<PullDownMaster> pullDownMasterList = pullDownMasterRepository.
+                findByOrganizationidAndPulltypeAndPullId(pullDownMaster.getOrganizationid(),
+                        pullDownMaster.getPulltype(),pullDownMaster.getPullId());
         if(CollectionUtils.isEmpty(pullTypeList)) {
             errorMessages.add(ErrorMessageConstants.INVALID_PULL_TYPE);
         }
@@ -155,6 +162,18 @@ public class PullDownMasterServiceV1 {
         if(! user.isPresent()){
             errorMessages.add(ErrorMessageConstants.INVALID_USER_NAME);
         }
+
+        if(!CollectionUtils.isEmpty(pullDownMasterList)){
+            PullDownMaster pullDownMasterFromDb = pullDownMasterList.get(0);
+            if(pullDownMaster.getPullId() != pullDownMasterFromDb.getPullId()) {
+                if (pullDownMasterFromDb.getDeleted()) {
+                    errorMessages.add(ErrorMessageConstants.PULL_DOWN_ALREADY_DELETED_NUMBER);
+                } else {
+                    errorMessages.add(ErrorMessageConstants.PULL_DOWN_ALREADY_EXISTS_WITH_NUMBER);
+                }
+            }
+        }
+
         return errorMessages;
     }
 

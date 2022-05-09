@@ -1,5 +1,6 @@
 package com.kastech.blumen.controller.customize;
 
+import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.customize.PullDownMaster;
 import com.kastech.blumen.model.customize.PullDownMasterCreateRequest;
 import com.kastech.blumen.service.customize.PullDownMasterServiceV1;
@@ -52,8 +53,9 @@ public class PullDownMasterController {
 
     @ResponseBody
     @DeleteMapping(path = "/deletePullDownMaster/v1")
-    public ResponseEntity<String> deletePullDownMaster(@RequestBody  PullDownMaster pullDownMaster) {
+    public ResponseEntity<Response> deletePullDownMaster(@RequestBody  PullDownMaster pullDownMaster) {
+        Response reponse =  new Response(200, "success");
         pullDownMasterServiceV1.deletePullDownMaster(pullDownMaster);
-        return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
+        return new ResponseEntity<>(reponse, HttpStatus.OK);
     }
 }
