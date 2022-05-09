@@ -5,12 +5,11 @@ import com.kastech.blumen.constants.ErrorMessageConstants;
 import com.kastech.blumen.constants.RestURIConstant;
 import com.kastech.blumen.exception.DataNotFoundException;
 import com.kastech.blumen.exception.InputValidationException;
-import com.kastech.blumen.model.CustomUserDetails;
-import com.kastech.blumen.model.JWTRequest;
-import com.kastech.blumen.model.JWTResponse;
+import com.kastech.blumen.model.*;
 import com.kastech.blumen.model.admin.home.Organization;
 import com.kastech.blumen.model.keycloak.LoggedUser;
 import com.kastech.blumen.repository.admin.LoggedUserRepository;
+import com.kastech.blumen.repository.admin.SystemPreferencesRepository;
 import com.kastech.blumen.repository.admin.home.OrganizationRepository;
 import com.kastech.blumen.service.CustomUserDetailsService;
 import com.kastech.blumen.service.admin.LoggedUserServiceV1;
@@ -51,6 +50,9 @@ public class UserManagmentController {
 
     @Autowired
     private OrganizationRepository organizationRepository;
+
+    @Autowired
+    private SystemPreferencesRepository systemPreferencesRepository;
 
     @Autowired
     private JwtUtil jwtUtil;
@@ -208,10 +210,17 @@ public class UserManagmentController {
             token = this.jwtUtil.generateToken(authentication, customUserDetails);
             Optional<Organization> organizations = organizationRepository.findByOrgId(customUserDetails.getOrgId());
             Organization organization = new Organization();
+            GeneralDefaultSetting generalDefaultSetting = new GeneralDefaultSetting();
             LoggedUser loggedUser = null;
             if(!organizations.isEmpty()){
                 organization = organizations.get();
                 loggedUser = usersRepository.findById(customUserDetails.getUserId()).get();
+                List<SystemPreferences> systemPreferencesList = systemPreferencesRepository.findByOrgId(loggedUser.getOrgId());
+                if(!systemPreferencesList.isEmpty()){
+                    SystemPreferences systemPreference = systemPreferencesList.get(0);
+                    if(systemPreference!=null && systemPreference.getGeneralSetting()!=null && systemPreference.getGeneralSetting().getDefaultSetting()!=null)
+                        generalDefaultSetting = systemPreference.getGeneralSetting().getDefaultSetting();
+                }
             } else {
                 throw new DataNotFoundException(ErrorMessageConstants.INVALID_ORGANIZATION_SETUP);
             }
@@ -229,7 +238,7 @@ public class UserManagmentController {
                     organization.getOrgName(),organization.getOrgId(),organization.getOrgProgramType(),
                     organization.getOrgCode(), customUserDetails.getRoleName(),
                     organization.getOrgTwoFactor(),maskEmail, organization.getOrgSiteLocation(),
-                    loggedUser.getFirstTime(), organization.getOrgDaysToExpire(), organization.getOrgRemindOne(), organization.getOrgRemindTwo() );
+                    loggedUser.getFirstTime(), organization.getOrgDaysToExpire(), organization.getOrgRemindOne(), organization.getOrgRemindTwo(),generalDefaultSetting.getFiscalYear(), generalDefaultSetting.getSemester());
             loggedUser.setIssueDate(new Date());
             loggedUser.setExpiryDate(new Date(System.currentTimeMillis() + EXPIRATION_TIME));
             usersRepository.save(loggedUser);

@@ -13,21 +13,18 @@ public class JWTResponse {
     private String roleName;
     private Boolean twoFactorEnabled;
     private String maskedEmail;
-
     private Boolean orgSiteLocation;
-
     private Boolean isFirstTime;
-
     private Integer orgDaysToExpire;
-
     private Integer orgRemindOne;
-
     private Integer orgRemindTwo;
+    private String fiscalYear;
+    private String semester;
 
     public JWTResponse(String access_token, String iat, String exp, Integer status, String orgName,
                        Long orgId, String programType, String orgCode, String roleName, Boolean twoFactorEnabled,
                        String maskedEmail, Boolean orgSiteLocation, Boolean isFirstTime,
-                       Integer orgDaysToExpire, Integer orgRemindOne, Integer orgRemindTwo) {
+                       Integer orgDaysToExpire, Integer orgRemindOne, Integer orgRemindTwo,String fiscalYear,String semester) {
         this.access_token = access_token;
         this.iat = iat;
         this.exp = exp;
@@ -40,6 +37,8 @@ public class JWTResponse {
         this.twoFactorEnabled = twoFactorEnabled;
         this.maskedEmail =maskedEmail;
         this.isFirstTime = isFirstTime;
+        this.fiscalYear = fiscalYear;
+        this.semester = semester;
     }
 
     public String getAccess_token() {
@@ -168,5 +167,21 @@ public class JWTResponse {
 
     public void setOrgRemindTwo(Integer orgRemindTwo) {
         this.orgRemindTwo = orgRemindTwo;
+    }
+
+    public String getFiscalYear() {
+        return fiscalYear;
+    }
+
+    public void setFiscalYear(String fiscalYear) {
+        this.fiscalYear = fiscalYear;
+    }
+
+    public String getSemester() {
+        return semester;
+    }
+
+    public void setSemester(String semester) {
+        this.semester = semester;
     }
 }
