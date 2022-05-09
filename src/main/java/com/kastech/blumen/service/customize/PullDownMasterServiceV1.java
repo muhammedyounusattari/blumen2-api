@@ -188,4 +188,17 @@ public class PullDownMasterServiceV1 {
 
         return pullDownMasterMap;
     }
+
+    public OrganizationType findProjType(Long orgId){
+        OrganizationType projType = null;
+        Optional<Organization>  organization = organizationRepository.findById(orgId);
+        if(organization.isPresent()) {
+            List<OrganizationType> organizationTypeList = organizationTypeRepository.findByOrgType(organization.get().getOrgOrganizationType());
+            if(!CollectionUtils.isEmpty(organizationTypeList)){
+                projType = organizationTypeList.get(0);
+            }
+        }
+
+        return projType;
+    }
 }

@@ -16,9 +16,18 @@ public class JWTResponse {
 
     private Boolean orgSiteLocation;
 
+    private Boolean isFirstTime;
+
+    private Integer orgDaysToExpire;
+
+    private Integer orgRemindOne;
+
+    private Integer orgRemindTwo;
+
     public JWTResponse(String access_token, String iat, String exp, Integer status, String orgName,
                        Long orgId, String programType, String orgCode, String roleName, Boolean twoFactorEnabled,
-                       String maskedEmail, Boolean orgSiteLocation) {
+                       String maskedEmail, Boolean orgSiteLocation, Boolean isFirstTime,
+                       Integer orgDaysToExpire, Integer orgRemindOne, Integer orgRemindTwo) {
         this.access_token = access_token;
         this.iat = iat;
         this.exp = exp;
@@ -30,7 +39,7 @@ public class JWTResponse {
         this.roleName = roleName;
         this.twoFactorEnabled = twoFactorEnabled;
         this.maskedEmail =maskedEmail;
-
+        this.isFirstTime = isFirstTime;
     }
 
     public String getAccess_token() {
@@ -127,5 +136,37 @@ public class JWTResponse {
 
     public void setOrgSiteLocation(Boolean orgSiteLocation) {
         this.orgSiteLocation = orgSiteLocation;
+    }
+
+    public Boolean getFirstTime() {
+        return isFirstTime;
+    }
+
+    public void setFirstTime(Boolean firstTime) {
+        isFirstTime = firstTime;
+    }
+
+    public Integer getOrgDaysToExpire() {
+        return orgDaysToExpire;
+    }
+
+    public void setOrgDaysToExpire(Integer orgDaysToExpire) {
+        this.orgDaysToExpire = orgDaysToExpire;
+    }
+
+    public Integer getOrgRemindOne() {
+        return orgRemindOne;
+    }
+
+    public void setOrgRemindOne(Integer orgRemindOne) {
+        this.orgRemindOne = orgRemindOne;
+    }
+
+    public Integer getOrgRemindTwo() {
+        return orgRemindTwo;
+    }
+
+    public void setOrgRemindTwo(Integer orgRemindTwo) {
+        this.orgRemindTwo = orgRemindTwo;
     }
 }

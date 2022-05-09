@@ -228,7 +228,8 @@ public class UserManagmentController {
             jwtResponse = new JWTResponse(token, this.jwtUtil.extractKeyFromToken(token,"iat"), this.jwtUtil.extractKeyFromToken(token,"exp"), 200,
                     organization.getOrgName(),organization.getOrgId(),organization.getOrgProgramType(),
                     organization.getOrgCode(), customUserDetails.getRoleName(),
-                    organization.getOrgTwoFactor(),maskEmail, organization.getOrgSiteLocation());
+                    organization.getOrgTwoFactor(),maskEmail, organization.getOrgSiteLocation(),
+                    loggedUser.getFirstTime(), organization.getOrgDaysToExpire(), organization.getOrgRemindOne(), organization.getOrgRemindTwo() );
             loggedUser.setIssueDate(new Date());
             loggedUser.setExpiryDate(new Date(System.currentTimeMillis() + EXPIRATION_TIME));
             usersRepository.save(loggedUser);

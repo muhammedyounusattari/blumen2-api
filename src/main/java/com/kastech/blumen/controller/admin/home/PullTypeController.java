@@ -1,8 +1,10 @@
 package com.kastech.blumen.controller.admin.home;
 
+import com.kastech.blumen.model.Configurations.OrganizationType;
 import com.kastech.blumen.model.admin.home.PullType;
 import com.kastech.blumen.model.admin.home.PullTypeMultiSearchRequest;
 import com.kastech.blumen.model.admin.home.PullTypeSearchRequest;
+import com.kastech.blumen.service.customize.PullDownMasterServiceV1;
 import com.kastech.blumen.service.home.PullTypeServiceV1;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +29,8 @@ public class PullTypeController {
     private static final Logger LOGGER = LoggerFactory.getLogger(PullTypeController.class);
     @Autowired
     private PullTypeServiceV1 pullTypeServiceV1;
+    @Autowired
+    private PullDownMasterServiceV1 pullDownMasterServiceV1;
 
     @ResponseBody
     @GetMapping (path = "/getPullTypesList/v1",
@@ -82,6 +86,23 @@ public class PullTypeController {
                 .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
                 .body(iis);
 
+    }
+
+
+    @ResponseBody
+    @GetMapping (path = "/getPullTypesListByOrgId/v1",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<PullType>> getPullTypesListByOrgId(@RequestParam(value = "orgId",required = true) Long orgId) {
+
+        return new ResponseEntity<>(pullTypeServiceV1.findPullTypesList(orgId),HttpStatus.OK);
+    }
+
+    @ResponseBody
+    @GetMapping (path = "/getProjType/v1",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<OrganizationType> getProjTypeByOrgId(@RequestParam(value = "orgId",required = true) Long orgId) {
+
+        return new ResponseEntity<>(pullDownMasterServiceV1.findProjType(orgId),HttpStatus.OK);
     }
 
 

@@ -7,6 +7,9 @@ public class ErrorMessageConstants {
     public static final String INVALID_PROJ_TYPE= "PROJ TYPE IS INVALID";
     public static final String INVALID_USER_NAME = "USER NAME IS INVALID";
     public static final String INVALID_ORGANIZATION_ID = "ORGANIZATION ID IS INVALID";
+
+    public static final String INVALID_ORGANIZATION_CODE = "ORGANIZATION CODE IS INVALID";
+
     public static final String INVALID_ORGCODE_EMAIL_ID = "Invalid OrgCode/Email";
     public static final String INVALID_ORGANIZATION_SETUP = "Organization not configured properly";
     public static final String ORGANIZATION_INACTIVE = "Organization is not active";

@@ -1,26 +1,25 @@
 package com.kastech.blumen.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "system_preferences" ,schema = "blumen2")
 public class SystemPreferences {
 
 	@Id
-	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="system_preferences_seq_gen")
-    @SequenceGenerator(name="system_preferences_seq_gen", sequenceName="system_preferences_SEQ")
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;
 	@OneToOne(cascade = CascadeType.ALL)
 	private GeneralSetting generalSetting;
 	@OneToOne(cascade = CascadeType.ALL)
 	private DefaultSetting defaultSetting;
+
+	@Column(unique = true,nullable = false)
+	private Long orgId;
+
+	@Column(nullable = true)
+	private Long modifiedBy;
+
 	public Long getId() {
 		return id;
 	}
@@ -39,6 +38,20 @@ public class SystemPreferences {
 	public void setDefaultSetting(DefaultSetting defaultSetting) {
 		this.defaultSetting = defaultSetting;
 	}
-	
-	
+
+	public Long getOrgId() {
+		return orgId;
+	}
+
+	public void setOrgId(Long orgId) {
+		this.orgId = orgId;
+	}
+
+	public Long getModifiedBy() {
+		return modifiedBy;
+	}
+
+	public void setModifiedBy(Long modifiedBy) {
+		this.modifiedBy = modifiedBy;
+	}
 }

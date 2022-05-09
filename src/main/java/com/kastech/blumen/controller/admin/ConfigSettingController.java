@@ -20,6 +20,7 @@ import javax.ws.rs.PathParam;
 
 @RestController
 @RequestMapping("/api/blumen-api/admin")
+@Deprecated
 public class ConfigSettingController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ConfigSettingController.class);
@@ -53,18 +54,5 @@ public class ConfigSettingController {
 	   return ResponseEntity.ok(configSettingService.saveConfigSettings(configSettings));
 	}
 	
-	@ResponseBody
-	@GetMapping(path = "/getSystemPreferenceData/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<Collection<SystemPreferences>> getSystemPreferenceData() {
-		LOGGER.info("Inside getBOTMgmtFormList");
-		return ResponseEntity.ok(configSettingService.getAllSystemPreferences());
-	}
-	
-	@ResponseBody
-	@PostMapping(path = "/postSystemPreferenceData/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<SystemPreferences> postSystemPreferenceData(@RequestBody SystemPreferences SystemPreferences) {
-		LOGGER.info("Inside postSystemPreferenceData");
-		SystemPreferences = configSettingService.saveSystemPreferenceData(SystemPreferences);
-		return ResponseEntity.ok(SystemPreferences);
-	}
+
 }

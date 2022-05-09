@@ -114,6 +114,16 @@ public class LoggedUserServiceV1 {
             //super admin - expect org type, org id from ui
             loggedUser.setOrgId(loggedUser.getOrgId());
             loggedUser.setOrgCode(loggedUser.getOrgCode());
+
+            Optional<Organization> optionalOrganization = organizationRepository.findByOrgId(loggedUser.getOrgId());
+            if (optionalOrganization.isEmpty()) {
+                LOGGER.error("Organization Id {} not found in database", loggedUser.getOrgId());
+                throw new DataNotFoundException(INVALID_ORGANIZATION_CODE);
+            }
+            if (!optionalOrganization.get().getOrgActive()) {
+                LOGGER.error("Organization is Inactive");
+                throw new DataNotFoundException(ORGANIZATION_INACTIVE);
+            }
         }
 
         List<Roles> roles = rolesRepository.findByOrgIdAndRole(loggedUser.getOrgId(), loggedUser.getRoleName());
@@ -229,14 +239,28 @@ public class LoggedUserServiceV1 {
             throw new UsernameNotFoundException("Username not found");
         }
 
+        Optional<Organization> optionalOrganization = organizationRepository.findByOrgCode(orgCode);
+        if (optionalOrganization.isEmpty()) {
+            LOGGER.error("Organization {} not found in database", orgCode);
+            throw new DataNotFoundException(INVALID_ORGANIZATION_CODE);
+        }
+
+        if (!optionalOrganization.get().getOrgActive()) {
+            LOGGER.error("Organization is Inactive");
+            throw new DataNotFoundException(ORGANIZATION_INACTIVE);
+        } else if (!optionalLoggedUser.get().getActive()) {
+            LOGGER.error("User is Inactive");
+            throw new DataNotFoundException(USER_INACTIVE);
+        }
+
         LoggedUser loggedUser = optionalLoggedUser.get();
         String uuid = UUID.randomUUID().toString();
         loggedUser.setHashedCode(uuid);
         loggedUser.setCreatedDate(new Date());
         String tempLink = blumenUrl + uuid;
         loggedUser.setTempLink(tempLink);
-        //set expiry of link to 1 day
-        loggedUser.setLinkExpiryDate(DateUtil.setDates(1));
+        //set expiry of link based on org check
+        loggedUser.setLinkExpiryDate(DateUtil.setDates(optionalOrganization.get().getOrgExpiryTime()));
         loggedUserRepository.save(loggedUser);
         resetPasswordBody = resetPasswordBody.replace("{0}", tempLink);
         sendMailService.sendMail(loggedUser.getEmail(), resetPasswordTitle, resetPasswordBody);
