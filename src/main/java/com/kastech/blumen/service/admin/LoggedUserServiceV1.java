@@ -3,6 +3,7 @@ package com.kastech.blumen.service.admin;
 import com.kastech.blumen.constants.ErrorMessageConstants;
 import com.kastech.blumen.exception.DataModificationException;
 import com.kastech.blumen.exception.DataNotFoundException;
+import com.kastech.blumen.exception.InputValidationException;
 import com.kastech.blumen.mail.EmailService;
 import com.kastech.blumen.model.admin.home.Organization;
 import com.kastech.blumen.model.keycloak.*;
@@ -123,6 +124,12 @@ public class LoggedUserServiceV1 {
             if (!optionalOrganization.get().getOrgActive()) {
                 LOGGER.error("Organization is Inactive");
                 throw new DataNotFoundException(ORGANIZATION_INACTIVE);
+            }
+
+            final String emailInput = loggedUser.getEmail();
+            if (optionalOrganization.get().getUsers().stream()
+                    .filter(o -> o.getEmail().equalsIgnoreCase(emailInput.toLowerCase())).count() > 0) {
+                throw new DataNotFoundException(EMAIL_DUPLICATE);
             }
         }
 
@@ -291,6 +298,7 @@ public class LoggedUserServiceV1 {
             loggedUser.setLinkExpiryDate(DateUtil.setDates(-1));
             loggedUser.setPassword(updatePassword);
             loggedUser.setHashedCode("");
+            loggedUser.setPasswordExpiryDate(new Date());
             loggedUserRepository.save(loggedUser);
             statusMap.put("message", "Password Updated successfully");
             statusMap.put("status", "200");
@@ -439,6 +447,7 @@ public class LoggedUserServiceV1 {
         if(!StringUtils.isEmpty(confPassword)){
             LoggedUser loggedUser = user;
             user.setPassword(confPassword);
+            loggedUser.setPasswordExpiryDate(new Date());
             loggedUserRepository.save(loggedUser);
             successMap.put("message", "Password updated successfully");
             successMap.put("status", "200");
@@ -510,18 +519,24 @@ public class LoggedUserServiceV1 {
     }
 
 
-    public void generateCode() {
+    public Map<String,Object> generateCode() {
        LOGGER.info("call made to generateCode {}", this.getClass());
        Integer authCode = new Random().nextInt(999999);
         Optional<LoggedUser> loggedUsers = loggedUserRepository.findByEmailAndOrgCode(SecurityUtil.getEmail(), SecurityUtil.getUserOrgCode());
+        Date codeExpiryDate  = new Date();
         if(!loggedUsers.isEmpty()) {
             LoggedUser loggedUserDb = loggedUsers.get();
             loggedUserDb.setAuthCode(authCode);
             loggedUserDb.setModifiedBy(SecurityUtil.getUserId());
+            loggedUserDb.setAuthCodeExpiryDate(new Date());
+            codeExpiryDate = loggedUserDb.getAuthCodeExpiryDate();
             loggedUserRepository.save(loggedUserDb);
             sendMailService.sendMail(loggedUserDb.getEmail(),"Auth Code from blumen2", "Your authcode is "+authCode);
         }
         LOGGER.info("Code generated successfully {}", authCode);
+        Map<String,Object> map = new HashMap<>();
+        map.put("codeExpiryTime",codeExpiryDate);
+        return map;
     }
 
     public void validateMFACode(Integer authCode) {
@@ -531,9 +546,16 @@ public class LoggedUserServiceV1 {
             LoggedUser loggedUserDb = loggedUsers.get();
             Integer authCodeDB = loggedUserDb.getAuthCode();
             if(authCodeDB!=null && authCode.equals(authCodeDB)){
+                if(!loggedUserDb.getAuthCodeExpiryDate().after(new Date())) {
+                    throw new DataNotFoundException(ErrorMessageConstants.AUTHCODE_EXPIRED) {
+                    };
+                }
                 loggedUserDb.setAuthCode(null);
                 loggedUserDb.setModifiedBy(SecurityUtil.getUserId());
+                loggedUserDb.setAuthCodeExpiryDate(null);
                 loggedUserRepository.save(loggedUserDb);
+            } else {
+                throw new InputValidationException(AUTHCODE_INVALID);
             }
         }
     }

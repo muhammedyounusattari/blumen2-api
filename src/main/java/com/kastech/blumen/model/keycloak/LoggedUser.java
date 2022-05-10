@@ -135,10 +135,25 @@ public class LoggedUser implements Serializable {
     @Nullable
     private Long modifiedBy;
 
+    @Nullable
+    private Date authCodeExpiryDate;
+
+    @Nullable
+    private Date passwordExpiryDate;
+
     public LoggedUser() {
     }
 
-    public LoggedUser(Long id, String orgCode, Long orgId, String username, String email, String password, String roleName, String firstName, String lastName, String scope, String address1, String address2, String city, String state, String zipcode, String mobile, String phone1, String phone2, String fax, String notes, String siteLocation, Boolean active, String createdBy, String editedBy, String securityQuestion1, String securityAnswer1, String securityQuestion2, String securityAnswer2, BOLT bolt, int ita, int exp, Date issueDate, Date expiryDate, @Nullable Integer wrongAttempt, @Nullable Boolean firstTime, @Nullable String tempLink, Date createdDate, Date editedDate, Date lastLogin, Set<Roles> roles, @Nullable String hashedCode, @Nullable Date linkExpiryDate, Set<Organization> organizationSet,@Nullable Date lastLogout, @Nullable Integer authCode,@Nullable Long modifiedBy ) {
+    public LoggedUser(Long id, String orgCode, Long orgId, String username, String email, String password, String roleName,
+                      String firstName, String lastName, String scope, String address1, String address2, String city,
+                      String state, String zipcode, String mobile, String phone1, String phone2, String fax, String notes,
+                      String siteLocation, Boolean active, String createdBy, String editedBy, String securityQuestion1,
+                      String securityAnswer1, String securityQuestion2, String securityAnswer2, BOLT bolt, int ita, int exp,
+                      Date issueDate, Date expiryDate, @Nullable Integer wrongAttempt, @Nullable Boolean firstTime,
+                      @Nullable String tempLink, Date createdDate, Date editedDate, Date lastLogin, Set<Roles> roles,
+                      @Nullable String hashedCode, @Nullable Date linkExpiryDate, Set<Organization> organizationSet,
+                      @Nullable Date lastLogout, @Nullable Integer authCode,@Nullable Long modifiedBy,
+                      @Nullable Date authCodeExpiryDate,  @Nullable Date passwordExpiryDate) {
         this.id = id;
         this.orgCode = orgCode;
         this.orgId = orgId;
@@ -185,6 +200,8 @@ public class LoggedUser implements Serializable {
         this.lastLogout = lastLogout;
         this.authCode = authCode;
         this.modifiedBy = modifiedBy;
+        this.authCodeExpiryDate = authCodeExpiryDate;
+        this.passwordExpiryDate = passwordExpiryDate;
     }
 
     public Long getId() {
@@ -560,6 +577,24 @@ public class LoggedUser implements Serializable {
 
     public void setModifiedBy(@Nullable Long modifiedBy) {
         this.modifiedBy = modifiedBy;
+    }
+
+    @Nullable
+    public Date getAuthCodeExpiryDate() {
+        return authCodeExpiryDate;
+    }
+
+    public void setAuthCodeExpiryDate(@Nullable Date authCodeExpiryDate) {
+        this.authCodeExpiryDate = authCodeExpiryDate;
+    }
+
+    @Nullable
+    public Date getPasswordExpiryDate() {
+        return passwordExpiryDate;
+    }
+
+    public void setPasswordExpiryDate(@Nullable Date passwordExpiryDate) {
+        this.passwordExpiryDate = passwordExpiryDate;
     }
 
     @Override
