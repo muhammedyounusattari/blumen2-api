@@ -278,7 +278,8 @@ public class UserManagmentController {
 
     @PutMapping(value = "/updateSecurityQuestions")
     public ResponseEntity<?> updateSecurityQuestions(@RequestBody Map<String,String> requestPaylaod) {
-        return null;
+        Map<String,String> resultMap =  loggedUserServiceV1.changePassword(requestPaylaod);
+        return ResponseEntity.ok(resultMap);
     }
 
     ///should support unauthenticated access
@@ -297,7 +298,7 @@ public class UserManagmentController {
             loggedUserServiceV1.generateCode();
             return success("Code sent to an email", 200);
         } catch (Exception e) {
-            LOGGER.info("Exception occured while generating authCode {} ", e);
+            LOGGER.info("Exception occured while generating authCode", e);
             throw new InputValidationException("Problem in generating authCode "+e.getMessage());
         }
     }

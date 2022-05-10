@@ -37,6 +37,10 @@ public class JWTResponse {
         this.twoFactorEnabled = twoFactorEnabled;
         this.maskedEmail =maskedEmail;
         this.isFirstTime = isFirstTime;
+        this.orgSiteLocation = orgSiteLocation;
+        this.orgDaysToExpire = orgDaysToExpire;
+        this.orgRemindOne = orgRemindOne;
+        this.orgRemindTwo = orgRemindTwo;
         this.fiscalYear = fiscalYear;
         this.semester = semester;
     }
