@@ -161,6 +161,7 @@ public class LoggedUserServiceV1 {
         //send email service
 
         String uuid = UUID.randomUUID().toString();
+        String email = loggedUser.getEmail();
         loggedUser.setHashedCode(uuid);
         loggedUser.setCreatedDate(new Date());
         String tempLink = blumenUrl + uuid;
@@ -168,8 +169,11 @@ public class LoggedUserServiceV1 {
         //set expiry of link to 1 day
         loggedUser.setLinkExpiryDate(DateUtil.setDates(1));
         loggedUser = loggedUserRepository.save(loggedUser);
-        createUserBody = createUserBody.replace("{0}", tempLink).replace("{1}", loggedUser.getOrgCode()).replace("{2}", loggedUser.getEmail());
-        sendMailService.sendMail(loggedUser.getEmail(),createUserTitle,createUserBody);
+        createUserBody = createUserBody.replace("{0}", tempLink);
+        createUserBody = createUserBody.replace("{1}", loggedUser.getOrgCode());
+        createUserBody = createUserBody.replace("{2}", email);
+
+        sendMailService.sendMail(email,createUserTitle,createUserBody);
 
         return loggedUser;
     }
@@ -266,6 +270,7 @@ public class LoggedUserServiceV1 {
         loggedUser.setCreatedDate(new Date());
         String tempLink = blumenUrl + uuid;
         loggedUser.setTempLink(tempLink);
+        loggedUser.setHashedCode(uuid);
         //set expiry of link based on org check
         loggedUser.setLinkExpiryDate(DateUtil.setDates(1));
         loggedUserRepository.save(loggedUser);
