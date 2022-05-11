@@ -267,7 +267,7 @@ public class LoggedUserServiceV1 {
         String tempLink = blumenUrl + uuid;
         loggedUser.setTempLink(tempLink);
         //set expiry of link based on org check
-        loggedUser.setLinkExpiryDate(DateUtil.setDates(optionalOrganization.get().getOrgExpiryTime()));
+        loggedUser.setLinkExpiryDate(DateUtil.setDates(1));
         loggedUserRepository.save(loggedUser);
         resetPasswordBody = resetPasswordBody.replace("{0}", tempLink);
         sendMailService.sendMail(loggedUser.getEmail(), resetPasswordTitle, resetPasswordBody);
@@ -295,10 +295,12 @@ public class LoggedUserServiceV1 {
                 return statusMap;
             }
 
+            Optional<Organization> organization = organizationRepository.findByOrgId(loggedUser.getOrgId());
+            loggedUser.setPasswordExpiryDate(DateUtil.setDates(
+                            organization.get().getOrgDaysToExpire() == null ? 30 : organization.get().getOrgDaysToExpire()));
             loggedUser.setLinkExpiryDate(DateUtil.setDates(-1));
             loggedUser.setPassword(updatePassword);
             loggedUser.setHashedCode("");
-            loggedUser.setPasswordExpiryDate(new Date());
             loggedUserRepository.save(loggedUser);
             statusMap.put("message", "Password Updated successfully");
             statusMap.put("status", "200");
@@ -370,15 +372,15 @@ public class LoggedUserServiceV1 {
                     statusMap.put("status", "404");
                     return statusMap;
                 }
-                loggedUser.setHashedCode(UUID.randomUUID().toString());
-                loggedUser.setLinkExpiryDate(DateUtil.setDates(1));
 
                 String maskEmail = email;
                 if (maskEmail != null) {
                     maskEmail = maskEmail.charAt(0) + "*****" + maskEmail.charAt(maskEmail.length() - 1);
                 }
+                loggedUser.setHashedCode(UUID.randomUUID().toString());
                 String tempLink = blumenUrl + loggedUser.getHashedCode();
                 loggedUser.setTempLink(tempLink);
+                loggedUser.setLinkExpiryDate(DateUtil.setDates(1));
                 loggedUserRepository.save(loggedUser);
                 forgotPasswordBody = forgotPasswordBody.replace("{0}", tempLink);
 
@@ -447,7 +449,9 @@ public class LoggedUserServiceV1 {
         if(!StringUtils.isEmpty(confPassword)){
             LoggedUser loggedUser = user;
             user.setPassword(confPassword);
-            loggedUser.setPasswordExpiryDate(new Date());
+            Optional<Organization> organization = organizationRepository.findByOrgId(loggedUser.getOrgId());
+            loggedUser.setPasswordExpiryDate(DateUtil.setDates(
+                    organization.get().getOrgDaysToExpire() == null ? 30 : organization.get().getOrgDaysToExpire()));
             loggedUserRepository.save(loggedUser);
             successMap.put("message", "Password updated successfully");
             successMap.put("status", "200");
@@ -528,7 +532,9 @@ public class LoggedUserServiceV1 {
             LoggedUser loggedUserDb = loggedUsers.get();
             loggedUserDb.setAuthCode(authCode);
             loggedUserDb.setModifiedBy(SecurityUtil.getUserId());
-            loggedUserDb.setAuthCodeExpiryDate(new Date());
+            Optional<Organization> organization = organizationRepository.findByOrgId(loggedUserDb.getOrgId());
+            loggedUserDb.setAuthCodeExpiryDate(DateUtil.setMinutes(
+                    organization.get().getOrgExpiryTime() == null ? 10 : organization.get().getOrgExpiryTime()));
             codeExpiryDate = loggedUserDb.getAuthCodeExpiryDate();
             loggedUserRepository.save(loggedUserDb);
             sendMailService.sendMail(loggedUserDb.getEmail(),"Auth Code from blumen2", "Your authcode is "+authCode);

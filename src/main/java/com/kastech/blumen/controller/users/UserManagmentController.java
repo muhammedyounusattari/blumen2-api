@@ -244,6 +244,7 @@ public class UserManagmentController {
                     loggedUser.getFirstTime(), organization.getOrgDaysToExpire(), organization.getOrgRemindOne(), organization.getOrgRemindTwo(), generalDefaultSetting.getFiscalYear(),
                     generalDefaultSetting.getSemester());
             loggedUser.setIssueDate(new Date());
+            loggedUser.setLastLogin(new Date());
             loggedUser.setExpiryDate(new Date(System.currentTimeMillis() + EXPIRATION_TIME));
             usersRepository.save(loggedUser);
 
