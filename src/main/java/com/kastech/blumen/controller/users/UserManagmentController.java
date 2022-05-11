@@ -229,7 +229,10 @@ public class UserManagmentController {
                 throw new DataNotFoundException(ErrorMessageConstants.ORGANIZATION_INACTIVE);
             } else if(!loggedUser.getActive()) { // || loggedUser.getWrongAttempt() > 3)
                 throw new DataNotFoundException(ErrorMessageConstants.USER_INACTIVE);
+            } else if(!loggedUser.getPasswordExpiryDate().after(new Date())) {
+                throw new DataNotFoundException(ErrorMessageConstants.PASSWORD_EXPIRED);
             }
+
             String maskEmail = customUserDetails.getEmail();
             String emailSplit[] = maskEmail.split("@");
             maskEmail = maskEmail.charAt(0) + "*****" + emailSplit[0].charAt(emailSplit[0].length() - 1)+"@"+emailSplit[1];
@@ -238,8 +241,10 @@ public class UserManagmentController {
                     organization.getOrgName(),organization.getOrgId(),organization.getOrgProgramType(),
                     organization.getOrgCode(), customUserDetails.getRoleName(),
                     organization.getOrgTwoFactor(),maskEmail, organization.getOrgSiteLocation(),
-                    loggedUser.getFirstTime(), organization.getOrgDaysToExpire(), organization.getOrgRemindOne(), organization.getOrgRemindTwo(),generalDefaultSetting.getFiscalYear(), generalDefaultSetting.getSemester());
+                    loggedUser.getFirstTime(), organization.getOrgDaysToExpire(), organization.getOrgRemindOne(), organization.getOrgRemindTwo(), generalDefaultSetting.getFiscalYear(),
+                    generalDefaultSetting.getSemester());
             loggedUser.setIssueDate(new Date());
+            loggedUser.setLastLogin(new Date());
             loggedUser.setExpiryDate(new Date(System.currentTimeMillis() + EXPIRATION_TIME));
             usersRepository.save(loggedUser);
 
@@ -294,9 +299,10 @@ public class UserManagmentController {
     @GetMapping(path= RestURIConstant.GENERATE_CODE, produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> generateMFACode(){
         LOGGER.info("call made to generateMFACode ");
+        Map<String,Object> resultMap = new HashMap<>();
         try {
-            loggedUserServiceV1.generateCode();
-            return success("Code sent to an email", 200);
+            resultMap = loggedUserServiceV1.generateCode();
+            return  ResponseEntity.ok(resultMap);
         } catch (Exception e) {
             LOGGER.info("Exception occured while generating authCode", e);
             throw new InputValidationException("Problem in generating authCode "+e.getMessage());
@@ -311,8 +317,10 @@ public class UserManagmentController {
            try {
                loggedUserServiceV1.validateMFACode(authCode);
                return success("Validate successfully", 200);
-           } catch(Exception e) {
-               throw new InputValidationException("authCode is invalid");
+           } catch(DataNotFoundException e) {
+               return  failure(e.getMessage(), 403);
+           } catch (InputValidationException e) {
+               return  failure(e.getMessage(), 400);
            }
        }
        LOGGER.info("authCode is missing ");

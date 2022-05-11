@@ -52,4 +52,13 @@ public class DateUtil {
         dt = c.getTime();
         return dt;
     }
+
+    public static Date setMinutes(int min){
+        Date dt = new Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(dt);
+        c.add(Calendar.MINUTE, min);
+        dt = c.getTime();
+        return dt;
+    }
 }

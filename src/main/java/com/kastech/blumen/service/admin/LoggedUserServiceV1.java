@@ -3,6 +3,7 @@ package com.kastech.blumen.service.admin;
 import com.kastech.blumen.constants.ErrorMessageConstants;
 import com.kastech.blumen.exception.DataModificationException;
 import com.kastech.blumen.exception.DataNotFoundException;
+import com.kastech.blumen.exception.InputValidationException;
 import com.kastech.blumen.mail.EmailService;
 import com.kastech.blumen.model.admin.home.Organization;
 import com.kastech.blumen.model.keycloak.*;
@@ -124,6 +125,12 @@ public class LoggedUserServiceV1 {
                 LOGGER.error("Organization is Inactive");
                 throw new DataNotFoundException(ORGANIZATION_INACTIVE);
             }
+
+            final String emailInput = loggedUser.getEmail();
+            if (optionalOrganization.get().getUsers().stream()
+                    .filter(o -> o.getEmail().equalsIgnoreCase(emailInput.toLowerCase())).count() > 0) {
+                throw new DataNotFoundException(EMAIL_DUPLICATE);
+            }
         }
 
         List<Roles> roles = rolesRepository.findByOrgIdAndRole(loggedUser.getOrgId(), loggedUser.getRoleName());
@@ -160,7 +167,7 @@ public class LoggedUserServiceV1 {
         loggedUser.setTempLink(tempLink);
         //set expiry of link to 1 day
         loggedUser.setLinkExpiryDate(DateUtil.setDates(1));
-        loggedUserRepository.save(loggedUser);
+        loggedUser = loggedUserRepository.save(loggedUser);
         createUserBody = createUserBody.replace("{0}", tempLink).replace("{1}", loggedUser.getOrgCode()).replace("{2}", loggedUser.getEmail());
         sendMailService.sendMail(loggedUser.getEmail(),createUserTitle,createUserBody);
 
@@ -260,7 +267,7 @@ public class LoggedUserServiceV1 {
         String tempLink = blumenUrl + uuid;
         loggedUser.setTempLink(tempLink);
         //set expiry of link based on org check
-        loggedUser.setLinkExpiryDate(DateUtil.setDates(optionalOrganization.get().getOrgExpiryTime()));
+        loggedUser.setLinkExpiryDate(DateUtil.setDates(1));
         loggedUserRepository.save(loggedUser);
         resetPasswordBody = resetPasswordBody.replace("{0}", tempLink);
         sendMailService.sendMail(loggedUser.getEmail(), resetPasswordTitle, resetPasswordBody);
@@ -288,6 +295,9 @@ public class LoggedUserServiceV1 {
                 return statusMap;
             }
 
+            Optional<Organization> organization = organizationRepository.findByOrgId(loggedUser.getOrgId());
+            loggedUser.setPasswordExpiryDate(DateUtil.setDates(
+                            organization.get().getOrgDaysToExpire() == null ? 30 : organization.get().getOrgDaysToExpire()));
             loggedUser.setLinkExpiryDate(DateUtil.setDates(-1));
             loggedUser.setPassword(updatePassword);
             loggedUser.setHashedCode("");
@@ -362,15 +372,15 @@ public class LoggedUserServiceV1 {
                     statusMap.put("status", "404");
                     return statusMap;
                 }
-                loggedUser.setHashedCode(UUID.randomUUID().toString());
-                loggedUser.setLinkExpiryDate(DateUtil.setDates(1));
 
                 String maskEmail = email;
                 if (maskEmail != null) {
                     maskEmail = maskEmail.charAt(0) + "*****" + maskEmail.charAt(maskEmail.length() - 1);
                 }
+                loggedUser.setHashedCode(UUID.randomUUID().toString());
                 String tempLink = blumenUrl + loggedUser.getHashedCode();
                 loggedUser.setTempLink(tempLink);
+                loggedUser.setLinkExpiryDate(DateUtil.setDates(1));
                 loggedUserRepository.save(loggedUser);
                 forgotPasswordBody = forgotPasswordBody.replace("{0}", tempLink);
 
@@ -439,6 +449,9 @@ public class LoggedUserServiceV1 {
         if(!StringUtils.isEmpty(confPassword)){
             LoggedUser loggedUser = user;
             user.setPassword(confPassword);
+            Optional<Organization> organization = organizationRepository.findByOrgId(loggedUser.getOrgId());
+            loggedUser.setPasswordExpiryDate(DateUtil.setDates(
+                    organization.get().getOrgDaysToExpire() == null ? 30 : organization.get().getOrgDaysToExpire()));
             loggedUserRepository.save(loggedUser);
             successMap.put("message", "Password updated successfully");
             successMap.put("status", "200");
@@ -510,18 +523,26 @@ public class LoggedUserServiceV1 {
     }
 
 
-    public void generateCode() {
+    public Map<String,Object> generateCode() {
        LOGGER.info("call made to generateCode {}", this.getClass());
        Integer authCode = new Random().nextInt(999999);
         Optional<LoggedUser> loggedUsers = loggedUserRepository.findByEmailAndOrgCode(SecurityUtil.getEmail(), SecurityUtil.getUserOrgCode());
+        Date codeExpiryDate  = new Date();
         if(!loggedUsers.isEmpty()) {
             LoggedUser loggedUserDb = loggedUsers.get();
             loggedUserDb.setAuthCode(authCode);
             loggedUserDb.setModifiedBy(SecurityUtil.getUserId());
+            Optional<Organization> organization = organizationRepository.findByOrgId(loggedUserDb.getOrgId());
+            loggedUserDb.setAuthCodeExpiryDate(DateUtil.setMinutes(
+                    organization.get().getOrgExpiryTime() == null ? 10 : organization.get().getOrgExpiryTime()));
+            codeExpiryDate = loggedUserDb.getAuthCodeExpiryDate();
             loggedUserRepository.save(loggedUserDb);
             sendMailService.sendMail(loggedUserDb.getEmail(),"Auth Code from blumen2", "Your authcode is "+authCode);
         }
         LOGGER.info("Code generated successfully {}", authCode);
+        Map<String,Object> map = new HashMap<>();
+        map.put("codeExpiryTime",codeExpiryDate);
+        return map;
     }
 
     public void validateMFACode(Integer authCode) {
@@ -531,9 +552,16 @@ public class LoggedUserServiceV1 {
             LoggedUser loggedUserDb = loggedUsers.get();
             Integer authCodeDB = loggedUserDb.getAuthCode();
             if(authCodeDB!=null && authCode.equals(authCodeDB)){
+                if(!loggedUserDb.getAuthCodeExpiryDate().after(new Date())) {
+                    throw new DataNotFoundException(ErrorMessageConstants.AUTHCODE_EXPIRED) {
+                    };
+                }
                 loggedUserDb.setAuthCode(null);
                 loggedUserDb.setModifiedBy(SecurityUtil.getUserId());
+                loggedUserDb.setAuthCodeExpiryDate(null);
                 loggedUserRepository.save(loggedUserDb);
+            } else {
+                throw new InputValidationException(AUTHCODE_INVALID);
             }
         }
     }
