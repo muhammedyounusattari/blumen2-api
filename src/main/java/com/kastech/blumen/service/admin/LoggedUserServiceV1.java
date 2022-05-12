@@ -51,20 +51,20 @@ public class LoggedUserServiceV1 {
     @Value("${email.create.user.tile}")
     private String createUserTitle;
 
-    @Value("${email.create.user.body}")
-    private String createUserBody;
+    //@Value("${email.create.user.body}")
+    private String createUserBody= "A new user account has been created for you.<br/><br/>You may set you password from here : {0} <br/> <br/>Access for Blumen Online at https://blumen2.azurewebsites.net <br/>Organization Code: {1} <br/>User email: {2} <br/><br/>Best Regards,<br/>Blumen Support Team.";
 
     @Value("${email.forgot.password.title}")
     private String forgotPasswordTitle;
 
-    @Value("${email.forgot.password.body}")
-    private String forgotPasswordBody;
+    // @Value("${email.forgot.password.body}")
+    private String forgotPasswordBody ="A password reset request for your account has been received. You may reset your password from here {0} .<br/><br/>Best Regards,<br/>Blumen Support Team.";
 
     @Value("${email.reset.password.title}")
     private String resetPasswordTitle;
 
-    @Value("${email.reset.password.body}")
-    private String resetPasswordBody;
+    //  @Value("${email.reset.password.body}")
+    private String resetPasswordBody ="A password reset request for your account has been received. You may reset your password from here {0} .<br/><br/>Best Regards,<br/>Blumen Support Team.";
 
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LoggedUserServiceV1.class);
@@ -323,7 +323,7 @@ public class LoggedUserServiceV1 {
 
             Optional<Organization> organization = organizationRepository.findByOrgId(loggedUser.getOrgId());
             loggedUser.setPasswordExpiryDate(DateUtil.setDates(
-                            organization.get().getOrgDaysToExpire() == null ? 30 : organization.get().getOrgDaysToExpire()));
+                    organization.get().getOrgDaysToExpire() == null ? 30 : organization.get().getOrgDaysToExpire()));
             loggedUser.setLinkExpiryDate(DateUtil.setDates(-1));
             loggedUser.setPassword(updatePassword);
             loggedUser.setHashedCode("");
@@ -550,8 +550,8 @@ public class LoggedUserServiceV1 {
 
 
     public Map<String,Object> generateCode() {
-       LOGGER.info("call made to generateCode {}", this.getClass());
-       Integer authCode = new Random().nextInt(999999);
+        LOGGER.info("call made to generateCode {}", this.getClass());
+        Integer authCode = new Random().nextInt(999999);
         Optional<LoggedUser> loggedUsers = loggedUserRepository.findByEmailAndOrgCode(SecurityUtil.getEmail(), SecurityUtil.getUserOrgCode());
         Date codeExpiryDate  = new Date();
         if(!loggedUsers.isEmpty()) {
