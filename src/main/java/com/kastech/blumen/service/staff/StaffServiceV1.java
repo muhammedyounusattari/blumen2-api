@@ -86,7 +86,7 @@ public class StaffServiceV1 {
         staff.setCreatedBy(SecurityUtil.getUserId());
         staff.setCreatedDate(DateUtil.setDates(0));
         staff.setOrgId(SecurityUtil.getUserOrgId());
-        staffId =  staffRepository.save(staff).getId();
+        staff =  staffRepository.save(staff);
 
         return staff;
     }
