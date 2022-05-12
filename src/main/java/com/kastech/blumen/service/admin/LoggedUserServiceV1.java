@@ -52,19 +52,19 @@ public class LoggedUserServiceV1 {
     private String createUserTitle;
 
     //@Value("${email.create.user.body}")
-    private String createUserBody= "A new user account has been created for you.<br/><br/>You may set you password from here : {0} <br/> <br/>Access for Blumen Online at https://blumen2.azurewebsites.net <br/>Organization Code: {1} <br/>User email: {2} <br/><br/>Best Regards,<br/>Blumen Support Team.";
+//    private String createUserBody= "A new user account has been created for you.<br/><br/>You may set you password from here : {0} <br/> <br/>Access for Blumen Online at https://blumen2.azurewebsites.net <br/>Organization Code: {1} <br/>User email: {2} <br/><br/>Best Regards,<br/>Blumen Support Team.";
 
     @Value("${email.forgot.password.title}")
     private String forgotPasswordTitle;
 
     // @Value("${email.forgot.password.body}")
-    private String forgotPasswordBody ="A password reset request for your account has been received. You may reset your password from here {0} .<br/><br/>Best Regards,<br/>Blumen Support Team.";
+//    private String forgotPasswordBody ="A password reset request for your account has been received. You may reset your password from here {0} .<br/><br/>Best Regards,<br/>Blumen Support Team.";
 
     @Value("${email.reset.password.title}")
     private String resetPasswordTitle;
 
     //  @Value("${email.reset.password.body}")
-    private String resetPasswordBody ="A password reset request for your account has been received. You may reset your password from here {0} .<br/><br/>Best Regards,<br/>Blumen Support Team.";
+//    private String resetPasswordBody ="A password reset request for your account has been received. You may reset your password from here {0} .<br/><br/>Best Regards,<br/>Blumen Support Team.";
 
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LoggedUserServiceV1.class);
@@ -169,6 +169,7 @@ public class LoggedUserServiceV1 {
         //set expiry of link to 1 day
         loggedUser.setLinkExpiryDate(DateUtil.setDates(1));
         loggedUser = loggedUserRepository.save(loggedUser);
+        String createUserBody= "A new user account has been created for you.<br/><br/>You may set you password from here : {0} <br/> <br/>Access for Blumen Online at https://blumen2.azurewebsites.net <br/>Organization Code: {1} <br/>User email: {2} <br/><br/>Best Regards,<br/>Blumen Support Team.";
         createUserBody = createUserBody.replace("{0}", tempLink);
         createUserBody = createUserBody.replace("{1}", loggedUser.getOrgCode());
         createUserBody = createUserBody.replace("{2}", email);
@@ -295,6 +296,7 @@ public class LoggedUserServiceV1 {
         //set expiry of link based on org check
         loggedUser.setLinkExpiryDate(DateUtil.setDates(1));
         loggedUserRepository.save(loggedUser);
+        String resetPasswordBody ="A password reset request for your account has been received. You may reset your password from here {0} .<br/><br/>Best Regards,<br/>Blumen Support Team.";
         resetPasswordBody = resetPasswordBody.replace("{0}", tempLink);
         sendMailService.sendMail(loggedUser.getEmail(), resetPasswordTitle, resetPasswordBody);
         return resetPasswordBody;
@@ -408,6 +410,7 @@ public class LoggedUserServiceV1 {
                 loggedUser.setTempLink(tempLink);
                 loggedUser.setLinkExpiryDate(DateUtil.setDates(1));
                 loggedUserRepository.save(loggedUser);
+                String forgotPasswordBody ="A password reset request for your account has been received. You may reset your password from here {0} .<br/><br/>Best Regards,<br/>Blumen Support Team.";
                 forgotPasswordBody = forgotPasswordBody.replace("{0}", tempLink);
 
                 sendMailService.sendMail(loggedUser.getEmail(), forgotPasswordTitle, forgotPasswordBody);
