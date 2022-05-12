@@ -141,6 +141,11 @@ public class LoggedUser implements Serializable {
     @Nullable
     private Date passwordExpiryDate;
 
+    @Nullable
+    private Boolean deleted;
+
+
+
     public LoggedUser() {
     }
 
@@ -152,8 +157,8 @@ public class LoggedUser implements Serializable {
                       Date issueDate, Date expiryDate, @Nullable Integer wrongAttempt, @Nullable Boolean firstTime,
                       @Nullable String tempLink, Date createdDate, Date editedDate, Date lastLogin, Set<Roles> roles,
                       @Nullable String hashedCode, @Nullable Date linkExpiryDate, Set<Organization> organizationSet,
-                      @Nullable Date lastLogout, @Nullable Integer authCode,@Nullable Long modifiedBy,
-                      @Nullable Date authCodeExpiryDate,  @Nullable Date passwordExpiryDate) {
+                      @Nullable Date lastLogout, @Nullable Integer authCode, @Nullable Long modifiedBy,
+                      @Nullable Date authCodeExpiryDate, @Nullable Date passwordExpiryDate, @Nullable Boolean deleted) {
         this.id = id;
         this.orgCode = orgCode;
         this.orgId = orgId;
@@ -202,6 +207,7 @@ public class LoggedUser implements Serializable {
         this.modifiedBy = modifiedBy;
         this.authCodeExpiryDate = authCodeExpiryDate;
         this.passwordExpiryDate = passwordExpiryDate;
+        this.deleted = deleted;
     }
 
     public Long getId() {
@@ -595,6 +601,15 @@ public class LoggedUser implements Serializable {
 
     public void setPasswordExpiryDate(@Nullable Date passwordExpiryDate) {
         this.passwordExpiryDate = passwordExpiryDate;
+    }
+
+    @Nullable
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(@Nullable Boolean deleted) {
+        this.deleted = deleted;
     }
 
     @Override

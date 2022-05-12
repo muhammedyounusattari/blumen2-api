@@ -3,7 +3,6 @@
 --delete data for org0 of  init tables
 delete from blumen2.security_question_list where org_id=0; --no relation for orgid but structured to support multi-tenant
 delete from blumen2.pull_down_master where organizationid='0';
-delete from blumen2.config_setting where org_id='0';
 delete from  blumen2.roles_privileges where (role_id, privilege_id) in (
     select role_id, privilege_id from blumen2.privileges p, blumen2.roles r
     where p.org_id=0 and r.org_id=0  and p.role_code = r.code);
@@ -1358,7 +1357,7 @@ insert  into blumen2.users(user_id,
                            phone2, scope, security_answer1,security_answer2,
                            security_question1,security_question2, site_location,state, temp_link, username,
                            wrong_attempt,zipcode, bolt_id, email,
-                           role_name,org_id
+                           role_name,org_id, password_expiry_date
 )
 values
     (
@@ -1370,7 +1369,7 @@ values
         'phone2', 'superAdmin', null, null,
         null, null, null, 'state', null, 'blumen2',
         0, 1, null, 'blumen2@kastechssg.com',
-        'Super Admin', 0
+        'Super Admin', 0, now()+ interval '30 day'
     ) ON CONFLICT (user_id) DO NOTHING;
 
 --create user  related data for super admin of org 0
@@ -1378,30 +1377,6 @@ insert  into blumen2.users_roles(user_id, role_id)
 select 1, role_id from blumen2.roles a where a.org_id=0 and name='Super Admin';
 
 insert into blumen2.organization_users(org_id,user_id) values(0, 1);
-
-INSERT INTO blumen2.config_setting(config_id,config_type,config_value,description,org_id, user_id) VALUES (1,'N','2017','Fiscal Year',0, 1);
-INSERT INTO blumen2.config_setting(config_id,config_type,config_value,description,org_id, user_id) VALUES (2,'N','3','Current Semester',0, 1);
-INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id) VALUES(3,'N','2017','Current Year',0, 1);
-INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id) VALUES(4,'L','FALSE','Is Remote',0, 1);
-INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(5,'N','1','Remote ID',0, 1);
-INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(6,'C','Compansol','Report Title 1',0, 1);
-INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(7,'C','Blumen Online for TRIO (BOT)','Report Title 2',0, 1);
-INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(8,'C','Copyright (1992-2020)','Report Footer',0, 1);
-INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(10,'N','1','Component',0, 1);
-INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(13,'N','3',' ',0, 1);
-INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(14,'D','9/1/2017 12:00:00 AM','Start Date',0, 1);
-INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(15,'D','8/31/2018 12:00:00 AM','End Date',0, 1);
-INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(16,'C','09/01','For Calculating Age',0, 1);
-INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(30,'N','1','GPA Scale',0, 1);
-INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(31,'N','1','State Test',0, 1);
-INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(42,'L','TRUE','Copy Active, Serverd Reported Status',0, 1);
-INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(43,'L','TRUE','Prompt to mark a student ACTIVE for the fiscal year',0, 1);
-INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(44,'L','TRUE','Prompt to mark a student SERVED for the fiscal year',0, 1);
-INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(45,'L','TRUE','Prompt to mark a student REPORTED for the fiscal year',0, 1);
-INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(46,'L','TRUE','Prompt to ADD a student to the fiscal year',0, 1);
-INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(47,'L','TRUE','Update First Date of Service',0, 1);
-INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(48,'L','TRUE','Update Date of last project service for the fiscal year',0, 1);
-INSERT INTO blumen2.config_setting (config_id,config_type,config_value,description,org_id, user_id)  VALUES(200,'N','60','Time Out',0, 1);
 
 delete from blumen2.menu_display_roles;
 delete from blumen2.menus;
@@ -1706,14 +1681,14 @@ SELECT menus_id, 3 from blumen2.menus; --counselor
 
 INSERT INTO blumen2.menu_display_roles (menu_id,role_id)
 SELECT menus_id, 4 from blumen2.menus; -- tutor menus
-DELETE FROM  blumen2.menu_display_roles where role_id=4 and menus_id=57;
+DELETE FROM  blumen2.menu_display_roles where role_id=4 and menu_id=57;
 
 INSERT INTO blumen2.menu_display_roles (menu_id,role_id)
 SELECT menus_id, 5 from blumen2.menus; -- teacher menus
 
 INSERT INTO blumen2.menu_display_roles (menu_id,role_id)
 SELECT menus_id, 6 from blumen2.menus; -- student worker menus
-DELETE FROM  blumen2.menu_display_roles where role_id=6 and menus_id=57;
+DELETE FROM  blumen2.menu_display_roles where role_id=6 and menu_id=57;
 
 
 INSERT INTO blumen2.menu_display_roles (menu_id,role_id)

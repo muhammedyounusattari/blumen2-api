@@ -192,6 +192,9 @@ public class LoggedUserServiceV1 {
                 throw new DataModificationException(ORG_USER_MOVE_NOT_ALLWOED);
             }
         }
+        if(loggedUser.getDeleted()) {
+            loggedUser.setActive(false);
+        }
         if(loggedUser.getActive()) {
             existingUser.setUsername(loggedUser.getUsername());
             existingUser.setActive(loggedUser.getActive());
@@ -211,6 +214,7 @@ public class LoggedUserServiceV1 {
             existingUser.setSiteLocation(loggedUser.getSiteLocation());
             existingUser.setEditedDate(new Date());
             existingUser.setEditedBy(SecurityUtil.getEmail());
+            existingUser.setDeleted(loggedUser.getDeleted());
 
             //future
             // existingUser.setBolt(loggedUser.getBolt());
@@ -225,9 +229,26 @@ public class LoggedUserServiceV1 {
             }
             existingUser.setRoleName(loggedUser.getRoleName());
         } else { //delete User meaning deactivate
+            existingUser.setUsername(loggedUser.getUsername());
             existingUser.setActive(loggedUser.getActive());
+            existingUser.setFirstName(loggedUser.getFirstName());
+            existingUser.setLastName(loggedUser.getLastName());
+            existingUser.setAddress1(loggedUser.getAddress1());
+            existingUser.setAddress2(loggedUser.getAddress2());
+            existingUser.setCity(loggedUser.getCity());
+            existingUser.setState(loggedUser.getState());
+            existingUser.setZipcode(loggedUser.getZipcode());
+            existingUser.setMobile(loggedUser.getMobile());
+            existingUser.setPhone1(loggedUser.getPhone1());
+            existingUser.setPhone2(loggedUser.getPhone2());
+            existingUser.setFax(loggedUser.getFax());
+            existingUser.setEmail(loggedUser.getEmail());
+            existingUser.setNotes(loggedUser.getNotes());
+            existingUser.setSiteLocation(loggedUser.getSiteLocation());
             existingUser.setEditedDate(new Date());
             existingUser.setEditedBy(SecurityUtil.getEmail());
+            existingUser.setDeleted(loggedUser.getDeleted());
+            //not updating roles since no point in making customer inactive while del
         }
         try {
             loggedUser = loggedUserRepository.save(existingUser);

@@ -38,7 +38,7 @@ public class EmailService {
         LOGGER.info("Email has sent successfully {}", to);
     }
 
-   // @Async
+    @Async
     public void sendMail(String to, String subject, String content) {
         LOGGER.debug("Send email[multipart '{}' and html '{}'] to '{}' with subject '{}' and content={}",
                 true, true, to, subject, content);
