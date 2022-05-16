@@ -49,13 +49,14 @@ public class FiscalYearFinancialAidController {
     public Optional<GraduatedInformation> newFiscalYearFinancialAid(@RequestBody GraduatedInformation graduatedInformation, @RequestParam("student-ssno") String studentSsno) {
 
         Optional<Student> student = studentRepository.findById(Long.parseLong(studentSsno));
-        GraduatedInformation graduatedInformation1 = student.get().getGraduatedInformation();
+//        GraduatedInformation graduatedInformation1 = student.get().getGraduatedInformation();
 
-        return fiscalYearFinancialAidRepository.findById(graduatedInformation1.getSsno())
-                .map(oldItem -> {
-                    GraduatedInformation updated = oldItem.updateWith(graduatedInformation);
-                    return fiscalYearFinancialAidRepository.save(updated);
-                });
+        return null;
+//        return fiscalYearFinancialAidRepository.findById(graduatedInformation1.getSsno())
+//                .map(oldItem -> {
+//                    GraduatedInformation updated = oldItem.updateWith(graduatedInformation);
+//                    return fiscalYearFinancialAidRepository.save(updated);
+//                });
     }
 
 
@@ -65,13 +66,14 @@ public class FiscalYearFinancialAidController {
     public Optional<GraduatedInformation> editFiscalYearFinancialAid(@RequestBody GraduatedInformation graduatedInformation, @RequestParam("student-ssno") String studentSsno) {
 
         Optional<Student> student = studentRepository.findById(Long.parseLong(studentSsno));
-        GraduatedInformation graduatedInformation1 = student.get().getGraduatedInformation();
-
-        return fiscalYearFinancialAidRepository.findById(graduatedInformation1.getSsno())
-                .map(oldItem -> {
-                    GraduatedInformation updated = oldItem.updateWith(graduatedInformation);
-                    return fiscalYearFinancialAidRepository.save(updated);
-                });
+        return null;
+//        GraduatedInformation graduatedInformation1 = student.get().getGraduatedInformation();
+//
+//        return fiscalYearFinancialAidRepository.findById(graduatedInformation1.getSsno())
+//                .map(oldItem -> {
+//                    GraduatedInformation updated = oldItem.updateWith(graduatedInformation);
+//                    return fiscalYearFinancialAidRepository.save(updated);
+//                });
     }
 
 

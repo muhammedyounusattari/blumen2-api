@@ -26,7 +26,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/api/blumen-api/student")
+@RequestMapping("/api/blumen-api/student/v1")
 public class StudentController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(StudentController.class);
@@ -37,20 +37,41 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+    @GetMapping
+    public ResponseEntity<List<Student>> getStudents() {
+        return ResponseEntity.ok(studentService.findAll());
+    }
+
     @ResponseBody
-    @GetMapping(path = "/getStudents/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public List<Student> getStudents() {
+    @GetMapping(path = "/getAllStudents", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public List<Student> getAllStudents() {
         List<Student> list = new ArrayList<>();
         Iterable<Student> items = studentRepository.findAll(Sort.by(Sort.Direction.ASC, "ssno"));
         items.forEach(list::add);
         return list;
     }
 
-    @ResponseBody
-    @PostMapping(path = "/saveStudent/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public StudentDataObject saveStudent(@RequestBody StudentDataObject student) {
-        return studentService.saveStudent(student);
+    @PostMapping
+    public ResponseEntity<Student> saveStudent(@RequestBody Student student) {
+        return ResponseEntity.ok(studentService.saveStudent(student));
     }
+
+    @GetMapping(value="/findById")
+    public ResponseEntity<Student> findStudentById(@RequestParam(value = "student_id") Long studentId) {
+        Student result = studentService.findStudentById(studentId);
+        return ResponseEntity.ok(result);
+    }
+
+    @PutMapping
+    public ResponseEntity<Student> updateStudent(@RequestBody Student student) {
+        return ResponseEntity.ok(studentService.saveStudent(student));
+    }
+
+//    @ResponseBody
+//    @PostMapping(path = "/saveStudent/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
+//    public StudentDataObject saveStudent(@RequestBody StudentDataObject student) {
+//        return studentService.saveStudent(student);
+//    }
 
    /* @ResponseBody
     @PutMapping(path = "/student/v1", produces = { MediaType.APPLICATION_JSON_VALUE })

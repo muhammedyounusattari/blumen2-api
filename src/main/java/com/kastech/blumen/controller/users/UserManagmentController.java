@@ -257,7 +257,7 @@ public class UserManagmentController {
         } catch (Exception e) {
             LOGGER.error("Problem occurred while authenticating a user");
             e.printStackTrace();
-            throw new Exception("Bad credentials ");
+            throw new Exception("Please check your credentials and try again.");
         }
 
         return ResponseEntity.ok(jwtResponse);

@@ -14,7 +14,7 @@ public interface StaffRepository extends JpaRepository<Staff, Long> {
     @Query("SELECT max(ggl.staffId) FROM Staff ggl where ggl.orgId=:orgId")
     Long getMaxId(@Param("orgId") long orgId);
 
-    @Query("from Staff gl where gl.orgId=:orgId and gl.deletedBy=0L and gl.deletedDate=null order by gl.staffId asc")
+    @Query("from Staff gl where gl.orgId=:orgId and gl.deletedBy=0L and gl.deletedDate=null and gl.staffActive=TRUE order by gl.staffId asc")
     Iterable<Staff> findByOrgId(@Param("orgId") long orgId);
 
     @Query("from Staff ifg where ifg.staffId=:staffId and ifg.orgId=:orgId and ifg.deletedBy!=0L and ifg.deletedDate!=null")

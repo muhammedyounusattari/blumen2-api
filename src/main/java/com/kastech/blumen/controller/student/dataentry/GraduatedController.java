@@ -49,7 +49,7 @@ public class GraduatedController {
 
         Optional<Student> student = studentRepository.findById(Long.parseLong(studentSsno));
         Student studentData = student.get();
-        studentData.setGraduatedInformation(graduatedInformation);
+//        studentData.setGraduatedInformation(graduatedInformation);
         return studentRepository.save(studentData);
 
     }
@@ -61,14 +61,15 @@ public class GraduatedController {
     public Optional<GraduatedInformation> saveAddressNotesForStudent(@RequestBody AddressNotes addressNotes, @RequestParam("student-ssno") String studentSsno) {
 
         Optional<Student> student = studentRepository.findById(Long.parseLong(studentSsno));
-        GraduatedInformation graduatedInformation1 = student.get().getGraduatedInformation();
-        graduatedInformation1.setAddressNotes(addressNotes);
-
-        return graduatedRepository.findById(graduatedInformation1.getSsno())
-                .map(oldItem -> {
-                    GraduatedInformation updated = oldItem.updateWith(graduatedInformation1);
-                    return graduatedRepository.save(updated);
-                });
+//        GraduatedInformation graduatedInformation1 = student.get().getGraduatedInformation();
+//        graduatedInformation1.setAddressNotes(addressNotes);
+//
+//        return graduatedRepository.findById(graduatedInformation1.getSsno())
+//                .map(oldItem -> {
+//                    GraduatedInformation updated = oldItem.updateWith(graduatedInformation1);
+//                    return graduatedRepository.save(updated);
+//                });
+        return null;
     }
 
     @ResponseBody
@@ -85,14 +86,15 @@ public class GraduatedController {
 
 
         Optional<Student> student = studentRepository.findById(Long.parseLong(studentSsno));
-        GraduatedInformation graduatedInformation1 = student.get().getGraduatedInformation();
-        graduatedInformation1.setAddressNotes(addressNotes);
-
-        return graduatedRepository.findById(graduatedInformation1.getSsno())
-                .map(oldItem -> {
-                    GraduatedInformation updated = oldItem.updateWith(graduatedInformation);
-                    return graduatedRepository.save(updated);
-                });
+//        GraduatedInformation graduatedInformation1 = student.get().getGraduatedInformation();
+//        graduatedInformation1.setAddressNotes(addressNotes);
+//
+//        return graduatedRepository.findById(graduatedInformation1.getSsno())
+//                .map(oldItem -> {
+//                    GraduatedInformation updated = oldItem.updateWith(graduatedInformation);
+//                    return graduatedRepository.save(updated);
+//                });
+        return null;
     }
 
     @ResponseBody

@@ -4,9 +4,11 @@ import com.google.common.io.Resources;
 import com.kastech.blumen.exception.DataModificationException;
 import com.kastech.blumen.exception.DataNotFoundException;
 import com.kastech.blumen.exception.InputValidationException;
+import com.kastech.blumen.model.SystemPreferences;
 import com.kastech.blumen.model.admin.home.Organization;
 import com.kastech.blumen.model.keycloak.LoggedUser;
 import com.kastech.blumen.model.keycloak.Roles;
+import com.kastech.blumen.repository.admin.SystemPreferencesRepository;
 import com.kastech.blumen.repository.admin.home.OrganizationRepository;
 import com.kastech.blumen.utility.SecurityUtil;
 import org.slf4j.Logger;
@@ -63,6 +65,9 @@ public class OrganizationService {
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
+    @Autowired
+    private SystemPreferencesRepository systemPreferencesRepository;
+
     private static final Logger LOG = LoggerFactory.getLogger(OrganizationService.class);
 
     @Transactional
@@ -70,6 +75,9 @@ public class OrganizationService {
         LOG.info("Inside createOrganization, with payload {} ", organization);
         try {
             organization = organizationRepository.save(organization);
+            SystemPreferences systemPreferences = new SystemPreferences();
+            systemPreferences.setOrgId(organization.getOrgId());
+            systemPreferencesRepository.save(systemPreferences);
         } catch (Exception e) {
             e.printStackTrace();
             LOG.error("createOrganization failed {}", e.getMessage());

@@ -25,11 +25,13 @@ import com.kastech.blumen.repository.student.StudentRepository;
 import com.kastech.blumen.repository.teacher.TeacherClassRepository;
 import com.kastech.blumen.repository.tutor.TutorClassRepository;
 
-@Service
-public class StudentService {
-	
-	@Autowired
-	private StudentRepository studentRepository;
+public interface StudentService {
+
+    List<Student> findAll();
+
+    Student saveStudent(Student student);
+
+    Student findStudentById(Long id);
 
 	/*@Autowired
 	private StudentYearlyRepository studentYearlyRepository;
@@ -46,90 +48,90 @@ public class StudentService {
 	@Autowired
 	private CounselorClassRepository counselorClassRepository;*/
 	
-	public void assignTeacherClasses(Long studentId, Set<Long> teacherClassesIds) {
-		Optional<Student> student = studentRepository.findById(studentId);
-		/*if (student.isPresent()) {
-			Student studentObj = student.get();
-			List<TeacherClasses> teacherClasses = teacherClassRepository.findAllById(teacherClassesIds);
-			teacherClasses.forEach(tc -> {
-				studentObj.assignTeacherClasses(tc);
-			});
-			//teacherClassRepository.saveAll(teacherClasses);
-			studentRepository.save(studentObj);
-		}*/
-	}
-	
-	public void assignTutorClasses(Long studentId, Set<Long> tutorClassesIds) {
-		/*Optional<Student> student = studentRepository.findById(studentId);
-		if (student.isPresent()) {
-			Student studentObj = student.get();
-			List<TutorClasses> tutorClasses = tutorClassRepository.findAllById(tutorClassesIds);
-			tutorClasses.forEach(tc -> {
-				studentObj.assignTutorClasses(tc);
-			});
-			//teacherClassRepository.saveAll(teacherClasses);
-			studentRepository.save(studentObj);
-		}*/
-	}
-	
-	public void assignStaffClasses(Long studentId, Set<Long> StaffClassesIds) {
-		/*Optional<Student> student = studentRepository.findById(studentId);
-		if (student.isPresent()) {
-			Student studentObj = student.get();
-			List<StaffClasses> StaffClasses = staffClassRepository.findAllById(StaffClassesIds);
-			StaffClasses.forEach(tc -> {
-				studentObj.assignStaffClasses(tc);
-			});
-			//teacherClassRepository.saveAll(teacherClasses);
-			studentRepository.save(studentObj);
-		}*/
-	}
-	
-	public void assignCounselorClasses(Long studentId, Set<Long> CounselorClassesIds) {
-		/*Optional<Student> student = studentRepository.findById(studentId);
-		if (student.isPresent()) {
-			Student studentObj = student.get();
-			List<CounselorClasses> CounselorClasses = counselorClassRepository.findAllById(CounselorClassesIds);
-			CounselorClasses.forEach(tc -> {
-				studentObj.assignCounselorClasses(tc);
-			});
-			//teacherClassRepository.saveAll(teacherClasses);
-			studentRepository.save(studentObj);
-		}*/
-	}
-
-	public StudentDataObject saveStudent(StudentDataObject studentData)
-	{
-		try
-		{
-			Student student = studentData.getStudent();
-//			StudentYearlyData studentYearlyData = studentData.getStudentYearlyData();
+//	public void assignTeacherClasses(Long studentId, Set<Long> teacherClassesIds) {
+//		Optional<Student> student = studentRepository.findById(studentId);
+//		/*if (student.isPresent()) {
+//			Student studentObj = student.get();
+//			List<TeacherClasses> teacherClasses = teacherClassRepository.findAllById(teacherClassesIds);
+//			teacherClasses.forEach(tc -> {
+//				studentObj.assignTeacherClasses(tc);
+//			});
+//			//teacherClassRepository.saveAll(teacherClasses);
+//			studentRepository.save(studentObj);
+//		}*/
+//	}
 //
-//			student = studentRepository.save(student);
-//			studentYearlyData.setStuid(student.getStuid());
-//			studentYearlyData = studentYearlyRepository.save(studentYearlyData);
+//	public void assignTutorClasses(Long studentId, Set<Long> tutorClassesIds) {
+//		/*Optional<Student> student = studentRepository.findById(studentId);
+//		if (student.isPresent()) {
+//			Student studentObj = student.get();
+//			List<TutorClasses> tutorClasses = tutorClassRepository.findAllById(tutorClassesIds);
+//			tutorClasses.forEach(tc -> {
+//				studentObj.assignTutorClasses(tc);
+//			});
+//			//teacherClassRepository.saveAll(teacherClasses);
+//			studentRepository.save(studentObj);
+//		}*/
+//	}
 //
-//			studentData.setStudent(student);
-//			studentData.setStudentYearlyData(studentYearlyData);
-			return studentData;
-		}
-		catch(Exception ex) {
-			throw ex;
-		}
-	}
-
-	public  boolean DeleteStudent(Long StudentId)
-	{
-		boolean returnValue = false;
-		try
-		{
-
-		}
-		catch (Exception ex)
-		{
-
-		}
-		return returnValue;
-	}
+//	public void assignStaffClasses(Long studentId, Set<Long> StaffClassesIds) {
+//		/*Optional<Student> student = studentRepository.findById(studentId);
+//		if (student.isPresent()) {
+//			Student studentObj = student.get();
+//			List<StaffClasses> StaffClasses = staffClassRepository.findAllById(StaffClassesIds);
+//			StaffClasses.forEach(tc -> {
+//				studentObj.assignStaffClasses(tc);
+//			});
+//			//teacherClassRepository.saveAll(teacherClasses);
+//			studentRepository.save(studentObj);
+//		}*/
+//	}
+//
+//	public void assignCounselorClasses(Long studentId, Set<Long> CounselorClassesIds) {
+//		/*Optional<Student> student = studentRepository.findById(studentId);
+//		if (student.isPresent()) {
+//			Student studentObj = student.get();
+//			List<CounselorClasses> CounselorClasses = counselorClassRepository.findAllById(CounselorClassesIds);
+//			CounselorClasses.forEach(tc -> {
+//				studentObj.assignCounselorClasses(tc);
+//			});
+//			//teacherClassRepository.saveAll(teacherClasses);
+//			studentRepository.save(studentObj);
+//		}*/
+//	}
+//
+//	public StudentDataObject saveStudent(StudentDataObject studentData)
+//	{
+//		try
+//		{
+//			Student student = studentData.getStudent();
+////			StudentYearlyData studentYearlyData = studentData.getStudentYearlyData();
+////
+////			student = studentRepository.save(student);
+////			studentYearlyData.setStuid(student.getStuid());
+////			studentYearlyData = studentYearlyRepository.save(studentYearlyData);
+////
+////			studentData.setStudent(student);
+////			studentData.setStudentYearlyData(studentYearlyData);
+//			return studentData;
+//		}
+//		catch(Exception ex) {
+//			throw ex;
+//		}
+//	}
+//
+//	public  boolean DeleteStudent(Long StudentId)
+//	{
+//		boolean returnValue = false;
+//		try
+//		{
+//
+//		}
+//		catch (Exception ex)
+//		{
+//
+//		}
+//		return returnValue;
+//	}
 	
 }

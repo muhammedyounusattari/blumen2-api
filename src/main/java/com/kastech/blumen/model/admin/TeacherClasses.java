@@ -185,7 +185,7 @@ public class TeacherClasses {
 	
 	public void assignStudent(Student st) {
 		this.studentList.add(st);
-    	st.getTeacherClasses().add(this);
+//    	st.getTeacherClasses().add(this);
 	}
 	
 }

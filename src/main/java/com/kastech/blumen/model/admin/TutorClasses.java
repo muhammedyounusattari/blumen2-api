@@ -176,6 +176,6 @@ public class TutorClasses {
 	}
 	public void assignStudent(Student st) {
 		this.studentList.add(st);
-    	st.getTutorClasses().add(this);
+//    	st.getTutorClasses().add(this);
 	}
 }

@@ -8,17 +8,12 @@ import com.kastech.blumen.model.admin.TeacherClasses;
 import com.kastech.blumen.model.admin.TutorClasses;
 import com.kastech.blumen.model.student.dataentry.GraduatedInformation;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.*;
 
 @Entity
@@ -26,183 +21,480 @@ import java.util.*;
 public class Student implements Serializable {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="student_seq_gen")
-    @SequenceGenerator(name="student_seq_gen", sequenceName="student_SEQ")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long stuid;
+
+    @NotNull
+    @Column(name = "sfirst", length = 50, nullable = false)
     private String sfirst;
+
+    @NotNull
+    @Column(name = "slast", length = 50, nullable = false)
     private String slast;
+
+    @Column(name = "smi", length = 50)
     private String smi;
+
+    @Column(name = "address", length = 16)
     private String address;
+
+    @Column(name = "city", length = 50)
     private String city;
+
+    @Column(name = "state", length = 50)
     private String state;
-    private Integer zipcode;
+
+    @Column(name = "zipcode", length = 50)
+    private String zipcode;
+
+    @Column(name = "phone1", length = 50)
     private String phone1;
+
+    @Column(name = "phone2", length = 50)
     private String phone2;
+
+    @Column(name = "email", length = 16)
     private String email;
+
+    @Column(name = "website", length = 16)
     private String website;
-    private Integer entrydate;
-    private Date dob;
-    private Date termidate;
-    private Date finishdate;
-    private Date collegedt;
+
+    @Column(name = "entrydate", length = 8)
+    private Timestamp entryDate;
+
+    @Column(name = "dob", length = 8)
+    private Timestamp dob;
+
+    @Column(name = "termidate", length = 8)
+    private Timestamp termiDate;
+
+    @Column(name = "finishdate", length = 8)
+    private Timestamp finishDate;
+
+    @Column(name = "collegedt", length = 50)
+    private String collegedt;
+
+    @Column(name = "ethnic", length = 4, precision = 10)
     private Integer ethnic;
-    private String ethnictype;
+
+    @Column(name = "ethnictype", length = 50)
+    private String ethnicType;
+
+    @Column(name = "eligibilit", length = 4, precision = 10)
     private Integer eligibilit;
-    private String eligtype;
-    private Integer familysize;
+
+    @Column(name = "eligtype", length = 50)
+    private String eligType;
+
+    @Column(name = "familysize", length = 4, precision = 10)
+    private Integer familySize;
+
+    @NotNull
+    @Column(name = "yearco", length = 4, precision = 10, nullable = false)
     private Integer yearco;
-    private Integer gender;
-    private String imagepath;
+
+    @Column(name = "gender", length = 8,  precision = 53)
+    private Float gender;
+
+    @Column(name = "imagepath", length = 50)
+    private String imagePath;
+
+    @Column(name = "codes", length = 50)
     private String codes;
+
+    @Column(name = "custom1", length = 50)
     private String custom1;
+
+    @Column(name = "custom2", length = 50)
     private String custom2;
+
+    @Column(name = "schoolent", length = 500)
     private String schoolent;
+
+    @Column(name = "collegeent", length = 500)
     private String collegeent;
+
+    @Column(name = "gpaentry", length = 8,  precision = 53)
     private Integer gpaentry;
+
+    @Column(name = "incomesou", length = 50)
     private String incomesou;
-    private Integer acadneed;
-    private Integer enterlevel;
-    private Integer gpascale;
-    private Integer enterexam;
-    private Integer satcomb;
-    private Integer satverb;
-    private Integer satmath;
-    private Integer actcomp;
+
+    @Column(name = "acadneed", length = 4, precision = 10)
+    private Integer acadNeed;
+
+    @Column(name = "enterlevel", length = 4, precision = 10)
+    private Integer enterLevel;
+
+    @Column(name = "gpascale", length = 4, precision = 10)
+    private Integer gpaScale;
+
+    @Column(name = "enterexam", length = 4, precision = 10)
+    private Integer enterExam;
+
+    @Column(name = "satcomb", length = 4, precision = 10)
+    private Integer satComb;
+
+    @Column(name = "satverb", length = 4, precision = 10)
+    private Integer satVerb;
+
+    @Column(name = "satmath", length = 4, precision = 10)
+    private Integer satMath;
+
+    @Column(name = "actcomp", length = 4, precision = 10)
+    private Integer actComp;
+
+    @Column(name = "finaidrecd", length = 4, precision = 10)
     private Integer finaidrecd;
-    private Integer highdegree;
+
+    @Column(name = "highdegree", length = 4, precision = 10)
+    private Integer highDegree;
+
+    @Column(name = "venterlev", length = 4, precision = 10)
     private Integer venterlev;
-    private Integer venterjob;
-    private Integer vdisabled;
-    private Integer vfinaidrec;
-    private String referedby;
-    private String incomelev;
-    private Integer citizen;
-    private Integer aliennum;
-    private String birthplace;
-    private String healthname;
-    private Integer healthnum;
+
+    @Column(name = "venterjob", length = 4, precision = 10)
+    private Integer venterJob;
+
+    @Column(name = "vDisabled", length = 4, precision = 10)
+    private Integer vDisabled;
+
+    @Column(name = "vfinaidrec", length = 4, precision = 10)
+    private Integer vFinaidrec;
+
+    @Column(name = "referedby", length = 50)
+    private String referedBy;
+
+    @Column(name = "incomelev", length = 50)
+    private String incomeLev;
+
+    @Column(name = "citizen", length = 1)
+    private Boolean citizen;
+
+    @Column(name = "aliennum", length = 50)
+    private String aliennum;
+
+    @Column(name = "birthplace", length = 50)
+    private String birthPlace;
+
+    @Column(name = "healthname", length = 50)
+    private String healthName;
+
+    @Column(name = "healthnum", length = 50)
+    private String healthNum;
+
+    @Column(name = "medicaid", length = 50)
     private String medicaid;
-    private String docname;
-    private String docphone;
-    private String studentid;
-    private String dlnumber;
-    private String dlstate;
-    private String trioname;
-    private Integer marrstatus;
-    private Integer calgpa;
-    private Integer phrsattemp;
-    private Integer phrscomp;
-    private Integer phrsgpa;
-    private Integer pgpa;
-    private Integer pgpapoints;
-    private Integer hrsattemp;
-    private Integer hrscomp;
-    private Integer hrsgpa;
-    private Integer gpa;
-    private Integer gpapoints;
-    private Date lastmodify;
+
+    @Column(name = "docname", length = 50)
+    private String docName;
+
+    @Column(name = "docphone", length = 50)
+    private String docPhone;
+
+    @Column(name = "studentid", length = 50)
+    private String studentId;
+
+    @Column(name = "dlnumber", length = 50)
+    private String dlNumber;
+
+    @Column(name = "dlstate", length = 50)
+    private String dlState;
+
+    @Column(name = "trioname", length = 50)
+    private String trioName;
+
+    @Column(name = "marrstatus", length = 4, precision = 10)
+    private Integer marrStatus;
+
+    @Column(name = "calgpa", length = 1)
+    private Boolean calgpa;
+
+    @Column(name = "phrsattemp", length = 8, precision = 53)
+    private Float phrsatTemp;
+
+    @Column(name = "phrscomp", length = 8, precision = 53)
+    private Float phrsComp;
+
+    @Column(name = "phrsgpa", length = 8, precision = 53)
+    private Float phrsgpa;
+
+    @Column(name = "pgpa", length = 8, precision = 53)
+    private Float pgpa;
+
+    @Column(name = "pgpapoints", length = 8, precision = 53)
+    private Float pgpaPoints;
+
+    @Column(name = "hrsattemp", length = 8, precision = 53)
+    private Float hrsatTemp;
+
+    @Column(name = "hrscomp", length = 8, precision = 53)
+    private Float hrscomp;
+
+    @Column(name = "hrsgpa", length = 8, precision = 53)
+    private Float hrsgpa;
+
+    @Column(name = "gpa", length = 8, precision = 53)
+    private Float gpa;
+
+    @Column(name = "gpapoints", length = 8, precision = 53)
+    private Float gpaPoints;
+
+    @Column(name = "lastmodify", length = 8)
+    private Timestamp lastModify;
+
+    @Column(name = "notes", length = 16)
     private String notes;
-    private String lastuser;
-    private String schoolend;
+
+    @Column(name = "lastuser", length = 50)
+    private String lastUser;
+
+    @Column(name = "schoolend", length = 50)
+    private String schoolEnd;
+
+    @Column(name = "collegendd", length = 50)
     private String collegendd;
-    private String yearproj;
-    private String acadneed2;
-    private String egraddate;
-    private String graddate;
-    private Integer msgpascale;
-    private Integer msgpa;
+
+    @Column(name = "yearproj", length = 4, precision = 10)
+    private Integer yearProj;
+
+    @Column(name = "acadneed2", length = 4, precision = 10)
+    private Integer acadneed2;
+
+    @Column(name = "egraddate", length = 8)
+    private Timestamp egradDate;
+
+    @Column(name = "graddate", length = 8)
+    private Timestamp gradDate;
+
+    @Column(name = "msgpascale", length = 4, precision = 10)
+    private Integer msgpaScale;
+
+    @Column(name = "msgpa", length = 8, precision = 53)
+    private Float msgpa;
+
+    @Column(name = "lepentry", length = 4, precision = 10)
     private Integer lepentry;
+
+    @Column(name = "leplastser", length = 4, precision = 10)
     private Integer leplastser;
-    private Integer statetest;
+
+    @Column(name = "statetest", length = 4, precision = 10)
+    private Integer stateTest;
+
+    @Column(name = "state8rla", length = 4, precision = 10)
     private Integer state8rla;
+
+    @Column(name = "state8math", length = 4, precision = 10)
     private Integer state8math;
+
+    @Column(name = "state10rla", length = 4, precision = 10)
     private Integer state10rla;
+
+    @Column(name = "staterlagr", length = 4, precision = 10)
     private Integer staterlagr;
+
+    @Column(name = "state10mat", length = 4, precision = 10)
     private Integer state10mat;
+
+    @Column(name = "statemathg", length = 4, precision = 10)
     private Integer statemathg;
+
+    @Column(name = "eligi1", length = 4, precision = 10)
     private Integer eligi1;
+
+    @Column(name = "eligi2", length = 4, precision = 10)
     private Integer eligi2;
+
+    @Column(name = "eligi3", length = 4, precision = 10)
     private Integer eligi3;
-    private Date degreedate;
-    private Integer satwriting;
-    private Date firstserdt;
-    private Integer cohortyear;
+
+    @Column(name = "degreedate", length = 8)
+    private Timestamp degreeDate;
+
+    @Column(name = "satwriting", length = 4, precision = 10)
+    private Integer satWriting;
+
+    @Column(name = "firstserdt", length = 8)
+    private Timestamp firstserdt;
+
+    @Column(name = "cohortyear", length = 4, precision = 10)
+    private Integer cohortYear;
+
+    @Column(name = "ethnic1", length = 4, precision = 10)
     private Integer ethnic1;
+
+    @Column(name = "ethnic2", length = 4, precision = 10)
     private Integer ethnic2;
+
+    @Column(name = "ethnic3", length = 4, precision = 10)
     private Integer ethnic3;
+
+    @Column(name = "ethnic4", length = 4, precision = 10)
     private Integer ethnic4;
+
+    @Column(name = "ethnic5", length = 4, precision = 10)
     private Integer ethnic5;
+
+    @Column(name = "ethnic6", length = 4, precision = 10)
     private Integer ethnic6;
+
+    @Column(name = "yearcogrd", length = 4, precision = 10)
     private Integer yearcogrd;
+
+    @Column(name = "vetsche", length = 4, precision = 10)
     private Integer vetsche;
+
+    @Column(name = "vetrevsche", length = 4, precision = 10)
     private Integer vetrevsche;
+
+    @Column(name = "vetschecir", length = 4, precision = 10)
     private Integer vetschecir;
+
+    @Column(name = "vetscherea", length = 4, precision = 10)
     private Integer vetscherea;
-    private String mainuid;
-    private Integer deleted;
-    private Integer organizationid;
+
+    @Size(min = 9, max = 9)
+    @Column(name = "mainuid", length = 9)
+    private String mainuId;
+
+    @NotNull
+    @Column(name = "deleted", length = 1, nullable = false)
+    private Boolean deleted;
+
+    @NotNull
+    @Column(name = "organizationid", length = 4, precision = 10, nullable = false)
+    private Integer organizationId;
+
+    @Column(name = "enterenrol", length = 4, precision = 10)
     private Integer enterenrol;
-    private Integer TRACK;
-    private Integer TRACKYEAR;
-    private Integer RANDOMID;
-    private Integer ATRSTDTEST;
-    private Integer ATRLOWGPA;
-    private Integer ATRALGEBRA;
-    private Integer DISCONNECT;
-    private Integer COLLCOHORT;
-    private Integer COMMCOLL;
-    private Integer MCSTEM;
-    private Integer BDEGREE;
-    private String BDEGREEDT;
-    private Integer BDEGREECO;
-    private String BDEGREEMA;
-    private Integer GRADADM;
-    private String GRADENRODT;
-    private String GRADCOLL;
-    private Integer GDEGREE;
-    private String GDEGREEDT;
-    private String GDOCCOLL;
-    private Integer DOCEMPLOY;
-    private Integer atrschool;
-    private String sitelocate;
+
+    @Column(name = "TRACK", length = 4, precision = 10)
+    private Integer track;
+
+    @Column(name = "TRACKYEAR", length = 4, precision = 10)
+    private Integer trackYear;
+
+    @Column(name = "RANDOMID", length = 4, precision = 10)
+    private Integer randomId;
+
+    @Column(name = "ATRSTDTEST", length = 4, precision = 10)
+    private Integer atrstdTest;
+
+    @Column(name = "ATRLOWGPA", length = 4, precision = 10)
+    private Integer atrlowgpa;
+
+    @Column(name = "ATRALGEBRA", length = 4, precision = 10)
+    private Integer atrAlgebra;
+
+    @Column(name = "DISCONNECT", length = 4, precision = 10)
+    private Integer disconnect;
+
+    @Column(name = "COLLCOHORT", length = 4, precision = 10)
+    private Integer collcohort;
+
+    @Column(name = "COMMCOLL", length = 4, precision = 10)
+    private Integer commcoll;
+
+    @Column(name = "MCSTEM", length = 4, precision = 10)
+    private Integer mcstem;
+
+    @Column(name = "BDEGREE", length = 4, precision = 10)
+    private Integer bDegree;
+
+    @Column(name = "BDEGREEDT", length = 50)
+    private String bDegreedt;
+
+    @Column(name = "BDEGREECO", length = 4, precision = 10)
+    private Integer bDegreeco;
+
+    @Column(name = "BDEGREEMA", length = 200)
+    private String dDegreema;
+
+    @Column(name = "GRADADM", length = 4, precision = 10)
+    private Integer gradadm;
+
+    @Column(name = "GRADENRODT", length = 50)
+    private String gradenRodt;
+
+    @Column(name = "GRADCOLL", length = 200)
+    private String gradcoll;
+
+    @Column(name = "GDEGREE", length = 4, precision = 10)
+    private Integer gDegree;
+
+    @Column(name = "GDEGREEDT", length = 50)
+    private String gDegreedt;
+
+    @Column(name = "GDOCCOLL", length = 200)
+    private String gdoccoll;
+
+    @Column(name = "DOCEMPLOY", length = 4, precision = 10)
+    private Integer docEmploy;
+
+    @Column(name = "atrschool", length = 4, precision = 10)
+    private Integer atrSchool;
+
+    @Column(name = "sitelocate", length = 100)
+    private String siteLocate;
+
+    @Column(name = "phn1ty", length = 50)
     private String phn1ty;
-    private String phn1txt;
+
+    @Column(name = "phn1txt", length = 1)
+    private Boolean phn1Txt;
+
+    @Column(name = "phn2ty", length = 50)
     private String phn2ty;
-    private String phn2txt;
-    private String scanid;
-    private String casenum;
+
+    @Column(name = "phn2txt", length = 1)
+    private Boolean phn2txt;
+
+    @Column(name = "scanid", length = 25)
+    private String scanId;
+
+    @Column(name = "casenum", length = 10)
+    private String caseNum;
+
     private String fiscalYear;
 
-    @OneToOne(cascade = {CascadeType.ALL})
-    private GraduatedInformation graduatedInformation;
+    @Column(name = "ssno", length = 100)
+    private String ssno;
 
-    @OneToOne(cascade = {CascadeType.ALL})
-    private StudentYearlyData studentYearlyData;
+    @Column(name = "timestamp_column", length = 8)
+    private Timestamp timestampColumn;
 
-    public StudentYearlyData getStudentYearlyData() {
-        return studentYearlyData;
-    }
+//    @OneToOne(cascade = {CascadeType.ALL})
+//    private GraduatedInformation graduatedInformation;
+//
+//    @OneToOne(cascade = {CascadeType.ALL})
+//    private StudentYearlyData studentYearlyData;
+//
+//    public StudentYearlyData getStudentYearlyData() {
+//        return studentYearlyData;
+//    }
+//
+//    public void setStudentYearlyData(StudentYearlyData studentYearlyData) {
+//        this.studentYearlyData = studentYearlyData;
+//    }
+//
+//    @JsonBackReference
+//    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "studentList")
+//    private Set<TeacherClasses> teacherClasses = new HashSet<TeacherClasses>();
+//
+//    @JsonBackReference
+//    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "studentList")
+//    private Set<CounselorClasses> counselorClasses = new HashSet<CounselorClasses>();
+//
+//    @JsonBackReference
+//    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "studentList")
+//    private Set<StaffClasses> staffClasses = new HashSet<StaffClasses>();
+//
+//    @JsonBackReference
+//    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "studentList")
+//    private Set<TutorClasses> tutorClasses = new HashSet<TutorClasses>();
 
-    public void setStudentYearlyData(StudentYearlyData studentYearlyData) {
-        this.studentYearlyData = studentYearlyData;
-    }
-
-    @JsonBackReference
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "studentList")
-    private Set<TeacherClasses> teacherClasses = new HashSet<TeacherClasses>();
-
-    @JsonBackReference
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "studentList")
-    private Set<CounselorClasses> counselorClasses = new HashSet<CounselorClasses>();
-
-    @JsonBackReference
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "studentList")
-    private Set<StaffClasses> staffClasses = new HashSet<StaffClasses>();
-
-    @JsonBackReference
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "studentList")
-    private Set<TutorClasses> tutorClasses = new HashSet<TutorClasses>();
-
+    @Column(name = "is_deleted_student", length = 1)
     private boolean isDeletedStudent;
 
     public Student() {
@@ -216,85 +508,52 @@ public class Student implements Serializable {
         isDeletedStudent = deletedStudent;
     }
 
-    public void assignTeacherClasses(TeacherClasses teacherClass) {
-        this.teacherClasses.add(teacherClass);
-        teacherClass.getStudentList().add(this);
+//    public void assignTeacherClasses(TeacherClasses teacherClass) {
+//        this.teacherClasses.add(teacherClass);
+//        teacherClass.getStudentList().add(this);
+//    }
+//
+//    public void removeTeacherClasses(TeacherClasses teacherClass) {
+//        this.teacherClasses.remove(teacherClass);
+//        teacherClass.getStudentList().remove(this);
+//    }
+//
+//    public void assignCounselorClasses(CounselorClasses CounselorClass) {
+//        this.counselorClasses.add(CounselorClass);
+//        CounselorClass.getStudentList().add(this);
+//    }
+//
+//    public void removeCounselorClasses(CounselorClasses CounselorClass) {
+//        this.counselorClasses.remove(CounselorClass);
+//        CounselorClass.getStudentList().remove(this);
+//    }
+//
+//    public void assignStaffClasses(StaffClasses StaffClass) {
+//        this.staffClasses.add(StaffClass);
+//        StaffClass.getStudentList().add(this);
+//    }
+//
+//    public void removeStaffClasses(StaffClasses StaffClass) {
+//        this.staffClasses.remove(StaffClass);
+//        StaffClass.getStudentList().remove(this);
+//    }
+//
+//    public void assignTutorClasses(TutorClasses tutorClass) {
+//        this.tutorClasses.add(tutorClass);
+//        tutorClass.getStudentList().add(this);
+//    }
+//
+//    public void removeTutorClasses(TutorClasses tutorClass) {
+//        this.tutorClasses.remove(tutorClass);
+//        tutorClass.getStudentList().remove(this);
+//    }
+
+    public long getStuid() {
+        return stuid;
     }
 
-    public void removeTeacherClasses(TeacherClasses teacherClass) {
-        this.teacherClasses.remove(teacherClass);
-        teacherClass.getStudentList().remove(this);
-    }
-
-    public void assignCounselorClasses(CounselorClasses CounselorClass) {
-        this.counselorClasses.add(CounselorClass);
-        CounselorClass.getStudentList().add(this);
-    }
-
-    public void removeCounselorClasses(CounselorClasses CounselorClass) {
-        this.counselorClasses.remove(CounselorClass);
-        CounselorClass.getStudentList().remove(this);
-    }
-
-    public void assignStaffClasses(StaffClasses StaffClass) {
-        this.staffClasses.add(StaffClass);
-        StaffClass.getStudentList().add(this);
-    }
-
-    public void removeStaffClasses(StaffClasses StaffClass) {
-        this.staffClasses.remove(StaffClass);
-        StaffClass.getStudentList().remove(this);
-    }
-
-    public void assignTutorClasses(TutorClasses tutorClass) {
-        this.tutorClasses.add(tutorClass);
-        tutorClass.getStudentList().add(this);
-    }
-
-    public void removeTutorClasses(TutorClasses tutorClass) {
-        this.tutorClasses.remove(tutorClass);
-        tutorClass.getStudentList().remove(this);
-    }
-
-
-    public GraduatedInformation getGraduatedInformation() {
-        return graduatedInformation;
-    }
-
-    public void setGraduatedInformation(GraduatedInformation graduatedInformation) {
-        this.graduatedInformation = graduatedInformation;
-    }
-
-    public Set<TeacherClasses> getTeacherClasses() {
-        return teacherClasses;
-    }
-
-    public void setTeacherClasses(Set<TeacherClasses> teacherClasses) {
-        this.teacherClasses = teacherClasses;
-    }
-
-    public Set<CounselorClasses> getCounselorClasses() {
-        return counselorClasses;
-    }
-
-    public void setCounselorClasses(Set<CounselorClasses> counselorClasses) {
-        this.counselorClasses = counselorClasses;
-    }
-
-    public Set<StaffClasses> getStaffClasses() {
-        return staffClasses;
-    }
-
-    public void setStaffClasses(Set<StaffClasses> staffClasses) {
-        this.staffClasses = staffClasses;
-    }
-
-    public Set<TutorClasses> getTutorClasses() {
-        return tutorClasses;
-    }
-
-    public void setTutorClasses(Set<TutorClasses> tutorClasses) {
-        this.tutorClasses = tutorClasses;
+    public void setStuid(long stuid) {
+        this.stuid = stuid;
     }
 
     public String getSfirst() {
@@ -345,11 +604,11 @@ public class Student implements Serializable {
         this.state = state;
     }
 
-    public Integer getZipcode() {
+    public String getZipcode() {
         return zipcode;
     }
 
-    public void setZipcode(Integer zipcode) {
+    public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
     }
 
@@ -385,43 +644,43 @@ public class Student implements Serializable {
         this.website = website;
     }
 
-    public Integer getEntrydate() {
-        return entrydate;
+    public Timestamp getEntryDate() {
+        return entryDate;
     }
 
-    public void setEntrydate(Integer entrydate) {
-        this.entrydate = entrydate;
+    public void setEntryDate(Timestamp entryDate) {
+        this.entryDate = entryDate;
     }
 
-    public Date getDob() {
+    public Timestamp getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(Timestamp dob) {
         this.dob = dob;
     }
 
-    public Date getTermidate() {
-        return termidate;
+    public Timestamp getTermiDate() {
+        return termiDate;
     }
 
-    public void setTermidate(Date termidate) {
-        this.termidate = termidate;
+    public void setTermiDate(Timestamp termiDate) {
+        this.termiDate = termiDate;
     }
 
-    public Date getFinishdate() {
-        return finishdate;
+    public Timestamp getFinishDate() {
+        return finishDate;
     }
 
-    public void setFinishdate(Date finishdate) {
-        this.finishdate = finishdate;
+    public void setFinishDate(Timestamp finishDate) {
+        this.finishDate = finishDate;
     }
 
-    public Date getCollegedt() {
+    public String getCollegedt() {
         return collegedt;
     }
 
-    public void setCollegedt(Date collegedt) {
+    public void setCollegedt(String collegedt) {
         this.collegedt = collegedt;
     }
 
@@ -433,12 +692,12 @@ public class Student implements Serializable {
         this.ethnic = ethnic;
     }
 
-    public String getEthnictype() {
-        return ethnictype;
+    public String getEthnicType() {
+        return ethnicType;
     }
 
-    public void setEthnictype(String ethnictype) {
-        this.ethnictype = ethnictype;
+    public void setEthnicType(String ethnicType) {
+        this.ethnicType = ethnicType;
     }
 
     public Integer getEligibilit() {
@@ -449,20 +708,20 @@ public class Student implements Serializable {
         this.eligibilit = eligibilit;
     }
 
-    public String getEligtype() {
-        return eligtype;
+    public String getEligType() {
+        return eligType;
     }
 
-    public void setEligtype(String eligtype) {
-        this.eligtype = eligtype;
+    public void setEligType(String eligType) {
+        this.eligType = eligType;
     }
 
-    public Integer getFamilysize() {
-        return familysize;
+    public Integer getFamilySize() {
+        return familySize;
     }
 
-    public void setFamilysize(Integer familysize) {
-        this.familysize = familysize;
+    public void setFamilySize(Integer familySize) {
+        this.familySize = familySize;
     }
 
     public Integer getYearco() {
@@ -473,20 +732,20 @@ public class Student implements Serializable {
         this.yearco = yearco;
     }
 
-    public Integer getGender() {
+    public Float getGender() {
         return gender;
     }
 
-    public void setGender(Integer gender) {
+    public void setGender(Float gender) {
         this.gender = gender;
     }
 
-    public String getImagepath() {
-        return imagepath;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setImagepath(String imagepath) {
-        this.imagepath = imagepath;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public String getCodes() {
@@ -545,68 +804,68 @@ public class Student implements Serializable {
         this.incomesou = incomesou;
     }
 
-    public Integer getAcadneed() {
-        return acadneed;
+    public Integer getAcadNeed() {
+        return acadNeed;
     }
 
-    public void setAcadneed(Integer acadneed) {
-        this.acadneed = acadneed;
+    public void setAcadNeed(Integer acadNeed) {
+        this.acadNeed = acadNeed;
     }
 
-    public Integer getEnterlevel() {
-        return enterlevel;
+    public Integer getEnterLevel() {
+        return enterLevel;
     }
 
-    public void setEnterlevel(Integer enterlevel) {
-        this.enterlevel = enterlevel;
+    public void setEnterLevel(Integer enterLevel) {
+        this.enterLevel = enterLevel;
     }
 
-    public Integer getGpascale() {
-        return gpascale;
+    public Integer getGpaScale() {
+        return gpaScale;
     }
 
-    public void setGpascale(Integer gpascale) {
-        this.gpascale = gpascale;
+    public void setGpaScale(Integer gpaScale) {
+        this.gpaScale = gpaScale;
     }
 
-    public Integer getEnterexam() {
-        return enterexam;
+    public Integer getEnterExam() {
+        return enterExam;
     }
 
-    public void setEnterexam(Integer enterexam) {
-        this.enterexam = enterexam;
+    public void setEnterExam(Integer enterExam) {
+        this.enterExam = enterExam;
     }
 
-    public Integer getSatcomb() {
-        return satcomb;
+    public Integer getSatComb() {
+        return satComb;
     }
 
-    public void setSatcomb(Integer satcomb) {
-        this.satcomb = satcomb;
+    public void setSatComb(Integer satComb) {
+        this.satComb = satComb;
     }
 
-    public Integer getSatverb() {
-        return satverb;
+    public Integer getSatVerb() {
+        return satVerb;
     }
 
-    public void setSatverb(Integer satverb) {
-        this.satverb = satverb;
+    public void setSatVerb(Integer satVerb) {
+        this.satVerb = satVerb;
     }
 
-    public Integer getSatmath() {
-        return satmath;
+    public Integer getSatMath() {
+        return satMath;
     }
 
-    public void setSatmath(Integer satmath) {
-        this.satmath = satmath;
+    public void setSatMath(Integer satMath) {
+        this.satMath = satMath;
     }
 
-    public Integer getActcomp() {
-        return actcomp;
+    public Integer getActComp() {
+        return actComp;
     }
 
-    public void setActcomp(Integer actcomp) {
-        this.actcomp = actcomp;
+    public void setActComp(Integer actComp) {
+        this.actComp = actComp;
     }
 
     public Integer getFinaidrecd() {
@@ -617,12 +876,12 @@ public class Student implements Serializable {
         this.finaidrecd = finaidrecd;
     }
 
-    public Integer getHighdegree() {
-        return highdegree;
+    public Integer getHighDegree() {
+        return highDegree;
     }
 
-    public void setHighdegree(Integer highdegree) {
-        this.highdegree = highdegree;
+    public void setHighDegree(Integer highDegree) {
+        this.highDegree = highDegree;
     }
 
     public Integer getVenterlev() {
@@ -633,84 +892,84 @@ public class Student implements Serializable {
         this.venterlev = venterlev;
     }
 
-    public Integer getVenterjob() {
-        return venterjob;
+    public Integer getVenterJob() {
+        return venterJob;
     }
 
-    public void setVenterjob(Integer venterjob) {
-        this.venterjob = venterjob;
+    public void setVenterJob(Integer venterJob) {
+        this.venterJob = venterJob;
     }
 
-    public Integer getVdisabled() {
-        return vdisabled;
+    public Integer getvDisabled() {
+        return vDisabled;
     }
 
-    public void setVdisabled(Integer vdisabled) {
-        this.vdisabled = vdisabled;
+    public void setvDisabled(Integer vDisabled) {
+        this.vDisabled = vDisabled;
     }
 
-    public Integer getVfinaidrec() {
-        return vfinaidrec;
+    public Integer getvFinaidrec() {
+        return vFinaidrec;
     }
 
-    public void setVfinaidrec(Integer vfinaidrec) {
-        this.vfinaidrec = vfinaidrec;
+    public void setvFinaidrec(Integer vFinaidrec) {
+        this.vFinaidrec = vFinaidrec;
     }
 
-    public String getReferedby() {
-        return referedby;
+    public String getReferedBy() {
+        return referedBy;
     }
 
-    public void setReferedby(String referedby) {
-        this.referedby = referedby;
+    public void setReferedBy(String referedBy) {
+        this.referedBy = referedBy;
     }
 
-    public String getIncomelev() {
-        return incomelev;
+    public String getIncomeLev() {
+        return incomeLev;
     }
 
-    public void setIncomelev(String incomelev) {
-        this.incomelev = incomelev;
+    public void setIncomeLev(String incomeLev) {
+        this.incomeLev = incomeLev;
     }
 
-    public Integer getCitizen() {
+    public Boolean getCitizen() {
         return citizen;
     }
 
-    public void setCitizen(Integer citizen) {
+    public void setCitizen(Boolean citizen) {
         this.citizen = citizen;
     }
 
-    public Integer getAliennum() {
+    public String getAliennum() {
         return aliennum;
     }
 
-    public void setAliennum(Integer aliennum) {
+    public void setAliennum(String aliennum) {
         this.aliennum = aliennum;
     }
 
-    public String getBirthplace() {
-        return birthplace;
+    public String getBirthPlace() {
+        return birthPlace;
     }
 
-    public void setBirthplace(String birthplace) {
-        this.birthplace = birthplace;
+    public void setBirthPlace(String birthPlace) {
+        this.birthPlace = birthPlace;
     }
 
-    public String getHealthname() {
-        return healthname;
+    public String getHealthName() {
+        return healthName;
     }
 
-    public void setHealthname(String healthname) {
-        this.healthname = healthname;
+    public void setHealthName(String healthName) {
+        this.healthName = healthName;
     }
 
-    public Integer getHealthnum() {
-        return healthnum;
+    public String getHealthNum() {
+        return healthNum;
     }
 
-    public void setHealthnum(Integer healthnum) {
-        this.healthnum = healthnum;
+    public void setHealthNum(String healthNum) {
+        this.healthNum = healthNum;
     }
 
     public String getMedicaid() {
@@ -721,156 +980,156 @@ public class Student implements Serializable {
         this.medicaid = medicaid;
     }
 
-    public String getDocname() {
-        return docname;
+    public String getDocName() {
+        return docName;
     }
 
-    public void setDocname(String docname) {
-        this.docname = docname;
+    public void setDocName(String docName) {
+        this.docName = docName;
     }
 
-    public String getDocphone() {
-        return docphone;
+    public String getDocPhone() {
+        return docPhone;
     }
 
-    public void setDocphone(String docphone) {
-        this.docphone = docphone;
+    public void setDocPhone(String docPhone) {
+        this.docPhone = docPhone;
     }
 
-    public String getStudentid() {
-        return studentid;
+    public String getStudentId() {
+        return studentId;
     }
 
-    public void setStudentid(String studentid) {
-        this.studentid = studentid;
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
     }
 
-    public String getDlnumber() {
-        return dlnumber;
+    public String getDlNumber() {
+        return dlNumber;
     }
 
-    public void setDlnumber(String dlnumber) {
-        this.dlnumber = dlnumber;
+    public void setDlNumber(String dlNumber) {
+        this.dlNumber = dlNumber;
     }
 
-    public String getDlstate() {
-        return dlstate;
+    public String getDlState() {
+        return dlState;
     }
 
-    public void setDlstate(String dlstate) {
-        this.dlstate = dlstate;
+    public void setDlState(String dlState) {
+        this.dlState = dlState;
     }
 
-    public String getTrioname() {
-        return trioname;
+    public String getTrioName() {
+        return trioName;
     }
 
-    public void setTrioname(String trioname) {
-        this.trioname = trioname;
+    public void setTrioName(String trioName) {
+        this.trioName = trioName;
     }
 
-    public Integer getMarrstatus() {
-        return marrstatus;
+    public Integer getMarrStatus() {
+        return marrStatus;
     }
 
-    public void setMarrstatus(Integer marrstatus) {
-        this.marrstatus = marrstatus;
+    public void setMarrStatus(Integer marrStatus) {
+        this.marrStatus = marrStatus;
     }
 
-    public Integer getCalgpa() {
+    public Boolean getCalgpa() {
         return calgpa;
     }
 
-    public void setCalgpa(Integer calgpa) {
+    public void setCalgpa(Boolean calgpa) {
         this.calgpa = calgpa;
     }
 
-    public Integer getPhrsattemp() {
-        return phrsattemp;
+    public Float getPhrsatTemp() {
+        return phrsatTemp;
     }
 
-    public void setPhrsattemp(Integer phrsattemp) {
-        this.phrsattemp = phrsattemp;
+    public void setPhrsatTemp(Float phrsatTemp) {
+        this.phrsatTemp = phrsatTemp;
     }
 
-    public Integer getPhrscomp() {
-        return phrscomp;
+    public Float getPhrsComp() {
+        return phrsComp;
     }
 
-    public void setPhrscomp(Integer phrscomp) {
-        this.phrscomp = phrscomp;
+    public void setPhrsComp(Float phrsComp) {
+        this.phrsComp = phrsComp;
     }
 
-    public Integer getPhrsgpa() {
+    public Float getPhrsgpa() {
         return phrsgpa;
     }
 
-    public void setPhrsgpa(Integer phrsgpa) {
+    public void setPhrsgpa(Float phrsgpa) {
         this.phrsgpa = phrsgpa;
     }
 
-    public Integer getPgpa() {
+    public Float getPgpa() {
         return pgpa;
     }
 
-    public void setPgpa(Integer pgpa) {
+    public void setPgpa(Float pgpa) {
         this.pgpa = pgpa;
     }
 
-    public Integer getPgpapoints() {
-        return pgpapoints;
+    public Float getPgpaPoints() {
+        return pgpaPoints;
     }
 
-    public void setPgpapoints(Integer pgpapoints) {
-        this.pgpapoints = pgpapoints;
+    public void setPgpaPoints(Float pgpaPoints) {
+        this.pgpaPoints = pgpaPoints;
     }
 
-    public Integer getHrsattemp() {
-        return hrsattemp;
+    public Float getHrsatTemp() {
+        return hrsatTemp;
     }
 
-    public void setHrsattemp(Integer hrsattemp) {
-        this.hrsattemp = hrsattemp;
+    public void setHrsatTemp(Float hrsatTemp) {
+        this.hrsatTemp = hrsatTemp;
     }
 
-    public Integer getHrscomp() {
+    public Float getHrscomp() {
         return hrscomp;
     }
 
-    public void setHrscomp(Integer hrscomp) {
+    public void setHrscomp(Float hrscomp) {
         this.hrscomp = hrscomp;
     }
 
-    public Integer getHrsgpa() {
+    public Float getHrsgpa() {
         return hrsgpa;
     }
 
-    public void setHrsgpa(Integer hrsgpa) {
+    public void setHrsgpa(Float hrsgpa) {
         this.hrsgpa = hrsgpa;
     }
 
-    public Integer getGpa() {
+    public Float getGpa() {
         return gpa;
     }
 
-    public void setGpa(Integer gpa) {
+    public void setGpa(Float gpa) {
         this.gpa = gpa;
     }
 
-    public Integer getGpapoints() {
-        return gpapoints;
+    public Float getGpaPoints() {
+        return gpaPoints;
     }
 
-    public void setGpapoints(Integer gpapoints) {
-        this.gpapoints = gpapoints;
+    public void setGpaPoints(Float gpaPoints) {
+        this.gpaPoints = gpaPoints;
     }
 
-    public Date getLastmodify() {
-        return lastmodify;
+    public Timestamp getLastModify() {
+        return lastModify;
     }
 
-    public void setLastmodify(Date lastmodify) {
-        this.lastmodify = lastmodify;
+    public void setLastModify(Timestamp lastModify) {
+        this.lastModify = lastModify;
     }
 
     public String getNotes() {
@@ -881,20 +1140,20 @@ public class Student implements Serializable {
         this.notes = notes;
     }
 
-    public String getLastuser() {
-        return lastuser;
+    public String getLastUser() {
+        return lastUser;
     }
 
-    public void setLastuser(String lastuser) {
-        this.lastuser = lastuser;
+    public void setLastUser(String lastUser) {
+        this.lastUser = lastUser;
     }
 
-    public String getSchoolend() {
-        return schoolend;
+    public String getSchoolEnd() {
+        return schoolEnd;
     }
 
-    public void setSchoolend(String schoolend) {
-        this.schoolend = schoolend;
+    public void setSchoolEnd(String schoolEnd) {
+        this.schoolEnd = schoolEnd;
     }
 
     public String getCollegendd() {
@@ -905,51 +1164,51 @@ public class Student implements Serializable {
         this.collegendd = collegendd;
     }
 
-    public String getYearproj() {
-        return yearproj;
+    public Integer getYearProj() {
+        return yearProj;
     }
 
-    public void setYearproj(String yearproj) {
-        this.yearproj = yearproj;
+    public void setYearProj(Integer yearProj) {
+        this.yearProj = yearProj;
     }
 
-    public String getAcadneed2() {
+    public Integer getAcadneed2() {
         return acadneed2;
     }
 
-    public void setAcadneed2(String acadneed2) {
+    public void setAcadneed2(Integer acadneed2) {
         this.acadneed2 = acadneed2;
     }
 
-    public String getEgraddate() {
-        return egraddate;
+    public Timestamp getEgradDate() {
+        return egradDate;
     }
 
-    public void setEgraddate(String egraddate) {
-        this.egraddate = egraddate;
+    public void setEgradDate(Timestamp egradDate) {
+        this.egradDate = egradDate;
     }
 
-    public String getGraddate() {
-        return graddate;
+    public Timestamp getGradDate() {
+        return gradDate;
     }
 
-    public void setGraddate(String graddate) {
-        this.graddate = graddate;
+    public void setGradDate(Timestamp gradDate) {
+        this.gradDate = gradDate;
     }
 
-    public Integer getMsgpascale() {
-        return msgpascale;
+    public Integer getMsgpaScale() {
+        return msgpaScale;
     }
 
-    public void setMsgpascale(Integer msgpascale) {
-        this.msgpascale = msgpascale;
+    public void setMsgpaScale(Integer msgpaScale) {
+        this.msgpaScale = msgpaScale;
     }
 
-    public Integer getMsgpa() {
+    public Float getMsgpa() {
         return msgpa;
     }
 
-    public void setMsgpa(Integer msgpa) {
+    public void setMsgpa(Float msgpa) {
         this.msgpa = msgpa;
     }
 
@@ -969,12 +1228,12 @@ public class Student implements Serializable {
         this.leplastser = leplastser;
     }
 
-    public Integer getStatetest() {
-        return statetest;
+    public Integer getStateTest() {
+        return stateTest;
     }
 
-    public void setStatetest(Integer statetest) {
-        this.statetest = statetest;
+    public void setStateTest(Integer stateTest) {
+        this.stateTest = stateTest;
     }
 
     public Integer getState8rla() {
@@ -1049,36 +1308,36 @@ public class Student implements Serializable {
         this.eligi3 = eligi3;
     }
 
-    public Date getDegreedate() {
-        return degreedate;
+    public Timestamp getDegreeDate() {
+        return degreeDate;
     }
 
-    public void setDegreedate(Date degreedate) {
-        this.degreedate = degreedate;
+    public void setDegreeDate(Timestamp degreeDate) {
+        this.degreeDate = degreeDate;
     }
 
-    public Integer getSatwriting() {
-        return satwriting;
+    public Integer getSatWriting() {
+        return satWriting;
     }
 
-    public void setSatwriting(Integer satwriting) {
-        this.satwriting = satwriting;
+    public void setSatWriting(Integer satWriting) {
+        this.satWriting = satWriting;
     }
 
-    public Date getFirstserdt() {
+    public Timestamp getFirstserdt() {
         return firstserdt;
     }
 
-    public void setFirstserdt(Date firstserdt) {
+    public void setFirstserdt(Timestamp firstserdt) {
         this.firstserdt = firstserdt;
     }
 
-    public Integer getCohortyear() {
-        return cohortyear;
+    public Integer getCohortYear() {
+        return cohortYear;
     }
 
-    public void setCohortyear(Integer cohortyear) {
-        this.cohortyear = cohortyear;
+    public void setCohortYear(Integer cohortYear) {
+        this.cohortYear = cohortYear;
     }
 
     public Integer getEthnic1() {
@@ -1169,36 +1428,28 @@ public class Student implements Serializable {
         this.vetscherea = vetscherea;
     }
 
-    public String getMainuid() {
-        return mainuid;
+    public String getMainuId() {
+        return mainuId;
     }
 
-    public void setMainuid(String mainuid) {
-        this.mainuid = mainuid;
+    public void setMainuId(String mainuId) {
+        this.mainuId = mainuId;
     }
 
-    public Long getStuid() {
-        return stuid;
-    }
-
-    public void setStuid(Long stuid) {
-        this.stuid = stuid;
-    }
-
-    public Integer getDeleted() {
+    public Boolean getDeleted() {
         return deleted;
     }
 
-    public void setDeleted(Integer deleted) {
+    public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
     }
 
-    public Integer getOrganizationid() {
-        return organizationid;
+    public Integer getOrganizationId() {
+        return organizationId;
     }
 
-    public void setOrganizationid(Integer organizationid) {
-        this.organizationid = organizationid;
+    public void setOrganizationId(Integer organizationId) {
+        this.organizationId = organizationId;
     }
 
     public Integer getEnterenrol() {
@@ -1209,188 +1460,188 @@ public class Student implements Serializable {
         this.enterenrol = enterenrol;
     }
 
-    public Integer getTRACK() {
-        return TRACK;
+    public Integer getTrack() {
+        return track;
     }
 
-    public void setTRACK(Integer TRACK) {
-        this.TRACK = TRACK;
+    public void setTrack(Integer track) {
+        this.track = track;
     }
 
-    public Integer getTRACKYEAR() {
-        return TRACKYEAR;
+    public Integer getTrackYear() {
+        return trackYear;
     }
 
-    public void setTRACKYEAR(Integer TRACKYEAR) {
-        this.TRACKYEAR = TRACKYEAR;
+    public void setTrackYear(Integer trackYear) {
+        this.trackYear = trackYear;
     }
 
-    public Integer getRANDOMID() {
-        return RANDOMID;
+    public Integer getRandomId() {
+        return randomId;
     }
 
-    public void setRANDOMID(Integer RANDOMID) {
-        this.RANDOMID = RANDOMID;
+    public void setRandomId(Integer randomId) {
+        this.randomId = randomId;
     }
 
-    public Integer getATRSTDTEST() {
-        return ATRSTDTEST;
+    public Integer getAtrstdTest() {
+        return atrstdTest;
     }
 
-    public void setATRSTDTEST(Integer ATRSTDTEST) {
-        this.ATRSTDTEST = ATRSTDTEST;
+    public void setAtrstdTest(Integer atrstdTest) {
+        this.atrstdTest = atrstdTest;
     }
 
-    public Integer getATRLOWGPA() {
-        return ATRLOWGPA;
+    public Integer getAtrlowgpa() {
+        return atrlowgpa;
     }
 
-    public void setATRLOWGPA(Integer ATRLOWGPA) {
-        this.ATRLOWGPA = ATRLOWGPA;
+    public void setAtrlowgpa(Integer atrlowgpa) {
+        this.atrlowgpa = atrlowgpa;
     }
 
-    public Integer getATRALGEBRA() {
-        return ATRALGEBRA;
+    public Integer getAtrAlgebra() {
+        return atrAlgebra;
     }
 
-    public void setATRALGEBRA(Integer ATRALGEBRA) {
-        this.ATRALGEBRA = ATRALGEBRA;
+    public void setAtrAlgebra(Integer atrAlgebra) {
+        this.atrAlgebra = atrAlgebra;
     }
 
-    public Integer getDISCONNECT() {
-        return DISCONNECT;
+    public Integer getDisconnect() {
+        return disconnect;
     }
 
-    public void setDISCONNECT(Integer DISCONNECT) {
-        this.DISCONNECT = DISCONNECT;
+    public void setDisconnect(Integer disconnect) {
+        this.disconnect = disconnect;
     }
 
-    public Integer getCOLLCOHORT() {
-        return COLLCOHORT;
+    public Integer getCollcohort() {
+        return collcohort;
     }
 
-    public void setCOLLCOHORT(Integer COLLCOHORT) {
-        this.COLLCOHORT = COLLCOHORT;
+    public void setCollcohort(Integer collcohort) {
+        this.collcohort = collcohort;
     }
 
-    public Integer getCOMMCOLL() {
-        return COMMCOLL;
+    public Integer getCommcoll() {
+        return commcoll;
     }
 
-    public void setCOMMCOLL(Integer COMMCOLL) {
-        this.COMMCOLL = COMMCOLL;
+    public void setCommcoll(Integer commcoll) {
+        this.commcoll = commcoll;
     }
 
-    public Integer getMCSTEM() {
-        return MCSTEM;
+    public Integer getMcstem() {
+        return mcstem;
     }
 
-    public void setMCSTEM(Integer MCSTEM) {
-        this.MCSTEM = MCSTEM;
+    public void setMcstem(Integer mcstem) {
+        this.mcstem = mcstem;
     }
 
-    public Integer getBDEGREE() {
-        return BDEGREE;
+    public Integer getbDegree() {
+        return bDegree;
     }
 
-    public void setBDEGREE(Integer BDEGREE) {
-        this.BDEGREE = BDEGREE;
+    public void setbDegree(Integer bDegree) {
+        this.bDegree = bDegree;
     }
 
-    public String getBDEGREEDT() {
-        return BDEGREEDT;
+    public String getbDegreedt() {
+        return bDegreedt;
     }
 
-    public void setBDEGREEDT(String BDEGREEDT) {
-        this.BDEGREEDT = BDEGREEDT;
+    public void setbDegreedt(String bDegreedt) {
+        this.bDegreedt = bDegreedt;
     }
 
-    public Integer getBDEGREECO() {
-        return BDEGREECO;
+    public Integer getbDegreeco() {
+        return bDegreeco;
     }
 
-    public void setBDEGREECO(Integer BDEGREECO) {
-        this.BDEGREECO = BDEGREECO;
+    public void setbDegreeco(Integer bDegreeco) {
+        this.bDegreeco = bDegreeco;
     }
 
-    public String getBDEGREEMA() {
-        return BDEGREEMA;
+    public String getdDegreema() {
+        return dDegreema;
     }
 
-    public void setBDEGREEMA(String BDEGREEMA) {
-        this.BDEGREEMA = BDEGREEMA;
+    public void setdDegreema(String dDegreema) {
+        this.dDegreema = dDegreema;
     }
 
-    public Integer getGRADADM() {
-        return GRADADM;
+    public Integer getGradadm() {
+        return gradadm;
     }
 
-    public void setGRADADM(Integer GRADADM) {
-        this.GRADADM = GRADADM;
+    public void setGradadm(Integer gradadm) {
+        this.gradadm = gradadm;
     }
 
-    public String getGRADENRODT() {
-        return GRADENRODT;
+    public String getGradenRodt() {
+        return gradenRodt;
     }
 
-    public void setGRADENRODT(String GRADENRODT) {
-        this.GRADENRODT = GRADENRODT;
+    public void setGradenRodt(String gradenRodt) {
+        this.gradenRodt = gradenRodt;
     }
 
-    public String getGRADCOLL() {
-        return GRADCOLL;
+    public String getGradcoll() {
+        return gradcoll;
     }
 
-    public void setGRADCOLL(String GRADCOLL) {
-        this.GRADCOLL = GRADCOLL;
+    public void setGradcoll(String gradcoll) {
+        this.gradcoll = gradcoll;
     }
 
-    public Integer getGDEGREE() {
-        return GDEGREE;
+    public Integer getgDegree() {
+        return gDegree;
     }
 
-    public void setGDEGREE(Integer GDEGREE) {
-        this.GDEGREE = GDEGREE;
+    public void setgDegree(Integer gDegree) {
+        this.gDegree = gDegree;
     }
 
-    public String getGDEGREEDT() {
-        return GDEGREEDT;
+    public String getgDegreedt() {
+        return gDegreedt;
     }
 
-    public void setGDEGREEDT(String GDEGREEDT) {
-        this.GDEGREEDT = GDEGREEDT;
+    public void setgDegreedt(String gDegreedt) {
+        this.gDegreedt = gDegreedt;
     }
 
-    public String getGDOCCOLL() {
-        return GDOCCOLL;
+    public String getGdoccoll() {
+        return gdoccoll;
     }
 
-    public void setGDOCCOLL(String GDOCCOLL) {
-        this.GDOCCOLL = GDOCCOLL;
+    public void setGdoccoll(String gdoccoll) {
+        this.gdoccoll = gdoccoll;
     }
 
-    public Integer getDOCEMPLOY() {
-        return DOCEMPLOY;
+    public Integer getDocEmploy() {
+        return docEmploy;
     }
 
-    public void setDOCEMPLOY(Integer DOCEMPLOY) {
-        this.DOCEMPLOY = DOCEMPLOY;
+    public void setDocEmploy(Integer docEmploy) {
+        this.docEmploy = docEmploy;
     }
 
-    public Integer getAtrschool() {
-        return atrschool;
+    public Integer getAtrSchool() {
+        return atrSchool;
     }
 
-    public void setAtrschool(Integer atrschool) {
-        this.atrschool = atrschool;
+    public void setAtrSchool(Integer atrSchool) {
+        this.atrSchool = atrSchool;
     }
 
-    public String getSitelocate() {
-        return sitelocate;
+    public String getSiteLocate() {
+        return siteLocate;
     }
 
-    public void setSitelocate(String sitelocate) {
-        this.sitelocate = sitelocate;
+    public void setSiteLocate(String siteLocate) {
+        this.siteLocate = siteLocate;
     }
 
     public String getPhn1ty() {
@@ -1401,12 +1652,12 @@ public class Student implements Serializable {
         this.phn1ty = phn1ty;
     }
 
-    public String getPhn1txt() {
-        return phn1txt;
+    public Boolean getPhn1Txt() {
+        return phn1Txt;
     }
 
-    public void setPhn1txt(String phn1txt) {
-        this.phn1txt = phn1txt;
+    public void setPhn1Txt(Boolean phn1Txt) {
+        this.phn1Txt = phn1Txt;
     }
 
     public String getPhn2ty() {
@@ -1417,28 +1668,28 @@ public class Student implements Serializable {
         this.phn2ty = phn2ty;
     }
 
-    public String getPhn2txt() {
+    public Boolean getPhn2txt() {
         return phn2txt;
     }
 
-    public void setPhn2txt(String phn2txt) {
+    public void setPhn2txt(Boolean phn2txt) {
         this.phn2txt = phn2txt;
     }
 
-    public String getScanid() {
-        return scanid;
+    public String getScanId() {
+        return scanId;
     }
 
-    public void setScanid(String scanid) {
-        this.scanid = scanid;
+    public void setScanId(String scanId) {
+        this.scanId = scanId;
     }
 
-    public String getCasenum() {
-        return casenum;
+    public String getCaseNum() {
+        return caseNum;
     }
 
-    public void setCasenum(String casenum) {
-        this.casenum = casenum;
+    public void setCaseNum(String caseNum) {
+        this.caseNum = caseNum;
     }
 
     public String getFiscalYear() {
@@ -1448,4 +1699,60 @@ public class Student implements Serializable {
     public void setFiscalYear(String fiscalYear) {
         this.fiscalYear = fiscalYear;
     }
+
+    public String getSsno() {
+        return ssno;
+    }
+
+    public void setSsno(String ssno) {
+        this.ssno = ssno;
+    }
+
+    public Timestamp getTimestampColumn() {
+        return timestampColumn;
+    }
+
+    public void setTimestampColumn(Timestamp timestampColumn) {
+        this.timestampColumn = timestampColumn;
+    }
+
+//    public GraduatedInformation getGraduatedInformation() {
+//        return graduatedInformation;
+//    }
+//
+//    public void setGraduatedInformation(GraduatedInformation graduatedInformation) {
+//        this.graduatedInformation = graduatedInformation;
+//    }
+//
+//    public Set<TeacherClasses> getTeacherClasses() {
+//        return teacherClasses;
+//    }
+//
+//    public void setTeacherClasses(Set<TeacherClasses> teacherClasses) {
+//        this.teacherClasses = teacherClasses;
+//    }
+//
+//    public Set<CounselorClasses> getCounselorClasses() {
+//        return counselorClasses;
+//    }
+//
+//    public void setCounselorClasses(Set<CounselorClasses> counselorClasses) {
+//        this.counselorClasses = counselorClasses;
+//    }
+//
+//    public Set<StaffClasses> getStaffClasses() {
+//        return staffClasses;
+//    }
+//
+//    public void setStaffClasses(Set<StaffClasses> staffClasses) {
+//        this.staffClasses = staffClasses;
+//    }
+//
+//    public Set<TutorClasses> getTutorClasses() {
+//        return tutorClasses;
+//    }
+//
+//    public void setTutorClasses(Set<TutorClasses> tutorClasses) {
+//        this.tutorClasses = tutorClasses;
+//    }
 }

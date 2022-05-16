@@ -175,7 +175,7 @@ public class StaffClasses {
 	
 	public void assignStudent(Student st) {
 		this.studentList.add(st);
-    	st.getStaffClasses().add(this);
+//    	st.getStaffClasses().add(this);
 	}
 	
 }

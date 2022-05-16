@@ -45,8 +45,11 @@ public class LoggedUserServiceV1 {
     @Autowired
     private EmailService sendMailService;
 
-    @Value("${blumen2.url.forgot.password}")
-    private String blumenUrl;
+    @Value("${blumen2.url.set.password}")
+    private String setPasswordUrl;
+
+    @Value("${blumen2.url.reset.password}")
+    private String resetPasswordUrl;
 
     @Value("${email.create.user.tile}")
     private String createUserTitle;
@@ -57,13 +60,13 @@ public class LoggedUserServiceV1 {
     @Value("${email.forgot.password.title}")
     private String forgotPasswordTitle;
 
-    // @Value("${email.forgot.password.body}")
+   // @Value("${email.forgot.password.body}")
 //    private String forgotPasswordBody ="A password reset request for your account has been received. You may reset your password from here {0} .<br/><br/>Best Regards,<br/>Blumen Support Team.";
 
     @Value("${email.reset.password.title}")
     private String resetPasswordTitle;
 
-    //  @Value("${email.reset.password.body}")
+  //  @Value("${email.reset.password.body}")
 //    private String resetPasswordBody ="A password reset request for your account has been received. You may reset your password from here {0} .<br/><br/>Best Regards,<br/>Blumen Support Team.";
 
 
@@ -164,12 +167,12 @@ public class LoggedUserServiceV1 {
         String email = loggedUser.getEmail();
         loggedUser.setHashedCode(uuid);
         loggedUser.setCreatedDate(new Date());
-        String tempLink = blumenUrl + uuid;
+        String tempLink = setPasswordUrl + uuid;
         loggedUser.setTempLink(tempLink);
         //set expiry of link to 1 day
         loggedUser.setLinkExpiryDate(DateUtil.setDates(1));
         loggedUser = loggedUserRepository.save(loggedUser);
-        String createUserBody= "A new user account has been created for you.<br/><br/>You may set you password from here : {0} <br/> <br/>Access for Blumen Online at https://blumen2.azurewebsites.net <br/>Organization Code: {1} <br/>User email: {2} <br/><br/>Best Regards,<br/>Blumen Support Team.";
+        String createUserBody= "A new user account has been created for you.<br/><br/>You may set you password from here : <a href='{0}'>SetPassword</a> <br/> <br/>Access for Blumen Online at https://blumen2.azurewebsites.net <br/>Organization Code: {1} <br/>User email: {2} <br/><br/>Best Regards,<br/>Blumen Support Team.";
         createUserBody = createUserBody.replace("{0}", tempLink);
         createUserBody = createUserBody.replace("{1}", loggedUser.getOrgCode());
         createUserBody = createUserBody.replace("{2}", email);
@@ -290,13 +293,13 @@ public class LoggedUserServiceV1 {
         String uuid = UUID.randomUUID().toString();
         loggedUser.setHashedCode(uuid);
         loggedUser.setCreatedDate(new Date());
-        String tempLink = blumenUrl + uuid;
+        String tempLink = resetPasswordUrl + uuid;
         loggedUser.setTempLink(tempLink);
         loggedUser.setHashedCode(uuid);
         //set expiry of link based on org check
         loggedUser.setLinkExpiryDate(DateUtil.setDates(1));
         loggedUserRepository.save(loggedUser);
-        String resetPasswordBody ="A password reset request for your account has been received. You may reset your password from here {0} .<br/><br/>Best Regards,<br/>Blumen Support Team.";
+        String resetPasswordBody ="A password reset request for your account has been received. You may reset your password from here <a href='{0}'>Reset Password</a> .<br/><br/>Best Regards,<br/>Blumen Support Team.";
         resetPasswordBody = resetPasswordBody.replace("{0}", tempLink);
         sendMailService.sendMail(loggedUser.getEmail(), resetPasswordTitle, resetPasswordBody);
         return resetPasswordBody;
@@ -325,7 +328,7 @@ public class LoggedUserServiceV1 {
 
             Optional<Organization> organization = organizationRepository.findByOrgId(loggedUser.getOrgId());
             loggedUser.setPasswordExpiryDate(DateUtil.setDates(
-                    organization.get().getOrgDaysToExpire() == null ? 30 : organization.get().getOrgDaysToExpire()));
+                            organization.get().getOrgDaysToExpire() == null ? 30 : organization.get().getOrgDaysToExpire()));
             loggedUser.setLinkExpiryDate(DateUtil.setDates(-1));
             loggedUser.setPassword(updatePassword);
             loggedUser.setHashedCode("");
@@ -406,7 +409,7 @@ public class LoggedUserServiceV1 {
                     maskEmail = maskEmail.charAt(0) + "*****" + maskEmail.charAt(maskEmail.length() - 1);
                 }
                 loggedUser.setHashedCode(UUID.randomUUID().toString());
-                String tempLink = blumenUrl + loggedUser.getHashedCode();
+                String tempLink = resetPasswordUrl + loggedUser.getHashedCode();
                 loggedUser.setTempLink(tempLink);
                 loggedUser.setLinkExpiryDate(DateUtil.setDates(1));
                 loggedUserRepository.save(loggedUser);
@@ -553,8 +556,8 @@ public class LoggedUserServiceV1 {
 
 
     public Map<String,Object> generateCode() {
-        LOGGER.info("call made to generateCode {}", this.getClass());
-        Integer authCode = new Random().nextInt(999999);
+       LOGGER.info("call made to generateCode {}", this.getClass());
+       Integer authCode = new Random().nextInt(999999);
         Optional<LoggedUser> loggedUsers = loggedUserRepository.findByEmailAndOrgCode(SecurityUtil.getEmail(), SecurityUtil.getUserOrgCode());
         Date codeExpiryDate  = new Date();
         if(!loggedUsers.isEmpty()) {

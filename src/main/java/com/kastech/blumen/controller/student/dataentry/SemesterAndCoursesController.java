@@ -48,13 +48,14 @@ public class SemesterAndCoursesController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public Optional<GraduatedInformation> newSemesterAndCoursesStudents(@RequestBody GraduatedInformation graduatedInformation, @RequestParam("student-ssno") String studentSsno) {
         Optional<Student> student = studentRepository.findById(Long.parseLong(studentSsno));
-        GraduatedInformation graduatedInformation1 = student.get().getGraduatedInformation();
-
-        return semesterAndCoursesRepository.findById(graduatedInformation1.getSsno())
-                .map(oldItem -> {
-                    GraduatedInformation updated = oldItem.updateWith(graduatedInformation);
-                    return semesterAndCoursesRepository.save(updated);
-                });
+//        GraduatedInformation graduatedInformation1 = student.get().getGraduatedInformation();
+//
+//        return semesterAndCoursesRepository.findById(graduatedInformation1.getSsno())
+//                .map(oldItem -> {
+//                    GraduatedInformation updated = oldItem.updateWith(graduatedInformation);
+//                    return semesterAndCoursesRepository.save(updated);
+//                });
+        return null;
     }
 
 
@@ -63,13 +64,14 @@ public class SemesterAndCoursesController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public Optional<GraduatedInformation> editSemesterAndCoursesStudents(@RequestBody GraduatedInformation graduatedInformation, @RequestParam("student-ssno") String studentSsno) {
         Optional<Student> student = studentRepository.findById(Long.parseLong(studentSsno));
-        GraduatedInformation graduatedInformation1 = student.get().getGraduatedInformation();
-
-        return semesterAndCoursesRepository.findById(graduatedInformation1.getSsno())
-                .map(oldItem -> {
-                    GraduatedInformation updated = oldItem.updateWith(graduatedInformation);
-                    return semesterAndCoursesRepository.save(updated);
-                });
+//        GraduatedInformation graduatedInformation1 = student.get().getGraduatedInformation();
+//
+//        return semesterAndCoursesRepository.findById(graduatedInformation1.getSsno())
+//                .map(oldItem -> {
+//                    GraduatedInformation updated = oldItem.updateWith(graduatedInformation);
+//                    return semesterAndCoursesRepository.save(updated);
+//                });
+        return null;
     }
 
 

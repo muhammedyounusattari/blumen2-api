@@ -76,9 +76,9 @@ public class GraduatedListController {
 
                 for (String ssno : ssnoList) {
                     Optional<Student> studentObj = studentRepository.findById(Long.parseLong(ssno));
-                    if (null != studentObj.get() && null != studentObj.get().getGraduatedInformation()) {
-                        studentObj.get().getGraduatedInformation().setGraduatedYear(graduatedYear);
-                    }
+//                    if (null != studentObj.get() && null != studentObj.get().getGraduatedInformation()) {
+//                        studentObj.get().getGraduatedInformation().setGraduatedYear(graduatedYear);
+//                    }
                     studentsListObj.add(studentObj.get());
                 }
             }
@@ -101,7 +101,7 @@ public class GraduatedListController {
 
         Student student = studentObj.get();
         graduatedInformation.setAddressNotes(addressNotes);
-        student.setGraduatedInformation(graduatedInformation);
+//        student.setGraduatedInformation(graduatedInformation);
 
 
         ResponseEntity<String> responseEntity = null;

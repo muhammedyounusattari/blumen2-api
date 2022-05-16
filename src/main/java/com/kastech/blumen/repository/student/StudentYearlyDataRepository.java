@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface StudentYearlyRepository extends JpaRepository<StudentYearlyData, Long>  {
+public interface StudentYearlyDataRepository extends JpaRepository<StudentYearlyData, Long> {
 
 }
+
