@@ -4,28 +4,27 @@ import com.google.common.io.Resources;
 import com.kastech.blumen.exception.DataModificationException;
 import com.kastech.blumen.exception.DataNotFoundException;
 import com.kastech.blumen.exception.InputValidationException;
+import com.kastech.blumen.model.Configurations.OrganizationType;
 import com.kastech.blumen.model.SystemPreferences;
 import com.kastech.blumen.model.admin.home.Organization;
 import com.kastech.blumen.model.keycloak.LoggedUser;
-import com.kastech.blumen.model.keycloak.Roles;
 import com.kastech.blumen.repository.admin.SystemPreferencesRepository;
 import com.kastech.blumen.repository.admin.home.OrganizationRepository;
-import com.kastech.blumen.utility.SecurityUtil;
+import com.kastech.blumen.repository.student.configurations.OrganizationTypeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static com.kastech.blumen.constants.ErrorMessageConstants.*;
 
@@ -34,6 +33,9 @@ public class OrganizationService {
 
     @Autowired
     private OrganizationRepository organizationRepository;
+
+    @Autowired
+    private OrganizationTypeRepository organizationTypeRepository;
 
     @Value("${security.questions}")
     private String securityQuestionUrl;
@@ -49,9 +51,6 @@ public class OrganizationService {
 
     @Value("${default.roles}")
     private String defaultRolesUrl;
-
-    @Value("${config.setting}")
-    private String configSettingUrl;
 
     @Value("${org.users}")
     private String orgUsersUrl;
@@ -73,7 +72,15 @@ public class OrganizationService {
     @Transactional
     public Organization createOrganization(Organization organization) {
         LOG.info("Inside createOrganization, with payload {} ", organization);
+        long orgProgTypeId = 0;
         try {
+            List<OrganizationType> organizationTypeList = organizationTypeRepository.findByOrgType(organization.getOrgProgramType());
+            if(CollectionUtils.isEmpty(organizationTypeList)){
+                throw new InputValidationException(PROGRAM_TYPE_NOT_VALID);
+            } else {
+                orgProgTypeId = organizationTypeList.get(0).getId();
+            }
+
             organization = organizationRepository.save(organization);
             SystemPreferences systemPreferences = new SystemPreferences();
             systemPreferences.setOrgId(organization.getOrgId());
@@ -87,7 +94,7 @@ public class OrganizationService {
         LOG.info("Organization is created with Id {} ", organization.getOrgId());
         try {
             LOG.info("Coping master data from Org 0");
-            this.newOrgDataFromMaster(organization);
+            this.newOrgDataFromMaster(organization, orgProgTypeId);
             return  organization;
         } catch (Exception e) {
             e.printStackTrace();
@@ -159,8 +166,6 @@ public class OrganizationService {
     public void batchUpdateForOrgAdmin(LoggedUser loggedUser, Organization organization) throws Exception {
         try {
         insertOrganizationUsers(loggedUser,organization);
-        insertConfigSettings(loggedUser,organization);
-
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
@@ -175,21 +180,13 @@ public class OrganizationService {
     }
 
 
-    private void newOrgDataFromMaster(final Organization organization) throws IOException {
+    private void newOrgDataFromMaster(final Organization organization, final long orgProgTypeId) throws IOException {
         LOG.info("Inside newOrgDataFromMaster() with organization {} ", organization);
         Map<String, Object> map = new HashMap<>();
         map.put("org_id", organization.getOrgId());
+        map.put("proj_type", orgProgTypeId); //project type id
         namedParameterJdbcTemplate.update(readFile(newOrgDataCopyUrl), map);
 
-    }
-
-
-    private void insertConfigSettings(LoggedUser user, Organization organization)throws IOException {
-        LOG.info("Inside insertUserRoles() with parameter {}, {} ", organization, user);
-        Map<String, Object> map = new HashMap<>();
-        map.put("orgId", organization.getOrgId());
-        map.put("userId", user.getId());
-        namedParameterJdbcTemplate.update(readFile(configSettingUrl), map);
     }
 
     private String readFile(final String relFilePath) throws IOException {

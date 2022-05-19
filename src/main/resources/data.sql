@@ -3,6 +3,7 @@
 --delete data for org0 of  init tables
 delete from blumen2.security_question_list where org_id=0; --no relation for orgid but structured to support multi-tenant
 delete from blumen2.pull_down_master where organizationid='0';
+delete from blumen2.pulltype where 1=1;
 delete from  blumen2.roles_privileges where (role_id, privilege_id) in (
     select role_id, privilege_id from blumen2.privileges p, blumen2.roles r
     where p.org_id=0 and r.org_id=0  and p.role_code = r.code);
@@ -1438,14 +1439,28 @@ INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (53,'Home',52);
 INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (54,'Reports',52);
 INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (55,'Admin',null);
 INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (56,'Home',55);
-INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (57,'System Preferences',56);
+INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (571,'Bot Form Management',56);
+INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (572,'E-Mail Setup',56);
+INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (573,'Original Pulldown Lists',56);
+INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (574,'Pull Type',56);
+INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (575,'Roles',56);
+INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (576,'User Names And Password',56);
+INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (577,'Organizations',56);
+INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (578,'Security Questions',56);
+INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (579,'System Preferences',56);
+
+
 INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (58,'Customize',55);
-INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (59,'Activity / Services Group List',58);
 INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (60,'Activity / Services List',58);
-INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (61,'Custom Fields Value',58);
-INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (62,'Grade / Standing Group List',58);
+INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (601,'Classes',58);
+INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (64,'College/School List',58);
+INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (641,'Contacts',58);
+INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (61,'Custome Field Values',58);
+INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (62,'Grade/Standing List',58);
+INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (621,'Lab Setting Preferences',58);
 INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (63,'Pulldown Lists',58);
-INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (64,'School Names',58);
+INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (632,'Staff Members',58);
+
 INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (65,'System Tools',55);
 INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (66,'Home',33);
 INSERT INTO blumen2.menus (menus_id,name,parent_id) VALUES (67,'Request Manager',66);
@@ -1669,6 +1684,8 @@ INSERT INTO blumen2.display_roles (role_id,role_name) VALUES (6,'Student Worker'
 INSERT INTO blumen2.display_roles (role_id,role_name) VALUES (7,'Staff');
 INSERT INTO blumen2.display_roles (role_id,role_name) VALUES (8,'Super Admin');
 
+
+
 INSERT INTO blumen2.menu_display_roles (menu_id,role_id)
 SELECT menus_id, 1 from blumen2.menus; -- admin menus
 
@@ -1696,6 +1713,19 @@ SELECT menus_id, 7 from blumen2.menus; -- staff menus
 
 INSERT INTO blumen2.menu_display_roles (menu_id,role_id)
 SELECT menus_id, 8 from blumen2.menus; -- Super Admin menus
+
+DELETE FROM blumen2.menu_display_roles where  menu_id='571' and role_id not in (1,2,8);
+DELETE FROM blumen2.menu_display_roles where  menu_id='572' and role_id not in (1,2,8);
+DELETE FROM blumen2.menu_display_roles where  menu_id='573' and role_id not in (8);
+DELETE FROM blumen2.menu_display_roles where  menu_id='574' and role_id not in (8);
+DELETE FROM blumen2.menu_display_roles where  menu_id='575' and role_id not in (1,2,8);
+DELETE FROM blumen2.menu_display_roles where  menu_id='576' and role_id not in (1,2,8);
+DELETE FROM blumen2.menu_display_roles where  menu_id='577' and role_id not in (8);
+DELETE FROM blumen2.menu_display_roles where  menu_id='578' and role_id not in (8);
+DELETE FROM blumen2.menu_display_roles where  menu_id='579' and role_id  in (6);
+DELETE FROM blumen2.menu_display_roles where  menu_id='621' and role_id  in (6);
+DELETE FROM blumen2.menu_display_roles where  menu_id='632' and role_id  in (4, 5,6);
+
 
 INSERT INTO blumen2.pulltype (pull_type_id,apr,data_fields,is_numeric,is_primary,no_edit,pull_desc,pull_type,quick_edit_desc,ser_type,sort_order,proj_type) VALUES
 	 (1,true,'main.gender',true,false,false,'APR II D - Gender','GENDER',NULL,0,'-1',1),
@@ -8256,102 +8286,102 @@ INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,l
 
 	 --new rows from chandra team
 	 delete from  blumen2.pull_down_master where organizationid=0 and pulltype in ('STATE','CODES','CITY','LABSERVICE','SITE LOCATION');
-     INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
-         (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-1',0,7,0,'','CODES','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-2',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-3',0,7,2,'','CODES','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-4',0,7,3,'','CODES','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-5',0,7,4,'','CODES','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-6',0,7,5,'','CODES','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-7',0,7,6,'','CODES','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-8',0,7,7,'','CODES','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-9',0,7,8,'','CODES','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-10',0,7,9,'','CODES','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'NA',0,7,10,'','CODES','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'244',0,7,11,'','CODES','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'123456',0,12,1,'','CODES','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'78987',0,7,13,'','CODES','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'A',0,7,14,'','CODES','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'234',0,7,15,'','CODES','2022-04-14 12:58:07.47' );
-     INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
-         (false,true,false,'2022-04-14 12:58:07.47',user,'Richmond',0,7,0,'','CITY','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'Fulshear',0,7,1,'','CITY','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'Cypress',0,7,2,'','CITY','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'HOUSTON',0,7,3,'','CITY','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'CAMBRIA',0,7,4,' HGT','CITY','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'Brockton',0,7,5,'','CITY','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'Chelsea',0,7,6,'','CITY','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'Norton',0,7,7,'','CITY','2022-04-14 12:58:07.47' ),
-           (false,true,false,'2022-04-14 12:58:07.47',user,'Raynham',0,7,8,'','CITY','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'Avon',0,7,9,'','CITY','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'Hollywood',0,7,10,'','CITY','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'Encinitas',0,7,11,'','CITY','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'Sugarland',0,7,12,'','CITY','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'Greenspoint',0,7,13,'','CITY','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'Spring',0,7,14,'','CITY','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'Dallas',0,7,15,'','CITY','2022-04-14 12:58:07.47' ),
-           (false,true,false,'2022-04-14 12:58:07.47',user,'San Antonio',0,7,16,'','CITY','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'Katy',0,7,17,'','CITY','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'HOUSTIN',0,7,18,'','CITY','2022-04-14 12:58:07.47' )  ;
-     INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
-         (false,true,false,'2022-04-14 12:58:07.47',user,'AL',0,7,0,'','STATE','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'TX',0,7,1,'','STATE','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'KS',0,7,2,'','STATE','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'IL',0,7,3,'','STATE','2022-04-14 12:58:07.47' );
-     INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
-         (false,true,false,'2022-04-14 12:58:07.47',user,'test 3',0,7,0,'','LABSERVICE','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'test 2',0,7,1,'','LABSERVICE','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'field Trip',0,7,2,'','LABSERVICE','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'Computer Tutoring',0,7,3,'','LABSERVICE','2022-04-14 12:58:07.47' ),
-           (false,true,false,'2022-04-14 12:58:07.47',user,'Business Tutoring',0,7,4,'','LABSERVICE','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'English/ Proficiency',0,7,5,'','LABSERVICE','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'test-4',0,7,6,'','LABSERVICE','2022-04-14 12:58:07.47' ),
-          (false,true,false,'2022-04-14 12:58:07.47',user,'test-1',0,7,7,'','LABSERVICE','2022-04-14 12:58:07.47' );
-
-     INSERT INTO blumen2.pull_down_master (deleted, inoriginal, is_numeric, lastmodify, lastuser, longpullna, organizationid,
-                                           projtype, pullid, pullname, pulltype, timestamp_column)
-     VALUES (false, true, false, '2022-04-14 12:58:07.47', user, 'Southwest-Houston', 0, 7, 0, '', 'SITE LOCATION', '2022-04-14 12:58:07.47'),
-            (false, true, false, '2022-04-14 12:58:07.47', user, 'Northwest-Houston', 0, 7, 1, '', 'SITE LOCATION', '2022-04-14 12:58:07.47'),
-            (false, true, false, '2022-04-14 12:58:07.47', user, 'North-Houston', 0, 7, 2, '', 'SITE LOCATION', '2022-04-14 12:58:07.47');
-
-     INSERT INTO blumen2.pull_down_master
-     (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column)
-     select deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid, 1,pullid,pullname,pulltype,timestamp_column
-     from blumen2.pull_down_master where organizationid=0
-                                     and pulltype in ('STATE','CODES','CITY','LABSERVICE','SITE LOCATION');
-     INSERT INTO blumen2.pull_down_master
-     (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column)
-     select deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid, 2,pullid,pullname,pulltype,timestamp_column
-     from blumen2.pull_down_master where organizationid=0
-                                     and pulltype in ('STATE','CODES','CITY','LABSERVICE','SITE LOCATION');
-
-
-     INSERT INTO blumen2.pull_down_master
-     (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column)
-     select deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid, 3,pullid,pullname,pulltype,timestamp_column
-     from blumen2.pull_down_master where organizationid=0
-                                     and pulltype in ('STATE','CODES','CITY','LABSERVICE','SITE LOCATION');
-
-
-     INSERT INTO blumen2.pull_down_master
-     (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column)
-     select deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid, 4,pullid,pullname,pulltype,timestamp_column
-     from blumen2.pull_down_master where organizationid=0
-                                     and pulltype in ('STATE','CODES','CITY','LABSERVICE','SITE LOCATION');
-
-
-     INSERT INTO blumen2.pull_down_master
-     (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column)
-     select deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid, 5,pullid,pullname,pulltype,timestamp_column
-     from blumen2.pull_down_master where organizationid=0
-                                     and pulltype in ('STATE','CODES','CITY','LABSERVICE','SITE LOCATION');
-
-
-     INSERT INTO blumen2.pull_down_master
-     (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column)
-     select deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid, 6,pullid,pullname,pulltype,timestamp_column
-     from blumen2.pull_down_master where organizationid=0
-                                     and pulltype in ('STATE','CODES','CITY','LABSERVICE','SITE LOCATION');
+--     INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+--         (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-1',0,7,0,'','CODES','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-2',0,7,1,'','CODES','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-3',0,7,2,'','CODES','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-4',0,7,3,'','CODES','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-5',0,7,4,'','CODES','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-6',0,7,5,'','CODES','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-7',0,7,6,'','CODES','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-8',0,7,7,'','CODES','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-9',0,7,8,'','CODES','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'Codes-10',0,7,9,'','CODES','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'NA',0,7,10,'','CODES','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'244',0,7,11,'','CODES','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'123456',0,12,1,'','CODES','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'78987',0,7,13,'','CODES','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'A',0,7,14,'','CODES','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'234',0,7,15,'','CODES','2022-04-14 12:58:07.47' );
+--     INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+--         (false,true,false,'2022-04-14 12:58:07.47',user,'Richmond',0,7,0,'','CITY','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'Fulshear',0,7,1,'','CITY','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'Cypress',0,7,2,'','CITY','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'HOUSTON',0,7,3,'','CITY','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'CAMBRIA',0,7,4,' HGT','CITY','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'Brockton',0,7,5,'','CITY','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'Chelsea',0,7,6,'','CITY','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'Norton',0,7,7,'','CITY','2022-04-14 12:58:07.47' ),
+--           (false,true,false,'2022-04-14 12:58:07.47',user,'Raynham',0,7,8,'','CITY','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'Avon',0,7,9,'','CITY','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'Hollywood',0,7,10,'','CITY','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'Encinitas',0,7,11,'','CITY','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'Sugarland',0,7,12,'','CITY','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'Greenspoint',0,7,13,'','CITY','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'Spring',0,7,14,'','CITY','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'Dallas',0,7,15,'','CITY','2022-04-14 12:58:07.47' ),
+--           (false,true,false,'2022-04-14 12:58:07.47',user,'San Antonio',0,7,16,'','CITY','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'Katy',0,7,17,'','CITY','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'HOUSTIN',0,7,18,'','CITY','2022-04-14 12:58:07.47' )  ;
+--     INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+--         (false,true,false,'2022-04-14 12:58:07.47',user,'AL',0,7,0,'','STATE','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'TX',0,7,1,'','STATE','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'KS',0,7,2,'','STATE','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'IL',0,7,3,'','STATE','2022-04-14 12:58:07.47' );
+--     INSERT INTO blumen2.pull_down_master (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column) VALUES
+--         (false,true,false,'2022-04-14 12:58:07.47',user,'test 3',0,7,0,'','LABSERVICE','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'test 2',0,7,1,'','LABSERVICE','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'field Trip',0,7,2,'','LABSERVICE','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'Computer Tutoring',0,7,3,'','LABSERVICE','2022-04-14 12:58:07.47' ),
+--           (false,true,false,'2022-04-14 12:58:07.47',user,'Business Tutoring',0,7,4,'','LABSERVICE','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'English/ Proficiency',0,7,5,'','LABSERVICE','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'test-4',0,7,6,'','LABSERVICE','2022-04-14 12:58:07.47' ),
+--          (false,true,false,'2022-04-14 12:58:07.47',user,'test-1',0,7,7,'','LABSERVICE','2022-04-14 12:58:07.47' );
+--
+--     INSERT INTO blumen2.pull_down_master (deleted, inoriginal, is_numeric, lastmodify, lastuser, longpullna, organizationid,
+--                                           projtype, pullid, pullname, pulltype, timestamp_column)
+--     VALUES (false, true, false, '2022-04-14 12:58:07.47', user, 'Southwest-Houston', 0, 7, 0, '', 'SITE LOCATION', '2022-04-14 12:58:07.47'),
+--            (false, true, false, '2022-04-14 12:58:07.47', user, 'Northwest-Houston', 0, 7, 1, '', 'SITE LOCATION', '2022-04-14 12:58:07.47'),
+--            (false, true, false, '2022-04-14 12:58:07.47', user, 'North-Houston', 0, 7, 2, '', 'SITE LOCATION', '2022-04-14 12:58:07.47');
+--
+--     INSERT INTO blumen2.pull_down_master
+--     (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column)
+--     select deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid, 1,pullid,pullname,pulltype,timestamp_column
+--     from blumen2.pull_down_master where organizationid=0
+--                                     and pulltype in ('STATE','CODES','CITY','LABSERVICE','SITE LOCATION');
+--     INSERT INTO blumen2.pull_down_master
+--     (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column)
+--     select deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid, 2,pullid,pullname,pulltype,timestamp_column
+--     from blumen2.pull_down_master where organizationid=0
+--                                     and pulltype in ('STATE','CODES','CITY','LABSERVICE','SITE LOCATION');
+--
+--
+--     INSERT INTO blumen2.pull_down_master
+--     (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column)
+--     select deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid, 3,pullid,pullname,pulltype,timestamp_column
+--     from blumen2.pull_down_master where organizationid=0
+--                                     and pulltype in ('STATE','CODES','CITY','LABSERVICE','SITE LOCATION');
+--
+--
+--     INSERT INTO blumen2.pull_down_master
+--     (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column)
+--     select deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid, 4,pullid,pullname,pulltype,timestamp_column
+--     from blumen2.pull_down_master where organizationid=0
+--                                     and pulltype in ('STATE','CODES','CITY','LABSERVICE','SITE LOCATION');
+--
+--
+--     INSERT INTO blumen2.pull_down_master
+--     (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column)
+--     select deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid, 5,pullid,pullname,pulltype,timestamp_column
+--     from blumen2.pull_down_master where organizationid=0
+--                                     and pulltype in ('STATE','CODES','CITY','LABSERVICE','SITE LOCATION');
+--
+--
+--     INSERT INTO blumen2.pull_down_master
+--     (deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid,projtype,pullid,pullname,pulltype,timestamp_column)
+--     select deleted,inoriginal,is_numeric,lastmodify,lastuser,longpullna,organizationid, 6,pullid,pullname,pulltype,timestamp_column
+--     from blumen2.pull_down_master where organizationid=0
+--                                     and pulltype in ('STATE','CODES','CITY','LABSERVICE','SITE LOCATION');
 
 INSERT INTO blumen2.organization_type
 (id, descriptions, org_type)
@@ -8378,3 +8408,19 @@ INSERT INTO blumen2.organization_type
 (id, descriptions, org_type)
 VALUES(7, 'MCN_DEMO', 'MCN');
 
+
+INSERT INTO blumen2.org_subscription_type
+(id, description, subscription_type)
+VALUES(1, 'Live Customer Data', 'LIVE_CUST');
+INSERT INTO blumen2.org_subscription_type
+(id, description, subscription_type)
+VALUES(2, 'Customer Demo', 'CUST_DEMO');
+INSERT INTO blumen2.org_subscription_type
+(id, description, subscription_type)
+VALUES(3, 'Tech Support Demo', 'TECH_SUPT_DEMO');
+INSERT INTO blumen2.org_subscription_type
+(id, description, subscription_type)
+VALUES(4, 'Dev Team Demo', 'DEV_DEMO');
+INSERT INTO blumen2.org_subscription_type
+(id, description, subscription_type)
+VALUES(5, 'Testing Scenario Demo', 'TEST_DEMO');

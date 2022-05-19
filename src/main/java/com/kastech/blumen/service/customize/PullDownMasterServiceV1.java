@@ -39,7 +39,7 @@ public class PullDownMasterServiceV1 {
 
     public List<PullDownMaster> getPullDownList (Long orgId, String pullType,Long projType){
         if(projType == null){
-            projType = findOrganizationType(orgId);
+            projType = findOrganizationType(orgId).getId();
         }
         return pullDownMasterRepository.findByOrganizationidAndPulltypeAndDeletedAndProjtypeOrderByIdAsc(orgId,pullType,false,projType);
     }
@@ -58,7 +58,7 @@ public class PullDownMasterServiceV1 {
         }
 
         if(pullDownMasterCreateRequest.getProjtype() == null){
-            pullDownMaster.setProjtype(findOrganizationType(pullDownMasterCreateRequest.getOrganizationid()));
+            pullDownMaster.setProjtype(findOrganizationType(pullDownMasterCreateRequest.getOrganizationid()).getId());
         }
         pullDownMaster.setDeleted(false);
         pullDownMaster.setLastmodify(new Date());
@@ -84,13 +84,13 @@ public class PullDownMasterServiceV1 {
          pullDownMasterRepository.save(pullDownMaster);
     }
 
-    public Long findOrganizationType(Long orgId){
-        Long projType = null;
+    public OrganizationType findOrganizationType(Long orgId){
+        OrganizationType projType = null;
         Optional<Organization>  organization = organizationRepository.findById(orgId);
         if(organization.isPresent()) {
-            List<OrganizationType> organizationTypeList = organizationTypeRepository.findByOrgType(organization.get().getOrgOrganizationType());
+            List<OrganizationType> organizationTypeList = organizationTypeRepository.findByOrgType(organization.get().getOrgProgramType());
             if(!CollectionUtils.isEmpty(organizationTypeList)){
-                projType = organizationTypeList.get(0).getId();
+                projType = organizationTypeList.get(0);
             }
         }
 
@@ -98,7 +98,8 @@ public class PullDownMasterServiceV1 {
     }
     public List<String> validateCreate(PullDownMasterCreateRequest pullDownMasterCreateRequest){
         List<String> errorMessages = new ArrayList<>();
-        Optional<LoggedUser>  user = loggedUserRepository.findByUsernameAndOrgId(pullDownMasterCreateRequest.getUserName(),pullDownMasterCreateRequest.getOrganizationid());
+        //email is username here
+        Optional<LoggedUser>  user = loggedUserRepository.findByEmailAndOrgId(pullDownMasterCreateRequest.getUserName(),pullDownMasterCreateRequest.getOrganizationid());
         List<PullType> pullTypeList = pullTypeRepository.findByPullType(pullDownMasterCreateRequest.getPulltype());
         List<PullDownMaster> pullDownMasterList = pullDownMasterRepository.
                 findByOrganizationidAndPulltypeAndPullId(pullDownMasterCreateRequest.getOrganizationid(),
@@ -128,7 +129,7 @@ public class PullDownMasterServiceV1 {
         }
 
          if(! user.isPresent()){
-             errorMessages.add(ErrorMessageConstants.INVALID_USER_NAME);
+             //errorMessages.add(ErrorMessageConstants.INVALID_USER_NAME);
          }
 
 
@@ -138,7 +139,7 @@ public class PullDownMasterServiceV1 {
 
     public List<String> validateUpdate(PullDownMaster pullDownMaster){
         List<String> errorMessages = new ArrayList<>();
-        Optional<LoggedUser>  user = loggedUserRepository.findByUsernameAndOrgId(pullDownMaster.getLastuser(),pullDownMaster.getOrganizationid());
+        Optional<LoggedUser>  user = loggedUserRepository.findByEmailAndOrgId(pullDownMaster.getLastuser(),pullDownMaster.getOrganizationid());
         List<PullType> pullTypeList = pullTypeRepository.findByPullType(pullDownMaster.getPulltype());
 
         Optional<Organization> organization = organizationRepository.findById(pullDownMaster.getOrganizationid());
@@ -160,7 +161,7 @@ public class PullDownMasterServiceV1 {
         }
 
         if(! user.isPresent()){
-            errorMessages.add(ErrorMessageConstants.INVALID_USER_NAME);
+            //errorMessages.add(ErrorMessageConstants.INVALID_USER_NAME);
         }
 
         if(!CollectionUtils.isEmpty(pullDownMasterList)){
@@ -180,7 +181,7 @@ public class PullDownMasterServiceV1 {
     public Map<String ,List<PullDownMaster>> getMultiPullDownMaster(Long orgId, String pullType, Long projType){
         Map<String ,List<PullDownMaster>> pullDownMasterMap = new LinkedHashMap<>();
         if(projType == null){
-            projType = findOrganizationType(orgId);
+            projType = findOrganizationType(orgId).getId();
         }
         for (String pullTypeVal : pullType.split(",")) {
             pullDownMasterMap.put(pullTypeVal,pullDownMasterRepository.findByOrganizationidAndPulltypeAndDeletedAndProjtypeOrderByIdAsc(orgId,pullTypeVal,false,projType));
@@ -193,7 +194,7 @@ public class PullDownMasterServiceV1 {
         OrganizationType projType = null;
         Optional<Organization>  organization = organizationRepository.findById(orgId);
         if(organization.isPresent()) {
-            List<OrganizationType> organizationTypeList = organizationTypeRepository.findByOrgType(organization.get().getOrgOrganizationType());
+            List<OrganizationType> organizationTypeList = organizationTypeRepository.findByOrgType(organization.get().getOrgProgramType());
             if(!CollectionUtils.isEmpty(organizationTypeList)){
                 projType = organizationTypeList.get(0);
             }

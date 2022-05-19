@@ -4,8 +4,10 @@ import com.kastech.blumen.exception.DataNotFoundException;
 import com.kastech.blumen.exception.InputValidationException;
 import com.kastech.blumen.model.CustomUserDetails;
 import com.kastech.blumen.model.admin.home.OrgInfo;
+import com.kastech.blumen.model.admin.home.OrgSubScriptionType;
 import com.kastech.blumen.model.admin.home.Organization;
 import com.kastech.blumen.model.keycloak.LoggedUser;
+import com.kastech.blumen.repository.admin.home.OrgSubScriptionRepository;
 import com.kastech.blumen.repository.admin.home.OrganizationRepository;
 import com.kastech.blumen.service.admin.LoggedUserServiceV1;
 import com.kastech.blumen.service.superadmin.OrganizationService;
@@ -40,10 +42,23 @@ public class OrganizationController {
     OrganizationRepository organizationRepository;
 
     @Autowired
+    OrgSubScriptionRepository orgSubScriptionRepository;
+
+    @Autowired
     OrganizationService organizationService;
 
     @Autowired
     LoggedUserServiceV1 loggedUserServiceV1;
+
+    @ResponseBody
+    @GetMapping(path = "/org-subscriptions/v1",
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public List<OrgSubScriptionType> getOrgSubScriptionList() {
+        List<OrgSubScriptionType> list = new ArrayList<>();
+        Iterable<OrgSubScriptionType> items = orgSubScriptionRepository.findAll(Sort.by(Sort.Direction.ASC, "subscriptionType"));
+        items.forEach(list::add);
+        return list;
+    }
 
     @ResponseBody
     @GetMapping(path = "/getOrganizationsList/v1",

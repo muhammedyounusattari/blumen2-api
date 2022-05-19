@@ -7,9 +7,7 @@ public class ErrorMessageConstants {
     public static final String INVALID_PROJ_TYPE= "PROJ TYPE IS INVALID";
     public static final String INVALID_USER_NAME = "USER NAME IS INVALID";
     public static final String INVALID_ORGANIZATION_ID = "ORGANIZATION ID IS INVALID";
-
     public static final String INVALID_ORGANIZATION_CODE = "ORGANIZATION CODE IS INVALID";
-
     public static final String INVALID_ORGCODE_EMAIL_ID = "Invalid OrgCode/Email";
     public static final String INVALID_ORGANIZATION_SETUP = "Organization not configured properly";
     public static final String ORGANIZATION_INACTIVE = "Organization is not active";
@@ -27,6 +25,7 @@ public class ErrorMessageConstants {
     public static final String ROLE_UPDATE_FAILED= "Role update failed";
     public static final String ROLE_ADD_FAILED= "Adding of role failed";
     public static final String ORG_CODE_CHANGE_NOT_ALLOWED = "Organization code can't be modified";
+    public static final String PROGRAM_TYPE_NOT_VALID = "Project Type is not valid";
     public static final String ORG_UPDATE_FAILED = "Organization update failed";
     public static final String AUTHCODE_EXPIRED = "Auth Code got expired";
     public static final String AUTHCODE_INVALID = "Auth Code is invalid";

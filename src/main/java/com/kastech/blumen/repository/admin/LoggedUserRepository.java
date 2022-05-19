@@ -35,5 +35,6 @@ public interface LoggedUserRepository extends JpaRepository<LoggedUser, Long> {
     @Query(value = "select * from blumen2.users u where u.email=:emailId and LOWER(u.org_code)=LOWER(:orgCode)", nativeQuery = true)
     Optional<LoggedUser> findByEmailAndOrgCode(@Param("emailId") String emailId, @Param("orgCode") String orgCode);
 
-    Optional<LoggedUser> findByUsernameAndOrgId(@Param("username") String username, @Param("orgId") Long orgId);
+    Optional<LoggedUser> findByEmailAndOrgId(@Param("email") String email, @Param("orgId") Long orgId);
+
 }

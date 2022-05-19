@@ -29,11 +29,10 @@ public class Organization implements Serializable {
     private Boolean orgTrioBlumenLab;
     private Boolean orgPurge;
     private Boolean deleted;
-
     private String orgAddress1;
     private String orgAddress2;
-    private String orgProgramType;
-    private String orgOrganizationType;
+    private String orgProgramType; //project type & refer OrganizationType
+    private String orgOrganizationType; //Subscription type
     private Integer orgDaysToExpire;
     private Integer orgRemindOne;
     private Integer orgRemindTwo;

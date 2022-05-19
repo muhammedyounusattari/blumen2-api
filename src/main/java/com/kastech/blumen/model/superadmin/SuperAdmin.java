@@ -1,8 +1,6 @@
 package com.kastech.blumen.model.superadmin;
 
 
-import com.kastech.blumen.model.Configurations.OrganizationType;
-
 import javax.persistence.*;
 
 @Entity

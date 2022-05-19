@@ -2,6 +2,7 @@ package com.kastech.blumen.service.home;
 
 import com.kastech.blumen.constants.ErrorMessageConstants;
 import com.kastech.blumen.exception.ServiceLayerException;
+import com.kastech.blumen.model.Configurations.OrganizationType;
 import com.kastech.blumen.model.admin.home.PullType;
 import com.kastech.blumen.model.admin.home.PullTypeMultiSearchRequest;
 import com.kastech.blumen.model.admin.home.PullTypeSearchRequest;
@@ -110,9 +111,8 @@ public class PullTypeServiceV1 {
     }
 
     public List<PullType> findPullTypesList(Long orgId) {
-    Long programType =pullDownMasterServiceV1.findOrganizationType(orgId);
+        OrganizationType programType =pullDownMasterServiceV1.findOrganizationType(orgId);
         return pullTypeRepository.findByPullDescStartsWithIgnoreCaseAndPullTypeStartsWithIgnoreCaseAndProjType
-                ( "%",
-                        "%", programType);
+                ( "%", "%", programType.getId());
     }
 }

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/blumen-api/org-types/v1")
+@RequestMapping("/api/blumen-api/admin/home/org-types/v1")
 public class OrganizationTypeController {
 
     @Autowired
