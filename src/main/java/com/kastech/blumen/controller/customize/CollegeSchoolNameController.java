@@ -76,10 +76,7 @@ public class CollegeSchoolNameController {
     public CollegeSchool addToCollegeNameList(@RequestBody CollegeSchool collegeSchool) {
         //session param
         long sessionOrgId = SecurityUtil.getUserOrgId();
-        String fafsaId = collegeSchool.getFafsaId();
-        if (null != fafsaId && !fafsaId.isEmpty()) {
-            collegeSchool.setNcesId(null);
-        }
+        collegeSchool.setSchool(false);
         collegeSchool.setOrgId(sessionOrgId);
         collegeSchool.setCreatedDate(new Date());
         collegeSchool.setCreatedBy(SecurityUtil.getUserId());
@@ -100,11 +97,7 @@ public class CollegeSchoolNameController {
 
         //session param
         long sessionOrgId = SecurityUtil.getUserOrgId();
-        String ncesId = collegeSchool.getNcesId();
-        if (null != ncesId && !ncesId.isEmpty()) {
-            collegeSchool.setFafsaId(null);
-        }
-
+        collegeSchool.setSchool(true);
         collegeSchool.setOrgId(sessionOrgId);
         collegeSchool.setCreatedDate(new Date());
         //session param
@@ -133,6 +126,7 @@ public class CollegeSchoolNameController {
         collegeSchool.setCreatedBy(item.getCreatedBy());
         collegeSchool.setCreatedDate(item.getCreatedDate());
         collegeSchool.setOrgId(item.getOrgId());
+        collegeSchool.setSchool(item.isSchool());
         return collegeSchoolRepository.save(collegeSchool);
     }
 

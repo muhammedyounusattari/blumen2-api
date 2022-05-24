@@ -1,15 +1,15 @@
 package com.kastech.blumen.service.student;
 
-import java.lang.reflect.Method;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
+import com.kastech.blumen.controller.response.StudentSaveResponse;
+import com.kastech.blumen.model.student.*;
 import com.kastech.blumen.model.Response;
 import com.kastech.blumen.model.student.StudentDataObject;
 import com.kastech.blumen.model.student.StudentYearlyData;
 import com.kastech.blumen.repository.student.StudentYearlyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -32,6 +32,16 @@ public interface StudentService {
     Student saveStudent(Student student);
 
     Student findStudentById(Long id);
+
+    StudentFilterResponse filterStudents(StudentFilterDto studentFilterDto);
+
+    String generateSystemSerialNumber(Integer organizationId);
+
+    StudentSaveResponse addNewStudent(StudentDataObject studentDataObject);
+
+    StudentSaveResponse addStudentWithoutValidation(StudentDataObject studentDataObject);
+
+    void updateStudentProfileImagePath(long id, String imagePath);
 
 	/*@Autowired
 	private StudentYearlyRepository studentYearlyRepository;

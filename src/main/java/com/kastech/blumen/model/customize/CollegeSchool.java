@@ -18,8 +18,6 @@ public class CollegeSchool {
     private String codes;
     private String title;
     private String country;
-    private String ncesId;
-
     private String address;
     private String city;
     private String states;
@@ -31,11 +29,8 @@ public class CollegeSchool {
     private String fax;
     private String email;
     private String notes;
-
-    private String fafsaId;
     private String fiscalYear;
     private boolean inPullDown;
-
     private Date createdDate;
     private long createdBy;
     private Date modifiedDate;
@@ -43,12 +38,14 @@ public class CollegeSchool {
     private Date deletedDate;
     private long deletedBy;
     private long orgId;
+    private boolean isSchool;
+    private  String ncsIdFafsaId;
 
     public CollegeSchool() {
     }
 
-    public CollegeSchool(long collegeSchoolId , String orgName, String orgType, String name, String codes, String title, String country, String ncesId, String address, String city, String states, String zipcode, String phone1, String phone2, String phone3, String website, String fax, String email, String notes, String fafsaId, String fiscalYear, boolean inPullDown,
-                         Date createdDate,long createdBy,Date modifiedDate,long modifiedBy,Date deletedDate,long deletedBy,long orgId) {
+    public CollegeSchool(long collegeSchoolId , String orgName, String orgType, String name, String codes, String title, String country, String address, String city, String states, String zipcode, String phone1, String phone2, String phone3, String website, String fax, String email, String notes, String fiscalYear, boolean inPullDown,
+                         Date createdDate,long createdBy,Date modifiedDate,long modifiedBy,Date deletedDate,long deletedBy,long orgId, boolean isSchool, String ncsIdFafsaId) {
         this.collegeSchoolId = collegeSchoolId;
         this.orgName = orgName;
         this.orgType = orgType;
@@ -56,7 +53,6 @@ public class CollegeSchool {
         this.codes = codes;
         this.title = title;
         this.country = country;
-        this.ncesId = ncesId;
         this.address = address;
         this.city = city;
         this.states = states;
@@ -68,7 +64,6 @@ public class CollegeSchool {
         this.fax = fax;
         this.email = email;
         this.notes = notes;
-        this.fafsaId = fafsaId;
         this.fiscalYear = fiscalYear;
         this.inPullDown=inPullDown;
         this.createdDate=createdDate;
@@ -78,6 +73,8 @@ public class CollegeSchool {
         this.modifiedBy=modifiedBy;
         this.deletedBy=deletedBy;
         this.orgId=orgId;
+        this.isSchool = isSchool;
+        this.ncsIdFafsaId = ncsIdFafsaId;
     }
 
     public String getOrgName() {
@@ -126,14 +123,6 @@ public class CollegeSchool {
 
     public void setCountry(String country) {
         this.country = country;
-    }
-
-    public String getNcesId() {
-        return ncesId;
-    }
-
-    public void setNcesId(String ncesId) {
-        this.ncesId = ncesId;
     }
 
     public String getAddress() {
@@ -224,14 +213,6 @@ public class CollegeSchool {
         this.notes = notes;
     }
 
-    public String getFafsaId() {
-        return fafsaId;
-    }
-
-    public void setFafsaId(String fafsaId) {
-        this.fafsaId = fafsaId;
-    }
-
     public String getFiscalYear() {
         return fiscalYear;
     }
@@ -280,6 +261,12 @@ public class CollegeSchool {
 
     public void setCollegeSchoolId(long collegeSchoolId) {this.collegeSchoolId = collegeSchoolId;}
 
+    public boolean isSchool() {return isSchool;}
+
+    public void setSchool(boolean school) {isSchool = school;}
+    public String getNcsIdFafsaId() {return ncsIdFafsaId;}
+    public void setNcsIdFafsaId(String ncsIdFafsaId) {this.ncsIdFafsaId = ncsIdFafsaId;}
+
     public CollegeSchool updateWith(CollegeSchool item) {
         return new CollegeSchool(
                 item.collegeSchoolId,
@@ -289,7 +276,6 @@ public class CollegeSchool {
                 item.codes,
                 item.title,
                 item.country,
-                item.ncesId,
                 item.address,
                 item.city,
                 item.states,
@@ -301,7 +287,6 @@ public class CollegeSchool {
                 item.fax,
                 item.email,
                 item.notes,
-                item.fafsaId,
                 item.fiscalYear,
                 item.inPullDown,
                 item.createdDate,
@@ -310,7 +295,9 @@ public class CollegeSchool {
                 item.modifiedBy,
                 item.deletedDate,
                 item.deletedBy,
-                item.orgId
+                item.orgId,
+                item.isSchool,
+                item.ncsIdFafsaId
         );
     }
 }
