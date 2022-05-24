@@ -18,10 +18,10 @@ public interface CollegeSchoolRepository extends JpaRepository<CollegeSchool,Str
     @Query("from CollegeSchool gglf where gglf.collegeSchoolId=:collegeSchoolId and gglf.orgId=:orgId and gglf.deletedBy=0L")
     CollegeSchool findByCollegeSchoolIdAndOrgId(@Param("collegeSchoolId") long collegeSchoolId,@Param("orgId")  long orgId);
 
-    @Query("from CollegeSchool ifg where LOWER(ifg.name)=LOWER(:name) and ifg.orgId=:orgId and ifg.deletedBy!=0L and ifg.deletedDate is not null and ifg.fafsaId is not null")
+    @Query("from CollegeSchool ifg where LOWER(ifg.name)=LOWER(:name) and ifg.orgId=:orgId and ifg.deletedBy!=0L and ifg.deletedDate is not null and ifg.isSchool = false")
     CollegeSchool findDeletedCollegeByNameAndOrgId(@Param("name") String name, @Param("orgId") long orgId);
 
-    @Query("from CollegeSchool ifs where LOWER(ifs.name)=LOWER(:name) and ifs.orgId=:orgId and ifs.deletedBy!=0L and ifs.deletedDate is not null and ifs.ncesId is not null")
+    @Query("from CollegeSchool ifs where LOWER(ifs.name)=LOWER(:name) and ifs.orgId=:orgId and ifs.deletedBy!=0L and ifs.deletedDate is not null and ifs.isSchool = true")
     CollegeSchool findDeletedSchoolByNameAndOrgId(@Param("name") String name, @Param("orgId") long orgId);
 
     @Query("from CollegeSchool iff where iff.collegeSchoolId=:collegeSchoolId and iff.orgId=:orgId and iff.deletedBy=0L and iff.deletedDate=null")
@@ -30,22 +30,22 @@ public interface CollegeSchoolRepository extends JpaRepository<CollegeSchool,Str
     @Query("from CollegeSchool ifg where ifg.collegeSchoolId=:collegeSchoolId and ifg.orgId=:orgId and ifg.deletedBy!=0L and ifg.deletedDate!=null")
     CollegeSchool findDeletedCollegeSchoolByIdAndOrgId(@Param("collegeSchoolId") long collegeSchoolId, @Param("orgId") long orgId);
 
-    @Query("from CollegeSchool cibn where LOWER(cibn.name)=LOWER(:name) and cibn.orgId=:orgId and cibn.fafsaId is not null")
+    @Query("from CollegeSchool cibn where LOWER(cibn.name)=LOWER(:name) and cibn.orgId=:orgId and cibn.isSchool = false")
     CollegeSchool findCollegeByNameAndOrgId(@Param("name") String name, @Param("orgId") long orgId);
 
-    @Query("from CollegeSchool sibn where LOWER(sibn.name)=LOWER(:name) and sibn.orgId=:orgId and sibn.ncesId is not null")
+    @Query("from CollegeSchool sibn where LOWER(sibn.name)=LOWER(:name) and sibn.orgId=:orgId and sibn.isSchool  = true")
     CollegeSchool findSchoolByNameAndOrgId(@Param("name") String name, @Param("orgId") long orgId);
 
-    @Query("from CollegeSchool cibc where cibc.fafsaId=:code and cibc.orgId=:orgId and cibc.fafsaId is not null")
+    @Query("from CollegeSchool cibc where cibc.ncsIdFafsaId=:code and cibc.orgId=:orgId and cibc.isSchool = false")
     CollegeSchool findCollegeByCodeAndOrgId(@Param("code") String code, @Param("orgId") long orgId);
 
-    @Query("from CollegeSchool sibc where sibc.ncesId=:code and sibc.orgId=:orgId and sibc.ncesId is not null")
+    @Query("from CollegeSchool sibc where sibc.ncsIdFafsaId=:code and sibc.orgId=:orgId and sibc.isSchool = true")
     CollegeSchool findSchoolByCodeAndOrgId(@Param("code") String code, @Param("orgId") long orgId);
 
-    @Query("from CollegeSchool glfaf where glfaf.orgId=:orgId and glfaf.deletedBy=0L and glfaf.deletedDate=null and glfaf.fafsaId != null order by glfaf.createdDate asc")
+    @Query("from CollegeSchool glfaf where glfaf.orgId=:orgId and glfaf.deletedBy=0L and glfaf.deletedDate=null and glfaf.isSchool = false order by glfaf.createdDate asc")
     Iterable<CollegeSchool> findByOrgIdAndFafsaId(@Param("orgId") long orgId);
 
-    @Query("from CollegeSchool glnces where glnces.orgId=:orgId and glnces.deletedBy=0L and glnces.deletedDate=null and glnces.ncesId !=null order by glnces.createdDate asc")
+    @Query("from CollegeSchool glnces where glnces.orgId=:orgId and glnces.deletedBy=0L and glnces.deletedDate=null and glnces.isSchool = true order by glnces.createdDate asc")
     Iterable<CollegeSchool> findByOrgIdAndNcesId(@Param("orgId") long orgId);
 
 }

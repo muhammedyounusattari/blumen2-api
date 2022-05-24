@@ -1,20 +1,11 @@
 package com.kastech.blumen.model.student;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.kastech.blumen.controller.student.Activities;
-import com.kastech.blumen.model.admin.CounselorClasses;
-import com.kastech.blumen.model.admin.StaffClasses;
-import com.kastech.blumen.model.admin.TeacherClasses;
-import com.kastech.blumen.model.admin.TutorClasses;
-import com.kastech.blumen.model.student.dataentry.GraduatedInformation;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "student" ,schema = "blumen2")
@@ -60,10 +51,10 @@ public class Student implements Serializable {
     private String website;
 
     @Column(name = "entrydate", length = 8)
-    private Timestamp entryDate;
+    private LocalDate entryDate;
 
     @Column(name = "dob", length = 8)
-    private Timestamp dob;
+    private LocalDate dob;
 
     @Column(name = "termidate", length = 8)
     private Timestamp termiDate;
@@ -96,7 +87,7 @@ public class Student implements Serializable {
     @Column(name = "gender", length = 8,  precision = 53)
     private Float gender;
 
-    @Column(name = "imagepath", length = 50)
+    @Column(name = "imagepath")
     private String imagePath;
 
     @Column(name = "codes", length = 50)
@@ -644,19 +635,19 @@ public class Student implements Serializable {
         this.website = website;
     }
 
-    public Timestamp getEntryDate() {
+    public LocalDate getEntryDate() {
         return entryDate;
     }
 
-    public void setEntryDate(Timestamp entryDate) {
+    public void setEntryDate(LocalDate entryDate) {
         this.entryDate = entryDate;
     }
 
-    public Timestamp getDob() {
+    public LocalDate getDob() {
         return dob;
     }
 
-    public void setDob(Timestamp dob) {
+    public void setDob(LocalDate dob) {
         this.dob = dob;
     }
 

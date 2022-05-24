@@ -3,6 +3,7 @@ package com.kastech.blumen.exception;
 
 import com.kastech.blumen.error.ErrorVO;
 import com.kastech.blumen.model.ErrorResponse;
+import org.hibernate.QueryException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,5 +47,11 @@ public class RestControllerExceptionHandler {
     public ResponseEntity<Object> handleAccessDeniedException(
             AccessDeniedException ex, WebRequest request) {
         return new ResponseEntity<>(new ErrorResponse(403, ex.getMessage()),new HttpHeaders(),HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler(value = {QueryException.class})
+    public ResponseEntity<Object> handleDataModificationException(
+            HttpServletRequest request, QueryException ex) {
+        return new ResponseEntity<>(new ErrorResponse(500, ex.getMessage()),new HttpHeaders(),HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

@@ -1,29 +1,30 @@
 package com.kastech.blumen.controller.student;
 
-import com.kastech.blumen.model.Response;
-import com.kastech.blumen.model.admin.CounselorClasses;
-import com.kastech.blumen.model.admin.StaffClasses;
-import com.kastech.blumen.model.admin.TeacherClasses;
-import com.kastech.blumen.model.admin.TutorClasses;
+import com.kastech.blumen.controller.response.StudentSaveResponse;
 import com.kastech.blumen.model.student.Student;
 import com.kastech.blumen.model.student.StudentDataObject;
+import com.kastech.blumen.model.student.StudentFilterDto;
+import com.kastech.blumen.model.student.StudentFilterResponse;
 import com.kastech.blumen.repository.student.StudentRepository;
+import com.kastech.blumen.service.student.FileStorageService;
 import com.kastech.blumen.service.student.StudentService;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/api/blumen-api/student/v1")
@@ -36,6 +37,9 @@ public class StudentController {
     
     @Autowired
     private StudentService studentService;
+
+    @Autowired
+    private FileStorageService fileStorageService;
 
     @GetMapping
     public ResponseEntity<List<Student>> getStudents() {
@@ -51,7 +55,7 @@ public class StudentController {
         return list;
     }
 
-    @PostMapping
+    @PostMapping("/save")
     public ResponseEntity<Student> saveStudent(@RequestBody Student student) {
         return ResponseEntity.ok(studentService.saveStudent(student));
     }
@@ -65,6 +69,54 @@ public class StudentController {
     @PutMapping
     public ResponseEntity<Student> updateStudent(@RequestBody Student student) {
         return ResponseEntity.ok(studentService.saveStudent(student));
+    }
+
+    @GetMapping(value="/generateSystemSerialNumber")
+    public ResponseEntity<String> generateSystemSerialNumber(@RequestParam(value = "organization_id") Integer organizationId) {
+        return ResponseEntity.ok(studentService.generateSystemSerialNumber(organizationId));
+    }
+
+    @PostMapping
+    public ResponseEntity<StudentSaveResponse> addStudent(@RequestBody StudentDataObject studentDataObject) {
+        return ResponseEntity.ok(studentService.addNewStudent(studentDataObject));
+    }
+
+    @PostMapping("/addStudent")
+    public ResponseEntity<StudentSaveResponse> addStudentWithoutValidation(@RequestBody StudentDataObject studentDataObject) {
+        return ResponseEntity.ok(studentService.addStudentWithoutValidation(studentDataObject));
+    }
+
+    @PostMapping(value="/filterStudents")
+    public ResponseEntity<StudentFilterResponse> filterStudents(@RequestBody StudentFilterDto studentFilterDto) {
+        StudentFilterResponse studentFilterResponse = studentService.filterStudents(studentFilterDto);
+        return new ResponseEntity<>(studentFilterResponse, HttpStatus.OK);
+    }
+
+    @GetMapping("downloadProfileImage" + "/{id}/{fileName:.+}")
+    public ResponseEntity<Resource> downloadProfileImage(@PathVariable String fileName, @PathVariable Long id, HttpServletRequest request) {
+        Resource resource = fileStorageService.loadFileAsResource(fileName, id);
+        String contentType = "application/octet-stream";
+        try {
+            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
+        } catch (IOException ex) {
+            LOGGER.info("Could not determine file type.");
+        }
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(contentType))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+                .body(resource);
+    }
+
+    @PostMapping("/uploadProfileImage/{id}")
+    public ResponseEntity<String> uploadProfileImage(@RequestParam("file") MultipartFile file, @PathVariable Long id) {
+        String fileName = fileStorageService.storeFile(file, id);
+        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/api/blumen-api/student/v1/downloadProfileImage/"+ id+ "/")
+                .path(fileName)
+                .toUriString();
+        fileDownloadUri = fileDownloadUri.replaceAll("http", "https");
+        studentService.updateStudentProfileImagePath(id, fileDownloadUri);
+        return ResponseEntity.ok(fileDownloadUri);
     }
 
 //    @ResponseBody
