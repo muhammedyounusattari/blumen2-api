@@ -207,7 +207,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- postgresql dependency-->
+<!-- postgresql dependency-->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -225,12 +225,12 @@
             <artifactId>spring-boot-starter-security</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
+        
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-boot-starter</artifactId>
-            <version>3.0.0</version>
-        </dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-boot-starter</artifactId>
+			<version>3.0.0</version>
+		</dependency>
 
         <dependency>
             <groupId>org.keycloak</groupId>
@@ -299,118 +299,173 @@
                 </sonar.host.url>
             </properties>
         </profile>
+
+        <profile>
+            <id>local</id>
+            <activation><activeByDefault>true</activeByDefault></activation>
+            <properties>
+                <overrides.props.file>local.overrides.properties</overrides.props.file>
+                <current.profile>local</current.profile>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>qa</id>
+            <properties>
+                <overrides.props.file>qa.overrides.properties</overrides.props.file>
+                <current.profile>qa</current.profile>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>uat</id>
+            <properties>
+                <overrides.props.file>uat.overrides.properties</overrides.props.file>
+                <current.profile>uat</current.profile>
+            </properties>
+        </profile>
+
+
     </profiles>
 
     <build>
-        <!-- FinalName enforces that ALL java artifacts will be named app.jar
-                 This is so all of our build scripts will be the same.
-                 -->
-        <finalName>app</finalName>
-        <plugins>
-            <plugin>
-                <!-- This plugin forces a fat-jar build -->
-                <!-- We need to force a fat jar build because we are using  parent pom -->
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring.version}</version>
-                <configuration>
-                    <mainClass>com.kastech.blumen.Application</mainClass>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+    <!-- FinalName enforces that ALL java artifacts will be named app.jar
+             This is so all of our build scripts will be the same.
+             -->
+    <finalName>app</finalName>
+    <plugins>
+    <plugin>
+        <!-- This plugin forces a fat-jar build -->
+        <!-- We need to force a fat jar build because we are using  parent pom -->
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${spring.version}</version>
+        <configuration>
+            <mainClass>com.kastech.blumen.Application</mainClass>
+        </configuration>
+        <executions>
+            <execution>
+                <goals>
+                    <goal>repackage</goal>
+                </goals>
+            </execution>
+        </executions>
+    </plugin>
 
 
-            <!-- Needed for compiling groovy classes -->
+    <!-- Needed for compiling groovy classes -->
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>11</source>
-                    <target>11</target>
-                    <!--                    <release>11</release>-->
-                    <compilerId>groovy-eclipse-compiler</compilerId>
-                    <compilerArgument>-XDignore.symbol.file</compilerArgument>
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+            <source>11</source>
+            <target>11</target>
+            <!--                    <release>11</release>-->
+            <compilerId>groovy-eclipse-compiler</compilerId>
+            <compilerArgument>-XDignore.symbol.file</compilerArgument>
 
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.codehaus.groovy</groupId>
-                        <artifactId>groovy-eclipse-compiler</artifactId>
-                        <version>3.6.0-01</version>
-                    </dependency>
-                    <!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-eclipse-batch -->
-                    <dependency>
-                        <groupId>org.codehaus.groovy</groupId>
-                        <artifactId>groovy-eclipse-batch</artifactId>
-                        <version>2.5.8-02</version>
-                    </dependency>
-                    <!--            <dependency>-->
-                    <!--                <groupId>org.hibernate</groupId>-->
-                    <!--                <artifactId>hibernate-core</artifactId>-->
-                    <!--                <version>4.1.4.Final</version>-->
-                    <!--            </dependency>-->
-                    <!--            <dependency>-->
-                    <!--                <groupId>org.hibernate</groupId>-->
-                    <!--                <artifactId>hibernate-entitymanager</artifactId>-->
-                    <!--                <version>5.2.3.Final</version>-->
-                    <!--            </dependency>-->
-                </dependencies>
-            </plugin>
+        </configuration>
+        <dependencies>
+            <dependency>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy-eclipse-compiler</artifactId>
+                <version>3.6.0-01</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-eclipse-batch -->
+            <dependency>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy-eclipse-batch</artifactId>
+                <version>2.5.8-02</version>
+            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.hibernate</groupId>-->
+<!--                <artifactId>hibernate-core</artifactId>-->
+<!--                <version>4.1.4.Final</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>org.hibernate</groupId>-->
+<!--                <artifactId>hibernate-entitymanager</artifactId>-->
+<!--                <version>5.2.3.Final</version>-->
+<!--            </dependency>-->
+        </dependencies>
+    </plugin>
 
-            <!-- This is being used to compile the test module -->
-            <!-- Using gmavenplus so we can use groovy version 2.4 -->
+    <!-- This is being used to compile the test module -->
+    <!-- Using gmavenplus so we can use groovy version 2.4 -->
 
-            <plugin>
-                <groupId>org.codehaus.gmavenplus</groupId>
-                <artifactId>gmavenplus-plugin</artifactId>
-                <version>1.6</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>compile</goal>
-                            <goal>compileTests</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+    <plugin>
+        <groupId>org.codehaus.gmavenplus</groupId>
+        <artifactId>gmavenplus-plugin</artifactId>
+        <version>1.6</version>
+        <executions>
+            <execution>
+                <goals>
+                    <goal>compile</goal>
+                    <goal>compileTests</goal>
+                </goals>
+            </execution>
+        </executions>
+    </plugin>
 
-            <!-- This is for sonar jenkins build so the build deps can be accessed -->
+    <!-- This is for sonar jenkins build so the build deps can be accessed -->
 
-            <plugin>
-                <groupId>org.sonarsource.scanner.maven</groupId>
-                <artifactId>sonar-maven-plugin</artifactId>
-                <version>3.7.0.1746</version>
-            </plugin>
+    <plugin>
+        <groupId>org.sonarsource.scanner.maven</groupId>
+        <artifactId>sonar-maven-plugin</artifactId>
+        <version>3.7.0.1746</version>
+    </plugin>
 
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.5</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>report</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+    <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.5</version>
+        <executions>
+            <execution>
+                <goals>
+                    <goal>prepare-agent</goal>
+                </goals>
+            </execution>
+            <execution>
+                <id>report</id>
+                <phase>prepare-package</phase>
+                <goals>
+                    <goal>report</goal>
+                </goals>
+            </execution>
+        </executions>
+    </plugin>
+        <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+                <execution>
+                    <phase>generate-resources</phase>
+                    <goals>
+                        <goal>run</goal>
+                    </goals>
+                    <configuration>
+                        <tasks>
+                            <echo>Current maven active profile: ${current.profile}</echo>
+                        </tasks>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
 
-        </plugins>
+    </plugins>
 
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>profiles/*</exclude>
+                </excludes>
+            </resource>
+        </resources>
+        <filters>
+            <filter>src/main/resources/profiles/${overrides.props.file}</filter>
+        </filters>
     </build>
 </project>
